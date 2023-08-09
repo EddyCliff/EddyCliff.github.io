@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Eddy&#39;s blog</title>
+    <link>https://EddyCliff.github.io/en/</link>
+    <description>Recent content on Eddy&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 21 Feb 2023 12:20:21 +0800</lastBuildDate><atom:link href="https://EddyCliff.github.io/en/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tech1</title>
+      <link>https://EddyCliff.github.io/en/posts/tech/tech1/</link>
+      <pubDate>Tue, 21 Feb 2023 12:20:21 +0800</pubDate>
+      
+      <guid>https://EddyCliff.github.io/en/posts/tech/tech1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Art</title>
+      <link>https://EddyCliff.github.io/en/posts/art/art/</link>
+      <pubDate>Thu, 05 May 2022 00:18:23 +0800</pubDate>
+      
+      <guid>https://EddyCliff.github.io/en/posts/art/art/</guid>
+      <description>hello D:. ├─.idea ├─archetypes ├─assets │ ├─css │ │ └─extended │ └─js ├─content │ ├─posts │ │ ├─art │ │ ├─blog │ │ ├─life │ │ ├─projects │ │ ├─read │ │ └─tech │ │ └─tech1 │ └─tags ├─da</description>
+    </item>
+    
+    <item>
+      <title>Projects</title>
+      <link>https://EddyCliff.github.io/en/posts/projects/projects/</link>
+      <pubDate>Thu, 05 May 2022 00:18:23 +0800</pubDate>
+      
+      <guid>https://EddyCliff.github.io/en/posts/projects/projects/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tech</title>
+      <link>https://EddyCliff.github.io/en/posts/tech/tech/</link>
+      <pubDate>Thu, 05 May 2022 00:17:58 +0800</pubDate>
+      
+      <guid>https://EddyCliff.github.io/en/posts/tech/tech/</guid>
+      <description>科技代码</description>
+    </item>
+    
+    <item>
+      <title>🙋🏻‍♂️关于</title>
+      <link>https://EddyCliff.github.io/en/about/</link>
+      <pubDate>Sat, 06 Nov 2021 14:57:28 +0800</pubDate>
+      
+      <guid>https://EddyCliff.github.io/en/about/</guid>
+      <description>关于我 英文名: Kevin Xu 职业: 程序员 运动: 跑步、乒乓球、爬山</description>
+    </item>
+    
+    
+    
+  </channel>
+</rss>
