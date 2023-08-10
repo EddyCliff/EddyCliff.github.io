@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>tree on Eddy&#39;s blog</title>
+    <link>https://EddyCliff.github.io/en/tags/tree/</link>
+    <description>Recent content in tree on Eddy&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 05 Dec 2022 00:17:58 +0800</lastBuildDate><atom:link href="https://EddyCliff.github.io/en/tags/tree/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【Hugo】markdown引入树状目录</title>
+      <link>https://EddyCliff.github.io/en/posts/tech/hugo_introduce_a_tree_directory/</link>
+      <pubDate>Mon, 05 Dec 2022 00:17:58 +0800</pubDate>
+      
+      <guid>https://EddyCliff.github.io/en/posts/tech/hugo_introduce_a_tree_directory/</guid>
+      <description>markdown引入树状目录</description>
+    </item>
+    
+  </channel>
+</rss>

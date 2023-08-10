@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>【Hugo】hugo server失败 | Eddy&#39;s blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="hugo server失败">
+<meta name="author" content="Eddy">
+<link rel="canonical" href="https://EddyCliff.github.io/en/posts/tech/hugo_server_failed/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.js" onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://EddyCliff.github.io/img/logo3.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://EddyCliff.github.io/img/logo3.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://EddyCliff.github.io/img/logo3.png">
+<link rel="apple-touch-icon" href="https://EddyCliff.github.io/img/logo3.png">
+<link rel="mask-icon" href="https://EddyCliff.github.io/img/logo3.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<script defer src="https://unpkg.com/mermaid@8.8.1/dist/mermaid.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = ""; 
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<meta property="og:title" content="【Hugo】hugo server失败" />
+<meta property="og:description" content="hugo server失败" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://EddyCliff.github.io/en/posts/tech/hugo_server_failed/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-09-20T00:17:58+08:00" />
+<meta property="article:modified_time" content="2022-09-20T00:17:58+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="【Hugo】hugo server失败"/>
+<meta name="twitter:description" content="hugo server失败"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+
+        {
+          "@type": "ListItem",
+          "position":  1 ,
+          "name": "📚文章",
+          "item": "https://EddyCliff.github.io/en/posts/"
+        },
+
+        {
+          "@type": "ListItem",
+          "position":  2 ,
+          "name": "👨🏻‍💻 技术",
+          "item": "https://EddyCliff.github.io/en/posts/tech/"
+        }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "【Hugo】hugo server失败",
+      "item": "https://EddyCliff.github.io/en/posts/tech/hugo_server_failed/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "【Hugo】hugo server失败",
+  "name": "【Hugo】hugo server失败",
+  "description": "hugo server失败",
+  "keywords": [
+    ""
+  ],
+  "articleBody": "项目场景： Hugo\n问题描述 在本地博客源码目录下进行hugo server 失败，无法进入 http://localhost:1313/\n原因分析： 假如修改过\"themes\\hugo-PaperMod\"的话，那么可能是\"themes\\hugo-PaperMod\"出现了问题\n解决方案： 将\"themes\\hugo-PaperMod\"删除，在hugo-PaperMod的Github主页重新下载一次主题并放在\"themes\\\"目录下，重新hugo server一次\n建议对PaperMod主题做自定义修改的话，最好在博客源码目录下修改，而不是在\"themes\\hugo-PaperMod\"修改\n这是博客源码目录：\n卷 Data 的文件夹 PATH 列表 卷序列号为 E84E-7569 D:. ├─.idea ├─archetypes ├─assets │ ├─css │ │ └─extended │ └─js ├─content │ ├─posts │ │ ├─art │ │ ├─projects │ │ └─tech │ │ └─tech1 │ └─tags ├─data ├─i18n ├─layouts │ ├─partials │ │ └─templates │ ├─shortcodes │ └─_default │ └─_markup ├─public │ ├─assets │ │ ├─css │ │ └─js │ ├─en │ │ ├─about │ │ ├─archives │ │ ├─categories │ │ ├─posts │ │ │ ├─art │ │ │ │ ├─art │ │ │ │ └─page │ │ │ │ └─1 │ │ │ ├─page │ │ │ │ └─1 │ │ │ ├─projects │ │ │ │ ├─page │ │ │ │ │ └─1 │ │ │ │ └─projects │ │ │ └─tech │ │ │ ├─page │ │ │ │ └─1 │ │ │ ├─tech │ │ │ └─tech1 │ │ ├─search │ │ ├─series │ │ └─tags │ │ ├─art │ │ │ └─page │ │ │ └─1 │ │ ├─projects │ │ │ └─page │ │ │ └─1 │ │ └─tech │ │ └─page │ │ └─1 │ ├─fonts │ └─img ├─resources │ └─_gen │ ├─assets │ └─images ├─static │ ├─fonts │ └─img └─themes └─hugo-PaperMod ├─.github │ ├─ISSUE_TEMPLATE │ └─workflows ├─assets │ ├─css │ │ ├─common │ │ ├─core │ │ ├─extended │ │ ├─hljs │ │ └─includes │ └─js ├─i18n ├─images └─layouts ├─partials │ └─templates ├─shortcodes └─_default └─_markup ",
+  "wordCount" : "1115",
+  "inLanguage": "en",
+  "datePublished": "2022-09-20T00:17:58+08:00",
+  "dateModified": "2022-09-20T00:17:58+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "Eddy"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://EddyCliff.github.io/en/posts/tech/hugo_server_failed/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Eddy's blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://EddyCliff.github.io/img/logo3.png"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    (function () {
+        let  arr,reg = new RegExp("(^| )"+"change-themes"+"=([^;]*)(;|$)");
+        if(arr = document.cookie.match(reg)) {
+        } else {
+            if (new Date().getHours() >= 19 || new Date().getHours() < 6) {
+                document.body.classList.add('dark');
+                localStorage.setItem("pref-theme", 'dark');
+            } else {
+                document.body.classList.remove('dark');
+                localStorage.setItem("pref-theme", 'light');
+            }
+        }
+    })()
+
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://EddyCliff.github.io/en/" accesskey="h" title="Eddy&#39;s Blog (Alt + H)">
+            <img src="https://EddyCliff.github.io/img/logo3.png" alt="logo" aria-label="logo"
+                 height="35">Eddy&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://EddyCliff.github.io/en/search" title="🔍 搜索 (Alt &#43; /)" accesskey=/>
+                <span>🔍 搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://EddyCliff.github.io/en/" title="🏠 主页">
+                <span>🏠 主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://EddyCliff.github.io/en/posts" title="📚 文章">
+                <span>📚 文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://EddyCliff.github.io/en/tags" title="🧩 标签">
+                <span>🧩 标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://EddyCliff.github.io/en/archives/" title="⏱️ 时间轴">
+                <span>⏱️ 时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://EddyCliff.github.io/en/about" title="🙋🏻‍♂️ 关于">
+                <span>🙋🏻‍♂️ 关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main page">
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+</style>
+
+<article class="post-single">
+    <div id="single-content">
+        <header class="post-header">
+            <div class="breadcrumbs"><a href="https://EddyCliff.github.io/en/">🏠 主页</a>&nbsp;»&nbsp;<a href="https://EddyCliff.github.io/en/posts/">📚文章</a>&nbsp;»&nbsp;<a href="https://EddyCliff.github.io/en/posts/tech/">👨🏻‍💻 技术</a></div>
+            <h1 class="post-title">
+                【Hugo】hugo server失败
+            </h1>
+            <div class="post-description">
+                hugo server失败
+            </div>
+            <div class="post-meta">
+
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+
+    .parent-post-meta {
+        display: flex;
+        flex-wrap: wrap;
+        opacity: 0.8;
+    }
+</style>
+
+<span class="parent-post-meta">
+    <span id="post_meta_style_1">
+        <span class="fa fa-calendar-check-o"></span>
+        <span>2022-09-20
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    
+    
+    
+    
+    
+    
+    
+    <span id="post_meta_style_3">
+        <span class="fa fa-file-word-o"></span>
+        <span>1115字
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_4">
+        <span class="fa fa-clock-o"></span>
+        <span>3分钟
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_5">
+        <span class="fa fa-user-o"></span>
+        <span>Eddy
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_6">
+        <span class="fa fa-tags" style="opacity: 0.8"></span>
+        <span>
+            <span class="post-tags-meta">
+                <a href="https://EddyCliff.github.io/en/tags/hugo/" style="color: var(--secondary)!important;">Hugo</a>
+            </span>
+        </span>
+    </span>
+</span>
+<span style="opacity: 0.8;">
+                    <span id="post_meta_style_7">
+                        &nbsp;&nbsp;
+                        <span class="fa fa-eye" ></span>
+                        <span>
+                            <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+                            &nbsp;&nbsp;
+                        </span>
+                    </span>
+                    <span id="post_meta_style_8">
+                        <span class="fa fa-commenting-o"></span>
+                        <span>
+                            <script src="https://cdn.staticfile.org/twikoo//twikoo.all.min.js"></script>
+                            <script>
+                                let url = document.documentURI
+                                
+                                let dnsUrl = "https://EddyCliff.github.io/"
+                                let urlSplit = url.split(dnsUrl)
+                                let finalUrl = urlSplit[1]
+                                if (finalUrl[0] !== '/') {
+                                    finalUrl = '/'+finalUrl
+                                }
+                                twikoo.getCommentsCount({
+                                    envId:  null , 
+                                region:  null , 
+                                urls: [ 
+                                    
+                                    finalUrl,
+                                ],
+                                    includeReply: false 
+                                }).then(function (res) {
+                                    let count = res[0].count
+                                    const obj = document.getElementById("comment_count");
+                                    obj.innerText = count
+                                    
+                                    
+                                    
+                                }).catch(function (err) {
+                                    
+                                    console.error(err);
+                                });
+                            </script>
+                            <span id="comment_count"></span>
+                        </span>
+                    </span>
+                </span>
+
+</div>
+        </header> <aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">文章目录</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e9%a1%b9%e7%9b%ae%e5%9c%ba%e6%99%af" aria-label="项目场景：">项目场景：</a></li>
+                <li>
+                    <a href="#%e9%97%ae%e9%a2%98%e6%8f%8f%e8%bf%b0" aria-label="问题描述">问题描述</a></li>
+                <li>
+                    <a href="#%e5%8e%9f%e5%9b%a0%e5%88%86%e6%9e%90" aria-label="原因分析：">原因分析：</a></li>
+                <li>
+                    <a href="#%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88" aria-label="解决方案：">解决方案：</a>
+                </li>
+            </ul>
+        </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+        
+        activeElement = elements[0];
+        const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+        document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+    }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        if (elements) {
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement){
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }
+    }, false);
+
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;
+    }
+</script>
+        <div class="post-content"><h1 id="项目场景">项目场景：<a hidden class="anchor" aria-hidden="true" href="#项目场景">#</a></h1>
+<p><code>Hugo</code></p>
+<hr>
+<h1 id="问题描述">问题描述<a hidden class="anchor" aria-hidden="true" href="#问题描述">#</a></h1>
+<p>在本地博客源码目录下进行<code>hugo server</code> 失败，无法进入 <code>http://localhost:1313/</code></p>
+<hr>
+<h1 id="原因分析">原因分析：<a hidden class="anchor" aria-hidden="true" href="#原因分析">#</a></h1>
+<p>假如修改过<code>&quot;themes\hugo-PaperMod&quot;</code>的话，那么可能是<code>&quot;themes\hugo-PaperMod&quot;</code>出现了问题</p>
+<hr>
+<h1 id="解决方案">解决方案：<a hidden class="anchor" aria-hidden="true" href="#解决方案">#</a></h1>
+<p>将<code>&quot;themes\hugo-PaperMod&quot;</code>删除，在<code>hugo-PaperMod</code>的<code>Github</code>主页重新下载一次主题并放在<code>&quot;themes\&quot;</code>目录下，重新<code>hugo server</code>一次</p>
+<p>建议对PaperMod主题做自定义修改的话，最好在博客源码目录下修改，而不是在<code>&quot;themes\hugo-PaperMod&quot;</code>修改</p>
+<p>这是博客源码目录：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-HTML" data-lang="HTML"><span style="display:flex;"><span>卷 Data 的文件夹 PATH 列表
+</span></span><span style="display:flex;"><span>卷序列号为 E84E-7569
+</span></span><span style="display:flex;"><span>D:.
+</span></span><span style="display:flex;"><span>├─.idea
+</span></span><span style="display:flex;"><span>├─archetypes
+</span></span><span style="display:flex;"><span>├─assets
+</span></span><span style="display:flex;"><span>│  ├─css
+</span></span><span style="display:flex;"><span>│  │  └─extended
+</span></span><span style="display:flex;"><span>│  └─js
+</span></span><span style="display:flex;"><span>├─content
+</span></span><span style="display:flex;"><span>│  ├─posts
+</span></span><span style="display:flex;"><span>│  │  ├─art
+</span></span><span style="display:flex;"><span>│  │  ├─projects
+</span></span><span style="display:flex;"><span>│  │  └─tech
+</span></span><span style="display:flex;"><span>│  │      └─tech1
+</span></span><span style="display:flex;"><span>│  └─tags
+</span></span><span style="display:flex;"><span>├─data
+</span></span><span style="display:flex;"><span>├─i18n
+</span></span><span style="display:flex;"><span>├─layouts
+</span></span><span style="display:flex;"><span>│  ├─partials
+</span></span><span style="display:flex;"><span>│  │  └─templates
+</span></span><span style="display:flex;"><span>│  ├─shortcodes
+</span></span><span style="display:flex;"><span>│  └─_default
+</span></span><span style="display:flex;"><span>│      └─_markup
+</span></span><span style="display:flex;"><span>├─public
+</span></span><span style="display:flex;"><span>│  ├─assets
+</span></span><span style="display:flex;"><span>│  │  ├─css
+</span></span><span style="display:flex;"><span>│  │  └─js
+</span></span><span style="display:flex;"><span>│  ├─en
+</span></span><span style="display:flex;"><span>│  │  ├─about
+</span></span><span style="display:flex;"><span>│  │  ├─archives
+</span></span><span style="display:flex;"><span>│  │  ├─categories
+</span></span><span style="display:flex;"><span>│  │  ├─posts
+</span></span><span style="display:flex;"><span>│  │  │  ├─art
+</span></span><span style="display:flex;"><span>│  │  │  │  ├─art
+</span></span><span style="display:flex;"><span>│  │  │  │  └─page
+</span></span><span style="display:flex;"><span>│  │  │  │      └─1
+</span></span><span style="display:flex;"><span>│  │  │  ├─page
+</span></span><span style="display:flex;"><span>│  │  │  │  └─1
+</span></span><span style="display:flex;"><span>│  │  │  ├─projects
+</span></span><span style="display:flex;"><span>│  │  │  │  ├─page
+</span></span><span style="display:flex;"><span>│  │  │  │  │  └─1
+</span></span><span style="display:flex;"><span>│  │  │  │  └─projects
+</span></span><span style="display:flex;"><span>│  │  │  └─tech
+</span></span><span style="display:flex;"><span>│  │  │      ├─page
+</span></span><span style="display:flex;"><span>│  │  │      │  └─1
+</span></span><span style="display:flex;"><span>│  │  │      ├─tech
+</span></span><span style="display:flex;"><span>│  │  │      └─tech1
+</span></span><span style="display:flex;"><span>│  │  ├─search
+</span></span><span style="display:flex;"><span>│  │  ├─series
+</span></span><span style="display:flex;"><span>│  │  └─tags
+</span></span><span style="display:flex;"><span>│  │      ├─art
+</span></span><span style="display:flex;"><span>│  │      │  └─page
+</span></span><span style="display:flex;"><span>│  │      │      └─1
+</span></span><span style="display:flex;"><span>│  │      ├─projects
+</span></span><span style="display:flex;"><span>│  │      │  └─page
+</span></span><span style="display:flex;"><span>│  │      │      └─1
+</span></span><span style="display:flex;"><span>│  │      └─tech
+</span></span><span style="display:flex;"><span>│  │          └─page
+</span></span><span style="display:flex;"><span>│  │              └─1
+</span></span><span style="display:flex;"><span>│  ├─fonts
+</span></span><span style="display:flex;"><span>│  └─img
+</span></span><span style="display:flex;"><span>├─resources
+</span></span><span style="display:flex;"><span>│  └─_gen
+</span></span><span style="display:flex;"><span>│      ├─assets
+</span></span><span style="display:flex;"><span>│      └─images
+</span></span><span style="display:flex;"><span>├─static
+</span></span><span style="display:flex;"><span>│  ├─fonts
+</span></span><span style="display:flex;"><span>│  └─img
+</span></span><span style="display:flex;"><span>└─themes
+</span></span><span style="display:flex;"><span>    └─hugo-PaperMod
+</span></span><span style="display:flex;"><span>        ├─.github
+</span></span><span style="display:flex;"><span>        │  ├─ISSUE_TEMPLATE
+</span></span><span style="display:flex;"><span>        │  └─workflows
+</span></span><span style="display:flex;"><span>        ├─assets
+</span></span><span style="display:flex;"><span>        │  ├─css
+</span></span><span style="display:flex;"><span>        │  │  ├─common
+</span></span><span style="display:flex;"><span>        │  │  ├─core
+</span></span><span style="display:flex;"><span>        │  │  ├─extended
+</span></span><span style="display:flex;"><span>        │  │  ├─hljs
+</span></span><span style="display:flex;"><span>        │  │  └─includes
+</span></span><span style="display:flex;"><span>        │  └─js
+</span></span><span style="display:flex;"><span>        ├─i18n
+</span></span><span style="display:flex;"><span>        ├─images
+</span></span><span style="display:flex;"><span>        └─layouts
+</span></span><span style="display:flex;"><span>            ├─partials
+</span></span><span style="display:flex;"><span>            │  └─templates
+</span></span><span style="display:flex;"><span>            ├─shortcodes
+</span></span><span style="display:flex;"><span>            └─_default
+</span></span><span style="display:flex;"><span>                └─_markup
+</span></span></code></pre></div>
+
+        </div>
+
+        <footer class="post-footer">
+            
+<nav class="paginav">
+  <a class="prev" href="https://EddyCliff.github.io/en/posts/tech/gitub_error1/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>【Github】解决{OpenSSL SSL_read: Connection was reset, errno 10054}</span>
+  </a>
+  <a class="next" href="https://EddyCliff.github.io/en/posts/art/art/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>Art</span>
+  </a>
+</nav>
+
+        </footer>
+    </div>
+</article>
+</main>
+
+<footer class="footer">
+    <span>
+        Copyright
+        &copy;
+        -2023
+        <a href="https://EddyCliff.github.io/en/" style="color:#939393;">Eddy&#39;s blog</a>
+        All Rights Reserved
+    </span>
+    <a href="https://beian.miit.gov.cn/" target="_blank" style="color:#939393;"></a>&nbsp;
+    <span>
+        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=null"
+           style="display:inline-block;text-decoration:none;height:20px;color:#939393;">
+            <img src="" style="float:left;margin: 0px 5px 0px 0px;"/>
+            
+        </a>
+    </span>
+    <span id="busuanzi_container">
+        <span class="fa fa-user"></span> <span id="busuanzi_value_site_uv"></span>
+        <span class="fa fa-eye"></span> <span id="busuanzi_value_site_pv"></span>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <span class="topInner">
+        <svg class="topSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z"/>
+        </svg>
+        <span id="read_progress"></span>
+    </span>
+</a>
+
+<script>
+    document.addEventListener('scroll', function (e) {
+        const readProgress = document.getElementById("read_progress");
+        const scrollHeight = document.documentElement.scrollHeight;
+        const clientHeight = document.documentElement.clientHeight;
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        readProgress.innerText = ((scrollTop / (scrollHeight - clientHeight)).toFixed(2) * 100).toFixed(0);
+    })
+</script>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+</script>
+<script>
+    let mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        (function() {
+            document.cookie = "change-themes" + "="+ escape ("false");
+        })()
+
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    });
+</script>
+
+<script>
+    document.body.addEventListener('copy', function (e) {
+        if (window.getSelection().toString() && window.getSelection().toString().length > 50) {
+            let clipboardData = e.clipboardData || window.clipboardData;
+            if (clipboardData) {
+                e.preventDefault();
+                let htmlData = window.getSelection().toString() +
+                    '\r\n\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                let textData = window.getSelection().toString() +
+                    '\r\n\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                clipboardData.setData('text/html', htmlData);
+                clipboardData.setData('text/plain', textData);
+            }
+        }
+    });
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = '📄复制';
+
+        function copyingDone() {
+            copybutton.innerText = '👌🏻已复制!';
+            setTimeout(() => {
+                copybutton.innerText = '📄复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                let text = codeblock.textContent +
+                    '\r\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                navigator.clipboard.writeText(text);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) {}
+            selection.removeRange(range);
+        });
+
+        let language = codeblock.className.replaceAll("language-", "")
+        let macTool = document.createElement("div")
+        let macTool1 = document.createElement("div")
+        let macTool2 = document.createElement("div")
+        let macTool3 = document.createElement("div")
+        let languageType = document.createElement("div")
+        languageType.innerText = language
+        macTool.setAttribute('class', 'mac-tool')
+        macTool1.setAttribute('class', 'mac bb1')
+        macTool2.setAttribute('class', 'mac bb2')
+        macTool3.setAttribute('class', 'mac bb3')
+        languageType.setAttribute('class', 'language-type')
+        macTool.appendChild(macTool1)
+        macTool.appendChild(macTool2)
+        macTool.appendChild(macTool3)
+        macTool.appendChild(languageType)
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+            container.appendChild(macTool)
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+            container.appendChild(macTool)
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+            container.appendChild(macTool)
+        }
+    });
+</script>
+</body>
+
+</html>

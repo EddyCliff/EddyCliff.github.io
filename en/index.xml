@@ -6,7 +6,52 @@
     <description>Recent content on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 21 Feb 2023 12:20:21 +0800</lastBuildDate><atom:link href="https://EddyCliff.github.io/en/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 10 Jul 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://EddyCliff.github.io/en/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【Hugo】Hugo添加不蒜子Busuanzi站点访问量与阅读量统计</title>
+      <link>https://EddyCliff.github.io/en/posts/tech/hugo_busuanzi/</link>
+      <pubDate>Mon, 10 Jul 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://EddyCliff.github.io/en/posts/tech/hugo_busuanzi/</guid>
+      <description>Hugo添加不蒜子Busuanzi站点访问量与阅读量统计</description>
+    </item>
+    
+    <item>
+      <title>【Hugo】hugo代码高亮</title>
+      <link>https://EddyCliff.github.io/en/posts/tech/hugo_code_highlight/</link>
+      <pubDate>Sat, 10 Jun 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://EddyCliff.github.io/en/posts/tech/hugo_code_highlight/</guid>
+      <description>hugo代码高亮</description>
+    </item>
+    
+    <item>
+      <title>【Hugo】hugo主题美化-添加emoji</title>
+      <link>https://EddyCliff.github.io/en/posts/tech/hugo_emoji/</link>
+      <pubDate>Sat, 13 May 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://EddyCliff.github.io/en/posts/tech/hugo_emoji/</guid>
+      <description>hugo主题美化-添加emoji</description>
+    </item>
+    
+    <item>
+      <title>【Hugo】在本地使用Hugo构建网站并在本地服务器上正常运行，但在将网站部署到GitHub远程仓库时出现了错误</title>
+      <link>https://EddyCliff.github.io/en/posts/tech/hugo_error1/</link>
+      <pubDate>Mon, 17 Apr 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://EddyCliff.github.io/en/posts/tech/hugo_error1/</guid>
+      <description>在本地使用Hugo构建网站并在本地服务器上正常运行，但在将网站部署到GitHub远程仓库时出现了错误</description>
+    </item>
+    
+    <item>
+      <title>【Hugo】githubpages对应仓库username.github.io删除之后,重新创建一次仍然可以匹配到githubpages</title>
+      <link>https://EddyCliff.github.io/en/posts/tech/hugo_githubpages/</link>
+      <pubDate>Sat, 11 Mar 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://EddyCliff.github.io/en/posts/tech/hugo_githubpages/</guid>
+      <description>githubpages对应仓库username.github.io删除之后,重新创建一次仍然可以匹配到githubpages</description>
+    </item>
+    
     <item>
       <title>Tech1</title>
       <link>https://EddyCliff.github.io/en/posts/tech/tech1/</link>
@@ -14,6 +59,105 @@
       
       <guid>https://EddyCliff.github.io/en/posts/tech/tech1/</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>【Hugo】设置主页头像</title>
+      <link>https://EddyCliff.github.io/en/posts/tech/hugo_homepage_avatar/</link>
+      <pubDate>Wed, 15 Feb 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://EddyCliff.github.io/en/posts/tech/hugo_homepage_avatar/</guid>
+      <description>设置主页头像</description>
+    </item>
+    
+    <item>
+      <title>【Hugo】Hugo添加icon&#43;socialIcons</title>
+      <link>https://EddyCliff.github.io/en/posts/tech/hugo_icon/</link>
+      <pubDate>Fri, 20 Jan 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://EddyCliff.github.io/en/posts/tech/hugo_icon/</guid>
+      <description>Hugo添加icon&#43;socialIcons</description>
+    </item>
+    
+    <item>
+      <title>【Hugo】markdown引入树状目录</title>
+      <link>https://EddyCliff.github.io/en/posts/tech/hugo_introduce_a_tree_directory/</link>
+      <pubDate>Mon, 05 Dec 2022 00:17:58 +0800</pubDate>
+      
+      <guid>https://EddyCliff.github.io/en/posts/tech/hugo_introduce_a_tree_directory/</guid>
+      <description>markdown引入树状目录</description>
+    </item>
+    
+    <item>
+      <title>【Hugo】markdown引用本地图片</title>
+      <link>https://EddyCliff.github.io/en/posts/tech/hugo_referencing_local_images/</link>
+      <pubDate>Sun, 13 Nov 2022 00:17:58 +0800</pubDate>
+      
+      <guid>https://EddyCliff.github.io/en/posts/tech/hugo_referencing_local_images/</guid>
+      <description>markdown引用本地图片</description>
+    </item>
+    
+    <item>
+      <title>【Hugo】在Github仓库分别储存博客源码和静态页面</title>
+      <link>https://EddyCliff.github.io/en/posts/tech/hugo_saving_source_code/</link>
+      <pubDate>Tue, 11 Oct 2022 00:17:58 +0800</pubDate>
+      
+      <guid>https://EddyCliff.github.io/en/posts/tech/hugo_saving_source_code/</guid>
+      <description>在Github仓库分别储存博客源码和静态页面</description>
+    </item>
+    
+    <item>
+      <title>【Github】release上的安装包amd和arm的选择</title>
+      <link>https://EddyCliff.github.io/en/posts/tech/github_amd_arm/</link>
+      <pubDate>Tue, 20 Sep 2022 00:17:58 +0800</pubDate>
+      
+      <guid>https://EddyCliff.github.io/en/posts/tech/github_amd_arm/</guid>
+      <description>release上的安装包amd和arm的选择</description>
+    </item>
+    
+    <item>
+      <title>【Github】删除本地仓库/错误的远程仓库关联</title>
+      <link>https://EddyCliff.github.io/en/posts/tech/github_delete_wrong_repository/</link>
+      <pubDate>Tue, 20 Sep 2022 00:17:58 +0800</pubDate>
+      
+      <guid>https://EddyCliff.github.io/en/posts/tech/github_delete_wrong_repository/</guid>
+      <description>删除本地仓库/错误的远程仓库关联</description>
+    </item>
+    
+    <item>
+      <title>【Github】将仓库中的master分支合并到main分支</title>
+      <link>https://EddyCliff.github.io/en/posts/tech/github_merge_the_master_branch_into_the_main_branch/</link>
+      <pubDate>Tue, 20 Sep 2022 00:17:58 +0800</pubDate>
+      
+      <guid>https://EddyCliff.github.io/en/posts/tech/github_merge_the_master_branch_into_the_main_branch/</guid>
+      <description>将仓库中的master分支合并到main分支</description>
+    </item>
+    
+    <item>
+      <title>【Github】解决{error: remote origin already exists.}</title>
+      <link>https://EddyCliff.github.io/en/posts/tech/github_error_remote_origin_already_exists/</link>
+      <pubDate>Tue, 20 Sep 2022 00:17:58 +0800</pubDate>
+      
+      <guid>https://EddyCliff.github.io/en/posts/tech/github_error_remote_origin_already_exists/</guid>
+      <description>解决{error: remote origin already exists.}</description>
+    </item>
+    
+    <item>
+      <title>【Github】解决{OpenSSL SSL_read: Connection was reset, errno 10054}</title>
+      <link>https://EddyCliff.github.io/en/posts/tech/gitub_error1/</link>
+      <pubDate>Tue, 20 Sep 2022 00:17:58 +0800</pubDate>
+      
+      <guid>https://EddyCliff.github.io/en/posts/tech/gitub_error1/</guid>
+      <description>解决{OpenSSL SSL_read: Connection was reset, errno 10054}</description>
+    </item>
+    
+    <item>
+      <title>【Hugo】hugo server失败</title>
+      <link>https://EddyCliff.github.io/en/posts/tech/hugo_server_failed/</link>
+      <pubDate>Tue, 20 Sep 2022 00:17:58 +0800</pubDate>
+      
+      <guid>https://EddyCliff.github.io/en/posts/tech/hugo_server_failed/</guid>
+      <description>hugo server失败</description>
     </item>
     
     <item>
@@ -32,15 +176,6 @@
       
       <guid>https://EddyCliff.github.io/en/posts/projects/projects/</guid>
       <description></description>
-    </item>
-    
-    <item>
-      <title>【Hugo】设置主页头像</title>
-      <link>https://EddyCliff.github.io/en/posts/tech/hugo_homepage_avatar/</link>
-      <pubDate>Thu, 05 May 2022 00:17:58 +0800</pubDate>
-      
-      <guid>https://EddyCliff.github.io/en/posts/tech/hugo_homepage_avatar/</guid>
-      <description>设置主页头像</description>
     </item>
     
     <item>

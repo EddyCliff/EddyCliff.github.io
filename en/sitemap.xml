@@ -2,17 +2,110 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://EddyCliff.github.io/en/posts/tech/hugo_busuanzi/</loc>
+    <lastmod>2023-07-10T00:17:58+08:00</lastmod>
+  </url><url>
     <loc>https://EddyCliff.github.io/en/posts/tech/</loc>
-    <lastmod>2023-02-21T12:20:21+08:00</lastmod>
+    <lastmod>2023-07-10T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://EddyCliff.github.io/en/posts/</loc>
-    <lastmod>2023-02-21T12:20:21+08:00</lastmod>
+    <lastmod>2023-07-10T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://EddyCliff.github.io/en/tags/busuanzi/</loc>
+    <lastmod>2023-07-10T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://EddyCliff.github.io/en/</loc>
-    <lastmod>2023-02-21T12:20:21+08:00</lastmod>
+    <lastmod>2023-07-10T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://EddyCliff.github.io/en/tags/hugo/</loc>
+    <lastmod>2023-07-10T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://EddyCliff.github.io/en/tags/</loc>
+    <lastmod>2023-07-10T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://EddyCliff.github.io/en/posts/tech/hugo_code_highlight/</loc>
+    <lastmod>2023-06-11T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://EddyCliff.github.io/en/tags/code-highlight/</loc>
+    <lastmod>2023-06-11T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://EddyCliff.github.io/en/posts/tech/hugo_emoji/</loc>
+    <lastmod>2023-05-13T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://EddyCliff.github.io/en/tags/emoji/</loc>
+    <lastmod>2023-05-13T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://EddyCliff.github.io/en/posts/tech/hugo_error1/</loc>
+    <lastmod>2023-04-17T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://EddyCliff.github.io/en/tags/github/</loc>
+    <lastmod>2023-04-17T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://EddyCliff.github.io/en/posts/tech/hugo_githubpages/</loc>
+    <lastmod>2023-03-11T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://EddyCliff.github.io/en/tags/github-pages/</loc>
+    <lastmod>2023-03-11T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://EddyCliff.github.io/en/posts/tech/tech1/</loc>
     <lastmod>2023-02-21T12:20:21+08:00</lastmod>
+  </url><url>
+    <loc>https://EddyCliff.github.io/en/posts/tech/hugo_homepage_avatar/</loc>
+    <lastmod>2023-02-15T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://EddyCliff.github.io/en/tags/%E4%B8%BB%E9%A1%B5%E5%A4%B4%E5%83%8F/</loc>
+    <lastmod>2023-02-15T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://EddyCliff.github.io/en/posts/tech/hugo_icon/</loc>
+    <lastmod>2023-01-20T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://EddyCliff.github.io/en/tags/icon/</loc>
+    <lastmod>2023-01-20T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://EddyCliff.github.io/en/tags/socialicons/</loc>
+    <lastmod>2023-01-20T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://EddyCliff.github.io/en/posts/tech/hugo_introduce_a_tree_directory/</loc>
+    <lastmod>2022-12-05T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://EddyCliff.github.io/en/tags/markdown/</loc>
+    <lastmod>2022-12-05T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://EddyCliff.github.io/en/tags/tree/</loc>
+    <lastmod>2022-12-05T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://EddyCliff.github.io/en/posts/tech/hugo_referencing_local_images/</loc>
+    <lastmod>2022-11-13T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://EddyCliff.github.io/en/posts/tech/hugo_saving_source_code/</loc>
+    <lastmod>2022-10-11T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://EddyCliff.github.io/en/tags/public/</loc>
+    <lastmod>2022-10-11T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://EddyCliff.github.io/en/posts/tech/github_amd_arm/</loc>
+    <lastmod>2022-09-20T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://EddyCliff.github.io/en/posts/tech/github_delete_wrong_repository/</loc>
+    <lastmod>2022-09-20T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://EddyCliff.github.io/en/posts/tech/github_merge_the_master_branch_into_the_main_branch/</loc>
+    <lastmod>2022-09-20T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://EddyCliff.github.io/en/posts/tech/github_error_remote_origin_already_exists/</loc>
+    <lastmod>2022-09-20T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://EddyCliff.github.io/en/posts/tech/gitub_error1/</loc>
+    <lastmod>2022-09-20T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://EddyCliff.github.io/en/posts/tech/hugo_server_failed/</loc>
+    <lastmod>2022-09-20T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://EddyCliff.github.io/en/tags/error/</loc>
+    <lastmod>2022-09-20T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://EddyCliff.github.io/en/tags/release/</loc>
+    <lastmod>2022-09-20T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://EddyCliff.github.io/en/posts/art/</loc>
     <lastmod>2022-05-05T00:18:23+08:00</lastmod>
@@ -31,12 +124,6 @@
   </url><url>
     <loc>https://EddyCliff.github.io/en/posts/projects/projects/</loc>
     <lastmod>2022-05-05T00:18:23+08:00</lastmod>
-  </url><url>
-    <loc>https://EddyCliff.github.io/en/tags/</loc>
-    <lastmod>2022-05-05T00:18:23+08:00</lastmod>
-  </url><url>
-    <loc>https://EddyCliff.github.io/en/posts/tech/hugo_homepage_avatar/</loc>
-    <lastmod>2022-05-05T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://EddyCliff.github.io/en/tags/tech/</loc>
     <lastmod>2022-05-05T00:17:58+08:00</lastmod>
