@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>emoji on Eddy&#39;s blog</title>
-    <link>https://EddyCliff.github.io/en/tags/emoji/</link>
+    <link>https://eddyblog.cn/en/tags/emoji/</link>
     <description>Recent content in emoji on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 13 May 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://EddyCliff.github.io/en/tags/emoji/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 13 May 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/en/tags/emoji/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【Hugo】hugo主题美化-添加emoji</title>
-      <link>https://EddyCliff.github.io/en/posts/tech/hugo_emoji/</link>
+      <link>https://eddyblog.cn/en/posts/tech/hugo_emoji/</link>
       <pubDate>Sat, 13 May 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://EddyCliff.github.io/en/posts/tech/hugo_emoji/</guid>
+      <guid>https://eddyblog.cn/en/posts/tech/hugo_emoji/</guid>
       <description>hugo主题美化-添加emoji</description>
     </item>
     

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Github Pages on Eddy&#39;s blog</title>
-    <link>https://EddyCliff.github.io/en/tags/github-pages/</link>
+    <link>https://eddyblog.cn/en/tags/github-pages/</link>
     <description>Recent content in Github Pages on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 11 Mar 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://EddyCliff.github.io/en/tags/github-pages/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 11 Mar 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/en/tags/github-pages/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【Hugo】githubpages对应仓库username.github.io删除之后,重新创建一次仍然可以匹配到githubpages</title>
-      <link>https://EddyCliff.github.io/en/posts/tech/hugo_githubpages/</link>
+      <link>https://eddyblog.cn/en/posts/tech/hugo_githubpages/</link>
       <pubDate>Sat, 11 Mar 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://EddyCliff.github.io/en/posts/tech/hugo_githubpages/</guid>
+      <guid>https://eddyblog.cn/en/posts/tech/hugo_githubpages/</guid>
       <description>githubpages对应仓库username.github.io删除之后,重新创建一次仍然可以匹配到githubpages</description>
     </item>
     

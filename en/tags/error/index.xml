@@ -2,35 +2,35 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>error on Eddy&#39;s blog</title>
-    <link>https://EddyCliff.github.io/en/tags/error/</link>
+    <link>https://eddyblog.cn/en/tags/error/</link>
     <description>Recent content in error on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 20 Sep 2022 00:17:58 +0800</lastBuildDate><atom:link href="https://EddyCliff.github.io/en/tags/error/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 20 Sep 2022 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/en/tags/error/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【Github】删除本地仓库/错误的远程仓库关联</title>
-      <link>https://EddyCliff.github.io/en/posts/tech/github_delete_wrong_repository/</link>
+      <link>https://eddyblog.cn/en/posts/tech/github_delete_wrong_repository/</link>
       <pubDate>Tue, 20 Sep 2022 00:17:58 +0800</pubDate>
       
-      <guid>https://EddyCliff.github.io/en/posts/tech/github_delete_wrong_repository/</guid>
+      <guid>https://eddyblog.cn/en/posts/tech/github_delete_wrong_repository/</guid>
       <description>删除本地仓库/错误的远程仓库关联</description>
     </item>
     
     <item>
       <title>【Github】解决{error: remote origin already exists.}</title>
-      <link>https://EddyCliff.github.io/en/posts/tech/github_error_remote_origin_already_exists/</link>
+      <link>https://eddyblog.cn/en/posts/tech/github_error_remote_origin_already_exists/</link>
       <pubDate>Tue, 20 Sep 2022 00:17:58 +0800</pubDate>
       
-      <guid>https://EddyCliff.github.io/en/posts/tech/github_error_remote_origin_already_exists/</guid>
+      <guid>https://eddyblog.cn/en/posts/tech/github_error_remote_origin_already_exists/</guid>
       <description>解决{error: remote origin already exists.}</description>
     </item>
     
     <item>
       <title>【Github】解决{OpenSSL SSL_read: Connection was reset, errno 10054}</title>
-      <link>https://EddyCliff.github.io/en/posts/tech/gitub_error1/</link>
+      <link>https://eddyblog.cn/en/posts/tech/gitub_error1/</link>
       <pubDate>Tue, 20 Sep 2022 00:17:58 +0800</pubDate>
       
-      <guid>https://EddyCliff.github.io/en/posts/tech/gitub_error1/</guid>
+      <guid>https://eddyblog.cn/en/posts/tech/gitub_error1/</guid>
       <description>解决{OpenSSL SSL_read: Connection was reset, errno 10054}</description>
     </item>
     
