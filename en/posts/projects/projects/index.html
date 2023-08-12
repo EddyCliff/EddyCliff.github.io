@@ -89,24 +89,10 @@ var _hmt = _hmt || [];
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [
-
-        {
-          "@type": "ListItem",
-          "position":  1 ,
-          "name": "📚文章",
-          "item": "https://eddyblog.cn/en/posts/"
-        },
-
-        {
-          "@type": "ListItem",
-          "position":  2 ,
-          "name": "💽项目",
-          "item": "https://eddyblog.cn/en/posts/projects/"
-        }, 
+  "itemListElement": [ 
     {
       "@type": "ListItem",
-      "position":  3 ,
+      "position":  5 ,
       "name": "Projects",
       "item": "https://eddyblog.cn/en/posts/projects/projects/"
     }
@@ -248,7 +234,7 @@ var _hmt = _hmt || [];
 <article class="post-single">
     <div id="single-content">
         <header class="post-header">
-            <div class="breadcrumbs"><a href="https://eddyblog.cn/en/">🏠 主页</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/en/posts/">📚文章</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/en/posts/projects/">💽项目</a></div>
+            <div class="breadcrumbs"><a href="https://eddyblog.cn/en/">🏠 主页</a></div>
             <h1 class="post-title">
                 Projects
             </h1>
@@ -325,7 +311,7 @@ var _hmt = _hmt || [];
                             <script>
                                 let url = document.documentURI
                                 
-                                let dnsUrl = "https://eddyblog.cn/"
+                                let dnsUrl = "https://eddyblog.cn"
                                 let urlSplit = url.split(dnsUrl)
                                 let finalUrl = urlSplit[1]
                                 if (finalUrl[0] !== '/') {
