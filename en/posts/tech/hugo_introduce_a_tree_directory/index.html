@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>【Hugo】markdown引入树状目录 | Eddy&#39;s blog</title>
-<meta name="keywords" content="">
+<meta name="keywords" content="Hugo, Markdown, tree">
 <meta name="description" content="markdown引入树状目录">
 <meta name="author" content="Eddy">
 <link rel="canonical" href="https://eddyblog.cn/en/posts/tech/hugo_introduce_a_tree_directory/">
@@ -121,7 +121,7 @@ var _hmt = _hmt || [];
   "name": "【Hugo】markdown引入树状目录",
   "description": "markdown引入树状目录",
   "keywords": [
-    ""
+    "Hugo", "Markdown", "tree"
   ],
   "articleBody": "前言 利用windows系统的tree命令生成文件夹目录下的树形结构，并倒入至markdown。\n一、tree是什么？ 示例：pandas 是基于NumPy 的一种工具，该工具是为了解决数据分析任务而创建的。\n二、使用步骤 1.在想要生成树形结构的文件夹目录下运行powershell，输入命令tree 输入命令tree生成树形目录（示例）：\n卷 Data 的文件夹 PATH 列表 卷序列号为 E84E-7569 D:. ├─.idea ├─archetypes ├─assets │ ├─css │ │ └─extended │ └─js ├─content │ ├─posts │ │ ├─art │ │ ├─projects │ │ └─tech │ │ └─tech1 │ └─tags ├─data ├─i18n ├─layouts │ ├─partials │ │ └─templates │ ├─shortcodes │ └─_default │ └─_markup ├─public │ ├─assets │ │ ├─css │ │ └─js │ ├─en │ │ ├─about │ │ ├─archives │ │ ├─categories │ │ ├─posts │ │ │ ├─art │ │ │ │ ├─art │ │ │ │ └─page │ │ │ │ └─1 │ │ │ ├─page │ │ │ │ └─1 │ │ │ ├─projects │ │ │ │ ├─page │ │ │ │ │ └─1 │ │ │ │ └─projects │ │ │ └─tech │ │ │ ├─page │ │ │ │ └─1 │ │ │ ├─tech │ │ │ └─tech1 │ │ ├─search │ │ ├─series │ │ └─tags │ │ ├─art │ │ │ └─page │ │ │ └─1 │ │ ├─projects │ │ │ └─page │ │ │ └─1 │ │ └─tech │ │ └─page │ │ └─1 │ ├─fonts │ └─img ├─resources │ └─_gen │ ├─assets │ └─images ├─static │ ├─fonts │ └─img └─themes └─hugo-PaperMod ├─.github │ ├─ISSUE_TEMPLATE │ └─workflows ├─assets │ ├─css │ │ ├─common │ │ ├─core │ │ ├─extended │ │ ├─hljs │ │ └─includes │ └─js ├─i18n ├─images └─layouts ├─partials │ └─templates ├─shortcodes └─_default └─_markup 2.输入命令tree \u003e tree.txt保存生成的树形目录至当前文件夹目录下的tree.txt 3.复制粘贴至markdown文件 在markdown使用```开启代码块，将复制的树形目录粘贴在代码块处\n├─.idea ├─archetypes ├─assets │ ├─css │ │ └─extended │ └─js ├─content │ ├─posts │ │ ├─art │ │ ├─projects │ │ └─tech │ │ └─tech1 │ └─tags ├─data ├─i18n ├─layouts │ ├─partials │ │ └─templates │ ├─shortcodes │ └─_default │ └─_markup ├─public │ ├─assets │ │ ├─css │ │ └─js │ ├─en │ │ ├─about │ │ ├─archives │ │ ├─categories │ │ ├─posts │ │ │ ├─art │ │ │ │ ├─art │ │ │ │ └─page │ │ │ │ └─1 │ │ │ ├─page │ │ │ │ └─1 │ │ │ ├─projects │ │ │ │ ├─page │ │ │ │ │ └─1 │ │ │ │ └─projects │ │ │ └─tech │ │ │ ├─page │ │ │ │ └─1 │ │ │ ├─tech │ │ │ └─tech1 │ │ ├─search │ │ ├─series │ │ └─tags │ │ ├─art │ │ │ └─page │ │ │ └─1 │ │ ├─projects │ │ │ └─page │ │ │ └─1 │ │ └─tech │ │ └─page │ │ └─1 │ ├─fonts │ └─img ├─resources │ └─_gen │ ├─assets │ └─images ├─static │ ├─fonts │ └─img └─themes └─hugo-PaperMod ├─.github │ ├─ISSUE_TEMPLATE │ └─workflows ├─assets │ ├─css │ │ ├─common │ │ ├─core │ │ ├─extended │ │ ├─hljs │ │ └─includes │ └─js ├─i18n ├─images └─layouts ├─partials │ └─templates ├─shortcodes └─_default └─_markup 总结 本文简单介绍了windows系统下tree命令的使用，tree命令可以生成文件夹目录下的树形结构，并倒入至markdown。\n",
   "wordCount" : "1907",

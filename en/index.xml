@@ -22,7 +22,7 @@
       <pubDate>Sat, 10 Jun 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/en/posts/tech/hugo_code_highlight/</guid>
-      <description>hugo代码高亮</description>
+      <description>Hugo代码高亮</description>
     </item>
     
     <item>
@@ -31,16 +31,16 @@
       <pubDate>Sat, 13 May 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/en/posts/tech/hugo_emoji/</guid>
-      <description>hugo主题美化-添加emoji</description>
+      <description>Hugo主题美化-添加emoji</description>
     </item>
     
     <item>
-      <title>【Hugo】在本地使用Hugo构建网站并在本地服务器上正常运行，但在将网站部署到GitHub远程仓库时出现了错误</title>
+      <title>【Hugo_error】在本地使用Hugo构建网站并在本地服务器上正常运行，但在将网站部署到GitHub远程仓库时出现了错误</title>
       <link>https://eddyblog.cn/en/posts/tech/hugo_error1/</link>
       <pubDate>Mon, 17 Apr 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/en/posts/tech/hugo_error1/</guid>
-      <description>在本地使用Hugo构建网站并在本地服务器上正常运行，但在将网站部署到GitHub远程仓库时出现了错误</description>
+      <description>error:在本地使用Hugo构建网站并在本地服务器上正常运行，但在将网站部署到GitHub远程仓库时出现了错误</description>
     </item>
     
     <item>
@@ -62,12 +62,12 @@
     </item>
     
     <item>
-      <title>Tech1</title>
+      <title>测试1</title>
       <link>https://eddyblog.cn/en/posts/tech/tech1/</link>
       <pubDate>Tue, 21 Feb 2023 12:20:21 +0800</pubDate>
       
       <guid>https://eddyblog.cn/en/posts/tech/tech1/</guid>
-      <description></description>
+      <description>测试1</description>
     </item>
     
     <item>
@@ -107,21 +107,30 @@
     </item>
     
     <item>
+      <title>【Github_error】删除本地仓库/错误的远程仓库关联</title>
+      <link>https://eddyblog.cn/en/posts/tech/github_delete_wrong_repository/</link>
+      <pubDate>Tue, 20 Sep 2022 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/en/posts/tech/github_delete_wrong_repository/</guid>
+      <description>删除本地仓库/错误的远程仓库关联</description>
+    </item>
+    
+    <item>
+      <title>【Github_error】解决{error: remote origin already exists.}</title>
+      <link>https://eddyblog.cn/en/posts/tech/github_error_remote_origin_already_exists/</link>
+      <pubDate>Tue, 20 Sep 2022 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/en/posts/tech/github_error_remote_origin_already_exists/</guid>
+      <description>解决{error: remote origin already exists.}</description>
+    </item>
+    
+    <item>
       <title>【Github】release上的安装包amd和arm的选择</title>
       <link>https://eddyblog.cn/en/posts/tech/github_amd_arm/</link>
       <pubDate>Tue, 20 Sep 2022 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/en/posts/tech/github_amd_arm/</guid>
       <description>release上的安装包amd和arm的选择</description>
-    </item>
-    
-    <item>
-      <title>【Github】删除本地仓库/错误的远程仓库关联</title>
-      <link>https://eddyblog.cn/en/posts/tech/github_delete_wrong_repository/</link>
-      <pubDate>Tue, 20 Sep 2022 00:17:58 +0800</pubDate>
-      
-      <guid>https://eddyblog.cn/en/posts/tech/github_delete_wrong_repository/</guid>
-      <description>删除本地仓库/错误的远程仓库关联</description>
     </item>
     
     <item>
@@ -134,15 +143,6 @@
     </item>
     
     <item>
-      <title>【Github】解决{error: remote origin already exists.}</title>
-      <link>https://eddyblog.cn/en/posts/tech/github_error_remote_origin_already_exists/</link>
-      <pubDate>Tue, 20 Sep 2022 00:17:58 +0800</pubDate>
-      
-      <guid>https://eddyblog.cn/en/posts/tech/github_error_remote_origin_already_exists/</guid>
-      <description>解决{error: remote origin already exists.}</description>
-    </item>
-    
-    <item>
       <title>【Github】解决{OpenSSL SSL_read: Connection was reset, errno 10054}</title>
       <link>https://eddyblog.cn/en/posts/tech/gitub_error1/</link>
       <pubDate>Tue, 20 Sep 2022 00:17:58 +0800</pubDate>
@@ -152,12 +152,12 @@
     </item>
     
     <item>
-      <title>【Hugo】hugo server失败</title>
+      <title>【Hugo_error】hugo server失败</title>
       <link>https://eddyblog.cn/en/posts/tech/hugo_server_failed/</link>
       <pubDate>Tue, 20 Sep 2022 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/en/posts/tech/hugo_server_failed/</guid>
-      <description>hugo server失败</description>
+      <description>error:hugo server失败</description>
     </item>
     
     <item>
@@ -179,12 +179,12 @@
     </item>
     
     <item>
-      <title>Tech</title>
+      <title>测试</title>
       <link>https://eddyblog.cn/en/posts/tech/tech/</link>
       <pubDate>Thu, 05 May 2022 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/en/posts/tech/tech/</guid>
-      <description>科技代码</description>
+      <description>测试</description>
     </item>
     
     <item>

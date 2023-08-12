@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>【Github】解决{OpenSSL SSL_read: Connection was reset, errno 10054} | Eddy&#39;s blog</title>
-<meta name="keywords" content="">
+<meta name="keywords" content="Github, error, SSL">
 <meta name="description" content="解决{OpenSSL SSL_read: Connection was reset, errno 10054}">
 <meta name="author" content="Eddy">
 <link rel="canonical" href="https://eddyblog.cn/en/posts/tech/gitub_error1/">
@@ -121,7 +121,7 @@ var _hmt = _hmt || [];
   "name": "【Github】解决{OpenSSL SSL_read: Connection was reset, errno 10054}",
   "description": "解决{OpenSSL SSL_read: Connection was reset, errno 10054}",
   "keywords": [
-    ""
+    "Github", "error", "SSL"
   ],
   "articleBody": "项目场景： Git bash\n问题描述： 进行git push -f origin master命令\n出现错误：fatal: unable to access ' 我的库的http路径 ': OpenSSL SSL_read: Connection was reset, errno 10054\n原因分析： 无法关联github的远程库,SSL连接被重置\n解决方案： 使用命令行解除SSL认证\ngit config --global http.sslVerify \"false\" git config --global https.sslVerify \"false\" ",
   "wordCount" : "116",
@@ -464,15 +464,15 @@ var _hmt = _hmt || [];
         <footer class="post-footer">
             
 <nav class="paginav">
-  <a class="prev" href="https://eddyblog.cn/en/posts/tech/github_error_remote_origin_already_exists/">
+  <a class="prev" href="https://eddyblog.cn/en/posts/tech/github_merge_the_master_branch_into_the_main_branch/">
     <span class="title">« 上一页</span>
     <br>
-    <span>【Github】解决{error: remote origin already exists.}</span>
+    <span>【Github】将仓库中的master分支合并到main分支</span>
   </a>
   <a class="next" href="https://eddyblog.cn/en/posts/tech/hugo_server_failed/">
     <span class="title">下一页 »</span>
     <br>
-    <span>【Hugo】hugo server失败</span>
+    <span>【Hugo_error】hugo server失败</span>
   </a>
 </nav>
 

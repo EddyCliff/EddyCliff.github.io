@@ -44,6 +44,15 @@
     </item>
     
     <item>
+      <title>error</title>
+      <link>https://eddyblog.cn/en/tags/error/</link>
+      <pubDate>Mon, 17 Apr 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/en/tags/error/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Github</title>
       <link>https://eddyblog.cn/en/tags/github/</link>
       <pubDate>Mon, 17 Apr 2023 00:17:58 +0800</pubDate>
@@ -107,29 +116,20 @@
     </item>
     
     <item>
-      <title>public</title>
-      <link>https://eddyblog.cn/en/tags/public/</link>
-      <pubDate>Tue, 11 Oct 2022 00:17:58 +0800</pubDate>
-      
-      <guid>https://eddyblog.cn/en/tags/public/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>error</title>
-      <link>https://eddyblog.cn/en/tags/error/</link>
-      <pubDate>Tue, 20 Sep 2022 00:17:58 +0800</pubDate>
-      
-      <guid>https://eddyblog.cn/en/tags/error/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>release</title>
       <link>https://eddyblog.cn/en/tags/release/</link>
       <pubDate>Tue, 20 Sep 2022 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/en/tags/release/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Repositories</title>
+      <link>https://eddyblog.cn/en/tags/repositories/</link>
+      <pubDate>Tue, 20 Sep 2022 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/en/tags/repositories/</guid>
       <description></description>
     </item>
     
@@ -148,15 +148,6 @@
       <pubDate>Thu, 05 May 2022 00:18:23 +0800</pubDate>
       
       <guid>https://eddyblog.cn/en/tags/projects/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tech</title>
-      <link>https://eddyblog.cn/en/tags/tech/</link>
-      <pubDate>Thu, 05 May 2022 00:17:58 +0800</pubDate>
-      
-      <guid>https://eddyblog.cn/en/tags/tech/</guid>
       <description></description>
     </item>
     

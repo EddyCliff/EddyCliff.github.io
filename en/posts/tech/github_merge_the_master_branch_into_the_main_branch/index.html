@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>【Github】将仓库中的master分支合并到main分支 | Eddy&#39;s blog</title>
-<meta name="keywords" content="">
+<meta name="keywords" content="Github, master, main">
 <meta name="description" content="将仓库中的master分支合并到main分支">
 <meta name="author" content="Eddy">
 <link rel="canonical" href="https://eddyblog.cn/en/posts/tech/github_merge_the_master_branch_into_the_main_branch/">
@@ -121,7 +121,7 @@ var _hmt = _hmt || [];
   "name": "【Github】将仓库中的master分支合并到main分支",
   "description": "将仓库中的master分支合并到main分支",
   "keywords": [
-    ""
+    "Github", "master", "main"
   ],
   "articleBody": "前言： Git bash本地常用指令是默认上传到远程仓库的master分支，而实际上我们应该将文件传入到main主分支\n使用步骤： 假如是将远程库master分支合并到main分支，那么要先将远程仓库克隆到本地\ngit clone xxx.git 将本地的master分支合并到远程的main分支，则上个步骤不用做\n在本地master分支的文件夹目录，创建并切换至main分支 git checkout -b main 推送至main主分支 git push origin main 删除本地master分支（假如本地仓库还要使用的话，最好先不要删除） git branch -d master 删除远程master分支 git push origin :master ",
   "wordCount" : "237",
@@ -470,15 +470,15 @@ var _hmt = _hmt || [];
         <footer class="post-footer">
             
 <nav class="paginav">
-  <a class="prev" href="https://eddyblog.cn/en/posts/tech/github_delete_wrong_repository/">
+  <a class="prev" href="https://eddyblog.cn/en/posts/tech/github_amd_arm/">
     <span class="title">« 上一页</span>
     <br>
-    <span>【Github】删除本地仓库/错误的远程仓库关联</span>
+    <span>【Github】release上的安装包amd和arm的选择</span>
   </a>
-  <a class="next" href="https://eddyblog.cn/en/posts/tech/github_error_remote_origin_already_exists/">
+  <a class="next" href="https://eddyblog.cn/en/posts/tech/gitub_error1/">
     <span class="title">下一页 »</span>
     <br>
-    <span>【Github】解决{error: remote origin already exists.}</span>
+    <span>【Github】解决{OpenSSL SSL_read: Connection was reset, errno 10054}</span>
   </a>
 </nav>
 

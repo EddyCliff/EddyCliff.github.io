@@ -38,6 +38,9 @@
     <loc>https://eddyblog.cn/en/posts/tech/hugo_error1/</loc>
     <lastmod>2023-04-17T00:17:58+08:00</lastmod>
   </url><url>
+    <loc>https://eddyblog.cn/en/tags/error/</loc>
+    <lastmod>2023-04-17T00:17:58+08:00</lastmod>
+  </url><url>
     <loc>https://eddyblog.cn/en/tags/github/</loc>
     <lastmod>2023-04-17T00:17:58+08:00</lastmod>
   </url><url>
@@ -80,19 +83,16 @@
     <loc>https://eddyblog.cn/en/posts/tech/hugo_saving_source_code/</loc>
     <lastmod>2022-10-11T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/en/tags/public/</loc>
-    <lastmod>2022-10-11T00:17:58+08:00</lastmod>
+    <loc>https://eddyblog.cn/en/posts/tech/github_delete_wrong_repository/</loc>
+    <lastmod>2022-09-20T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/en/posts/tech/github_error_remote_origin_already_exists/</loc>
+    <lastmod>2022-09-20T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/en/posts/tech/github_amd_arm/</loc>
     <lastmod>2022-09-20T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/en/posts/tech/github_delete_wrong_repository/</loc>
-    <lastmod>2022-09-20T00:17:58+08:00</lastmod>
-  </url><url>
     <loc>https://eddyblog.cn/en/posts/tech/github_merge_the_master_branch_into_the_main_branch/</loc>
-    <lastmod>2022-09-20T00:17:58+08:00</lastmod>
-  </url><url>
-    <loc>https://eddyblog.cn/en/posts/tech/github_error_remote_origin_already_exists/</loc>
     <lastmod>2022-09-20T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/en/posts/tech/gitub_error1/</loc>
@@ -101,10 +101,10 @@
     <loc>https://eddyblog.cn/en/posts/tech/hugo_server_failed/</loc>
     <lastmod>2022-09-20T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/en/tags/error/</loc>
+    <loc>https://eddyblog.cn/en/tags/release/</loc>
     <lastmod>2022-09-20T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/en/tags/release/</loc>
+    <loc>https://eddyblog.cn/en/tags/repositories/</loc>
     <lastmod>2022-09-20T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/en/posts/art/</loc>
@@ -124,9 +124,6 @@
   </url><url>
     <loc>https://eddyblog.cn/en/posts/projects/projects/</loc>
     <lastmod>2022-05-05T00:18:23+08:00</lastmod>
-  </url><url>
-    <loc>https://eddyblog.cn/en/tags/tech/</loc>
-    <lastmod>2022-05-05T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/en/posts/tech/tech/</loc>
     <lastmod>2022-05-05T00:17:58+08:00</lastmod>
