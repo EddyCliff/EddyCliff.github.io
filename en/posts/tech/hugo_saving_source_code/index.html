@@ -76,11 +76,13 @@ var _hmt = _hmt || [];
 <meta property="og:title" content="【Hugo】在Github仓库分别储存博客源码和静态页面" />
 <meta property="og:description" content="在Github仓库分别储存博客源码和静态页面" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://eddyblog.cn/en/posts/tech/hugo_saving_source_code/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://eddyblog.cn/en/posts/tech/hugo_saving_source_code/" />
+<meta property="og:image" content="https://eddyblog.cn/img/hugo.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-10-11T00:17:58+08:00" />
 <meta property="article:modified_time" content="2022-10-11T00:17:58+08:00" />
 
-<meta name="twitter:card" content="summary"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://eddyblog.cn/img/hugo.png" />
 <meta name="twitter:title" content="【Hugo】在Github仓库分别储存博客源码和静态页面"/>
 <meta name="twitter:description" content="在Github仓库分别储存博客源码和静态页面"/>
 
@@ -109,10 +111,10 @@ var _hmt = _hmt || [];
   "keywords": [
     "Hugo", "public", "Github"
   ],
-  "articleBody": "前言 建议将博客源码和构建的静态页面分别放在两个仓库里。\n一、操作步骤 1.博客源码（Github仓库） 私有仓库Yourname-Blog（注意Github仓库命名规范）存放博客源码。（也可以是一个公开的仓库，相当于为他人提供了一个博客模板）\n├─.idea ├─archetypes ├─assets │ ├─css │ │ └─extended │ └─js ├─content │ ├─posts │ │ ├─art │ │ ├─projects │ │ └─tech │ │ └─cover │ └─tags ├─data ├─i18n ├─layouts │ ├─partials │ │ └─templates │ ├─shortcodes │ └─_default │ └─_markup ├─public │ ├─assets │ │ ├─css │ │ └─js │ ├─en │ │ ├─about │ │ ├─archives │ │ ├─categories │ │ ├─posts │ │ │ ├─art │ │ │ │ ├─art │ │ │ │ └─page │ │ │ │ └─1 │ │ │ ├─page │ │ │ │ └─1 │ │ │ ├─projects │ │ │ │ ├─page │ │ │ │ │ └─1 │ │ │ │ └─projects │ │ │ └─tech │ │ │ ├─page │ │ │ │ └─1 │ │ │ ├─tech │ │ │ └─tech1 │ │ ├─search │ │ ├─series │ │ └─tags │ │ ├─art │ │ │ └─page │ │ │ └─1 │ │ ├─projects │ │ │ └─page │ │ │ └─1 │ │ └─tech │ │ └─page │ │ └─1 │ ├─fonts │ └─img ├─resources │ └─_gen │ ├─assets │ └─images ├─static │ ├─fonts │ └─img └─themes └─hugo-PaperMod ├─.github │ ├─ISSUE_TEMPLATE │ └─workflows ├─assets │ ├─css │ │ ├─common │ │ ├─core │ │ ├─extended │ │ ├─hljs │ │ └─includes │ └─js ├─i18n ├─images └─layouts ├─partials │ └─templates ├─shortcodes └─_default └─_markup 2.静态页面（Github仓库） 公有仓库yourname.github.io存放构建的静态页面。\n将构建的静态页面，即public/目录下的内容上传到仓库yourname.github.io ，yourname.github.io会自动绑定Github pages , 就可以通过网址yourname.github.io访问部署好的博客。\n├─assets │ ├─css │ └─js ├─en │ ├─about │ ├─archives │ ├─categories │ ├─posts │ │ ├─art │ │ │ ├─art │ │ │ └─page │ │ │ └─1 │ │ ├─page │ │ │ └─1 │ │ ├─projects │ │ │ ├─page │ │ │ │ └─1 │ │ │ └─projects │ │ └─tech │ │ ├─page │ │ │ └─1 │ │ ├─tech │ │ └─tech1 │ ├─search │ ├─series │ └─tags │ ├─art │ │ └─page │ │ └─1 │ ├─projects │ │ └─page │ │ └─1 │ └─tech │ └─page │ └─1 ├─fonts └─img 总结 本文简单介绍了Hugo框架下在Github仓库分别储存博客源码和静态页面的操作步骤和方法。\n",
-  "wordCount" : "1393",
+  "articleBody": "前言 建议将博客源码和构建的静态页面分别放在两个仓库里。\n操作步骤 1.博客源码（Github仓库） 私有仓库Yourname-Blog（注意Github仓库命名规范）存放博客源码。（也可以是一个公开的仓库，相当于为他人提供了一个博客模板）\n├─.idea ├─archetypes ├─assets │ ├─css │ │ └─extended │ └─js ├─content │ ├─posts │ │ ├─art │ │ ├─projects │ │ └─tech │ │ └─cover │ └─tags ├─data ├─i18n ├─layouts │ ├─partials │ │ └─templates │ ├─shortcodes │ └─_default │ └─_markup ├─public │ ├─assets │ │ ├─css │ │ └─js │ ├─en │ │ ├─about │ │ ├─archives │ │ ├─categories │ │ ├─posts │ │ │ ├─art │ │ │ │ ├─art │ │ │ │ └─page │ │ │ │ └─1 │ │ │ ├─page │ │ │ │ └─1 │ │ │ ├─projects │ │ │ │ ├─page │ │ │ │ │ └─1 │ │ │ │ └─projects │ │ │ └─tech │ │ │ ├─page │ │ │ │ └─1 │ │ │ ├─tech │ │ │ └─tech1 │ │ ├─search │ │ ├─series │ │ └─tags │ │ ├─art │ │ │ └─page │ │ │ └─1 │ │ ├─projects │ │ │ └─page │ │ │ └─1 │ │ └─tech │ │ └─page │ │ └─1 │ ├─fonts │ └─img ├─resources │ └─_gen │ ├─assets │ └─images ├─static │ ├─fonts │ └─img └─themes └─hugo-PaperMod ├─.github │ ├─ISSUE_TEMPLATE │ └─workflows ├─assets │ ├─css │ │ ├─common │ │ ├─core │ │ ├─extended │ │ ├─hljs │ │ └─includes │ └─js ├─i18n ├─images └─layouts ├─partials │ └─templates ├─shortcodes └─_default └─_markup 2.静态页面（Github仓库） 公有仓库yourname.github.io存放构建的静态页面。\n将构建的静态页面，即public/目录下的内容上传到仓库yourname.github.io ，yourname.github.io会自动绑定Github pages , 就可以通过网址yourname.github.io访问部署好的博客。\n├─assets │ ├─css │ └─js ├─en │ ├─about │ ├─archives │ ├─categories │ ├─posts │ │ ├─art │ │ │ ├─art │ │ │ └─page │ │ │ └─1 │ │ ├─page │ │ │ └─1 │ │ ├─projects │ │ │ ├─page │ │ │ │ └─1 │ │ │ └─projects │ │ └─tech │ │ ├─page │ │ │ └─1 │ │ ├─tech │ │ └─tech1 │ ├─search │ ├─series │ └─tags │ ├─art │ │ └─page │ │ └─1 │ ├─projects │ │ └─page │ │ └─1 │ └─tech │ └─page │ └─1 ├─fonts └─img 总结 本文简单介绍了Hugo框架下在Github仓库分别储存博客源码和静态页面的操作步骤和方法。\n",
+  "wordCount" : "1391",
   "inLanguage": "en",
-  "datePublished": "2022-10-11T00:17:58+08:00",
+  "image":"https://eddyblog.cn/img/hugo.png","datePublished": "2022-10-11T00:17:58+08:00",
   "dateModified": "2022-10-11T00:17:58+08:00",
   "author":[{
     "@type": "Person",
@@ -273,7 +275,7 @@ var _hmt = _hmt || [];
     
     <span id="post_meta_style_3">
         <span class="fa fa-file-word-o"></span>
-        <span>1393字
+        <span>1391字
             &nbsp;&nbsp;
         </span>
     </span>
@@ -347,7 +349,10 @@ var _hmt = _hmt || [];
                 </span>
 
 </div>
-        </header> <aside id="toc-container" class="toc-container wide">
+        </header> 
+<figure class="entry-cover1"><img style="zoom:;" loading="lazy" src="https://eddyblog.cn/img/hugo.png" alt="">
+    
+</figure><aside id="toc-container" class="toc-container wide">
     <div class="toc">
         <details  open>
         <summary accesskey="c" title="(Alt + C)">
@@ -358,7 +363,7 @@ var _hmt = _hmt || [];
                 <li>
                     <a href="#%e5%89%8d%e8%a8%80" aria-label="前言">前言</a></li>
                 <li>
-                    <a href="#%e4%b8%80%e6%93%8d%e4%bd%9c%e6%ad%a5%e9%aa%a4" aria-label="一、操作步骤">一、操作步骤</a><ul>
+                    <a href="#%e6%93%8d%e4%bd%9c%e6%ad%a5%e9%aa%a4" aria-label="操作步骤">操作步骤</a><ul>
                         
                 <li>
                     <a href="#1%e5%8d%9a%e5%ae%a2%e6%ba%90%e7%a0%81github%e4%bb%93%e5%ba%93" aria-label="1.博客源码（Github仓库）">1.博客源码（Github仓库）</a></li>
@@ -436,7 +441,7 @@ var _hmt = _hmt || [];
         <div class="post-content"><h1 id="前言">前言<a hidden class="anchor" aria-hidden="true" href="#前言">#</a></h1>
 <p>建议将博客源码和构建的静态页面分别放在两个仓库里。</p>
 <hr>
-<h1 id="一操作步骤">一、操作步骤<a hidden class="anchor" aria-hidden="true" href="#一操作步骤">#</a></h1>
+<h1 id="操作步骤">操作步骤<a hidden class="anchor" aria-hidden="true" href="#操作步骤">#</a></h1>
 <h2 id="1博客源码github仓库">1.博客源码（Github仓库）<a hidden class="anchor" aria-hidden="true" href="#1博客源码github仓库">#</a></h2>
 <p>私有仓库<code>Yourname-Blog</code>（注意<code>Github</code>仓库命名规范）存放博客源码。（也可以是一个公开的仓库，相当于为他人提供了一个博客模板）</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-HTML" data-lang="HTML"><span style="display:flex;"><span>├─.idea

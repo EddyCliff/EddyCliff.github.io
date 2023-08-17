@@ -76,11 +76,13 @@ var _hmt = _hmt || [];
 <meta property="og:title" content="【Github】解决{OpenSSL SSL_read: Connection was reset, errno 10054}" />
 <meta property="og:description" content="解决{OpenSSL SSL_read: Connection was reset, errno 10054}" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://eddyblog.cn/en/posts/tech/gitub_error1/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://eddyblog.cn/en/posts/tech/gitub_error1/" />
+<meta property="og:image" content="https://eddyblog.cn/img/github.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-09-20T00:17:58+08:00" />
 <meta property="article:modified_time" content="2022-09-20T00:17:58+08:00" />
 
-<meta name="twitter:card" content="summary"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://eddyblog.cn/img/github.png" />
 <meta name="twitter:title" content="【Github】解决{OpenSSL SSL_read: Connection was reset, errno 10054}"/>
 <meta name="twitter:description" content="解决{OpenSSL SSL_read: Connection was reset, errno 10054}"/>
 
@@ -112,7 +114,7 @@ var _hmt = _hmt || [];
   "articleBody": "项目场景： Git bash\n问题描述： 进行git push -f origin master命令\n出现错误：fatal: unable to access ' 我的库的http路径 ': OpenSSL SSL_read: Connection was reset, errno 10054\n原因分析： 无法关联github的远程库,SSL连接被重置\n解决方案： 使用命令行解除SSL认证\ngit config --global http.sslVerify \"false\" git config --global https.sslVerify \"false\" ",
   "wordCount" : "116",
   "inLanguage": "en",
-  "datePublished": "2022-09-20T00:17:58+08:00",
+  "image":"https://eddyblog.cn/img/github.png","datePublished": "2022-09-20T00:17:58+08:00",
   "dateModified": "2022-09-20T00:17:58+08:00",
   "author":[{
     "@type": "Person",
@@ -347,7 +349,10 @@ var _hmt = _hmt || [];
                 </span>
 
 </div>
-        </header> <aside id="toc-container" class="toc-container wide">
+        </header> 
+<figure class="entry-cover1"><img style="zoom:;" loading="lazy" src="https://eddyblog.cn/img/github.png" alt="">
+    
+</figure><aside id="toc-container" class="toc-container wide">
     <div class="toc">
         <details  open>
         <summary accesskey="c" title="(Alt + C)">
