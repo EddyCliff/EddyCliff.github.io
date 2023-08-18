@@ -8,7 +8,7 @@
     <language>en</language>
     <lastBuildDate>Sat, 11 Mar 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/en/tags/github-pages/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>【Hugo】githubpages对应仓库username.github.io删除之后,重新创建一次仍然可以匹配到githubpages</title>
+      <title>【Hugo】githubpages对应仓库username.github.io</title>
       <link>https://eddyblog.cn/en/posts/tech/hugo_githubpages/</link>
       <pubDate>Sat, 11 Mar 2023 00:17:58 +0800</pubDate>
       
