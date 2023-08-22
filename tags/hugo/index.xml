@@ -8,7 +8,7 @@
     <language>zh</language>
     <lastBuildDate>Mon, 10 Jul 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>【Hugo】Hugo添加不蒜子Busuanzi页面浏览次数与阅读数据统计</title>
+      <title>【Hugo】添加不蒜子Busuanzi页面浏览次数与阅读数据统计</title>
       <link>https://eddyblog.cn/posts/tech/hugo_busuanzi/</link>
       <pubDate>Mon, 10 Jul 2023 00:17:58 +0800</pubDate>
       
@@ -17,7 +17,7 @@
     </item>
     
     <item>
-      <title>【Hugo】hugo代码高亮</title>
+      <title>【Hugo】代码高亮</title>
       <link>https://eddyblog.cn/posts/tech/hugo_code_highlight/</link>
       <pubDate>Sat, 10 Jun 2023 00:17:58 +0800</pubDate>
       
@@ -26,7 +26,7 @@
     </item>
     
     <item>
-      <title>【Hugo】hugo主题美化-添加emoji</title>
+      <title>【Hugo】主题美化-添加emoji</title>
       <link>https://eddyblog.cn/posts/tech/hugo_emoji/</link>
       <pubDate>Sat, 13 May 2023 00:17:58 +0800</pubDate>
       
@@ -35,7 +35,7 @@
     </item>
     
     <item>
-      <title>【Hugo_error】在本地使用Hugo构建网站并在本地服务器上正常运行，但在将网站部署到GitHub远程仓库时出现了错误</title>
+      <title>【Hugo】将网站部署到GitHub远程仓库时出现了错误</title>
       <link>https://eddyblog.cn/posts/tech/hugo_error1/</link>
       <pubDate>Mon, 17 Apr 2023 00:17:58 +0800</pubDate>
       
@@ -58,11 +58,11 @@
       <pubDate>Sat, 11 Mar 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/hugo_homepage_avatar/</guid>
-      <description>设置主页头像</description>
+      <description>Hugo设置主页头像</description>
     </item>
     
     <item>
-      <title>【Hugo】Hugo添加icon&#43;socialIcons</title>
+      <title>【Hugo】添加icon&#43;socialIcons</title>
       <link>https://eddyblog.cn/posts/tech/hugo_icon/</link>
       <pubDate>Fri, 20 Jan 2023 00:17:58 +0800</pubDate>
       

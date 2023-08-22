@@ -5,18 +5,18 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>【Hugo】Hugo添加不蒜子Busuanzi页面浏览次数与阅读数据统计 | Eddy&#39;s blog</title>
+<title>【Hugo】添加不蒜子Busuanzi页面浏览次数与阅读数据统计 | Eddy&#39;s blog</title>
 <meta name="keywords" content="Hugo, Busuanzi">
 <meta name="description" content="Hugo添加不蒜子Busuanzi页面浏览次数与阅读数据统计">
 <meta name="author" content="Eddy">
 <link rel="canonical" href="https://eddyblog.cn/posts/tech/hugo_busuanzi/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.js" onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="https://eddyblog.cn/img/logo3.png">
-<link rel="icon" type="image/png" sizes="16x16" href="https://eddyblog.cn/img/logo3.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://eddyblog.cn/img/logo3.png">
-<link rel="apple-touch-icon" href="https://eddyblog.cn/img/logo3.png">
-<link rel="mask-icon" href="https://eddyblog.cn/img/logo3.png">
+<link rel="icon" href="https://eddyblog.cn/img/logo3.webp">
+<link rel="icon" type="image/png" sizes="16x16" href="https://eddyblog.cn/img/logo3.webp">
+<link rel="icon" type="image/png" sizes="32x32" href="https://eddyblog.cn/img/logo3.webp">
+<link rel="apple-touch-icon" href="https://eddyblog.cn/img/logo3.webp">
+<link rel="mask-icon" href="https://eddyblog.cn/img/logo3.webp">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <noscript>
@@ -73,17 +73,17 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
-<meta property="og:title" content="【Hugo】Hugo添加不蒜子Busuanzi页面浏览次数与阅读数据统计" />
+<meta property="og:title" content="【Hugo】添加不蒜子Busuanzi页面浏览次数与阅读数据统计" />
 <meta property="og:description" content="Hugo添加不蒜子Busuanzi页面浏览次数与阅读数据统计" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://eddyblog.cn/posts/tech/hugo_busuanzi/" />
-<meta property="og:image" content="https://eddyblog.cn/img/hugo.png" /><meta property="article:section" content="posts" />
+<meta property="og:image" content="https://eddyblog.cn/img/hugo.webp" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-07-10T00:17:58+08:00" />
 <meta property="article:modified_time" content="2023-07-10T00:17:58+08:00" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://eddyblog.cn/img/hugo.png" />
-<meta name="twitter:title" content="【Hugo】Hugo添加不蒜子Busuanzi页面浏览次数与阅读数据统计"/>
+<meta name="twitter:image" content="https://eddyblog.cn/img/hugo.webp" />
+<meta name="twitter:title" content="【Hugo】添加不蒜子Busuanzi页面浏览次数与阅读数据统计"/>
 <meta name="twitter:description" content="Hugo添加不蒜子Busuanzi页面浏览次数与阅读数据统计"/>
 
 
@@ -109,7 +109,7 @@ var _hmt = _hmt || [];
     {
       "@type": "ListItem",
       "position":  4 ,
-      "name": "【Hugo】Hugo添加不蒜子Busuanzi页面浏览次数与阅读数据统计",
+      "name": "【Hugo】添加不蒜子Busuanzi页面浏览次数与阅读数据统计",
       "item": "https://eddyblog.cn/posts/tech/hugo_busuanzi/"
     }
   ]
@@ -119,8 +119,8 @@ var _hmt = _hmt || [];
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "【Hugo】Hugo添加不蒜子Busuanzi页面浏览次数与阅读数据统计",
-  "name": "【Hugo】Hugo添加不蒜子Busuanzi页面浏览次数与阅读数据统计",
+  "headline": "【Hugo】添加不蒜子Busuanzi页面浏览次数与阅读数据统计",
+  "name": "【Hugo】添加不蒜子Busuanzi页面浏览次数与阅读数据统计",
   "description": "Hugo添加不蒜子Busuanzi页面浏览次数与阅读数据统计",
   "keywords": [
     "Hugo", "Busuanzi"
@@ -128,7 +128,7 @@ var _hmt = _hmt || [];
   "articleBody": "前言 Hugo添加不蒜子Busuanzi页面浏览次数与阅读数据统计\n一、Busuanzi是什么？ Busuanzi是一个用于统计网站访问量的工具。它通常嵌入到网页中，可以追踪页面的浏览次数，方可数量积极其他一些基本的访问数据。这个工具可以帮助网站管理员了解他们的网站受欢迎程度和流量情况。\n二、使用步骤 在head.html，footer.html，single.html，config.yml进行修改\nhead.html 我的papermod的路径为themes/Hugo-PaperMod/layouts/partials/head.html\n添加以下代码\n{{- if .Site.Params.busuanzi.enable -}} \u003cscript async src=\"//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js\"\u003e\u003c/script\u003e \u003cmeta name=\"referrer\" content=\"no-referrer-when-downgrade\"\u003e {{- end -}} footer.html 用于在站点底部显示总访问量与访客数\n我的PaperMod路径为themes/Hugo-PaperMod/layouts/partials/footer.html\n添加以下代码，注意添加在代码块里\n{{ if .Site.Params.busuanzi.enable -}} \u003cdiv class=\"busuanzi-footer\"\u003e \u003cspan id=\"busuanzi_container_site_pv\"\u003e 本站总访问量\u003cspan id=\"busuanzi_value_site_pv\"\u003e\u003c/span\u003e次 \u003c/span\u003e \u003cspan id=\"busuanzi_container_site_uv\"\u003e 本站访客数\u003cspan id=\"busuanzi_value_site_uv\"\u003e\u003c/span\u003e人次 \u003c/span\u003e \u003c/div\u003e {{- end -}} single.html 用于显示每篇文章阅读量\n我的papermod路径为themes/Hugo-PaperMod/layouts/_default/single.html\n添加以下代码，加在代码块内\n{{ if .Site.Params.busuanzi.enable -}} \u003cdiv class=\"meta-item\"\u003e\u0026nbsp·\u0026nbsp \u003cspan id=\"busuanzi_container_page_pv\"\u003e本文阅读量\u003cspan id=\"busuanzi_value_page_pv\"\u003e\u003c/span\u003e次\u003c/span\u003e \u003c/div\u003e {{- end }} config.yml 回到根目录的config.yml，在params里加上busuanzi:功能\n显示统计即为true\nparams: busuanzi: enable: true 不想显示统计即为false\nparams: busuanzi: enable: false 总结 本文简单介绍了Hugo添加不蒜子Busuanzi站点访问量与阅读量统计的操作步骤和方法。\n",
   "wordCount" : "943",
   "inLanguage": "zh",
-  "image":"https://eddyblog.cn/img/hugo.png","datePublished": "2023-07-10T00:17:58+08:00",
+  "image":"https://eddyblog.cn/img/hugo.webp","datePublished": "2023-07-10T00:17:58+08:00",
   "dateModified": "2023-07-10T00:17:58+08:00",
   "author":[{
     "@type": "Person",
@@ -143,7 +143,7 @@ var _hmt = _hmt || [];
     "name": "Eddy's blog",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://eddyblog.cn/img/logo3.png"
+      "url": "https://eddyblog.cn/img/logo3.webp"
     }
   }
 }
@@ -179,7 +179,7 @@ var _hmt = _hmt || [];
     <nav class="nav">
         <div class="logo">
             <a href="https://eddyblog.cn" accesskey="h" title="Eddy&#39;s Blog (Alt + H)">
-            <img src="https://eddyblog.cn/img/logo3.png" alt="logo" aria-label="logo"
+            <img src="https://eddyblog.cn/img/logo3.webp" alt="logo" aria-label="logo"
                  height="35">Eddy&#39;s Blog</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
@@ -252,7 +252,7 @@ var _hmt = _hmt || [];
         <header class="post-header">
             <div class="breadcrumbs"><a href="https://eddyblog.cn">🏠 主页</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/">📚文章</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/tech/">👨🏻‍💻 技术</a></div>
             <h1 class="post-title">
-                【Hugo】Hugo添加不蒜子Busuanzi页面浏览次数与阅读数据统计
+                【Hugo】添加不蒜子Busuanzi页面浏览次数与阅读数据统计
             </h1>
             <div class="post-description">
                 Hugo添加不蒜子Busuanzi页面浏览次数与阅读数据统计
@@ -364,7 +364,7 @@ var _hmt = _hmt || [];
 
 </div>
         </header> 
-<figure class="entry-cover1"><img style="zoom:;" loading="lazy" src="https://eddyblog.cn/img/hugo.png" alt="">
+<figure class="entry-cover1"><img style="zoom:;" loading="lazy" src="https://eddyblog.cn/img/hugo.webp" alt="">
     
 </figure><aside id="toc-container" class="toc-container wide">
     <div class="toc">
@@ -526,15 +526,15 @@ var _hmt = _hmt || [];
         <footer class="post-footer">
             
 <nav class="paginav">
-  <a class="prev" href="https://eddyblog.cn/posts/tech/linux_vmware_copy_and_paste/">
+  <a class="prev" href="https://eddyblog.cn/posts/tech/github_error_remote_origin_already_exists/">
     <span class="title">« 上一页</span>
     <br>
-    <span>【Linux】vmware实现复制粘贴功能</span>
+    <span>【Github】{error: remote origin already exists.}</span>
   </a>
-  <a class="next" href="https://eddyblog.cn/posts/tech/hugo_code_highlight/">
+  <a class="next" href="https://eddyblog.cn/posts/tech/gitub_error1/">
     <span class="title">下一页 »</span>
     <br>
-    <span>【Hugo】hugo代码高亮</span>
+    <span>【Github】{OpenSSL SSL_read: Connection was reset, errno 10054}</span>
   </a>
 </nav>
 

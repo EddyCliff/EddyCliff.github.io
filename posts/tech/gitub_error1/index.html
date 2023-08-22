@@ -5,18 +5,18 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>【Github】解决{OpenSSL SSL_read: Connection was reset, errno 10054} | Eddy&#39;s blog</title>
+<title>【Github】{OpenSSL SSL_read: Connection was reset, errno 10054} | Eddy&#39;s blog</title>
 <meta name="keywords" content="Github, error, SSL">
 <meta name="description" content="解决{OpenSSL SSL_read: Connection was reset, errno 10054}">
 <meta name="author" content="Eddy">
 <link rel="canonical" href="https://eddyblog.cn/posts/tech/gitub_error1/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.js" onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="https://eddyblog.cn/img/logo3.png">
-<link rel="icon" type="image/png" sizes="16x16" href="https://eddyblog.cn/img/logo3.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://eddyblog.cn/img/logo3.png">
-<link rel="apple-touch-icon" href="https://eddyblog.cn/img/logo3.png">
-<link rel="mask-icon" href="https://eddyblog.cn/img/logo3.png">
+<link rel="icon" href="https://eddyblog.cn/img/logo3.webp">
+<link rel="icon" type="image/png" sizes="16x16" href="https://eddyblog.cn/img/logo3.webp">
+<link rel="icon" type="image/png" sizes="32x32" href="https://eddyblog.cn/img/logo3.webp">
+<link rel="apple-touch-icon" href="https://eddyblog.cn/img/logo3.webp">
+<link rel="mask-icon" href="https://eddyblog.cn/img/logo3.webp">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <noscript>
@@ -73,17 +73,17 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
-<meta property="og:title" content="【Github】解决{OpenSSL SSL_read: Connection was reset, errno 10054}" />
+<meta property="og:title" content="【Github】{OpenSSL SSL_read: Connection was reset, errno 10054}" />
 <meta property="og:description" content="解决{OpenSSL SSL_read: Connection was reset, errno 10054}" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://eddyblog.cn/posts/tech/gitub_error1/" />
-<meta property="og:image" content="https://eddyblog.cn/img/github.png" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-09-20T00:17:58+08:00" />
-<meta property="article:modified_time" content="2022-09-20T00:17:58+08:00" />
+<meta property="og:image" content="https://eddyblog.cn/img/github.webp" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-06-20T00:17:58+08:00" />
+<meta property="article:modified_time" content="2023-06-20T00:17:58+08:00" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://eddyblog.cn/img/github.png" />
-<meta name="twitter:title" content="【Github】解决{OpenSSL SSL_read: Connection was reset, errno 10054}"/>
+<meta name="twitter:image" content="https://eddyblog.cn/img/github.webp" />
+<meta name="twitter:title" content="【Github】{OpenSSL SSL_read: Connection was reset, errno 10054}"/>
 <meta name="twitter:description" content="解决{OpenSSL SSL_read: Connection was reset, errno 10054}"/>
 
 
@@ -109,7 +109,7 @@ var _hmt = _hmt || [];
     {
       "@type": "ListItem",
       "position":  4 ,
-      "name": "【Github】解决{OpenSSL SSL_read: Connection was reset, errno 10054}",
+      "name": "【Github】{OpenSSL SSL_read: Connection was reset, errno 10054}",
       "item": "https://eddyblog.cn/posts/tech/gitub_error1/"
     }
   ]
@@ -119,8 +119,8 @@ var _hmt = _hmt || [];
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "【Github】解决{OpenSSL SSL_read: Connection was reset, errno 10054}",
-  "name": "【Github】解决{OpenSSL SSL_read: Connection was reset, errno 10054}",
+  "headline": "【Github】{OpenSSL SSL_read: Connection was reset, errno 10054}",
+  "name": "【Github】{OpenSSL SSL_read: Connection was reset, errno 10054}",
   "description": "解决{OpenSSL SSL_read: Connection was reset, errno 10054}",
   "keywords": [
     "Github", "error", "SSL"
@@ -128,8 +128,8 @@ var _hmt = _hmt || [];
   "articleBody": "项目场景： Git bash\n问题描述： 进行git push -f origin master命令\n出现错误：fatal: unable to access ' 我的库的http路径 ': OpenSSL SSL_read: Connection was reset, errno 10054\n原因分析： 无法关联github的远程库,SSL连接被重置\n解决方案： 使用命令行解除SSL认证\ngit config --global http.sslVerify \"false\" git config --global https.sslVerify \"false\" ",
   "wordCount" : "116",
   "inLanguage": "zh",
-  "image":"https://eddyblog.cn/img/github.png","datePublished": "2022-09-20T00:17:58+08:00",
-  "dateModified": "2022-09-20T00:17:58+08:00",
+  "image":"https://eddyblog.cn/img/github.webp","datePublished": "2023-06-20T00:17:58+08:00",
+  "dateModified": "2023-06-20T00:17:58+08:00",
   "author":[{
     "@type": "Person",
     "name": "Eddy"
@@ -143,7 +143,7 @@ var _hmt = _hmt || [];
     "name": "Eddy's blog",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://eddyblog.cn/img/logo3.png"
+      "url": "https://eddyblog.cn/img/logo3.webp"
     }
   }
 }
@@ -179,7 +179,7 @@ var _hmt = _hmt || [];
     <nav class="nav">
         <div class="logo">
             <a href="https://eddyblog.cn" accesskey="h" title="Eddy&#39;s Blog (Alt + H)">
-            <img src="https://eddyblog.cn/img/logo3.png" alt="logo" aria-label="logo"
+            <img src="https://eddyblog.cn/img/logo3.webp" alt="logo" aria-label="logo"
                  height="35">Eddy&#39;s Blog</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
@@ -252,7 +252,7 @@ var _hmt = _hmt || [];
         <header class="post-header">
             <div class="breadcrumbs"><a href="https://eddyblog.cn">🏠 主页</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/">📚文章</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/tech/">👨🏻‍💻 技术</a></div>
             <h1 class="post-title">
-                【Github】解决{OpenSSL SSL_read: Connection was reset, errno 10054}
+                【Github】{OpenSSL SSL_read: Connection was reset, errno 10054}
             </h1>
             <div class="post-description">
                 解决{OpenSSL SSL_read: Connection was reset, errno 10054}
@@ -276,7 +276,7 @@ var _hmt = _hmt || [];
 <span class="parent-post-meta">
     <span id="post_meta_style_1">
         <span class="fa fa-calendar-check-o"></span>
-        <span>2022-09-20
+        <span>2023-06-20
             &nbsp;&nbsp;
         </span>
     </span>
@@ -364,7 +364,7 @@ var _hmt = _hmt || [];
 
 </div>
         </header> 
-<figure class="entry-cover1"><img style="zoom:;" loading="lazy" src="https://eddyblog.cn/img/github.png" alt="">
+<figure class="entry-cover1"><img style="zoom:;" loading="lazy" src="https://eddyblog.cn/img/github.webp" alt="">
     
 </figure><aside id="toc-container" class="toc-container wide">
     <div class="toc">
@@ -469,15 +469,15 @@ var _hmt = _hmt || [];
         <footer class="post-footer">
             
 <nav class="paginav">
-  <a class="prev" href="https://eddyblog.cn/posts/tech/github_merge_the_master_branch_into_the_main_branch/">
+  <a class="prev" href="https://eddyblog.cn/posts/tech/hugo_busuanzi/">
     <span class="title">« 上一页</span>
     <br>
-    <span>【Github】将仓库中的master分支合并到main分支</span>
+    <span>【Hugo】添加不蒜子Busuanzi页面浏览次数与阅读数据统计</span>
   </a>
-  <a class="next" href="https://eddyblog.cn/posts/tech/hugo_server_failed/">
+  <a class="next" href="https://eddyblog.cn/posts/tech/github_merge_the_master_branch_into_the_main_branch/">
     <span class="title">下一页 »</span>
     <br>
-    <span>【Hugo_error】hugo server失败</span>
+    <span>【Github】将仓库中的master分支合并到main分支</span>
   </a>
 </nav>
 

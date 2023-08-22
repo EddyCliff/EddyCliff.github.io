@@ -6,7 +6,25 @@
     <description>Recent content in 🧩 标签 on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Sat, 19 Aug 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 20 Aug 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Github</title>
+      <link>https://eddyblog.cn/tags/github/</link>
+      <pubDate>Sun, 20 Aug 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/tags/github/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>release</title>
+      <link>https://eddyblog.cn/tags/release/</link>
+      <pubDate>Sun, 20 Aug 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/tags/release/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Linux</title>
       <link>https://eddyblog.cn/tags/linux/</link>
@@ -22,6 +40,24 @@
       <pubDate>Sat, 19 Aug 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/tags/vmware/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>error</title>
+      <link>https://eddyblog.cn/tags/error/</link>
+      <pubDate>Thu, 10 Aug 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/tags/error/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Repositories</title>
+      <link>https://eddyblog.cn/tags/repositories/</link>
+      <pubDate>Thu, 10 Aug 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/tags/repositories/</guid>
       <description></description>
     </item>
     
@@ -58,24 +94,6 @@
       <pubDate>Sat, 13 May 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/tags/emoji/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>error</title>
-      <link>https://eddyblog.cn/tags/error/</link>
-      <pubDate>Mon, 17 Apr 2023 00:17:58 +0800</pubDate>
-      
-      <guid>https://eddyblog.cn/tags/error/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Github</title>
-      <link>https://eddyblog.cn/tags/github/</link>
-      <pubDate>Mon, 17 Apr 2023 00:17:58 +0800</pubDate>
-      
-      <guid>https://eddyblog.cn/tags/github/</guid>
       <description></description>
     </item>
     
@@ -130,24 +148,6 @@
       <pubDate>Mon, 05 Dec 2022 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/tags/tree/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>release</title>
-      <link>https://eddyblog.cn/tags/release/</link>
-      <pubDate>Tue, 20 Sep 2022 00:17:58 +0800</pubDate>
-      
-      <guid>https://eddyblog.cn/tags/release/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Repositories</title>
-      <link>https://eddyblog.cn/tags/repositories/</link>
-      <pubDate>Tue, 20 Sep 2022 00:17:58 +0800</pubDate>
-      
-      <guid>https://eddyblog.cn/tags/repositories/</guid>
       <description></description>
     </item>
     
