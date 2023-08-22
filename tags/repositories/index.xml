@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Repositories on Eddy&#39;s blog</title>
+    <link>https://eddyblog.cn/tags/repositories/</link>
+    <description>Recent content in Repositories on Eddy&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Tue, 20 Sep 2022 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/repositories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【Github_error】删除本地仓库/错误的远程仓库关联</title>
+      <link>https://eddyblog.cn/posts/tech/github_delete_wrong_repository/</link>
+      <pubDate>Tue, 20 Sep 2022 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/github_delete_wrong_repository/</guid>
+      <description>删除本地仓库/错误的远程仓库关联</description>
+    </item>
+    
+  </channel>
+</rss>
