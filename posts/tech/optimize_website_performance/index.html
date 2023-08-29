@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>优化网站性能：使用PageSpeed Insights评估与改进 | Eddy&#39;s blog</title>
+<meta name="keywords" content="Website Performance, website, PageSpeed Insights">
+<meta name="description" content="了解如何利用PageSpeed Insights评估您的网站性能，并通过优化措施提升加载速度和用户体验。本指南将为您详细解释如何分析测试结果，并采取步骤来改进网站性能，以满足现代用户对快速加载页面的需求。">
+<meta name="author" content="Eddy">
+<link rel="canonical" href="https://eddyblog.cn/posts/tech/optimize_website_performance/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.js" onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://eddyblog.cn/img/logo3.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://eddyblog.cn/img/logo3.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://eddyblog.cn/img/logo3.png">
+<link rel="apple-touch-icon" href="https://eddyblog.cn/img/logo3.png">
+<link rel="mask-icon" href="https://eddyblog.cn/img/logo3.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<script defer src="https://unpkg.com/mermaid@8.8.1/dist/mermaid.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = ""; 
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<meta property="og:title" content="优化网站性能：使用PageSpeed Insights评估与改进" />
+<meta property="og:description" content="了解如何利用PageSpeed Insights评估您的网站性能，并通过优化措施提升加载速度和用户体验。本指南将为您详细解释如何分析测试结果，并采取步骤来改进网站性能，以满足现代用户对快速加载页面的需求。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://eddyblog.cn/posts/tech/optimize_website_performance/" />
+<meta property="og:image" content="https://eddyblog.cn/img/website3.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-08-29T00:17:58+08:00" />
+<meta property="article:modified_time" content="2023-08-29T00:17:58+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://eddyblog.cn/img/website3.png" />
+<meta name="twitter:title" content="优化网站性能：使用PageSpeed Insights评估与改进"/>
+<meta name="twitter:description" content="了解如何利用PageSpeed Insights评估您的网站性能，并通过优化措施提升加载速度和用户体验。本指南将为您详细解释如何分析测试结果，并采取步骤来改进网站性能，以满足现代用户对快速加载页面的需求。"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+
+        {
+          "@type": "ListItem",
+          "position":  2 ,
+          "name": "📚文章",
+          "item": "https://eddyblog.cn/posts/"
+        },
+
+        {
+          "@type": "ListItem",
+          "position":  3 ,
+          "name": "👨🏻‍💻 技术",
+          "item": "https://eddyblog.cn/posts/tech/"
+        }, 
+    {
+      "@type": "ListItem",
+      "position":  4 ,
+      "name": "优化网站性能：使用PageSpeed Insights评估与改进",
+      "item": "https://eddyblog.cn/posts/tech/optimize_website_performance/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "优化网站性能：使用PageSpeed Insights评估与改进",
+  "name": "优化网站性能：使用PageSpeed Insights评估与改进",
+  "description": "了解如何利用PageSpeed Insights评估您的网站性能，并通过优化措施提升加载速度和用户体验。本指南将为您详细解释如何分析测试结果，并采取步骤来改进网站性能，以满足现代用户对快速加载页面的需求。",
+  "keywords": [
+    "Website Performance", "website", "PageSpeed Insights"
+  ],
+  "articleBody": " 提升用户体验，优化网站性能，提高访问速度\n在当今数字化时代，网站性能对于吸引用户、提升用户体验以及搜索引擎排名至关重要。一个快速加载的网站不仅可以减少用户的等待时间，还能够增加转化率，降低跳失率，并为您的品牌树立积极的形象。但是，要实现高性能的网站，并不仅仅是优化代码和图像，更需要系统性地评估和改进。在本文中，我们将介绍如何使用 PageSpeed Insights 工具来评估网站性能，并提供一些改进策略，帮助您优化网站加载速度。\n什么是 PageSpeed Insights？ PageSpeed Insights 是由 Google 提供的一款免费工具，用于评估网站的性能并提供改进建议。该工具会分析网站的页面加载速度，并根据不同的指标为网站打分，同时还会提供详细的性能优化建议。这些建议可以帮助您发现潜在的性能瓶颈，改进加载速度，从而提升用户体验。\n如何使用 PageSpeed Insights？ 使用 PageSpeed Insights 非常简单，您只需前往其官方网站（https://developers.google.com/speed/pagespeed/insights/），输入您要评估的网站 URL，然后点击“分析”按钮即可。PageSpeed Insights 将对您的网站进行分析，然后为您提供两个关键指标的分数：移动设备性能和桌面设备性能。每个指标的分数范围从 0 到 100，分数越高表示性能越好。\n优化建议与策略 PageSpeed Insights 不仅会给出分数，还会提供详细的优化建议和策略。以下是一些常见的优化策略，可帮助您改进网站性能：\n1. 图片优化 图像是网站加载速度的主要因素之一。使用适当的图片格式（如 WebP）并进行压缩，可以显著减少加载时间。另外，使用响应式图像，根据不同设备加载不同分辨率的图像，可以进一步优化性能。\n2. 延迟加载 采用延迟加载（Lazy Loading）技术，只加载当前用户可见区域的内容，而不是一次性加载整个页面。这可以加速页面的首次加载，尤其对于长页面或包含大量图像的页面特别有效。\n3. 浏览器缓存 启用浏览器缓存可以减少重复加载已访问过的资源，从而提高页面加载速度。通过设置适当的缓存策略，可以使用户在再次访问页面时能够从本地缓存加载资源，而不必再次下载。\n4. 压缩代码 压缩 HTML、CSS 和 JavaScript 代码可以减小文件大小，从而加快文件传输速度。许多服务器和工具都提供代码压缩功能，您只需将压缩后的文件上传到服务器即可。\n5. 移除不必要的资源 定期审查您的网站，移除不再使用的资源，如无用的插件、样式表或脚本。减少请求的资源数量可以显著减少页面加载时间。\n真实案例：XYZ 公司的网站性能优化 为了更好地理解如何使用 PageSpeed Insights 进行网站性能优化，让我们看一个真实案例。XYZ 公司的网站在使用 PageSpeed Insights 后，发现移动设备性能分数\n仅为 50，而桌面设备性能分数为 75。经过分析，他们发现以下问题和改进方案：\n图片未经优化： 网站中的图片过大，没有经过压缩和优化。他们采用了图片压缩工具，将图片大小减小了 50%，从而提高了页面加载速度。\n缺少延迟加载： 网站一次性加载了所有图片，导致页面加载时间较长。他们引入了延迟加载技术，只加载用户可见区域的图片，从而减少了首次加载时间。\n缺少浏览器缓存： 网站未启用浏览器缓存，导致用户每次访问都需要重新下载资源。他们设置了适当的缓存策略，使用户能够从本地缓存加载资源，加快了页面加载速度。\n通过以上改进，XYZ 公司的网站性能得到了显著提升，移动设备性能分数达到了 85，桌面设备性能分数达到了 90。用户体验得到了明显改善，页面加载速度大幅提升。\n案例研究：ABC 博客的性能优化之路 ABC 博客是一个知名的技术博客，但近期用户抱怨网站加载速度较慢。博客团队使用 PageSpeed Insights 进行了评估，并发现移动设备性能分数仅为 40，桌面设备性能分数为 60。为了改进性能，他们采取了以下措施：\n压缩资源： 博客中存在大量的 CSS 和 JavaScript 文件，占用了大量带宽。他们对这些文件进行了压缩，并启用了 Gzip 压缩，从而减小了文件大小。\n使用 CDN： 为了加速资源加载，他们将静态资源（如图片、样式表和脚本）托管到了 CDN 上，减少了服务器的负载，加快了资源传输速度。\n减少重定向： 博客中存在多个重定向链接，导致额外的网络请求。他们对重定向链接进行了优化，减少了网络请求次数。\n通过以上改进，ABC 博客的性能得到了显著提升，移动设备性能分数达到了 70，桌面设备性能分数达到了 85。用户体验得到了显著改善，网站加载速度明显加快。\n总结 优化网站性能是提升用户体验、提高转化率以及提升搜索引擎排名的关键步骤。通过使用 PageSpeed Insights 评估网站性能，并采取针对性的优化策略，您可以显著提升网站的加载速度，为用户创造更好的访问体验。通过真实案例和案例研究，我们可以看到优化策略如何在实际中产生积极影响，帮助网站实现高性能和优异的用户体验。\n小提示： 不断关注网站性能，定期使用 PageSpeed Insights 进行评估和改进，是确保网站保持高性能状态的关键。通过不断优化，您可以为用户提供更快、更流畅的访问体验，从而提升网站的价值和竞争力。\n",
+  "wordCount" : "1955",
+  "inLanguage": "zh",
+  "image":"https://eddyblog.cn/img/website3.png","datePublished": "2023-08-29T00:17:58+08:00",
+  "dateModified": "2023-08-29T00:17:58+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "Eddy"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://eddyblog.cn/posts/tech/optimize_website_performance/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Eddy's blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://eddyblog.cn/img/logo3.png"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    (function () {
+        let  arr,reg = new RegExp("(^| )"+"change-themes"+"=([^;]*)(;|$)");
+        if(arr = document.cookie.match(reg)) {
+        } else {
+            if (new Date().getHours() >= 19 || new Date().getHours() < 6) {
+                document.body.classList.add('dark');
+                localStorage.setItem("pref-theme", 'dark');
+            } else {
+                document.body.classList.remove('dark');
+                localStorage.setItem("pref-theme", 'light');
+            }
+        }
+    })()
+
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://eddyblog.cn" accesskey="h" title="Eddy&#39;s Blog (Alt + H)">
+            <img src="https://eddyblog.cn/img/logo3.png" alt="logo" aria-label="logo"
+                 height="35">Eddy&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://eddyblog.cn/search" title="🔍 搜索 (Alt &#43; /)" accesskey=/>
+                <span>🔍 搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/" title="🏠 主页">
+                <span>🏠 主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/posts" title="📚 文章">
+                <span>📚 文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/tags" title="🧩 标签">
+                <span>🧩 标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/archives/" title="⏱️ 时间轴">
+                <span>⏱️ 时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/about" title="🙋🏻‍♂️ 关于">
+                <span>🙋🏻‍♂️ 关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main page">
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+</style>
+
+<article class="post-single">
+    <div id="single-content">
+        <header class="post-header">
+            <div class="breadcrumbs"><a href="https://eddyblog.cn">🏠 主页</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/">📚文章</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/tech/">👨🏻‍💻 技术</a></div>
+            <h1 class="post-title">
+                优化网站性能：使用PageSpeed Insights评估与改进
+            </h1>
+            <div class="post-description">
+                了解如何利用PageSpeed Insights评估您的网站性能，并通过优化措施提升加载速度和用户体验。本指南将为您详细解释如何分析测试结果，并采取步骤来改进网站性能，以满足现代用户对快速加载页面的需求。
+            </div>
+            <div class="post-meta">
+
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+
+    .parent-post-meta {
+        display: flex;
+        flex-wrap: wrap;
+        opacity: 0.8;
+    }
+</style>
+
+<span class="parent-post-meta">
+    <span id="post_meta_style_1">
+        <span class="fa fa-calendar-check-o"></span>
+        <span>2023-08-29
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    
+    
+    
+    
+    
+    
+    
+    <span id="post_meta_style_3">
+        <span class="fa fa-file-word-o"></span>
+        <span>1955字
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_4">
+        <span class="fa fa-clock-o"></span>
+        <span>4分钟
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_5">
+        <span class="fa fa-user-o"></span>
+        <span>Eddy
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_6">
+        <span class="fa fa-tags" style="opacity: 0.8"></span>
+        <span>
+            <span class="post-tags-meta">
+                <a href="https://eddyblog.cn/tags/website-performance/" style="color: var(--secondary)!important;">Website Performance</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/website/" style="color: var(--secondary)!important;">website</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/pagespeed-insights/" style="color: var(--secondary)!important;">PageSpeed Insights</a>
+            </span>
+        </span>
+    </span>
+</span>
+<span style="opacity: 0.8;">
+                    <span id="post_meta_style_7">
+                        &nbsp;&nbsp;
+                        <span class="fa fa-eye" ></span>
+                        <span>
+                            <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+                            &nbsp;&nbsp;
+                        </span>
+                    </span>
+                    <span id="post_meta_style_8">
+                        <span class="fa fa-commenting-o"></span>
+                        <span>
+                            <script src="https://cdn.staticfile.org/twikoo//twikoo.all.min.js"></script>
+                            <script>
+                                let url = document.documentURI
+                                
+                                let dnsUrl = "https://eddyblog.cn"
+                                let urlSplit = url.split(dnsUrl)
+                                let finalUrl = urlSplit[1]
+                                if (finalUrl[0] !== '/') {
+                                    finalUrl = '/'+finalUrl
+                                }
+                                twikoo.getCommentsCount({
+                                    envId:  null , 
+                                region:  null , 
+                                urls: [ 
+                                    
+                                    finalUrl,
+                                ],
+                                    includeReply: false 
+                                }).then(function (res) {
+                                    let count = res[0].count
+                                    const obj = document.getElementById("comment_count");
+                                    obj.innerText = count
+                                    
+                                    
+                                    
+                                }).catch(function (err) {
+                                    
+                                    console.error(err);
+                                });
+                            </script>
+                            <span id="comment_count"></span>
+                        </span>
+                    </span>
+                </span>
+
+</div>
+        </header> 
+<figure class="entry-cover1"><img style="zoom:;" loading="lazy" src="https://eddyblog.cn/img/website3.png" alt="">
+    
+</figure><aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e4%bb%80%e4%b9%88%e6%98%af-pagespeed-insights" aria-label="什么是 PageSpeed Insights？">什么是 PageSpeed Insights？</a></li>
+                <li>
+                    <a href="#%e5%a6%82%e4%bd%95%e4%bd%bf%e7%94%a8-pagespeed-insights" aria-label="如何使用 PageSpeed Insights？">如何使用 PageSpeed Insights？</a></li>
+                <li>
+                    <a href="#%e4%bc%98%e5%8c%96%e5%bb%ba%e8%ae%ae%e4%b8%8e%e7%ad%96%e7%95%a5" aria-label="优化建议与策略">优化建议与策略</a><ul>
+                        
+                <li>
+                    <a href="#1-%e5%9b%be%e7%89%87%e4%bc%98%e5%8c%96" aria-label="1. 图片优化">1. 图片优化</a></li>
+                <li>
+                    <a href="#2-%e5%bb%b6%e8%bf%9f%e5%8a%a0%e8%bd%bd" aria-label="2. 延迟加载">2. 延迟加载</a></li>
+                <li>
+                    <a href="#3-%e6%b5%8f%e8%a7%88%e5%99%a8%e7%bc%93%e5%ad%98" aria-label="3. 浏览器缓存">3. 浏览器缓存</a></li>
+                <li>
+                    <a href="#4-%e5%8e%8b%e7%bc%a9%e4%bb%a3%e7%a0%81" aria-label="4. 压缩代码">4. 压缩代码</a></li>
+                <li>
+                    <a href="#5-%e7%a7%bb%e9%99%a4%e4%b8%8d%e5%bf%85%e8%a6%81%e7%9a%84%e8%b5%84%e6%ba%90" aria-label="5. 移除不必要的资源">5. 移除不必要的资源</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e7%9c%9f%e5%ae%9e%e6%a1%88%e4%be%8bxyz-%e5%85%ac%e5%8f%b8%e7%9a%84%e7%bd%91%e7%ab%99%e6%80%a7%e8%83%bd%e4%bc%98%e5%8c%96" aria-label="真实案例：XYZ 公司的网站性能优化">真实案例：XYZ 公司的网站性能优化</a></li>
+                <li>
+                    <a href="#%e6%a1%88%e4%be%8b%e7%a0%94%e7%a9%b6abc-%e5%8d%9a%e5%ae%a2%e7%9a%84%e6%80%a7%e8%83%bd%e4%bc%98%e5%8c%96%e4%b9%8b%e8%b7%af" aria-label="案例研究：ABC 博客的性能优化之路">案例研究：ABC 博客的性能优化之路</a></li>
+                <li>
+                    <a href="#%e6%80%bb%e7%bb%93" aria-label="总结">总结</a>
+                </li>
+            </ul>
+        </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+        
+        activeElement = elements[0];
+        const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+        document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+    }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        if (elements) {
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement){
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }
+    }, false);
+
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;
+    }
+</script>
+        <div class="post-content"><blockquote>
+<p>提升用户体验，优化网站性能，提高访问速度</p>
+</blockquote>
+<p>在当今数字化时代，网站性能对于吸引用户、提升用户体验以及搜索引擎排名至关重要。一个快速加载的网站不仅可以减少用户的等待时间，还能够增加转化率，降低跳失率，并为您的品牌树立积极的形象。但是，要实现高性能的网站，并不仅仅是优化代码和图像，更需要系统性地评估和改进。在本文中，我们将介绍如何使用 PageSpeed Insights 工具来评估网站性能，并提供一些改进策略，帮助您优化网站加载速度。</p>
+<h2 id="什么是-pagespeed-insights">什么是 PageSpeed Insights？<a hidden class="anchor" aria-hidden="true" href="#什么是-pagespeed-insights">#</a></h2>
+<p>PageSpeed Insights 是由 Google 提供的一款免费工具，用于评估网站的性能并提供改进建议。该工具会分析网站的页面加载速度，并根据不同的指标为网站打分，同时还会提供详细的性能优化建议。这些建议可以帮助您发现潜在的性能瓶颈，改进加载速度，从而提升用户体验。</p>
+<h2 id="如何使用-pagespeed-insights">如何使用 PageSpeed Insights？<a hidden class="anchor" aria-hidden="true" href="#如何使用-pagespeed-insights">#</a></h2>
+<p>使用 PageSpeed Insights 非常简单，您只需前往其官方网站（<a href="https://developers.google.com/speed/pagespeed/insights/">https://developers.google.com/speed/pagespeed/insights/</a>），输入您要评估的网站 URL，然后点击“分析”按钮即可。PageSpeed Insights 将对您的网站进行分析，然后为您提供两个关键指标的分数：移动设备性能和桌面设备性能。每个指标的分数范围从 0 到 100，分数越高表示性能越好。</p>
+<h2 id="优化建议与策略">优化建议与策略<a hidden class="anchor" aria-hidden="true" href="#优化建议与策略">#</a></h2>
+<p>PageSpeed Insights 不仅会给出分数，还会提供详细的优化建议和策略。以下是一些常见的优化策略，可帮助您改进网站性能：</p>
+<h3 id="1-图片优化">1. 图片优化<a hidden class="anchor" aria-hidden="true" href="#1-图片优化">#</a></h3>
+<p>图像是网站加载速度的主要因素之一。使用适当的图片格式（如 WebP）并进行压缩，可以显著减少加载时间。另外，使用响应式图像，根据不同设备加载不同分辨率的图像，可以进一步优化性能。</p>
+<h3 id="2-延迟加载">2. 延迟加载<a hidden class="anchor" aria-hidden="true" href="#2-延迟加载">#</a></h3>
+<p>采用延迟加载（Lazy Loading）技术，只加载当前用户可见区域的内容，而不是一次性加载整个页面。这可以加速页面的首次加载，尤其对于长页面或包含大量图像的页面特别有效。</p>
+<h3 id="3-浏览器缓存">3. 浏览器缓存<a hidden class="anchor" aria-hidden="true" href="#3-浏览器缓存">#</a></h3>
+<p>启用浏览器缓存可以减少重复加载已访问过的资源，从而提高页面加载速度。通过设置适当的缓存策略，可以使用户在再次访问页面时能够从本地缓存加载资源，而不必再次下载。</p>
+<h3 id="4-压缩代码">4. 压缩代码<a hidden class="anchor" aria-hidden="true" href="#4-压缩代码">#</a></h3>
+<p>压缩 HTML、CSS 和 JavaScript 代码可以减小文件大小，从而加快文件传输速度。许多服务器和工具都提供代码压缩功能，您只需将压缩后的文件上传到服务器即可。</p>
+<h3 id="5-移除不必要的资源">5. 移除不必要的资源<a hidden class="anchor" aria-hidden="true" href="#5-移除不必要的资源">#</a></h3>
+<p>定期审查您的网站，移除不再使用的资源，如无用的插件、样式表或脚本。减少请求的资源数量可以显著减少页面加载时间。</p>
+<h2 id="真实案例xyz-公司的网站性能优化">真实案例：XYZ 公司的网站性能优化<a hidden class="anchor" aria-hidden="true" href="#真实案例xyz-公司的网站性能优化">#</a></h2>
+<p>为了更好地理解如何使用 PageSpeed Insights 进行网站性能优化，让我们看一个真实案例。XYZ 公司的网站在使用 PageSpeed Insights 后，发现移动设备性能分数</p>
+<p>仅为 50，而桌面设备性能分数为 75。经过分析，他们发现以下问题和改进方案：</p>
+<ol>
+<li>
+<p><strong>图片未经优化：</strong> 网站中的图片过大，没有经过压缩和优化。他们采用了图片压缩工具，将图片大小减小了 50%，从而提高了页面加载速度。</p>
+</li>
+<li>
+<p><strong>缺少延迟加载：</strong> 网站一次性加载了所有图片，导致页面加载时间较长。他们引入了延迟加载技术，只加载用户可见区域的图片，从而减少了首次加载时间。</p>
+</li>
+<li>
+<p><strong>缺少浏览器缓存：</strong> 网站未启用浏览器缓存，导致用户每次访问都需要重新下载资源。他们设置了适当的缓存策略，使用户能够从本地缓存加载资源，加快了页面加载速度。</p>
+</li>
+</ol>
+<p>通过以上改进，XYZ 公司的网站性能得到了显著提升，移动设备性能分数达到了 85，桌面设备性能分数达到了 90。用户体验得到了明显改善，页面加载速度大幅提升。</p>
+<h2 id="案例研究abc-博客的性能优化之路">案例研究：ABC 博客的性能优化之路<a hidden class="anchor" aria-hidden="true" href="#案例研究abc-博客的性能优化之路">#</a></h2>
+<p>ABC 博客是一个知名的技术博客，但近期用户抱怨网站加载速度较慢。博客团队使用 PageSpeed Insights 进行了评估，并发现移动设备性能分数仅为 40，桌面设备性能分数为 60。为了改进性能，他们采取了以下措施：</p>
+<ol>
+<li>
+<p><strong>压缩资源：</strong> 博客中存在大量的 CSS 和 JavaScript 文件，占用了大量带宽。他们对这些文件进行了压缩，并启用了 Gzip 压缩，从而减小了文件大小。</p>
+</li>
+<li>
+<p><strong>使用 CDN：</strong> 为了加速资源加载，他们将静态资源（如图片、样式表和脚本）托管到了 CDN 上，减少了服务器的负载，加快了资源传输速度。</p>
+</li>
+<li>
+<p><strong>减少重定向：</strong> 博客中存在多个重定向链接，导致额外的网络请求。他们对重定向链接进行了优化，减少了网络请求次数。</p>
+</li>
+</ol>
+<p>通过以上改进，ABC 博客的性能得到了显著提升，移动设备性能分数达到了 70，桌面设备性能分数达到了 85。用户体验得到了显著改善，网站加载速度明显加快。</p>
+<h2 id="总结">总结<a hidden class="anchor" aria-hidden="true" href="#总结">#</a></h2>
+<p>优化网站性能是提升用户体验、提高转化率以及提升搜索引擎排名的关键步骤。通过使用 PageSpeed Insights 评估网站性能，并采取针对性的优化策略，您可以显著提升网站的加载速度，为用户创造更好的访问体验。通过真实案例和案例研究，我们可以看到优化策略如何在实际中产生积极影响，帮助网站实现高性能和优异的用户体验。</p>
+<blockquote>
+<p><strong>小提示：</strong> 不断关注网站性能，定期使用 PageSpeed Insights 进行评估和改进，是确保网站保持高性能状态的关键。通过不断优化，您可以为用户提供更快、更流畅的访问体验，从而提升网站的价值和竞争力。</p>
+</blockquote>
+
+
+        </div>
+
+        <footer class="post-footer">
+            
+<nav class="paginav">
+  <a class="prev" href="https://eddyblog.cn/posts/tech/website_speed_optimization/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>网站速度优化：利用Pingdom测试与提升</span>
+  </a>
+  <a class="next" href="https://eddyblog.cn/posts/tech/github_amd_arm/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>【Github】release上的安装包amd和arm的选择</span>
+  </a>
+</nav>
+
+        </footer>
+    </div>
+</article>
+</main>
+
+<footer class="footer">
+    <span>
+        Copyright
+        &copy;
+        -2023
+        <a href="https://eddyblog.cn" style="color:#939393;">Eddy&#39;s blog</a>
+        All Rights Reserved
+    </span>
+    <a href="https://beian.miit.gov.cn/" target="_blank" style="color:#939393;"></a>&nbsp;
+    <span>
+        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=null"
+           style="display:inline-block;text-decoration:none;height:20px;color:#939393;">
+            <img src="" style="float:left;margin: 0px 5px 0px 0px;"/>
+            
+        </a>
+    </span>
+    <span id="busuanzi_container">
+        <span class="fa fa-user"></span> <span id="busuanzi_value_site_uv"></span>
+        <span class="fa fa-eye"></span> <span id="busuanzi_value_site_pv"></span>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <span class="topInner">
+        <svg class="topSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z"/>
+        </svg>
+        <span id="read_progress"></span>
+    </span>
+</a>
+
+<script>
+    document.addEventListener('scroll', function (e) {
+        const readProgress = document.getElementById("read_progress");
+        const scrollHeight = document.documentElement.scrollHeight;
+        const clientHeight = document.documentElement.clientHeight;
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        readProgress.innerText = ((scrollTop / (scrollHeight - clientHeight)).toFixed(2) * 100).toFixed(0);
+    })
+</script>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+</script>
+<script>
+    let mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        (function() {
+            document.cookie = "change-themes" + "="+ escape ("false");
+        })()
+
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    });
+</script>
+
+<script>
+    document.body.addEventListener('copy', function (e) {
+        if (window.getSelection().toString() && window.getSelection().toString().length > 50) {
+            let clipboardData = e.clipboardData || window.clipboardData;
+            if (clipboardData) {
+                e.preventDefault();
+                let htmlData = window.getSelection().toString() +
+                    '\r\n\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                let textData = window.getSelection().toString() +
+                    '\r\n\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                clipboardData.setData('text/html', htmlData);
+                clipboardData.setData('text/plain', textData);
+            }
+        }
+    });
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = '复制';
+
+        function copyingDone() {
+            copybutton.innerText = '已复制！';
+            setTimeout(() => {
+                copybutton.innerText = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                let text = codeblock.textContent +
+                    '\r\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                navigator.clipboard.writeText(text);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) {}
+            selection.removeRange(range);
+        });
+
+        let language = codeblock.className.replaceAll("language-", "")
+        let macTool = document.createElement("div")
+        let macTool1 = document.createElement("div")
+        let macTool2 = document.createElement("div")
+        let macTool3 = document.createElement("div")
+        let languageType = document.createElement("div")
+        languageType.innerText = language
+        macTool.setAttribute('class', 'mac-tool')
+        macTool1.setAttribute('class', 'mac bb1')
+        macTool2.setAttribute('class', 'mac bb2')
+        macTool3.setAttribute('class', 'mac bb3')
+        languageType.setAttribute('class', 'language-type')
+        macTool.appendChild(macTool1)
+        macTool.appendChild(macTool2)
+        macTool.appendChild(macTool3)
+        macTool.appendChild(languageType)
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+            container.appendChild(macTool)
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+            container.appendChild(macTool)
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+            container.appendChild(macTool)
+        }
+    });
+</script>
+</body>
+
+</html>

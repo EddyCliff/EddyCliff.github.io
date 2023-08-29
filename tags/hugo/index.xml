@@ -35,7 +35,7 @@
     </item>
     
     <item>
-      <title>【Hugo】将网站部署到GitHub远程仓库时出现了错误</title>
+      <title>【Hugo】bug日记-将网站部署到GitHub远程仓库时出现了错误</title>
       <link>https://eddyblog.cn/posts/tech/hugo_error1/</link>
       <pubDate>Mon, 17 Apr 2023 00:17:58 +0800</pubDate>
       
@@ -98,7 +98,7 @@
     </item>
     
     <item>
-      <title>【Hugo_error】hugo server失败</title>
+      <title>【Hugo】bug日记-hugo server失败</title>
       <link>https://eddyblog.cn/posts/tech/hugo_server_failed/</link>
       <pubDate>Tue, 20 Sep 2022 00:17:58 +0800</pubDate>
       

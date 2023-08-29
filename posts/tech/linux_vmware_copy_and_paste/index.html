@@ -446,10 +446,10 @@ var _hmt = _hmt || [];
         return rect.top + win.pageYOffset;
     }
 </script>
-        <div class="post-content"><h1 id="前言">前言<a hidden class="anchor" aria-hidden="true" href="#前言">#</a></h1>
+        <div class="post-content"><h2 id="前言">前言<a hidden class="anchor" aria-hidden="true" href="#前言">#</a></h2>
 <p><code>VMware</code>自带的<code>VMware Tools</code>复制粘贴功能失败，所以安装<code>open-vm-tools</code>以使用复制粘贴功能。</p>
 <hr>
-<h1 id="一open-vm-tools是什么">一、<code>open-vm-tools</code>是什么？<a hidden class="anchor" aria-hidden="true" href="#一open-vm-tools是什么">#</a></h1>
+<h2 id="一open-vm-tools是什么">一、<code>open-vm-tools</code>是什么？<a hidden class="anchor" aria-hidden="true" href="#一open-vm-tools是什么">#</a></h2>
 <p><code>open-vm-tools</code> 是一组用于 VMware 虚拟机中的开源工具，它们提供了一些与虚拟机操作和管理相关的功能。这些工具与 VMware 虚拟化平台集成，可以在虚拟机中提供更好的性能和功能。以下是一些 <code>open-vm-tools</code> 提供的功能：</p>
 <ol>
 <li>
@@ -469,7 +469,7 @@ var _hmt = _hmt || [];
 </li>
 </ol>
 <p>注意，<code>open-vm-tools</code> 适用于许多 Linux 发行版，并提供了虚拟机操作和管理方面的许多便利功能。如果你在 <code>VMware</code> 虚拟机中运行 <code>Linux</code> 操作系统，可以考虑安装和使用这些工具来提升虚拟机的性能和功能。安装 <code>open-vm-tools</code> 的方法可能会因你使用的 Linux 发行版而有所不同，通常你可以在操作系统的软件仓库中找到它。</p>
-<h1 id="二操作步骤">二、操作步骤<a hidden class="anchor" aria-hidden="true" href="#二操作步骤">#</a></h1>
+<h2 id="二操作步骤">二、操作步骤<a hidden class="anchor" aria-hidden="true" href="#二操作步骤">#</a></h2>
 <ol>
 <li>删除<code>VMware-tools</code></li>
 </ol>
@@ -483,7 +483,7 @@ var _hmt = _hmt || [];
 </span></span><span style="display:flex;"><span>sudo rm -rf /usr/lib/vmware-tools
 </span></span><span style="display:flex;"><span>sudo apt-get autoremove open-vm-tools --purge
 </span></span></code></pre></div><p>如果没安装过<code>VMware tools</code>则忽略第一步，直接进入第二步。</p>
-<ol>
+<ol start="2">
 <li>安装 <code>open-vm-tools</code></li>
 </ol>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Shell" data-lang="Shell"><span style="display:flex;"><span>sudo apt-get install open-vm-tools

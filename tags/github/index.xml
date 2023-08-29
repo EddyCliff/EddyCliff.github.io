@@ -26,7 +26,7 @@
     </item>
     
     <item>
-      <title>【Github】{error: remote origin already exists.}</title>
+      <title>【Github】bug日记-git remote</title>
       <link>https://eddyblog.cn/posts/tech/github_error_remote_origin_already_exists/</link>
       <pubDate>Thu, 20 Jul 2023 00:17:58 +0800</pubDate>
       
@@ -35,7 +35,7 @@
     </item>
     
     <item>
-      <title>【Github】{OpenSSL SSL_read: Connection was reset, errno 10054}</title>
+      <title>【Github】bug日记-OpenSSL SSL_read</title>
       <link>https://eddyblog.cn/posts/tech/gitub_error1/</link>
       <pubDate>Tue, 20 Jun 2023 00:17:58 +0800</pubDate>
       
@@ -53,7 +53,7 @@
     </item>
     
     <item>
-      <title>【Hugo】将网站部署到GitHub远程仓库时出现了错误</title>
+      <title>【Hugo】bug日记-将网站部署到GitHub远程仓库时出现了错误</title>
       <link>https://eddyblog.cn/posts/tech/hugo_error1/</link>
       <pubDate>Mon, 17 Apr 2023 00:17:58 +0800</pubDate>
       

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>PageSpeed Insights on Eddy&#39;s blog</title>
+    <link>https://eddyblog.cn/tags/pagespeed-insights/</link>
+    <description>Recent content in PageSpeed Insights on Eddy&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Tue, 29 Aug 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/pagespeed-insights/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>优化网站性能：使用PageSpeed Insights评估与改进</title>
+      <link>https://eddyblog.cn/posts/tech/optimize_website_performance/</link>
+      <pubDate>Tue, 29 Aug 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/optimize_website_performance/</guid>
+      <description>了解如何利用PageSpeed Insights评估您的网站性能，并通过优化措施提升加载速度和用户体验。本指南将为您详细解释如何分析测试结果，并采取步骤来改进网站性能，以满足现代用户对快速加载页面的需求。</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>【Github】{OpenSSL SSL_read: Connection was reset, errno 10054} | Eddy&#39;s blog</title>
+<title>【Github】bug日记-OpenSSL SSL_read | Eddy&#39;s blog</title>
 <meta name="keywords" content="Github, error, SSL">
 <meta name="description" content="解决{OpenSSL SSL_read: Connection was reset, errno 10054}">
 <meta name="author" content="Eddy">
@@ -73,7 +73,7 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
-<meta property="og:title" content="【Github】{OpenSSL SSL_read: Connection was reset, errno 10054}" />
+<meta property="og:title" content="【Github】bug日记-OpenSSL SSL_read" />
 <meta property="og:description" content="解决{OpenSSL SSL_read: Connection was reset, errno 10054}" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://eddyblog.cn/posts/tech/gitub_error1/" />
@@ -83,7 +83,7 @@ var _hmt = _hmt || [];
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://eddyblog.cn/img/github.png" />
-<meta name="twitter:title" content="【Github】{OpenSSL SSL_read: Connection was reset, errno 10054}"/>
+<meta name="twitter:title" content="【Github】bug日记-OpenSSL SSL_read"/>
 <meta name="twitter:description" content="解决{OpenSSL SSL_read: Connection was reset, errno 10054}"/>
 
 
@@ -109,7 +109,7 @@ var _hmt = _hmt || [];
     {
       "@type": "ListItem",
       "position":  4 ,
-      "name": "【Github】{OpenSSL SSL_read: Connection was reset, errno 10054}",
+      "name": "【Github】bug日记-OpenSSL SSL_read",
       "item": "https://eddyblog.cn/posts/tech/gitub_error1/"
     }
   ]
@@ -119,8 +119,8 @@ var _hmt = _hmt || [];
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "【Github】{OpenSSL SSL_read: Connection was reset, errno 10054}",
-  "name": "【Github】{OpenSSL SSL_read: Connection was reset, errno 10054}",
+  "headline": "【Github】bug日记-OpenSSL SSL_read",
+  "name": "【Github】bug日记-OpenSSL SSL_read",
   "description": "解决{OpenSSL SSL_read: Connection was reset, errno 10054}",
   "keywords": [
     "Github", "error", "SSL"
@@ -252,7 +252,7 @@ var _hmt = _hmt || [];
         <header class="post-header">
             <div class="breadcrumbs"><a href="https://eddyblog.cn">🏠 主页</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/">📚文章</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/tech/">👨🏻‍💻 技术</a></div>
             <h1 class="post-title">
-                【Github】{OpenSSL SSL_read: Connection was reset, errno 10054}
+                【Github】bug日记-OpenSSL SSL_read
             </h1>
             <div class="post-description">
                 解决{OpenSSL SSL_read: Connection was reset, errno 10054}
@@ -448,17 +448,17 @@ var _hmt = _hmt || [];
         return rect.top + win.pageYOffset;
     }
 </script>
-        <div class="post-content"><h1 id="项目场景">项目场景：<a hidden class="anchor" aria-hidden="true" href="#项目场景">#</a></h1>
+        <div class="post-content"><h2 id="项目场景">项目场景：<a hidden class="anchor" aria-hidden="true" href="#项目场景">#</a></h2>
 <p><code>Git bash</code></p>
 <hr>
-<h1 id="问题描述">问题描述：<a hidden class="anchor" aria-hidden="true" href="#问题描述">#</a></h1>
+<h2 id="问题描述">问题描述：<a hidden class="anchor" aria-hidden="true" href="#问题描述">#</a></h2>
 <p>进行<code>git push -f origin master</code>命令</p>
 <p>出现错误：<code>fatal: unable to access ' 我的库的http路径 ': OpenSSL SSL_read: Connection was reset, errno 10054</code></p>
 <hr>
-<h1 id="原因分析">原因分析：<a hidden class="anchor" aria-hidden="true" href="#原因分析">#</a></h1>
+<h2 id="原因分析">原因分析：<a hidden class="anchor" aria-hidden="true" href="#原因分析">#</a></h2>
 <p>无法关联<code>github</code>的远程库,<code>SSL</code>连接被重置</p>
 <hr>
-<h1 id="解决方案">解决方案：<a hidden class="anchor" aria-hidden="true" href="#解决方案">#</a></h1>
+<h2 id="解决方案">解决方案：<a hidden class="anchor" aria-hidden="true" href="#解决方案">#</a></h2>
 <p>使用命令行解除<code>SSL</code>认证</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git config --global http.sslVerify <span style="color:#e6db74">&#34;false&#34;</span>
 </span></span><span style="display:flex;"><span>git config --global https.sslVerify <span style="color:#e6db74">&#34;false&#34;</span>

@@ -458,16 +458,16 @@ var _hmt = _hmt || [];
         return rect.top + win.pageYOffset;
     }
 </script>
-        <div class="post-content"><h1 id="前言">前言<a hidden class="anchor" aria-hidden="true" href="#前言">#</a></h1>
+        <div class="post-content"><h2 id="前言">前言<a hidden class="anchor" aria-hidden="true" href="#前言">#</a></h2>
 <p><code>Hugo</code>添加不蒜子Busuanzi页面浏览次数与阅读数据统计</p>
 <hr>
-<h1 id="一busuanzi是什么">一、<code>Busuanzi</code>是什么？<a hidden class="anchor" aria-hidden="true" href="#一busuanzi是什么">#</a></h1>
+<h2 id="一busuanzi是什么">一、<code>Busuanzi</code>是什么？<a hidden class="anchor" aria-hidden="true" href="#一busuanzi是什么">#</a></h2>
 <p><code>Busuanzi</code>是一个用于统计网站访问量的工具。它通常嵌入到网页中，可以追踪页面的浏览次数，方可数量积极其他一些基本的访问数据。这个工具可以帮助网站管理员了解他们的网站受欢迎程度和流量情况。</p>
-<h1 id="二使用步骤">二、使用步骤<a hidden class="anchor" aria-hidden="true" href="#二使用步骤">#</a></h1>
+<h2 id="二使用步骤">二、使用步骤<a hidden class="anchor" aria-hidden="true" href="#二使用步骤">#</a></h2>
 <blockquote>
 <p>在<code>head.html</code>，<code>footer.html</code>，<code>single.html</code>，<code>config.yml</code>进行修改</p>
 </blockquote>
-<h2 id="headhtml">head.html<a hidden class="anchor" aria-hidden="true" href="#headhtml">#</a></h2>
+<h3 id="headhtml">head.html<a hidden class="anchor" aria-hidden="true" href="#headhtml">#</a></h3>
 <p>我的<code>papermod</code>的路径为<code>themes/Hugo-PaperMod/layouts/partials/head.html</code></p>
 <p>添加以下代码</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-HTML" data-lang="HTML"><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- busuanzi --&gt;</span>
@@ -477,7 +477,7 @@ var _hmt = _hmt || [];
 </span></span><span style="display:flex;"><span>{{- end -}}
 </span></span></code></pre></div><p><img loading="lazy" src="/img/tech/Hugo_Busuanzi/1.png" alt="1.png"  />
 </p>
-<h2 id="footerhtml">footer.html<a hidden class="anchor" aria-hidden="true" href="#footerhtml">#</a></h2>
+<h3 id="footerhtml">footer.html<a hidden class="anchor" aria-hidden="true" href="#footerhtml">#</a></h3>
 <p>用于在站点底部显示总访问量与访客数</p>
 <p>我的<code>PaperMod</code>路径为<code>themes/Hugo-PaperMod/layouts/partials/footer.html</code></p>
 <p>添加以下代码，注意添加在<code>&lt;footer&gt;</code>代码块里</p>
@@ -494,7 +494,7 @@ var _hmt = _hmt || [];
 </span></span><span style="display:flex;"><span>{{- end -}}
 </span></span></code></pre></div><p><img loading="lazy" src="/img/tech/Hugo_Busuanzi/2.png" alt="2.png"  />
 </p>
-<h2 id="singlehtml">single.html<a hidden class="anchor" aria-hidden="true" href="#singlehtml">#</a></h2>
+<h3 id="singlehtml">single.html<a hidden class="anchor" aria-hidden="true" href="#singlehtml">#</a></h3>
 <p>用于显示每篇文章阅读量</p>
 <p>我的<code>papermod</code>路径为<code>themes/Hugo-PaperMod/layouts/_default/single.html</code></p>
 <p>添加以下代码，加在<code>&lt;header&gt;</code>代码块内</p>
@@ -506,7 +506,7 @@ var _hmt = _hmt || [];
 </span></span><span style="display:flex;"><span>{{- end }}
 </span></span></code></pre></div><p><img loading="lazy" src="/img/tech/Hugo_Busuanzi/3.png" alt="3.png"  />
 </p>
-<h2 id="configyml">config.yml<a hidden class="anchor" aria-hidden="true" href="#configyml">#</a></h2>
+<h3 id="configyml">config.yml<a hidden class="anchor" aria-hidden="true" href="#configyml">#</a></h3>
 <p>回到根目录的<code>config.yml</code>，在<code>params</code>里加上<code>busuanzi:</code>功能</p>
 <p>显示统计即为<code>true</code></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-YAML" data-lang="YAML"><span style="display:flex;"><span><span style="color:#f92672">params</span>:  
@@ -517,7 +517,7 @@ var _hmt = _hmt || [];
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">busuanzi</span>:
 </span></span><span style="display:flex;"><span>        <span style="color:#f92672">enable</span>: <span style="color:#66d9ef">false</span>
 </span></span></code></pre></div><hr>
-<h1 id="总结">总结<a hidden class="anchor" aria-hidden="true" href="#总结">#</a></h1>
+<h2 id="总结">总结<a hidden class="anchor" aria-hidden="true" href="#总结">#</a></h2>
 <p>本文简单介绍了<code>Hugo</code>添加不蒜子Busuanzi站点访问量与阅读量统计的操作步骤和方法。</p>
 
 
@@ -529,12 +529,12 @@ var _hmt = _hmt || [];
   <a class="prev" href="https://eddyblog.cn/posts/tech/github_error_remote_origin_already_exists/">
     <span class="title">« 上一页</span>
     <br>
-    <span>【Github】{error: remote origin already exists.}</span>
+    <span>【Github】bug日记-git remote</span>
   </a>
   <a class="next" href="https://eddyblog.cn/posts/tech/gitub_error1/">
     <span class="title">下一页 »</span>
     <br>
-    <span>【Github】{OpenSSL SSL_read: Connection was reset, errno 10054}</span>
+    <span>【Github】bug日记-OpenSSL SSL_read</span>
   </a>
 </nav>
 

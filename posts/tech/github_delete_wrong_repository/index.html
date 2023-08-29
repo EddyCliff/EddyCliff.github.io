@@ -451,13 +451,13 @@ var _hmt = _hmt || [];
         return rect.top + win.pageYOffset;
     }
 </script>
-        <div class="post-content"><h1 id="项目场景">项目场景：<a hidden class="anchor" aria-hidden="true" href="#项目场景">#</a></h1>
+        <div class="post-content"><h2 id="项目场景">项目场景：<a hidden class="anchor" aria-hidden="true" href="#项目场景">#</a></h2>
 <p><code>Git bash</code></p>
 <hr>
-<h1 id="问题描述1">问题描述1：<a hidden class="anchor" aria-hidden="true" href="#问题描述1">#</a></h1>
+<h2 id="问题描述1">问题描述1：<a hidden class="anchor" aria-hidden="true" href="#问题描述1">#</a></h2>
 <p>在错误的目录使用<code>git init</code>初始化了一个仓库，此时应该将该仓库删除</p>
 <hr>
-<h1 id="解决方案1">解决方案1：<a hidden class="anchor" aria-hidden="true" href="#解决方案1">#</a></h1>
+<h2 id="解决方案1">解决方案1：<a hidden class="anchor" aria-hidden="true" href="#解决方案1">#</a></h2>
 <ol>
 <li>
 <p>使用<code>ls -a</code> 命令显示隐藏文件夹和文件，检查该目录下是否有<code>.git</code>文件夹</p>
@@ -467,15 +467,15 @@ var _hmt = _hmt || [];
 </li>
 </ol>
 <hr>
-<h1 id="问题描述2">问题描述2：<a hidden class="anchor" aria-hidden="true" href="#问题描述2">#</a></h1>
+<h2 id="问题描述2">问题描述2：<a hidden class="anchor" aria-hidden="true" href="#问题描述2">#</a></h2>
 <p>将本地仓库关联到错误的远程仓库，此时应该将该关联删除</p>
 <hr>
-<h1 id="解决方案2">解决方案2：<a hidden class="anchor" aria-hidden="true" href="#解决方案2">#</a></h1>
+<h2 id="解决方案2">解决方案2：<a hidden class="anchor" aria-hidden="true" href="#解决方案2">#</a></h2>
 <ol>
 <li>查看本地仓库关联的远程仓库名称及URL</li>
 </ol>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git remote -v
-</span></span></code></pre></div><ol>
+</span></span></code></pre></div><ol start="2">
 <li>确认关联的错误远程仓库之后，删除关联</li>
 </ol>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git remote remove &lt;远程仓库名称&gt;
@@ -494,7 +494,7 @@ var _hmt = _hmt || [];
   <a class="next" href="https://eddyblog.cn/posts/tech/github_error_remote_origin_already_exists/">
     <span class="title">下一页 »</span>
     <br>
-    <span>【Github】{error: remote origin already exists.}</span>
+    <span>【Github】bug日记-git remote</span>
   </a>
 </nav>
 

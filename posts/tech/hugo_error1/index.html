@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>【Hugo】将网站部署到GitHub远程仓库时出现了错误 | Eddy&#39;s blog</title>
+<title>【Hugo】bug日记-将网站部署到GitHub远程仓库时出现了错误 | Eddy&#39;s blog</title>
 <meta name="keywords" content="Hugo, Github">
 <meta name="description" content="error:在本地使用Hugo构建网站并在本地服务器上正常运行，但在将网站部署到GitHub远程仓库时出现了错误">
 <meta name="author" content="Eddy">
@@ -73,7 +73,7 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
-<meta property="og:title" content="【Hugo】将网站部署到GitHub远程仓库时出现了错误" />
+<meta property="og:title" content="【Hugo】bug日记-将网站部署到GitHub远程仓库时出现了错误" />
 <meta property="og:description" content="error:在本地使用Hugo构建网站并在本地服务器上正常运行，但在将网站部署到GitHub远程仓库时出现了错误" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://eddyblog.cn/posts/tech/hugo_error1/" />
@@ -83,7 +83,7 @@ var _hmt = _hmt || [];
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://eddyblog.cn/img/hugo.png" />
-<meta name="twitter:title" content="【Hugo】将网站部署到GitHub远程仓库时出现了错误"/>
+<meta name="twitter:title" content="【Hugo】bug日记-将网站部署到GitHub远程仓库时出现了错误"/>
 <meta name="twitter:description" content="error:在本地使用Hugo构建网站并在本地服务器上正常运行，但在将网站部署到GitHub远程仓库时出现了错误"/>
 
 
@@ -109,7 +109,7 @@ var _hmt = _hmt || [];
     {
       "@type": "ListItem",
       "position":  4 ,
-      "name": "【Hugo】将网站部署到GitHub远程仓库时出现了错误",
+      "name": "【Hugo】bug日记-将网站部署到GitHub远程仓库时出现了错误",
       "item": "https://eddyblog.cn/posts/tech/hugo_error1/"
     }
   ]
@@ -119,8 +119,8 @@ var _hmt = _hmt || [];
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "【Hugo】将网站部署到GitHub远程仓库时出现了错误",
-  "name": "【Hugo】将网站部署到GitHub远程仓库时出现了错误",
+  "headline": "【Hugo】bug日记-将网站部署到GitHub远程仓库时出现了错误",
+  "name": "【Hugo】bug日记-将网站部署到GitHub远程仓库时出现了错误",
   "description": "error:在本地使用Hugo构建网站并在本地服务器上正常运行，但在将网站部署到GitHub远程仓库时出现了错误",
   "keywords": [
     "Hugo", "Github"
@@ -252,7 +252,7 @@ var _hmt = _hmt || [];
         <header class="post-header">
             <div class="breadcrumbs"><a href="https://eddyblog.cn">🏠 主页</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/">📚文章</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/tech/">👨🏻‍💻 技术</a></div>
             <h1 class="post-title">
-                【Hugo】将网站部署到GitHub远程仓库时出现了错误
+                【Hugo】bug日记-将网站部署到GitHub远程仓库时出现了错误
             </h1>
             <div class="post-description">
                 error:在本地使用Hugo构建网站并在本地服务器上正常运行，但在将网站部署到GitHub远程仓库时出现了错误
@@ -447,20 +447,20 @@ var _hmt = _hmt || [];
         return rect.top + win.pageYOffset;
     }
 </script>
-        <div class="post-content"><h1 id="项目场景">项目场景：<a hidden class="anchor" aria-hidden="true" href="#项目场景">#</a></h1>
+        <div class="post-content"><h2 id="项目场景">项目场景：<a hidden class="anchor" aria-hidden="true" href="#项目场景">#</a></h2>
 <p><code>Hugo</code></p>
 <hr>
-<h1 id="问题描述">问题描述<a hidden class="anchor" aria-hidden="true" href="#问题描述">#</a></h1>
+<h2 id="问题描述">问题描述<a hidden class="anchor" aria-hidden="true" href="#问题描述">#</a></h2>
 <p>在本地使用<code>Hugo</code> 构建网站并在本地服务器上正常运行，但在将网站部署到 GitHub 远程仓库时出现了错误</p>
 <hr>
-<h1 id="解决方案">解决方案：<a hidden class="anchor" aria-hidden="true" href="#解决方案">#</a></h1>
+<h2 id="解决方案">解决方案：<a hidden class="anchor" aria-hidden="true" href="#解决方案">#</a></h2>
 <ol>
 <li><strong>检查 GitHub 仓库代码：</strong> 首先，确保你将正确的代码推送到了 GitHub 远程仓库。在本地使用 <code>git status</code> 和 <code>git diff</code> 命令来检查是否有未提交的更改，并使用 <code>git push</code> 命令将代码推送到远程仓库。</li>
 </ol>
 <ul>
 <li>（假如发现Github远程仓库里的文件污染严重，修改难度很大，可以在Github页面将<code>username.github.io</code>该仓库删除，然后重新创建一次<code>username.github.io</code>仓库，不过要确保本地有文件备份再删除远程仓库，远程仓库删除后无法恢复）</li>
 </ul>
-<ol>
+<ol start="2">
 <li>
 <p><strong>检查主题和模板：</strong> 如果你使用了主题或模板，确保它们在 GitHub 上也是最新的版本，并与本地使用的版本相同。有时候，在不同环境中使用不同的主题或模板版本可能导致不一致。</p>
 </li>

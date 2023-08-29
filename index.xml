@@ -6,7 +6,34 @@
     <description>Recent content on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Sun, 20 Aug 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 29 Aug 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>博客写作指南：创意封面设计与选择</title>
+      <link>https://eddyblog.cn/posts/tech/creative_cover_design_and_selection/</link>
+      <pubDate>Tue, 29 Aug 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/creative_cover_design_and_selection/</guid>
+      <description>探索创意封面设计与选择的博客写作指南，了解如何为您的博客内容选择合适的封面图像，并掌握设计工具和资源，让您的博客在视觉上更具吸引力和专业性。提升您的博客封面，吸引读者注意，传达您的主题与理念。</description>
+    </item>
+    
+    <item>
+      <title>网站速度优化：利用Pingdom测试与提升</title>
+      <link>https://eddyblog.cn/posts/tech/website_speed_optimization/</link>
+      <pubDate>Tue, 29 Aug 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/website_speed_optimization/</guid>
+      <description>了解如何通过Pingdom工具测试您的网站速度，并探索针对测试结果采取的优化方法。优化网页加载时间，提升用户体验，加速页面响应，从而提高搜索引擎排名和访客留存率。从测试到优化，本指南将指导您使网站速度达到最佳状态。</description>
+    </item>
+    
+    <item>
+      <title>优化网站性能：使用PageSpeed Insights评估与改进</title>
+      <link>https://eddyblog.cn/posts/tech/optimize_website_performance/</link>
+      <pubDate>Tue, 29 Aug 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/optimize_website_performance/</guid>
+      <description>了解如何利用PageSpeed Insights评估您的网站性能，并通过优化措施提升加载速度和用户体验。本指南将为您详细解释如何分析测试结果，并采取步骤来改进网站性能，以满足现代用户对快速加载页面的需求。</description>
+    </item>
+    
     <item>
       <title>【Github】release上的安装包amd和arm的选择</title>
       <link>https://eddyblog.cn/posts/tech/github_amd_arm/</link>
@@ -35,7 +62,7 @@
     </item>
     
     <item>
-      <title>【Github】{error: remote origin already exists.}</title>
+      <title>【Github】bug日记-git remote</title>
       <link>https://eddyblog.cn/posts/tech/github_error_remote_origin_already_exists/</link>
       <pubDate>Thu, 20 Jul 2023 00:17:58 +0800</pubDate>
       
@@ -53,7 +80,7 @@
     </item>
     
     <item>
-      <title>【Github】{OpenSSL SSL_read: Connection was reset, errno 10054}</title>
+      <title>【Github】bug日记-OpenSSL SSL_read</title>
       <link>https://eddyblog.cn/posts/tech/gitub_error1/</link>
       <pubDate>Tue, 20 Jun 2023 00:17:58 +0800</pubDate>
       
@@ -89,7 +116,7 @@
     </item>
     
     <item>
-      <title>【Hugo】将网站部署到GitHub远程仓库时出现了错误</title>
+      <title>【Hugo】bug日记-将网站部署到GitHub远程仓库时出现了错误</title>
       <link>https://eddyblog.cn/posts/tech/hugo_error1/</link>
       <pubDate>Mon, 17 Apr 2023 00:17:58 +0800</pubDate>
       
@@ -152,7 +179,7 @@
     </item>
     
     <item>
-      <title>【Hugo_error】hugo server失败</title>
+      <title>【Hugo】bug日记-hugo server失败</title>
       <link>https://eddyblog.cn/posts/tech/hugo_server_failed/</link>
       <pubDate>Tue, 20 Sep 2022 00:17:58 +0800</pubDate>
       
