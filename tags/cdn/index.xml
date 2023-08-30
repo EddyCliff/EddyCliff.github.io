@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>CDN on Eddy&#39;s blog</title>
+    <link>https://eddyblog.cn/tags/cdn/</link>
+    <description>Recent content in CDN on Eddy&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Tue, 29 Aug 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/cdn/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【博客写作指南】GitHub&#43;jsDelivr&#43;PicGo搭建博客图床</title>
+      <link>https://eddyblog.cn/posts/tech/github_jsdelivr_picgo/</link>
+      <pubDate>Tue, 29 Aug 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/github_jsdelivr_picgo/</guid>
+      <description>在这篇【博客写作指南】中，了解如何利用GitHub、jsDelivr和PicGo搭建博客图床，为你的博客添加稳定的图片存储和快速的CDN加速服务。跟随详细步骤，轻松创建自己的图床，为博客内容增添视觉魅力。</description>
+    </item>
+    
+  </channel>
+</rss>

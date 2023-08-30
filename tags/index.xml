@@ -6,7 +6,43 @@
     <description>Recent content in 🧩 标签 on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 29 Aug 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 30 Aug 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>bug</title>
+      <link>https://eddyblog.cn/tags/bug/</link>
+      <pubDate>Wed, 30 Aug 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/tags/bug/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>error</title>
+      <link>https://eddyblog.cn/tags/error/</link>
+      <pubDate>Wed, 30 Aug 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/tags/error/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>image host</title>
+      <link>https://eddyblog.cn/tags/image-host/</link>
+      <pubDate>Wed, 30 Aug 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/tags/image-host/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PicGo</title>
+      <link>https://eddyblog.cn/tags/picgo/</link>
+      <pubDate>Wed, 30 Aug 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/tags/picgo/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Blog cover</title>
       <link>https://eddyblog.cn/tags/blog-cover/</link>
@@ -26,11 +62,11 @@
     </item>
     
     <item>
-      <title>error</title>
-      <link>https://eddyblog.cn/tags/error/</link>
+      <title>CDN</title>
+      <link>https://eddyblog.cn/tags/cdn/</link>
       <pubDate>Tue, 29 Aug 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/tags/error/</guid>
+      <guid>https://eddyblog.cn/tags/cdn/</guid>
       <description></description>
     </item>
     
@@ -40,6 +76,15 @@
       <pubDate>Tue, 29 Aug 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/tags/github/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>jsDelivr</title>
+      <link>https://eddyblog.cn/tags/jsdelivr/</link>
+      <pubDate>Tue, 29 Aug 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/tags/jsdelivr/</guid>
       <description></description>
     </item>
     

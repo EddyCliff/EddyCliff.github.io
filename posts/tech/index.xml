@@ -6,14 +6,32 @@
     <description>Recent content in 👨🏻‍💻 技术 on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 29 Aug 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/posts/tech/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 30 Aug 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/posts/tech/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【Hugo】bug日记 - 解决 YAML 解析错误</title>
+      <link>https://eddyblog.cn/posts/tech/hugo_bug_yaml/</link>
+      <pubDate>Wed, 30 Aug 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/hugo_bug_yaml/</guid>
+      <description>解决 Hugo 构建过程中出现的 YAML 解析错误。了解错误背后的原因，探讨正确的 YAML 头部格式，并提供修复方案，确保 Hugo 网站构建顺利进行。</description>
+    </item>
+    
+    <item>
+      <title>【图床工具】PicGo-bug日记-unable to verify the first certificate</title>
+      <link>https://eddyblog.cn/posts/tech/picgo_bug/</link>
+      <pubDate>Wed, 30 Aug 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/picgo_bug/</guid>
+      <description>解决 PicGo 图床工具中的 &amp;#34;unable to verify the first certificate&amp;#34; 错误。了解错误原因、网络加速工具可能引发的问题，并探讨关闭 fastgithub 解决方案。同时介绍 PicGo 官方文档中的常见问题和解决方法，确保图床上传稳定可靠。</description>
+    </item>
+    
     <item>
       <title>【博客写作指南】GitHub&#43;jsDelivr&#43;PicGo搭建博客图床</title>
       <link>https://eddyblog.cn/posts/tech/github_jsdelivr_picgo/</link>
       <pubDate>Tue, 29 Aug 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/github_jsdelivr_picgo/</guid>
-      <description>解决{error: remote origin already exists.}</description>
+      <description>在这篇【博客写作指南】中，了解如何利用GitHub、jsDelivr和PicGo搭建博客图床，为你的博客添加稳定的图片存储和快速的CDN加速服务。跟随详细步骤，轻松创建自己的图床，为博客内容增添视觉魅力。</description>
     </item>
     
     <item>
