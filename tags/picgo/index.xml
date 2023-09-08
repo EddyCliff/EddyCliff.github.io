@@ -8,7 +8,7 @@
     <language>zh</language>
     <lastBuildDate>Wed, 30 Aug 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/picgo/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>【Hugo】bug日记 - 解决 YAML 解析错误</title>
+      <title>【Hugo网站搭建】bug日志 - 解决 YAML 解析错误</title>
       <link>https://eddyblog.cn/posts/tech/hugo_bug_yaml/</link>
       <pubDate>Wed, 30 Aug 2023 00:17:58 +0800</pubDate>
       
@@ -17,7 +17,7 @@
     </item>
     
     <item>
-      <title>【图床工具】PicGo-bug日记-unable to verify the first certificate</title>
+      <title>【Hugo网站搭建】图床工具PicGo-bug日志</title>
       <link>https://eddyblog.cn/posts/tech/picgo_bug/</link>
       <pubDate>Wed, 30 Aug 2023 00:17:58 +0800</pubDate>
       
@@ -26,7 +26,7 @@
     </item>
     
     <item>
-      <title>【博客写作指南】GitHub&#43;jsDelivr&#43;PicGo搭建博客图床</title>
+      <title>【Hugo网站搭建】GitHub&#43;jsDelivr&#43;PicGo搭建博客图床</title>
       <link>https://eddyblog.cn/posts/tech/github_jsdelivr_picgo/</link>
       <pubDate>Tue, 29 Aug 2023 00:17:58 +0800</pubDate>
       

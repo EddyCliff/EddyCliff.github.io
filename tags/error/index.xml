@@ -8,7 +8,7 @@
     <language>zh</language>
     <lastBuildDate>Wed, 30 Aug 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/error/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>【Hugo】bug日记 - 解决 YAML 解析错误</title>
+      <title>【Hugo网站搭建】bug日志 - 解决 YAML 解析错误</title>
       <link>https://eddyblog.cn/posts/tech/hugo_bug_yaml/</link>
       <pubDate>Wed, 30 Aug 2023 00:17:58 +0800</pubDate>
       
@@ -17,7 +17,7 @@
     </item>
     
     <item>
-      <title>【图床工具】PicGo-bug日记-unable to verify the first certificate</title>
+      <title>【Hugo网站搭建】图床工具PicGo-bug日志</title>
       <link>https://eddyblog.cn/posts/tech/picgo_bug/</link>
       <pubDate>Wed, 30 Aug 2023 00:17:58 +0800</pubDate>
       
@@ -26,7 +26,7 @@
     </item>
     
     <item>
-      <title>【Hugo】bug日记-hugo server失败</title>
+      <title>【Hugo网站搭建】bug日志-hugo server失败</title>
       <link>https://eddyblog.cn/posts/tech/hugo_server_failed/</link>
       <pubDate>Sun, 20 Aug 2023 00:17:58 +0800</pubDate>
       
@@ -35,7 +35,7 @@
     </item>
     
     <item>
-      <title>【Github】bug日记-删除本地仓库/错误的远程仓库关联</title>
+      <title>【Github使用指南】bug日志-删除本地仓库/错误的远程仓库关联</title>
       <link>https://eddyblog.cn/posts/tech/github_delete_wrong_repository/</link>
       <pubDate>Thu, 10 Aug 2023 00:17:58 +0800</pubDate>
       
@@ -44,7 +44,7 @@
     </item>
     
     <item>
-      <title>【Github】bug日记-git remote</title>
+      <title>【Github使用指南】bug日志-git remote</title>
       <link>https://eddyblog.cn/posts/tech/github_error_remote_origin_already_exists/</link>
       <pubDate>Thu, 20 Jul 2023 00:17:58 +0800</pubDate>
       
@@ -53,7 +53,7 @@
     </item>
     
     <item>
-      <title>【Github】bug日记-OpenSSL SSL_read</title>
+      <title>【Github使用指南】bug日志-OpenSSL SSL_read</title>
       <link>https://eddyblog.cn/posts/tech/gitub_error1/</link>
       <pubDate>Tue, 20 Jun 2023 00:17:58 +0800</pubDate>
       
@@ -62,7 +62,7 @@
     </item>
     
     <item>
-      <title>【Hugo】bug日记-将网站部署到GitHub远程仓库时出现了错误</title>
+      <title>【Hugo网站搭建】bug日志-将网站部署到GitHub远程仓库时出现了错误</title>
       <link>https://eddyblog.cn/posts/tech/hugo_error1/</link>
       <pubDate>Mon, 17 Apr 2023 00:17:58 +0800</pubDate>
       
