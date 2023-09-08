@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>【Hugo网站搭建】GitHub Action自动化部署Hugo博客 | Eddy&#39;s blog</title>
+<meta name="keywords" content="Github action, Github, Hugo, Website construction">
+<meta name="description" content="前言 在本文中，我们将介绍如何通过GitHub Action自动化部署Hugo博客。如果你是一个博客作者，你可能已经熟悉了使用Hugo构建和管理你的博客。Hugo是一个快速且灵活的静态网站生成器，但是手动部署博客可能会变得繁琐。为了解决这个问题，我们可以利用GitHub Action，">
+<meta name="author" content="Eddy">
+<link rel="canonical" href="https://eddyblog.cn/posts/tech/github_action_hugo/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.js" onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://eddyblog.cn/img/logo3.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://eddyblog.cn/img/logo3.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://eddyblog.cn/img/logo3.png">
+<link rel="apple-touch-icon" href="https://eddyblog.cn/img/logo3.png">
+<link rel="mask-icon" href="https://eddyblog.cn/img/logo3.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<script defer src="https://unpkg.com/mermaid@8.8.1/dist/mermaid.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = ""; 
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<meta property="og:title" content="【Hugo网站搭建】GitHub Action自动化部署Hugo博客" />
+<meta property="og:description" content="前言 在本文中，我们将介绍如何通过GitHub Action自动化部署Hugo博客。如果你是一个博客作者，你可能已经熟悉了使用Hugo构建和管理你的博客。Hugo是一个快速且灵活的静态网站生成器，但是手动部署博客可能会变得繁琐。为了解决这个问题，我们可以利用GitHub Action，" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://eddyblog.cn/posts/tech/github_action_hugo/" />
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/website1.jpg" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-09-06T00:17:58+08:00" />
+<meta property="article:modified_time" content="2023-09-06T00:17:58+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/website1.jpg" />
+<meta name="twitter:title" content="【Hugo网站搭建】GitHub Action自动化部署Hugo博客"/>
+<meta name="twitter:description" content="前言 在本文中，我们将介绍如何通过GitHub Action自动化部署Hugo博客。如果你是一个博客作者，你可能已经熟悉了使用Hugo构建和管理你的博客。Hugo是一个快速且灵活的静态网站生成器，但是手动部署博客可能会变得繁琐。为了解决这个问题，我们可以利用GitHub Action，"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+
+        {
+          "@type": "ListItem",
+          "position":  2 ,
+          "name": "📚文章",
+          "item": "https://eddyblog.cn/posts/"
+        },
+
+        {
+          "@type": "ListItem",
+          "position":  3 ,
+          "name": "👨🏻‍💻 技术",
+          "item": "https://eddyblog.cn/posts/tech/"
+        }, 
+    {
+      "@type": "ListItem",
+      "position":  4 ,
+      "name": "【Hugo网站搭建】GitHub Action自动化部署Hugo博客",
+      "item": "https://eddyblog.cn/posts/tech/github_action_hugo/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "【Hugo网站搭建】GitHub Action自动化部署Hugo博客",
+  "name": "【Hugo网站搭建】GitHub Action自动化部署Hugo博客",
+  "description": "前言 在本文中，我们将介绍如何通过GitHub Action自动化部署Hugo博客。如果你是一个博客作者，你可能已经熟悉了使用Hugo构建和管理你的博客。Hugo是一个快速且灵活的静态网站生成器，但是手动部署博客可能会变得繁琐。为了解决这个问题，我们可以利用GitHub Action，",
+  "keywords": [
+    "Github action", "Github", "Hugo", "Website construction"
+  ],
+  "articleBody": "前言 在本文中，我们将介绍如何通过GitHub Action自动化部署Hugo博客。如果你是一个博客作者，你可能已经熟悉了使用Hugo构建和管理你的博客。Hugo是一个快速且灵活的静态网站生成器，但是手动部署博客可能会变得繁琐。为了解决这个问题，我们可以利用GitHub Action，这是一个GitHub提供的持续集成和持续交付（CI/CD）工具，来自动构建和部署我们的博客。\n问题与挑战 在使用Hugo构建博客时，通常需要手动执行一系列命令来生成静态文件，然后将这些文件上传到托管博客的平台（如GitHub Pages）。这个过程可能会变得比较繁琐，特别是当你需要频繁更新博客内容时。\n另一个问题是，虽然我们可以管理生成的静态文件，但博客的Markdown源文件通常分散在不同的位置，难以备份和版本管理。\n为了解决这些问题，我们希望有一个简单且顺滑的方式来自动化博客的发布流程。\nGitHub Action简介 GitHub Action是GitHub提供的一项强大的自动化工具，它可以用于执行各种自动化任务，包括构建、测试和部署。你可以通过简单的配置文件来定义GitHub Action的工作流程。\n在我们的情况下，我们将使用GitHub Action来自动构建并部署Hugo博客。\n配置GitHub Action 要配置GitHub Action，首先需要在博客源文件的仓库中创建一个.github/workflows目录，并在该目录下创建一个.yml配置文件。我们将其命名为deploy.yml。\n以下是一个自动化部署Hugo博客的示例deploy.yml配置文件：\nname: deploy on: push: branches: - main # 或者是你的源代码分支 jobs: deploy: runs-on: ubuntu-latest steps: - name: Checkout repository uses: actions/checkout@v2 with: submodules: true fetch-depth: 0 - name: Set up Hugo uses: peaceiris/actions-hugo@v2 with: hugo-version: \"latest\" - name: Build and Deploy run: | hugo -F --cleanDestinationDir # 生成静态文件 mkdir -p public # 确保public文件夹存在 cp -r public/* ./ # 复制生成的静态文件到仓库根目录 - name: Deploy to GitHub Pages uses: peaceiris/actions-gh-pages@v3 with: PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }} # 你的个人访问令牌 EXTERNAL_REPOSITORY: username/username.github.io # 你的GitHub Pages仓库 PUBLISH_BRANCH: main # 或者是你的GitHub Pages分支 PUBLISH_DIR: ./ commit_message: ${{ github.event.head_commit.message }} 让我们来解释一下这个配置文件：\non 表示GitHub Action的触发条件。在这个配置中，我们设置了push，并指定了触发的分支为main（或者你的源代码分支）。\njobs 表示GitHub Action中的任务。我们定义了一个名为deploy的任务，其中runs-on指定了GitHub Action的运行环境，我们选择了ubuntu-latest。\nsteps 是任务中的具体步骤，包括：\nCheckout repository：用于检出博客源文件仓库，submodules配置为true可同步博客源仓库的子模块，即我们的主题模块。\nSet up Hugo：使用Hugo的GitHub Action，设置Hugo的版本。\nBuild and Deploy：运行hugo命令生成博客的静态文件，并将生成的静态文件复制到仓库根目录。\nDeploy to GitHub Pages：使用GitHub Pages的GitHub Action，将生成的静态文件发布到GitHub Pages仓库。\n最后，我们需要在GitHub账户的设置中生成一个Personal Access Token，并将其添加到博客源文件仓库的Settings -\u003e Secrets -\u003e Actions中，命名为PERSONAL_TOKEN，以便GitHub Action能够获取到Token权限。\n生成token 当您需要在GitHub Action中执行需要身份验证的操作时，例如推送到另一个仓库或访问私有仓库，您需要提供身份验证凭据。GitHub提供了一种安全的方式来存储这些凭据，即使用Personal Access Token（个人访问令牌）并将其添加到仓库的Secrets中。\n以下是如何生成Personal Access Token并将其添加到GitHub仓库的Secrets中的详细步骤：\n生成Personal Access Token：\n登录到您的GitHub账户。\n点击右上角的头像，然后选择Settings（设置）。\n在左侧导航栏中，点击Developer settings（开发者设置）。\n在下拉菜单中，选择Personal access tokens（个人访问令牌）。\n点击右上角的Generate token（生成令牌）按钮。\n配置Personal Access Token的权限：\n当您生成Personal Access Token时，需要为其分配适当的权限。根据您的需求，可以为其分配不同的权限，例如访问仓库、读取用户资料等。请谨慎选择权限，最小化所需的权限以提高安全性。\n生成令牌：\n在配置了权限后，滚动到页面底部，然后单击Generate token（生成令牌）。GitHub将生成一个令牌，并将其显示在屏幕上。请务必将此令牌复制到安全的地方，因为在生成后，您将无法再次查看完整的令牌。\n将令牌添加到GitHub仓库的Secrets：\n转到包含您的博客源文件的GitHub仓库。\n在仓库顶部导航栏中，单击Settings（设置）。\n在左侧导航栏中，选择Secrets（密码）。\n单击New repository secret（新存储库密码）按钮。\n在Name字段中，输入PERSONAL_TOKEN（或您选择的名称）。\n在Value字段中，粘贴您在第3步中生成的Personal Access Token。\n单击Add secret（添加密码）按钮。\n现在，您的Personal Access Token已经以安全的方式存储在GitHub仓库的Secrets中，并可以在GitHub Action的工作流程中使用。\n在上文中提到的PERSONAL_TOKEN将会被引用并传递给GitHub Action中的相关步骤，以便执行需要身份验证的操作。这个过程确保了敏感凭据的安全性，并且不会将它们直接硬编码到工作流程文件中，从而保护了您的GitHub仓库的安全性。\n通过遵循这些步骤，您可以轻松地配置GitHub Action以自动化部署Hugo博客，并确保了令牌和其他敏感信息的安全使用。\n实现自动发布 完成上述配置后，只需将博客的Markdown源文件编辑并推送到仓库，GitHub Action就会自动触发构建和部署过程。生成的博客页面将自动发布到GitHub Pages仓库。\n通过这个自动化流程，我们不仅解决了手动发布的繁琐问题，还能够更好地管理博客的Markdown源文件。现在，每当我们编辑博客内容后，只需推送代码，等待几分钟，就可以通过我们的自定义域名访问更新后的博客。\n这个自动化流程大大简化了博客的发布过程，让我们更专注于创作内容而不是繁杂的部署工作。\n希望这篇文章对你理解如何利用GitHub Action自动化部署Hugo博客有所帮助。自动化可以显著提高工作效率，同时也为博客作者提供了更好的创作体验。\n",
+  "wordCount" : "2645",
+  "inLanguage": "zh",
+  "image":"https://cdn.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/website1.jpg","datePublished": "2023-09-06T00:17:58+08:00",
+  "dateModified": "2023-09-06T00:17:58+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "Eddy"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://eddyblog.cn/posts/tech/github_action_hugo/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Eddy's blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://eddyblog.cn/img/logo3.png"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    (function () {
+        let  arr,reg = new RegExp("(^| )"+"change-themes"+"=([^;]*)(;|$)");
+        if(arr = document.cookie.match(reg)) {
+        } else {
+            if (new Date().getHours() >= 19 || new Date().getHours() < 6) {
+                document.body.classList.add('dark');
+                localStorage.setItem("pref-theme", 'dark');
+            } else {
+                document.body.classList.remove('dark');
+                localStorage.setItem("pref-theme", 'light');
+            }
+        }
+    })()
+
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://eddyblog.cn" accesskey="h" title="Eddy&#39;s Blog (Alt + H)">
+            <img src="https://eddyblog.cn/img/logo3.png" alt="logo" aria-label="logo"
+                 height="35">Eddy&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://eddyblog.cn/search" title="🔍 搜索 (Alt &#43; /)" accesskey=/>
+                <span>🔍 搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/" title="🏠 主页">
+                <span>🏠 主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/posts" title="📚 文章">
+                <span>📚 文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/tags" title="🧩 标签">
+                <span>🧩 标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/archives/" title="⏱️ 时间轴">
+                <span>⏱️ 时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/about" title="🙋🏻‍♂️ 关于">
+                <span>🙋🏻‍♂️ 关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main page">
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+</style>
+
+<article class="post-single">
+    <div id="single-content">
+        <header class="post-header">
+            <div class="breadcrumbs"><a href="https://eddyblog.cn">🏠 主页</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/">📚文章</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/tech/">👨🏻‍💻 技术</a></div>
+            <h1 class="post-title">
+                【Hugo网站搭建】GitHub Action自动化部署Hugo博客
+            </h1>
+            <div class="post-meta">
+
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+
+    .parent-post-meta {
+        display: flex;
+        flex-wrap: wrap;
+        opacity: 0.8;
+    }
+</style>
+
+<span class="parent-post-meta">
+    <span id="post_meta_style_1">
+        <span class="fa fa-calendar-check-o"></span>
+        <span>2023-09-06
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    
+    
+    
+    
+    
+    
+    
+    <span id="post_meta_style_3">
+        <span class="fa fa-file-word-o"></span>
+        <span>2645字
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_4">
+        <span class="fa fa-clock-o"></span>
+        <span>6分钟
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_5">
+        <span class="fa fa-user-o"></span>
+        <span>Eddy
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_6">
+        <span class="fa fa-tags" style="opacity: 0.8"></span>
+        <span>
+            <span class="post-tags-meta">
+                <a href="https://eddyblog.cn/tags/github-action/" style="color: var(--secondary)!important;">Github action</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/github/" style="color: var(--secondary)!important;">Github</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/hugo/" style="color: var(--secondary)!important;">Hugo</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/website-construction/" style="color: var(--secondary)!important;">Website construction</a>
+            </span>
+        </span>
+    </span>
+</span>
+<span style="opacity: 0.8;">
+                    <span id="post_meta_style_7">
+                        &nbsp;&nbsp;
+                        <span class="fa fa-eye" ></span>
+                        <span>
+                            <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+                            &nbsp;&nbsp;
+                        </span>
+                    </span>
+                    <span id="post_meta_style_8">
+                        <span class="fa fa-commenting-o"></span>
+                        <span>
+                            <script src="https://cdn.staticfile.org/twikoo//twikoo.all.min.js"></script>
+                            <script>
+                                let url = document.documentURI
+                                
+                                let dnsUrl = "https://eddyblog.cn"
+                                let urlSplit = url.split(dnsUrl)
+                                let finalUrl = urlSplit[1]
+                                if (finalUrl[0] !== '/') {
+                                    finalUrl = '/'+finalUrl
+                                }
+                                twikoo.getCommentsCount({
+                                    envId:  null , 
+                                region:  null , 
+                                urls: [ 
+                                    
+                                    finalUrl,
+                                ],
+                                    includeReply: false 
+                                }).then(function (res) {
+                                    let count = res[0].count
+                                    const obj = document.getElementById("comment_count");
+                                    obj.innerText = count
+                                    
+                                    
+                                    
+                                }).catch(function (err) {
+                                    
+                                    console.error(err);
+                                });
+                            </script>
+                            <span id="comment_count"></span>
+                        </span>
+                    </span>
+                </span>
+
+</div>
+        </header> 
+<figure class="entry-cover1"><img style="zoom:;" loading="lazy" src="https://cdn.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/website1.jpg" alt="">
+    
+</figure><aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e5%89%8d%e8%a8%80" aria-label="前言">前言</a></li>
+                <li>
+                    <a href="#%e9%97%ae%e9%a2%98%e4%b8%8e%e6%8c%91%e6%88%98" aria-label="问题与挑战">问题与挑战</a></li>
+                <li>
+                    <a href="#github-action%e7%ae%80%e4%bb%8b" aria-label="GitHub Action简介">GitHub Action简介</a></li>
+                <li>
+                    <a href="#%e9%85%8d%e7%bd%aegithub-action" aria-label="配置GitHub Action">配置GitHub Action</a></li>
+                <li>
+                    <a href="#%e7%94%9f%e6%88%90token" aria-label="生成token">生成token</a></li>
+                <li>
+                    <a href="#%e5%ae%9e%e7%8e%b0%e8%87%aa%e5%8a%a8%e5%8f%91%e5%b8%83" aria-label="实现自动发布">实现自动发布</a>
+                </li>
+            </ul>
+        </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+        
+        activeElement = elements[0];
+        const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+        document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+    }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        if (elements) {
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement){
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }
+    }, false);
+
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;
+    }
+</script>
+        <div class="post-content"><h2 id="前言">前言<a hidden class="anchor" aria-hidden="true" href="#前言">#</a></h2>
+<p>在本文中，我们将介绍如何通过GitHub Action自动化部署Hugo博客。如果你是一个博客作者，你可能已经熟悉了使用Hugo构建和管理你的博客。Hugo是一个快速且灵活的静态网站生成器，但是手动部署博客可能会变得繁琐。为了解决这个问题，我们可以利用GitHub Action，这是一个GitHub提供的持续集成和持续交付（CI/CD）工具，来自动构建和部署我们的博客。</p>
+<h2 id="问题与挑战">问题与挑战<a hidden class="anchor" aria-hidden="true" href="#问题与挑战">#</a></h2>
+<p>在使用Hugo构建博客时，通常需要手动执行一系列命令来生成静态文件，然后将这些文件上传到托管博客的平台（如GitHub Pages）。这个过程可能会变得比较繁琐，特别是当你需要频繁更新博客内容时。</p>
+<p>另一个问题是，虽然我们可以管理生成的静态文件，但博客的Markdown源文件通常分散在不同的位置，难以备份和版本管理。</p>
+<p>为了解决这些问题，我们希望有一个简单且顺滑的方式来自动化博客的发布流程。</p>
+<h2 id="github-action简介">GitHub Action简介<a hidden class="anchor" aria-hidden="true" href="#github-action简介">#</a></h2>
+<p>GitHub Action是GitHub提供的一项强大的自动化工具，它可以用于执行各种自动化任务，包括构建、测试和部署。你可以通过简单的配置文件来定义GitHub Action的工作流程。</p>
+<p>在我们的情况下，我们将使用GitHub Action来自动构建并部署Hugo博客。</p>
+<h2 id="配置github-action">配置GitHub Action<a hidden class="anchor" aria-hidden="true" href="#配置github-action">#</a></h2>
+<p>要配置GitHub Action，首先需要在博客源文件的仓库中创建一个<code>.github/workflows</code>目录，并在该目录下创建一个<code>.yml</code>配置文件。我们将其命名为<code>deploy.yml</code>。</p>
+<p>以下是一个自动化部署Hugo博客的示例<code>deploy.yml</code>配置文件：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-YAML" data-lang="YAML"><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">deploy</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">on</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">push</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">branches</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">main </span> <span style="color:#75715e"># 或者是你的源代码分支</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">jobs</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">deploy</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Checkout repository</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/checkout@v2</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">with</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">submodules</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">fetch-depth</span>: <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Set up Hugo</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">peaceiris/actions-hugo@v2</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">with</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">hugo-version</span>: <span style="color:#e6db74">&#34;latest&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Build and Deploy</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        hugo -F --cleanDestinationDir  # 生成静态文件
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        mkdir -p public  # 确保public文件夹存在
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        cp -r public/* ./  # 复制生成的静态文件到仓库根目录</span>        
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Deploy to GitHub Pages</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">peaceiris/actions-gh-pages@v3</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">with</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">PERSONAL_TOKEN</span>: <span style="color:#ae81ff">${{ secrets.PERSONAL_TOKEN }} </span> <span style="color:#75715e"># 你的个人访问令牌</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">EXTERNAL_REPOSITORY</span>: <span style="color:#ae81ff">username/username.github.io </span> <span style="color:#75715e"># 你的GitHub Pages仓库</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">PUBLISH_BRANCH</span>: <span style="color:#ae81ff">main </span> <span style="color:#75715e"># 或者是你的GitHub Pages分支</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">PUBLISH_DIR</span>: <span style="color:#ae81ff">./</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">commit_message</span>: <span style="color:#ae81ff">${{ github.event.head_commit.message }}</span>
+</span></span></code></pre></div><p>让我们来解释一下这个配置文件：</p>
+<ul>
+<li>
+<p><code>on</code> 表示GitHub Action的触发条件。在这个配置中，我们设置了<code>push</code>，并指定了触发的分支为<code>main</code>（或者你的源代码分支）。</p>
+</li>
+<li>
+<p><code>jobs</code> 表示GitHub Action中的任务。我们定义了一个名为<code>deploy</code>的任务，其中<code>runs-on</code>指定了GitHub Action的运行环境，我们选择了<code>ubuntu-latest</code>。</p>
+</li>
+<li>
+<p><code>steps</code> 是任务中的具体步骤，包括：</p>
+<ul>
+<li>
+<p><code>Checkout repository</code>：用于检出博客源文件仓库，<code>submodules</code>配置为<code>true</code>可同步博客源仓库的子模块，即我们的主题模块。</p>
+</li>
+<li>
+<p><code>Set up Hugo</code>：使用Hugo的GitHub Action，设置Hugo的版本。</p>
+</li>
+<li>
+<p><code>Build and Deploy</code>：运行<code>hugo</code>命令生成博客的静态文件，并将生成的静态文件复制到仓库根目录。</p>
+</li>
+<li>
+<p><code>Deploy to GitHub Pages</code>：使用GitHub Pages的GitHub Action，将生成的静态文件发布到GitHub Pages仓库。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>最后，我们需要在GitHub账户的设置中生成一个Personal Access Token，并将其添加到博客源文件仓库的<code>Settings -&gt; Secrets -&gt; Actions</code>中，命名为<code>PERSONAL_TOKEN</code>，以便GitHub Action能够获取到Token权限。</p>
+<h2 id="生成token">生成token<a hidden class="anchor" aria-hidden="true" href="#生成token">#</a></h2>
+<p>当您需要在GitHub Action中执行需要身份验证的操作时，例如推送到另一个仓库或访问私有仓库，您需要提供身份验证凭据。GitHub提供了一种安全的方式来存储这些凭据，即使用Personal Access Token（个人访问令牌）并将其添加到仓库的Secrets中。</p>
+<p>以下是如何生成Personal Access Token并将其添加到GitHub仓库的Secrets中的详细步骤：</p>
+<ol>
+<li>
+<p><strong>生成Personal Access Token</strong>：</p>
+<ul>
+<li>
+<p>登录到您的<code>GitHub</code>账户。</p>
+</li>
+<li>
+<p>点击右上角的头像，然后选择<code>Settings</code>（设置）。</p>
+</li>
+<li>
+<p>在左侧导航栏中，点击<code>Developer settings</code>（开发者设置）。</p>
+</li>
+<li>
+<p>在下拉菜单中，选择<code>Personal access tokens</code>（个人访问令牌）。</p>
+</li>
+<li>
+<p>点击右上角的<code>Generate token</code>（生成令牌）按钮。</p>
+</li>
+</ul>
+</li>
+</ol>
+<p><img loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Github_action_hugo/1.png" alt="1.png"  />
+</p>
+<ol start="2">
+<li>
+<p><strong>配置Personal Access Token的权限</strong>：</p>
+<p>当您生成<code>Personal Access Token</code>时，需要为其分配适当的权限。根据您的需求，可以为其分配不同的权限，例如访问仓库、读取用户资料等。请谨慎选择权限，最小化所需的权限以提高安全性。</p>
+</li>
+</ol>
+<p><img loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Github_action_hugo/2.png" alt="2.png"  />
+</p>
+<ol start="3">
+<li>
+<p><strong>生成令牌</strong>：</p>
+<p>在配置了权限后，滚动到页面底部，然后单击<code>Generate token</code>（生成令牌）。<code>GitHub</code>将生成一个令牌，并将其显示在屏幕上。请务必将此令牌复制到安全的地方，因为在生成后，您将无法再次查看完整的令牌。</p>
+</li>
+<li>
+<p><strong>将令牌添加到GitHub仓库的Secrets</strong>：</p>
+<ul>
+<li>
+<p>转到包含您的博客源文件的GitHub仓库。</p>
+</li>
+<li>
+<p>在仓库顶部导航栏中，单击<code>Settings</code>（设置）。</p>
+</li>
+<li>
+<p>在左侧导航栏中，选择<code>Secrets</code>（密码）。</p>
+</li>
+<li>
+<p>单击<code>New repository secret</code>（新存储库密码）按钮。</p>
+</li>
+<li>
+<p>在<code>Name</code>字段中，输入<code>PERSONAL_TOKEN</code>（或您选择的名称）。</p>
+</li>
+<li>
+<p>在<code>Value</code>字段中，粘贴您在第3步中生成的<code>Personal Access Token</code>。</p>
+</li>
+<li>
+<p>单击<code>Add secret</code>（添加密码）按钮。</p>
+</li>
+</ul>
+</li>
+</ol>
+<p><img loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Github_action_hugo/3.png" alt="3.png"  />
+</p>
+<p><img loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Github_action_hugo/4.png" alt="4.png"  />
+</p>
+<p><img loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Github_action_hugo/5.png" alt="5.png"  />
+</p>
+<p>现在，您的<code>Personal Access Token</code>已经以安全的方式存储在<code>GitHub</code>仓库的<code>Secrets</code>中，并可以在<code>GitHub Action</code>的工作流程中使用。</p>
+<p>在上文中提到的<code>PERSONAL_TOKEN</code>将会被引用并传递给GitHub Action中的相关步骤，以便执行需要身份验证的操作。这个过程确保了敏感凭据的安全性，并且不会将它们直接硬编码到工作流程文件中，从而保护了您的GitHub仓库的安全性。</p>
+<p>通过遵循这些步骤，您可以轻松地配置GitHub Action以自动化部署Hugo博客，并确保了令牌和其他敏感信息的安全使用。</p>
+<h2 id="实现自动发布">实现自动发布<a hidden class="anchor" aria-hidden="true" href="#实现自动发布">#</a></h2>
+<p>完成上述配置后，只需将博客的Markdown源文件编辑并推送到仓库，GitHub Action就会自动触发构建和部署过程。生成的博客页面将自动发布到GitHub Pages仓库。</p>
+<p>通过这个自动化流程，我们不仅解决了手动发布的繁琐问题，还能够更好地管理博客的Markdown源文件。现在，每当我们编辑博客内容后，只需推送代码，等待几分钟，就可以通过我们的自定义域名访问更新后的博客。</p>
+<p>这个自动化流程大大简化了博客的发布过程，让我们更专注于创作内容而不是繁杂的部署工作。</p>
+<p>希望这篇文章对你理解如何利用<code>GitHub Action</code>自动化部署<code>Hugo</code>博客有所帮助。自动化可以显著提高工作效率，同时也为博客作者提供了更好的创作体验。</p>
+
+
+        </div>
+
+        <footer class="post-footer">
+            
+<nav class="paginav">
+  <a class="next" href="https://eddyblog.cn/posts/tech/hugo_bug_yaml/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>【Hugo】bug日记 - 解决 YAML 解析错误</span>
+  </a>
+</nav>
+
+        </footer>
+    </div>
+</article>
+</main>
+
+<footer class="footer">
+    <span>
+        Copyright
+        &copy;
+        -2023
+        <a href="https://eddyblog.cn" style="color:#939393;">Eddy&#39;s blog</a>
+        All Rights Reserved
+    </span>
+    <a href="https://beian.miit.gov.cn/" target="_blank" style="color:#939393;"></a>&nbsp;
+    <span>
+        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=null"
+           style="display:inline-block;text-decoration:none;height:20px;color:#939393;">
+            <img src="" style="float:left;margin: 0px 5px 0px 0px;"/>
+            
+        </a>
+    </span>
+    <span id="busuanzi_container">
+        <span class="fa fa-user"></span> <span id="busuanzi_value_site_uv"></span>
+        <span class="fa fa-eye"></span> <span id="busuanzi_value_site_pv"></span>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <span class="topInner">
+        <svg class="topSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z"/>
+        </svg>
+        <span id="read_progress"></span>
+    </span>
+</a>
+
+<script>
+    document.addEventListener('scroll', function (e) {
+        const readProgress = document.getElementById("read_progress");
+        const scrollHeight = document.documentElement.scrollHeight;
+        const clientHeight = document.documentElement.clientHeight;
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        readProgress.innerText = ((scrollTop / (scrollHeight - clientHeight)).toFixed(2) * 100).toFixed(0);
+    })
+</script>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+</script>
+<script>
+    let mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        (function() {
+            document.cookie = "change-themes" + "="+ escape ("false");
+        })()
+
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    });
+</script>
+
+<script>
+    document.body.addEventListener('copy', function (e) {
+        if (window.getSelection().toString() && window.getSelection().toString().length > 50) {
+            let clipboardData = e.clipboardData || window.clipboardData;
+            if (clipboardData) {
+                e.preventDefault();
+                let htmlData = window.getSelection().toString() +
+                    '\r\n\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                let textData = window.getSelection().toString() +
+                    '\r\n\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                clipboardData.setData('text/html', htmlData);
+                clipboardData.setData('text/plain', textData);
+            }
+        }
+    });
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = '复制';
+
+        function copyingDone() {
+            copybutton.innerText = '已复制！';
+            setTimeout(() => {
+                copybutton.innerText = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                let text = codeblock.textContent +
+                    '\r\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                navigator.clipboard.writeText(text);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) {}
+            selection.removeRange(range);
+        });
+
+        let language = codeblock.className.replaceAll("language-", "")
+        let macTool = document.createElement("div")
+        let macTool1 = document.createElement("div")
+        let macTool2 = document.createElement("div")
+        let macTool3 = document.createElement("div")
+        let languageType = document.createElement("div")
+        languageType.innerText = language
+        macTool.setAttribute('class', 'mac-tool')
+        macTool1.setAttribute('class', 'mac bb1')
+        macTool2.setAttribute('class', 'mac bb2')
+        macTool3.setAttribute('class', 'mac bb3')
+        languageType.setAttribute('class', 'language-type')
+        macTool.appendChild(macTool1)
+        macTool.appendChild(macTool2)
+        macTool.appendChild(macTool3)
+        macTool.appendChild(languageType)
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+            container.appendChild(macTool)
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+            container.appendChild(macTool)
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+            container.appendChild(macTool)
+        }
+    });
+</script>
+</body>
+
+</html>

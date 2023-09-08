@@ -2,22 +2,40 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://eddyblog.cn/posts/tech/github_action_hugo/</loc>
+    <lastmod>2023-09-06T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/posts/tech/</loc>
+    <lastmod>2023-09-06T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/posts/</loc>
+    <lastmod>2023-09-06T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/</loc>
+    <lastmod>2023-09-06T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/tags/github/</loc>
+    <lastmod>2023-09-06T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/tags/github-action/</loc>
+    <lastmod>2023-09-06T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/tags/hugo/</loc>
+    <lastmod>2023-09-06T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/tags/website-construction/</loc>
+    <lastmod>2023-09-06T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/tags/</loc>
+    <lastmod>2023-09-06T00:17:58+08:00</lastmod>
+  </url><url>
     <loc>https://eddyblog.cn/posts/tech/hugo_bug_yaml/</loc>
     <lastmod>2023-08-30T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/posts/tech/picgo_bug/</loc>
     <lastmod>2023-08-30T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/tech/</loc>
-    <lastmod>2023-08-30T00:17:58+08:00</lastmod>
-  </url><url>
-    <loc>https://eddyblog.cn/posts/</loc>
-    <lastmod>2023-08-30T00:17:58+08:00</lastmod>
-  </url><url>
     <loc>https://eddyblog.cn/tags/bug/</loc>
-    <lastmod>2023-08-30T00:17:58+08:00</lastmod>
-  </url><url>
-    <loc>https://eddyblog.cn/</loc>
     <lastmod>2023-08-30T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/tags/error/</loc>
@@ -27,9 +45,6 @@
     <lastmod>2023-08-30T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/tags/picgo/</loc>
-    <lastmod>2023-08-30T00:17:58+08:00</lastmod>
-  </url><url>
-    <loc>https://eddyblog.cn/tags/</loc>
     <lastmod>2023-08-30T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/posts/tech/github_jsdelivr_picgo/</loc>
@@ -45,9 +60,6 @@
     <lastmod>2023-08-29T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/tags/cdn/</loc>
-    <lastmod>2023-08-29T00:17:58+08:00</lastmod>
-  </url><url>
-    <loc>https://eddyblog.cn/tags/github/</loc>
     <lastmod>2023-08-29T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/tags/jsdelivr/</loc>
@@ -78,9 +90,6 @@
     <lastmod>2023-08-29T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/posts/tech/hugo_introduce_a_tree_directory/</loc>
-    <lastmod>2023-08-25T00:17:58+08:00</lastmod>
-  </url><url>
-    <loc>https://eddyblog.cn/tags/hugo/</loc>
     <lastmod>2023-08-25T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/tags/markdown/</loc>
