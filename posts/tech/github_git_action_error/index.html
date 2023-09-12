@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>【GitHub使用指南】解决Git操作错误 - Github Action问题分析 | Eddy&#39;s blog</title>
+<meta name="keywords" content="Github, error, Github action">
+<meta name="description" content="问题描述 当使用GitHub Actions执行工作流程时，有时会遇到错误消息，其中一个常见的错误是：Action failed with &#39;not found deploy key or tokens。这个错误通常表示GitHub Actions在执行过程中找不到有效的部署密钥或访问令牌。这篇博客将帮助你了解如何解决这个问题。 错误原因分析 在Gi">
+<meta name="author" content="Eddy">
+<link rel="canonical" href="https://eddyblog.cn/posts/tech/github_git_action_error/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.js" onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://eddyblog.cn/img/logo3.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://eddyblog.cn/img/logo3.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://eddyblog.cn/img/logo3.png">
+<link rel="apple-touch-icon" href="https://eddyblog.cn/img/logo3.png">
+<link rel="mask-icon" href="https://eddyblog.cn/img/logo3.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<script defer src="https://unpkg.com/mermaid@8.8.1/dist/mermaid.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = ""; 
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<meta property="og:title" content="【GitHub使用指南】解决Git操作错误 - Github Action问题分析" />
+<meta property="og:description" content="问题描述 当使用GitHub Actions执行工作流程时，有时会遇到错误消息，其中一个常见的错误是：Action failed with &#39;not found deploy key or tokens。这个错误通常表示GitHub Actions在执行过程中找不到有效的部署密钥或访问令牌。这篇博客将帮助你了解如何解决这个问题。 错误原因分析 在Gi" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://eddyblog.cn/posts/tech/github_git_action_error/" />
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/book2.jpg" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-09-12T00:17:58+08:00" />
+<meta property="article:modified_time" content="2023-09-12T00:17:58+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/book2.jpg" />
+<meta name="twitter:title" content="【GitHub使用指南】解决Git操作错误 - Github Action问题分析"/>
+<meta name="twitter:description" content="问题描述 当使用GitHub Actions执行工作流程时，有时会遇到错误消息，其中一个常见的错误是：Action failed with &#39;not found deploy key or tokens。这个错误通常表示GitHub Actions在执行过程中找不到有效的部署密钥或访问令牌。这篇博客将帮助你了解如何解决这个问题。 错误原因分析 在Gi"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+
+        {
+          "@type": "ListItem",
+          "position":  2 ,
+          "name": "📚文章",
+          "item": "https://eddyblog.cn/posts/"
+        },
+
+        {
+          "@type": "ListItem",
+          "position":  3 ,
+          "name": "👨🏻‍💻 技术",
+          "item": "https://eddyblog.cn/posts/tech/"
+        }, 
+    {
+      "@type": "ListItem",
+      "position":  4 ,
+      "name": "【GitHub使用指南】解决Git操作错误 - Github Action问题分析",
+      "item": "https://eddyblog.cn/posts/tech/github_git_action_error/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "【GitHub使用指南】解决Git操作错误 - Github Action问题分析",
+  "name": "【GitHub使用指南】解决Git操作错误 - Github Action问题分析",
+  "description": "问题描述 当使用GitHub Actions执行工作流程时，有时会遇到错误消息，其中一个常见的错误是：Action failed with 'not found deploy key or tokens。这个错误通常表示GitHub Actions在执行过程中找不到有效的部署密钥或访问令牌。这篇博客将帮助你了解如何解决这个问题。 错误原因分析 在Gi",
+  "keywords": [
+    "Github", "error", "Github action"
+  ],
+  "articleBody": "问题描述 当使用GitHub Actions执行工作流程时，有时会遇到错误消息，其中一个常见的错误是：Action failed with 'not found deploy key or tokens。这个错误通常表示GitHub Actions在执行过程中找不到有效的部署密钥或访问令牌。这篇博客将帮助你了解如何解决这个问题。\n错误原因分析 在GitHub Actions的工作流程中，有些操作需要使用密钥或令牌来访问GitHub存储库或执行其他敏感操作，例如推送更改到仓库。这些密钥或令牌通常存储在GitHub存储库的Secrets中。当出现not found deploy key or tokens错误时，这意味着GitHub Actions无法找到所需的密钥或令牌。\n解决步骤 以下是解决not found deploy key or tokens的步骤：\n1. 检查密钥或令牌是否存在 首先，确保你的个人访问令牌（Personal Access Token）或部署密钥已正确设置并存储在GitHub存储库的Secrets中。登录到GitHub，导航到你的存储库，然后点击右上角的Settings。在左侧导航栏中，选择Secrets。确保你需要的密钥或令牌存在于这里。\n2. 确保Secrets名称正确 在GitHub Actions配置文件中，你引用了一个Secrets，例如：\nPERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }} 确保名称大小写正确，与存储库中的Secrets名称完全匹配。GitHub Actions对大小写敏感。\n3. 检查Secrets权限 确保你的个人访问令牌或部署密钥具有足够的权限来执行所需的操作。如果你需要推送更改到仓库，确保访问令牌有推送权限。不同操作可能需要不同的权限，因此要确保你的密钥或令牌拥有所需的权限。\n4. 检查工作流程配置 在GitHub Actions工作流程文件中，比如main.yml，你需要确保部分，比如uses部分，引用了正确的Secrets。检查配置文件中的这些引用，确保Secrets的名称与你在Secrets中设置的名称匹配。\n5. 检查工作流程触发条件 确保你的工作流程按照正确的触发条件运行。如果你的工作流程只应在某些条件下运行，请确保这些条件已正确配置。触发条件通常在工作流程文件的顶部定义。\n6. 监视GitHub Actions日志 在GitHub存储库中，转到\"Actions\"标签，然后选择你的工作流程。查看详细的日志以获取更多信息，以便确定错误发生的位置。日志通常会提供有关哪一步出现了问题的线索。\nGitHub Actions是一个强大的自动化工具，但需要小心处理密钥和令牌，以确保安全性。希望这些步骤能帮助你解决这个问题并顺利执行你的工作流程。\n",
+  "wordCount" : "1042",
+  "inLanguage": "zh",
+  "image":"https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/book2.jpg","datePublished": "2023-09-12T00:17:58+08:00",
+  "dateModified": "2023-09-12T00:17:58+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "Eddy"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://eddyblog.cn/posts/tech/github_git_action_error/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Eddy's blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://eddyblog.cn/img/logo3.png"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    (function () {
+        let  arr,reg = new RegExp("(^| )"+"change-themes"+"=([^;]*)(;|$)");
+        if(arr = document.cookie.match(reg)) {
+        } else {
+            if (new Date().getHours() >= 19 || new Date().getHours() < 6) {
+                document.body.classList.add('dark');
+                localStorage.setItem("pref-theme", 'dark');
+            } else {
+                document.body.classList.remove('dark');
+                localStorage.setItem("pref-theme", 'light');
+            }
+        }
+    })()
+
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://eddyblog.cn" accesskey="h" title="Eddy&#39;s Blog (Alt + H)">
+            <img src="https://eddyblog.cn/img/logo3.png" alt="logo" aria-label="logo"
+                 height="35">Eddy&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://eddyblog.cn/search" title="🔍 搜索 (Alt &#43; /)" accesskey=/>
+                <span>🔍 搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/" title="🏠 主页">
+                <span>🏠 主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/posts" title="📚 文章">
+                <span>📚 文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/tags" title="🧩 标签">
+                <span>🧩 标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/archives/" title="⏱️ 时间轴">
+                <span>⏱️ 时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/about" title="🙋🏻‍♂️ 关于">
+                <span>🙋🏻‍♂️ 关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main page">
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+</style>
+
+<article class="post-single">
+    <div id="single-content">
+        <header class="post-header">
+            <div class="breadcrumbs"><a href="https://eddyblog.cn">🏠 主页</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/">📚文章</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/tech/">👨🏻‍💻 技术</a></div>
+            <h1 class="post-title">
+                【GitHub使用指南】解决Git操作错误 - Github Action问题分析
+            </h1>
+            <div class="post-meta">
+
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+
+    .parent-post-meta {
+        display: flex;
+        flex-wrap: wrap;
+        opacity: 0.8;
+    }
+</style>
+
+<span class="parent-post-meta">
+    <span id="post_meta_style_1">
+        <span class="fa fa-calendar-check-o"></span>
+        <span>2023-09-12
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    
+    
+    
+    
+    
+    
+    
+    <span id="post_meta_style_3">
+        <span class="fa fa-file-word-o"></span>
+        <span>1042字
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_4">
+        <span class="fa fa-clock-o"></span>
+        <span>3分钟
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_5">
+        <span class="fa fa-user-o"></span>
+        <span>Eddy
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_6">
+        <span class="fa fa-tags" style="opacity: 0.8"></span>
+        <span>
+            <span class="post-tags-meta">
+                <a href="https://eddyblog.cn/tags/github/" style="color: var(--secondary)!important;">Github</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/error/" style="color: var(--secondary)!important;">error</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/github-action/" style="color: var(--secondary)!important;">Github action</a>
+            </span>
+        </span>
+    </span>
+</span>
+<span style="opacity: 0.8;">
+                    <span id="post_meta_style_7">
+                        &nbsp;&nbsp;
+                        <span class="fa fa-eye" ></span>
+                        <span>
+                            <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+                            &nbsp;&nbsp;
+                        </span>
+                    </span>
+                    <span id="post_meta_style_8">
+                        <span class="fa fa-commenting-o"></span>
+                        <span>
+                            <script src="https://cdn.staticfile.org/twikoo//twikoo.all.min.js"></script>
+                            <script>
+                                let url = document.documentURI
+                                
+                                let dnsUrl = "https://eddyblog.cn"
+                                let urlSplit = url.split(dnsUrl)
+                                let finalUrl = urlSplit[1]
+                                if (finalUrl[0] !== '/') {
+                                    finalUrl = '/'+finalUrl
+                                }
+                                twikoo.getCommentsCount({
+                                    envId:  null , 
+                                region:  null , 
+                                urls: [ 
+                                    
+                                    finalUrl,
+                                ],
+                                    includeReply: false 
+                                }).then(function (res) {
+                                    let count = res[0].count
+                                    const obj = document.getElementById("comment_count");
+                                    obj.innerText = count
+                                    
+                                    
+                                    
+                                }).catch(function (err) {
+                                    
+                                    console.error(err);
+                                });
+                            </script>
+                            <span id="comment_count"></span>
+                        </span>
+                    </span>
+                </span>
+
+</div>
+        </header> 
+<figure class="entry-cover1"><img style="zoom:;" loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/book2.jpg" alt="">
+    
+</figure><aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e9%97%ae%e9%a2%98%e6%8f%8f%e8%bf%b0" aria-label="问题描述">问题描述</a></li>
+                <li>
+                    <a href="#%e9%94%99%e8%af%af%e5%8e%9f%e5%9b%a0%e5%88%86%e6%9e%90" aria-label="错误原因分析">错误原因分析</a></li>
+                <li>
+                    <a href="#%e8%a7%a3%e5%86%b3%e6%ad%a5%e9%aa%a4" aria-label="解决步骤">解决步骤</a><ul>
+                        
+                <li>
+                    <a href="#1-%e6%a3%80%e6%9f%a5%e5%af%86%e9%92%a5%e6%88%96%e4%bb%a4%e7%89%8c%e6%98%af%e5%90%a6%e5%ad%98%e5%9c%a8" aria-label="1. 检查密钥或令牌是否存在">1. 检查密钥或令牌是否存在</a></li>
+                <li>
+                    <a href="#2-%e7%a1%ae%e4%bf%9dsecrets%e5%90%8d%e7%a7%b0%e6%ad%a3%e7%a1%ae" aria-label="2. 确保Secrets名称正确">2. 确保Secrets名称正确</a></li>
+                <li>
+                    <a href="#3-%e6%a3%80%e6%9f%a5secrets%e6%9d%83%e9%99%90" aria-label="3. 检查Secrets权限">3. 检查Secrets权限</a></li>
+                <li>
+                    <a href="#4-%e6%a3%80%e6%9f%a5%e5%b7%a5%e4%bd%9c%e6%b5%81%e7%a8%8b%e9%85%8d%e7%bd%ae" aria-label="4. 检查工作流程配置">4. 检查工作流程配置</a></li>
+                <li>
+                    <a href="#5-%e6%a3%80%e6%9f%a5%e5%b7%a5%e4%bd%9c%e6%b5%81%e7%a8%8b%e8%a7%a6%e5%8f%91%e6%9d%a1%e4%bb%b6" aria-label="5. 检查工作流程触发条件">5. 检查工作流程触发条件</a></li>
+                <li>
+                    <a href="#6-%e7%9b%91%e8%a7%86github-actions%e6%97%a5%e5%bf%97" aria-label="6. 监视GitHub Actions日志">6. 监视GitHub Actions日志</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+        
+        activeElement = elements[0];
+        const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+        document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+    }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        if (elements) {
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement){
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }
+    }, false);
+
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;
+    }
+</script>
+        <div class="post-content"><h2 id="问题描述">问题描述<a hidden class="anchor" aria-hidden="true" href="#问题描述">#</a></h2>
+<p>当使用<code>GitHub Actions</code>执行工作流程时，有时会遇到错误消息，其中一个常见的错误是：<code>Action failed with 'not found deploy key or tokens</code>。这个错误通常表示<code>GitHub Actions</code>在执行过程中找不到有效的部署密钥或访问令牌。这篇博客将帮助你了解如何解决这个问题。</p>
+<h2 id="错误原因分析">错误原因分析<a hidden class="anchor" aria-hidden="true" href="#错误原因分析">#</a></h2>
+<p>在<code>GitHub Actions</code>的工作流程中，有些操作需要使用密钥或令牌来访问GitHub存储库或执行其他敏感操作，例如推送更改到仓库。这些密钥或令牌通常存储在GitHub存储库的<code>Secrets</code>中。当出现<code>not found deploy key or tokens</code>错误时，这意味着<code>GitHub Actions</code>无法找到所需的密钥或令牌。</p>
+<h2 id="解决步骤">解决步骤<a hidden class="anchor" aria-hidden="true" href="#解决步骤">#</a></h2>
+<p>以下是解决<code>not found deploy key or tokens</code>的步骤：</p>
+<h3 id="1-检查密钥或令牌是否存在">1. 检查密钥或令牌是否存在<a hidden class="anchor" aria-hidden="true" href="#1-检查密钥或令牌是否存在">#</a></h3>
+<p>首先，确保你的个人访问令牌（<code>Personal Access Token</code>）或部署密钥已正确设置并存储在<code>GitHub</code>存储库的<code>Secrets</code>中。登录到<code>GitHub</code>，导航到你的存储库，然后点击右上角的<code>Settings</code>。在左侧导航栏中，选择<code>Secrets</code>。确保你需要的密钥或令牌存在于这里。</p>
+<h3 id="2-确保secrets名称正确">2. 确保Secrets名称正确<a hidden class="anchor" aria-hidden="true" href="#2-确保secrets名称正确">#</a></h3>
+<p>在<code>GitHub Actions</code>配置文件中，你引用了一个<code>Secrets</code>，例如：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-YAML" data-lang="YAML"><span style="display:flex;"><span><span style="color:#f92672">PERSONAL_TOKEN</span>: <span style="color:#ae81ff">${{ secrets.PERSONAL_TOKEN }}</span>
+</span></span></code></pre></div><p>确保名称大小写正确，与存储库中的<code>Secrets</code>名称完全匹配。GitHub Actions对大小写敏感。</p>
+<h3 id="3-检查secrets权限">3. 检查Secrets权限<a hidden class="anchor" aria-hidden="true" href="#3-检查secrets权限">#</a></h3>
+<p>确保你的个人访问令牌或部署密钥具有足够的权限来执行所需的操作。如果你需要推送更改到仓库，确保访问令牌有推送权限。不同操作可能需要不同的权限，因此要确保你的密钥或令牌拥有所需的权限。</p>
+<h3 id="4-检查工作流程配置">4. 检查工作流程配置<a hidden class="anchor" aria-hidden="true" href="#4-检查工作流程配置">#</a></h3>
+<p>在GitHub Actions工作流程文件中，比如<code>main.yml</code>，你需要确保部分，比如<code>uses</code>部分，引用了正确的Secrets。检查配置文件中的这些引用，确保Secrets的名称与你在Secrets中设置的名称匹配。</p>
+<h3 id="5-检查工作流程触发条件">5. 检查工作流程触发条件<a hidden class="anchor" aria-hidden="true" href="#5-检查工作流程触发条件">#</a></h3>
+<p>确保你的工作流程按照正确的触发条件运行。如果你的工作流程只应在某些条件下运行，请确保这些条件已正确配置。触发条件通常在工作流程文件的顶部定义。</p>
+<h3 id="6-监视github-actions日志">6. 监视GitHub Actions日志<a hidden class="anchor" aria-hidden="true" href="#6-监视github-actions日志">#</a></h3>
+<p>在GitHub存储库中，转到&quot;Actions&quot;标签，然后选择你的工作流程。查看详细的日志以获取更多信息，以便确定错误发生的位置。日志通常会提供有关哪一步出现了问题的线索。</p>
+<p>GitHub Actions是一个强大的自动化工具，但需要小心处理密钥和令牌，以确保安全性。希望这些步骤能帮助你解决这个问题并顺利执行你的工作流程。</p>
+
+
+        </div>
+
+        <footer class="post-footer">
+            
+<nav class="paginav">
+  <a class="prev" href="https://eddyblog.cn/posts/tech/github_git_push_502_bad_gateway/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>【GitHub使用指南】解决Git Push错误 - 502 Bad Gateway</span>
+  </a>
+  <a class="next" href="https://eddyblog.cn/posts/tech/github_action_hugo/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>【Hugo网站搭建】GitHub Action自动化部署Hugo博客</span>
+  </a>
+</nav>
+
+        </footer>
+    </div>
+</article>
+</main>
+
+<footer class="footer">
+    <span>
+        Copyright
+        &copy;
+        -2023
+        <a href="https://eddyblog.cn" style="color:#939393;">Eddy&#39;s blog</a>
+        All Rights Reserved
+    </span>
+    <a href="https://beian.miit.gov.cn/" target="_blank" style="color:#939393;"></a>&nbsp;
+    <span>
+        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=null"
+           style="display:inline-block;text-decoration:none;height:20px;color:#939393;">
+            <img src="" style="float:left;margin: 0px 5px 0px 0px;"/>
+            
+        </a>
+    </span>
+    <span id="busuanzi_container">
+        <span class="fa fa-user"></span> <span id="busuanzi_value_site_uv"></span>
+        <span class="fa fa-eye"></span> <span id="busuanzi_value_site_pv"></span>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <span class="topInner">
+        <svg class="topSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z"/>
+        </svg>
+        <span id="read_progress"></span>
+    </span>
+</a>
+
+<script>
+    document.addEventListener('scroll', function (e) {
+        const readProgress = document.getElementById("read_progress");
+        const scrollHeight = document.documentElement.scrollHeight;
+        const clientHeight = document.documentElement.clientHeight;
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        readProgress.innerText = ((scrollTop / (scrollHeight - clientHeight)).toFixed(2) * 100).toFixed(0);
+    })
+</script>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+</script>
+<script>
+    let mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        (function() {
+            document.cookie = "change-themes" + "="+ escape ("false");
+        })()
+
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    });
+</script>
+
+<script>
+    document.body.addEventListener('copy', function (e) {
+        if (window.getSelection().toString() && window.getSelection().toString().length > 50) {
+            let clipboardData = e.clipboardData || window.clipboardData;
+            if (clipboardData) {
+                e.preventDefault();
+                let htmlData = window.getSelection().toString() +
+                    '\r\n\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                let textData = window.getSelection().toString() +
+                    '\r\n\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                clipboardData.setData('text/html', htmlData);
+                clipboardData.setData('text/plain', textData);
+            }
+        }
+    });
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = '复制';
+
+        function copyingDone() {
+            copybutton.innerText = '已复制！';
+            setTimeout(() => {
+                copybutton.innerText = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                let text = codeblock.textContent +
+                    '\r\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                navigator.clipboard.writeText(text);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) {}
+            selection.removeRange(range);
+        });
+
+        let language = codeblock.className.replaceAll("language-", "")
+        let macTool = document.createElement("div")
+        let macTool1 = document.createElement("div")
+        let macTool2 = document.createElement("div")
+        let macTool3 = document.createElement("div")
+        let languageType = document.createElement("div")
+        languageType.innerText = language
+        macTool.setAttribute('class', 'mac-tool')
+        macTool1.setAttribute('class', 'mac bb1')
+        macTool2.setAttribute('class', 'mac bb2')
+        macTool3.setAttribute('class', 'mac bb3')
+        languageType.setAttribute('class', 'language-type')
+        macTool.appendChild(macTool1)
+        macTool.appendChild(macTool2)
+        macTool.appendChild(macTool3)
+        macTool.appendChild(languageType)
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+            container.appendChild(macTool)
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+            container.appendChild(macTool)
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+            container.appendChild(macTool)
+        }
+    });
+</script>
+</body>
+
+</html>

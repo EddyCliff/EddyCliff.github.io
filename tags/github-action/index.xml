@@ -6,7 +6,16 @@
     <description>Recent content in Github action on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Wed, 06 Sep 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/github-action/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 12 Sep 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/github-action/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【GitHub使用指南】解决Git操作错误 - Github Action问题分析</title>
+      <link>https://eddyblog.cn/posts/tech/github_git_action_error/</link>
+      <pubDate>Tue, 12 Sep 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/github_git_action_error/</guid>
+      <description>问题描述 当使用GitHub Actions执行工作流程时，有时会遇到错误消息，其中一个常见的错误是：Action failed with &#39;not found deploy key or tokens。这个错误通常表示GitHub Actions在执行过程中找不到有效的部署密钥或访问令牌。这篇博客将帮助你了解如何解决这个问题。 错误原因分析 在Gi</description>
+    </item>
+    
     <item>
       <title>【Hugo网站搭建】GitHub Action自动化部署Hugo博客</title>
       <link>https://eddyblog.cn/posts/tech/github_action_hugo/</link>
