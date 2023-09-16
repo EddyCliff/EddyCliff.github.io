@@ -2,6 +2,36 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_02array/</loc>
+    <lastmod>2023-09-16T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_03fun/</loc>
+    <lastmod>2023-09-16T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/posts/tech/</loc>
+    <lastmod>2023-09-16T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/posts/</loc>
+    <lastmod>2023-09-16T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/tags/array/</loc>
+    <lastmod>2023-09-16T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/tags/c-programming/</loc>
+    <lastmod>2023-09-16T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/</loc>
+    <lastmod>2023-09-16T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/tags/embedded-development/</loc>
+    <lastmod>2023-09-16T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/tags/function/</loc>
+    <lastmod>2023-09-16T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/tags/</loc>
+    <lastmod>2023-09-16T00:17:58+08:00</lastmod>
+  </url><url>
     <loc>https://eddyblog.cn/posts/tech/c_language_comment_specification/</loc>
     <lastmod>2023-09-12T00:17:58+08:00</lastmod>
   </url><url>
@@ -14,19 +44,10 @@
     <loc>https://eddyblog.cn/posts/tech/github_git_action_error/</loc>
     <lastmod>2023-09-12T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/tech/</loc>
-    <lastmod>2023-09-12T00:17:58+08:00</lastmod>
-  </url><url>
-    <loc>https://eddyblog.cn/posts/</loc>
-    <lastmod>2023-09-12T00:17:58+08:00</lastmod>
-  </url><url>
     <loc>https://eddyblog.cn/tags/c/</loc>
     <lastmod>2023-09-12T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/tags/code-comment-specifications/</loc>
-    <lastmod>2023-09-12T00:17:58+08:00</lastmod>
-  </url><url>
-    <loc>https://eddyblog.cn/</loc>
     <lastmod>2023-09-12T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/tags/error/</loc>
@@ -42,9 +63,6 @@
     <lastmod>2023-09-12T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/tags/github-action/</loc>
-    <lastmod>2023-09-12T00:17:58+08:00</lastmod>
-  </url><url>
-    <loc>https://eddyblog.cn/tags/</loc>
     <lastmod>2023-09-12T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/posts/tech/github_action_hugo/</loc>
