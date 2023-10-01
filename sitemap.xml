@@ -2,6 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://eddyblog.cn/tags/learning-series-notes/</loc>
+    <lastmod>2023-09-30T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/posts/read/make_truly_useful_reading_notes/</loc>
+    <lastmod>2023-09-30T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/posts/read/</loc>
+    <lastmod>2023-09-30T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/posts/</loc>
+    <lastmod>2023-09-30T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/</loc>
+    <lastmod>2023-09-30T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/tags/reading-notes/</loc>
+    <lastmod>2023-09-30T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/tags/study-notes/</loc>
+    <lastmod>2023-09-30T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/tags/</loc>
+    <lastmod>2023-09-30T00:17:58+08:00</lastmod>
+  </url><url>
     <loc>https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_02array/</loc>
     <lastmod>2023-09-16T00:17:58+08:00</lastmod>
   </url><url>
@@ -11,25 +35,16 @@
     <loc>https://eddyblog.cn/posts/tech/</loc>
     <lastmod>2023-09-16T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/</loc>
-    <lastmod>2023-09-16T00:17:58+08:00</lastmod>
-  </url><url>
     <loc>https://eddyblog.cn/tags/array/</loc>
     <lastmod>2023-09-16T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/tags/c-programming/</loc>
     <lastmod>2023-09-16T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/</loc>
-    <lastmod>2023-09-16T00:17:58+08:00</lastmod>
-  </url><url>
     <loc>https://eddyblog.cn/tags/embedded-development/</loc>
     <lastmod>2023-09-16T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/tags/function/</loc>
-    <lastmod>2023-09-16T00:17:58+08:00</lastmod>
-  </url><url>
-    <loc>https://eddyblog.cn/tags/</loc>
     <lastmod>2023-09-16T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/posts/tech/c_language_comment_specification/</loc>

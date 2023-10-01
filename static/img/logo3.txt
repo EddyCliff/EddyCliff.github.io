@@ -1,0 +1,9 @@
+链接：https://postimg.cc/5H3cy9KR
+图片链接：https://i.postimg.cc/QtLj6HQh/logo3.png
+Markdown:[logo3.png](https://postimg.cc/5H3cy9KR)
+github markdown:[![logo3.png](https://i.postimg.cc/QtLj6HQh/logo3.png)](https://postimg.cc/5H3cy9KR)
+论坛缩略图：[url=https://postimg.cc/5H3cy9KR][img]https://i.postimg.cc/5H3cy9KR/logo3.png[/img][/url]
+网站缩略图：<a href='https://postimg.cc/5H3cy9KR' target='_blank'><img src='https://i.postimg.cc/5H3cy9KR/logo3.png' border='0' alt='logo3'/></a>
+论坛热链：[url=https://postimg.cc/5H3cy9KR][img]https://i.postimg.cc/QtLj6HQh/logo3.png[/img][/url]
+网站热链：<a href='https://postimg.cc/5H3cy9KR' target='_blank'><img src='https://i.postimg.cc/QtLj6HQh/logo3.png' border='0' alt='logo3'/></a>
+删除链接：https://postimg.cc/delete/J98RSbLX/a1f0741b
