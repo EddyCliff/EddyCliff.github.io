@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>【嵌入式高级C编程】第七章 字符串处理函数 | Eddy&#39;s blog</title>
+<meta name="keywords" content="C programming, Embedded Development, String Manipulation functions">
+<meta name="description" content="第七章 字符串处理函数 一、获取字符串长度函数 #include &lt;string.h&gt; size_t strlen(const char *s); 功能：计算一个字符串的长度 参数： s：指定的字符串 返回值： 当前字符串的长度 注意：strlen获取的字符串长度遇到第一个\0结束且\0不算做字符串长度之中 #include &lt;stdio.h&gt; #include &lt;string.h&gt; int main(int argc, char *argv[]) { //使用strlen函数获取字符串的长度 //strlen">
+<meta name="author" content="Eddy">
+<link rel="canonical" href="https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_07string_manipulation_functions/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.js" onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://eddyblog.cn/img/logo3.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://eddyblog.cn/img/logo3.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://eddyblog.cn/img/logo3.png">
+<link rel="apple-touch-icon" href="https://eddyblog.cn/img/logo3.png">
+<link rel="mask-icon" href="https://eddyblog.cn/img/logo3.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<script defer src="https://unpkg.com/mermaid@8.8.1/dist/mermaid.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = ""; 
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<meta property="og:title" content="【嵌入式高级C编程】第七章 字符串处理函数" />
+<meta property="og:description" content="第七章 字符串处理函数 一、获取字符串长度函数 #include &lt;string.h&gt; size_t strlen(const char *s); 功能：计算一个字符串的长度 参数： s：指定的字符串 返回值： 当前字符串的长度 注意：strlen获取的字符串长度遇到第一个\0结束且\0不算做字符串长度之中 #include &lt;stdio.h&gt; #include &lt;string.h&gt; int main(int argc, char *argv[]) { //使用strlen函数获取字符串的长度 //strlen" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_07string_manipulation_functions/" />
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/c2.jpg" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-10-01T00:17:58+08:00" />
+<meta property="article:modified_time" content="2023-10-01T00:17:58+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/c2.jpg" />
+<meta name="twitter:title" content="【嵌入式高级C编程】第七章 字符串处理函数"/>
+<meta name="twitter:description" content="第七章 字符串处理函数 一、获取字符串长度函数 #include &lt;string.h&gt; size_t strlen(const char *s); 功能：计算一个字符串的长度 参数： s：指定的字符串 返回值： 当前字符串的长度 注意：strlen获取的字符串长度遇到第一个\0结束且\0不算做字符串长度之中 #include &lt;stdio.h&gt; #include &lt;string.h&gt; int main(int argc, char *argv[]) { //使用strlen函数获取字符串的长度 //strlen"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+
+        {
+          "@type": "ListItem",
+          "position":  2 ,
+          "name": "📚文章",
+          "item": "https://eddyblog.cn/posts/"
+        },
+
+        {
+          "@type": "ListItem",
+          "position":  3 ,
+          "name": "👨🏻‍💻 技术",
+          "item": "https://eddyblog.cn/posts/tech/"
+        }, 
+    {
+      "@type": "ListItem",
+      "position":  4 ,
+      "name": "【嵌入式高级C编程】第七章 字符串处理函数",
+      "item": "https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_07string_manipulation_functions/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "【嵌入式高级C编程】第七章 字符串处理函数",
+  "name": "【嵌入式高级C编程】第七章 字符串处理函数",
+  "description": "第七章 字符串处理函数 一、获取字符串长度函数 #include \u0026lt;string.h\u0026gt; size_t strlen(const char *s); 功能：计算一个字符串的长度 参数： s：指定的字符串 返回值： 当前字符串的长度 注意：strlen获取的字符串长度遇到第一个\\0结束且\\0不算做字符串长度之中 #include \u0026lt;stdio.h\u0026gt; #include \u0026lt;string.h\u0026gt; int main(int argc, char *argv[]) { //使用strlen函数获取字符串的长度 //strlen",
+  "keywords": [
+    "C programming", "Embedded Development", "String Manipulation functions"
+  ],
+  "articleBody": "第七章 字符串处理函数 一、获取字符串长度函数 #include size_t strlen(const char *s); 功能：计算一个字符串的长度 参数： s：指定的字符串 返回值： 当前字符串的长度 注意：strlen获取的字符串长度遇到第一个\\0结束且\\0不算做字符串长度之中 #include #include int main(int argc, char *argv[]) { //使用strlen函数获取字符串的长度 //strlen获取的字符串的长度遇到第一个\\0结束 char s1[100] = \"hel\\0lo\"; printf(\"s1_len = %d\\n\", strlen(s1)); printf(\"s1_size = %d\\n\", sizeof(s1)); char *s2 = \"hello\"; printf(\"s2_len = %d\\n\", strlen(s2)); printf(\"s2_size = %d\\n\", sizeof(s2)); return 0; } 执行结果\ns1_len = 3 s1_size = 100 s2_len = 5 s2_size = 4 二、字符串拷贝函数 #include char *strcpy(char *dest, const char *src); 功能：将src复制给dest 参数： dest：目的字符串 src：源字符串 返回值： 保存dest字符串的首地址 注意： 使用strcpy函数复制字符串时必须保证dest足够大，否则会内存溢出 strcpy是将src字符串中第一个\\0之前包括\\0复制给dest char *strncpy(char *dest, const char *src, size_t n); 函数的说明： 将src指向的字符串前n个字节，拷贝到dest指向的内存中 返回值: 目的内存的首地址 注意： 1、strncpy不拷贝 ‘\\0’ 2、如果n大于src指向的字符串中的字符个数，则在dest后面填充n‐strlen(src)个’\\0’ #include #include int main(int argc, char *argv[]) { //使用strcpy函数拷贝字符串 char s1[32] = \"hello world\"; //使用strcpy函数时，必须保证第一个参数的内存足够大 //char s1[5] = \"abcd\"; char s2[32] = \"abcdefg\"; strcpy(s1, s2); printf(\"s1 = %s\\n\", s1); int i; for(i = 0; i \u003c 32; i++) { printf(\"[%c] ‐ %d\\n\", s1[i], s1[i]); } return 0; } 执行结果\ns1 = abcdefg [a] - 97 [b] - 98 [c] - 99 [d] - 100 [e] - 101 [f] - 102 [g] - 103 [] - 0 [r] - 114 [l] - 108 [d] - 100 [] - 0 [] - 0 三、字符串追加函数 #include char *strcat(char *dest, const char *src); 功能：将src追加到dest的后面 参数： dest：目的字符串 src：源字符串 返回值： 保存dest字符串的首地址 char *strncat(char *dest, const char *src, size_t n); 追加src指向的字符串的前n个字符，到dest指向的字符串的后面。 注意如果n 大于src的字符个数，则只将src字符串追加到dest指向的字符串的后面 追加的时候会追加’\\0’ #include #include int main(int argc, char *argv[]) { //使用strcat函数追加字符串 char s1[32] = \"hello world\"; char s2[32] = \"abcdef\"; //strcat是从s1的\\0的位置开始追加，直到s2的第一个\\0复制完毕后结束 strcat(s1, s2); printf(\"s1 = %s\\n\", s1); return 0; } 执行结果\ns1 = hello worldabcdef 四、字符串比较函数 #include int strcmp(const char *s1, const char *s2); int strncmp(const char *s1, const char *s2, size_t n); 功能：strcmp是比较两个字符串的内容，strncmp是比较两个字符串的前n个字节是否一样 参数： s1、s2：要比较的两个字符串 n：strncmp中的参数n表示要比较的字节数 返回值： 0 s1 = s2 \u003e0 s1 \u003e s2 \u003c0 s1 \u003c s2 #include #include int main(int argc, char *argv[]) { //使用strcmp比较两个字符串的内容是否一致 //strcmp函数一个字符一个字符比较，只要出现不一样的，就会立即返回 char s1[] = \"hello\"; char s2[] = \"w\"; int ret = strcmp(s1, s2); if(ret == 0) { printf(\"s1 = s2\\n\"); } else if(ret \u003e 0) { printf(\"s1 \u003e s2\\n\"); } else { printf(\"s1 \u003c s2\\n\"); } return 0; } 执行结果\ns1 \u003c s2 五、字符查找函数 #include char *strchr(const char *s, int c); 功能：在字符指针s指向的字符串中，找ascii 码为c的字符 参数： s：指定的字符串 c：要查找的字符 返回值： 成功：找到的字符的地址 失败：NULL 注意：s指向的字符串中有多个ASCII为c的字符，则找的是第1个字符 char *strrchr(const char *s, int c); 功能：在s指向的字符串中，找最后一次出现的ASCII为c的字符， #include #include int main(int argc, char *argv[]) { //使用strchr函数在一个字符串中查找字符 char s[] = \"hel6lo wor6ld\"; //找第一个匹配的字符 char *ret = strchr(s, '6'); //找最后一个匹配的字符 //char *ret = strrchr(s, '6'); if(ret == NULL) { printf(\"没有找到\\n\"); } else { printf(\"找到了，在数组的第%d个位置\\n\", ret ‐ s); } return 0; } 执行结果\n找到了，在数组的第3个位置 六、字符串匹配函数 #include char *strstr(const char *haystack, const char *needle); 函数说明： 在haystack指向的字符串中查找needle指向的字符串，也是首次匹配 返回值： 找到了：找到的字符串的首地址 没找到：返回NULL #include #include int main(int argc, char *argv[]) { //使用strstr函数在一个字符串中查找另一个字符串 char s[] = \"1234:4567:666:789:666:7777\"; //strstr查找的时候，查找的是第二个参数的第一个\\0之前的内容 char *ret = strstr(s, \"666\"); if(ret == NULL) { printf(\"没找到\\n\"); } else { printf(\"找到了，在当前字符串的第%d个位置\\n\", ret ‐ s); } return 0; } 执行结果\n找到了，在当前字符串的第10个位置 七、字符串转换数值 #include int atoi(const char *nptr); 功能：将一个数字型字符串转化为整形数据 参数： nptr：指定的字符串 返回值： 获取到的整形数据 #include #include int main(int argc, char *argv[]) { //使用atoi将数字型字符串转化为整形数据 char s1[] = \"7856\"; int ret1 = atoi(s1); printf(\"ret1 = %d\\n\", ret1); //使用atof将浮点型的字符串转化为浮点型数据 char s2[] = \"3.1415926\"; double ret2 = atof(s2); printf(\"ret2 = %lf\\n\", ret2); return 0; } 执行结果\nret1 = 7856 ret2 = 3.141593 八、字符串切割函数 #include char *strtok(char *str, const char *delim); 功能：对字符串进行切割 参数： str：要切割的字符串 第一次切割，就传入指定的字符串，后面所有次的切割传NULL delim：标识符，要根据指定的delim进行切割，切割的结果不包含delim 返回值： 返回切割下来的字符串的首地址，如果都切割完毕，则返回NULL #include #include int main(int argc, char *argv[]) { //使用strtok函数切割字符串 char s[] = \"111:22222:33:4444444444:5555555555555\"; char *ret; //第一次切割 ret = strtok(s, \":\"); printf(\"ret = %s\\n\", ret); //后面所有切割时都要将strtok的第一个参数传NULL while((ret = strtok(NULL, \":\")) != NULL) { printf(\"ret = %s\\n\", ret); } return 0; } 执行结果\nret = 111 ret = 22222 ret = 33 ret = 4444444444 ret = 5555555555555 九、格式化字符串操作函数 #include int sprintf(char *str, const char *format, ...); 功能：将按照格式保存的字符串复制给str 参数： str：保存字符串 format：同printf 返回值： 保存的字符串的字节数 #include int sscanf(const char *str, const char *format, ...); 功能：scanf是从终端读取数据并赋值给对应变量，而sscanf是从第一个参数中读取数据 参数： str：指定要获取内容的字符串 format：按照格式获取数据保存在变量中 返回值： 成功获取的个数 9.1 sprintf和sscanf的基本用法 //sprintf和sscanf的基本用法 void test1() { char buf[20]; int a, b, c; sprintf(buf,\"%d:%d:%d\",2013,10,1); printf(\"buf = %s\\n\",buf); sscanf(\"2013:10:1\", \"%d:%d:%d\", \u0026a, \u0026b, \u0026c); printf(\"a=%d,b=%d,c=%d\\n\",a,b,c); } 执行结果\nbuf = 2013:10:1 a=2013,b=10,c=1 9.2 sscanf高级用法 //sscanf高级用法 void test2() { //1、跳过数据：%*s或%*d char buf1[20]; sscanf(\"1234 5678\",\"%*d %s\",buf1); printf(\"%s\\n\",buf1); //2、读指定宽度的数据：%[width]s char buf2[20]; sscanf(\"12345678\",\"%4s \",buf2); printf(\"%s\\n\",buf2); //3、支持集合操作：只支持获取字符串 // %[a‐z] 表示匹配a到z中任意字符(尽可能多的匹配) // %[aBc] 匹配a、B、c中一员，贪婪性 // %[^aFc] 匹配非a、F、c的任意字符，贪婪性 // %[^a‐z] 表示读取除a‐z以外的所有字符 char buf3[20]; sscanf(\"agcd32DajfDdFF\",\"%[a‐z]\",buf3); printf(\"%s\\n\",buf3); } 执行结果\n5678 1234 agcd 十、const #include //const修饰全局变量 //此时全局变量只能使用但是不能修改， //如果直接拿全局变量修改值，编译直接报错 //如果使用全局变量的地址修改值，运行时程序异常结束 const int a = 100; void test1() { printf(\"a = %d\\n\", a); //a = 666; //printf(\"a = %d\\n\", a); int *p = \u0026a; *p = 888; printf(\"a = %d\\n\", a); } //const修饰普通局部变量 //可以读取变量的值 //不能直接通过变量进行修改值，编译报错 //可以通过变量的地址修改值 void test2() { const int b = 100; printf(\"b = %d\\n\", b); //b = 666; //printf(\"b = %d\\n\", b); int *p = \u0026b; *p = 888; printf(\"b = %d\\n\", b); } //const修饰指针变量 //如果const修饰指针变量的类型，无法通过指针变量修改地址里面的值 //如果const修饰指针变量，无法修改指针变量保存的地址 //如果const既修饰指针变量的类型，又修饰指针变量，则只能通过原本变量修改值 void test3() { int c = 100; //const修饰指针变量的类型 //const int * p = \u0026c; //const修饰指针变量 //int * const p = \u0026c; //const既修饰指针变量的类型，又修饰指针变量 const int * const p = \u0026c; printf(\"*p = %d\\n\", *p); c = 666; printf(\"*p = %d\\n\", *p); *p = 777; printf(\"*p = %d\\n\", *p); int d = 888; p = \u0026d; printf(\"*p = %d\\n\", *p); } int main(int argc, char *argv[]) { test3(); return 0; } **彩蛋：**🎁\n当你走在灿烂的阳光下，你会惊奇地发现，生命的一切及苦难，不过是在插满尖玻璃的墙头上行走。\n塞斯·诺特博姆《狐狸在夜晚来临》 恭喜你🎉，完成了对第七章《字符串处理函数》部分的学习，下一章我们将学习结构体，共用体，枚举。\n⏩第八章 《结构体，共用体，枚举》\n",
+  "wordCount" : "3178",
+  "inLanguage": "zh",
+  "image":"https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/c2.jpg","datePublished": "2023-10-01T00:17:58+08:00",
+  "dateModified": "2023-10-01T00:17:58+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "Eddy"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_07string_manipulation_functions/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Eddy's blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://eddyblog.cn/img/logo3.png"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    (function () {
+        let  arr,reg = new RegExp("(^| )"+"change-themes"+"=([^;]*)(;|$)");
+        if(arr = document.cookie.match(reg)) {
+        } else {
+            if (new Date().getHours() >= 19 || new Date().getHours() < 6) {
+                document.body.classList.add('dark');
+                localStorage.setItem("pref-theme", 'dark');
+            } else {
+                document.body.classList.remove('dark');
+                localStorage.setItem("pref-theme", 'light');
+            }
+        }
+    })()
+
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://eddyblog.cn" accesskey="h" title="Eddy&#39;s Blog (Alt + H)">
+            <img src="https://eddyblog.cn/img/logo3.png" alt="logo" aria-label="logo"
+                 height="35">Eddy&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://eddyblog.cn/search" title="🔍 搜索 (Alt &#43; /)" accesskey=/>
+                <span>🔍 搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/" title="🏠 主页">
+                <span>🏠 主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/posts" title="📚 文章">
+                <span>📚 文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/tags" title="🧩 标签">
+                <span>🧩 标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/archives/" title="⏱️ 时间轴">
+                <span>⏱️ 时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/about" title="🙋🏻‍♂️ 关于">
+                <span>🙋🏻‍♂️ 关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main page">
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+</style>
+
+<article class="post-single">
+    <div id="single-content">
+        <header class="post-header">
+            <div class="breadcrumbs"><a href="https://eddyblog.cn">🏠 主页</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/">📚文章</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/tech/">👨🏻‍💻 技术</a></div>
+            <h1 class="post-title">
+                【嵌入式高级C编程】第七章 字符串处理函数
+            </h1>
+            <div class="post-meta">
+
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+
+    .parent-post-meta {
+        display: flex;
+        flex-wrap: wrap;
+        opacity: 0.8;
+    }
+</style>
+
+<span class="parent-post-meta">
+    <span id="post_meta_style_1">
+        <span class="fa fa-calendar-check-o"></span>
+        <span>2023-10-01
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    
+    
+    
+    
+    
+    
+    
+    <span id="post_meta_style_3">
+        <span class="fa fa-file-word-o"></span>
+        <span>3178字
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_4">
+        <span class="fa fa-clock-o"></span>
+        <span>7分钟
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_5">
+        <span class="fa fa-user-o"></span>
+        <span>Eddy
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_6">
+        <span class="fa fa-tags" style="opacity: 0.8"></span>
+        <span>
+            <span class="post-tags-meta">
+                <a href="https://eddyblog.cn/tags/c-programming/" style="color: var(--secondary)!important;">C programming</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/embedded-development/" style="color: var(--secondary)!important;">Embedded Development</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/string-manipulation-functions/" style="color: var(--secondary)!important;">String Manipulation functions</a>
+            </span>
+        </span>
+    </span>
+</span>
+<span style="opacity: 0.8;">
+                    <span id="post_meta_style_7">
+                        &nbsp;&nbsp;
+                        <span class="fa fa-eye" ></span>
+                        <span>
+                            <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+                            &nbsp;&nbsp;
+                        </span>
+                    </span>
+                    <span id="post_meta_style_8">
+                        <span class="fa fa-commenting-o"></span>
+                        <span>
+                            <script src="https://cdn.staticfile.org/twikoo//twikoo.all.min.js"></script>
+                            <script>
+                                let url = document.documentURI
+                                
+                                let dnsUrl = "https://eddyblog.cn"
+                                let urlSplit = url.split(dnsUrl)
+                                let finalUrl = urlSplit[1]
+                                if (finalUrl[0] !== '/') {
+                                    finalUrl = '/'+finalUrl
+                                }
+                                twikoo.getCommentsCount({
+                                    envId:  null , 
+                                region:  null , 
+                                urls: [ 
+                                    
+                                    finalUrl,
+                                ],
+                                    includeReply: false 
+                                }).then(function (res) {
+                                    let count = res[0].count
+                                    const obj = document.getElementById("comment_count");
+                                    obj.innerText = count
+                                    
+                                    
+                                    
+                                }).catch(function (err) {
+                                    
+                                    console.error(err);
+                                });
+                            </script>
+                            <span id="comment_count"></span>
+                        </span>
+                    </span>
+                </span>
+
+</div>
+        </header> 
+<figure class="entry-cover1"><img style="zoom:;" loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/c2.jpg" alt="">
+    
+</figure><aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e7%ac%ac%e4%b8%83%e7%ab%a0-%e5%ad%97%e7%ac%a6%e4%b8%b2%e5%a4%84%e7%90%86%e5%87%bd%e6%95%b0" aria-label="第七章 字符串处理函数">第七章 字符串处理函数</a><ul>
+                        
+                <li>
+                    <a href="#%e4%b8%80%e8%8e%b7%e5%8f%96%e5%ad%97%e7%ac%a6%e4%b8%b2%e9%95%bf%e5%ba%a6%e5%87%bd%e6%95%b0" aria-label="一、获取字符串长度函数">一、获取字符串长度函数</a></li>
+                <li>
+                    <a href="#%e4%ba%8c%e5%ad%97%e7%ac%a6%e4%b8%b2%e6%8b%b7%e8%b4%9d%e5%87%bd%e6%95%b0" aria-label="二、字符串拷贝函数">二、字符串拷贝函数</a></li>
+                <li>
+                    <a href="#%e4%b8%89%e5%ad%97%e7%ac%a6%e4%b8%b2%e8%bf%bd%e5%8a%a0%e5%87%bd%e6%95%b0" aria-label="三、字符串追加函数">三、字符串追加函数</a></li>
+                <li>
+                    <a href="#%e5%9b%9b%e5%ad%97%e7%ac%a6%e4%b8%b2%e6%af%94%e8%be%83%e5%87%bd%e6%95%b0" aria-label="四、字符串比较函数">四、字符串比较函数</a></li>
+                <li>
+                    <a href="#%e4%ba%94%e5%ad%97%e7%ac%a6%e6%9f%a5%e6%89%be%e5%87%bd%e6%95%b0" aria-label="五、字符查找函数">五、字符查找函数</a></li>
+                <li>
+                    <a href="#%e5%85%ad%e5%ad%97%e7%ac%a6%e4%b8%b2%e5%8c%b9%e9%85%8d%e5%87%bd%e6%95%b0" aria-label="六、字符串匹配函数">六、字符串匹配函数</a></li>
+                <li>
+                    <a href="#%e4%b8%83%e5%ad%97%e7%ac%a6%e4%b8%b2%e8%bd%ac%e6%8d%a2%e6%95%b0%e5%80%bc" aria-label="七、字符串转换数值">七、字符串转换数值</a></li>
+                <li>
+                    <a href="#%e5%85%ab%e5%ad%97%e7%ac%a6%e4%b8%b2%e5%88%87%e5%89%b2%e5%87%bd%e6%95%b0" aria-label="八、字符串切割函数">八、字符串切割函数</a></li>
+                <li>
+                    <a href="#%e4%b9%9d%e6%a0%bc%e5%bc%8f%e5%8c%96%e5%ad%97%e7%ac%a6%e4%b8%b2%e6%93%8d%e4%bd%9c%e5%87%bd%e6%95%b0" aria-label="九、格式化字符串操作函数">九、格式化字符串操作函数</a><ul>
+                        
+                <li>
+                    <a href="#91-sprintf%e5%92%8csscanf%e7%9a%84%e5%9f%ba%e6%9c%ac%e7%94%a8%e6%b3%95" aria-label="9.1 sprintf和sscanf的基本用法">9.1 sprintf和sscanf的基本用法</a></li>
+                <li>
+                    <a href="#92-sscanf%e9%ab%98%e7%ba%a7%e7%94%a8%e6%b3%95" aria-label="9.2 sscanf高级用法">9.2 sscanf高级用法</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%8d%81const" aria-label="十、const">十、const</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+        
+        activeElement = elements[0];
+        const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+        document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+    }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        if (elements) {
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement){
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }
+    }, false);
+
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;
+    }
+</script>
+        <div class="post-content"><h2 id="第七章-字符串处理函数">第七章 字符串处理函数<a hidden class="anchor" aria-hidden="true" href="#第七章-字符串处理函数">#</a></h2>
+<h3 id="一获取字符串长度函数">一、获取字符串长度函数<a hidden class="anchor" aria-hidden="true" href="#一获取字符串长度函数">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">size_t</span> <span style="color:#a6e22e">strlen</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>s);
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">功能：计算一个字符串的长度</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">参数：</span>
+</span></span><span style="display:flex;"><span>  s<span style="color:#960050;background-color:#1e0010">：指定的字符串</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">返回值：</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">当前字符串的长度</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">注意：</span>strlen获取的字符串长度遇到第一个<span style="color:#960050;background-color:#1e0010">\</span><span style="color:#ae81ff">0</span><span style="color:#960050;background-color:#1e0010">结束且\</span><span style="color:#ae81ff">0</span><span style="color:#960050;background-color:#1e0010">不算做字符串长度之中</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//使用strlen函数获取字符串的长度
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">//strlen获取的字符串的长度遇到第一个\0结束
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> s1[<span style="color:#ae81ff">100</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;hel</span><span style="color:#ae81ff">\0</span><span style="color:#e6db74">lo&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;s1_len = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#a6e22e">strlen</span>(s1));
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;s1_size = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#66d9ef">sizeof</span>(s1));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>s2 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;hello&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;s2_len = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#a6e22e">strlen</span>(s2));
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;s2_size = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#66d9ef">sizeof</span>(s2));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>执行结果</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>s1_len <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>s1_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>
+</span></span><span style="display:flex;"><span>s2_len <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>s2_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>
+</span></span></code></pre></div><h3 id="二字符串拷贝函数">二、字符串拷贝函数<a hidden class="anchor" aria-hidden="true" href="#二字符串拷贝函数">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">strcpy</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>dest, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>src);
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">功能：将</span>src复制给dest
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">参数：</span>
+</span></span><span style="display:flex;"><span>  dest<span style="color:#960050;background-color:#1e0010">：目的字符串</span>
+</span></span><span style="display:flex;"><span>  src<span style="color:#960050;background-color:#1e0010">：源字符串</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">返回值：</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">保存</span>dest字符串的首地址
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">注意：</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">使用</span>strcpy函数复制字符串时必须保证dest足够大<span style="color:#960050;background-color:#1e0010">，否则会内存溢出</span>
+</span></span><span style="display:flex;"><span>  strcpy是将src字符串中第一个<span style="color:#960050;background-color:#1e0010">\</span><span style="color:#ae81ff">0</span><span style="color:#960050;background-color:#1e0010">之前包括\</span><span style="color:#ae81ff">0</span><span style="color:#960050;background-color:#1e0010">复制给</span>dest
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">strncpy</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>dest, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>src, <span style="color:#66d9ef">size_t</span> n);
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">函数的说明：</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">将</span>src指向的字符串前n个字节<span style="color:#960050;background-color:#1e0010">，拷贝到</span>dest指向的内存中
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">返回值</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">目的内存的首地址</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">注意：</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">1</span><span style="color:#960050;background-color:#1e0010">、</span>strncpy不拷贝 <span style="color:#960050;background-color:#1e0010">‘\</span><span style="color:#ae81ff">0</span><span style="color:#960050;background-color:#1e0010">’</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">2</span><span style="color:#960050;background-color:#1e0010">、如果</span>n大于src指向的字符串中的字符个数<span style="color:#960050;background-color:#1e0010">，则在</span>dest后面填充n<span style="color:#960050;background-color:#1e0010">‐</span><span style="color:#a6e22e">strlen</span>(src)<span style="color:#960050;background-color:#1e0010">个’\</span><span style="color:#ae81ff">0</span><span style="color:#960050;background-color:#1e0010">’</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//使用strcpy函数拷贝字符串
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> s1[<span style="color:#ae81ff">32</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;hello world&#34;</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//使用strcpy函数时，必须保证第一个参数的内存足够大
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">//char s1[5] = &#34;abcd&#34;;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> s2[<span style="color:#ae81ff">32</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;abcdefg&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">strcpy</span>(s1, s2);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;s1 = %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, s1);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> i;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span>(i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">32</span>; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;[%c] ‐ %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, s1[i], s1[i]);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>执行结果</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>s1 <span style="color:#f92672">=</span> abcdefg
+</span></span><span style="display:flex;"><span>[a] <span style="color:#f92672">-</span> <span style="color:#ae81ff">97</span>
+</span></span><span style="display:flex;"><span>[b] <span style="color:#f92672">-</span> <span style="color:#ae81ff">98</span>
+</span></span><span style="display:flex;"><span>[c] <span style="color:#f92672">-</span> <span style="color:#ae81ff">99</span>
+</span></span><span style="display:flex;"><span>[d] <span style="color:#f92672">-</span> <span style="color:#ae81ff">100</span>
+</span></span><span style="display:flex;"><span>[e] <span style="color:#f92672">-</span> <span style="color:#ae81ff">101</span>
+</span></span><span style="display:flex;"><span>[f] <span style="color:#f92672">-</span> <span style="color:#ae81ff">102</span>
+</span></span><span style="display:flex;"><span>[g] <span style="color:#f92672">-</span> <span style="color:#ae81ff">103</span>
+</span></span><span style="display:flex;"><span>[] <span style="color:#f92672">-</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>[r] <span style="color:#f92672">-</span> <span style="color:#ae81ff">114</span>
+</span></span><span style="display:flex;"><span>[l] <span style="color:#f92672">-</span> <span style="color:#ae81ff">108</span>
+</span></span><span style="display:flex;"><span>[d] <span style="color:#f92672">-</span> <span style="color:#ae81ff">100</span>
+</span></span><span style="display:flex;"><span>[] <span style="color:#f92672">-</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>[] <span style="color:#f92672">-</span> <span style="color:#ae81ff">0</span>
+</span></span></code></pre></div><h3 id="三字符串追加函数">三、字符串追加函数<a hidden class="anchor" aria-hidden="true" href="#三字符串追加函数">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">strcat</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>dest, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>src);
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">功能：将</span>src追加到dest的后面
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">参数：</span>
+</span></span><span style="display:flex;"><span>  dest<span style="color:#960050;background-color:#1e0010">：目的字符串</span>
+</span></span><span style="display:flex;"><span>  src<span style="color:#960050;background-color:#1e0010">：源字符串</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">返回值：</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">保存</span>dest字符串的首地址
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">strncat</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>dest, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>src, <span style="color:#66d9ef">size_t</span> n);
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">追加</span>src指向的字符串的前n个字符<span style="color:#960050;background-color:#1e0010">，到</span>dest指向的字符串的后面<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">注意如果</span>n <span style="color:#960050;background-color:#1e0010">大于</span>src的字符个数<span style="color:#960050;background-color:#1e0010">，则只将</span>src字符串追加到dest指向的字符串的后面
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">追加的时候会追加’\</span><span style="color:#ae81ff">0</span><span style="color:#960050;background-color:#1e0010">’</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//使用strcat函数追加字符串
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> s1[<span style="color:#ae81ff">32</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;hello world&#34;</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> s2[<span style="color:#ae81ff">32</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;abcdef&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//strcat是从s1的\0的位置开始追加，直到s2的第一个\0复制完毕后结束
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">strcat</span>(s1, s2);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;s1 = %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, s1);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>执行结果</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>s1 <span style="color:#f92672">=</span> hello worldabcdef
+</span></span></code></pre></div><h3 id="四字符串比较函数">四、字符串比较函数<a hidden class="anchor" aria-hidden="true" href="#四字符串比较函数">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">strcmp</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>s1, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>s2);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">strncmp</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>s1, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>s2, <span style="color:#66d9ef">size_t</span> n);
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">功能：</span>strcmp是比较两个字符串的内容<span style="color:#960050;background-color:#1e0010">，</span>strncmp是比较两个字符串的前n个字节是否一样
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">参数：</span>
+</span></span><span style="display:flex;"><span>  s1<span style="color:#960050;background-color:#1e0010">、</span>s2<span style="color:#960050;background-color:#1e0010">：要比较的两个字符串</span>
+</span></span><span style="display:flex;"><span>  n<span style="color:#960050;background-color:#1e0010">：</span>strncmp中的参数n表示要比较的字节数
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">返回值：</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">0</span> s1 <span style="color:#f92672">=</span> s2
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span> s1 <span style="color:#f92672">&gt;</span> s2
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;</span><span style="color:#ae81ff">0</span> s1 <span style="color:#f92672">&lt;</span> s2
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//使用strcmp比较两个字符串的内容是否一致
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">//strcmp函数一个字符一个字符比较，只要出现不一样的，就会立即返回
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> s1[] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;hello&#34;</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> s2[] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;w&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> ret <span style="color:#f92672">=</span> <span style="color:#a6e22e">strcmp</span>(s1, s2);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span>(ret <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;s1 = s2</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(ret <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;s1 &gt; s2</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;s1 &lt; s2</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>执行结果</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>s1 <span style="color:#f92672">&lt;</span> s2
+</span></span></code></pre></div><h3 id="五字符查找函数">五、字符查找函数<a hidden class="anchor" aria-hidden="true" href="#五字符查找函数">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">strchr</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>s, <span style="color:#66d9ef">int</span> c);
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">功能：在字符指针</span>s指向的字符串中<span style="color:#960050;background-color:#1e0010">，找</span>ascii <span style="color:#960050;background-color:#1e0010">码为</span>c的字符
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">参数：</span>
+</span></span><span style="display:flex;"><span>  s<span style="color:#960050;background-color:#1e0010">：指定的字符串</span>
+</span></span><span style="display:flex;"><span>  c<span style="color:#960050;background-color:#1e0010">：要查找的字符</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">返回值：</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">成功：找到的字符的地址</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">失败：</span>NULL
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">注意：</span>s指向的字符串中有多个ASCII为c的字符<span style="color:#960050;background-color:#1e0010">，则找的是第</span><span style="color:#ae81ff">1</span><span style="color:#960050;background-color:#1e0010">个字符</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">strrchr</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>s, <span style="color:#66d9ef">int</span> c);
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">功能：在</span>s指向的字符串中<span style="color:#960050;background-color:#1e0010">，找最后一次出现的</span>ASCII为c的字符<span style="color:#960050;background-color:#1e0010">，</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//使用strchr函数在一个字符串中查找字符
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> s[] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;hel6lo wor6ld&#34;</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//找第一个匹配的字符
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>ret <span style="color:#f92672">=</span> <span style="color:#a6e22e">strchr</span>(s, <span style="color:#e6db74">&#39;6&#39;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//找最后一个匹配的字符
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">//char *ret = strrchr(s, &#39;6&#39;);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span>(ret <span style="color:#f92672">==</span> NULL)
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;没有找到</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;找到了，在数组的第%d个位置</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, ret <span style="color:#960050;background-color:#1e0010">‐</span> s);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>执行结果</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">找到了，在数组的第</span><span style="color:#ae81ff">3</span><span style="color:#960050;background-color:#1e0010">个位置</span>
+</span></span></code></pre></div><h3 id="六字符串匹配函数">六、字符串匹配函数<a hidden class="anchor" aria-hidden="true" href="#六字符串匹配函数">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">strstr</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>haystack, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>needle);
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">函数说明：</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">在</span>haystack指向的字符串中查找needle指向的字符串<span style="color:#960050;background-color:#1e0010">，也是首次匹配</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">返回值：</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">找到了：找到的字符串的首地址</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">没找到：返回</span>NULL
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//使用strstr函数在一个字符串中查找另一个字符串
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> s[] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;1234:4567:666:789:666:7777&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//strstr查找的时候，查找的是第二个参数的第一个\0之前的内容
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>ret <span style="color:#f92672">=</span> <span style="color:#a6e22e">strstr</span>(s, <span style="color:#e6db74">&#34;666&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span>(ret <span style="color:#f92672">==</span> NULL)
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;没找到</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;找到了，在当前字符串的第%d个位置</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, ret <span style="color:#960050;background-color:#1e0010">‐</span> s);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>执行结果</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">找到了，在当前字符串的第</span><span style="color:#ae81ff">10</span><span style="color:#960050;background-color:#1e0010">个位置</span>
+</span></span></code></pre></div><h3 id="七字符串转换数值">七、字符串转换数值<a hidden class="anchor" aria-hidden="true" href="#七字符串转换数值">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdlib.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">atoi</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>nptr);
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">功能：将一个数字型字符串转化为整形数据</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">参数：</span>
+</span></span><span style="display:flex;"><span>  nptr<span style="color:#960050;background-color:#1e0010">：指定的字符串</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">返回值：</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">获取到的整形数据</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdlib.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//使用atoi将数字型字符串转化为整形数据
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> s1[] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;7856&#34;</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> ret1 <span style="color:#f92672">=</span> <span style="color:#a6e22e">atoi</span>(s1);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;ret1 = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, ret1);
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//使用atof将浮点型的字符串转化为浮点型数据
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> s2[] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;3.1415926&#34;</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">double</span> ret2 <span style="color:#f92672">=</span> <span style="color:#a6e22e">atof</span>(s2);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;ret2 = %lf</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, ret2);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>执行结果</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>ret1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">7856</span>
+</span></span><span style="display:flex;"><span>ret2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">3.141593</span>
+</span></span></code></pre></div><h3 id="八字符串切割函数">八、字符串切割函数<a hidden class="anchor" aria-hidden="true" href="#八字符串切割函数">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">strtok</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>str, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>delim);
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">功能：对字符串进行切割</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">参数：</span>
+</span></span><span style="display:flex;"><span>  str<span style="color:#960050;background-color:#1e0010">：要切割的字符串</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">第一次切割，就传入指定的字符串，后面所有次的切割传</span>NULL
+</span></span><span style="display:flex;"><span>  delim<span style="color:#960050;background-color:#1e0010">：标识符，要根据指定的</span>delim进行切割<span style="color:#960050;background-color:#1e0010">，切割的结果不包含</span>delim
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">返回值：</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">返回切割下来的字符串的首地址，如果都切割完毕，则返回</span>NULL
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//使用strtok函数切割字符串
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> s[] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;111:22222:33:4444444444:5555555555555&#34;</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>ret;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//第一次切割
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  ret <span style="color:#f92672">=</span> <span style="color:#a6e22e">strtok</span>(s, <span style="color:#e6db74">&#34;:&#34;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;ret = %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, ret);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//后面所有切割时都要将strtok的第一个参数传NULL
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">while</span>((ret <span style="color:#f92672">=</span> <span style="color:#a6e22e">strtok</span>(NULL, <span style="color:#e6db74">&#34;:&#34;</span>)) <span style="color:#f92672">!=</span> NULL)
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;ret = %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, ret);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>执行结果</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>ret <span style="color:#f92672">=</span> <span style="color:#ae81ff">111</span>
+</span></span><span style="display:flex;"><span>ret <span style="color:#f92672">=</span> <span style="color:#ae81ff">22222</span>
+</span></span><span style="display:flex;"><span>ret <span style="color:#f92672">=</span> <span style="color:#ae81ff">33</span>
+</span></span><span style="display:flex;"><span>ret <span style="color:#f92672">=</span> <span style="color:#ae81ff">4444444444</span>
+</span></span><span style="display:flex;"><span>ret <span style="color:#f92672">=</span> <span style="color:#ae81ff">5555555555555</span>
+</span></span></code></pre></div><h3 id="九格式化字符串操作函数">九、格式化字符串操作函数<a hidden class="anchor" aria-hidden="true" href="#九格式化字符串操作函数">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">sprintf</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>str, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>format, ...);
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">功能：将按照格式保存的字符串复制给</span>str
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">参数：</span>
+</span></span><span style="display:flex;"><span>  str<span style="color:#960050;background-color:#1e0010">：保存字符串</span>
+</span></span><span style="display:flex;"><span>  format<span style="color:#960050;background-color:#1e0010">：同</span>printf
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">返回值：</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">保存的字符串的字节数</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">sscanf</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>str, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>format, ...);
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">功能：</span>scanf是从终端读取数据并赋值给对应变量<span style="color:#960050;background-color:#1e0010">，而</span>sscanf是从第一个参数中读取数据
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">参数：</span>
+</span></span><span style="display:flex;"><span>  str<span style="color:#960050;background-color:#1e0010">：指定要获取内容的字符串</span>
+</span></span><span style="display:flex;"><span>  format<span style="color:#960050;background-color:#1e0010">：按照格式获取数据保存在变量中</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">返回值：</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">成功获取的个数</span>
+</span></span></code></pre></div><h4 id="91-sprintf和sscanf的基本用法">9.1 sprintf和sscanf的基本用法<a hidden class="anchor" aria-hidden="true" href="#91-sprintf和sscanf的基本用法">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">//sprintf和sscanf的基本用法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">test1</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> buf[<span style="color:#ae81ff">20</span>];
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> a, b, c;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">sprintf</span>(buf,<span style="color:#e6db74">&#34;%d:%d:%d&#34;</span>,<span style="color:#ae81ff">2013</span>,<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;buf = %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,buf);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">sscanf</span>(<span style="color:#e6db74">&#34;2013:10:1&#34;</span>, <span style="color:#e6db74">&#34;%d:%d:%d&#34;</span>, <span style="color:#f92672">&amp;</span>a, <span style="color:#f92672">&amp;</span>b, <span style="color:#f92672">&amp;</span>c);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;a=%d,b=%d,c=%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,a,b,c);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>执行结果</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>buf <span style="color:#f92672">=</span> <span style="color:#ae81ff">2013</span><span style="color:#f92672">:</span><span style="color:#ae81ff">10</span><span style="color:#f92672">:</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>a<span style="color:#f92672">=</span><span style="color:#ae81ff">2013</span>,b<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>,c<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
+</span></span></code></pre></div><h4 id="92-sscanf高级用法">9.2 sscanf高级用法<a hidden class="anchor" aria-hidden="true" href="#92-sscanf高级用法">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">//sscanf高级用法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">test2</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//1、跳过数据：%*s或%*d
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> buf1[<span style="color:#ae81ff">20</span>];
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">sscanf</span>(<span style="color:#e6db74">&#34;1234 5678&#34;</span>,<span style="color:#e6db74">&#34;%*d %s&#34;</span>,buf1);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,buf1);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//2、读指定宽度的数据：%[width]s
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> buf2[<span style="color:#ae81ff">20</span>];
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">sscanf</span>(<span style="color:#e6db74">&#34;12345678&#34;</span>,<span style="color:#e6db74">&#34;%4s &#34;</span>,buf2);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,buf2);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//3、支持集合操作：只支持获取字符串
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// %[a‐z] 表示匹配a到z中任意字符(尽可能多的匹配)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// %[aBc] 匹配a、B、c中一员，贪婪性
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// %[^aFc] 匹配非a、F、c的任意字符，贪婪性
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// %[^a‐z] 表示读取除a‐z以外的所有字符
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> buf3[<span style="color:#ae81ff">20</span>];
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">sscanf</span>(<span style="color:#e6db74">&#34;agcd32DajfDdFF&#34;</span>,<span style="color:#e6db74">&#34;%[a‐z]&#34;</span>,buf3);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,buf3);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>执行结果</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#ae81ff">5678</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1234</span>
+</span></span><span style="display:flex;"><span>agcd
+</span></span></code></pre></div><h3 id="十const">十、const<a hidden class="anchor" aria-hidden="true" href="#十const">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//const修饰全局变量
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//此时全局变量只能使用但是不能修改，
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//如果直接拿全局变量修改值，编译直接报错
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//如果使用全局变量的地址修改值，运行时程序异常结束
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">test1</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;a = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, a);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//a = 666;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">//printf(&#34;a = %d\n&#34;, a);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>p <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>a;
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">*</span>p <span style="color:#f92672">=</span> <span style="color:#ae81ff">888</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;a = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, a);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//const修饰普通局部变量
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//可以读取变量的值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//不能直接通过变量进行修改值，编译报错
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//可以通过变量的地址修改值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">test2</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> b <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;b = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, b);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//b = 666;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">//printf(&#34;b = %d\n&#34;, b);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>p <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>b;
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">*</span>p <span style="color:#f92672">=</span> <span style="color:#ae81ff">888</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;b = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, b);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//const修饰指针变量
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">//如果const修饰指针变量的类型，无法通过指针变量修改地址里面的值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">//如果const修饰指针变量，无法修改指针变量保存的地址
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">//如果const既修饰指针变量的类型，又修饰指针变量，则只能通过原本变量修改值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">test3</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> c <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//const修饰指针变量的类型
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">//const int * p = &amp;c;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">//const修饰指针变量
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">//int * const p = &amp;c;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">//const既修饰指针变量的类型，又修饰指针变量
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">const</span> p <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>c;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;*p = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">*</span>p);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  c <span style="color:#f92672">=</span> <span style="color:#ae81ff">666</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;*p = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">*</span>p);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">*</span>p <span style="color:#f92672">=</span> <span style="color:#ae81ff">777</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;*p = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">*</span>p);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> d <span style="color:#f92672">=</span> <span style="color:#ae81ff">888</span>;
+</span></span><span style="display:flex;"><span>  p <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>d;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;*p = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">*</span>p);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">test3</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>**彩蛋：**🎁</p>
+<p>当你走在灿烂的阳光下，你会惊奇地发现，生命的一切及苦难，不过是在插满尖玻璃的墙头上行走。</p>
+<ul>
+<li>塞斯·诺特博姆《狐狸在夜晚来临》</li>
+</ul>
+<p>恭喜你🎉，完成了对第七章《字符串处理函数》部分的学习，下一章我们将学习结构体，共用体，枚举。</p>
+<p>⏩第八章 《结构体，共用体，枚举》</p>
+
+
+        </div>
+
+        <footer class="post-footer">
+            
+<nav class="paginav">
+  <a class="prev" href="https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_06dynamic_memory_request/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>【嵌入式高级C编程】第六章 动态内存申请</span>
+  </a>
+  <a class="next" href="https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_04preprocessing/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>【嵌入式高级C编程】第四章 预处理</span>
+  </a>
+</nav>
+
+        </footer>
+    </div>
+</article>
+</main>
+
+<footer class="footer">
+    <span>
+        Copyright
+        &copy;
+        -2023
+        <a href="https://eddyblog.cn" style="color:#939393;">Eddy&#39;s blog</a>
+        All Rights Reserved
+    </span>
+    <a href="https://beian.miit.gov.cn/" target="_blank" style="color:#939393;"></a>&nbsp;
+    <span>
+        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=null"
+           style="display:inline-block;text-decoration:none;height:20px;color:#939393;">
+            <img src="" style="float:left;margin: 0px 5px 0px 0px;"/>
+            
+        </a>
+    </span>
+    <span id="busuanzi_container">
+        <span class="fa fa-user"></span> <span id="busuanzi_value_site_uv"></span>
+        <span class="fa fa-eye"></span> <span id="busuanzi_value_site_pv"></span>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <span class="topInner">
+        <svg class="topSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z"/>
+        </svg>
+        <span id="read_progress"></span>
+    </span>
+</a>
+
+<script>
+    document.addEventListener('scroll', function (e) {
+        const readProgress = document.getElementById("read_progress");
+        const scrollHeight = document.documentElement.scrollHeight;
+        const clientHeight = document.documentElement.clientHeight;
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        readProgress.innerText = ((scrollTop / (scrollHeight - clientHeight)).toFixed(2) * 100).toFixed(0);
+    })
+</script>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+</script>
+<script>
+    let mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        (function() {
+            document.cookie = "change-themes" + "="+ escape ("false");
+        })()
+
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    });
+</script>
+
+<script>
+    document.body.addEventListener('copy', function (e) {
+        if (window.getSelection().toString() && window.getSelection().toString().length > 50) {
+            let clipboardData = e.clipboardData || window.clipboardData;
+            if (clipboardData) {
+                e.preventDefault();
+                let htmlData = window.getSelection().toString() +
+                    '\r\n\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                let textData = window.getSelection().toString() +
+                    '\r\n\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                clipboardData.setData('text/html', htmlData);
+                clipboardData.setData('text/plain', textData);
+            }
+        }
+    });
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = '复制';
+
+        function copyingDone() {
+            copybutton.innerText = '已复制！';
+            setTimeout(() => {
+                copybutton.innerText = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                let text = codeblock.textContent +
+                    '\r\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                navigator.clipboard.writeText(text);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) {}
+            selection.removeRange(range);
+        });
+
+        let language = codeblock.className.replaceAll("language-", "")
+        let macTool = document.createElement("div")
+        let macTool1 = document.createElement("div")
+        let macTool2 = document.createElement("div")
+        let macTool3 = document.createElement("div")
+        let languageType = document.createElement("div")
+        languageType.innerText = language
+        macTool.setAttribute('class', 'mac-tool')
+        macTool1.setAttribute('class', 'mac bb1')
+        macTool2.setAttribute('class', 'mac bb2')
+        macTool3.setAttribute('class', 'mac bb3')
+        languageType.setAttribute('class', 'language-type')
+        macTool.appendChild(macTool1)
+        macTool.appendChild(macTool2)
+        macTool.appendChild(macTool3)
+        macTool.appendChild(languageType)
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+            container.appendChild(macTool)
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+            container.appendChild(macTool)
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+            container.appendChild(macTool)
+        }
+    });
+</script>
+</body>
+
+</html>

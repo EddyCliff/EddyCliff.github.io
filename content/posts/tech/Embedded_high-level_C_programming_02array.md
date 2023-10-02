@@ -60,7 +60,7 @@ cover:
 
 #### 2.1 按元素的类型分类
 
-1） 字符数组
+1）字符数组
 
 即若干个字符变量的集合，数组中的每个元素都是字符型的变量
 
@@ -164,7 +164,12 @@ int main(int argc, char *argv[])
 
 执行结果
 
-![image.png](https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Embedded_high-level_C_programming/image.png)
+```C
+sizeof(a) = 40 40
+sizeof(b) = 12
+```
+
+
 
 #### 3.2 二维数组的定义
 
@@ -199,7 +204,12 @@ int main(int argc, char *argv[])
 
 执行结果
 
-![image1.png](https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Embedded_high-level_C_programming/image1.png)
+```C
+sizeof(c) = 32 32
+sizeof(d) = 32
+```
+
+
 
 - 为什么sizeof(d) = 32？
 
@@ -370,7 +380,18 @@ int main(int argc, char *argv[])
 
 执行结果
 
-![image2.png](https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Embedded_high-level_C_programming/image2.png)
+```C
+a[0] = 111
+a[1] = 222
+a[2] = 333
+a[3] = 10000
+a[4] = 555
+a[5] = 666
+**********************
+1   2   3   4
+5   6   7   8
+666 10  11  12
+```
 
 
 
@@ -396,7 +417,7 @@ int main(int argc, char *argv[])
 
 2.上面的数组c2在内存中的实际存放情况为：
 
-![image3.png](https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Embedded_high-level_C_programming/image3.png)
+![02array_image.png](https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Embedded_high-level_C_programming/02array_image.png)
 
 注：'\0'是由C编译系统自动加上的3.由于采用了'\0'标志，字符数组的输入输出将变得简单方便.
 
@@ -422,4 +443,19 @@ int main(int argc, char *argv[])
 
 执行结果
 
-![image4.png](https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Embedded_high-level_C_programming/image4.png)
+```C
+nihao
+ch = nihao
+```
+
+
+
+**彩蛋：**🎁
+
+秋日薄暮，用菊花煮竹叶青，人与海棠俱醉。 
+
+- 林清玄《温一壶月光下酒》
+
+恭喜你🎉，完成了对第二章《数组》部分的学习，下一章我们将学习函数。
+
+⏩第三章 《函数》

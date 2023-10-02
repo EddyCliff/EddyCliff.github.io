@@ -31,6 +31,11 @@ cover:
     alt: ""
     relative: false
 ---
+
+
+
+
+
 ## 第三章 函数
 
 ### 一、函数的概念
@@ -393,9 +398,9 @@ int main(int argc, char *argv[])
 
 函数的调用方法
 
-变量= 函数名(实参列表); //带返回值的
+变量= 函数名(实参列表);   //带返回值的
 
-函数名(实参列表); //不带返回值的
+函数名(实参列表);   //不带返回值的
 
 ```C
 #include <stdio.h>
@@ -405,15 +410,15 @@ void myfun2(int a, int b);
 int myfun3(int a, int b);
 int main(int argc, char *argv[])
 {
-//函数的调用
-//没有参数也没有返回值
-//直接写函数名，并且要在后面加括号
+  //函数的调用
+  //没有参数也没有返回值
+  //直接写函数名，并且要在后面加括号
   myfun1();
 
   printf("**********************\n");
 
-//有参数，没有返回值
-//需要在函数名右边括号中传入参数，参数可以是常量表达式，也可以是变量表达式
+  //有参数，没有返回值
+  //需要在函数名右边括号中传入参数，参数可以是常量表达式，也可以是变量表达式
   myfun2(100, 90);
 
   int x = 10, y = 20;
@@ -422,10 +427,10 @@ int main(int argc, char *argv[])
 
   printf("**********************\n");
 
-//有参数也有返回值
-//可以使用一个变量接收函数执行结果（返回值），或者直接输出也可以
+  //有参数也有返回值
+  //可以使用一个变量接收函数执行结果（返回值），或者直接输出也可以
   int n;
-    n = myfun3(100, 90);
+  n = myfun3(100, 90);
   printf("n = %d\n", n);
 
   printf("sum = %d\n", myfun3(90, 66));
@@ -441,8 +446,7 @@ void myfun1()
   return ;
 }
 
-//a、b：形参，形式参数，主要用于保存实参传递的值，本质跟实参没有任何关系，只是
-值传递
+//a、b：形参，形式参数，主要用于保存实参传递的值，本质跟实参没有任何关系，只是值传递
 void myfun2(int a, int b)
 {
   int sum;
@@ -462,7 +466,19 @@ int myfun3(int a, int b)
 
 执行结果
 
-![image5.png](https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Embedded_high-level_C_programming/image5.png)
+```C
+hello world
+nihao beijing
+welcome to 1000phone
+**********************
+100 + 90 = 190
+10 + 20 = 30
+**********************
+n = 190
+sum = 156
+```
+
+
 
 ### 六、函数总结
 
@@ -587,7 +603,14 @@ int main(int argc, char *argv[])
 }
 ```
 
-![image6.png](https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Embedded_high-level_C_programming/image6.png)
+执行结果
+
+```C
+num = 0
+num = 888
+```
+
+
 
 #### 7.3 静态全局变量
 
@@ -638,7 +661,10 @@ int main(int argc, char *argv[])
 
 执行结果
 
-![image7.png](https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Embedded_high-level_C_programming/image7.png)
+```C
+num = 0
+num = 1
+```
 
 
 
@@ -686,8 +712,8 @@ void myfun()
 
 int main(int argc, char *argv[])
 {
-//局部变量只能在定义的函数内部使用，声明周期相对较短，函数结束，局部变量就会释放
-//printf("num = %d\n", num);
+  //局部变量只能在定义的函数内部使用，声明周期相对较短，函数结束，局部变量就会释放
+  //printf("num = %d\n", num);
   myfun();
   myfun();
   myfun();
@@ -698,7 +724,11 @@ int main(int argc, char *argv[])
 
 执行结果
 
-![image8.png](https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Embedded_high-level_C_programming/image8.png)
+```C
+num = 101
+num = 101
+num = 101
+```
 
 
 
@@ -723,8 +753,8 @@ int main(int argc, char *argv[])
 
 void myfun()
 {
-//如果普通局部变量不进行初始化，则默认是随机值
-//如果静态局部变量不进行初始化，则默认是0
+  //如果普通局部变量不进行初始化，则默认是随机值
+  //如果静态局部变量不进行初始化，则默认是0
   int a; //普通局部变量
   static int num; //静态局部变量
 
@@ -734,8 +764,8 @@ void myfun()
 
 void myfun1()
 {
-//静态局部变量不会随着当前函数执行结束而释放空间，下次使用的函数之前的空间
-//静态局部变量只会初始化一次
+  //静态局部变量不会随着当前函数执行结束而释放空间，下次使用的函数之前的空间
+  //静态局部变量只会初始化一次
   static int num1 = 100;
   num1++;
 
@@ -755,7 +785,15 @@ int main(int argc, char *argv[])
 
 执行结果
 
-![image9.png](https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Embedded_high-level_C_programming/image9.png)
+```C
+a = 420043
+num = 0
+num1 = 101
+num1 = 102
+num1 = 103
+```
+
+
 
 注意：
 
@@ -773,15 +811,13 @@ int main(int argc, char *argv[])
 
 即函数可以在程序的任何一个文件中调用。
 
-在分文件编程中，只需要将函数的实现过程写在指定的.c文件中，然后将其声明写在指定
-
-的.h文件中，其他文件只要包含了头文件，就可以使用外部函数
+在分文件编程中，只需要将函数的实现过程写在指定的.c文件中，然后将其声明写在指定的.h文件中，其他文件只要包含了头文件，就可以使用外部函数。
 
 
 
 #### 7.7 内部函数
 
-内部函数也称之为静态函数，就是用static修饰的函数
+内部函数也称之为静态函数，就是用static修饰的函数。
 
 在定义函数的时候，返回值类型前面加static 修饰。这样的函数被称为内部函数。
 
@@ -815,3 +851,15 @@ int main()
   return 0;
 }
 ```
+
+
+
+**彩蛋：**🎁
+
+秋是第二个春，此时，每一片叶子都是一朵鲜花。 
+
+- 阿尔贝 · 加缪《秋是第二个春》
+
+恭喜你🎉，完成了对第三章《函数》部分的学习，下一章我们将学习预处理。
+
+⏩第四章 《预处理》

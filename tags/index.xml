@@ -6,7 +6,88 @@
     <description>Recent content in 🧩 标签 on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Sat, 30 Sep 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 01 Oct 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>C programming</title>
+      <link>https://eddyblog.cn/tags/c-programming/</link>
+      <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/tags/c-programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>common body</title>
+      <link>https://eddyblog.cn/tags/common-body/</link>
+      <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/tags/common-body/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Dynamic memory request</title>
+      <link>https://eddyblog.cn/tags/dynamic-memory-request/</link>
+      <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/tags/dynamic-memory-request/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Embedded Development</title>
+      <link>https://eddyblog.cn/tags/embedded-development/</link>
+      <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/tags/embedded-development/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>enumeration</title>
+      <link>https://eddyblog.cn/tags/enumeration/</link>
+      <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/tags/enumeration/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pointer</title>
+      <link>https://eddyblog.cn/tags/pointer/</link>
+      <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/tags/pointer/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>preprocessing</title>
+      <link>https://eddyblog.cn/tags/preprocessing/</link>
+      <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/tags/preprocessing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>String Manipulation functions</title>
+      <link>https://eddyblog.cn/tags/string-manipulation-functions/</link>
+      <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/tags/string-manipulation-functions/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Struct</title>
+      <link>https://eddyblog.cn/tags/struct/</link>
+      <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/tags/struct/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>(Learning) Series Notes</title>
       <link>https://eddyblog.cn/tags/learning-series-notes/</link>
@@ -40,24 +121,6 @@
       <pubDate>Sat, 16 Sep 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/tags/array/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>C programming</title>
-      <link>https://eddyblog.cn/tags/c-programming/</link>
-      <pubDate>Sat, 16 Sep 2023 00:17:58 +0800</pubDate>
-      
-      <guid>https://eddyblog.cn/tags/c-programming/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Embedded Development</title>
-      <link>https://eddyblog.cn/tags/embedded-development/</link>
-      <pubDate>Sat, 16 Sep 2023 00:17:58 +0800</pubDate>
-      
-      <guid>https://eddyblog.cn/tags/embedded-development/</guid>
       <description></description>
     </item>
     
