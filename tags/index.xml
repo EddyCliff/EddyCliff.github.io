@@ -6,13 +6,58 @@
     <description>Recent content in 🧩 标签 on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Sun, 01 Oct 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 05 Nov 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LLC resonant converter</title>
+      <link>https://eddyblog.cn/tags/llc-resonant-converter/</link>
+      <pubDate>Sun, 05 Nov 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/tags/llc-resonant-converter/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Power technology</title>
+      <link>https://eddyblog.cn/tags/power-technology/</link>
+      <pubDate>Sun, 05 Nov 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/tags/power-technology/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>switching mode power supply</title>
+      <link>https://eddyblog.cn/tags/switching-mode-power-supply/</link>
+      <pubDate>Sun, 05 Nov 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/tags/switching-mode-power-supply/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>C programming</title>
       <link>https://eddyblog.cn/tags/c-programming/</link>
-      <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
+      <pubDate>Mon, 23 Oct 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/tags/c-programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Embedded Development</title>
+      <link>https://eddyblog.cn/tags/embedded-development/</link>
+      <pubDate>Mon, 23 Oct 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/tags/embedded-development/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>file</title>
+      <link>https://eddyblog.cn/tags/file/</link>
+      <pubDate>Mon, 23 Oct 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/tags/file/</guid>
       <description></description>
     </item>
     
@@ -31,15 +76,6 @@
       <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/tags/dynamic-memory-request/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Embedded Development</title>
-      <link>https://eddyblog.cn/tags/embedded-development/</link>
-      <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
-      
-      <guid>https://eddyblog.cn/tags/embedded-development/</guid>
       <description></description>
     </item>
     

@@ -2,6 +2,51 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://eddyblog.cn/posts/tech/llc_resonant_converters-chapter_0_definition_and-advantages_of_llc/</loc>
+    <lastmod>2023-11-05T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/posts/tech/llc_resonant_converters-chapter_1_introduction_to_llc/</loc>
+    <lastmod>2023-11-05T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/posts/tech/llc_resonant_converter-chapter_2_llc_resonant_converter_principle_of_operation/</loc>
+    <lastmod>2023-11-05T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/posts/tech/llc_resonantconverter-chapter_3_llc_characterization/</loc>
+    <lastmod>2023-11-05T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/posts/tech/</loc>
+    <lastmod>2023-11-05T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/posts/</loc>
+    <lastmod>2023-11-05T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/</loc>
+    <lastmod>2023-11-05T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/tags/llc-resonant-converter/</loc>
+    <lastmod>2023-11-05T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/tags/power-technology/</loc>
+    <lastmod>2023-11-05T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/tags/switching-mode-power-supply/</loc>
+    <lastmod>2023-11-05T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/tags/</loc>
+    <lastmod>2023-11-05T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_10file/</loc>
+    <lastmod>2023-10-23T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/tags/c-programming/</loc>
+    <lastmod>2023-10-23T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/tags/embedded-development/</loc>
+    <lastmod>2023-10-23T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/tags/file/</loc>
+    <lastmod>2023-10-23T00:17:58+08:00</lastmod>
+  </url><url>
     <loc>https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_08_struct_common-body_enumeration/</loc>
     <lastmod>2023-10-01T00:17:58+08:00</lastmod>
   </url><url>
@@ -17,25 +62,10 @@
     <loc>https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_05pointer/</loc>
     <lastmod>2023-10-01T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/tech/</loc>
-    <lastmod>2023-10-01T00:17:58+08:00</lastmod>
-  </url><url>
-    <loc>https://eddyblog.cn/posts/</loc>
-    <lastmod>2023-10-01T00:17:58+08:00</lastmod>
-  </url><url>
-    <loc>https://eddyblog.cn/tags/c-programming/</loc>
-    <lastmod>2023-10-01T00:17:58+08:00</lastmod>
-  </url><url>
     <loc>https://eddyblog.cn/tags/common-body/</loc>
     <lastmod>2023-10-01T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/tags/dynamic-memory-request/</loc>
-    <lastmod>2023-10-01T00:17:58+08:00</lastmod>
-  </url><url>
-    <loc>https://eddyblog.cn/</loc>
-    <lastmod>2023-10-01T00:17:58+08:00</lastmod>
-  </url><url>
-    <loc>https://eddyblog.cn/tags/embedded-development/</loc>
     <lastmod>2023-10-01T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/tags/enumeration/</loc>
@@ -51,9 +81,6 @@
     <lastmod>2023-10-01T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/tags/struct/</loc>
-    <lastmod>2023-10-01T00:17:58+08:00</lastmod>
-  </url><url>
-    <loc>https://eddyblog.cn/tags/</loc>
     <lastmod>2023-10-01T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/tags/learning-series-notes/</loc>
