@@ -202,7 +202,22 @@ img:active {
     background-attachment: fixed;
 }
 
+/* 媒体查询：应用于移动设备（例如最大宽度为 769px 的设备） */
+@media screen and (max-width: 769px) {
+    .list {
+        background-image: url("../../img/mobile-day.png") !important;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+    }
 
+    .dark.list {
+        background-image: url("../../img/mobile-night.png") !important;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+}
 
 
 
