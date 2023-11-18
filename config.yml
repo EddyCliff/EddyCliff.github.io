@@ -52,6 +52,8 @@ languages:
             url: posts/read
           - name: 🎶 艺术
             url: posts/art
+          - name: 🎂 生活
+            url: posts/life
           
     menu:
       main:
