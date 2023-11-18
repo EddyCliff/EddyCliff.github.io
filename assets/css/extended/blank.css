@@ -202,21 +202,7 @@ img:active {
     background-attachment: fixed;
 }
 
-@media screen and (max-width: 769px) {
-    .list {
-        background-image: url("../../img/mobile-day.jpg") !important;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-attachment: fixed;
-    }
 
-    .dark.list {
-        background-image: url("../../img/mobile-night.jpg") !important;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-attachment: fixed;
-    }
-}
 
 
 
