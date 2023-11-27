@@ -16,7 +16,7 @@ tags:
 - Hugo
 - Website construction
 description: 
-weight:
+weight: 3
 slug: ""
 draft: false # 是否为草稿
 comments: false

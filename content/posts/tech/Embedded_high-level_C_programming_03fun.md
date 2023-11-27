@@ -14,7 +14,7 @@ tags:
 - Embedded Development
 - function
 description: 
-weight:
+weight: 2
 slug: ""
 draft: false # 是否为草稿
 comments: false

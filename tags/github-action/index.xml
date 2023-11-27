@@ -8,21 +8,21 @@
     <language>zh</language>
     <lastBuildDate>Tue, 12 Sep 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/github-action/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>【GitHub使用指南】解决Git操作错误 - Github Action问题分析</title>
-      <link>https://eddyblog.cn/posts/tech/github_git_action_error/</link>
-      <pubDate>Tue, 12 Sep 2023 00:17:58 +0800</pubDate>
-      
-      <guid>https://eddyblog.cn/posts/tech/github_git_action_error/</guid>
-      <description>问题描述 当使用GitHub Actions执行工作流程时，有时会遇到错误消息，其中一个常见的错误是：Action failed with &#39;not found deploy key or tokens。这个错误通常表示GitHub Actions在执行过程中找不到有效的部署密钥或访问令牌。这篇博客将帮助你了解如何解决这个问题。 错误原因分析 在Gi</description>
-    </item>
-    
-    <item>
       <title>【Hugo网站搭建】GitHub Action自动化部署Hugo博客</title>
       <link>https://eddyblog.cn/posts/tech/github_action_hugo/</link>
       <pubDate>Wed, 06 Sep 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/github_action_hugo/</guid>
       <description>前言 在本文中，我们将介绍如何通过GitHub Action自动化部署Hugo博客。如果你是一个博客作者，你可能已经熟悉了使用Hugo构建和管理你的博客。Hugo是一个快速且灵活的静态网站生成器，但是手动部署博客可能会变得繁琐。为了解决这个问题，我们可以利用GitHub Action，</description>
+    </item>
+    
+    <item>
+      <title>【GitHub使用指南】解决Git操作错误 - Github Action问题分析</title>
+      <link>https://eddyblog.cn/posts/tech/github_git_action_error/</link>
+      <pubDate>Tue, 12 Sep 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/github_git_action_error/</guid>
+      <description>问题描述 当使用GitHub Actions执行工作流程时，有时会遇到错误消息，其中一个常见的错误是：Action failed with &#39;not found deploy key or tokens。这个错误通常表示GitHub Actions在执行过程中找不到有效的部署密钥或访问令牌。这篇博客将帮助你了解如何解决这个问题。 错误原因分析 在Gi</description>
     </item>
     
   </channel>

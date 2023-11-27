@@ -2,29 +2,71 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://eddyblog.cn/posts/tech/llc_resonant_converters-chapter_0_definition_and-advantages_of_llc/</loc>
+    <lastmod>2023-11-05T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_03fun/</loc>
+    <lastmod>2023-09-16T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/posts/tech/github_action_hugo/</loc>
+    <lastmod>2023-09-06T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/posts/tech/github_git_action_error/</loc>
+    <lastmod>2023-09-12T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/posts/tech/computer_network_chapter_08/</loc>
+    <lastmod>2023-11-27T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/posts/tech/computer_network_chapter_02/</loc>
+    <lastmod>2023-11-27T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/posts/tech/computer_network_chapter_09/</loc>
+    <lastmod>2023-11-27T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/posts/tech/computer_network_chapter_06/</loc>
+    <lastmod>2023-11-27T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/posts/tech/computer_network_chapter_07/</loc>
+    <lastmod>2023-11-27T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/posts/tech/computer_network_chapter_03/</loc>
+    <lastmod>2023-11-27T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/posts/tech/computer_network_chapter_04/</loc>
+    <lastmod>2023-11-27T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/posts/tech/computer_network_chapter_05/</loc>
+    <lastmod>2023-11-27T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/posts/tech/computer_network_chapter_01/</loc>
+    <lastmod>2023-11-27T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/posts/tech/</loc>
+    <lastmod>2023-11-27T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/posts/</loc>
+    <lastmod>2023-11-27T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/tags/computer-network/</loc>
+    <lastmod>2023-11-27T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/</loc>
+    <lastmod>2023-11-27T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/tags/</loc>
+    <lastmod>2023-11-27T00:17:58+08:00</lastmod>
+  </url><url>
     <loc>https://eddyblog.cn/posts/life/kitchen_notes-about_chicken_legs_and_fish/</loc>
     <lastmod>2023-11-21T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/posts/life/</loc>
     <lastmod>2023-11-21T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/</loc>
-    <lastmod>2023-11-21T00:17:58+08:00</lastmod>
-  </url><url>
     <loc>https://eddyblog.cn/tags/culinary-arts/</loc>
-    <lastmod>2023-11-21T00:17:58+08:00</lastmod>
-  </url><url>
-    <loc>https://eddyblog.cn/</loc>
     <lastmod>2023-11-21T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/tags/kitchen-notes/</loc>
     <lastmod>2023-11-21T00:17:58+08:00</lastmod>
-  </url><url>
-    <loc>https://eddyblog.cn/tags/</loc>
-    <lastmod>2023-11-21T00:17:58+08:00</lastmod>
-  </url><url>
-    <loc>https://eddyblog.cn/posts/tech/llc_resonant_converters-chapter_0_definition_and-advantages_of_llc/</loc>
-    <lastmod>2023-11-05T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/posts/tech/llc_resonant_converters-chapter_1_introduction_to_llc/</loc>
     <lastmod>2023-11-05T00:17:58+08:00</lastmod>
@@ -33,9 +75,6 @@
     <lastmod>2023-11-05T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/posts/tech/llc_resonantconverter-chapter_3_llc_characterization/</loc>
-    <lastmod>2023-11-05T00:17:58+08:00</lastmod>
-  </url><url>
-    <loc>https://eddyblog.cn/posts/tech/</loc>
     <lastmod>2023-11-05T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/tags/llc-resonant-converter/</loc>
@@ -113,9 +152,6 @@
     <loc>https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_02array/</loc>
     <lastmod>2023-09-16T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_03fun/</loc>
-    <lastmod>2023-09-16T00:17:58+08:00</lastmod>
-  </url><url>
     <loc>https://eddyblog.cn/tags/array/</loc>
     <lastmod>2023-09-16T00:17:58+08:00</lastmod>
   </url><url>
@@ -129,9 +165,6 @@
     <lastmod>2023-09-12T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/posts/tech/github_git_push_502_bad_gateway/</loc>
-    <lastmod>2023-09-12T00:17:58+08:00</lastmod>
-  </url><url>
-    <loc>https://eddyblog.cn/posts/tech/github_git_action_error/</loc>
     <lastmod>2023-09-12T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/tags/c/</loc>
@@ -154,9 +187,6 @@
   </url><url>
     <loc>https://eddyblog.cn/tags/github-action/</loc>
     <lastmod>2023-09-12T00:17:58+08:00</lastmod>
-  </url><url>
-    <loc>https://eddyblog.cn/posts/tech/github_action_hugo/</loc>
-    <lastmod>2023-09-06T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/tags/hugo/</loc>
     <lastmod>2023-09-06T00:17:58+08:00</lastmod>

@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>【计算机网络】第七章 网络安全 | Eddy&#39;s blog</title>
+<meta name="keywords" content="computer network">
+<meta name="description" content="第七章 网络安全 本章重要概念 1）计算机网络上的通信面临的威胁可分为两大类，即被动攻击（如截获）和主动攻击(如中断、篡改、伪造)。主动攻击的类型有更改报文流、拒绝服务、伪造初始化、恶意程序（病毒、蠕虫、木马、逻辑炸弹、后门入侵、流氓软件）等。 2）计算机网络安全主要有以下一些内容：机密">
+<meta name="author" content="Eddy">
+<link rel="canonical" href="https://eddyblog.cn/posts/tech/computer_network_chapter_07/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.js" onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://eddyblog.cn/img/logo3.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://eddyblog.cn/img/logo3.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://eddyblog.cn/img/logo3.png">
+<link rel="apple-touch-icon" href="https://eddyblog.cn/img/logo3.png">
+<link rel="mask-icon" href="https://eddyblog.cn/img/logo3.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<script defer src="https://unpkg.com/mermaid@8.8.1/dist/mermaid.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = ""; 
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<meta property="og:title" content="【计算机网络】第七章 网络安全" />
+<meta property="og:description" content="第七章 网络安全 本章重要概念 1）计算机网络上的通信面临的威胁可分为两大类，即被动攻击（如截获）和主动攻击(如中断、篡改、伪造)。主动攻击的类型有更改报文流、拒绝服务、伪造初始化、恶意程序（病毒、蠕虫、木马、逻辑炸弹、后门入侵、流氓软件）等。 2）计算机网络安全主要有以下一些内容：机密" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://eddyblog.cn/posts/tech/computer_network_chapter_07/" />
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/note6.jpg" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-11-27T00:17:58+08:00" />
+<meta property="article:modified_time" content="2023-11-27T00:17:58+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/note6.jpg" />
+<meta name="twitter:title" content="【计算机网络】第七章 网络安全"/>
+<meta name="twitter:description" content="第七章 网络安全 本章重要概念 1）计算机网络上的通信面临的威胁可分为两大类，即被动攻击（如截获）和主动攻击(如中断、篡改、伪造)。主动攻击的类型有更改报文流、拒绝服务、伪造初始化、恶意程序（病毒、蠕虫、木马、逻辑炸弹、后门入侵、流氓软件）等。 2）计算机网络安全主要有以下一些内容：机密"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+
+        {
+          "@type": "ListItem",
+          "position":  2 ,
+          "name": "📚文章",
+          "item": "https://eddyblog.cn/posts/"
+        },
+
+        {
+          "@type": "ListItem",
+          "position":  3 ,
+          "name": "👨🏻‍💻 技术",
+          "item": "https://eddyblog.cn/posts/tech/"
+        }, 
+    {
+      "@type": "ListItem",
+      "position":  4 ,
+      "name": "【计算机网络】第七章 网络安全",
+      "item": "https://eddyblog.cn/posts/tech/computer_network_chapter_07/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "【计算机网络】第七章 网络安全",
+  "name": "【计算机网络】第七章 网络安全",
+  "description": "第七章 网络安全 本章重要概念 1）计算机网络上的通信面临的威胁可分为两大类，即被动攻击（如截获）和主动攻击(如中断、篡改、伪造)。主动攻击的类型有更改报文流、拒绝服务、伪造初始化、恶意程序（病毒、蠕虫、木马、逻辑炸弹、后门入侵、流氓软件）等。 2）计算机网络安全主要有以下一些内容：机密",
+  "keywords": [
+    "computer network"
+  ],
+  "articleBody": "第七章 网络安全 本章重要概念 1）计算机网络上的通信面临的威胁可分为两大类，即被动攻击（如截获）和主动攻击(如中断、篡改、伪造)。主动攻击的类型有更改报文流、拒绝服务、伪造初始化、恶意程序（病毒、蠕虫、木马、逻辑炸弹、后门入侵、流氓软件）等。\n2）计算机网络安全主要有以下一些内容：机密性、端点鉴别、信息的完整性、运行的安全性和访问控制。\n3）密码编码学是密码体制的设计学，而密码分析学则是在未知密钥的情况下从密文推演出明文或密钥的技术。密码编码学与密码分析学合起来即为密码学。\n4）如果不论截取者获得了多少密文，都无法唯一地确定出对应的明文，则这一密码体制称为无条件安全的（或理论上是不可破的)。在无任何限制的条件下，目前几乎所有实用的密码体制均是可破的。如果一个密码体制中的密码不能在一定时间内被可以使用的计算资源破译，则这一密码体制称为在计算上是安全的。\n5）对称密钥密码体制是加密密钥与解密密钥相同的密码体制（如数据加密标准DES 和高级加密标准AES)。这种加密的保密性仅取决于对密钥的保密，而算法是公开的。公钥密码体制（又称为公开密钥密码体制）使用不同的加密密钥与解密密钥。加密密钥（即公钥）是向公众公开的，而解密密钥（即私钥或密钥）则是需要保密的。加密算法和解密算法也都是公开的。\n6）目前最著名的公钥密码体制是RSA体制，它是基于数论中的大数分解问题的体制。\n7）任何加密方法的安全性取决于密钥的长度，以及攻破密文所需的计算量，而不是简单地取决于加密的体制（公钥密码体制或传统加密体制）。\n8）数字签名必须保证能够实现以下三点功能：（1）报文鉴别，即接收者能够核实发送者对报文的签名：（2）报文的完整性，即接收者确信所收到的数据和发送者发送的完全一样而没有被篡改过；（3）不可否认，即发送者事后不能抵赖对报文的签名。\n9）鉴别是要验证通信的对方的确是自己所要通信的对象，而不是其他的冒充者。鉴别与授权是不同的概念。\n10）报文摘要 MD 曾是一种鉴别报文的常用方法，后来有了更加安全的SHA-1。但目前最为安全的是SHA-2和SHA-3。\n11）密钥管理包括：密钥的产生、分配、注入、验证和使用。密钥分配（或密钥分发）是密钥管理中最大的问题。密钥必须通过最安全的通路进行分配。目前常用的密钥分配方式是设立密钥分配中心KDC。\n12）认证中心 CA是签发数字证书的实体，也是可信的第三方。CA把公钥与其对应的实体（人或机器）进行绑定和写入证书，并对证书进行数字签名。任何人都可从可信的地方获得认证中心CA的公钥来鉴别数字证书的真伪。\n13）为了方便地签发数字证书，根CA可以有下面的多级的中间CA，负责给用户签发数字证书。这样就构成了信任链和证书链。\n14）在网络层可使用协议IPsec。IPsec 支持IPv4 和IPv6。IPsec 数据报可以使用隧道方式工作。\n15）运输层的安全协议曾经有SSL（安全套接字层）和TLS（运输层安全）。但SSL已被淘汰。目前使用的最新版本是TLS1.3。TLS对服务器的安全性进行鉴别，对浏览器与服务器的所有会话记录进行加密，并保证所传送的报文的完整性。\n16）防火墙是一种特殊编程的路由器，安装在一个网点和网络的其余部分之间，目的是实施访问控制策略。防火墙里面的网络称为“可信的网络”，而把防火墙外面的网络称为“不可信的网络”。防火墙的功能有两个：一个是阻止（主要的），另一个是允许。\n17）防火墙技术分为：网络级防火墙，用来防止整个网络出现外来非法的入侵（属于这类的有分组过滤和授权服务器）；应用级防火墙，用来进行访问控制（用应用网关或代理服务器来区分各种应用）。\n18）入侵检测系统IDS 是在入侵已经开始，但还没有造成危害或在造成更大危害前，及时检测到入侵，以便尽快阻止入侵，把危害降低到最小。\n彩蛋🎁\n与谁同坐，明月清风我。\n宋 - 苏轼 《点绛唇 · 闲倚胡床》 恭喜你🎉，完成了对第七章《网络安全》部分的学习，下一章我们将学习互联网上的音频/视频服务。\n⏩第八章 《互联网上的音频/视频服务》\n资料来源 [1]计算机网络简明教程（第四版），谢希仁.\n",
+  "wordCount" : "1667",
+  "inLanguage": "zh",
+  "image":"https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/note6.jpg","datePublished": "2023-11-27T00:17:58+08:00",
+  "dateModified": "2023-11-27T00:17:58+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "Eddy"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://eddyblog.cn/posts/tech/computer_network_chapter_07/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Eddy's blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://eddyblog.cn/img/logo3.png"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    (function () {
+        let  arr,reg = new RegExp("(^| )"+"change-themes"+"=([^;]*)(;|$)");
+        if(arr = document.cookie.match(reg)) {
+        } else {
+            if (new Date().getHours() >= 19 || new Date().getHours() < 6) {
+                document.body.classList.add('dark');
+                localStorage.setItem("pref-theme", 'dark');
+            } else {
+                document.body.classList.remove('dark');
+                localStorage.setItem("pref-theme", 'light');
+            }
+        }
+    })()
+
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://eddyblog.cn" accesskey="h" title="Eddy&#39;s Blog (Alt + H)">
+            <img src="https://eddyblog.cn/img/logo3.png" alt="logo" aria-label="logo"
+                 height="35">Eddy&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://eddyblog.cn/search" title="🔍 搜索 (Alt &#43; /)" accesskey=/>
+                <span>🔍 搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/" title="🏠 主页">
+                <span>🏠 主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/posts" title="📚 文章">
+                <span>📚 文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/tags" title="🧩 标签">
+                <span>🧩 标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/archives/" title="⏱️ 时间轴">
+                <span>⏱️ 时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/about" title="🙋🏻‍♂️ 关于">
+                <span>🙋🏻‍♂️ 关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main page">
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+</style>
+
+<article class="post-single">
+    <div id="single-content">
+        <header class="post-header">
+            <div class="breadcrumbs"><a href="https://eddyblog.cn">🏠 主页</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/">📚文章</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/tech/">👨🏻‍💻 技术</a></div>
+            <h1 class="post-title">
+                【计算机网络】第七章 网络安全
+            </h1>
+            <div class="post-meta">
+
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+
+    .parent-post-meta {
+        display: flex;
+        flex-wrap: wrap;
+        opacity: 0.8;
+    }
+</style>
+
+<span class="parent-post-meta">
+    <span id="post_meta_style_1">
+        <span class="fa fa-calendar-check-o"></span>
+        <span>2023-11-27
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    
+    
+    
+    
+    
+    
+    
+    <span id="post_meta_style_3">
+        <span class="fa fa-file-word-o"></span>
+        <span>1667字
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_4">
+        <span class="fa fa-clock-o"></span>
+        <span>4分钟
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_5">
+        <span class="fa fa-user-o"></span>
+        <span>Eddy
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_6">
+        <span class="fa fa-tags" style="opacity: 0.8"></span>
+        <span>
+            <span class="post-tags-meta">
+                <a href="https://eddyblog.cn/tags/computer-network/" style="color: var(--secondary)!important;">computer network</a>
+            </span>
+        </span>
+    </span>
+</span>
+<span style="opacity: 0.8;">
+                    <span id="post_meta_style_7">
+                        &nbsp;&nbsp;
+                        <span class="fa fa-eye" ></span>
+                        <span>
+                            <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+                            &nbsp;&nbsp;
+                        </span>
+                    </span>
+                    <span id="post_meta_style_8">
+                        <span class="fa fa-commenting-o"></span>
+                        <span>
+                            <script src="https://cdn.staticfile.org/twikoo//twikoo.all.min.js"></script>
+                            <script>
+                                let url = document.documentURI
+                                
+                                let dnsUrl = "https://eddyblog.cn"
+                                let urlSplit = url.split(dnsUrl)
+                                let finalUrl = urlSplit[1]
+                                if (finalUrl[0] !== '/') {
+                                    finalUrl = '/'+finalUrl
+                                }
+                                twikoo.getCommentsCount({
+                                    envId:  null , 
+                                region:  null , 
+                                urls: [ 
+                                    
+                                    finalUrl,
+                                ],
+                                    includeReply: false 
+                                }).then(function (res) {
+                                    let count = res[0].count
+                                    const obj = document.getElementById("comment_count");
+                                    obj.innerText = count
+                                    
+                                    
+                                    
+                                }).catch(function (err) {
+                                    
+                                    console.error(err);
+                                });
+                            </script>
+                            <span id="comment_count"></span>
+                        </span>
+                    </span>
+                </span>
+
+</div>
+        </header> 
+<figure class="entry-cover1"><img style="zoom:;" loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/note6.jpg" alt="">
+    
+</figure><aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e7%ac%ac%e4%b8%83%e7%ab%a0-%e7%bd%91%e7%bb%9c%e5%ae%89%e5%85%a8" aria-label="第七章 网络安全">第七章 网络安全</a><ul>
+                        
+                <li>
+                    <a href="#%e6%9c%ac%e7%ab%a0%e9%87%8d%e8%a6%81%e6%a6%82%e5%bf%b5" aria-label="本章重要概念">本章重要概念</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e8%b5%84%e6%96%99%e6%9d%a5%e6%ba%90" aria-label="资料来源">资料来源</a>
+                </li>
+            </ul>
+        </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+        
+        activeElement = elements[0];
+        const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+        document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+    }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        if (elements) {
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement){
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }
+    }, false);
+
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;
+    }
+</script>
+        <div class="post-content"><h2 id="第七章-网络安全">第七章 网络安全<a hidden class="anchor" aria-hidden="true" href="#第七章-网络安全">#</a></h2>
+<h3 id="本章重要概念">本章重要概念<a hidden class="anchor" aria-hidden="true" href="#本章重要概念">#</a></h3>
+<p>1）计算机网络上的通信面临的威胁可分为两大类，即被动攻击（如截获）和主动攻击(如中断、篡改、伪造)。主动攻击的类型有更改报文流、拒绝服务、伪造初始化、恶意程序（病毒、蠕虫、木马、逻辑炸弹、后门入侵、流氓软件）等。</p>
+<p>2）计算机网络安全主要有以下一些内容：机密性、端点鉴别、信息的完整性、运行的安全性和访问控制。</p>
+<p>3）密码编码学是密码体制的设计学，而密码分析学则是在未知密钥的情况下从密文推演出明文或密钥的技术。密码编码学与密码分析学合起来即为密码学。</p>
+<p>4）如果不论截取者获得了多少密文，都无法唯一地确定出对应的明文，则这一密码体制称为无条件安全的（或理论上是不可破的)。在无任何限制的条件下，目前几乎所有实用的密码体制均是可破的。如果一个密码体制中的密码不能在一定时间内被可以使用的计算资源破译，则这一密码体制称为在计算上是安全的。</p>
+<p>5）对称密钥密码体制是加密密钥与解密密钥相同的密码体制（如数据加密标准DES 和高级加密标准AES)。这种加密的保密性仅取决于对密钥的保密，而算法是公开的。公钥密码体制（又称为公开密钥密码体制）使用不同的加密密钥与解密密钥。加密密钥（即公钥）是向公众公开的，而解密密钥（即私钥或密钥）则是需要保密的。加密算法和解密算法也都是公开的。</p>
+<p>6）目前最著名的公钥密码体制是RSA体制，它是基于数论中的大数分解问题的体制。</p>
+<p>7）任何加密方法的安全性取决于密钥的长度，以及攻破密文所需的计算量，而不是简单地取决于加密的体制（公钥密码体制或传统加密体制）。</p>
+<p>8）数字签名必须保证能够实现以下三点功能：（1）报文鉴别，即接收者能够核实发送者对报文的签名：（2）报文的完整性，即接收者确信所收到的数据和发送者发送的完全一样而没有被篡改过；（3）不可否认，即发送者事后不能抵赖对报文的签名。</p>
+<p>9）鉴别是要验证通信的对方的确是自己所要通信的对象，而不是其他的冒充者。鉴别与授权是不同的概念。</p>
+<p>10）报文摘要 MD 曾是一种鉴别报文的常用方法，后来有了更加安全的SHA-1。但目前最为安全的是SHA-2和SHA-3。</p>
+<p>11）密钥管理包括：密钥的产生、分配、注入、验证和使用。密钥分配（或密钥分发）是密钥管理中最大的问题。密钥必须通过最安全的通路进行分配。目前常用的密钥分配方式是设立密钥分配中心KDC。</p>
+<p>12）认证中心 CA是签发数字证书的实体，也是可信的第三方。CA把公钥与其对应的实体（人或机器）进行绑定和写入证书，并对证书进行数字签名。任何人都可从可信的地方获得认证中心CA的公钥来鉴别数字证书的真伪。</p>
+<p>13）为了方便地签发数字证书，根CA可以有下面的多级的中间CA，负责给用户签发数字证书。这样就构成了信任链和证书链。</p>
+<p>14）在网络层可使用协议IPsec。IPsec 支持IPv4 和IPv6。IPsec 数据报可以使用隧道方式工作。</p>
+<p>15）运输层的安全协议曾经有SSL（安全套接字层）和TLS（运输层安全）。但SSL已被淘汰。目前使用的最新版本是TLS1.3。TLS对服务器的安全性进行鉴别，对浏览器与服务器的所有会话记录进行加密，并保证所传送的报文的完整性。</p>
+<p>16）防火墙是一种特殊编程的路由器，安装在一个网点和网络的其余部分之间，目的是实施访问控制策略。防火墙里面的网络称为“可信的网络”，而把防火墙外面的网络称为“不可信的网络”。防火墙的功能有两个：一个是阻止（主要的），另一个是允许。</p>
+<p>17）防火墙技术分为：网络级防火墙，用来防止整个网络出现外来非法的入侵（属于这类的有分组过滤和授权服务器）；应用级防火墙，用来进行访问控制（用应用网关或代理服务器来区分各种应用）。</p>
+<p>18）入侵检测系统IDS 是在入侵已经开始，但还没有造成危害或在造成更大危害前，及时检测到入侵，以便尽快阻止入侵，把危害降低到最小。</p>
+<p>彩蛋🎁</p>
+<p>与谁同坐，明月清风我。</p>
+<ul>
+<li>宋 - 苏轼 《点绛唇 · 闲倚胡床》</li>
+</ul>
+<p>恭喜你🎉，完成了对第七章《网络安全》部分的学习，下一章我们将学习互联网上的音频/视频服务。</p>
+<p>⏩第八章 《互联网上的音频/视频服务》</p>
+<h2 id="资料来源">资料来源<a hidden class="anchor" aria-hidden="true" href="#资料来源">#</a></h2>
+<p>[1]计算机网络简明教程（第四版），谢希仁.</p>
+
+
+        </div>
+
+        <footer class="post-footer">
+            
+<nav class="paginav">
+  <a class="prev" href="https://eddyblog.cn/posts/tech/computer_network_chapter_06/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>【计算机网络】第六章 应用层</span>
+  </a>
+  <a class="next" href="https://eddyblog.cn/posts/tech/computer_network_chapter_03/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>【计算机网络】第三章 数据链路层</span>
+  </a>
+</nav>
+
+        </footer>
+    </div>
+</article>
+</main>
+
+<footer class="footer">
+    <span>
+        Copyright
+        &copy;
+        -2023
+        <a href="https://eddyblog.cn" style="color:#939393;">Eddy&#39;s blog</a>
+        All Rights Reserved
+    </span>
+    <a href="https://beian.miit.gov.cn/" target="_blank" style="color:#939393;"></a>&nbsp;
+    <span>
+        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=null"
+           style="display:inline-block;text-decoration:none;height:20px;color:#939393;">
+            <img src="" style="float:left;margin: 0px 5px 0px 0px;"/>
+            
+        </a>
+    </span>
+    <span id="busuanzi_container">
+        <span class="fa fa-user"></span> <span id="busuanzi_value_site_uv"></span>
+        <span class="fa fa-eye"></span> <span id="busuanzi_value_site_pv"></span>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <span class="topInner">
+        <svg class="topSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z"/>
+        </svg>
+        <span id="read_progress"></span>
+    </span>
+</a>
+
+<script>
+    document.addEventListener('scroll', function (e) {
+        const readProgress = document.getElementById("read_progress");
+        const scrollHeight = document.documentElement.scrollHeight;
+        const clientHeight = document.documentElement.clientHeight;
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        readProgress.innerText = ((scrollTop / (scrollHeight - clientHeight)).toFixed(2) * 100).toFixed(0);
+    })
+</script>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+</script>
+<script>
+    let mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        (function() {
+            document.cookie = "change-themes" + "="+ escape ("false");
+        })()
+
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    });
+</script>
+
+<script>
+    document.body.addEventListener('copy', function (e) {
+        if (window.getSelection().toString() && window.getSelection().toString().length > 50) {
+            let clipboardData = e.clipboardData || window.clipboardData;
+            if (clipboardData) {
+                e.preventDefault();
+                let htmlData = window.getSelection().toString() +
+                    '\r\n\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                let textData = window.getSelection().toString() +
+                    '\r\n\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                clipboardData.setData('text/html', htmlData);
+                clipboardData.setData('text/plain', textData);
+            }
+        }
+    });
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = '复制';
+
+        function copyingDone() {
+            copybutton.innerText = '已复制！';
+            setTimeout(() => {
+                copybutton.innerText = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                let text = codeblock.textContent +
+                    '\r\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                navigator.clipboard.writeText(text);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) {}
+            selection.removeRange(range);
+        });
+
+        let language = codeblock.className.replaceAll("language-", "")
+        let macTool = document.createElement("div")
+        let macTool1 = document.createElement("div")
+        let macTool2 = document.createElement("div")
+        let macTool3 = document.createElement("div")
+        let languageType = document.createElement("div")
+        languageType.innerText = language
+        macTool.setAttribute('class', 'mac-tool')
+        macTool1.setAttribute('class', 'mac bb1')
+        macTool2.setAttribute('class', 'mac bb2')
+        macTool3.setAttribute('class', 'mac bb3')
+        languageType.setAttribute('class', 'language-type')
+        macTool.appendChild(macTool1)
+        macTool.appendChild(macTool2)
+        macTool.appendChild(macTool3)
+        macTool.appendChild(languageType)
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+            container.appendChild(macTool)
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+            container.appendChild(macTool)
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+            container.appendChild(macTool)
+        }
+    });
+</script>
+
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style></body>
+
+</html>

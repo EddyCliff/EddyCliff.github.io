@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>computer network on Eddy&#39;s blog</title>
+    <link>https://eddyblog.cn/tags/computer-network/</link>
+    <description>Recent content in computer network on Eddy&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Mon, 27 Nov 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/computer-network/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【计算机网络】第八章 互联网上的音频/视频服务</title>
+      <link>https://eddyblog.cn/posts/tech/computer_network_chapter_08/</link>
+      <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/computer_network_chapter_08/</guid>
+      <description>第八章 互联网上的音频/视频服务 本章重要概念 1）多媒体信息有两个重要特点：（1）多媒体信息的信息量往往很大；（2）在传输多媒体数据时，对时延和时延抖动均有较高的要求。在互联网上传输多媒体数据时，我们都是指含有“边传输、边播放”的特点。 2）由多媒体信息构成的分组在发送时是等时的。这些</description>
+    </item>
+    
+    <item>
+      <title>【计算机网络】第二章 物理层</title>
+      <link>https://eddyblog.cn/posts/tech/computer_network_chapter_02/</link>
+      <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/computer_network_chapter_02/</guid>
+      <description>第二章 物理层 本章的重要概念 1）物理层的主要任务就是确定与传输媒体的接口有关的一些特性，如机械特性、电气特性、功能特性和过程特性。 2）一个数据通信系统可划分为三大部分，即源系统、传输系统和目的系统。源系统包括源点（或源站、信源）和发送器，目的系统包括接收器和终点（或目的站、信宿）。</description>
+    </item>
+    
+    <item>
+      <title>【计算机网络】第九章 无线网络和移动网络</title>
+      <link>https://eddyblog.cn/posts/tech/computer_network_chapter_09/</link>
+      <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/computer_network_chapter_09/</guid>
+      <description>第九章 无线网络和移动网络 本章重要概念 1）无线局域网可分为两大类。第一类是有固定基础设施的，第二类是无固定基础设施的。 2）最常用的、有固定基础设施的无线局域网的标准是 IEEE 的 802.11 系列。使用 802.11 系列标准的局域网又称为Wi-Fi。 3）802.11 无线以太网标准使用星形拓扑，其中心叫作接入点 AP</description>
+    </item>
+    
+    <item>
+      <title>【计算机网络】第六章 应用层</title>
+      <link>https://eddyblog.cn/posts/tech/computer_network_chapter_06/</link>
+      <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/computer_network_chapter_06/</guid>
+      <description>第六章 应用层 本章重要概念 1）应用层协议是为了解决某一类应用问题，而问题的解决又是通过位于不同主机中的多个应用进程之间的通信和协同工作来完成的。应用层规定了应用进程在通信时所遵循的协议。应用层的许多协议都是基于客户-服务器方式的。客户是服务请求方，服务器是服务提供方。 2）域名系统D</description>
+    </item>
+    
+    <item>
+      <title>【计算机网络】第七章 网络安全</title>
+      <link>https://eddyblog.cn/posts/tech/computer_network_chapter_07/</link>
+      <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/computer_network_chapter_07/</guid>
+      <description>第七章 网络安全 本章重要概念 1）计算机网络上的通信面临的威胁可分为两大类，即被动攻击（如截获）和主动攻击(如中断、篡改、伪造)。主动攻击的类型有更改报文流、拒绝服务、伪造初始化、恶意程序（病毒、蠕虫、木马、逻辑炸弹、后门入侵、流氓软件）等。 2）计算机网络安全主要有以下一些内容：机密</description>
+    </item>
+    
+    <item>
+      <title>【计算机网络】第三章 数据链路层</title>
+      <link>https://eddyblog.cn/posts/tech/computer_network_chapter_03/</link>
+      <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/computer_network_chapter_03/</guid>
+      <description>第三章 数据链路层 本章的重要概念 1）链路是从一个节点到相邻节点的一段物理线路，数据链路则是在链路的基础上增加了一些必要的硬件（如网络适配器）和软件（如协议的实现）。 2）数据链路层使用的信道主要有点对点信道和广播信道两种。 3）数据链路层传送的协议数据单元是帧。数据链路层的三个基本问题</description>
+    </item>
+    
+    <item>
+      <title>【计算机网络】第四章 网络层</title>
+      <link>https://eddyblog.cn/posts/tech/computer_network_chapter_04/</link>
+      <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/computer_network_chapter_04/</guid>
+      <description>第四章 网络层 本章的重要概念 1）TCP/IP体系中的网络层向上只提供简单灵活的、无连接的、尽最大努力交付的数据报服务。网络层不提供服务质量的承诺，不保证分组交付的时限，所传送的分组可能出错、丢失、重复和失序。进程之间通信的可靠性由运输层负责。 2）IP网是虚拟的，因为从网络层上看，I</description>
+    </item>
+    
+    <item>
+      <title>【计算机网络】第五章 运输层</title>
+      <link>https://eddyblog.cn/posts/tech/computer_network_chapter_05/</link>
+      <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/computer_network_chapter_05/</guid>
+      <description>第五章 运输层 本章重要概念 1）运输层提供应用进程间的逻辑通信，也就是说，运输层之间的通信并不是真正在两运输层之间直接传送数据。运输层向应用层屏蔽了下面网络的细节（如网络拓扑、所采用的路由选择协议等），它使应用进程看见的就好像在两个运输层实体之间有一条端到端的逻辑通信信道。 2）网络层</description>
+    </item>
+    
+    <item>
+      <title>【计算机网络】第一章 概述</title>
+      <link>https://eddyblog.cn/posts/tech/computer_network_chapter_01/</link>
+      <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/computer_network_chapter_01/</guid>
+      <description>启程 欢迎来到《计算机网络简明教程- 重要概念》系列！计算机网络作为现代科技的基础，贯穿着我们日常生活和商业世界的方方面面。这个系列旨在为您呈现计算机网络领域中最关键、最基础的概念和原理，帮助您建立对网络基础知识的清晰理解。 让我们一起踏上这个探索计算机网络的旅程吧！ 第一章 概述 本章的重</description>
+    </item>
+    
+  </channel>
+</rss>

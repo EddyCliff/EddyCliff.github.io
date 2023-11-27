@@ -8,21 +8,21 @@
     <language>zh</language>
     <lastBuildDate>Tue, 12 Sep 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/error/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>【GitHub使用指南】解决Git Push错误 - 502 Bad Gateway</title>
-      <link>https://eddyblog.cn/posts/tech/github_git_push_502_bad_gateway/</link>
-      <pubDate>Tue, 12 Sep 2023 00:17:58 +0800</pubDate>
-      
-      <guid>https://eddyblog.cn/posts/tech/github_git_push_502_bad_gateway/</guid>
-      <description>问题描述 输入git push命令后报错 $ git push -f origin main Enumerating objects: 149, done. Counting objects: 100% (149/149), done. Delta compression using up to 16 threads Compressing objects: 100% (144/144), done. error: RPC failed; HTTP 502 curl 22 The requested URL returned error: 502 Writing objects: 80% (119/148), 1.36 GiB | 237.00 KiB/ssend-pack: unexpected disconnect while reading sideband packet Writing objects: 100% (148/148), 1.39 GiB | 2.68 MiB/s, done. Total 148 (delta 3), reused 0 (delta 0), pack-reused 0 fatal: the remote end hung up unexpectedly 原因分析 这个错误表明在进行 git push 操作时，出现了HTTP 502错误，这通常是由于远程</description>
-    </item>
-    
-    <item>
       <title>【GitHub使用指南】解决Git操作错误 - Github Action问题分析</title>
       <link>https://eddyblog.cn/posts/tech/github_git_action_error/</link>
       <pubDate>Tue, 12 Sep 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/github_git_action_error/</guid>
       <description>问题描述 当使用GitHub Actions执行工作流程时，有时会遇到错误消息，其中一个常见的错误是：Action failed with &#39;not found deploy key or tokens。这个错误通常表示GitHub Actions在执行过程中找不到有效的部署密钥或访问令牌。这篇博客将帮助你了解如何解决这个问题。 错误原因分析 在Gi</description>
+    </item>
+    
+    <item>
+      <title>【GitHub使用指南】解决Git Push错误 - 502 Bad Gateway</title>
+      <link>https://eddyblog.cn/posts/tech/github_git_push_502_bad_gateway/</link>
+      <pubDate>Tue, 12 Sep 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/github_git_push_502_bad_gateway/</guid>
+      <description>问题描述 输入git push命令后报错 $ git push -f origin main Enumerating objects: 149, done. Counting objects: 100% (149/149), done. Delta compression using up to 16 threads Compressing objects: 100% (144/144), done. error: RPC failed; HTTP 502 curl 22 The requested URL returned error: 502 Writing objects: 80% (119/148), 1.36 GiB | 237.00 KiB/ssend-pack: unexpected disconnect while reading sideband packet Writing objects: 100% (148/148), 1.39 GiB | 2.68 MiB/s, done. Total 148 (delta 3), reused 0 (delta 0), pack-reused 0 fatal: the remote end hung up unexpectedly 原因分析 这个错误表明在进行 git push 操作时，出现了HTTP 502错误，这通常是由于远程</description>
     </item>
     
     <item>

@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>【计算机网络】第八章 互联网上的音频/视频服务 | Eddy&#39;s blog</title>
+<meta name="keywords" content="computer network">
+<meta name="description" content="第八章 互联网上的音频/视频服务 本章重要概念 1）多媒体信息有两个重要特点：（1）多媒体信息的信息量往往很大；（2）在传输多媒体数据时，对时延和时延抖动均有较高的要求。在互联网上传输多媒体数据时，我们都是指含有“边传输、边播放”的特点。 2）由多媒体信息构成的分组在发送时是等时的。这些">
+<meta name="author" content="Eddy">
+<link rel="canonical" href="https://eddyblog.cn/posts/tech/computer_network_chapter_08/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.js" onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://eddyblog.cn/img/logo3.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://eddyblog.cn/img/logo3.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://eddyblog.cn/img/logo3.png">
+<link rel="apple-touch-icon" href="https://eddyblog.cn/img/logo3.png">
+<link rel="mask-icon" href="https://eddyblog.cn/img/logo3.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<script defer src="https://unpkg.com/mermaid@8.8.1/dist/mermaid.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = ""; 
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<meta property="og:title" content="【计算机网络】第八章 互联网上的音频/视频服务" />
+<meta property="og:description" content="第八章 互联网上的音频/视频服务 本章重要概念 1）多媒体信息有两个重要特点：（1）多媒体信息的信息量往往很大；（2）在传输多媒体数据时，对时延和时延抖动均有较高的要求。在互联网上传输多媒体数据时，我们都是指含有“边传输、边播放”的特点。 2）由多媒体信息构成的分组在发送时是等时的。这些" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://eddyblog.cn/posts/tech/computer_network_chapter_08/" />
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/note6.jpg" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-11-27T00:17:58+08:00" />
+<meta property="article:modified_time" content="2023-11-27T00:17:58+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/note6.jpg" />
+<meta name="twitter:title" content="【计算机网络】第八章 互联网上的音频/视频服务"/>
+<meta name="twitter:description" content="第八章 互联网上的音频/视频服务 本章重要概念 1）多媒体信息有两个重要特点：（1）多媒体信息的信息量往往很大；（2）在传输多媒体数据时，对时延和时延抖动均有较高的要求。在互联网上传输多媒体数据时，我们都是指含有“边传输、边播放”的特点。 2）由多媒体信息构成的分组在发送时是等时的。这些"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+
+        {
+          "@type": "ListItem",
+          "position":  2 ,
+          "name": "📚文章",
+          "item": "https://eddyblog.cn/posts/"
+        },
+
+        {
+          "@type": "ListItem",
+          "position":  3 ,
+          "name": "👨🏻‍💻 技术",
+          "item": "https://eddyblog.cn/posts/tech/"
+        }, 
+    {
+      "@type": "ListItem",
+      "position":  4 ,
+      "name": "【计算机网络】第八章 互联网上的音频/视频服务",
+      "item": "https://eddyblog.cn/posts/tech/computer_network_chapter_08/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "【计算机网络】第八章 互联网上的音频/视频服务",
+  "name": "【计算机网络】第八章 互联网上的音频\/视频服务",
+  "description": "第八章 互联网上的音频/视频服务 本章重要概念 1）多媒体信息有两个重要特点：（1）多媒体信息的信息量往往很大；（2）在传输多媒体数据时，对时延和时延抖动均有较高的要求。在互联网上传输多媒体数据时，我们都是指含有“边传输、边播放”的特点。 2）由多媒体信息构成的分组在发送时是等时的。这些",
+  "keywords": [
+    "computer network"
+  ],
+  "articleBody": "第八章 互联网上的音频/视频服务 本章重要概念 1）多媒体信息有两个重要特点：（1）多媒体信息的信息量往往很大；（2）在传输多媒体数据时，对时延和时延抖动均有较高的要求。在互联网上传输多媒体数据时，我们都是指含有“边传输、边播放”的特点。\n2）由多媒体信息构成的分组在发送时是等时的。这些分组在到达接收端时就变成为非等时的。当接收端缓存中的分组数达到一定的数量后，再以恒定速率按顺序将这些分组进行还原播放。这样就产生了播放时延，同时也可以在很大程度上消除时延的抖动。\n3）在传送对时延敏感的实时数据时，传检时延和时延抖动都必须受到限制。通常宁可丢失少量分组，也不要接收太晚到达的分组。\n4）目前互联网提供的音频/视频服务有三种类型：（1）流式存储音频/视频，用户通过互联网边下载、边播放。（2）流式实况音频/视频，其特点是在发送方边录制、边发送，在接收时也是要求能够连续播放。（3）交互式音频/视频，如IP电话或互联网电视会议。\n5）流媒体（streaming media）就是流式音顿/视频，其特占是边下载、边播放，但不能存储在硬盘上成为用户的文件。\n6）媒体服务器（或称为流式服务器）可以更好地支持流式音频和视频的传送。TCP能够保证流式音频/视频文件的播放质量，但开始播放的时间要比请求播放的时间滞后一些（必须先在缓存中存储一定数量的分组）。对于实时流式音频/视频文件则选用UDP传送。\n7）实时流式协议 RTSP是为了给流式过程增加更多功能而设计的协议。RTSP本身并不传送数据，而仅仅是使媒体播放器能够控制多媒体流的传送。RTSP 又称为“互联网录像机遥控协议”。\n8）狭义的IP电话是指在IP网络上打电话。广义的IP电话则不仅是电话通信，而且还可以在 IP网络上进行交互式多媒体实时通信（包括话音、视频等），甚至还包括即时传信IM（如QQ和Skype等）。\n9）IP 电话的通话质量主要由两个因素决定：（1）通话双方端到端的时延和时延抖动；（2）话音分组的丢失率。但这两个因素都是不确定的，而是取决于当时网络上的通信量。\n10）实时运输协议RTP为实时应用提供端到端的传输，但不提供任何服务质量的保证。需要发送的多媒体数据块（音频/视频）经过压缩编码处理后，先送给RTP封装成为RTP分组，装入运输层的UDP用户数据报后，再向下递交给IP层。可以把 RTP看成在UDP之上的一个运输层子层的协议。\n11）实时运输控制协议 RTCP是与 RTP 配合使用的协议。RTCP 的主要功能是：服务质量的监视与反馈，媒体间的同步，以及多播组中成员的标志。RTCP分组也使用 UDP 来传送，但RTCP并不对音频/视频分组进行封装。\n12）现在IP电话有两套信令标准。一套是ITU-T定义的H.323协议，另一套是IETF提出的会话发起协议SIP。\n13）H.323 不是一个单独的协议而是一组协议。H323包括系统和构件的描述、呼叫模型的描述、呼叫信令过程、控制报文、复用、话音编解码器、视频编解码器，以及数据协议等。H.323标准的四个构件是.（1）H323 终端：（2）网关；（3）网闸；（4）多点控制单元MCU。\n14）会话发起协议SIP只涉及IP电话所需的信令和有关服务质量的问题。SIP使用文本方式的客户服务器协议。SIP系统只有两种构件，即用户代理（包括用户代理客户和用户代理服务器）和网络服务器（包括代理服务器和重定向服务器）。SIP的地址十分灵活，它可以是电话号码，也可以是电子邮件地址、IP地址或其他类型的地址。\n15）服务质量 OoS 是服务性能的总效果，此效果决定了一个用户对服务的满意程度。因此，有服务质量的服务就是能够满足用户的应用需求的服务。或者说，可提供一致的、可预计的数据交付服务。\n16）服务质量OoS可用若干基本的性能指标来描述，包括可用性、差错率、响应时间、吞吐量、分组丢失率、连接建立时间、故障检测和改正时间等。服务提供者可向其用户保证某一种等级的服务质量。\n17）为了使互联网具有一定的服务质量，可采取以下一些措施：（1）分类，如区分服务；（2）管制；（3）调度；（4）呼叫接纳；（5）加权公平排队等。\n彩蛋🎁\n但远山长，云山乱，晓山青。\n宋 - 苏轼 《行香子 · 过七里濑》 恭喜你🎉，完成了对第八章《互联网上的音频/视频服务》部分的学习，下一章我们将学习无线网络和移动网络。\n⏩第九章 《无线网络和移动网络》\n资料来源 [1]计算机网络简明教程（第四版），谢希仁.\n",
+  "wordCount" : "1803",
+  "inLanguage": "zh",
+  "image":"https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/note6.jpg","datePublished": "2023-11-27T00:17:58+08:00",
+  "dateModified": "2023-11-27T00:17:58+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "Eddy"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://eddyblog.cn/posts/tech/computer_network_chapter_08/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Eddy's blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://eddyblog.cn/img/logo3.png"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    (function () {
+        let  arr,reg = new RegExp("(^| )"+"change-themes"+"=([^;]*)(;|$)");
+        if(arr = document.cookie.match(reg)) {
+        } else {
+            if (new Date().getHours() >= 19 || new Date().getHours() < 6) {
+                document.body.classList.add('dark');
+                localStorage.setItem("pref-theme", 'dark');
+            } else {
+                document.body.classList.remove('dark');
+                localStorage.setItem("pref-theme", 'light');
+            }
+        }
+    })()
+
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://eddyblog.cn" accesskey="h" title="Eddy&#39;s Blog (Alt + H)">
+            <img src="https://eddyblog.cn/img/logo3.png" alt="logo" aria-label="logo"
+                 height="35">Eddy&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://eddyblog.cn/search" title="🔍 搜索 (Alt &#43; /)" accesskey=/>
+                <span>🔍 搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/" title="🏠 主页">
+                <span>🏠 主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/posts" title="📚 文章">
+                <span>📚 文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/tags" title="🧩 标签">
+                <span>🧩 标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/archives/" title="⏱️ 时间轴">
+                <span>⏱️ 时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/about" title="🙋🏻‍♂️ 关于">
+                <span>🙋🏻‍♂️ 关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main page">
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+</style>
+
+<article class="post-single">
+    <div id="single-content">
+        <header class="post-header">
+            <div class="breadcrumbs"><a href="https://eddyblog.cn">🏠 主页</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/">📚文章</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/tech/">👨🏻‍💻 技术</a></div>
+            <h1 class="post-title">
+                【计算机网络】第八章 互联网上的音频/视频服务
+            </h1>
+            <div class="post-meta">
+
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+
+    .parent-post-meta {
+        display: flex;
+        flex-wrap: wrap;
+        opacity: 0.8;
+    }
+</style>
+
+<span class="parent-post-meta">
+    <span id="post_meta_style_1">
+        <span class="fa fa-calendar-check-o"></span>
+        <span>2023-11-27
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    
+    
+    
+    
+    
+    
+    
+    <span id="post_meta_style_3">
+        <span class="fa fa-file-word-o"></span>
+        <span>1803字
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_4">
+        <span class="fa fa-clock-o"></span>
+        <span>4分钟
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_5">
+        <span class="fa fa-user-o"></span>
+        <span>Eddy
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_6">
+        <span class="fa fa-tags" style="opacity: 0.8"></span>
+        <span>
+            <span class="post-tags-meta">
+                <a href="https://eddyblog.cn/tags/computer-network/" style="color: var(--secondary)!important;">computer network</a>
+            </span>
+        </span>
+    </span>
+</span>
+<span style="opacity: 0.8;">
+                    <span id="post_meta_style_7">
+                        &nbsp;&nbsp;
+                        <span class="fa fa-eye" ></span>
+                        <span>
+                            <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+                            &nbsp;&nbsp;
+                        </span>
+                    </span>
+                    <span id="post_meta_style_8">
+                        <span class="fa fa-commenting-o"></span>
+                        <span>
+                            <script src="https://cdn.staticfile.org/twikoo//twikoo.all.min.js"></script>
+                            <script>
+                                let url = document.documentURI
+                                
+                                let dnsUrl = "https://eddyblog.cn"
+                                let urlSplit = url.split(dnsUrl)
+                                let finalUrl = urlSplit[1]
+                                if (finalUrl[0] !== '/') {
+                                    finalUrl = '/'+finalUrl
+                                }
+                                twikoo.getCommentsCount({
+                                    envId:  null , 
+                                region:  null , 
+                                urls: [ 
+                                    
+                                    finalUrl,
+                                ],
+                                    includeReply: false 
+                                }).then(function (res) {
+                                    let count = res[0].count
+                                    const obj = document.getElementById("comment_count");
+                                    obj.innerText = count
+                                    
+                                    
+                                    
+                                }).catch(function (err) {
+                                    
+                                    console.error(err);
+                                });
+                            </script>
+                            <span id="comment_count"></span>
+                        </span>
+                    </span>
+                </span>
+
+</div>
+        </header> 
+<figure class="entry-cover1"><img style="zoom:;" loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/note6.jpg" alt="">
+    
+</figure><aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e7%ac%ac%e5%85%ab%e7%ab%a0-%e4%ba%92%e8%81%94%e7%bd%91%e4%b8%8a%e7%9a%84%e9%9f%b3%e9%a2%91%e8%a7%86%e9%a2%91%e6%9c%8d%e5%8a%a1" aria-label="第八章 互联网上的音频/视频服务">第八章 互联网上的音频/视频服务</a><ul>
+                        
+                <li>
+                    <a href="#%e6%9c%ac%e7%ab%a0%e9%87%8d%e8%a6%81%e6%a6%82%e5%bf%b5" aria-label="本章重要概念">本章重要概念</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e8%b5%84%e6%96%99%e6%9d%a5%e6%ba%90" aria-label="资料来源">资料来源</a>
+                </li>
+            </ul>
+        </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+        
+        activeElement = elements[0];
+        const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+        document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+    }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        if (elements) {
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement){
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }
+    }, false);
+
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;
+    }
+</script>
+        <div class="post-content"><h2 id="第八章-互联网上的音频视频服务">第八章 互联网上的音频/视频服务<a hidden class="anchor" aria-hidden="true" href="#第八章-互联网上的音频视频服务">#</a></h2>
+<h3 id="本章重要概念">本章重要概念<a hidden class="anchor" aria-hidden="true" href="#本章重要概念">#</a></h3>
+<p>1）多媒体信息有两个重要特点：（1）多媒体信息的信息量往往很大；（2）在传输多媒体数据时，对时延和时延抖动均有较高的要求。在互联网上传输多媒体数据时，我们都是指含有“边传输、边播放”的特点。</p>
+<p>2）由多媒体信息构成的分组在发送时是等时的。这些分组在到达接收端时就变成为非等时的。当接收端缓存中的分组数达到一定的数量后，再以恒定速率按顺序将这些分组进行还原播放。这样就产生了播放时延，同时也可以在很大程度上消除时延的抖动。</p>
+<p>3）在传送对时延敏感的实时数据时，传检时延和时延抖动都必须受到限制。通常宁可丢失少量分组，也不要接收太晚到达的分组。</p>
+<p>4）目前互联网提供的音频/视频服务有三种类型：（1）流式存储音频/视频，用户通过互联网边下载、边播放。（2）流式实况音频/视频，其特点是在发送方边录制、边发送，在接收时也是要求能够连续播放。（3）交互式音频/视频，如IP电话或互联网电视会议。</p>
+<p>5）流媒体（streaming media）就是流式音顿/视频，其特占是边下载、边播放，但不能存储在硬盘上成为用户的文件。</p>
+<p>6）媒体服务器（或称为流式服务器）可以更好地支持流式音频和视频的传送。TCP能够保证流式音频/视频文件的播放质量，但开始播放的时间要比请求播放的时间滞后一些（必须先在缓存中存储一定数量的分组）。对于实时流式音频/视频文件则选用UDP传送。</p>
+<p>7）实时流式协议 RTSP是为了给流式过程增加更多功能而设计的协议。RTSP本身并不传送数据，而仅仅是使媒体播放器能够控制多媒体流的传送。RTSP 又称为“互联网录像机遥控协议”。</p>
+<p>8）狭义的IP电话是指在IP网络上打电话。广义的IP电话则不仅是电话通信，而且还可以在 IP网络上进行交互式多媒体实时通信（包括话音、视频等），甚至还包括即时传信IM（如QQ和Skype等）。</p>
+<p>9）IP 电话的通话质量主要由两个因素决定：（1）通话双方端到端的时延和时延抖动；（2）话音分组的丢失率。但这两个因素都是不确定的，而是取决于当时网络上的通信量。</p>
+<p>10）实时运输协议RTP为实时应用提供端到端的传输，但不提供任何服务质量的保证。需要发送的多媒体数据块（音频/视频）经过压缩编码处理后，先送给RTP封装成为RTP分组，装入运输层的UDP用户数据报后，再向下递交给IP层。可以把 RTP看成在UDP之上的一个运输层子层的协议。</p>
+<p>11）实时运输控制协议 RTCP是与 RTP 配合使用的协议。RTCP 的主要功能是：服务质量的监视与反馈，媒体间的同步，以及多播组中成员的标志。RTCP分组也使用 UDP 来传送，但RTCP并不对音频/视频分组进行封装。</p>
+<p>12）现在IP电话有两套信令标准。一套是ITU-T定义的H.323协议，另一套是IETF提出的会话发起协议SIP。</p>
+<p>13）H.323 不是一个单独的协议而是一组协议。H323包括系统和构件的描述、呼叫模型的描述、呼叫信令过程、控制报文、复用、话音编解码器、视频编解码器，以及数据协议等。H.323标准的四个构件是.（1）H323 终端：（2）网关；（3）网闸；（4）多点控制单元MCU。</p>
+<p>14）会话发起协议SIP只涉及IP电话所需的信令和有关服务质量的问题。SIP使用文本方式的客户服务器协议。SIP系统只有两种构件，即用户代理（包括用户代理客户和用户代理服务器）和网络服务器（包括代理服务器和重定向服务器）。SIP的地址十分灵活，它可以是电话号码，也可以是电子邮件地址、IP地址或其他类型的地址。</p>
+<p>15）服务质量 OoS 是服务性能的总效果，此效果决定了一个用户对服务的满意程度。因此，有服务质量的服务就是能够满足用户的应用需求的服务。或者说，可提供一致的、可预计的数据交付服务。</p>
+<p>16）服务质量OoS可用若干基本的性能指标来描述，包括可用性、差错率、响应时间、吞吐量、分组丢失率、连接建立时间、故障检测和改正时间等。服务提供者可向其用户保证某一种等级的服务质量。</p>
+<p>17）为了使互联网具有一定的服务质量，可采取以下一些措施：（1）分类，如区分服务；（2）管制；（3）调度；（4）呼叫接纳；（5）加权公平排队等。</p>
+<p>彩蛋🎁</p>
+<p>但远山长，云山乱，晓山青。</p>
+<ul>
+<li>宋 - 苏轼 《行香子 · 过七里濑》</li>
+</ul>
+<p>恭喜你🎉，完成了对第八章《互联网上的音频/视频服务》部分的学习，下一章我们将学习无线网络和移动网络。</p>
+<p>⏩第九章 《无线网络和移动网络》</p>
+<h2 id="资料来源">资料来源<a hidden class="anchor" aria-hidden="true" href="#资料来源">#</a></h2>
+<p>[1]计算机网络简明教程（第四版），谢希仁.</p>
+
+
+        </div>
+
+        <footer class="post-footer">
+            
+<nav class="paginav">
+  <a class="prev" href="https://eddyblog.cn/posts/tech/github_git_action_error/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>【GitHub使用指南】解决Git操作错误 - Github Action问题分析</span>
+  </a>
+  <a class="next" href="https://eddyblog.cn/posts/tech/computer_network_chapter_02/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>【计算机网络】第二章 物理层</span>
+  </a>
+</nav>
+
+        </footer>
+    </div>
+</article>
+</main>
+
+<footer class="footer">
+    <span>
+        Copyright
+        &copy;
+        -2023
+        <a href="https://eddyblog.cn" style="color:#939393;">Eddy&#39;s blog</a>
+        All Rights Reserved
+    </span>
+    <a href="https://beian.miit.gov.cn/" target="_blank" style="color:#939393;"></a>&nbsp;
+    <span>
+        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=null"
+           style="display:inline-block;text-decoration:none;height:20px;color:#939393;">
+            <img src="" style="float:left;margin: 0px 5px 0px 0px;"/>
+            
+        </a>
+    </span>
+    <span id="busuanzi_container">
+        <span class="fa fa-user"></span> <span id="busuanzi_value_site_uv"></span>
+        <span class="fa fa-eye"></span> <span id="busuanzi_value_site_pv"></span>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <span class="topInner">
+        <svg class="topSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z"/>
+        </svg>
+        <span id="read_progress"></span>
+    </span>
+</a>
+
+<script>
+    document.addEventListener('scroll', function (e) {
+        const readProgress = document.getElementById("read_progress");
+        const scrollHeight = document.documentElement.scrollHeight;
+        const clientHeight = document.documentElement.clientHeight;
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        readProgress.innerText = ((scrollTop / (scrollHeight - clientHeight)).toFixed(2) * 100).toFixed(0);
+    })
+</script>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+</script>
+<script>
+    let mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        (function() {
+            document.cookie = "change-themes" + "="+ escape ("false");
+        })()
+
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    });
+</script>
+
+<script>
+    document.body.addEventListener('copy', function (e) {
+        if (window.getSelection().toString() && window.getSelection().toString().length > 50) {
+            let clipboardData = e.clipboardData || window.clipboardData;
+            if (clipboardData) {
+                e.preventDefault();
+                let htmlData = window.getSelection().toString() +
+                    '\r\n\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                let textData = window.getSelection().toString() +
+                    '\r\n\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                clipboardData.setData('text/html', htmlData);
+                clipboardData.setData('text/plain', textData);
+            }
+        }
+    });
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = '复制';
+
+        function copyingDone() {
+            copybutton.innerText = '已复制！';
+            setTimeout(() => {
+                copybutton.innerText = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                let text = codeblock.textContent +
+                    '\r\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                navigator.clipboard.writeText(text);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) {}
+            selection.removeRange(range);
+        });
+
+        let language = codeblock.className.replaceAll("language-", "")
+        let macTool = document.createElement("div")
+        let macTool1 = document.createElement("div")
+        let macTool2 = document.createElement("div")
+        let macTool3 = document.createElement("div")
+        let languageType = document.createElement("div")
+        languageType.innerText = language
+        macTool.setAttribute('class', 'mac-tool')
+        macTool1.setAttribute('class', 'mac bb1')
+        macTool2.setAttribute('class', 'mac bb2')
+        macTool3.setAttribute('class', 'mac bb3')
+        languageType.setAttribute('class', 'language-type')
+        macTool.appendChild(macTool1)
+        macTool.appendChild(macTool2)
+        macTool.appendChild(macTool3)
+        macTool.appendChild(languageType)
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+            container.appendChild(macTool)
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+            container.appendChild(macTool)
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+            container.appendChild(macTool)
+        }
+    });
+</script>
+
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style></body>
+
+</html>

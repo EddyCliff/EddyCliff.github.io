@@ -6,7 +6,7 @@
     <description>Recent content in 👨🏻‍💻 技术 on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Sun, 05 Nov 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/posts/tech/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 27 Nov 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/posts/tech/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【浅谈LLC谐振变换器】-章节0:LLC的定义以及优势</title>
       <link>https://eddyblog.cn/posts/tech/llc_resonant_converters-chapter_0_definition_and-advantages_of_llc/</link>
@@ -14,6 +14,114 @@
       
       <guid>https://eddyblog.cn/posts/tech/llc_resonant_converters-chapter_0_definition_and-advantages_of_llc/</guid>
       <description>启程-第1站 尊敬的乘客，您好。 我是Eddy，将在这趟知识的列车旅程中担任您的列车长。欢迎您登上“探险号”，在这里，每次启程都承载着新的发现与学习的机会。 本次列车的目的地——LLC谐振变换器，一个在现代电子设备中不可或缺的神秘组件。它利用巧妙的物理原理有效减少能量损失，保证了我们设</description>
+    </item>
+    
+    <item>
+      <title>【嵌入式高级C编程】第三章 函数</title>
+      <link>https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_03fun/</link>
+      <pubDate>Sat, 16 Sep 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_03fun/</guid>
+      <description>第三章 函数 一、函数的概念 函数是c语言的功能单位，实现一个功能可以封装一个函数来实现。 定义函数的时候一切以功能为目的，根据功能去定函数的参数和返回值。 函数就是讲特定功能的代码封装在一个函数内部，当要使用这些代码时，只需要通过函数名就可以使用，这样操作起来更加方便。 二、函数的分类 1、</description>
+    </item>
+    
+    <item>
+      <title>【Hugo网站搭建】GitHub Action自动化部署Hugo博客</title>
+      <link>https://eddyblog.cn/posts/tech/github_action_hugo/</link>
+      <pubDate>Wed, 06 Sep 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/github_action_hugo/</guid>
+      <description>前言 在本文中，我们将介绍如何通过GitHub Action自动化部署Hugo博客。如果你是一个博客作者，你可能已经熟悉了使用Hugo构建和管理你的博客。Hugo是一个快速且灵活的静态网站生成器，但是手动部署博客可能会变得繁琐。为了解决这个问题，我们可以利用GitHub Action，</description>
+    </item>
+    
+    <item>
+      <title>【GitHub使用指南】解决Git操作错误 - Github Action问题分析</title>
+      <link>https://eddyblog.cn/posts/tech/github_git_action_error/</link>
+      <pubDate>Tue, 12 Sep 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/github_git_action_error/</guid>
+      <description>问题描述 当使用GitHub Actions执行工作流程时，有时会遇到错误消息，其中一个常见的错误是：Action failed with &#39;not found deploy key or tokens。这个错误通常表示GitHub Actions在执行过程中找不到有效的部署密钥或访问令牌。这篇博客将帮助你了解如何解决这个问题。 错误原因分析 在Gi</description>
+    </item>
+    
+    <item>
+      <title>【计算机网络】第八章 互联网上的音频/视频服务</title>
+      <link>https://eddyblog.cn/posts/tech/computer_network_chapter_08/</link>
+      <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/computer_network_chapter_08/</guid>
+      <description>第八章 互联网上的音频/视频服务 本章重要概念 1）多媒体信息有两个重要特点：（1）多媒体信息的信息量往往很大；（2）在传输多媒体数据时，对时延和时延抖动均有较高的要求。在互联网上传输多媒体数据时，我们都是指含有“边传输、边播放”的特点。 2）由多媒体信息构成的分组在发送时是等时的。这些</description>
+    </item>
+    
+    <item>
+      <title>【计算机网络】第二章 物理层</title>
+      <link>https://eddyblog.cn/posts/tech/computer_network_chapter_02/</link>
+      <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/computer_network_chapter_02/</guid>
+      <description>第二章 物理层 本章的重要概念 1）物理层的主要任务就是确定与传输媒体的接口有关的一些特性，如机械特性、电气特性、功能特性和过程特性。 2）一个数据通信系统可划分为三大部分，即源系统、传输系统和目的系统。源系统包括源点（或源站、信源）和发送器，目的系统包括接收器和终点（或目的站、信宿）。</description>
+    </item>
+    
+    <item>
+      <title>【计算机网络】第九章 无线网络和移动网络</title>
+      <link>https://eddyblog.cn/posts/tech/computer_network_chapter_09/</link>
+      <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/computer_network_chapter_09/</guid>
+      <description>第九章 无线网络和移动网络 本章重要概念 1）无线局域网可分为两大类。第一类是有固定基础设施的，第二类是无固定基础设施的。 2）最常用的、有固定基础设施的无线局域网的标准是 IEEE 的 802.11 系列。使用 802.11 系列标准的局域网又称为Wi-Fi。 3）802.11 无线以太网标准使用星形拓扑，其中心叫作接入点 AP</description>
+    </item>
+    
+    <item>
+      <title>【计算机网络】第六章 应用层</title>
+      <link>https://eddyblog.cn/posts/tech/computer_network_chapter_06/</link>
+      <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/computer_network_chapter_06/</guid>
+      <description>第六章 应用层 本章重要概念 1）应用层协议是为了解决某一类应用问题，而问题的解决又是通过位于不同主机中的多个应用进程之间的通信和协同工作来完成的。应用层规定了应用进程在通信时所遵循的协议。应用层的许多协议都是基于客户-服务器方式的。客户是服务请求方，服务器是服务提供方。 2）域名系统D</description>
+    </item>
+    
+    <item>
+      <title>【计算机网络】第七章 网络安全</title>
+      <link>https://eddyblog.cn/posts/tech/computer_network_chapter_07/</link>
+      <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/computer_network_chapter_07/</guid>
+      <description>第七章 网络安全 本章重要概念 1）计算机网络上的通信面临的威胁可分为两大类，即被动攻击（如截获）和主动攻击(如中断、篡改、伪造)。主动攻击的类型有更改报文流、拒绝服务、伪造初始化、恶意程序（病毒、蠕虫、木马、逻辑炸弹、后门入侵、流氓软件）等。 2）计算机网络安全主要有以下一些内容：机密</description>
+    </item>
+    
+    <item>
+      <title>【计算机网络】第三章 数据链路层</title>
+      <link>https://eddyblog.cn/posts/tech/computer_network_chapter_03/</link>
+      <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/computer_network_chapter_03/</guid>
+      <description>第三章 数据链路层 本章的重要概念 1）链路是从一个节点到相邻节点的一段物理线路，数据链路则是在链路的基础上增加了一些必要的硬件（如网络适配器）和软件（如协议的实现）。 2）数据链路层使用的信道主要有点对点信道和广播信道两种。 3）数据链路层传送的协议数据单元是帧。数据链路层的三个基本问题</description>
+    </item>
+    
+    <item>
+      <title>【计算机网络】第四章 网络层</title>
+      <link>https://eddyblog.cn/posts/tech/computer_network_chapter_04/</link>
+      <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/computer_network_chapter_04/</guid>
+      <description>第四章 网络层 本章的重要概念 1）TCP/IP体系中的网络层向上只提供简单灵活的、无连接的、尽最大努力交付的数据报服务。网络层不提供服务质量的承诺，不保证分组交付的时限，所传送的分组可能出错、丢失、重复和失序。进程之间通信的可靠性由运输层负责。 2）IP网是虚拟的，因为从网络层上看，I</description>
+    </item>
+    
+    <item>
+      <title>【计算机网络】第五章 运输层</title>
+      <link>https://eddyblog.cn/posts/tech/computer_network_chapter_05/</link>
+      <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/computer_network_chapter_05/</guid>
+      <description>第五章 运输层 本章重要概念 1）运输层提供应用进程间的逻辑通信，也就是说，运输层之间的通信并不是真正在两运输层之间直接传送数据。运输层向应用层屏蔽了下面网络的细节（如网络拓扑、所采用的路由选择协议等），它使应用进程看见的就好像在两个运输层实体之间有一条端到端的逻辑通信信道。 2）网络层</description>
+    </item>
+    
+    <item>
+      <title>【计算机网络】第一章 概述</title>
+      <link>https://eddyblog.cn/posts/tech/computer_network_chapter_01/</link>
+      <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/computer_network_chapter_01/</guid>
+      <description>启程 欢迎来到《计算机网络简明教程- 重要概念》系列！计算机网络作为现代科技的基础，贯穿着我们日常生活和商业世界的方方面面。这个系列旨在为您呈现计算机网络领域中最关键、最基础的概念和原理，帮助您建立对网络基础知识的清晰理解。 让我们一起踏上这个探索计算机网络的旅程吧！ 第一章 概述 本章的重</description>
     </item>
     
     <item>
@@ -107,15 +215,6 @@
     </item>
     
     <item>
-      <title>【嵌入式高级C编程】第三章 函数</title>
-      <link>https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_03fun/</link>
-      <pubDate>Sat, 16 Sep 2023 00:17:58 +0800</pubDate>
-      
-      <guid>https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_03fun/</guid>
-      <description>第三章 函数 一、函数的概念 函数是c语言的功能单位，实现一个功能可以封装一个函数来实现。 定义函数的时候一切以功能为目的，根据功能去定函数的参数和返回值。 函数就是讲特定功能的代码封装在一个函数内部，当要使用这些代码时，只需要通过函数名就可以使用，这样操作起来更加方便。 二、函数的分类 1、</description>
-    </item>
-    
-    <item>
       <title>【C语言指南】代码注释规范</title>
       <link>https://eddyblog.cn/posts/tech/c_language_comment_specification/</link>
       <pubDate>Tue, 12 Sep 2023 00:17:58 +0800</pubDate>
@@ -140,24 +239,6 @@
       
       <guid>https://eddyblog.cn/posts/tech/github_git_push_502_bad_gateway/</guid>
       <description>问题描述 输入git push命令后报错 $ git push -f origin main Enumerating objects: 149, done. Counting objects: 100% (149/149), done. Delta compression using up to 16 threads Compressing objects: 100% (144/144), done. error: RPC failed; HTTP 502 curl 22 The requested URL returned error: 502 Writing objects: 80% (119/148), 1.36 GiB | 237.00 KiB/ssend-pack: unexpected disconnect while reading sideband packet Writing objects: 100% (148/148), 1.39 GiB | 2.68 MiB/s, done. Total 148 (delta 3), reused 0 (delta 0), pack-reused 0 fatal: the remote end hung up unexpectedly 原因分析 这个错误表明在进行 git push 操作时，出现了HTTP 502错误，这通常是由于远程</description>
-    </item>
-    
-    <item>
-      <title>【GitHub使用指南】解决Git操作错误 - Github Action问题分析</title>
-      <link>https://eddyblog.cn/posts/tech/github_git_action_error/</link>
-      <pubDate>Tue, 12 Sep 2023 00:17:58 +0800</pubDate>
-      
-      <guid>https://eddyblog.cn/posts/tech/github_git_action_error/</guid>
-      <description>问题描述 当使用GitHub Actions执行工作流程时，有时会遇到错误消息，其中一个常见的错误是：Action failed with &#39;not found deploy key or tokens。这个错误通常表示GitHub Actions在执行过程中找不到有效的部署密钥或访问令牌。这篇博客将帮助你了解如何解决这个问题。 错误原因分析 在Gi</description>
-    </item>
-    
-    <item>
-      <title>【Hugo网站搭建】GitHub Action自动化部署Hugo博客</title>
-      <link>https://eddyblog.cn/posts/tech/github_action_hugo/</link>
-      <pubDate>Wed, 06 Sep 2023 00:17:58 +0800</pubDate>
-      
-      <guid>https://eddyblog.cn/posts/tech/github_action_hugo/</guid>
-      <description>前言 在本文中，我们将介绍如何通过GitHub Action自动化部署Hugo博客。如果你是一个博客作者，你可能已经熟悉了使用Hugo构建和管理你的博客。Hugo是一个快速且灵活的静态网站生成器，但是手动部署博客可能会变得繁琐。为了解决这个问题，我们可以利用GitHub Action，</description>
     </item>
     
     <item>

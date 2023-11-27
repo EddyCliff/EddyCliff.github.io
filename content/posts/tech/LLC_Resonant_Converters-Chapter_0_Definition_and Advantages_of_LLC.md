@@ -14,7 +14,7 @@ tags:
 - switching mode power supply
 - Power technology
 description: 
-weight:
+weight: 1
 slug: ""
 draft: false # 是否为草稿
 comments: false
