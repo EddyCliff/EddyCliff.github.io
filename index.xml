@@ -53,6 +53,15 @@
     </item>
     
     <item>
+      <title>【剪辑师笔记】剪辑大佬的剪辑流程</title>
+      <link>https://eddyblog.cn/posts/art/video_editor_notes_the_editing_process_of_the_editing_masters/</link>
+      <pubDate>Sun, 03 Dec 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/art/video_editor_notes_the_editing_process_of_the_editing_masters/</guid>
+      <description>前言 先找音乐还是先剪画面，看似是一个先有鸡还是先有蛋的问题。 但是在剪辑师的流程中，确实是存在一套的标准的。 第一步：拷贝素材 剪辑师接的每一个新的项目都要单独建立项目的母文件夹，同时在项目母文件夹里还要建立多个子文件夹。以便后面使用。 第二步：顺片 在剪辑之前大概看一下拍摄素材，同时对应</description>
+    </item>
+    
+    <item>
       <title>【计算机网络】第八章 互联网上的音频/视频服务</title>
       <link>https://eddyblog.cn/posts/tech/computer_network_chapter_08/</link>
       <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
@@ -392,15 +401,6 @@
       
       <guid>https://eddyblog.cn/posts/tech/github_delete_wrong_repository/</guid>
       <description>删除本地仓库/错误的远程仓库关联</description>
-    </item>
-    
-    <item>
-      <title>Art</title>
-      <link>https://eddyblog.cn/posts/art/art/</link>
-      <pubDate>Sat, 05 Aug 2023 00:18:23 +0800</pubDate>
-      
-      <guid>https://eddyblog.cn/posts/art/art/</guid>
-      <description>hello D:. ├─.idea ├─archetypes ├─assets │ ├─css │ │ └─extended │ └─js ├─content │ ├─posts │ │ ├─art │ │ ├─blog │ │ ├─life │ │ ├─projects │ │ ├─read │ │ └─tech │ │ └─tech1 │ └─tags ├─da</description>
     </item>
     
     <item>
