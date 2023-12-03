@@ -19,83 +19,33 @@
 {{- end }}
 
 
-<!--标签云-->
-
-<div id="sourrounding_div" style="width:100%;height:100%;min-height: 500px;">
-    <div id="tag-canvas"></div>
-</div>
-
-<script src="../../assets/js/wordcloud2.js"></script>
-
-{{- range $key, $value := .Data.Terms.Alphabetical }}
-    {{ if eq "" ($.Scratch.Get "tagsMap") }}
-        {{ $.Scratch.Set "tagsMap" (slice (dict .Name .Count))  }}
-    {{ else }}
-        {{ $.Scratch.Add "tagsMap" (slice (dict .Name .Count)) }}
-    {{ end }}
-{{- end }}
-{{ $result := ($.Scratch.Get "tagsMap")}}
-`<span id="tag-temp" style="display:none">`{{$result | jsonify }}
-
-<script>
-    //因为前期每个标签值比较小，帮X一个系数
-    var XISHU = 20;
-    //为了动态宽度
-    var div = document.querySelector("#sourrounding_div");
-    var canvas = document.querySelector("#tag-canvas");
-    canvas.style.width = div.offsetWidth+'px';
-    canvas.style.height = div.offsetHeight+'px';
-    var wordFreqData =  document.querySelector("#tag-temp").innerHTML;
-    var jsonObj = JSON.parse(wordFreqData);
-    var arr = []
-    jsonObj.forEach(element => {
-        var key = Object.keys(element);
-        var itemArr = [key[0],element[key]*XISHU];
-        arr.push(itemArr);
-    });
-    //获取当前是暗色还是浅色
-    var isDark = document.body.className.includes("dark");
-    WordCloud(canvas, {
-          "list": arr,//或者[['各位观众',45],['词云', 21],['来啦!!!',13]],只要格式满足这样都可以
-          "shape": "pentagon", //形状 circle (default), cardioid (心型), diamond, square, triangle-forward, triangle, pentagon, and star.
-          "gridSize": 6, // 密集程度 数字越小越密集
-          "weightFactor": 1, // 字体大小=原始大小*weightFactor
-          "fontWeight": 'normal', //字体粗细
-          "fontFamily": 'Times, serif', // 字体
-          "color": isDark?'random-light':'random-dark', // 字体颜色 'random-dark' 或者 'random-light'
-          "backgroundColor": 'transparent', // 背景颜色
-          "classes": "tag-cloud-item word-color", //用于点击事件
-      });
-      canvas.addEventListener('wordcloudstop', function (e) {
-            //动画
-            setTimeout(() => {
-                var els = document.querySelectorAll(".word-color");
-                Array.from(els).forEach((el) => {
-                    console.log('动画',el)
-                    el.classList.add("word-animate")
-                })
-            }, 2000);
-            //点击
-            document.querySelectorAll('.tag-cloud-item').forEach(function (element) {
-                const text = element.innerHTML;
-                element.innerHTML = `<a href="/tags/${text}" style="color: inherit;">${text}</a>`;
-            });
-        });
-  
-</script>
-
-<!-- <ul class="terms-tags">
+<ul class="terms-tags">
     {{- $type := .Type }}
     {{- range $key, $value := .Data.Terms.Alphabetical }}
     {{- $name := .Name }}
     {{- $count := .Count }}
-    {{- with site.GetPage (printf "/%s/%s" $type $name) }}
+    {{- with $.Site.GetPage (printf "/%s/%s" $type $name) }}
     <li>
-        <a href="{{ .Permalink }}">{{ .Name }} <sup><strong><sup>{{ $count }}</sup></strong></sup> </a>
+        {{ $largestFontSize := 1.5 }}
+        {{ $smallestFontSize := 1 }}
+        {{ $fontSpread := sub $largestFontSize $smallestFontSize }}
+        {{ $max := add (len (index $.Site.Taxonomies.tags.ByCount 0).Pages) 1 }}
+        {{ $min := len (index $.Site.Taxonomies.tags.ByCount.Reverse 0).Pages }}
+        {{ $spread := sub $max $min }}
+        {{ $fontStep := div $fontSpread $spread }}
+        {{ $weigth := div (sub (math.Log $count) (math.Log $min)) (sub (math.Log $max) (math.Log $min)) }}
+        {{ $currentFontSize := (add $smallestFontSize (mul (sub $largestFontSize $smallestFontSize) $weigth)) }}
+        <a href="{{ .Permalink }}" style="font-size: {{ $currentFontSize }}rem; font-weight: {{ mul $currentFontSize 300 }};">
+            {{ .Name }} <sup><strong><sup>{{ $count }}</sup></strong></sup>
+        </a>
+        <!-- <a href="{{ .Permalink }}" style="font-size: {{ $currentFontSize }}rem; color: rgba({{ sub 150 (mul $count 10) }}, {{ sub 150 (mul $count 10) }}, {{ sub 150 (mul $count 10) }}, 1);">
+            {{ .Name }} <sup><strong><sup>{{ $count }}</sup></strong></sup>
+        </a> -->
+
     </li>
     {{- end }}
     {{- end }}
-</ul> -->
+</ul> 
 
 
 {{- end }}{{/* end main */ -}}
