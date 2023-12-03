@@ -6,7 +6,7 @@
     <description>Recent content in 👨🏻‍💻 技术 on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 27 Nov 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/posts/tech/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 03 Dec 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/posts/tech/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【浅谈LLC谐振变换器】-章节0:LLC的定义以及优势</title>
       <link>https://eddyblog.cn/posts/tech/llc_resonant_converters-chapter_0_definition_and-advantages_of_llc/</link>
@@ -41,6 +41,15 @@
       
       <guid>https://eddyblog.cn/posts/tech/github_git_action_error/</guid>
       <description>问题描述 当使用GitHub Actions执行工作流程时，有时会遇到错误消息，其中一个常见的错误是：Action failed with &#39;not found deploy key or tokens。这个错误通常表示GitHub Actions在执行过程中找不到有效的部署密钥或访问令牌。这篇博客将帮助你了解如何解决这个问题。 错误原因分析 在Gi</description>
+    </item>
+    
+    <item>
+      <title>【Hugo网站搭建】markdown中图片大小和对齐方式调整</title>
+      <link>https://eddyblog.cn/posts/tech/hugo_image_resizing_and_alignment_in_markdown/</link>
+      <pubDate>Sun, 03 Dec 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/hugo_image_resizing_and_alignment_in_markdown/</guid>
+      <description>使用HTML标签对markdown中图片大小和对齐方式调整</description>
     </item>
     
     <item>

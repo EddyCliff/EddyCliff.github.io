@@ -80,6 +80,7 @@ var _hmt = _hmt || [];
 <meta name="twitter:title" content="Categories"/>
 <meta name="twitter:description" content="EddyCliff的个人博客"/>
 
+
 </head>
 
 <body class="list" id="top">
@@ -176,8 +177,65 @@ var _hmt = _hmt || [];
     
 </header>
 
-<ul class="terms-tags">
-</ul>
+
+
+
+<div id="sourrounding_div" style="width:100%;height:100%;min-height: 500px;">
+    <div id="tag-canvas"></div>
+</div>
+
+<script src="../../assets/js/wordcloud2.js"></script>
+
+`<span id="tag-temp" style="display:none">`null
+
+<script>
+    
+    var XISHU = 20;
+    
+    var div = document.querySelector("#sourrounding_div");
+    var canvas = document.querySelector("#tag-canvas");
+    canvas.style.width = div.offsetWidth+'px';
+    canvas.style.height = div.offsetHeight+'px';
+    var wordFreqData =  document.querySelector("#tag-temp").innerHTML;
+    var jsonObj = JSON.parse(wordFreqData);
+    var arr = []
+    jsonObj.forEach(element => {
+        var key = Object.keys(element);
+        var itemArr = [key[0],element[key]*XISHU];
+        arr.push(itemArr);
+    });
+    
+    var isDark = document.body.className.includes("dark");
+    WordCloud(canvas, {
+          "list": arr,
+          "shape": "pentagon", 
+          "gridSize": 6, 
+          "weightFactor": 1, 
+          "fontWeight": 'normal', 
+          "fontFamily": 'Times, serif', 
+          "color": isDark?'random-light':'random-dark', 
+          "backgroundColor": 'transparent', 
+          "classes": "tag-cloud-item word-color", 
+      });
+      canvas.addEventListener('wordcloudstop', function (e) {
+            
+            setTimeout(() => {
+                var els = document.querySelectorAll(".word-color");
+                Array.from(els).forEach((el) => {
+                    console.log('动画',el)
+                    el.classList.add("word-animate")
+                })
+            }, 2000);
+            
+            document.querySelectorAll('.tag-cloud-item').forEach(function (element) {
+                const text = element.innerHTML;
+                element.innerHTML = `<a href="/tags/${text}" style="color: inherit;">${text}</a>`;
+            });
+        });
+  
+</script>
+
+
 </main>
 
 <footer class="footer">

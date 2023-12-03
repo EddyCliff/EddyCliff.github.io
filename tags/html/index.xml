@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>HTML on Eddy&#39;s blog</title>
+    <link>https://eddyblog.cn/tags/html/</link>
+    <description>Recent content in HTML on Eddy&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Sun, 03 Dec 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/html/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【Hugo网站搭建】markdown中图片大小和对齐方式调整</title>
+      <link>https://eddyblog.cn/posts/tech/hugo_image_resizing_and_alignment_in_markdown/</link>
+      <pubDate>Sun, 03 Dec 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/hugo_image_resizing_and_alignment_in_markdown/</guid>
+      <description>使用HTML标签对markdown中图片大小和对齐方式调整</description>
+    </item>
+    
+  </channel>
+</rss>
