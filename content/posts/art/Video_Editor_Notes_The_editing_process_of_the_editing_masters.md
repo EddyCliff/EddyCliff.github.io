@@ -26,7 +26,7 @@ hidemeta: false # 是否隐藏文章的元信息，如发布日期、作者等
 disableShare: true # 底部不显示分享栏
 showbreadcrumbs: true #顶部显示路径
 cover:
-    image: "https://fastly.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/editor2.jpg" #图片路径例如：posts/tech/123/123.png
+    image: "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/editor2.jpg" #图片路径例如：posts/tech/123/123.png
     caption: "" #图片底部描述
     alt: ""
     relative: false
@@ -43,7 +43,7 @@ cover:
 剪辑师接的每一个新的项目都要单独建立项目的母文件夹，同时在项目母文件夹里还要建立多个子文件夹。以便后面使用。
 
 <div align="center">
-<img src="https://fastly.jsdelivr.net/gh/EddyCliff/ChartBed/Video_Editor_Notes/00image.png" width="70%" height="auto">
+<img src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Video_Editor_Notes/00image.png" width="70%" height="auto">
 </div>
 
 ## 第二步：顺片
@@ -61,11 +61,11 @@ cover:
 同时如果你拍的是4k的分辨率，电脑配置又低，那就要在导入素材前设置好代理剪辑功能再导入素材。
 
 <div align="center">
-<img src="https://fastly.jsdelivr.net/gh/EddyCliff/ChartBed/Video_Editor_Notes/00image1.png" width="50%" height="auto">
+<img src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Video_Editor_Notes/00image1.png" width="50%" height="auto">
 </div>
 
 <div align="center">
-<img src="https://fastly.jsdelivr.net/gh/EddyCliff/ChartBed/Video_Editor_Notes/00image2.png" width="50%" height="auto">
+<img src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Video_Editor_Notes/00image2.png" width="50%" height="auto">
 </div>
 
 
@@ -104,7 +104,7 @@ cover:
 ### 粗剪第一步：搭建影片架构
 
 <div align="center">
-<img src="https://fastly.jsdelivr.net/gh/EddyCliff/ChartBed/Video_Editor_Notes/00image3.png" width="70%" height="auto">
+<img src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Video_Editor_Notes/00image3.png" width="70%" height="auto">
 </div>
 
 
@@ -114,7 +114,7 @@ cover:
 
 ### 粗剪第二步：镜头组接
 <div align="center">
-<img src="https://fastly.jsdelivr.net/gh/EddyCliff/ChartBed/Video_Editor_Notes/00image4.png" width="70%" height="auto">
+<img src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Video_Editor_Notes/00image4.png" width="70%" height="auto">
 </div>
 
 
@@ -127,7 +127,7 @@ cover:
 粗剪完成后，影片看起来就像一个非常粗糙的故事。此时影片的长度也比最终成片的长度要长很多。
 
 <div align="center">
-<img src="https://fastly.jsdelivr.net/gh/EddyCliff/ChartBed/Video_Editor_Notes/00image5.png" width="70%" height="auto">
+<img src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Video_Editor_Notes/00image5.png" width="70%" height="auto">
 </div>
 
 
@@ -146,7 +146,7 @@ cover:
 ### 精剪第一步：怼音效
 
 <div align="center">
-<img src="https://fastly.jsdelivr.net/gh/EddyCliff/ChartBed/Video_Editor_Notes/00image6.png" width="70%" height="auto">
+<img src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Video_Editor_Notes/00image6.png" width="70%" height="auto">
 </div>
 
 
@@ -159,7 +159,7 @@ cover:
 ### 精剪第二步：找音乐
 
 <div align="center">
-<img src="https://fastly.jsdelivr.net/gh/EddyCliff/ChartBed/Video_Editor_Notes/00image7.png" width="70%" height="auto">
+<img src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Video_Editor_Notes/00image7.png" width="70%" height="auto">
 </div>
 
 
@@ -172,7 +172,7 @@ cover:
 ### 精剪第三步：剪节奏
 
 <div align="center">
-<img src="https://fastly.jsdelivr.net/gh/EddyCliff/ChartBed/Video_Editor_Notes/00image8.png" width="70%" height="auto">
+<img src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Video_Editor_Notes/00image8.png" width="70%" height="auto">
 </div>
 
 
@@ -187,7 +187,7 @@ cover:
 ### 精剪第四步：再一次怼音效 
 
 <div align="center">
-<img src="https://fastly.jsdelivr.net/gh/EddyCliff/ChartBed/Video_Editor_Notes/00image9.png" width="70%" height="auto">
+<img src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Video_Editor_Notes/00image9.png" width="70%" height="auto">
 </div>
 
 
@@ -200,7 +200,7 @@ cover:
 ### 精剪第五步：再一次怼音效 
 
 <div align="center">
-<img src="https://fastly.jsdelivr.net/gh/EddyCliff/ChartBed/Video_Editor_Notes/00image10.png" width="70%" height="auto">
+<img src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Video_Editor_Notes/00image10.png" width="70%" height="auto">
 </div>
 
 
