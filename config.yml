@@ -36,7 +36,7 @@ languages:
       weight: 1
       profileMode:
         enabled: true
-        title: Eddy - blog
+        title: 
         subtitle:
         # subtitle: "🧨学而时习之，不亦说乎？有朋自远方来，不亦乐乎？<br/>👇联系方式"
         # imageUrl: "img/logo3.png"
@@ -142,7 +142,7 @@ params:
 
   label: # 左上角图标
     text: "Eddy's Blog"
-    icon: "img/logo3.png"
+    icon: "img/logo3.jpg"
     iconHeight: 35
 
   analytics:
@@ -150,11 +150,11 @@ params:
       SiteVerificationTag: ""
 
   assets:
-    favicon: "img/logo3.png"
-    favicon16x16: "img/logo3.png"
-    favicon32x32: "img/logo3.png"
-    apple_touch_icon: "img/logo3.png"
-    safari_pinned_tab: "img/logo3.png"
+    favicon: "img/logo3.jpg"
+    favicon16x16: "img/logo3.jpg"
+    favicon32x32: "img/logo3.jpg"
+    apple_touch_icon: "img/logo3.jpg"
+    safari_pinned_tab: "img/logo3.jpg"
     disableFingerprinting: true # 禁用指纹
 
   cover:
