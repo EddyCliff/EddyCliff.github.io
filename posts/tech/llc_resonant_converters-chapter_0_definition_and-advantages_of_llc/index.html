@@ -477,8 +477,9 @@ var _hmt = _hmt || [];
 <p>LLC转换器像其他谐振转换器一样，由3个模块组成：电源开关，谐振回路，二极管整流器。</p>
 <p>首先打开MOS开关管，将直流电压转换为高频方波，方波进入谐振回路后，消除了方波的谐波，输出基频的正弦波，正弦波通过高频变压器传输到转换器的次级侧，根据输出要求升高或降低电压，最后，正弦波通过二极管整流器转换为稳定的直流输出。</p>
 <h3 id="llc的电源开关">LLC的电源开关<a hidden class="anchor" aria-hidden="true" href="#llc的电源开关">#</a></h3>
-<p><img loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/LLC_Resonant_Converters/00image.png" alt="00image.png"  />
-</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/LLC_Resonant_Converters/00image.png" width = "70%" height = "auto">
+</div>
 <p>LLC的电源开关可以在全桥或者半桥拓扑中实现，</p>
 <p>它们的主要区别是：</p>
 <p>全桥拓扑结构生成无直流偏移的方波输出，幅度等于输入电压，范围从正波到负波。</p>
@@ -511,11 +512,13 @@ var _hmt = _hmt || [];
 <p>通常情况下，半桥拓扑可以提供成本最低的开关网络。</p>
 <p>我们需要找到一个可以使用变压器参数的谐振回路，一旦能够实现这一点，我们就可以减少谐振电路的额外元件数量。</p>
 <p>理想变压器的磁化电感与其输入绕组并联，我们可以将其用作与谐振回路输出端口并联的励磁电感Lm。</p>
-<p><img loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/LLC_Resonant_Converters/00image1.png" alt="00image1.png"  />
-</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/LLC_Resonant_Converters/00image1.png" width = "70%" height = "auto">
+</div>
 <p>在现实世界中，变压器总是带有与变压器绕组串联的漏电感，如果我们以某种方式使用这个串联漏电感作为谐振电感Lr，我们就能降低电路的成本。</p>
-<p><img loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/LLC_Resonant_Converters/00image2.png" alt="00image2.png"  />
-</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/LLC_Resonant_Converters/00image2.png" width = "70%" height = "auto">
+</div>
 <p><strong>原因2：</strong></p>
 <p>LLC的谐振回路由一个谐振电容器和两个电感器组成。</p>
 <p>与电容器和变压器串联的谐振电感器以及并联的磁化电感器。</p>
@@ -524,34 +527,41 @@ var _hmt = _hmt || [];
 <p>我们可以这么认为，当电源能够很好的提供电量的时候，这个电源就是一个稳健的设计。</p>
 <p>那么负载调节量以及谐振回路的响应是否会随负载变化而给设计带来挑战呢？</p>
 <p>我们必须考虑开关频率和输出负载来调整谐振回路的响应，以确保转换器通过设计谐振回路的增益在广泛的负载范围内高效的运行。</p>
-<p><img loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/LLC_Resonant_Converters/00image3.png" alt="00image3.png"  />
-</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/LLC_Resonant_Converters/00image3.png" width = "70%" height = "auto">
+</div>
 <p>由于谐振回路的双电感器，LLC转换器的工作范围较宽。</p>
-<p><img loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/LLC_Resonant_Converters/00image4.png" alt="00image4.png"  />
-</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/LLC_Resonant_Converters/00image4.png" width = "70%" height = "auto">
+</div>
 <p>为了解其工作原理，我们将根据要求考虑容器对重载和轻载的响应。</p>
 <p>让我们将变压器的整个次级侧视为谐振回路的负载端。</p>
-<p><img loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/LLC_Resonant_Converters/00image5.png" alt="00image5.png"  />
-</p>
-<p><img loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/LLC_Resonant_Converters/00image6.png" alt="00image6.png"  />
-</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/LLC_Resonant_Converters/00image5.png" width = "70%" height = "auto">
+</div>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/LLC_Resonant_Converters/00image6.png" width = "70%" height = "auto">
+</div>
 <h4 id="仅含lm和cr的回路">仅含Lm和Cr的回路<a hidden class="anchor" aria-hidden="true" href="#仅含lm和cr的回路">#</a></h4>
 <p>如果谐振回路仅由谐振电容器和磁化电感器组成，让我们看一看在一定负载范围内的谐振增益是怎么样的。</p>
-<p><img loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/LLC_Resonant_Converters/00image12.png" alt="00image12.png"  />
-</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/LLC_Resonant_Converters/00image12.png" width = "70%" height = "auto">
+</div>
 <p>当负载较轻时，谐振回路的增益有一个明显的峰值，然而，重负载的增益没有上限，它能够响应衰减变化并且仅在非常高的频率下能实现单位增益。</p>
 <hr>
 <h4 id="仅含lr和cr的回路">仅含Lr和Cr的回路<a hidden class="anchor" aria-hidden="true" href="#仅含lr和cr的回路">#</a></h4>
 <p>现在，如果谐振回路仅由谐振电容器和与之串联的谐振电感器Lr组成，则结果会有所不同。</p>
-<p><img loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/LLC_Resonant_Converters/00image7.png" alt="00image7.png"  />
-</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/LLC_Resonant_Converters/00image7.png" width = "70%" height = "auto">
+</div>
 <p>当负载较轻时，这中间的增益不会超过单位增益。</p>
 <p>但当负载较重时，谐振回路达到单位增益的速度则比并联电感器Lm快得多。</p>
 <hr>
 <p>因此，通过谐振回路中实施两个电感器，我们得到了频率增益响应，确保转换器能够响应更大范围的负载。</p>
 <p>此外，它可以在整个负载范围内实现稳定的控制。</p>
-<p><img loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/LLC_Resonant_Converters/00image11.jpeg" alt="00image11.jpeg"  />
-</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/LLC_Resonant_Converters/00image11.jpeg" width = "70%" height = "auto">
+</div>
 <h4 id="llc的两个谐振频率">LLC的两个谐振频率<a hidden class="anchor" aria-hidden="true" href="#llc的两个谐振频率">#</a></h4>
 <p>对LLC来说，有两个谐振频率，</p>
 <p>一个谐振频率fr是利用谐振电感Lr谐振电容Cr组成；</p>
@@ -566,19 +576,23 @@ var _hmt = _hmt || [];
 <p>因此两个比例（Lm/Lr）（Lr/Cr）都需要足够低，使得电路具有较宽的电压调节范围和较窄的工作频率变化。</p>
 <hr>
 <p>然而，电流ILm在输入端的开关网络和谐振回路之间循环 ,并且由于隔离的原因不会传输到输出端。</p>
-<p><img loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/LLC_Resonant_Converters/00screenshots.gif" alt="00screenshots.gif"  />
-</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/LLC_Resonant_Converters/00screenshots.gif" width = "70%" height = "auto">
+</div>
 <p>如果降低Lm以在宽电压调节范围内保持低Lm/Lr比例，ILm数值会增加，因此会降低转换器的效率。</p>
 <p>因此，在设计过程中必须考虑效率和稳压的范围。</p>
 <p>正如我们所见，转换器的效率来自谐振回路，LLC转换器的谐振回路可在初级侧和次级侧实现软开关。</p>
-<p><img loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/LLC_Resonant_Converters/00image8.png" alt="00image8.png"  />
-</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/LLC_Resonant_Converters/00image8.png" width = "70%" height = "auto">
+</div>
 <p>它在输入开关上启用ZVS，此外，如果开关频率介于两个谐振频率之间，我们可以在输出整流器上实现零电流开关。</p>
-<p><img loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/LLC_Resonant_Converters/00image9.png" alt="00image9.png"  />
-</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/LLC_Resonant_Converters/00image9.png" width = "70%" height = "auto">
+</div>
 <p>LLC拓扑可节省电路板空间，LLC拓扑没有输出电感器，这意味着所有电感器可以更轻松地集成到单个磁性结构，以节省面积和成本。</p>
-<p><img loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/LLC_Resonant_Converters/00image10.png" alt="00image10.png"  />
-</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/LLC_Resonant_Converters/00image10.png" width = "70%" height = "auto">
+</div>
 <p>简而言之，可以通过LLC串并联谐振变换器来提高开关频率以减小转换器尺寸，同时保持较高的转换器效率。</p>
 <p>比如，我们可以使用氮化镓（GaN）FET设计一个1kw输出的LLC串联谐振转换器，其开关频率为1MHz，并实现高达95%的效率，与此同时它的尺寸和重量会缩小到可以装进我们的午餐盒里。</p>
 <p>这就是LLC谐振变换器被用于高端消费电子产品，服务器和电信站等精密系统的电源应用的原因。</p>
