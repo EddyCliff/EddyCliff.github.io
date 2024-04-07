@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>vmware on Eddy&#39;s blog</title>
+    <title>Vmware on Eddy&#39;s blog</title>
     <link>https://eddyblog.cn/tags/vmware/</link>
-    <description>Recent content in vmware on Eddy&#39;s blog</description>
+    <description>Recent content in Vmware on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <lastBuildDate>Sat, 19 Aug 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/vmware/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【Linux应用开发指南】vmware实现复制粘贴功能</title>
-      <link>https://eddyblog.cn/posts/tech/linux_vmware_copy_and_paste/</link>
+      <link>https://eddyblog.cn/posts/tech/linux-vmware-copy-and-paste/</link>
       <pubDate>Sat, 19 Aug 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/linux_vmware_copy_and_paste/</guid>
+      <guid>https://eddyblog.cn/posts/tech/linux-vmware-copy-and-paste/</guid>
       <description>vmware实现复制粘贴功能</description>
     </item>
     

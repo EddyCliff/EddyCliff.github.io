@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>【嵌入式高级C编程】第六章 动态内存申请 | Eddy&#39;s blog</title>
+<meta name="keywords" content="C programming, Embedded Development, Dynamic memory request">
+<meta name="description" content="第六章 动态内存申请 一、动态分配内存的概 在数组一章中，介绍过数组的长度是预先定义好的，在整个程序中固定不变，但是在实际的编程中，往往会发生这种情况，即所需的内存空间取决于实际输入的数据，而无法预先确定 。 为了解决上述问题，Ｃ语言提供了一些内存管理函数，这些内存管理函数可以按需要动态的">
+<meta name="author" content="Eddy">
+<link rel="canonical" href="https://eddyblog.cn/posts/tech/c-programming-06dynamic-memory/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.js" onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="icon" type="image/png" sizes="16x16" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="icon" type="image/png" sizes="32x32" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="apple-touch-icon" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="mask-icon" href="https://eddyblog.cn/img/logo3.jpg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://eddyblog.cn/posts/tech/c-programming-06dynamic-memory/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<script defer src="https://unpkg.com/mermaid@8.8.1/dist/mermaid.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = ""; 
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<meta property="og:title" content="【嵌入式高级C编程】第六章 动态内存申请" />
+<meta property="og:description" content="第六章 动态内存申请 一、动态分配内存的概 在数组一章中，介绍过数组的长度是预先定义好的，在整个程序中固定不变，但是在实际的编程中，往往会发生这种情况，即所需的内存空间取决于实际输入的数据，而无法预先确定 。 为了解决上述问题，Ｃ语言提供了一些内存管理函数，这些内存管理函数可以按需要动态的" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://eddyblog.cn/posts/tech/c-programming-06dynamic-memory/" />
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/c2.jpg" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-10-01T00:17:58+08:00" />
+<meta property="article:modified_time" content="2023-10-01T00:17:58+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/c2.jpg" />
+<meta name="twitter:title" content="【嵌入式高级C编程】第六章 动态内存申请"/>
+<meta name="twitter:description" content="第六章 动态内存申请 一、动态分配内存的概 在数组一章中，介绍过数组的长度是预先定义好的，在整个程序中固定不变，但是在实际的编程中，往往会发生这种情况，即所需的内存空间取决于实际输入的数据，而无法预先确定 。 为了解决上述问题，Ｃ语言提供了一些内存管理函数，这些内存管理函数可以按需要动态的"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+
+        {
+          "@type": "ListItem",
+          "position":  1 ,
+          "name": "📚文章",
+          "item": "https://eddyblog.cn/posts/"
+        },
+
+        {
+          "@type": "ListItem",
+          "position":  2 ,
+          "name": "👨🏻‍💻 技术",
+          "item": "https://eddyblog.cn/posts/tech/"
+        }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "【嵌入式高级C编程】第六章 动态内存申请",
+      "item": "https://eddyblog.cn/posts/tech/c-programming-06dynamic-memory/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "【嵌入式高级C编程】第六章 动态内存申请",
+  "name": "【嵌入式高级C编程】第六章 动态内存申请",
+  "description": "第六章 动态内存申请 一、动态分配内存的概 在数组一章中，介绍过数组的长度是预先定义好的，在整个程序中固定不变，但是在实际的编程中，往往会发生这种情况，即所需的内存空间取决于实际输入的数据，而无法预先确定 。 为了解决上述问题，Ｃ语言提供了一些内存管理函数，这些内存管理函数可以按需要动态的",
+  "keywords": [
+    "C programming", "Embedded Development", "Dynamic memory request"
+  ],
+  "articleBody": "第六章 动态内存申请 一、动态分配内存的概 在数组一章中，介绍过数组的长度是预先定义好的，在整个程序中固定不变，但是在实际的编程中，往往会发生这种情况，即所需的内存空间取决于实际输入的数据，而无法预先确定 。\n为了解决上述问题，Ｃ语言提供了一些内存管理函数，这些内存管理函数可以按需要动态的分配内存空间，也可把不再使用的空间回收再次利用。\n动态分配内存就是在堆区开辟空间。\n二、静态分配、动态分配 静态分配\n1、 在程序编译或运行过程中，按事先规定大小分配内存空间的分配方式。int a [10]\n2、 必须事先知道所需空间的大小。\n3、 分配在栈区或全局变量区，一般以数组的形式。\n4、 按计划分配。\n动态分配\n1、在程序运行过程中，根据需要大小自由分配所需空间。\n2、按需分配。\n3、分配在堆区，一般使用特定的函数进行分配。\n三、动态分配函数 3.1 malloc #include void *malloc(unsigned int size); 功能：在堆区开辟指定长度的空间，并且空间是连续的 参数： size：要开辟的空间的大小 返回值： 成功：开辟好的空间的首地址 失败：NULL 注意\n1、在调用malloc之后，一定要判断一下，是否申请内存成功。\n2、如果多次malloc申请的内存，第1次和第2次申请的内存不一定是连续的\n3、使用malloc开辟空间需要保存开辟好的空间的首地址，但是由于不确定空间用于做什么，所以本身返回值类型为void *，所以在调用函数时根据接收者的类型对其进行强制类型转换\n#include #include char *fun() { //char ch[100] = \"hello world\"; //静态全局区的空间只要开辟好，除非程序结束，否则不会释放，所以 //如果是临时使用，不建议使用静态全局区的空间 //static char ch[100] = \"hello world\"; //堆区开辟空间，手动申请手动释放，更加灵活 //使用malloc函数的时候一般要进行强转 char *str = (char *)malloc(100 * sizeof(char)); str[0] = 'h'; str[1] = 'e'; str[2] = 'l'; str[3] = 'l'; str[4] = 'o'; str[5] = '\\0'; return str; } int main(int argc, char *argv[]) { char *p; p = fun(); printf(\"p = %s\\n\", p); return 0; } 执行结果\np = hello 3.2 free #include void free(void *ptr) 功能：释放堆区的空间 参数： ptr：开辟后使用完毕的堆区的空间的首地址 返回值： 无 注意：\nfree函数只能释放堆区的空间，其他区域的空间无法使用free\nfree释放空间必须释放malloc或者calloc或者realloc的返回值对应的空间，不能说只释放一部分\nfree(p); 注意当free后，因为没有给p赋值，所以p还是指向原先动态申请的内存。但是内存已经不能再用了，p变成野指针了，所以一般为了放置野指针，会free完毕之后对p赋为NULL。\n一块动态申请的内存只能free一次，不能多次free\n3.3 calloc #include void * calloc(size_t nmemb,size_t size); 功能：在堆区申请指定大小的空间 参数： nmemb：要申请的空间的块数 size：每块的字节数 返回值： 成功：申请空间的首地址 失败：NULL 注意：\nmalloc和calloc函数都是用来申请内存的。\n区别：\n函数的名字不一样\n参数的个数不一样\nmalloc申请的内存，内存中存放的内容是随机的，不确定的，而calloc函数申请的内存中的内容为0\n例如：\nchar *p=(char *)calloc(3,100); 在堆中申请了3块，每块大小为100个字节，即300个字节连续的区域\n3.4 realloc #include void* realloc(void *s,unsigned int newsize); 功能：在原本申请好的堆区空间的基础上重新申请内存，新的空间大小为函数的第二个参数 如果原本申请好的空间的后面不足以增加指定的大小，系统会重新找一个足够大的位置开辟指定的空间，然后将原本空间中的数据拷贝过来，然后释放原本的空间 如果newsize比原先的内存小，则会释放原先内存的后面的存储空间，只留前面的newsize个字节 参数： s：原本开辟好的空间的首地址 newsize：重新开辟的空间的大小 返回值： 新的空间的首地址 增加空间：\nchar *p; p=(char *)malloc(100) //想在100个字节后面追加50个字节 p=(char *)realloc(p,150);//p指向的内存的新的大小为150个字节 减少空间:\nchar *p; p=(char *)malloc(100) //想重新申请内存,新的大小为50个字节 p=(char *)realloc(p,50);//p指向的内存的新的大小为50个字节,100个字节的后50个字节的存储空间就被释放了 注意:malloc calloc relloc 动态申请的内存，只有在free或程序结束的时候才释放。\n四、内存泄漏 内存泄露的概念：\n申请的内存，首地址丢了，找不了，再也没法使用了，也没法释放了，这块内存就被泄露了。\n内存泄漏案例1：\nint main() { char *p; p=(char *)malloc(100); //接下来，可以用p指向的内存了 p=\"hello world\";//p指向别的地方了，保存字符串常量的首地址 //从此以后，再也找不到你申请的100个字节了。则动态申请的100个字节就被泄露了 return 0; } 内存泄漏案例2：\nvoid fun() { char *p; p=(char *)malloc(100); //接下来，可以用p指向的内存了 ... } int main() { //每调用一次fun泄露100个字节 fun(); fun(); return 0; } 解决方式1：\nvoid fun() { char *p; p=(char *)malloc(100); //接下来，可以用p指向的内存了 ... free(p); } int main() { fun(); fun(); return 0; } 解决方式2：\nchar * fun() { char *p; p=(char *)malloc(100); //接下来，可以用p指向的内存了 ... return p; } int main() { char *q; q=fun(); //可以通过q使用 ，动态申请的100个字节的内存了 //记得释放 free(q); //防止野指针 q = NULL; return 0; } 总结：申请的内存，一定不要把首地址给丢了，在不用的时候一定要释放内存。\n彩蛋🎁\n我默默地想，慢慢地写。看见冬阳下的骆驼队走过来，听见缓慢悦耳的铃声，童年重临于我的心头。\n林海音《城南旧事》 恭喜你🎉，完成了对第六章《动态内存申请》部分的学习，下一章我们将学习字符串处理函数。\n⏩第七章 《字符串处理函数》\n",
+  "wordCount" : "2106",
+  "inLanguage": "zh",
+  "image":"https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/c2.jpg","datePublished": "2023-10-01T00:17:58+08:00",
+  "dateModified": "2023-10-01T00:17:58+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "Eddy"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://eddyblog.cn/posts/tech/c-programming-06dynamic-memory/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Eddy's blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://eddyblog.cn/img/logo3.jpg"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    (function () {
+        let  arr,reg = new RegExp("(^| )"+"change-themes"+"=([^;]*)(;|$)");
+        if(arr = document.cookie.match(reg)) {
+        } else {
+            if (new Date().getHours() >= 19 || new Date().getHours() < 6) {
+                document.body.classList.add('dark');
+                localStorage.setItem("pref-theme", 'dark');
+            } else {
+                document.body.classList.remove('dark');
+                localStorage.setItem("pref-theme", 'light');
+            }
+        }
+    })()
+
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://eddyblog.cn/" accesskey="h" title="Eddy&#39;s Blog (Alt + H)">
+            <img src="https://eddyblog.cn/img/logo3.jpg" alt="logo" aria-label="logo"
+                 height="35">Eddy&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://eddyblog.cn/search" title="🔍 搜索 (Alt &#43; /)" accesskey=/>
+                <span>🔍 搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/" title="🏠 主页">
+                <span>🏠 主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/posts" title="📚 文章">
+                <span>📚 文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/tags" title="🧩 标签">
+                <span>🧩 标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/archives/" title="⏱️ 时间轴">
+                <span>⏱️ 时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/about" title="🙋🏻‍♂️ 关于">
+                <span>🙋🏻‍♂️ 关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main page">
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+</style>
+
+<article class="post-single">
+    <div id="single-content">
+        <header class="post-header">
+            <div class="breadcrumbs"><a href="https://eddyblog.cn/">🏠 主页</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/">📚文章</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/tech/">👨🏻‍💻 技术</a></div>
+            <h1 class="post-title">
+                【嵌入式高级C编程】第六章 动态内存申请
+            </h1>
+            <div class="post-meta">
+
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+
+    .parent-post-meta {
+        display: flex;
+        flex-wrap: wrap;
+        opacity: 0.8;
+    }
+</style>
+
+<span class="parent-post-meta">
+    <span id="post_meta_style_1">
+        <span class="fa fa-calendar-check-o"></span>
+        <span>2023-10-01
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    
+    
+    
+    
+    
+    
+    
+    <span id="post_meta_style_3">
+        <span class="fa fa-file-word-o"></span>
+        <span>2106字
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_4">
+        <span class="fa fa-clock-o"></span>
+        <span>5分钟
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_5">
+        <span class="fa fa-user-o"></span>
+        <span>Eddy
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_6">
+        <span class="fa fa-tags" style="opacity: 0.8"></span>
+        <span>
+            <span class="post-tags-meta">
+                <a href="https://eddyblog.cn/tags/c-programming/" style="color: var(--secondary)!important;">C Programming</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/embedded-development/" style="color: var(--secondary)!important;">Embedded Development</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/dynamic-memory-request/" style="color: var(--secondary)!important;">Dynamic Memory Request</a>
+            </span>
+        </span>
+    </span>
+</span>
+<span style="opacity: 0.8;">
+                    <span id="post_meta_style_7">
+                        &nbsp;&nbsp;
+                        <span class="fa fa-eye" ></span>
+                        <span>
+                            <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+                            &nbsp;&nbsp;
+                        </span>
+                    </span>
+                    <span id="post_meta_style_8">
+                        <span class="fa fa-commenting-o"></span>
+                        <span>
+                            <script src="https://cdn.staticfile.org/twikoo//twikoo.all.min.js"></script>
+                            <script>
+                                let url = document.documentURI
+                                
+                                let dnsUrl = "https://eddyblog.cn/"
+                                let urlSplit = url.split(dnsUrl)
+                                let finalUrl = urlSplit[1]
+                                if (finalUrl[0] !== '/') {
+                                    finalUrl = '/'+finalUrl
+                                }
+                                twikoo.getCommentsCount({
+                                    envId:  null , 
+                                region:  null , 
+                                urls: [ 
+                                    
+                                    finalUrl,
+                                ],
+                                    includeReply: false 
+                                }).then(function (res) {
+                                    let count = res[0].count
+                                    const obj = document.getElementById("comment_count");
+                                    obj.innerText = count
+                                    
+                                    
+                                    
+                                }).catch(function (err) {
+                                    
+                                    console.error(err);
+                                });
+                            </script>
+                            <span id="comment_count"></span>
+                        </span>
+                    </span>
+                </span>
+
+</div>
+        </header> 
+<figure class="entry-cover1"><img style="zoom:;" loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/c2.jpg" alt="">
+    
+</figure><aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e7%ac%ac%e5%85%ad%e7%ab%a0-%e5%8a%a8%e6%80%81%e5%86%85%e5%ad%98%e7%94%b3%e8%af%b7" aria-label="第六章 动态内存申请">第六章 动态内存申请</a><ul>
+                        
+                <li>
+                    <a href="#%e4%b8%80%e5%8a%a8%e6%80%81%e5%88%86%e9%85%8d%e5%86%85%e5%ad%98%e7%9a%84%e6%a6%82" aria-label="一、动态分配内存的概">一、动态分配内存的概</a></li>
+                <li>
+                    <a href="#%e4%ba%8c%e9%9d%99%e6%80%81%e5%88%86%e9%85%8d%e5%8a%a8%e6%80%81%e5%88%86%e9%85%8d" aria-label="二、静态分配、动态分配">二、静态分配、动态分配</a></li>
+                <li>
+                    <a href="#%e4%b8%89%e5%8a%a8%e6%80%81%e5%88%86%e9%85%8d%e5%87%bd%e6%95%b0" aria-label="三、动态分配函数">三、动态分配函数</a><ul>
+                        
+                <li>
+                    <a href="#31-malloc" aria-label="3.1 malloc">3.1 malloc</a></li>
+                <li>
+                    <a href="#32-free" aria-label="3.2 free">3.2 free</a></li>
+                <li>
+                    <a href="#33-calloc" aria-label="3.3 calloc">3.3 calloc</a></li>
+                <li>
+                    <a href="#34-realloc" aria-label="3.4 realloc">3.4 realloc</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%9b%9b%e5%86%85%e5%ad%98%e6%b3%84%e6%bc%8f" aria-label="四、内存泄漏">四、内存泄漏</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+        
+        activeElement = elements[0];
+        const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+        document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+    }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        if (elements) {
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement){
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }
+    }, false);
+
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;
+    }
+</script>
+        <div class="post-content"><h2 id="第六章-动态内存申请">第六章 动态内存申请<a hidden class="anchor" aria-hidden="true" href="#第六章-动态内存申请">#</a></h2>
+<h3 id="一动态分配内存的概">一、动态分配内存的概<a hidden class="anchor" aria-hidden="true" href="#一动态分配内存的概">#</a></h3>
+<p>在数组一章中，介绍过数组的长度是预先定义好的，在整个程序中固定不变，但是在实际的编程中，往往会发生这种情况，即所需的内存空间取决于实际输入的数据，而无法预先确定 。</p>
+<p>为了解决上述问题，Ｃ语言提供了一些内存管理函数，这些内存管理函数可以按需要动态的分配内存空间，也可把不再使用的空间回收再次利用。</p>
+<p>动态分配内存就是在堆区开辟空间。</p>
+<h3 id="二静态分配动态分配">二、静态分配、动态分配<a hidden class="anchor" aria-hidden="true" href="#二静态分配动态分配">#</a></h3>
+<p><strong>静态分配</strong></p>
+<p>1、 在程序编译或运行过程中，按事先规定大小分配内存空间的分配方式。int a [10]</p>
+<p>2、 必须事先知道所需空间的大小。</p>
+<p>3、 分配在栈区或全局变量区，一般以数组的形式。</p>
+<p>4、 按计划分配。</p>
+<p><strong>动态分配</strong></p>
+<p>1、在程序运行过程中，根据需要大小自由分配所需空间。</p>
+<p>2、按需分配。</p>
+<p>3、分配在堆区，一般使用特定的函数进行分配。</p>
+<h3 id="三动态分配函数">三、动态分配函数<a hidden class="anchor" aria-hidden="true" href="#三动态分配函数">#</a></h3>
+<h4 id="31-malloc">3.1 malloc<a hidden class="anchor" aria-hidden="true" href="#31-malloc">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdlib.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">malloc</span>(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> size);
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">功能：在堆区开辟指定长度的空间，并且空间是连续的</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">参数：</span>
+</span></span><span style="display:flex;"><span>  size<span style="color:#960050;background-color:#1e0010">：要开辟的空间的大小</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">返回值：</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">成功：开辟好的空间的首地址</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">失败：</span>NULL
+</span></span></code></pre></div><p>注意</p>
+<p>1、在调用malloc之后，一定要判断一下，是否申请内存成功。</p>
+<p>2、如果多次malloc申请的内存，第1次和第2次申请的内存不一定是连续的</p>
+<p>3、使用malloc开辟空间需要保存开辟好的空间的首地址，但是由于不确定空间用于做什么，所以本身返回值类型为void *，所以在调用函数时根据接收者的类型对其进行强制类型转换</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdlib.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">fun</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//char ch[100] = &#34;hello world&#34;;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//静态全局区的空间只要开辟好，除非程序结束，否则不会释放，所以
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">//如果是临时使用，不建议使用静态全局区的空间
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">//static char ch[100] = &#34;hello world&#34;;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//堆区开辟空间，手动申请手动释放，更加灵活
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">//使用malloc函数的时候一般要进行强转
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>str <span style="color:#f92672">=</span> (<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)<span style="color:#a6e22e">malloc</span>(<span style="color:#ae81ff">100</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">sizeof</span>(<span style="color:#66d9ef">char</span>));
+</span></span><span style="display:flex;"><span>  str[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;h&#39;</span>;
+</span></span><span style="display:flex;"><span>  str[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;e&#39;</span>;
+</span></span><span style="display:flex;"><span>  str[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;l&#39;</span>;
+</span></span><span style="display:flex;"><span>  str[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;l&#39;</span>;
+</span></span><span style="display:flex;"><span>  str[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;o&#39;</span>;
+</span></span><span style="display:flex;"><span>  str[<span style="color:#ae81ff">5</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;\0&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> str;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>p;
+</span></span><span style="display:flex;"><span>  p <span style="color:#f92672">=</span> <span style="color:#a6e22e">fun</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;p = %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, p);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>执行结果</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>p <span style="color:#f92672">=</span> hello
+</span></span></code></pre></div><h4 id="32-free">3.2 free<a hidden class="anchor" aria-hidden="true" href="#32-free">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdlib.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">free</span>(<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>ptr)
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">功能：释放堆区的空间</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">参数：</span>
+</span></span><span style="display:flex;"><span>  ptr<span style="color:#960050;background-color:#1e0010">：开辟后使用完毕的堆区的空间的首地址</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">返回值：</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">无</span>
+</span></span></code></pre></div><p>注意：</p>
+<ul>
+<li>
+<p>free函数只能释放堆区的空间，其他区域的空间无法使用free</p>
+</li>
+<li>
+<p>free释放空间必须释放malloc或者calloc或者realloc的返回值对应的空间，不能说只释放一部分</p>
+</li>
+<li>
+<p>free(p); 注意当free后，因为没有给p赋值，所以p还是指向原先动态申请的内存。但是内存已经不能再用了，p变成野指针了，所以一般为了放置野指针，会free完毕之后对p赋为NULL。</p>
+</li>
+<li>
+<p>一块动态申请的内存只能free一次，不能多次free</p>
+</li>
+</ul>
+<p><img loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Embedded_high-level_C_programming/06Dynamic_memory_request_image_4.png" alt="06Dynamic_memory_request_image_4.png"  />
+</p>
+<h4 id="33-calloc">3.3 calloc<a hidden class="anchor" aria-hidden="true" href="#33-calloc">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdlib.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">calloc</span>(<span style="color:#66d9ef">size_t</span> nmemb,<span style="color:#66d9ef">size_t</span> size);
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">功能：在堆区申请指定大小的空间</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">参数：</span>
+</span></span><span style="display:flex;"><span>  nmemb<span style="color:#960050;background-color:#1e0010">：要申请的空间的块数</span>
+</span></span><span style="display:flex;"><span>  size<span style="color:#960050;background-color:#1e0010">：每块的字节数</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">返回值：</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">成功：申请空间的首地址</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">失败：</span>NULL
+</span></span></code></pre></div><p>注意：</p>
+<p>malloc和calloc函数都是用来申请内存的。</p>
+<p>区别：</p>
+<ol>
+<li>
+<p>函数的名字不一样</p>
+</li>
+<li>
+<p>参数的个数不一样</p>
+</li>
+<li>
+<p>malloc申请的内存，内存中存放的内容是随机的，不确定的，而calloc函数申请的内存中的内容为0</p>
+</li>
+</ol>
+<p>例如：</p>
+<p><code>char *p=(char *)calloc(3,100);</code>  在堆中申请了3块，每块大小为100个字节，即300个字节连续的区域</p>
+<h4 id="34-realloc">3.4 realloc<a hidden class="anchor" aria-hidden="true" href="#34-realloc">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdlib.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span><span style="color:#f92672">*</span> <span style="color:#a6e22e">realloc</span>(<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>s,<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> newsize);
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">功能：在原本申请好的堆区空间的基础上重新申请内存，新的空间大小为函数的第二个参数</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">如果原本申请好的空间的后面不足以增加指定的大小，系统会重新找一个足够大的位置开辟指定的空间，然后将原本空间中的数据拷贝过来，然后释放原本的空间</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">如果</span>newsize比原先的内存小<span style="color:#960050;background-color:#1e0010">，则会释放原先内存的后面的存储空间，只留前面的</span>newsize个字节
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">参数：</span>
+</span></span><span style="display:flex;"><span>  s<span style="color:#960050;background-color:#1e0010">：原本开辟好的空间的首地址</span>
+</span></span><span style="display:flex;"><span>  newsize<span style="color:#960050;background-color:#1e0010">：重新开辟的空间的大小</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">返回值：</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">新的空间的首地址</span>
+</span></span></code></pre></div><p>增加空间：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>p;
+</span></span><span style="display:flex;"><span>p<span style="color:#f92672">=</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)<span style="color:#a6e22e">malloc</span>(<span style="color:#ae81ff">100</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//想在100个字节后面追加50个字节
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>p<span style="color:#f92672">=</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)<span style="color:#a6e22e">realloc</span>(p,<span style="color:#ae81ff">150</span>);<span style="color:#75715e">//p指向的内存的新的大小为150个字节
+</span></span></span></code></pre></div><p><img loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Embedded_high-level_C_programming/06Dynamic_memory_request_image%205.png" alt="06Dynamic_memory_request_image_5.png"  />
+</p>
+<p>减少空间:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>p;
+</span></span><span style="display:flex;"><span>  p<span style="color:#f92672">=</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)<span style="color:#a6e22e">malloc</span>(<span style="color:#ae81ff">100</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//想重新申请内存,新的大小为50个字节
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  p<span style="color:#f92672">=</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)<span style="color:#a6e22e">realloc</span>(p,<span style="color:#ae81ff">50</span>);<span style="color:#75715e">//p指向的内存的新的大小为50个字节,100个字节的后50个字节的存储空间就被释放了
+</span></span></span></code></pre></div><p>注意:malloc calloc relloc 动态申请的内存，只有在free或程序结束的时候才释放。</p>
+<h3 id="四内存泄漏">四、内存泄漏<a hidden class="anchor" aria-hidden="true" href="#四内存泄漏">#</a></h3>
+<p>内存泄露的概念：</p>
+<p>申请的内存，首地址丢了，找不了，再也没法使用了，也没法释放了，这块内存就被泄露了。</p>
+<p>内存泄漏案例1：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>p;
+</span></span><span style="display:flex;"><span>  p<span style="color:#f92672">=</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)<span style="color:#a6e22e">malloc</span>(<span style="color:#ae81ff">100</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//接下来，可以用p指向的内存了
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  p<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;hello world&#34;</span>;<span style="color:#75715e">//p指向别的地方了，保存字符串常量的首地址
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//从此以后，再也找不到你申请的100个字节了。则动态申请的100个字节就被泄露了
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>内存泄漏案例2：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">fun</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>p;
+</span></span><span style="display:flex;"><span>  p<span style="color:#f92672">=</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)<span style="color:#a6e22e">malloc</span>(<span style="color:#ae81ff">100</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//接下来，可以用p指向的内存了
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  ...
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//每调用一次fun泄露100个字节
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">fun</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fun</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>解决方式1：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">fun</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>p;
+</span></span><span style="display:flex;"><span>  p<span style="color:#f92672">=</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)<span style="color:#a6e22e">malloc</span>(<span style="color:#ae81ff">100</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//接下来，可以用p指向的内存了
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  ...
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">free</span>(p);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fun</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fun</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>解决方式2：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">fun</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>p;
+</span></span><span style="display:flex;"><span>  p<span style="color:#f92672">=</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)<span style="color:#a6e22e">malloc</span>(<span style="color:#ae81ff">100</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//接下来，可以用p指向的内存了
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  ...
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> p;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>q;
+</span></span><span style="display:flex;"><span>  q<span style="color:#f92672">=</span><span style="color:#a6e22e">fun</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//可以通过q使用 ，动态申请的100个字节的内存了
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">//记得释放
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">free</span>(q);
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//防止野指针
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  q <span style="color:#f92672">=</span> NULL;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>总结：申请的内存，一定不要把首地址给丢了，在不用的时候一定要释放内存。</p>
+<p><strong>彩蛋</strong>🎁</p>
+<p>我默默地想，慢慢地写。看见冬阳下的骆驼队走过来，听见缓慢悦耳的铃声，童年重临于我的心头。</p>
+<ul>
+<li>林海音《城南旧事》</li>
+</ul>
+<p>恭喜你🎉，完成了对第六章《动态内存申请》部分的学习，下一章我们将学习字符串处理函数。</p>
+<p>⏩第七章 《字符串处理函数》</p>
+
+
+        </div>
+
+        <footer class="post-footer">
+            
+<nav class="paginav">
+  <a class="prev" href="https://eddyblog.cn/posts/tech/c-programming-08struct/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>【嵌入式高级C编程】第八章 结构体，共用体，枚举</span>
+  </a>
+  <a class="next" href="https://eddyblog.cn/posts/tech/c-programming-07string/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>【嵌入式高级C编程】第七章 字符串处理函数</span>
+  </a>
+</nav>
+
+        </footer>
+    </div>
+</article>
+</main>
+
+<footer class="footer">
+    <span>
+        Copyright
+        &copy;
+        -2024
+        <a href="https://eddyblog.cn/" style="color:#939393;">Eddy&#39;s blog</a>
+        All Rights Reserved
+    </span>
+    <a href="https://beian.miit.gov.cn/" target="_blank" style="color:#939393;"></a>&nbsp;
+    <span>
+        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=null"
+           style="display:inline-block;text-decoration:none;height:20px;color:#939393;">
+            <img src="" style="float:left;margin: 0px 5px 0px 0px;"/>
+            
+        </a>
+    </span>
+    <span id="busuanzi_container">
+        <span class="fa fa-user"></span> <span id="busuanzi_value_site_uv"></span>
+        <span class="fa fa-eye"></span> <span id="busuanzi_value_site_pv"></span>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <span class="topInner">
+        <svg class="topSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z"/>
+        </svg>
+        <span id="read_progress"></span>
+    </span>
+</a>
+
+<script>
+    document.addEventListener('scroll', function (e) {
+        const readProgress = document.getElementById("read_progress");
+        const scrollHeight = document.documentElement.scrollHeight;
+        const clientHeight = document.documentElement.clientHeight;
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        readProgress.innerText = ((scrollTop / (scrollHeight - clientHeight)).toFixed(2) * 100).toFixed(0);
+    })
+</script>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+</script>
+<script>
+    let mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        (function() {
+            document.cookie = "change-themes" + "="+ escape ("false");
+        })()
+
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    });
+</script>
+
+<script>
+    document.body.addEventListener('copy', function (e) {
+        if (window.getSelection().toString() && window.getSelection().toString().length > 50) {
+            let clipboardData = e.clipboardData || window.clipboardData;
+            if (clipboardData) {
+                e.preventDefault();
+                let htmlData = window.getSelection().toString() +
+                    '\r\n\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                let textData = window.getSelection().toString() +
+                    '\r\n\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                clipboardData.setData('text/html', htmlData);
+                clipboardData.setData('text/plain', textData);
+            }
+        }
+    });
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = '复制';
+
+        function copyingDone() {
+            copybutton.innerText = '已复制！';
+            setTimeout(() => {
+                copybutton.innerText = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                let text = codeblock.textContent +
+                    '\r\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                navigator.clipboard.writeText(text);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) {}
+            selection.removeRange(range);
+        });
+
+        let language = codeblock.className.replaceAll("language-", "")
+        let macTool = document.createElement("div")
+        let macTool1 = document.createElement("div")
+        let macTool2 = document.createElement("div")
+        let macTool3 = document.createElement("div")
+        let languageType = document.createElement("div")
+        languageType.innerText = language
+        macTool.setAttribute('class', 'mac-tool')
+        macTool1.setAttribute('class', 'mac bb1')
+        macTool2.setAttribute('class', 'mac bb2')
+        macTool3.setAttribute('class', 'mac bb3')
+        languageType.setAttribute('class', 'language-type')
+        macTool.appendChild(macTool1)
+        macTool.appendChild(macTool2)
+        macTool.appendChild(macTool3)
+        macTool.appendChild(languageType)
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+            container.appendChild(macTool)
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+            container.appendChild(macTool)
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+            container.appendChild(macTool)
+        }
+    });
+</script>
+
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style></body>
+
+</html>

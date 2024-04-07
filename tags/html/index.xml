@@ -9,10 +9,10 @@
     <lastBuildDate>Sun, 03 Dec 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/html/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【Hugo网站搭建】markdown中图片大小和对齐方式调整</title>
-      <link>https://eddyblog.cn/posts/tech/hugo_image_resizing_and_alignment_in_markdown/</link>
+      <link>https://eddyblog.cn/posts/tech/hugo-image-in-markdown/</link>
       <pubDate>Sun, 03 Dec 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/hugo_image_resizing_and_alignment_in_markdown/</guid>
+      <guid>https://eddyblog.cn/posts/tech/hugo-image-in-markdown/</guid>
       <description>使用HTML标签对markdown中图片大小和对齐方式调整</description>
     </item>
     

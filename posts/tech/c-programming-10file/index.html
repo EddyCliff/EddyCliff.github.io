@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>【嵌入式高级C编程】第十章 文件 | Eddy&#39;s blog</title>
+<meta name="keywords" content="C programming, Embedded Development, file">
+<meta name="description" content="一、文件的概念 文件用来存放程序、文档、音频、视频数据、图片等数据的。 文件就是存放在磁盘上的，一些数据的集合。在windows下可以通过写字板或记事本打开文本文件对文件进行编辑保存。写字板和记事 本是微软程序员写的程序，对文件进行打开、显示、读写、关闭。 作为一个程序员，必须掌握编程实">
+<meta name="author" content="Eddy">
+<link rel="canonical" href="https://eddyblog.cn/posts/tech/c-programming-10file/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.js" onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="icon" type="image/png" sizes="16x16" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="icon" type="image/png" sizes="32x32" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="apple-touch-icon" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="mask-icon" href="https://eddyblog.cn/img/logo3.jpg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://eddyblog.cn/posts/tech/c-programming-10file/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<script defer src="https://unpkg.com/mermaid@8.8.1/dist/mermaid.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = ""; 
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<meta property="og:title" content="【嵌入式高级C编程】第十章 文件" />
+<meta property="og:description" content="一、文件的概念 文件用来存放程序、文档、音频、视频数据、图片等数据的。 文件就是存放在磁盘上的，一些数据的集合。在windows下可以通过写字板或记事本打开文本文件对文件进行编辑保存。写字板和记事 本是微软程序员写的程序，对文件进行打开、显示、读写、关闭。 作为一个程序员，必须掌握编程实" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://eddyblog.cn/posts/tech/c-programming-10file/" />
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/c2.jpg" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-10-23T00:17:58+08:00" />
+<meta property="article:modified_time" content="2023-10-23T00:17:58+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/c2.jpg" />
+<meta name="twitter:title" content="【嵌入式高级C编程】第十章 文件"/>
+<meta name="twitter:description" content="一、文件的概念 文件用来存放程序、文档、音频、视频数据、图片等数据的。 文件就是存放在磁盘上的，一些数据的集合。在windows下可以通过写字板或记事本打开文本文件对文件进行编辑保存。写字板和记事 本是微软程序员写的程序，对文件进行打开、显示、读写、关闭。 作为一个程序员，必须掌握编程实"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+
+        {
+          "@type": "ListItem",
+          "position":  1 ,
+          "name": "📚文章",
+          "item": "https://eddyblog.cn/posts/"
+        },
+
+        {
+          "@type": "ListItem",
+          "position":  2 ,
+          "name": "👨🏻‍💻 技术",
+          "item": "https://eddyblog.cn/posts/tech/"
+        }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "【嵌入式高级C编程】第十章 文件",
+      "item": "https://eddyblog.cn/posts/tech/c-programming-10file/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "【嵌入式高级C编程】第十章 文件",
+  "name": "【嵌入式高级C编程】第十章 文件",
+  "description": "一、文件的概念 文件用来存放程序、文档、音频、视频数据、图片等数据的。 文件就是存放在磁盘上的，一些数据的集合。在windows下可以通过写字板或记事本打开文本文件对文件进行编辑保存。写字板和记事 本是微软程序员写的程序，对文件进行打开、显示、读写、关闭。 作为一个程序员，必须掌握编程实",
+  "keywords": [
+    "C programming", "Embedded Development", "file"
+  ],
+  "articleBody": "一、文件的概念 文件用来存放程序、文档、音频、视频数据、图片等数据的。\n文件就是存放在磁盘上的，一些数据的集合。在windows下可以通过写字板或记事本打开文本文件对文件进行编辑保存。写字板和记事\n本是微软程序员写的程序，对文件进行打开、显示、读写、关闭。\n作为一个程序员，必须掌握编程实现创建、写入、读取文件等操作\n对文件的操作是经常要用到的知识，比如：写飞秋软件传送文件等\n1.1 文件的定义 磁盘文件：（我们通常认识的文件）\n指一组相关数据的有序集合,通常存储在外部介质(如磁盘)上，使用时才调入内存。\n设备文件：\n在操作系统中把每一个与主机相连的输入、输出设备看作是一个文件，把它们的输入、输出等同于对磁盘文件的读和写。\n键盘：标准输入文件 屏幕：标准输出文件\n其它设备：打印机、触摸屏、摄像头、音箱等\n在Linux操作系统中，每一个外部设备都在/dev目录下对应着一个设备文件，咱们在程\n序中要想操作设备，就必须对与其对应的/dev下的设备文件进行操作。\n标准io库函数对磁盘文件的读取特点\n通过标准IO库相当于在内存当中对我们的磁盘文件做输入输出操作，也就是读写操作。\n1、行缓冲\n标准io库函数，往标准输出（屏幕）输出东西的时候是行缓冲的\n所谓的行缓冲就是缓冲区碰到换行符的时候才刷新缓冲区\n如果不刷新缓冲区，无法对文件执行读写操作\n举个例子：当地铁到站之后，只有所有门都关闭的时候，地铁才会出发，只要有一个门没关闭，地铁就不会出发。这就相当于我们的行缓存，如果不刷新缓冲区，就无法对文件执行读写操作。\n行缓冲的刷新条件：\n#include int main(int argc, char const *argv[]) { //由于printf函数是一个标准io，所以只有刷新缓冲区才可以将数据输出到终端 //printf(\"hello world\"); //刷新缓冲区方法1：使用\\n //printf(\"hello world\\n\"); //刷新缓冲区方法2：程序正常结束 /* printf(\"hello world\"); return 0; */ //刷新缓冲区方法3：使用fflush函数刷新缓冲区 /* printf(\"hello world\"); fflush：刷新函数。可以刷新指定的缓冲区 stdout：标准输出，就是对终端进行写操作 fflush(stdout); */ //刷新缓冲区方法4：当缓冲区满的时候自动刷新 //默认行缓冲的大小为1024个字节 /* int i; for(i = 1; i \u003c 300; i++) { printf(\"%03d \", i); } */ while(1); return 0; } 没有刷新缓冲区，则无法进行输出\n#include int main(int argc, char const *argv[]) { //由于printf函数是一个标准io，所以只有刷新缓冲区才可以将数据输出到终端 printf(\"hello world\"); //此时我们是没有任何输出结果的,因为我们没有加\\n刷新缓冲区. while(1); return 0; } 2、全缓冲\n标准io库函数 ，往普通文件读写数据的，是全缓冲的，\n碰到换行符也不刷新缓冲区，即缓冲区满了，才刷新缓冲区。\n刷新缓冲区的情况\n1.缓冲区满了，刷新缓冲区\n2.人为刷新缓冲区 fflush(文件指针)\n3.程序正常结束 会刷新缓冲区\n3.无缓冲\n在读写文件的时候通过系统调用io （read write）,对文件进行读写数据\n这个时候是无缓冲的，即写数据会立马进入文件，读数据会立马进入内存\n写文件的流程\n应用程序空间 → 内核空间 → 驱动程序 → 硬盘上\n应用程序和内核程序运行在不同的空间里，目的是为了保护内核。\n设置缓冲区的目的\n通过缓冲可以减少进出内核的次数，以提高效率。\n1.2 磁盘文件的分类 一个文件通常是磁盘上一段命名的存储区\n计算机的存储在物理上是二进制的，所以物理上所有的磁盘文件本质上都是一样的：以字节为单位进行顺序存储\n从用户或者操作系统使用的角度（逻辑上）把文件分为：\n文本文件：基于字符编码的文件\n二进制文件：基于值编码的文件\n文本文件\n基于字符编码，常见编码有ASCII、UNICODE等\n一般可以使用文本编辑器直接打开\n例如：数5678的以ASCII存储形式为：\nASCII码：00110101 00110110 00110111 00111000\n歌词文件(lrc):文本文件\n二进制码文件\n基于值编码,自己根据具体应用,指定某个值是什么意思\n把内存中的数据按其在内存中的存储形式原样输出到磁盘上\n一般需要自己判断或使用特定软件分析数据格式\n例如：数5678的存储形式为：\n二进制码：00010110 00101110\n音频文件(mp3):二进制文件\n图片文件（bmp）文件，一个像素点由两个字节来描述*****######\u0026\u0026\u0026\u0026\u0026\n*代表红色的值#代表绿色的值\n\u0026代表蓝色的值\n二进制文件以位来表示一个意思。\n文本文件、二进制文件对比：\n译码：\n文本文件编码基于字符定长，译码容易些；\n二进制文件编码是变长的，译码难一些（不同的二进制文件格式，有不同的译码方\n式）。\n空间利用率：\n二进制文件用一个比特来代表一个意思(位操作)；\n而文本文件任何一个意思至少是一个字符。\n二进制文件，空间利用率高。\n可读性：\n文本文件用通用的记事本工具就几乎可以浏览所有文本文件\n二进制文件需要一个具体的文件解码器，比如读BMP文件，必须用读图软件。\n总结一下：\n文件在硬盘上存储的时候，物理上都是用二进制来存储的。\n咱们的标准io库函数，对文件操作的时候，不管文件的编码格式（字符编码、或二进制），而是按字节对文件进行读写，所以咱们管文件又叫流式文件，即把文件看成一个字节流。\n二、文件指针 文件指针就是用于标识一个文件的，所有对文件的操作都是用对文件指针进行操作的\n定义文件指针的一般形式为:\nFILE * 指针变量标识符；\n本质上文件指针是一个结构体指针，结构体中包含了当前文件的很多信息，但是在实际编程时，\n不需要关系结构体中的成员，只需要使用文件指针即可\n对文件操作的步骤：\n1、对文件进行读写等操作之前要打开文件得到文件指针\n2、可以通过文件指针对文件进行读写等操作\n3、读写等操作完毕后，要关闭文件，关闭文件后，就不能再通过此文件指针操作文件了\nc语言中有三个特殊的文件指针无需定义，在程序中可以直接使用\nstdin： 标准输入 默认为当前终端（键盘）\n我们使用的scanf、getchar函数默认从此终端获得数据\n**stdout：**标准输出 默认为当前终端（屏幕）\n我们使用的printf、puts函数默认输出信息到此终端\n**stderr：**标准错误输出设备文件 默认为当前终端（屏幕）\n当我们程序出错使用:perror函数时信息打印在此终端\n三、打开文件fopen #include FILE *fopen(const char *path, const char *mode); 功能：创建或者打开一个文件 参数： path：文件名，如果只写文件名，默认就是当前路径，也可以添加路径 mode：文件权限 r 只读，如果文件不存在则报错 r+ 读写，如果文件不存在则报错 w 只写，如果文件不存在则创建，如果文件存在则清空 w+ 读写，如果文件不存在则创建，如果文件存在则清空 a 只写，如果文件不存在则创建，如果文件存在则追加 a+ 读写，如果文件不存在则创建，如果文件存在则追加 返回值： 成功：文件指针 失败：NULL 示例程序：对file.txt进行fopen操作\n#include int main(int argc, char *argv[]) { //使用fopen函数打开或者创建文件，返回文件指针 FILE *fp; //以只读的方式打开文件，如果文件不存在则报错 //fp = fopen(\"C:/Users/lzx/Desktop/file.txt\", \"r\"); //以只写的方式打开文件，如果文件不存在则创建，如果文件存在清空 //fp = fopen(\"C:/Users/lzx/Desktop/file.txt\", \"w\"); //以只写的方式打开文件，如果文件不存在则创建，如果文件存在则追加 fp = fopen(\"C:/Users/lzx/Desktop/file.txt\", \"a\"); if(fp == NULL) { printf(\"fail to fopen\\n\"); return ‐1; } return 0; } 四、关闭文件fclose #include int fclose(FILE *stream); 功能：关闭一个文件指针，无法在对当前文件进行操作 参数： stream：指定的文件指针，fopen函数的返回值 返回值： 成功：0 失败：EOF 注意：注意一个文件只能关闭一次，不能多次关闭。 关闭文件之后就不能再文件指针对文件进行读写等操作了。 示例程序：对file.txt进行fclose操作\n#include int main(int argc, char *argv[]) { //使用fopen函数打开或者创建文件，返回文件指针 FILE *fp; //以只写的方式打开文件，如果文件不存在则创建，如果文件存在则追加 fp = fopen(\"C:/Users/lzx/Desktop/file.txt\", \"a\"); if(fp == NULL) { printf(\"fail to fopen\\n\"); return ‐1; } //使用fclose关闭文件 fclose(fp); return 0; } 五、一次读写一个字符 5.1 fgetc #include int fgetc(FILE *stream); 功能：从文件指针标识的文件中读取一个字符 参数： stream：指定的文件指针 返回值： 成功：读取的字符 失败：EOF 如果文件读取完毕，也会返回EOF file.txt文件内容\nhello 666 示例程序：对file.txt进行fgetc操作\n#include int main(int argc, char *argv[]) { FILE *fp; fp = fopen(\"C:/Users/lzx/Desktop/file.txt\", \"r\"); if(fp == NULL) { printf(\"fail to fopen\\n\"); return ‐1; } //使用fgetc从文件中读取一个字符 // int c = fgetc(fp); // printf(\"c = [%c] ‐ %d\\n\", c, c); // c = fgetc(fp); // printf(\"c = [%c] ‐ %d\\n\", c, c); //文件的每一行结束的位置都有一个标识，是一个换行符，称之为行结束符 //fgetc可以读取到行结束符 int c; //遍历文件中内容,每次读取一个字符,每读取一次就移动到下一个字符 while((c = fgetc(fp)) != EOF) { printf(\"c = [%c] ‐ %d\\n\", c, c); } //注意：打开文件的时候，默认读写位置在文件的开始，如果以 a 的方式打开读写位置在文件的末尾 //咱们向文件中读取字节或写入字节的时候，读写位置会往文件的末尾方向偏移，读写多少个字节，读写位置就往 //文件的末尾方向偏移多少个字节 return 0; } 执行结果：file.txt文件内容\nc = [h] - 104 c = [e] - 101 c = [l] - 108 c = [l] - 108 c = [o] - 111 c = [ ] - 10 c = [6] - 54 c = [6] - 54 c = [6] - 54 5.2 fputc #include int fputc(int c, FILE *stream); 功能：向文件指针标识的文件中写入一个字符 参数： c：要写入的字符 stream：指定的文件指针 返回值： 成功：要写入的字符 失败：EOF 示例程序：对file.txt进行fputc操作\n#include int main(int argc, char *argv[]) { FILE *fp; fp = fopen(\"C:/Users/lzx/Desktop/file.txt\", \"w\"); if(fp == NULL) { printf(\"fail to fopen\\n\"); return ‐1; } //通过fputc函数向文件写入一个字符 fputc('w', fp); fputc('h', fp); fputc('a', fp); fputc('t', fp); fputc('\\n', fp); fputc('o', fp); return 0; } 执行结果：file.txt文件内容\nwhat o 六、一次读写一个字符串 6.1 fgets #include char *fgets(char *s, int size, FILE *stream); 功能：从文件中读取内容 参数： s：保存读取到的内容 size：每次读取的最大个数 stream：文件指针 返回值： 成功：读取的数据的首地址 失败：NULL 如果文件内容读取完毕，也返回NULL 注意：从stream所指的文件中读取字符，在读取的时候碰到换行符或者是碰 到文件的末尾停止读取，或者是读取了size‐1个字节停止读取，在读取 的内容后面会加一个\\0,作为字符串的结尾 file.txt文件内容\nhello world nihao beijing 示例程序：对file.txt进行fgets操作\n#include int main(int argc, char *argv[]) { FILE *fp; fp = fopen(\"C:/Users/lzx/Desktop/file.txt\", \"r\"); if(fp == NULL) { printf(\"fail to fopen\\n\"); return ‐1; } //使用fgets读取文件内容 //fgets每次读取时最多读取文件一行内容，只要遇到行结束符就立即返回 //如果想要读取的字节数小于一行内容，则只会读取第二个参数‐1个字节， //最后位置补\\0 char buf[32] = \"\"; //fgets(buf, 8, fp); fgets(buf, 32, fp); printf(\"buf = %s\\n\", buf); return 0; } 执行结果：file.txt文件内容\nbuf = hello world 6.2 fputs #include int fputs(const char *s, FILE *stream); 功能：向文件写入数据 参数： s：要写入的内容 stream：文件指针 返回值： 成功：写入文件内容的字节数 失败：EOF 示例程序：对file.txt进行fputs操作\n#include int main(int argc, char *argv[]) { FILE *fp; fp = fopen(\"C:/Users/lzx/Desktop/file.txt\", \"w\"); if(fp == NULL) { printf(\"fail to fopen\\n\"); return ‐1; } //通过fputs函数向文件写入数据 fputs(\"66666666666666\\n\", fp); fputs(\"nihao\", fp); return 0; } 执行结果：file.txt文件内容\n66666666666666 nihao 七、读文件fread #include size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream); 功能：从文件中读取数据 参数： ptr：保存读取的数据 size：每次读取的字节数 nmemb：一共读取的次数 stream：文件指针 返回值： 成功：实际读取的次数（对象数、块数） 失败：0 如果文件内容读取完毕，返回0 对fread的说明\n例1： int num; num=fread(str,100,3,fp); 从fp所代表的文件中读取内容存放到str指向的内存中，读取的字节数为 ，每块100个字节，3块。 返回值num， 如果读到300个字节返回值num为3 如果读到了大于等于200个字节小于300个字节 返回值为2 读到的字节数，大于等于100个字节小于200个字节 返回1 不到100个字节返回0 file.txt文件内容\n66666666666666 nihao 示例程序：对file.txt进行fread操作\n#include int main(int argc, char *argv[]) { FILE *fp; fp = fopen(\"C:/Users/lzx/Desktop/file.txt\", \"r\"); if(fp == NULL) { printf(\"fail to fopen\\n\"); return ‐1; } //使用fread函数读取文件内容 int num; char buf[128] = \"\"; num = fread(buf, 5, 4, fp); printf(\"buf = %s\\n\", buf); printf(\"num = %d\\n\", num); return 0; } 执行结果\nbuf = 66666666666666 nihao num = 4 八、写文件fwrite #include size_t fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream); 功能：向文件中写入数据 参数： ptr：要写入的数据 size：一次写入的字节数 nmemb：一共写入的次数 stream：文件指针 返回值： 成功：实际写入的次数 失败：0 示例代码：对file.txt进行fwrite操作\n#include typedef struct{ int a; int b; char c; }MSG; int main(int argc, char *argv[]) { FILE *fp; fp = fopen(\"C:/Users/lzx/Desktop/file.txt\", \"w+\"); if(fp == NULL) { printf(\"fail to fopen\\n\"); return ‐1; } //使用fwrite向文件写入一个结构体 MSG msg[4] = {1, 2, 'a', 3, 4, 'b', 5, 6,'c', \\ 7, 8, 'd'}; fwrite(msg, sizeof(MSG), 4, fp); //fwrite,打开file.txt会发现里面有乱码 //因为我们的结构体在计算机中存储的方式和字符串是不一样的 //如果我们想要得到file.txt的正确内容,我们下面用fread操作 //fwite操作后,文件偏移量会移动到文件的末尾 //将文件的偏移量设置为文件的起始位置 //假如不进行rewind,那么fread会直接从文件的末尾开始读,会读出来为空 rewind(fp); MSG rcv[4]; fread(rcv, sizeof(MSG), 4, fp); int i; for(i = 0; i \u003c 4; i++) { printf(\"%d ‐ %d ‐ %c\\n\", rcv[i].a, rcv[i].b, rcv[i].c); } return 0; } 执行结果\n第一次fwrite执行结果 第二次fread执行结果 1 - 2 - a 3 - 4 - b 5 - 6 - c 7 - 8 - d 九、格式化读写文件函数 函数调用: fprintf(文件指针,格式字符串,输出表列); fscanf(文件指针,格式字符串,输入表列); 函数功能: 从磁盘文件中读入或输出字符 fprintf 和printf函数类似： printf是将数据输出到屏幕上（标准输出）， fprintf函数是将数据输出到文件指针所指定的文件中。 fscanf和scanf 函数类似： scanf是从键盘（标准输入）获取输入， fscanf是从文件指针所标示的文件中获取输入。 示例程序：对file.txt进行fprintf和fscanf操作\n#include int main(int argc, char *argv[]) { FILE *fp; char ch1='a', ch2; int num1=50, num2; char string1[20]=\"hello\", string2[20]; float score1 = 85.5, score2; if((fp = fopen(\"C:/Users/lzx/Desktop/file.txt\",\"w+\"))==NULL) { printf(\"fail to fopen\\n\"); return ‐1; } //使用fprintf向文件写入字符串 fprintf(fp,\"%c %d %s %f\\n\",ch1,num1,string1,score1); rewind(fp); //使用fscanf获取文件内容 fscanf(fp,\"%c %d %s %f\\n\",\u0026ch2,\u0026num2,\u0026string2,\u0026score2); printf(\"%c %d %s %f\\n\",ch2,num2,string2,score2); fclose(fp); return 0; } 执行结果\nfile.txt文件内容 a 50 hello 85.500000 运行终端 a 50 hello 85.500000 十、随机读写 前面介绍的对文件的读写方式都是顺序读写，即读写文件只能从头开始，顺序读写各个数据。\n但在实际问题中常要求只读写文件中某一指定的部分，例如：读取文件第200–300个字节。\n为了解决这个问题可以移动文件内部的位置指针到需要读写的位置，再进行读写，这种读写称为随机读写。\n实现随机读写的关键是要按要求移动位置指针，这称为文件的定位。\n10.1 rewind #include void rewind(FILE *stream); 功能：将文件位置定位到起始位置 参数： stream：文件指针 返回值：无 10.2 ftell #include long ftell(FILE *stream); 功能：获取当前文件的偏移量 参数： stream：文件指针 返回值： 获取当前文件的偏移量 10.3 fseek #include int fseek(FILE *stream, long offset, int whence); 功能：设置文件位置指针的偏移量 参数： stream：文件指针 offset：偏移量 可正可负也可为0 whence：相对位置 SEEK_SET 文件起始位置 SEEK_CUR 文件当前位置 SEEK_END 文件末尾位置（最后一个字符后面一个位置） 返回值： 成功：0 失败：‐1 rewind(fp) \u003c==\u003e fseek(fp, 0, SEEK_SET); 这样fseek就可以实现rewind的功能 示例程序：对file.txt进行rewind,ftell,fseek操作\n#include int main(int argc, char *argv[]) { FILE *fp; if((fp = fopen(\"C:/Users/lzx/Desktop/file.txt\",\"w+\"))==NULL) { printf(\"fail to fopen\\n\"); return ‐1; } fputs(\"123456789\\n\", fp); fputs(\"abcdefghijklmn\", fp); //获取当前文件指针的读写位置 printf(\"offset = %ld\\n\", ftell(fp)); //将当前文件的读写文件设置到文件的起始位置 //必须将当前文件的读写文件设置到文件的起始位置,因为fputs操作后读写位置已经到了文件的末尾,打印出来为空 rewind(fp); fseek(fp, 0, SEEK_SET); //将当前文件的读写位置设置为倒数第五个位置 //fseek(fp, ‐5, SEEK_END); char buf[32] = \"\"; while(fgets(buf, 32, fp) != NULL) { printf(\"[%s]\\n\", buf); } return 0; } 执行结果\nfile.txt文件内容 123456789 abcdefghijklmn 运行终端 offset = 25 [jklmn] 彩蛋🎁\n整个春天，直至夏天，都是生命力独享风流的季节。长风沛雨，艳阳明月。那时田野被喜悦铺满，天地间充着生的豪情，风里梦里也全是不屈不挠的欲望。春天的美丽也正在于此，在于纯真和勇敢，在于未通世故。\n史铁生《比如摇滚与写作》 恭喜你🎉，完成了对第十章《文件》部分的学习，下一章我们将学习Linux基础命令。\n⏩第十一章《Linux基础命令》\n",
+  "wordCount" : "6283",
+  "inLanguage": "zh",
+  "image":"https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/c2.jpg","datePublished": "2023-10-23T00:17:58+08:00",
+  "dateModified": "2023-10-23T00:17:58+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "Eddy"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://eddyblog.cn/posts/tech/c-programming-10file/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Eddy's blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://eddyblog.cn/img/logo3.jpg"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    (function () {
+        let  arr,reg = new RegExp("(^| )"+"change-themes"+"=([^;]*)(;|$)");
+        if(arr = document.cookie.match(reg)) {
+        } else {
+            if (new Date().getHours() >= 19 || new Date().getHours() < 6) {
+                document.body.classList.add('dark');
+                localStorage.setItem("pref-theme", 'dark');
+            } else {
+                document.body.classList.remove('dark');
+                localStorage.setItem("pref-theme", 'light');
+            }
+        }
+    })()
+
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://eddyblog.cn/" accesskey="h" title="Eddy&#39;s Blog (Alt + H)">
+            <img src="https://eddyblog.cn/img/logo3.jpg" alt="logo" aria-label="logo"
+                 height="35">Eddy&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://eddyblog.cn/search" title="🔍 搜索 (Alt &#43; /)" accesskey=/>
+                <span>🔍 搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/" title="🏠 主页">
+                <span>🏠 主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/posts" title="📚 文章">
+                <span>📚 文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/tags" title="🧩 标签">
+                <span>🧩 标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/archives/" title="⏱️ 时间轴">
+                <span>⏱️ 时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/about" title="🙋🏻‍♂️ 关于">
+                <span>🙋🏻‍♂️ 关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main page">
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+</style>
+
+<article class="post-single">
+    <div id="single-content">
+        <header class="post-header">
+            <div class="breadcrumbs"><a href="https://eddyblog.cn/">🏠 主页</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/">📚文章</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/tech/">👨🏻‍💻 技术</a></div>
+            <h1 class="post-title">
+                【嵌入式高级C编程】第十章 文件
+            </h1>
+            <div class="post-meta">
+
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+
+    .parent-post-meta {
+        display: flex;
+        flex-wrap: wrap;
+        opacity: 0.8;
+    }
+</style>
+
+<span class="parent-post-meta">
+    <span id="post_meta_style_1">
+        <span class="fa fa-calendar-check-o"></span>
+        <span>2023-10-23
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    
+    
+    
+    
+    
+    
+    
+    <span id="post_meta_style_3">
+        <span class="fa fa-file-word-o"></span>
+        <span>6283字
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_4">
+        <span class="fa fa-clock-o"></span>
+        <span>13分钟
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_5">
+        <span class="fa fa-user-o"></span>
+        <span>Eddy
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_6">
+        <span class="fa fa-tags" style="opacity: 0.8"></span>
+        <span>
+            <span class="post-tags-meta">
+                <a href="https://eddyblog.cn/tags/c-programming/" style="color: var(--secondary)!important;">C Programming</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/embedded-development/" style="color: var(--secondary)!important;">Embedded Development</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/file/" style="color: var(--secondary)!important;">File</a>
+            </span>
+        </span>
+    </span>
+</span>
+<span style="opacity: 0.8;">
+                    <span id="post_meta_style_7">
+                        &nbsp;&nbsp;
+                        <span class="fa fa-eye" ></span>
+                        <span>
+                            <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+                            &nbsp;&nbsp;
+                        </span>
+                    </span>
+                    <span id="post_meta_style_8">
+                        <span class="fa fa-commenting-o"></span>
+                        <span>
+                            <script src="https://cdn.staticfile.org/twikoo//twikoo.all.min.js"></script>
+                            <script>
+                                let url = document.documentURI
+                                
+                                let dnsUrl = "https://eddyblog.cn/"
+                                let urlSplit = url.split(dnsUrl)
+                                let finalUrl = urlSplit[1]
+                                if (finalUrl[0] !== '/') {
+                                    finalUrl = '/'+finalUrl
+                                }
+                                twikoo.getCommentsCount({
+                                    envId:  null , 
+                                region:  null , 
+                                urls: [ 
+                                    
+                                    finalUrl,
+                                ],
+                                    includeReply: false 
+                                }).then(function (res) {
+                                    let count = res[0].count
+                                    const obj = document.getElementById("comment_count");
+                                    obj.innerText = count
+                                    
+                                    
+                                    
+                                }).catch(function (err) {
+                                    
+                                    console.error(err);
+                                });
+                            </script>
+                            <span id="comment_count"></span>
+                        </span>
+                    </span>
+                </span>
+
+</div>
+        </header> 
+<figure class="entry-cover1"><img style="zoom:;" loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/c2.jpg" alt="">
+    
+</figure><aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e4%b8%80%e6%96%87%e4%bb%b6%e7%9a%84%e6%a6%82%e5%bf%b5" aria-label="一、文件的概念">一、文件的概念</a><ul>
+                        
+                <li>
+                    <a href="#11-%e6%96%87%e4%bb%b6%e7%9a%84%e5%ae%9a%e4%b9%89" aria-label="1.1 文件的定义">1.1 文件的定义</a></li>
+                <li>
+                    <a href="#12-%e7%a3%81%e7%9b%98%e6%96%87%e4%bb%b6%e7%9a%84%e5%88%86%e7%b1%bb" aria-label="1.2 磁盘文件的分类">1.2 磁盘文件的分类</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%ba%8c%e6%96%87%e4%bb%b6%e6%8c%87%e9%92%88" aria-label="二、文件指针">二、文件指针</a></li>
+                <li>
+                    <a href="#%e4%b8%89%e6%89%93%e5%bc%80%e6%96%87%e4%bb%b6fopen" aria-label="三、打开文件fopen">三、打开文件fopen</a></li>
+                <li>
+                    <a href="#%e5%9b%9b%e5%85%b3%e9%97%ad%e6%96%87%e4%bb%b6fclose" aria-label="四、关闭文件fclose">四、关闭文件fclose</a></li>
+                <li>
+                    <a href="#%e4%ba%94%e4%b8%80%e6%ac%a1%e8%af%bb%e5%86%99%e4%b8%80%e4%b8%aa%e5%ad%97%e7%ac%a6" aria-label="五、一次读写一个字符">五、一次读写一个字符</a><ul>
+                        
+                <li>
+                    <a href="#51-fgetc" aria-label="5.1 fgetc">5.1 fgetc</a></li>
+                <li>
+                    <a href="#52-fputc" aria-label="5.2 fputc">5.2 fputc</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%85%ad%e4%b8%80%e6%ac%a1%e8%af%bb%e5%86%99%e4%b8%80%e4%b8%aa%e5%ad%97%e7%ac%a6%e4%b8%b2" aria-label="六、一次读写一个字符串">六、一次读写一个字符串</a><ul>
+                        
+                <li>
+                    <a href="#61-fgets" aria-label="6.1 fgets">6.1 fgets</a></li>
+                <li>
+                    <a href="#62-fputs" aria-label="6.2 fputs">6.2 fputs</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%b8%83%e8%af%bb%e6%96%87%e4%bb%b6fread" aria-label="七、读文件fread">七、读文件fread</a></li>
+                <li>
+                    <a href="#%e5%85%ab%e5%86%99%e6%96%87%e4%bb%b6fwrite" aria-label="八、写文件fwrite">八、写文件fwrite</a></li>
+                <li>
+                    <a href="#%e4%b9%9d%e6%a0%bc%e5%bc%8f%e5%8c%96%e8%af%bb%e5%86%99%e6%96%87%e4%bb%b6%e5%87%bd%e6%95%b0" aria-label="九、格式化读写文件函数">九、格式化读写文件函数</a></li>
+                <li>
+                    <a href="#%e5%8d%81%e9%9a%8f%e6%9c%ba%e8%af%bb%e5%86%99" aria-label="十、随机读写">十、随机读写</a><ul>
+                        
+                <li>
+                    <a href="#101-rewind" aria-label="10.1 rewind">10.1 rewind</a></li>
+                <li>
+                    <a href="#102-ftell" aria-label="10.2 ftell">10.2 ftell</a></li>
+                <li>
+                    <a href="#103-fseek" aria-label="10.3 fseek">10.3 fseek</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+        
+        activeElement = elements[0];
+        const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+        document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+    }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        if (elements) {
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement){
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }
+    }, false);
+
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;
+    }
+</script>
+        <div class="post-content"><h2 id="一文件的概念">一、文件的概念<a hidden class="anchor" aria-hidden="true" href="#一文件的概念">#</a></h2>
+<p>文件用来存放程序、文档、音频、视频数据、图片等数据的。</p>
+<p>文件就是存放在磁盘上的，一些数据的集合。在windows下可以通过写字板或记事本打开文本文件对文件进行编辑保存。写字板和记事</p>
+<p>本是微软程序员写的程序，对文件进行打开、显示、读写、关闭。</p>
+<p>作为一个程序员，必须掌握编程实现创建、写入、读取文件等操作</p>
+<p>对文件的操作是经常要用到的知识，比如：写飞秋软件传送文件等</p>
+<h3 id="11-文件的定义">1.1 文件的定义<a hidden class="anchor" aria-hidden="true" href="#11-文件的定义">#</a></h3>
+<p>磁盘文件：（我们通常认识的文件）</p>
+<p>指一组相关数据的有序集合,通常存储在外部介质(如磁盘)上，使用时才调入内存。</p>
+<p>设备文件：</p>
+<p>在操作系统中把每一个与主机相连的输入、输出设备看作是一个文件，把它们的输入、输出等同于对磁盘文件的读和写。</p>
+<p>键盘：标准输入文件 屏幕：标准输出文件</p>
+<p>其它设备：打印机、触摸屏、摄像头、音箱等</p>
+<p>在Linux操作系统中，每一个外部设备都在/dev目录下对应着一个设备文件，咱们在程</p>
+<p>序中要想操作设备，就必须对与其对应的/dev下的设备文件进行操作。</p>
+<p><strong>标准io库函数对磁盘文件的读取特点</strong></p>
+<p>通过标准IO库相当于在内存当中对我们的磁盘文件做输入输出操作，也就是读写操作。</p>
+<p><img loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Embedded_high-level_C_programming/10_file_image.png" alt="image.png"  />
+</p>
+<p><strong>1、行缓冲</strong></p>
+<p>标准io库函数，往标准输出（屏幕）输出东西的时候是行缓冲的</p>
+<p>所谓的行缓冲就是缓冲区碰到换行符的时候才刷新缓冲区</p>
+<p>如果不刷新缓冲区，无法对文件执行读写操作</p>
+<p>举个例子：当地铁到站之后，只有所有门都关闭的时候，地铁才会出发，只要有一个门没关闭，地铁就不会出发。这就相当于我们的行缓存，如果不刷新缓冲区，就无法对文件执行读写操作。</p>
+<p>行缓冲的刷新条件：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#66d9ef">const</span> <span style="color:#f92672">*</span>argv[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//由于printf函数是一个标准io，所以只有刷新缓冲区才可以将数据输出到终端
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">//printf(&#34;hello world&#34;);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//刷新缓冲区方法1：使用\n
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">//printf(&#34;hello world\n&#34;);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//刷新缓冲区方法2：程序正常结束
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  printf(&#34;hello world&#34;);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  return 0;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  */</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//刷新缓冲区方法3：使用fflush函数刷新缓冲区
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  printf(&#34;hello world&#34;);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  fflush：刷新函数。可以刷新指定的缓冲区
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  stdout：标准输出，就是对终端进行写操作
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  fflush(stdout);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  */</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//刷新缓冲区方法4：当缓冲区满的时候自动刷新
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">//默认行缓冲的大小为1024个字节
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  int i;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  for(i = 1; i &lt; 300; i++)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  {
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    printf(&#34;%03d &#34;, i);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  }
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  */</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">while</span>(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>没有刷新缓冲区，则无法进行输出</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#66d9ef">const</span> <span style="color:#f92672">*</span>argv[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//由于printf函数是一个标准io，所以只有刷新缓冲区才可以将数据输出到终端
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;hello world&#34;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//此时我们是没有任何输出结果的,因为我们没有加\n刷新缓冲区.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">while</span>(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>2、全缓冲</strong></p>
+<p>标准io库函数 ，往普通文件读写数据的，是全缓冲的，</p>
+<p>碰到换行符也不刷新缓冲区，即缓冲区满了，才刷新缓冲区。</p>
+<p>刷新缓冲区的情况</p>
+<p>1.缓冲区满了，刷新缓冲区</p>
+<p>2.人为刷新缓冲区 fflush(文件指针)</p>
+<p>3.程序正常结束 会刷新缓冲区</p>
+<p><strong>3.无缓冲</strong></p>
+<p>在读写文件的时候通过系统调用io （read write）,对文件进行读写数据</p>
+<p>这个时候是无缓冲的，即写数据会立马进入文件，读数据会立马进入内存</p>
+<p><strong>写文件的流程</strong></p>
+<p>应用程序空间 → 内核空间 → 驱动程序 → 硬盘上</p>
+<p>应用程序和内核程序运行在不同的空间里，目的是为了保护内核。</p>
+<p><strong>设置缓冲区的目的</strong></p>
+<p>通过缓冲可以减少进出内核的次数，以提高效率。</p>
+<h3 id="12-磁盘文件的分类">1.2 磁盘文件的分类<a hidden class="anchor" aria-hidden="true" href="#12-磁盘文件的分类">#</a></h3>
+<p>一个文件通常是磁盘上一段命名的存储区</p>
+<p>计算机的存储在物理上是二进制的，所以物理上所有的磁盘文件本质上都是一样的：以字节为单位进行顺序存储</p>
+<p>从用户或者操作系统使用的角度（逻辑上）把文件分为：</p>
+<p>文本文件：基于字符编码的文件</p>
+<p>二进制文件：基于值编码的文件</p>
+<p><strong>文本文件</strong></p>
+<p>基于字符编码，常见编码有ASCII、UNICODE等</p>
+<p>一般可以使用文本编辑器直接打开</p>
+<p>例如：数5678的以ASCII存储形式为：</p>
+<p>ASCII码：00110101 00110110 00110111 00111000</p>
+<p>歌词文件(lrc):文本文件</p>
+<p><strong>二进制码文件</strong></p>
+<p>基于值编码,自己根据具体应用,指定某个值是什么意思</p>
+<p>把内存中的数据按其在内存中的存储形式原样输出到磁盘上</p>
+<p>一般需要自己判断或使用特定软件分析数据格式</p>
+<p>例如：数5678的存储形式为：</p>
+<p>二进制码：00010110 00101110</p>
+<p>音频文件(mp3):二进制文件</p>
+<p>图片文件（bmp）文件，一个像素点由两个字节来描述*****######&amp;&amp;&amp;&amp;&amp;</p>
+<p>*代表红色的值#代表绿色的值</p>
+<p>&amp;代表蓝色的值</p>
+<p>二进制文件以位来表示一个意思。</p>
+<p><strong>文本文件、二进制文件对比：</strong></p>
+<p><strong>译码：</strong></p>
+<p>文本文件编码基于字符定长，译码容易些；</p>
+<p>二进制文件编码是变长的，译码难一些（不同的二进制文件格式，有不同的译码方</p>
+<p>式）。</p>
+<p><strong>空间利用率：</strong></p>
+<p>二进制文件用一个比特来代表一个意思(位操作)；</p>
+<p>而文本文件任何一个意思至少是一个字符。</p>
+<p>二进制文件，空间利用率高。</p>
+<p><strong>可读性：</strong></p>
+<p>文本文件用通用的记事本工具就几乎可以浏览所有文本文件</p>
+<p>二进制文件需要一个具体的文件解码器，比如读BMP文件，必须用读图软件。</p>
+<p><strong>总结一下：</strong></p>
+<p>文件在硬盘上存储的时候，物理上都是用二进制来存储的。</p>
+<p>咱们的标准io库函数，对文件操作的时候，不管文件的编码格式（字符编码、或二进制），而是按字节对文件进行读写，所以咱们管文件又叫流式文件，即把文件看成一个字节流。</p>
+<h2 id="二文件指针">二、文件指针<a hidden class="anchor" aria-hidden="true" href="#二文件指针">#</a></h2>
+<p>文件指针就是用于标识一个文件的，所有对文件的操作都是用对文件指针进行操作的</p>
+<p><strong>定义文件指针的一般形式为:</strong></p>
+<p>FILE * 指针变量标识符；</p>
+<p>本质上文件指针是一个结构体指针，结构体中包含了当前文件的很多信息，但是在实际编程时，</p>
+<p>不需要关系结构体中的成员，只需要使用文件指针即可</p>
+<p><strong>对文件操作的步骤：</strong></p>
+<p>1、对文件进行读写等操作之前要打开文件得到文件指针</p>
+<p>2、可以通过文件指针对文件进行读写等操作</p>
+<p>3、读写等操作完毕后，要关闭文件，关闭文件后，就不能再通过此文件指针操作文件了</p>
+<p><strong>c语言中有三个特殊的文件指针无需定义，在程序中可以直接使用</strong></p>
+<p><strong>stdin：</strong> 标准输入 默认为当前终端（键盘）</p>
+<p>我们使用的scanf、getchar函数默认从此终端获得数据</p>
+<p>**stdout：**标准输出 默认为当前终端（屏幕）</p>
+<p>我们使用的printf、puts函数默认输出信息到此终端</p>
+<p>**stderr：**标准错误输出设备文件 默认为当前终端（屏幕）</p>
+<p>当我们程序出错使用:perror函数时信息打印在此终端</p>
+<h2 id="三打开文件fopen">三、打开文件fopen<a hidden class="anchor" aria-hidden="true" href="#三打开文件fopen">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>FILE <span style="color:#f92672">*</span><span style="color:#a6e22e">fopen</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>path, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>mode);
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">功能：创建或者打开一个文件</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">参数：</span>
+</span></span><span style="display:flex;"><span>  path<span style="color:#960050;background-color:#1e0010">：文件名，如果只写文件名，默认就是当前路径，也可以添加路径</span>
+</span></span><span style="display:flex;"><span>  mode<span style="color:#960050;background-color:#1e0010">：文件权限</span>
+</span></span><span style="display:flex;"><span>  r <span style="color:#960050;background-color:#1e0010">只读，如果文件不存在则报错</span>
+</span></span><span style="display:flex;"><span>  r<span style="color:#f92672">+</span> <span style="color:#960050;background-color:#1e0010">读写，如果文件不存在则报错</span>
+</span></span><span style="display:flex;"><span>  w <span style="color:#960050;background-color:#1e0010">只写，如果文件不存在则创建，如果文件存在则清空</span>
+</span></span><span style="display:flex;"><span>  w<span style="color:#f92672">+</span> <span style="color:#960050;background-color:#1e0010">读写，如果文件不存在则创建，如果文件存在则清空</span>
+</span></span><span style="display:flex;"><span>  a <span style="color:#960050;background-color:#1e0010">只写，如果文件不存在则创建，如果文件存在则追加</span>
+</span></span><span style="display:flex;"><span>  a<span style="color:#f92672">+</span> <span style="color:#960050;background-color:#1e0010">读写，如果文件不存在则创建，如果文件存在则追加</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">返回值：</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">成功：文件指针</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">失败：</span>NULL
+</span></span></code></pre></div><blockquote>
+<p>示例程序：对<code>file.txt</code>进行<code>fopen</code>操作</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//使用fopen函数打开或者创建文件，返回文件指针
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  FILE <span style="color:#f92672">*</span>fp;
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//以只读的方式打开文件，如果文件不存在则报错
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">//fp = fopen(&#34;C:/Users/lzx/Desktop/file.txt&#34;, &#34;r&#34;);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//以只写的方式打开文件，如果文件不存在则创建，如果文件存在清空
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">//fp = fopen(&#34;C:/Users/lzx/Desktop/file.txt&#34;, &#34;w&#34;);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//以只写的方式打开文件，如果文件不存在则创建，如果文件存在则追加
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  fp <span style="color:#f92672">=</span> <span style="color:#a6e22e">fopen</span>(<span style="color:#e6db74">&#34;C:/Users/lzx/Desktop/file.txt&#34;</span>, <span style="color:#e6db74">&#34;a&#34;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span>(fp <span style="color:#f92672">==</span> NULL)
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;fail to fopen</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#960050;background-color:#1e0010">‐</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="四关闭文件fclose">四、关闭文件fclose<a hidden class="anchor" aria-hidden="true" href="#四关闭文件fclose">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">fclose</span>(FILE <span style="color:#f92672">*</span>stream);
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">功能：关闭一个文件指针，无法在对当前文件进行操作</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">参数：</span>
+</span></span><span style="display:flex;"><span>  stream<span style="color:#960050;background-color:#1e0010">：指定的文件指针，</span>fopen函数的返回值
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">返回值：</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">成功：</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">失败：</span>EOF
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">注意：注意一个文件只能关闭一次，不能多次关闭。</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">关闭文件之后就不能再文件指针对文件进行读写等操作了。</span>
+</span></span></code></pre></div><blockquote>
+<p>示例程序：对<code>file.txt</code>进行<code>fclose</code>操作</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//使用fopen函数打开或者创建文件，返回文件指针
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  FILE <span style="color:#f92672">*</span>fp;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//以只写的方式打开文件，如果文件不存在则创建，如果文件存在则追加
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  fp <span style="color:#f92672">=</span> <span style="color:#a6e22e">fopen</span>(<span style="color:#e6db74">&#34;C:/Users/lzx/Desktop/file.txt&#34;</span>, <span style="color:#e6db74">&#34;a&#34;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span>(fp <span style="color:#f92672">==</span> NULL)
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;fail to fopen</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#960050;background-color:#1e0010">‐</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//使用fclose关闭文件
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">fclose</span>(fp);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="五一次读写一个字符">五、一次读写一个字符<a hidden class="anchor" aria-hidden="true" href="#五一次读写一个字符">#</a></h2>
+<h3 id="51-fgetc">5.1 fgetc<a hidden class="anchor" aria-hidden="true" href="#51-fgetc">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">fgetc</span>(FILE <span style="color:#f92672">*</span>stream);
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">功能：从文件指针标识的文件中读取一个字符</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">参数：</span>
+</span></span><span style="display:flex;"><span>  stream<span style="color:#960050;background-color:#1e0010">：指定的文件指针</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">返回值：</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">成功：读取的字符</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">失败：</span>EOF
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">如果文件读取完毕，也会返回</span>EOF
+</span></span></code></pre></div><blockquote>
+<p><code>file.txt</code>文件内容</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>hello
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">666</span>
+</span></span></code></pre></div><blockquote>
+<p>示例程序：对<code>file.txt</code>进行<code>fgetc</code>操作</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  FILE <span style="color:#f92672">*</span>fp;
+</span></span><span style="display:flex;"><span>  fp <span style="color:#f92672">=</span> <span style="color:#a6e22e">fopen</span>(<span style="color:#e6db74">&#34;C:/Users/lzx/Desktop/file.txt&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span>(fp <span style="color:#f92672">==</span> NULL)
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;fail to fopen</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#960050;background-color:#1e0010">‐</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//使用fgetc从文件中读取一个字符
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// int c = fgetc(fp);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// printf(&#34;c = [%c] ‐ %d\n&#34;, c, c);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// c = fgetc(fp);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// printf(&#34;c = [%c] ‐ %d\n&#34;, c, c);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//文件的每一行结束的位置都有一个标识，是一个换行符，称之为行结束符
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">//fgetc可以读取到行结束符
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int</span> c;
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//遍历文件中内容,每次读取一个字符,每读取一次就移动到下一个字符
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">while</span>((c <span style="color:#f92672">=</span> <span style="color:#a6e22e">fgetc</span>(fp)) <span style="color:#f92672">!=</span> EOF) 
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;c = [%c] ‐ %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, c, c);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//注意：打开文件的时候，默认读写位置在文件的开始，如果以 a 的方式打开读写位置在文件的末尾
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">//咱们向文件中读取字节或写入字节的时候，读写位置会往文件的末尾方向偏移，读写多少个字节，读写位置就往
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">//文件的末尾方向偏移多少个字节
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>执行结果：<code>file.txt</code>文件内容</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>c <span style="color:#f92672">=</span> [h] <span style="color:#f92672">-</span> <span style="color:#ae81ff">104</span>
+</span></span><span style="display:flex;"><span>c <span style="color:#f92672">=</span> [e] <span style="color:#f92672">-</span> <span style="color:#ae81ff">101</span>
+</span></span><span style="display:flex;"><span>c <span style="color:#f92672">=</span> [l] <span style="color:#f92672">-</span> <span style="color:#ae81ff">108</span>
+</span></span><span style="display:flex;"><span>c <span style="color:#f92672">=</span> [l] <span style="color:#f92672">-</span> <span style="color:#ae81ff">108</span>
+</span></span><span style="display:flex;"><span>c <span style="color:#f92672">=</span> [o] <span style="color:#f92672">-</span> <span style="color:#ae81ff">111</span>
+</span></span><span style="display:flex;"><span>c <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>] <span style="color:#f92672">-</span> <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>c <span style="color:#f92672">=</span> [<span style="color:#ae81ff">6</span>] <span style="color:#f92672">-</span> <span style="color:#ae81ff">54</span>
+</span></span><span style="display:flex;"><span>c <span style="color:#f92672">=</span> [<span style="color:#ae81ff">6</span>] <span style="color:#f92672">-</span> <span style="color:#ae81ff">54</span>
+</span></span><span style="display:flex;"><span>c <span style="color:#f92672">=</span> [<span style="color:#ae81ff">6</span>] <span style="color:#f92672">-</span> <span style="color:#ae81ff">54</span>
+</span></span></code></pre></div><h3 id="52-fputc">5.2 fputc<a hidden class="anchor" aria-hidden="true" href="#52-fputc">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">fputc</span>(<span style="color:#66d9ef">int</span> c, FILE <span style="color:#f92672">*</span>stream);
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">功能：向文件指针标识的文件中写入一个字符</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">参数：</span>
+</span></span><span style="display:flex;"><span>  c<span style="color:#960050;background-color:#1e0010">：要写入的字符</span>
+</span></span><span style="display:flex;"><span>  stream<span style="color:#960050;background-color:#1e0010">：指定的文件指针</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">返回值：</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">成功：要写入的字符</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">失败：</span>EOF
+</span></span></code></pre></div><blockquote>
+<p>示例程序：对<code>file.txt</code>进行<code>fputc</code>操作</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  FILE <span style="color:#f92672">*</span>fp;
+</span></span><span style="display:flex;"><span>  fp <span style="color:#f92672">=</span> <span style="color:#a6e22e">fopen</span>(<span style="color:#e6db74">&#34;C:/Users/lzx/Desktop/file.txt&#34;</span>, <span style="color:#e6db74">&#34;w&#34;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span>(fp <span style="color:#f92672">==</span> NULL)
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;fail to fopen</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#960050;background-color:#1e0010">‐</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//通过fputc函数向文件写入一个字符
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">fputc</span>(<span style="color:#e6db74">&#39;w&#39;</span>, fp);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fputc</span>(<span style="color:#e6db74">&#39;h&#39;</span>, fp);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fputc</span>(<span style="color:#e6db74">&#39;a&#39;</span>, fp);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fputc</span>(<span style="color:#e6db74">&#39;t&#39;</span>, fp);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fputc</span>(<span style="color:#e6db74">&#39;\n&#39;</span>, fp);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fputc</span>(<span style="color:#e6db74">&#39;o&#39;</span>, fp);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>执行结果：<code>file.txt</code>文件内容</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>what
+</span></span><span style="display:flex;"><span>o
+</span></span></code></pre></div><h2 id="六一次读写一个字符串">六、一次读写一个字符串<a hidden class="anchor" aria-hidden="true" href="#六一次读写一个字符串">#</a></h2>
+<h3 id="61-fgets">6.1 fgets<a hidden class="anchor" aria-hidden="true" href="#61-fgets">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">fgets</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>s, <span style="color:#66d9ef">int</span> size, FILE <span style="color:#f92672">*</span>stream);
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">功能：从文件中读取内容</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">参数：</span>
+</span></span><span style="display:flex;"><span>  s<span style="color:#960050;background-color:#1e0010">：保存读取到的内容</span>
+</span></span><span style="display:flex;"><span>  size<span style="color:#960050;background-color:#1e0010">：每次读取的最大个数</span>
+</span></span><span style="display:flex;"><span>  stream<span style="color:#960050;background-color:#1e0010">：文件指针</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">返回值：</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">成功：读取的数据的首地址</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">失败：</span>NULL
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">如果文件内容读取完毕，也返回</span>NULL
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">注意：从</span>stream所指的文件中读取字符<span style="color:#960050;background-color:#1e0010">，在读取的时候碰到换行符或者是碰</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#960050;background-color:#1e0010">到文件的末尾停止读取，或者是读取了</span>size<span style="color:#960050;background-color:#1e0010">‐</span><span style="color:#ae81ff">1</span><span style="color:#960050;background-color:#1e0010">个字节停止读取，在读取</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#960050;background-color:#1e0010">的内容后面会加一个\</span><span style="color:#ae81ff">0</span>,<span style="color:#960050;background-color:#1e0010">作为字符串的结尾</span>
+</span></span></code></pre></div><blockquote>
+<p><code>file.txt</code>文件内容</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>hello world
+</span></span><span style="display:flex;"><span>nihao beijing
+</span></span></code></pre></div><blockquote>
+<p>示例程序：对<code>file.txt</code>进行<code>fgets</code>操作</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  FILE <span style="color:#f92672">*</span>fp;
+</span></span><span style="display:flex;"><span>  fp <span style="color:#f92672">=</span> <span style="color:#a6e22e">fopen</span>(<span style="color:#e6db74">&#34;C:/Users/lzx/Desktop/file.txt&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span>(fp <span style="color:#f92672">==</span> NULL)
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;fail to fopen</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#960050;background-color:#1e0010">‐</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//使用fgets读取文件内容
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">//fgets每次读取时最多读取文件一行内容，只要遇到行结束符就立即返回
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">//如果想要读取的字节数小于一行内容，则只会读取第二个参数‐1个字节，
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">//最后位置补\0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">char</span> buf[<span style="color:#ae81ff">32</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//fgets(buf, 8, fp);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">fgets</span>(buf, <span style="color:#ae81ff">32</span>, fp);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;buf = %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, buf);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>执行结果：<code>file.txt</code>文件内容</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>buf <span style="color:#f92672">=</span> hello world
+</span></span></code></pre></div><h3 id="62-fputs">6.2 fputs<a hidden class="anchor" aria-hidden="true" href="#62-fputs">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">fputs</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>s, FILE <span style="color:#f92672">*</span>stream);
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">功能：向文件写入数据</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">参数：</span>
+</span></span><span style="display:flex;"><span>  s<span style="color:#960050;background-color:#1e0010">：要写入的内容</span>
+</span></span><span style="display:flex;"><span>  stream<span style="color:#960050;background-color:#1e0010">：文件指针</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">返回值：</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">成功：写入文件内容的字节数</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">失败：</span>EOF
+</span></span></code></pre></div><blockquote>
+<p>示例程序：对<code>file.txt</code>进行<code>fputs</code>操作</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  FILE <span style="color:#f92672">*</span>fp;
+</span></span><span style="display:flex;"><span>  fp <span style="color:#f92672">=</span> <span style="color:#a6e22e">fopen</span>(<span style="color:#e6db74">&#34;C:/Users/lzx/Desktop/file.txt&#34;</span>, <span style="color:#e6db74">&#34;w&#34;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span>(fp <span style="color:#f92672">==</span> NULL)
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;fail to fopen</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#960050;background-color:#1e0010">‐</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//通过fputs函数向文件写入数据
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">fputs</span>(<span style="color:#e6db74">&#34;66666666666666</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, fp);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fputs</span>(<span style="color:#e6db74">&#34;nihao&#34;</span>, fp);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>执行结果：<code>file.txt</code>文件内容</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#ae81ff">66666666666666</span>
+</span></span><span style="display:flex;"><span>nihao
+</span></span></code></pre></div><h2 id="七读文件fread">七、读文件fread<a hidden class="anchor" aria-hidden="true" href="#七读文件fread">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">size_t</span> <span style="color:#a6e22e">fread</span>(<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>ptr, <span style="color:#66d9ef">size_t</span> size, <span style="color:#66d9ef">size_t</span> nmemb, FILE <span style="color:#f92672">*</span>stream);
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">功能：从文件中读取数据</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">参数：</span>
+</span></span><span style="display:flex;"><span>  ptr<span style="color:#960050;background-color:#1e0010">：保存读取的数据</span>
+</span></span><span style="display:flex;"><span>  size<span style="color:#960050;background-color:#1e0010">：每次读取的字节数</span>
+</span></span><span style="display:flex;"><span>  nmemb<span style="color:#960050;background-color:#1e0010">：一共读取的次数</span>
+</span></span><span style="display:flex;"><span>  stream<span style="color:#960050;background-color:#1e0010">：文件指针</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">返回值：</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">成功：实际读取的次数（对象数、块数）</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">失败：</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">如果文件内容读取完毕，返回</span><span style="color:#ae81ff">0</span>
+</span></span></code></pre></div><blockquote>
+<p>对<code>fread</code>的说明</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">例</span><span style="color:#ae81ff">1</span><span style="color:#960050;background-color:#1e0010">：</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> num;
+</span></span><span style="display:flex;"><span>num<span style="color:#f92672">=</span><span style="color:#a6e22e">fread</span>(str,<span style="color:#ae81ff">100</span>,<span style="color:#ae81ff">3</span>,fp);
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">从</span>fp所代表的文件中读取内容存放到str指向的内存中<span style="color:#960050;background-color:#1e0010">，读取的字节数为</span> <span style="color:#960050;background-color:#1e0010">，每块</span><span style="color:#ae81ff">100</span><span style="color:#960050;background-color:#1e0010">个字节，</span><span style="color:#ae81ff">3</span><span style="color:#960050;background-color:#1e0010">块。</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">返回值</span>num<span style="color:#960050;background-color:#1e0010">，</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">如果读到</span><span style="color:#ae81ff">300</span><span style="color:#960050;background-color:#1e0010">个字节返回值</span>num为3
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">如果读到了大于等于</span><span style="color:#ae81ff">200</span><span style="color:#960050;background-color:#1e0010">个字节小于</span><span style="color:#ae81ff">300</span><span style="color:#960050;background-color:#1e0010">个字节</span> <span style="color:#960050;background-color:#1e0010">返回值为</span><span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">读到的字节数，大于等于</span><span style="color:#ae81ff">100</span><span style="color:#960050;background-color:#1e0010">个字节小于</span><span style="color:#ae81ff">200</span><span style="color:#960050;background-color:#1e0010">个字节</span> <span style="color:#960050;background-color:#1e0010">返回</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">不到</span><span style="color:#ae81ff">100</span><span style="color:#960050;background-color:#1e0010">个字节返回</span><span style="color:#ae81ff">0</span>
+</span></span></code></pre></div><blockquote>
+<p><code>file.txt</code>文件内容</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#ae81ff">66666666666666</span>
+</span></span><span style="display:flex;"><span>nihao
+</span></span></code></pre></div><blockquote>
+<p>示例程序：对<code>file.txt</code>进行<code>fread</code>操作</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  FILE <span style="color:#f92672">*</span>fp;
+</span></span><span style="display:flex;"><span>  fp <span style="color:#f92672">=</span> <span style="color:#a6e22e">fopen</span>(<span style="color:#e6db74">&#34;C:/Users/lzx/Desktop/file.txt&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span>(fp <span style="color:#f92672">==</span> NULL)
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;fail to fopen</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#960050;background-color:#1e0010">‐</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//使用fread函数读取文件内容
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int</span> num;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> buf[<span style="color:#ae81ff">128</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+</span></span><span style="display:flex;"><span>  num <span style="color:#f92672">=</span> <span style="color:#a6e22e">fread</span>(buf, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">4</span>, fp);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;buf = %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, buf);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;num = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, num);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>执行结果</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>buf <span style="color:#f92672">=</span> <span style="color:#ae81ff">66666666666666</span>
+</span></span><span style="display:flex;"><span>nihao
+</span></span><span style="display:flex;"><span>num <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>
+</span></span></code></pre></div><h2 id="八写文件fwrite">八、写文件fwrite<a hidden class="anchor" aria-hidden="true" href="#八写文件fwrite">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">size_t</span> <span style="color:#a6e22e">fwrite</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>ptr, <span style="color:#66d9ef">size_t</span> size, <span style="color:#66d9ef">size_t</span> nmemb, FILE <span style="color:#f92672">*</span>stream);
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">功能：向文件中写入数据</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">参数：</span>
+</span></span><span style="display:flex;"><span>  ptr<span style="color:#960050;background-color:#1e0010">：要写入的数据</span>
+</span></span><span style="display:flex;"><span>  size<span style="color:#960050;background-color:#1e0010">：一次写入的字节数</span>
+</span></span><span style="display:flex;"><span>  nmemb<span style="color:#960050;background-color:#1e0010">：一共写入的次数</span>
+</span></span><span style="display:flex;"><span>  stream<span style="color:#960050;background-color:#1e0010">：文件指针</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">返回值：</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">成功：实际写入的次数</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">失败：</span><span style="color:#ae81ff">0</span>
+</span></span></code></pre></div><blockquote>
+<p>示例代码：对<code>file.txt</code>进行<code>fwrite</code>操作</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> a;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> b;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> c;
+</span></span><span style="display:flex;"><span>}MSG;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  FILE <span style="color:#f92672">*</span>fp;
+</span></span><span style="display:flex;"><span>  fp <span style="color:#f92672">=</span> <span style="color:#a6e22e">fopen</span>(<span style="color:#e6db74">&#34;C:/Users/lzx/Desktop/file.txt&#34;</span>, <span style="color:#e6db74">&#34;w+&#34;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span>(fp <span style="color:#f92672">==</span> NULL)
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;fail to fopen</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#960050;background-color:#1e0010">‐</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//使用fwrite向文件写入一个结构体
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  MSG msg[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#39;a&#39;</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#e6db74">&#39;b&#39;</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>,<span style="color:#e6db74">&#39;c&#39;</span>, \
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>, <span style="color:#e6db74">&#39;d&#39;</span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fwrite</span>(msg, <span style="color:#66d9ef">sizeof</span>(MSG), <span style="color:#ae81ff">4</span>, fp);
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//fwrite,打开file.txt会发现里面有乱码
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">//因为我们的结构体在计算机中存储的方式和字符串是不一样的
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">//如果我们想要得到file.txt的正确内容,我们下面用fread操作
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">//fwite操作后,文件偏移量会移动到文件的末尾
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//将文件的偏移量设置为文件的起始位置
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">//假如不进行rewind,那么fread会直接从文件的末尾开始读,会读出来为空
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">rewind</span>(fp);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  MSG rcv[<span style="color:#ae81ff">4</span>];
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fread</span>(rcv, <span style="color:#66d9ef">sizeof</span>(MSG), <span style="color:#ae81ff">4</span>, fp);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> i;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span>(i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span>; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%d ‐ %d ‐ %c</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, rcv[i].a, rcv[i].b, rcv[i].c);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>执行结果</p>
+</blockquote>
+<ul>
+<li>第一次<code>fwrite</code>执行结果</li>
+</ul>
+<p><img loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Embedded_high-level_C_programming/10_file_image1.png" alt="image1.png"  />
+</p>
+<ul>
+<li>第二次<code>fread</code>执行结果</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">-</span> a
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">3</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">-</span> b
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">5</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">6</span> <span style="color:#f92672">-</span> c
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">7</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">-</span> d
+</span></span></code></pre></div><h2 id="九格式化读写文件函数">九、格式化读写文件函数<a hidden class="anchor" aria-hidden="true" href="#九格式化读写文件函数">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">函数调用</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">fprintf</span>(<span style="color:#960050;background-color:#1e0010">文件指针</span>,<span style="color:#960050;background-color:#1e0010">格式字符串</span>,<span style="color:#960050;background-color:#1e0010">输出表列</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">fscanf</span>(<span style="color:#960050;background-color:#1e0010">文件指针</span>,<span style="color:#960050;background-color:#1e0010">格式字符串</span>,<span style="color:#960050;background-color:#1e0010">输入表列</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">函数功能</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">从磁盘文件中读入或输出字符</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>fprintf <span style="color:#960050;background-color:#1e0010">和</span>printf函数类似<span style="color:#960050;background-color:#1e0010">：</span>
+</span></span><span style="display:flex;"><span>  printf是将数据输出到屏幕上<span style="color:#960050;background-color:#1e0010">（标准输出），</span>
+</span></span><span style="display:flex;"><span>  fprintf函数是将数据输出到文件指针所指定的文件中<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>fscanf和scanf <span style="color:#960050;background-color:#1e0010">函数类似：</span>
+</span></span><span style="display:flex;"><span>  scanf是从键盘<span style="color:#960050;background-color:#1e0010">（标准输入）获取输入，</span>
+</span></span><span style="display:flex;"><span>  fscanf是从文件指针所标示的文件中获取输入<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span></code></pre></div><blockquote>
+<p>示例程序：对<code>file.txt</code>进行<code>fprintf</code>和<code>fscanf</code>操作</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  FILE <span style="color:#f92672">*</span>fp;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> ch1<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;a&#39;</span>, ch2;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> num1<span style="color:#f92672">=</span><span style="color:#ae81ff">50</span>, num2;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> string1[<span style="color:#ae81ff">20</span>]<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;hello&#34;</span>, string2[<span style="color:#ae81ff">20</span>];
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">float</span> score1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">85.5</span>, score2;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span>((fp <span style="color:#f92672">=</span> <span style="color:#a6e22e">fopen</span>(<span style="color:#e6db74">&#34;C:/Users/lzx/Desktop/file.txt&#34;</span>,<span style="color:#e6db74">&#34;w+&#34;</span>))<span style="color:#f92672">==</span>NULL)
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;fail to fopen</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#960050;background-color:#1e0010">‐</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//使用fprintf向文件写入字符串
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">fprintf</span>(fp,<span style="color:#e6db74">&#34;%c %d %s %f</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,ch1,num1,string1,score1);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">rewind</span>(fp);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//使用fscanf获取文件内容
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">fscanf</span>(fp,<span style="color:#e6db74">&#34;%c %d %s %f</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,<span style="color:#f92672">&amp;</span>ch2,<span style="color:#f92672">&amp;</span>num2,<span style="color:#f92672">&amp;</span>string2,<span style="color:#f92672">&amp;</span>score2);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%c %d %s %f</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,ch2,num2,string2,score2);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fclose</span>(fp);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>执行结果</p>
+</blockquote>
+<ul>
+<li><code>file.txt</code>文件内容</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>a <span style="color:#ae81ff">50</span> hello <span style="color:#ae81ff">85.500000</span>
+</span></span></code></pre></div><ul>
+<li>运行终端</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>a <span style="color:#ae81ff">50</span> hello <span style="color:#ae81ff">85.500000</span>
+</span></span></code></pre></div><h2 id="十随机读写">十、随机读写<a hidden class="anchor" aria-hidden="true" href="#十随机读写">#</a></h2>
+<p>前面介绍的对文件的读写方式都是顺序读写，即读写文件只能从头开始，顺序读写各个数据。</p>
+<p>但在实际问题中常要求只读写文件中某一指定的部分，例如：读取文件第200&ndash;300个字节。</p>
+<p>为了解决这个问题可以移动文件内部的位置指针到需要读写的位置，再进行读写，这种读写称为随机读写。</p>
+<p>实现随机读写的关键是要按要求移动位置指针，这称为文件的定位。</p>
+<h3 id="101-rewind">10.1 rewind<a hidden class="anchor" aria-hidden="true" href="#101-rewind">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">rewind</span>(FILE <span style="color:#f92672">*</span>stream);
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">功能：将文件位置定位到起始位置</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">参数：</span>
+</span></span><span style="display:flex;"><span>  stream<span style="color:#960050;background-color:#1e0010">：文件指针</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">返回值：无</span>
+</span></span></code></pre></div><h3 id="102-ftell">10.2 ftell<a hidden class="anchor" aria-hidden="true" href="#102-ftell">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">long</span> <span style="color:#a6e22e">ftell</span>(FILE <span style="color:#f92672">*</span>stream);
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">功能：获取当前文件的偏移量</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">参数：</span>
+</span></span><span style="display:flex;"><span>  stream<span style="color:#960050;background-color:#1e0010">：文件指针</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">返回值：</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">获取当前文件的偏移量</span>
+</span></span></code></pre></div><h3 id="103-fseek">10.3 fseek<a hidden class="anchor" aria-hidden="true" href="#103-fseek">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">fseek</span>(FILE <span style="color:#f92672">*</span>stream, <span style="color:#66d9ef">long</span> offset, <span style="color:#66d9ef">int</span> whence);
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">功能：设置文件位置指针的偏移量</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">参数：</span>
+</span></span><span style="display:flex;"><span>  stream<span style="color:#960050;background-color:#1e0010">：文件指针</span>
+</span></span><span style="display:flex;"><span>  offset<span style="color:#960050;background-color:#1e0010">：偏移量</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">可正可负也可为</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>  whence<span style="color:#960050;background-color:#1e0010">：相对位置</span>
+</span></span><span style="display:flex;"><span>  SEEK_SET <span style="color:#960050;background-color:#1e0010">文件起始位置</span>
+</span></span><span style="display:flex;"><span>  SEEK_CUR <span style="color:#960050;background-color:#1e0010">文件当前位置</span>
+</span></span><span style="display:flex;"><span>  SEEK_END <span style="color:#960050;background-color:#1e0010">文件末尾位置（最后一个字符后面一个位置）</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">返回值：</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">成功：</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">失败：‐</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">rewind</span>(fp) <span style="color:#f92672">&lt;==&gt;</span> <span style="color:#a6e22e">fseek</span>(fp, <span style="color:#ae81ff">0</span>, SEEK_SET);
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">这样</span>fseek就可以实现rewind的功能
+</span></span></code></pre></div><blockquote>
+<p>示例程序：对<code>file.txt</code>进行<code>rewind,ftell,fseek</code>操作</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  FILE <span style="color:#f92672">*</span>fp;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span>((fp <span style="color:#f92672">=</span> <span style="color:#a6e22e">fopen</span>(<span style="color:#e6db74">&#34;C:/Users/lzx/Desktop/file.txt&#34;</span>,<span style="color:#e6db74">&#34;w+&#34;</span>))<span style="color:#f92672">==</span>NULL)
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;fail to fopen</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#960050;background-color:#1e0010">‐</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fputs</span>(<span style="color:#e6db74">&#34;123456789</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, fp);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fputs</span>(<span style="color:#e6db74">&#34;abcdefghijklmn&#34;</span>, fp);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//获取当前文件指针的读写位置
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;offset = %ld</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#a6e22e">ftell</span>(fp));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//将当前文件的读写文件设置到文件的起始位置
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">//必须将当前文件的读写文件设置到文件的起始位置,因为fputs操作后读写位置已经到了文件的末尾,打印出来为空
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">rewind</span>(fp);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fseek</span>(fp, <span style="color:#ae81ff">0</span>, SEEK_SET);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//将当前文件的读写位置设置为倒数第五个位置
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">//fseek(fp, ‐5, SEEK_END);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> buf[<span style="color:#ae81ff">32</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">while</span>(<span style="color:#a6e22e">fgets</span>(buf, <span style="color:#ae81ff">32</span>, fp) <span style="color:#f92672">!=</span> NULL)
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;[%s]</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, buf);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>执行结果</p>
+</blockquote>
+<ul>
+<li><code>file.txt</code>文件内容</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#ae81ff">123456789</span>
+</span></span><span style="display:flex;"><span>abcdefghijklmn
+</span></span></code></pre></div><ul>
+<li>运行终端</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>offset <span style="color:#f92672">=</span> <span style="color:#ae81ff">25</span>
+</span></span><span style="display:flex;"><span>[jklmn]  
+</span></span></code></pre></div><p><strong>彩蛋</strong>🎁</p>
+<p>整个春天，直至夏天，都是生命力独享风流的季节。长风沛雨，艳阳明月。那时田野被喜悦铺满，天地间充着生的豪情，风里梦里也全是不屈不挠的欲望。春天的美丽也正在于此，在于纯真和勇敢，在于未通世故。</p>
+<ul>
+<li>史铁生《比如摇滚与写作》</li>
+</ul>
+<p>恭喜你🎉，完成了对第十章《文件》部分的学习，下一章我们将学习Linux基础命令。</p>
+<p>⏩第十一章《Linux基础命令》</p>
+
+
+        </div>
+
+        <footer class="post-footer">
+            
+<nav class="paginav">
+  <a class="prev" href="https://eddyblog.cn/posts/tech/llc-resonant-converters-3/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>【浅谈LLC谐振变换器】- 章节3:LLC特性分析</span>
+  </a>
+  <a class="next" href="https://eddyblog.cn/posts/tech/c-programming-08struct/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>【嵌入式高级C编程】第八章 结构体，共用体，枚举</span>
+  </a>
+</nav>
+
+        </footer>
+    </div>
+</article>
+</main>
+
+<footer class="footer">
+    <span>
+        Copyright
+        &copy;
+        -2024
+        <a href="https://eddyblog.cn/" style="color:#939393;">Eddy&#39;s blog</a>
+        All Rights Reserved
+    </span>
+    <a href="https://beian.miit.gov.cn/" target="_blank" style="color:#939393;"></a>&nbsp;
+    <span>
+        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=null"
+           style="display:inline-block;text-decoration:none;height:20px;color:#939393;">
+            <img src="" style="float:left;margin: 0px 5px 0px 0px;"/>
+            
+        </a>
+    </span>
+    <span id="busuanzi_container">
+        <span class="fa fa-user"></span> <span id="busuanzi_value_site_uv"></span>
+        <span class="fa fa-eye"></span> <span id="busuanzi_value_site_pv"></span>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <span class="topInner">
+        <svg class="topSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z"/>
+        </svg>
+        <span id="read_progress"></span>
+    </span>
+</a>
+
+<script>
+    document.addEventListener('scroll', function (e) {
+        const readProgress = document.getElementById("read_progress");
+        const scrollHeight = document.documentElement.scrollHeight;
+        const clientHeight = document.documentElement.clientHeight;
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        readProgress.innerText = ((scrollTop / (scrollHeight - clientHeight)).toFixed(2) * 100).toFixed(0);
+    })
+</script>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+</script>
+<script>
+    let mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        (function() {
+            document.cookie = "change-themes" + "="+ escape ("false");
+        })()
+
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    });
+</script>
+
+<script>
+    document.body.addEventListener('copy', function (e) {
+        if (window.getSelection().toString() && window.getSelection().toString().length > 50) {
+            let clipboardData = e.clipboardData || window.clipboardData;
+            if (clipboardData) {
+                e.preventDefault();
+                let htmlData = window.getSelection().toString() +
+                    '\r\n\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                let textData = window.getSelection().toString() +
+                    '\r\n\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                clipboardData.setData('text/html', htmlData);
+                clipboardData.setData('text/plain', textData);
+            }
+        }
+    });
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = '复制';
+
+        function copyingDone() {
+            copybutton.innerText = '已复制！';
+            setTimeout(() => {
+                copybutton.innerText = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                let text = codeblock.textContent +
+                    '\r\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                navigator.clipboard.writeText(text);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) {}
+            selection.removeRange(range);
+        });
+
+        let language = codeblock.className.replaceAll("language-", "")
+        let macTool = document.createElement("div")
+        let macTool1 = document.createElement("div")
+        let macTool2 = document.createElement("div")
+        let macTool3 = document.createElement("div")
+        let languageType = document.createElement("div")
+        languageType.innerText = language
+        macTool.setAttribute('class', 'mac-tool')
+        macTool1.setAttribute('class', 'mac bb1')
+        macTool2.setAttribute('class', 'mac bb2')
+        macTool3.setAttribute('class', 'mac bb3')
+        languageType.setAttribute('class', 'language-type')
+        macTool.appendChild(macTool1)
+        macTool.appendChild(macTool2)
+        macTool.appendChild(macTool3)
+        macTool.appendChild(languageType)
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+            container.appendChild(macTool)
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+            container.appendChild(macTool)
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+            container.appendChild(macTool)
+        }
+    });
+</script>
+
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style></body>
+
+</html>

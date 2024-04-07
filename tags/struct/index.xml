@@ -9,10 +9,10 @@
     <lastBuildDate>Sun, 01 Oct 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/struct/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【嵌入式高级C编程】第八章 结构体，共用体，枚举</title>
-      <link>https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_08_struct_common-body_enumeration/</link>
+      <link>https://eddyblog.cn/posts/tech/c-programming-08struct/</link>
       <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_08_struct_common-body_enumeration/</guid>
+      <guid>https://eddyblog.cn/posts/tech/c-programming-08struct/</guid>
       <description>第八章 结构体，共用体，枚举 一、结构体类型的概念及定义 1.1 基本概述 构造类型： 不是基本类型的数据结构也不是指针，它是若干个相同或不同类型的数据构成的集合 常用的构造类型有数组、结构体、共用体 数组用于保存多个相同类型的数据 结构体用于保存多个不同类型的数据 1.2 结构体的概念 结构体是一种构造类型的</description>
     </item>
     

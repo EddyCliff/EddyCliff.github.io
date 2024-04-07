@@ -1,82 +1,82 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>C programming on Eddy&#39;s blog</title>
+    <title>C Programming on Eddy&#39;s blog</title>
     <link>https://eddyblog.cn/tags/c-programming/</link>
-    <description>Recent content in C programming on Eddy&#39;s blog</description>
+    <description>Recent content in C Programming on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <lastBuildDate>Mon, 23 Oct 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/c-programming/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>【嵌入式高级C编程】第三章 函数</title>
-      <link>https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_03fun/</link>
-      <pubDate>Sat, 16 Sep 2023 00:17:58 +0800</pubDate>
-      
-      <guid>https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_03fun/</guid>
-      <description>第三章 函数 一、函数的概念 函数是c语言的功能单位，实现一个功能可以封装一个函数来实现。 定义函数的时候一切以功能为目的，根据功能去定函数的参数和返回值。 函数就是讲特定功能的代码封装在一个函数内部，当要使用这些代码时，只需要通过函数名就可以使用，这样操作起来更加方便。 二、函数的分类 1、</description>
-    </item>
-    
-    <item>
       <title>【嵌入式高级C编程】第十章 文件</title>
-      <link>https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_10file/</link>
+      <link>https://eddyblog.cn/posts/tech/c-programming-10file/</link>
       <pubDate>Mon, 23 Oct 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_10file/</guid>
+      <guid>https://eddyblog.cn/posts/tech/c-programming-10file/</guid>
       <description>一、文件的概念 文件用来存放程序、文档、音频、视频数据、图片等数据的。 文件就是存放在磁盘上的，一些数据的集合。在windows下可以通过写字板或记事本打开文本文件对文件进行编辑保存。写字板和记事 本是微软程序员写的程序，对文件进行打开、显示、读写、关闭。 作为一个程序员，必须掌握编程实</description>
     </item>
     
     <item>
       <title>【嵌入式高级C编程】第八章 结构体，共用体，枚举</title>
-      <link>https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_08_struct_common-body_enumeration/</link>
+      <link>https://eddyblog.cn/posts/tech/c-programming-08struct/</link>
       <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_08_struct_common-body_enumeration/</guid>
+      <guid>https://eddyblog.cn/posts/tech/c-programming-08struct/</guid>
       <description>第八章 结构体，共用体，枚举 一、结构体类型的概念及定义 1.1 基本概述 构造类型： 不是基本类型的数据结构也不是指针，它是若干个相同或不同类型的数据构成的集合 常用的构造类型有数组、结构体、共用体 数组用于保存多个相同类型的数据 结构体用于保存多个不同类型的数据 1.2 结构体的概念 结构体是一种构造类型的</description>
     </item>
     
     <item>
       <title>【嵌入式高级C编程】第六章 动态内存申请</title>
-      <link>https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_06dynamic_memory_request/</link>
+      <link>https://eddyblog.cn/posts/tech/c-programming-06dynamic-memory/</link>
       <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_06dynamic_memory_request/</guid>
+      <guid>https://eddyblog.cn/posts/tech/c-programming-06dynamic-memory/</guid>
       <description>第六章 动态内存申请 一、动态分配内存的概 在数组一章中，介绍过数组的长度是预先定义好的，在整个程序中固定不变，但是在实际的编程中，往往会发生这种情况，即所需的内存空间取决于实际输入的数据，而无法预先确定 。 为了解决上述问题，Ｃ语言提供了一些内存管理函数，这些内存管理函数可以按需要动态的</description>
     </item>
     
     <item>
       <title>【嵌入式高级C编程】第七章 字符串处理函数</title>
-      <link>https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_07string_manipulation_functions/</link>
+      <link>https://eddyblog.cn/posts/tech/c-programming-07string/</link>
       <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_07string_manipulation_functions/</guid>
+      <guid>https://eddyblog.cn/posts/tech/c-programming-07string/</guid>
       <description>第七章 字符串处理函数 一、获取字符串长度函数 #include &amp;lt;string.h&amp;gt; size_t strlen(const char *s); 功能：计算一个字符串的长度 参数： s：指定的字符串 返回值： 当前字符串的长度 注意：strlen获取的字符串长度遇到第一个\0结束且\0不算做字符串长度之中 #include &amp;lt;stdio.h&amp;gt; #include &amp;lt;string.h&amp;gt; int main(int argc, char *argv[]) { //使用strlen函数获取字符串的长度 //strlen</description>
     </item>
     
     <item>
       <title>【嵌入式高级C编程】第四章 预处理</title>
-      <link>https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_04preprocessing/</link>
+      <link>https://eddyblog.cn/posts/tech/c-programming-04preprocessing/</link>
       <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_04preprocessing/</guid>
+      <guid>https://eddyblog.cn/posts/tech/c-programming-04preprocessing/</guid>
       <description>第四章 预处理 一、C语言编译过程 C语言的编译过程： 预处理、编译、汇编、链接 gcc -E hello.c -o hello.i 1、预处理 gcc -S hello.i –o hello.s 2、编译 gcc -c hello.s -o hello.o 3、汇编 gcc hello.o -o hello_elf 4、链接 1：预编译 将.c 中的头文件展开、宏展开 生成的文件是.i文件 2：编译 将预处理之后的.i 文件生成 .s 汇编文件 3、汇编 将.s汇编文件生成.o 目</description>
     </item>
     
     <item>
       <title>【嵌入式高级C编程】第五章 指针</title>
-      <link>https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_05pointer/</link>
+      <link>https://eddyblog.cn/posts/tech/c-programming-05pointer/</link>
       <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_05pointer/</guid>
+      <guid>https://eddyblog.cn/posts/tech/c-programming-05pointer/</guid>
       <description>第五章 指针 一、关于内存那点事 存储器：存储数据器件 外存 外存又叫外部存储器，长期存放数据，掉电不丢失数据 常见的外存设备：硬盘、flash、rom、u盘、光盘、磁带 内存 内存又叫内部存储器，暂时存放数据，掉电数据丢失 常见的内存设备：ram、DDR 物理内存：实实在在存在的存储设备 虚拟内存：</description>
     </item>
     
     <item>
       <title>【嵌入式高级C编程】第二章 数组</title>
-      <link>https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_02array/</link>
+      <link>https://eddyblog.cn/posts/tech/c-programming-02array/</link>
       <pubDate>Sat, 16 Sep 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_02array/</guid>
+      <guid>https://eddyblog.cn/posts/tech/c-programming-02array/</guid>
       <description>第二章 数组 一、数组的概念 数组是若干个相同类型的变量在内存中有序存储的集合。 概念理解： 数组用于存储一组数据 数组里面存储的数据类型必须是相同的 数组在内存中会开辟一块连续的空间 int a[10]; //定义了一个整型的数组a，a是数组的名字，数组中有10个元素，每个元素的类型都是int类型，而且在内存中</description>
+    </item>
+    
+    <item>
+      <title>【嵌入式高级C编程】第三章 函数</title>
+      <link>https://eddyblog.cn/posts/tech/c-programming-03fun/</link>
+      <pubDate>Sat, 16 Sep 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/c-programming-03fun/</guid>
+      <description>第三章 函数 一、函数的概念 函数是c语言的功能单位，实现一个功能可以封装一个函数来实现。 定义函数的时候一切以功能为目的，根据功能去定函数的参数和返回值。 函数就是讲特定功能的代码封装在一个函数内部，当要使用这些代码时，只需要通过函数名就可以使用，这样操作起来更加方便。 二、函数的分类 1、</description>
     </item>
     
   </channel>

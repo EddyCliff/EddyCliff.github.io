@@ -9,10 +9,10 @@
     <lastBuildDate>Tue, 12 Sep 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/c/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【C语言指南】代码注释规范</title>
-      <link>https://eddyblog.cn/posts/tech/c_language_comment_specification/</link>
+      <link>https://eddyblog.cn/posts/tech/c-language-comment-specification/</link>
       <pubDate>Tue, 12 Sep 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/c_language_comment_specification/</guid>
+      <guid>https://eddyblog.cn/posts/tech/c-language-comment-specification/</guid>
       <description>常用的注释模板 C语言并没有一个官方的注释规范，但有一些常见的注释风格和最佳实践，可以帮助你编写清晰、易于理解的注释。以下是一些常用的高效注释模板，你可以根据需要进行自定义： 文件头注释： 在每个源代码文件的顶部，包括以下信息： /* * 文件名: example.c * 作者: Your Name * 日期: 2023-09-07 * 描述: 这个文件包含了</description>
     </item>
     

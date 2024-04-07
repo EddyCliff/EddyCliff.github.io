@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>【嵌入式高级C编程】第八章 结构体，共用体，枚举 | Eddy&#39;s blog</title>
+<meta name="keywords" content="C programming, Embedded Development, Struct, common body, enumeration">
+<meta name="description" content="第八章 结构体，共用体，枚举 一、结构体类型的概念及定义 1.1 基本概述 构造类型： 不是基本类型的数据结构也不是指针，它是若干个相同或不同类型的数据构成的集合 常用的构造类型有数组、结构体、共用体 数组用于保存多个相同类型的数据 结构体用于保存多个不同类型的数据 1.2 结构体的概念 结构体是一种构造类型的">
+<meta name="author" content="Eddy">
+<link rel="canonical" href="https://eddyblog.cn/posts/tech/c-programming-08struct/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.js" onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="icon" type="image/png" sizes="16x16" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="icon" type="image/png" sizes="32x32" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="apple-touch-icon" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="mask-icon" href="https://eddyblog.cn/img/logo3.jpg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://eddyblog.cn/posts/tech/c-programming-08struct/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<script defer src="https://unpkg.com/mermaid@8.8.1/dist/mermaid.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = ""; 
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<meta property="og:title" content="【嵌入式高级C编程】第八章 结构体，共用体，枚举" />
+<meta property="og:description" content="第八章 结构体，共用体，枚举 一、结构体类型的概念及定义 1.1 基本概述 构造类型： 不是基本类型的数据结构也不是指针，它是若干个相同或不同类型的数据构成的集合 常用的构造类型有数组、结构体、共用体 数组用于保存多个相同类型的数据 结构体用于保存多个不同类型的数据 1.2 结构体的概念 结构体是一种构造类型的" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://eddyblog.cn/posts/tech/c-programming-08struct/" />
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/c2.jpg" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-10-01T00:17:58+08:00" />
+<meta property="article:modified_time" content="2023-10-01T00:17:58+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/c2.jpg" />
+<meta name="twitter:title" content="【嵌入式高级C编程】第八章 结构体，共用体，枚举"/>
+<meta name="twitter:description" content="第八章 结构体，共用体，枚举 一、结构体类型的概念及定义 1.1 基本概述 构造类型： 不是基本类型的数据结构也不是指针，它是若干个相同或不同类型的数据构成的集合 常用的构造类型有数组、结构体、共用体 数组用于保存多个相同类型的数据 结构体用于保存多个不同类型的数据 1.2 结构体的概念 结构体是一种构造类型的"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+
+        {
+          "@type": "ListItem",
+          "position":  1 ,
+          "name": "📚文章",
+          "item": "https://eddyblog.cn/posts/"
+        },
+
+        {
+          "@type": "ListItem",
+          "position":  2 ,
+          "name": "👨🏻‍💻 技术",
+          "item": "https://eddyblog.cn/posts/tech/"
+        }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "【嵌入式高级C编程】第八章 结构体，共用体，枚举",
+      "item": "https://eddyblog.cn/posts/tech/c-programming-08struct/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "【嵌入式高级C编程】第八章 结构体，共用体，枚举",
+  "name": "【嵌入式高级C编程】第八章 结构体，共用体，枚举",
+  "description": "第八章 结构体，共用体，枚举 一、结构体类型的概念及定义 1.1 基本概述 构造类型： 不是基本类型的数据结构也不是指针，它是若干个相同或不同类型的数据构成的集合 常用的构造类型有数组、结构体、共用体 数组用于保存多个相同类型的数据 结构体用于保存多个不同类型的数据 1.2 结构体的概念 结构体是一种构造类型的",
+  "keywords": [
+    "C programming", "Embedded Development", "Struct", "common body", "enumeration"
+  ],
+  "articleBody": "第八章 结构体，共用体，枚举 一、结构体类型的概念及定义 1.1 基本概述 构造类型： 不是基本类型的数据结构也不是指针，它是若干个相同或不同类型的数据构成的集合 常用的构造类型有数组、结构体、共用体\n数组用于保存多个相同类型的数据 结构体用于保存多个不同类型的数据\n1.2 结构体的概念 结构体是一种构造类型的数据结构，\n是一种或多种基本类型或构造类型的数据的集合。\n1.3 结构体类型的定义 1.3.1 先定义结构体类型，再去定义结构体变量\nstruct 结构体类型名{ 成员列表 }; 例子：\nstruct stu{ int num; char name[20]; char sex; }; //有了结构体类型后，就可以用类型定义变量了\nstruct stu lucy, bob, lilei; //定义了三个struct stu类型的变量，注意不要把struct省略\n每个变量都有三个成员，分别是num name sex\n1.3.2 在定义结构体类型的时候顺便定义结构体变量，以后还可以定义结构体变量\nstruct 结构体类型名{ 成员列表; }结构体变量1,变量2; struct 结构体类型名 变量3，变量4； 例子：\nstruct stu{ int num; char name[20]; char sex; }lucy,bob,lilei; struct stu xiaohong,xiaoming; 注意：一般结构体类型都会定义在全局，也就是main函数的外面。\n所以在定义结构体类型的同时定义变量，这些变量一般都是全局变量。\n定义完类型之后定义的结构体变量内存分配要看定义的位置。\n1.3.3 无名结构体的定义\n在定义结构体类型的时候，没有结构体类型名，顺便定义结构体变量，因为没有类型名，所以以后不能再定义相关类型的数据了\nstruct { 成员列表; }变量1，变量2; 注意：无名结构体由于没有结构体名，所以定义完之后是无法在定义结构体变量的，只能在定义类型的同时定义结构体变量。\n例子：\nstruct { int num; char name[20]; char sex; }lucy,bob; 1.3.4 给结构体类型取别名\n通常咱们将一个结构体类型重新起个类型名，用新的类型名替代原先的类型\ntypedef struct 结构体名 { 成员列表; }重新定义的结构体类型名A; 注意：typedef主要用于给一个类型取别名，此时相当于给当前结构体重新起了一个类型名为A，相当于 struct 结构体名，所以如果结构体要取别名，一般不需要先给结构体定义名字，定义结构体变量时，直接使用A即可，不用加struct\n例子：\ntypedef struct stu{ int num; char name[20]; char sex; }STU; 以后STU 就相当于 struct stu\nSTU lucy; 和struct stu lucy; 是等价的，所以可以不指定stu这个名字\n二、结构体变量的定义初始化及使用 2.1 结构体变量的定义和初始化 结构体变量，是个变量，这个变量是若干个数据的集合\n注：\n(1)：在定义结构体变量之前首先得有结构体类型，然后在定义变量\n(2)：在定义结构体变量的时候，可以顺便给结构体变量赋初值，被称为结构体的初始化\n(3)：结构体变量初始化的时候，各个成员顺序初始化\n案例：\n#include //定义结构体类型 struct stu{ int id; char name[32]; char sex; int age; //定义结构体变量之定义结构体类型的同时定义结构体变量 }zhangsan, lisi = {1002, \"李四\", 'B', 25}; //使用typedef对结构体类型取别名 typedef struct{ int a; int b; char c; }MSG; int main(int argc, char *argv[]) { //定义结构体变量之类型定义完毕之后定义变量 struct stu wangwu; //结构体变量的初始化 struct stu zhaoliu = {1001, \"赵六\", 'B', 20}; //如果使用typedef对结构体类型取别名 //就无法在定义类型的同时定义结构体变量 //在定义结构体变量的时候不用加struct MSG msg1, msg2 = {100, 200, 'w'}; return 0; } 2.2 结构体变量的使用 结构体变量对成员调用的方式：\n结构体变量.结构体成员 注意：这地方说的结构体变量主要指的是普通结构体变量\n2.2.1 结构体变量的简单使用\n#include #include struct stu{ int id; char name[32]; char sex; int age; }zhangsan, lisi = {1002, \"李四\", 'B', 25}; typedef struct{ int a; int b; char c; }MSG; int main(int argc, char *argv[]) { struct stu wangwu; struct stu zhaoliu = {1001, \"赵六\", 'B', 20}; MSG msg1, msg2 = {100, 200, 'w'}; //结构体变量的使用 zhangsan.id = 1001; strcpy(zhangsan.name, \"张三\"); zhangsan.sex = 'B'; zhangsan.age = 18; printf(\"%d ‐ %s ‐ %c ‐ %d\\n\", zhangsan.id, zhangsan.name,zhangsan.sex, zhangsan.age); printf(\"%d ‐ %s ‐ %c ‐ %d\\n\", lisi.id, lisi.name,lisi.sex, lisi.age); printf(\"%d ‐ %s ‐ %c ‐ %d\\n\", zhaoliu.id, zhaoliu.name,zhaoliu.sex, zhaoliu.age); printf(\"%d ‐ %d ‐ %c\\n\", msg2.a, msg2.b, msg2.c); return 0; } 执行结果\n1001 - 张三 - B - 18 1002 - 李四 - B - 25 1001 - 赵六 - B -20 100 - 200 - W Question：\n为什么这个时候不能直接给year赋值？\ntypedef struct{ int year; int month; int day; }BD; Answer：\n上述代码定义了一个结构体类型 BD，但它仅仅是一个类型的声明，没有创建任何具体的变量。因此，您不能直接给 year、month 或 day 赋值，因为这些成员是结构体内部的成员，需要通过结构体变量来访问和赋值。\n您可以理解为 BD 类型是一种用户自定义的数据类型，类似于 int 或其他基本数据类型。在使用它时，需要创建具体的变量，然后通过这些变量来操作其成员。\n例如，在使用 BD 类型时，您需要先创建一个 BD 类型的变量，然后通过该变量来访问和赋值其成员变量 year、month 和 day，就像前面的示例所示。\nBD birthday; // 创建一个BD类型的变量 birthday.year = 1990; // 给year成员变量赋值 birthday.month = 9; // 给month成员变量赋值 birthday.day = 15; // 给day成员变量赋值 这个变量 birthday 才是具体存储数据的实例，而 BD 只是定义了这种类型的数据结构。\n2.2.2 在结构体中嵌套结构体\n//在结构体中嵌套结构体 typedef struct{ int year; int month; int day; }BD; typedef struct{ int id; char name[32]; BD birthday; }STU; void test2() { STU xiaoming; xiaoming.id = 1001; strcpy(xiaoming.name, \"小明\"); //如果结构体中嵌套结构体，赋值时找到最内层的成员再进行赋值 xiaoming.birthday.year = 2002; xiaoming.birthday.month = 12; xiaoming.birthday.day = 20; printf(\"%d ‐ %s ‐ %d‐%d‐%d\\n\", xiaoming.id, xiaoming.name,\\ xiaoming.birthday.year, xiaoming.birthday.month,\\ xiaoming.birthday.day); //嵌套的形式定义并初始化 STU xiaoli = {1002, \"小丽\", 2000, 1, 1}; printf(\"%d ‐ %s ‐ %d‐%d‐%d\\n\", xiaoli.id, xiaoli.name,\\ xiaoli.birthday.year, xiaoli.birthday.month,\\ xiaoli.birthday.day); } 执行结果\n1001 - 小明 - 2002-12-20 1002 - 小丽 - 2000-1-1 2.3 相同类型的结构体变量可以相互赋值 #include #include struct stu{ int id; char name[32]; char sex; int age; }; int main(int argc, char *argv[]) { struct stu zhangsan; zhangsan.id = 1001; strcpy(zhangsan.name, \"张三\"); zhangsan.sex = 'B'; zhangsan.age = 18; printf(\"%d ‐ %s ‐ %c ‐ %d\\n\", zhangsan.id, zhangsan.name,\\ zhangsan.sex, zhangsan.age); //相同类型的结构体变量之间可以直接赋值 struct stu lisi; lisi = zhangsan; printf(\"%d ‐ %s ‐ %c ‐ %d\\n\", lisi.id, lisi.name,\\ lisi.sex, lisi.age); return 0; } 这是我优化后的代码：\n#include typedef struct { int id; char name[32]; char sex; int age; }STU; int main(int argc, char *argv[]) { STU zhangsan = {1001, \"张三\", 'B', 18}; printf(\"%d - %s - %c - %d\\n\",zhangsan.id,zhangsan.name,\\ zhangsan.sex,zhangsan.age); //相同类型的结构体变量之间可以直接赋值 STU lisi; lisi = zhangsan; printf(\"%d - %s - %c - %d\\n\",lisi.id,lisi.name,\\ lisi.sex,lisi.age); return 0; } 执行结果\n1001 - 张三 - B - 18 1001 - 张三 - B - 18 三、结构体数组 结构体数组是个数组，由若干个相同类型的结构体变量构成的集合\n1、结构体数组的定义方法\nstruct 结构体类型名 数组名[元素个数]; 例子：\nstruct stu{ int num; char name[20]; char sex; }; struct stu edu[3]; 定义了一个struct stu 类型的结构体数组edu， 这个数组有3个元素分别是edu[0] 、edu[1]、edu[2] 2、结构体数组元素的引用\n数组名[下标] 3、结构体数组元素对成员的使用\n数组名[下标].成员 案例：\n#include typedef struct{ int num; char name[20]; float score; }STU; int main(int argc, char *argv[]) { //定义一个结构体数组 STU edu[3] = { {101,\"Lucy\",78}, {102,\"Bob\",59.5}, {103,\"Tom\",85} }; //输出结构体数组中的元素 int j; for(j = 0; j \u003c 3; j++) { printf(\"%d ‐ %s ‐ %.2f\\n\", edu[j].num, edu[j].name,\\ edu[j].score); } int i; float sum=0; for(i = 0; i \u003c 3; i++) { sum += edu[i].score; } printf(\"平均成绩为%.2f\\n\",sum / 3); return 0; } 执行结果\n101 - Lucy - 78.00 102 - Bob - 59.50 103 - Tom - 85.00 平均成绩为74.17 四、结构体指针 即结构体的地址，结构体变量存放内存中，也有起始地址\n咱们定义一个变量来存放这个地址，那这个变量就是结构体指针变量。\n1、结构体指针变量的定义方法：\nstruct 结构体类型名 * 结构体指针变量名; 2、结构体指针变量对成员的引用\n(*结构体指针变量名).成员 结构体指针变量名‐\u003e成员 #include #include #include struct stu{ int id; char name[32]; char sex; int age; }; int main(int argc, char *argv[]) { //定义一个结构体指针变量 struct stu *s; //在堆区开辟结构体空间并将其地址保存在结构体指针变量中 s = (struct stu *)malloc(sizeof(struct stu)); s-\u003eid = 1001; strcpy(s-\u003ename, \"张三\"); s-\u003esex = 'B'; s-\u003eage = 20; printf(\"%d - %s - %c - %d\\n\", s-\u003eid, s-\u003ename, s-\u003esex, s-\u003eage); return 0; } 执行结果\n1001 - 张三 - B - 20 五、结构体内存分配问题 #include struct stu{ char sex; int age; }lucy; int main() { printf(\"%d\\n\",sizeof(lucy)); //结果为 8？？？ return 0; } 引言：\n结构体变量大小是它的所有成员之和，那么为什么上述例子中sizeof(lucy)不是1+4=5而是8呢？❓\n结构体变量究竟是怎么分配内存的呢？❓\n请看下文🕵‍(侦探)\n实际给结构体变量分配内存的时候，是规则的\n规则1：以多少个字节为单位开辟内存\n给结构体变量分配内存的时候，会去结构体变量中找基本类型的成员\n哪个基本类型的成员占字节数多，就以它大大小为单位开辟内存,\n在gcc中出现了double类型的例外\n(1)：成员中只有char型数据 ，以1字节为单位开辟内存。\n(2)：成员中出现了short 类型数据，没有更大字节数的基本类型数据。以2字节为单位开辟内存\n(3)：出现了int 、float 没有更大字节的基本类型数据的时候以4字节为单位开辟内存。\n(4)：出现了double类型的数据\n情况1：\n在vc里，以8字节为单位开辟内存。\n情况2：\n在gcc里，以4字节为单位开辟内存。\n无论是那种环境，double型变量，占8字节。\n(5)：如果在结构体中出现了数组，数组可以看成多个变量的集合。\n如果出现指针的话，没有占字节数更大的类型的，以4字节为单位开辟内存。\n(6)：在内存中存储结构体成员的时候，按定义的结构体成员的顺序存储。\n规则2：字节对齐\n(1)：char 1字节对齐 ，即存放char型的变量，内存单元的编号是1的倍数即可。\n(2)：short 2字节对齐 ，即存放short int 型的变量，起始内存单元的编号是2的倍数即可。\n(3)：int 4字节对齐 ，即存放int 型的变量，起始内存单元的编号是4的倍数即可。\n(4)：long 在32位平台下，4字节对齐 ，即存放long int 型的变量，起始内存单元的编号是4的倍数即可。\n(5)：float 4字节对齐 ，即存放float 型的变量，起始内存单元的编号是4的倍数即可。\n(6)：double\na.vc环境下\n8字节对齐，即存放double型变量的起始地址，必须是8的倍数，double变量占8字节。\nb.gcc环境下\n4字节对齐，即存放double型变量的起始地址，必须是4的倍数，double变量占8字节。\n注意：\n当结构体成员中出现数组的时候，可以看成多个变量。\n开辟内存的时候，从上向下依次按成员在结构体中的位置顺序开辟空间\n例子：temp占 8 个字节\n#include struct stu{ char a; short int b; int c; }temp; int main() { printf(\"%d\\n\",sizeof(temp)); printf(\"%p\\n\",\u0026(temp.a)); printf(\"%p\\n\",\u0026(temp.b)); printf(\"%p\\n\",\u0026(temp.c)); return 0; } 这是具体分配内存的图示\n结果分析：\na 的地址和 b 的地址差 2 个字节\nb 的地址和 c 的地址差 2 个字节\n例子：temp 的大小为 12 个字节\nstruct stu{ char a; int c; short int b; }temp; 结果分析：\na 和 c 的地址差 4 个字节\nc 和 b 的地址差 4 个字节\n例子：\nstruct stu{ char a; double b; }temp; 结果分析;\n在 vc 中占 16 个字节 a 和 b 的地址差 8 个字节\n在 gcc 中占 12 个字节 a 和 b 的地址差 4 个字节\n例子：\nstruct stu{ int num; int age; }lucy; 8字节 struct stu{ char sex; int age; }lucy; 8字节 struct stu{ char a; short int b; int c; }temp; 8字节 struct stu{ char a; int c; short int b; }temp; 12字节 struct stu{ char buf[10]; int a; }temp; 16字节 struct stu{ char a; double b; }; 12字节 为什么要有字节对齐？\n用空间来换时间，提高cpu读取数据的效率\n看到这里的话，恭喜你，已经掌握了结构体的基本知识。🏅\n本章已过完1/3，下一节，我们将对《位段》进行学习。⏩\n六、位段 引言：\n位段是偏底层的内容\n目前做应用层的话只需了解即可\n我目前也不知道这是做什么的😶‍🌫️(迷茫)\n一、位段\n在结构体中，以位为单位的成员，咱们称之为位段(位域)。\nstruct packed_data{\nunsigned int a:2;\nunsigned int b:6;\nunsigned int c:4;\nunsigned int d:4;\nunsigned int i;\n} data;\n注意：不能对位段成员取地址\n#include struct packed_data{ unsigned int a:2; unsigned int b:6; unsigned int c:4; unsigned int d:4; unsigned int i; } data; int main() { printf(\"%d\\n\",sizeof(data)); printf(\"%p\\n\",\u0026data); printf(\"%p\\n\",\u0026(data.i)); return 0; } 位段注意：\n1、对于位段成员的引用如下：\ndata.a =2\n赋值时，不要超出位段定义的范围;\n如段成员a定义为2位，最大值为3,即（11）2\n所以data.a =5，就会取5的低两位进行赋值 101\n2、位段成员的类型必须指定为整形或字符型\n3、一个位段必须存放在一个存储单元中，不能跨两个单元\n第一个单元空间不能容纳下一个位段，则该空间不用，而从下一个单元起存放该位段。\n位段的存储单元：\n(1)：char型位段 存储单元是1个字节\n(2)：short int型的位段存储单元是2个字节\n(3)：int的位段，存储单元是4字节\n(4)：long int的位段，存储单元是4字节\nstruct stu{ char a:7; char b:7; char c:2; }temp;//占3字节，b不能跨 存储单元存储 #include struct stu{ char a:7; char b:7; char c:2; }temp; int main() { printf(\"%d\\n\",sizeof(temp)); return 0; } 结果为：3 ，证明位段不能跨其存储单元存储 注意：不能 取 temp.b的地址，因为b可能不够1字节，不能取地址。\n4、位段的长度不能大于存储单元的长度\n(1)：char型位段不能大于8位\n(2)：short int型位段不能大于16位\n(3)：int的位段，位段不能大于32位\n(4)：long int的位段，位段不能大于32位\n#include struct stu{ char a:9; char b:7; char c:2; }temp; int main() { printf(\"%d\\n\",sizeof(temp)); return 0; } 分析： 编译出错，位段a不能大于其存储单元的大小 5、如一个段要从另一个存储单元开始，可以定义：\nunsigned char a:1;\nunsigned char b:2;\nunsigned char :0;\nunsigned char c:3;(另一个单元)\n由于用了长度为0的位段，其作用是使下一个位段从下一个存储单元开始存放\n将a、b存储在一个存储单元中，c另存在下一个单元\n#include struct m_type{ unsigned char a:1; unsigned char b:2; unsigned char :0; unsigned char c:3; }; int main() { struct m_type temp; printf(\"%d\\n\",sizeof(temp)); return 0; } 6、可以定义无意义位段,如：\nunsigned a: 1;\nunsigned : 2;\nunsigned b: 3;\nstruct data{ char a:1; char b:1; char c:1; char d:1; char e:1; char f:1; char g:1; char h:1; }temp; int main() { char p0; //p0=0x01;// 0000 0001 temp.a=1; //p0=temp;//错的，类型不匹配 //p0=(char)temp;//错的，编译器不允许将结构体变量，强制转成基本类型的。 p0 = *((char *)(\u0026temp)); } ​\n指定对齐原则：\n使用#pragma pack改变默认对其原则\n格式：\n#pragma pack (value)时的指定对齐值value。\n📢 这个部分可以先不学习，一般情况下都是用的默认对齐原则\n七、共用体 1：共用体和结构体类似，也是一种构造类型的数据结构。\n既然是构造类型的，咱们得先定义出类型，然后用类型定义变量。\n定义共用体类型的方法和结构体非常相似，把struct 改成union 就可以了。\n在进行某些算法的时候，需要使几种不同类型的变量存到同一段内存单元中，几个变量所使用空间相互重叠。\n这种几个不同的变量共同占用一段内存的结构，在C语言中，被称作“共用体”类型结构\n共用体所有成员占有同一段地址空间\n共用体的大小是其占内存长度最大的成员的大小\n共用体的特点：\n1、同一内存段可以用来存放几种不同类型的成员，但每一瞬时只有一种起作用\n2、共用体变量中起作用的成员是最后一次存放的成员，在存入一个新的成员后原有的\n成员的值会被覆盖\n3、共用体变量的地址和它的各成员的地址都是同一地址\n4、共用体变量的初始化union data a={123}; 初始化共用体为第一个成员\n#include //定义一个共用体 union un{ int a; int b; int c; }; int main(int argc, char *argv[]) { //定义共用体变量 union un myun; myun.a = 100; myun.b = 200; myun.c = 300; printf(\"a = %d, b = %d, c = %d\\n\", myun.a, myun.b, myun.c); return 0; } 执行结果\na = 300, b = 300, c = 300 八、枚举 将变量的值一一列举出来，变量的值只限于列举出来的值的范围内\n枚举类型也是个构造类型的\n1、枚举类型的定义\nenum 枚举类型名{ 枚举值列表； }; 在枚举值表中应列出所有可用值,也称为枚举元素\n枚举变量仅能取枚举值所列元素\n2、枚举变量的定义方法\nenum 枚举类型名 枚举变量名; ① 枚举值是常量,不能在程序中用赋值语句再对它赋值\n例如：sun=5; mon=2; sun=mon; 都是错误的.\n② 枚举元素本身由系统定义了一个表示序号的数值\n默认是从0开始顺序定义为0，1，2…\n如在week中，mon值为0，tue值为1， …,sun值为6\n③ 可以改变枚举值的默认值：如\nenum week //枚举类型 { mon=3，tue，wed，thu，fri=4，sat,sun }; mon=3 tue=4,以此类推 fri=4 以此类推 注意：在定义枚举类型的时候枚举元素可以用等号给它赋值，用来代表元素从几开始编号\n在程序中，不能再次对枚举元素赋值，因为枚举元素是常量。\n#include //定义一个枚举类型 enum week { mon=8, tue, wed, thu=2, fri, sat, sun }; int main(int argc, char *argv[]) { //定义枚举类型的变量 enum week day = mon; printf(\"day = %d\\n\", day); day = fri; printf(\"day = %d\\n\", day); return 0; } 执行结果\nday = 8 day = 3 彩蛋🎁\n我时常想，做学问，做事业，在人生中都只能算是第二桩事。人生第一桩事是生活。我所谓的“生活”是“领略”，是“培养生机”。假若为学问为事业而忘却生活，那种学问，事业在人生中便失去其真正意义与价值。\n朱光潜《给青年的十二封信》 恭喜你🎉，完成了对第八章《结构体，共用体，枚举》部分的学习，下一章我们将学习链表。\n⏩第九章《链表》\n",
+  "wordCount" : "6198",
+  "inLanguage": "zh",
+  "image":"https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/c2.jpg","datePublished": "2023-10-01T00:17:58+08:00",
+  "dateModified": "2023-10-01T00:17:58+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "Eddy"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://eddyblog.cn/posts/tech/c-programming-08struct/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Eddy's blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://eddyblog.cn/img/logo3.jpg"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    (function () {
+        let  arr,reg = new RegExp("(^| )"+"change-themes"+"=([^;]*)(;|$)");
+        if(arr = document.cookie.match(reg)) {
+        } else {
+            if (new Date().getHours() >= 19 || new Date().getHours() < 6) {
+                document.body.classList.add('dark');
+                localStorage.setItem("pref-theme", 'dark');
+            } else {
+                document.body.classList.remove('dark');
+                localStorage.setItem("pref-theme", 'light');
+            }
+        }
+    })()
+
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://eddyblog.cn/" accesskey="h" title="Eddy&#39;s Blog (Alt + H)">
+            <img src="https://eddyblog.cn/img/logo3.jpg" alt="logo" aria-label="logo"
+                 height="35">Eddy&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://eddyblog.cn/search" title="🔍 搜索 (Alt &#43; /)" accesskey=/>
+                <span>🔍 搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/" title="🏠 主页">
+                <span>🏠 主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/posts" title="📚 文章">
+                <span>📚 文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/tags" title="🧩 标签">
+                <span>🧩 标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/archives/" title="⏱️ 时间轴">
+                <span>⏱️ 时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/about" title="🙋🏻‍♂️ 关于">
+                <span>🙋🏻‍♂️ 关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main page">
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+</style>
+
+<article class="post-single">
+    <div id="single-content">
+        <header class="post-header">
+            <div class="breadcrumbs"><a href="https://eddyblog.cn/">🏠 主页</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/">📚文章</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/tech/">👨🏻‍💻 技术</a></div>
+            <h1 class="post-title">
+                【嵌入式高级C编程】第八章 结构体，共用体，枚举
+            </h1>
+            <div class="post-meta">
+
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+
+    .parent-post-meta {
+        display: flex;
+        flex-wrap: wrap;
+        opacity: 0.8;
+    }
+</style>
+
+<span class="parent-post-meta">
+    <span id="post_meta_style_1">
+        <span class="fa fa-calendar-check-o"></span>
+        <span>2023-10-01
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    
+    
+    
+    
+    
+    
+    
+    <span id="post_meta_style_3">
+        <span class="fa fa-file-word-o"></span>
+        <span>6198字
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_4">
+        <span class="fa fa-clock-o"></span>
+        <span>13分钟
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_5">
+        <span class="fa fa-user-o"></span>
+        <span>Eddy
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_6">
+        <span class="fa fa-tags" style="opacity: 0.8"></span>
+        <span>
+            <span class="post-tags-meta">
+                <a href="https://eddyblog.cn/tags/c-programming/" style="color: var(--secondary)!important;">C Programming</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/embedded-development/" style="color: var(--secondary)!important;">Embedded Development</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/struct/" style="color: var(--secondary)!important;">Struct</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/common-body/" style="color: var(--secondary)!important;">Common Body</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/enumeration/" style="color: var(--secondary)!important;">Enumeration</a>
+            </span>
+        </span>
+    </span>
+</span>
+<span style="opacity: 0.8;">
+                    <span id="post_meta_style_7">
+                        &nbsp;&nbsp;
+                        <span class="fa fa-eye" ></span>
+                        <span>
+                            <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+                            &nbsp;&nbsp;
+                        </span>
+                    </span>
+                    <span id="post_meta_style_8">
+                        <span class="fa fa-commenting-o"></span>
+                        <span>
+                            <script src="https://cdn.staticfile.org/twikoo//twikoo.all.min.js"></script>
+                            <script>
+                                let url = document.documentURI
+                                
+                                let dnsUrl = "https://eddyblog.cn/"
+                                let urlSplit = url.split(dnsUrl)
+                                let finalUrl = urlSplit[1]
+                                if (finalUrl[0] !== '/') {
+                                    finalUrl = '/'+finalUrl
+                                }
+                                twikoo.getCommentsCount({
+                                    envId:  null , 
+                                region:  null , 
+                                urls: [ 
+                                    
+                                    finalUrl,
+                                ],
+                                    includeReply: false 
+                                }).then(function (res) {
+                                    let count = res[0].count
+                                    const obj = document.getElementById("comment_count");
+                                    obj.innerText = count
+                                    
+                                    
+                                    
+                                }).catch(function (err) {
+                                    
+                                    console.error(err);
+                                });
+                            </script>
+                            <span id="comment_count"></span>
+                        </span>
+                    </span>
+                </span>
+
+</div>
+        </header> 
+<figure class="entry-cover1"><img style="zoom:;" loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/c2.jpg" alt="">
+    
+</figure><aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e7%ac%ac%e5%85%ab%e7%ab%a0-%e7%bb%93%e6%9e%84%e4%bd%93%e5%85%b1%e7%94%a8%e4%bd%93%e6%9e%9a%e4%b8%be" aria-label="第八章 结构体，共用体，枚举">第八章 结构体，共用体，枚举</a><ul>
+                        
+                <li>
+                    <a href="#%e4%b8%80%e7%bb%93%e6%9e%84%e4%bd%93%e7%b1%bb%e5%9e%8b%e7%9a%84%e6%a6%82%e5%bf%b5%e5%8f%8a%e5%ae%9a%e4%b9%89" aria-label="一、结构体类型的概念及定义">一、结构体类型的概念及定义</a><ul>
+                        
+                <li>
+                    <a href="#11-%e5%9f%ba%e6%9c%ac%e6%a6%82%e8%bf%b0" aria-label="1.1 基本概述">1.1 基本概述</a></li>
+                <li>
+                    <a href="#12-%e7%bb%93%e6%9e%84%e4%bd%93%e7%9a%84%e6%a6%82%e5%bf%b5" aria-label="1.2 结构体的概念">1.2 结构体的概念</a></li>
+                <li>
+                    <a href="#13-%e7%bb%93%e6%9e%84%e4%bd%93%e7%b1%bb%e5%9e%8b%e7%9a%84%e5%ae%9a%e4%b9%89" aria-label="1.3 结构体类型的定义">1.3 结构体类型的定义</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%ba%8c%e7%bb%93%e6%9e%84%e4%bd%93%e5%8f%98%e9%87%8f%e7%9a%84%e5%ae%9a%e4%b9%89%e5%88%9d%e5%a7%8b%e5%8c%96%e5%8f%8a%e4%bd%bf%e7%94%a8" aria-label="二、结构体变量的定义初始化及使用">二、结构体变量的定义初始化及使用</a><ul>
+                        
+                <li>
+                    <a href="#21-%e7%bb%93%e6%9e%84%e4%bd%93%e5%8f%98%e9%87%8f%e7%9a%84%e5%ae%9a%e4%b9%89%e5%92%8c%e5%88%9d%e5%a7%8b%e5%8c%96" aria-label="2.1 结构体变量的定义和初始化">2.1 结构体变量的定义和初始化</a></li>
+                <li>
+                    <a href="#22-%e7%bb%93%e6%9e%84%e4%bd%93%e5%8f%98%e9%87%8f%e7%9a%84%e4%bd%bf%e7%94%a8" aria-label="2.2 结构体变量的使用">2.2 结构体变量的使用</a></li>
+                <li>
+                    <a href="#23-%e7%9b%b8%e5%90%8c%e7%b1%bb%e5%9e%8b%e7%9a%84%e7%bb%93%e6%9e%84%e4%bd%93%e5%8f%98%e9%87%8f%e5%8f%af%e4%bb%a5%e7%9b%b8%e4%ba%92%e8%b5%8b%e5%80%bc" aria-label="2.3 相同类型的结构体变量可以相互赋值">2.3 相同类型的结构体变量可以相互赋值</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%b8%89%e7%bb%93%e6%9e%84%e4%bd%93%e6%95%b0%e7%bb%84" aria-label="三、结构体数组">三、结构体数组</a></li>
+                <li>
+                    <a href="#%e5%9b%9b%e7%bb%93%e6%9e%84%e4%bd%93%e6%8c%87%e9%92%88" aria-label="四、结构体指针">四、结构体指针</a></li>
+                <li>
+                    <a href="#%e4%ba%94%e7%bb%93%e6%9e%84%e4%bd%93%e5%86%85%e5%ad%98%e5%88%86%e9%85%8d%e9%97%ae%e9%a2%98" aria-label="五、结构体内存分配问题">五、结构体内存分配问题</a></li>
+                <li>
+                    <a href="#%e5%85%ad%e4%bd%8d%e6%ae%b5" aria-label="六、位段">六、位段</a></li>
+                <li>
+                    <a href="#%e4%b8%83%e5%85%b1%e7%94%a8%e4%bd%93" aria-label="七、共用体">七、共用体</a></li>
+                <li>
+                    <a href="#%e5%85%ab%e6%9e%9a%e4%b8%be" aria-label="八、枚举">八、枚举</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+        
+        activeElement = elements[0];
+        const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+        document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+    }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        if (elements) {
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement){
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }
+    }, false);
+
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;
+    }
+</script>
+        <div class="post-content"><h2 id="第八章-结构体共用体枚举">第八章 结构体，共用体，枚举<a hidden class="anchor" aria-hidden="true" href="#第八章-结构体共用体枚举">#</a></h2>
+<h3 id="一结构体类型的概念及定义">一、结构体类型的概念及定义<a hidden class="anchor" aria-hidden="true" href="#一结构体类型的概念及定义">#</a></h3>
+<h4 id="11-基本概述">1.1 基本概述<a hidden class="anchor" aria-hidden="true" href="#11-基本概述">#</a></h4>
+<p><strong>构造类型：</strong>
+不是基本类型的数据结构也不是指针，它是若干个相同或不同类型的数据构成的集合
+常用的构造类型有数组、结构体、共用体</p>
+<p>数组用于保存多个相同类型的数据
+结构体用于保存多个不同类型的数据</p>
+<h4 id="12-结构体的概念">1.2 结构体的概念<a hidden class="anchor" aria-hidden="true" href="#12-结构体的概念">#</a></h4>
+<p>结构体是一种构造类型的数据结构，</p>
+<p>是一种或多种基本类型或构造类型的数据的集合。</p>
+<h4 id="13-结构体类型的定义">1.3 结构体类型的定义<a hidden class="anchor" aria-hidden="true" href="#13-结构体类型的定义">#</a></h4>
+<p><strong>1.3.1 先定义结构体类型，再去定义结构体变量</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#960050;background-color:#1e0010">结构体类型名</span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">成员列表</span>
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>例子：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> stu{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> num;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> name[<span style="color:#ae81ff">20</span>];
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> sex;
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>//有了结构体类型后，就可以用类型定义变量了</p>
+<p><code>struct stu lucy, bob, lilei;</code>    //定义了三个struct stu类型的变量，注意不要把struct省略</p>
+<p>每个变量都有三个成员，分别是<code>num</code> <code>name</code> <code>sex</code></p>
+<p><strong>1.3.2 在定义结构体类型的时候顺便定义结构体变量，以后还可以定义结构体变量</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#960050;background-color:#1e0010">结构体类型名</span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">成员列表</span>;
+</span></span><span style="display:flex;"><span>}<span style="color:#960050;background-color:#1e0010">结构体变量</span><span style="color:#ae81ff">1</span>,<span style="color:#960050;background-color:#1e0010">变量</span><span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#960050;background-color:#1e0010">结构体类型名</span> <span style="color:#960050;background-color:#1e0010">变量</span><span style="color:#ae81ff">3</span><span style="color:#960050;background-color:#1e0010">，变量</span><span style="color:#ae81ff">4</span><span style="color:#960050;background-color:#1e0010">；</span>
+</span></span></code></pre></div><p>例子：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> stu{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> num;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> name[<span style="color:#ae81ff">20</span>];
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> sex;
+</span></span><span style="display:flex;"><span>}lucy,bob,lilei;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> stu xiaohong,xiaoming;
+</span></span></code></pre></div><p>注意：一般结构体类型都会定义在全局，也就是main函数的外面。</p>
+<p>所以在定义结构体类型的同时定义变量，这些变量一般都是全局变量。</p>
+<p>定义完类型之后定义的结构体变量内存分配要看定义的位置。</p>
+<p><strong>1.3.3 无名结构体的定义</strong></p>
+<p>在定义结构体类型的时候，没有结构体类型名，顺便定义结构体变量，因为没有类型名，所以以后不能再定义相关类型的数据了</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">成员列表</span>;
+</span></span><span style="display:flex;"><span>}<span style="color:#960050;background-color:#1e0010">变量</span><span style="color:#ae81ff">1</span><span style="color:#960050;background-color:#1e0010">，变量</span><span style="color:#ae81ff">2</span>;
+</span></span></code></pre></div><p>注意：无名结构体由于没有结构体名，所以定义完之后是无法在定义结构体变量的，只能在定义类型的同时定义结构体变量。</p>
+<p>例子：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> num;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> name[<span style="color:#ae81ff">20</span>];
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> sex;
+</span></span><span style="display:flex;"><span>}lucy,bob;
+</span></span></code></pre></div><p><strong>1.3.4 给结构体类型取别名</strong></p>
+<p>通常咱们将一个结构体类型重新起个类型名，用新的类型名替代原先的类型</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> <span style="color:#960050;background-color:#1e0010">结构体名</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">成员列表</span>;
+</span></span><span style="display:flex;"><span>}<span style="color:#960050;background-color:#1e0010">重新定义的结构体类型名</span>A;
+</span></span></code></pre></div><p>注意：typedef主要用于给一个类型取别名，此时相当于给当前结构体重新起了一个类型名为A，相当于 struct 结构体名，所以如果结构体要取别名，一般不需要先给结构体定义名字，定义结构体变量时，直接使用A即可，不用加struct</p>
+<p>例子：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> stu{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> num;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> name[<span style="color:#ae81ff">20</span>];
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> sex;
+</span></span><span style="display:flex;"><span>}STU;
+</span></span></code></pre></div><p>以后STU 就相当于 struct stu</p>
+<p><code>STU lucy;</code> 和<code>struct stu lucy;</code> 是等价的，所以可以不指定stu这个名字</p>
+<h3 id="二结构体变量的定义初始化及使用">二、结构体变量的定义初始化及使用<a hidden class="anchor" aria-hidden="true" href="#二结构体变量的定义初始化及使用">#</a></h3>
+<h4 id="21-结构体变量的定义和初始化">2.1 结构体变量的定义和初始化<a hidden class="anchor" aria-hidden="true" href="#21-结构体变量的定义和初始化">#</a></h4>
+<p>结构体变量，是个变量，这个变量是若干个数据的集合</p>
+<p>注：</p>
+<p>(1)：在定义结构体变量之前首先得有结构体类型，然后在定义变量</p>
+<p>(2)：在定义结构体变量的时候，可以顺便给结构体变量赋初值，被称为结构体的初始化</p>
+<p>(3)：结构体变量初始化的时候，各个成员顺序初始化</p>
+<p>案例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//定义结构体类型
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">struct</span> stu{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> id;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> name[<span style="color:#ae81ff">32</span>];
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> sex;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> age;
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//定义结构体变量之定义结构体类型的同时定义结构体变量
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}zhangsan, lisi <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1002</span>, <span style="color:#e6db74">&#34;李四&#34;</span>, <span style="color:#e6db74">&#39;B&#39;</span>, <span style="color:#ae81ff">25</span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//使用typedef对结构体类型取别名
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> a;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> b;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> c;
+</span></span><span style="display:flex;"><span>}MSG;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//定义结构体变量之类型定义完毕之后定义变量
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">struct</span> stu wangwu;
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//结构体变量的初始化
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">struct</span> stu zhaoliu <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1001</span>, <span style="color:#e6db74">&#34;赵六&#34;</span>, <span style="color:#e6db74">&#39;B&#39;</span>, <span style="color:#ae81ff">20</span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//如果使用typedef对结构体类型取别名
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">//就无法在定义类型的同时定义结构体变量
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">//在定义结构体变量的时候不用加struct
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  MSG msg1, msg2 <span style="color:#f92672">=</span> {<span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">200</span>, <span style="color:#e6db74">&#39;w&#39;</span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="22-结构体变量的使用">2.2 结构体变量的使用<a hidden class="anchor" aria-hidden="true" href="#22-结构体变量的使用">#</a></h4>
+<p>结构体变量对成员调用的方式：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">结构体变量</span>.<span style="color:#960050;background-color:#1e0010">结构体成员</span>
+</span></span></code></pre></div><p>注意：这地方说的结构体变量主要指的是普通结构体变量</p>
+<p><strong>2.2.1 结构体变量的简单使用</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> stu{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> id;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> name[<span style="color:#ae81ff">32</span>];
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> sex;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> age;
+</span></span><span style="display:flex;"><span>}zhangsan, lisi <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1002</span>, <span style="color:#e6db74">&#34;李四&#34;</span>, <span style="color:#e6db74">&#39;B&#39;</span>, <span style="color:#ae81ff">25</span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> a;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> b;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> c;
+</span></span><span style="display:flex;"><span>}MSG;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">struct</span> stu wangwu;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">struct</span> stu zhaoliu <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1001</span>, <span style="color:#e6db74">&#34;赵六&#34;</span>, <span style="color:#e6db74">&#39;B&#39;</span>, <span style="color:#ae81ff">20</span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  MSG msg1, msg2 <span style="color:#f92672">=</span> {<span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">200</span>, <span style="color:#e6db74">&#39;w&#39;</span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//结构体变量的使用
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  zhangsan.id <span style="color:#f92672">=</span> <span style="color:#ae81ff">1001</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">strcpy</span>(zhangsan.name, <span style="color:#e6db74">&#34;张三&#34;</span>);
+</span></span><span style="display:flex;"><span>  zhangsan.sex <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;B&#39;</span>;
+</span></span><span style="display:flex;"><span>  zhangsan.age <span style="color:#f92672">=</span> <span style="color:#ae81ff">18</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%d ‐ %s ‐ %c ‐ %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, zhangsan.id, zhangsan.name,zhangsan.sex, zhangsan.age);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%d ‐ %s ‐ %c ‐ %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, lisi.id, lisi.name,lisi.sex, lisi.age);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%d ‐ %s ‐ %c ‐ %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, zhaoliu.id, zhaoliu.name,zhaoliu.sex, zhaoliu.age);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%d ‐ %d ‐ %c</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, msg2.a, msg2.b, msg2.c);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>执行结果</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#ae81ff">1001</span> <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">张三</span> <span style="color:#f92672">-</span> B <span style="color:#f92672">-</span> <span style="color:#ae81ff">18</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1002</span> <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">李四</span> <span style="color:#f92672">-</span> B <span style="color:#f92672">-</span> <span style="color:#ae81ff">25</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1001</span> <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">赵六</span> <span style="color:#f92672">-</span> B <span style="color:#f92672">-</span><span style="color:#ae81ff">20</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">100</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">200</span> <span style="color:#f92672">-</span> W
+</span></span></code></pre></div><p><strong>Question：</strong></p>
+<p>为什么这个时候不能直接给year赋值？</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span>{ 
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> year;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> month;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> day;             
+</span></span><span style="display:flex;"><span>}BD;
+</span></span></code></pre></div><p><strong>Answer：</strong></p>
+<p>上述代码定义了一个结构体类型 <code>BD</code>，但它仅仅是一个类型的声明，没有创建任何具体的变量。因此，您不能直接给 <code>year</code>、<code>month</code> 或 <code>day</code> 赋值，因为这些成员是结构体内部的成员，需要通过结构体变量来访问和赋值。</p>
+<p>您可以理解为 <code>BD</code> 类型是一种用户自定义的数据类型，类似于 <code>int</code> 或其他基本数据类型。在使用它时，需要创建具体的变量，然后通过这些变量来操作其成员。</p>
+<p>例如，在使用 <code>BD</code> 类型时，您需要先创建一个 <code>BD</code> 类型的变量，然后通过该变量来访问和赋值其成员变量 <code>year</code>、<code>month</code> 和 <code>day</code>，就像前面的示例所示。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>BD birthday; <span style="color:#75715e">// 创建一个BD类型的变量
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>birthday.year <span style="color:#f92672">=</span> <span style="color:#ae81ff">1990</span>; <span style="color:#75715e">// 给year成员变量赋值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>birthday.month <span style="color:#f92672">=</span> <span style="color:#ae81ff">9</span>;   <span style="color:#75715e">// 给month成员变量赋值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>birthday.day <span style="color:#f92672">=</span> <span style="color:#ae81ff">15</span>;    <span style="color:#75715e">// 给day成员变量赋值
+</span></span></span></code></pre></div><p>这个变量 <code>birthday</code> 才是具体存储数据的实例，而 <code>BD</code> 只是定义了这种类型的数据结构。</p>
+<p><strong>2.2.2 在结构体中嵌套结构体</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">//在结构体中嵌套结构体
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> year;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> month;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> day;
+</span></span><span style="display:flex;"><span>}BD;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> id;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> name[<span style="color:#ae81ff">32</span>];
+</span></span><span style="display:flex;"><span>  BD birthday;
+</span></span><span style="display:flex;"><span>}STU;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">test2</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  STU xiaoming;
+</span></span><span style="display:flex;"><span>  xiaoming.id <span style="color:#f92672">=</span> <span style="color:#ae81ff">1001</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">strcpy</span>(xiaoming.name, <span style="color:#e6db74">&#34;小明&#34;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//如果结构体中嵌套结构体，赋值时找到最内层的成员再进行赋值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  xiaoming.birthday.year <span style="color:#f92672">=</span> <span style="color:#ae81ff">2002</span>;
+</span></span><span style="display:flex;"><span>  xiaoming.birthday.month <span style="color:#f92672">=</span> <span style="color:#ae81ff">12</span>;
+</span></span><span style="display:flex;"><span>  xiaoming.birthday.day <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>;
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%d ‐ %s ‐ %d‐%d‐%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, xiaoming.id, xiaoming.name,\
+</span></span><span style="display:flex;"><span>  xiaoming.birthday.year, xiaoming.birthday.month,\
+</span></span><span style="display:flex;"><span>  xiaoming.birthday.day);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//嵌套的形式定义并初始化
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  STU xiaoli <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1002</span>, <span style="color:#e6db74">&#34;小丽&#34;</span>, <span style="color:#ae81ff">2000</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>};
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%d ‐ %s ‐ %d‐%d‐%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, xiaoli.id, xiaoli.name,\
+</span></span><span style="display:flex;"><span>  xiaoli.birthday.year, xiaoli.birthday.month,\
+</span></span><span style="display:flex;"><span>  xiaoli.birthday.day);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>执行结果</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#ae81ff">1001</span> <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">小明</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">2002</span><span style="color:#f92672">-</span><span style="color:#ae81ff">12</span><span style="color:#f92672">-</span><span style="color:#ae81ff">20</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1002</span> <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">小丽</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">2000</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+</span></span></code></pre></div><h4 id="23-相同类型的结构体变量可以相互赋值">2.3 相同类型的结构体变量可以相互赋值<a hidden class="anchor" aria-hidden="true" href="#23-相同类型的结构体变量可以相互赋值">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> stu{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> id;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> name[<span style="color:#ae81ff">32</span>];
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> sex;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> age;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">struct</span> stu zhangsan;
+</span></span><span style="display:flex;"><span>  zhangsan.id <span style="color:#f92672">=</span> <span style="color:#ae81ff">1001</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">strcpy</span>(zhangsan.name, <span style="color:#e6db74">&#34;张三&#34;</span>);
+</span></span><span style="display:flex;"><span>  zhangsan.sex <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;B&#39;</span>;
+</span></span><span style="display:flex;"><span>  zhangsan.age <span style="color:#f92672">=</span> <span style="color:#ae81ff">18</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%d ‐ %s ‐ %c ‐ %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, zhangsan.id, zhangsan.name,\
+</span></span><span style="display:flex;"><span>    zhangsan.sex, zhangsan.age);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//相同类型的结构体变量之间可以直接赋值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">struct</span> stu lisi;
+</span></span><span style="display:flex;"><span>  lisi <span style="color:#f92672">=</span> zhangsan;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%d ‐ %s ‐ %c ‐ %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, lisi.id, lisi.name,\
+</span></span><span style="display:flex;"><span>    lisi.sex, lisi.age);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>这是我优化后的代码：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> id;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">char</span> name[<span style="color:#ae81ff">32</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">char</span> sex;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> age;
+</span></span><span style="display:flex;"><span>}STU;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    STU zhangsan <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1001</span>, <span style="color:#e6db74">&#34;张三&#34;</span>, <span style="color:#e6db74">&#39;B&#39;</span>, <span style="color:#ae81ff">18</span>};
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%d - %s - %c - %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,zhangsan.id,zhangsan.name,\
+</span></span><span style="display:flex;"><span>            zhangsan.sex,zhangsan.age);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//相同类型的结构体变量之间可以直接赋值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    STU lisi;
+</span></span><span style="display:flex;"><span>    lisi <span style="color:#f92672">=</span> zhangsan;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%d - %s - %c - %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,lisi.id,lisi.name,\
+</span></span><span style="display:flex;"><span>            lisi.sex,lisi.age);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>执行结果</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#ae81ff">1001</span> <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">张三</span> <span style="color:#f92672">-</span> B <span style="color:#f92672">-</span> <span style="color:#ae81ff">18</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1001</span> <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">张三</span> <span style="color:#f92672">-</span> B <span style="color:#f92672">-</span> <span style="color:#ae81ff">18</span>
+</span></span></code></pre></div><h3 id="三结构体数组">三、结构体数组<a hidden class="anchor" aria-hidden="true" href="#三结构体数组">#</a></h3>
+<p>结构体数组是个数组，由若干个相同类型的结构体变量构成的集合</p>
+<p><strong>1、结构体数组的定义方法</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#960050;background-color:#1e0010">结构体类型名</span> <span style="color:#960050;background-color:#1e0010">数组名</span>[<span style="color:#960050;background-color:#1e0010">元素个数</span>];
+</span></span></code></pre></div><p>例子：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> stu{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> num;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> name[<span style="color:#ae81ff">20</span>];
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> sex;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">struct</span> stu edu[<span style="color:#ae81ff">3</span>];
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">定义了一个</span><span style="color:#66d9ef">struct</span> stu <span style="color:#960050;background-color:#1e0010">类型的结构体数组</span>edu<span style="color:#960050;background-color:#1e0010">，</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">这个数组有</span><span style="color:#ae81ff">3</span><span style="color:#960050;background-color:#1e0010">个元素分别是</span>edu[<span style="color:#ae81ff">0</span>] <span style="color:#960050;background-color:#1e0010">、</span>edu[<span style="color:#ae81ff">1</span>]<span style="color:#960050;background-color:#1e0010">、</span>edu[<span style="color:#ae81ff">2</span>]
+</span></span></code></pre></div><p><strong>2、结构体数组元素的引用</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">数组名</span>[<span style="color:#960050;background-color:#1e0010">下标</span>]
+</span></span></code></pre></div><p><strong>3、结构体数组元素对成员的使用</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">数组名</span>[<span style="color:#960050;background-color:#1e0010">下标</span>].<span style="color:#960050;background-color:#1e0010">成员</span>
+</span></span></code></pre></div><p>案例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> num;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> name[<span style="color:#ae81ff">20</span>];
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">float</span> score;
+</span></span><span style="display:flex;"><span>}STU;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//定义一个结构体数组
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  STU edu[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">101</span>,<span style="color:#e6db74">&#34;Lucy&#34;</span>,<span style="color:#ae81ff">78</span>},
+</span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">102</span>,<span style="color:#e6db74">&#34;Bob&#34;</span>,<span style="color:#ae81ff">59.5</span>},
+</span></span><span style="display:flex;"><span>    {<span style="color:#ae81ff">103</span>,<span style="color:#e6db74">&#34;Tom&#34;</span>,<span style="color:#ae81ff">85</span>}
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//输出结构体数组中的元素
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int</span> j;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span>(j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>; j<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%d ‐ %s ‐ %.2f</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, edu[j].num, edu[j].name,\
+</span></span><span style="display:flex;"><span>    edu[j].score);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> i;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">float</span> sum<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span>(i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    sum <span style="color:#f92672">+=</span> edu[i].score;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;平均成绩为%.2f</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,sum <span style="color:#f92672">/</span> <span style="color:#ae81ff">3</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>执行结果</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#ae81ff">101</span> <span style="color:#f92672">-</span> Lucy <span style="color:#f92672">-</span> <span style="color:#ae81ff">78.00</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">102</span> <span style="color:#f92672">-</span> Bob <span style="color:#f92672">-</span> <span style="color:#ae81ff">59.50</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">103</span> <span style="color:#f92672">-</span> Tom <span style="color:#f92672">-</span> <span style="color:#ae81ff">85.00</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">平均成绩为</span><span style="color:#ae81ff">74.17</span>
+</span></span></code></pre></div><h3 id="四结构体指针">四、结构体指针<a hidden class="anchor" aria-hidden="true" href="#四结构体指针">#</a></h3>
+<p>即结构体的地址，结构体变量存放内存中，也有起始地址</p>
+<p>咱们定义一个变量来存放这个地址，那这个变量就是结构体指针变量。</p>
+<p>1、结构体指针变量的定义方法：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#960050;background-color:#1e0010">结构体类型名</span> <span style="color:#f92672">*</span> <span style="color:#960050;background-color:#1e0010">结构体指针变量名</span>;
+</span></span></code></pre></div><p>2、结构体指针变量对成员的引用</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span> (<span style="color:#f92672">*</span><span style="color:#960050;background-color:#1e0010">结构体指针变量名</span>).<span style="color:#960050;background-color:#1e0010">成员</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">结构体指针变量名‐</span><span style="color:#f92672">&gt;</span><span style="color:#960050;background-color:#1e0010">成员</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdlib.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> stu{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> id;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">char</span> name[<span style="color:#ae81ff">32</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">char</span> sex;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> age;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//定义一个结构体指针变量
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">struct</span> stu <span style="color:#f92672">*</span>s;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//在堆区开辟结构体空间并将其地址保存在结构体指针变量中
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    s <span style="color:#f92672">=</span> (<span style="color:#66d9ef">struct</span> stu <span style="color:#f92672">*</span>)<span style="color:#a6e22e">malloc</span>(<span style="color:#66d9ef">sizeof</span>(<span style="color:#66d9ef">struct</span> stu));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    s<span style="color:#f92672">-&gt;</span>id <span style="color:#f92672">=</span> <span style="color:#ae81ff">1001</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">strcpy</span>(s<span style="color:#f92672">-&gt;</span>name, <span style="color:#e6db74">&#34;张三&#34;</span>);
+</span></span><span style="display:flex;"><span>    s<span style="color:#f92672">-&gt;</span>sex <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;B&#39;</span>;
+</span></span><span style="display:flex;"><span>    s<span style="color:#f92672">-&gt;</span>age <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%d - %s - %c - %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, s<span style="color:#f92672">-&gt;</span>id, s<span style="color:#f92672">-&gt;</span>name, s<span style="color:#f92672">-&gt;</span>sex, s<span style="color:#f92672">-&gt;</span>age);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>执行结果</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span> <span style="color:#ae81ff">1001</span> <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">张三</span> <span style="color:#f92672">-</span> B <span style="color:#f92672">-</span> <span style="color:#ae81ff">20</span>
+</span></span></code></pre></div><h3 id="五结构体内存分配问题">五、结构体内存分配问题<a hidden class="anchor" aria-hidden="true" href="#五结构体内存分配问题">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">struct</span> stu{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> sex;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> age;
+</span></span><span style="display:flex;"><span>}lucy;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,<span style="color:#66d9ef">sizeof</span>(lucy));  <span style="color:#75715e">//结果为 8？？？
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>引言：</strong></p>
+<p>结构体变量大小是它的所有成员之和，那么为什么上述例子中sizeof(lucy)不是1+4=5而是8呢？❓</p>
+<p>结构体变量究竟是怎么分配内存的呢？❓</p>
+<p>请看下文🕵‍(侦探)</p>
+<p>实际给结构体变量分配内存的时候，是规则的</p>
+<p><strong>规则1：以多少个字节为单位开辟内存</strong></p>
+<p>给结构体变量分配内存的时候，会去结构体变量中找基本类型的成员</p>
+<p>哪个基本类型的成员占字节数多，就以它大大小为单位开辟内存,</p>
+<p>在gcc中出现了double类型的例外</p>
+<p>(1)：成员中只有char型数据 ，以1字节为单位开辟内存。</p>
+<p>(2)：成员中出现了short 类型数据，没有更大字节数的基本类型数据。以2字节为单位开辟内存</p>
+<p>(3)：出现了int 、float 没有更大字节的基本类型数据的时候以4字节为单位开辟内存。</p>
+<p>(4)：出现了double类型的数据</p>
+<p>情况1：</p>
+<p>在vc里，以8字节为单位开辟内存。</p>
+<p>情况2：</p>
+<p>在gcc里，以4字节为单位开辟内存。</p>
+<p>无论是那种环境，double型变量，占8字节。</p>
+<p>(5)：如果在结构体中出现了数组，数组可以看成多个变量的集合。</p>
+<p>如果出现指针的话，没有占字节数更大的类型的，以4字节为单位开辟内存。</p>
+<p>(6)：在内存中存储结构体成员的时候，按定义的结构体成员的顺序存储。</p>
+<p><strong>规则2：字节对齐</strong></p>
+<p>(1)：char    1字节对齐 ，即存放char型的变量，内存单元的编号是1的倍数即可。</p>
+<p>(2)：short    2字节对齐 ，即存放short int 型的变量，起始内存单元的编号是2的倍数即可。</p>
+<p>(3)：int     4字节对齐 ，即存放int 型的变量，起始内存单元的编号是4的倍数即可。</p>
+<p>(4)：long     在32位平台下，4字节对齐 ，即存放long int 型的变量，起始内存单元的编号是4的倍数即可。</p>
+<p>(5)：float     4字节对齐 ，即存放float 型的变量，起始内存单元的编号是4的倍数即可。</p>
+<p>(6)：double</p>
+<p>a.vc环境下</p>
+<p>8字节对齐，即存放double型变量的起始地址，必须是8的倍数，double变量占8字节。</p>
+<p>b.gcc环境下</p>
+<p>4字节对齐，即存放double型变量的起始地址，必须是4的倍数，double变量占8字节。</p>
+<p>注意：</p>
+<p>当结构体成员中出现数组的时候，可以看成多个变量。</p>
+<p>开辟内存的时候，从上向下依次按成员在结构体中的位置顺序开辟空间</p>
+<p>例子：temp占 8 个字节</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">struct</span> stu{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> a;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">short</span> <span style="color:#66d9ef">int</span> b;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> c;
+</span></span><span style="display:flex;"><span>}temp;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,<span style="color:#66d9ef">sizeof</span>(temp));
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%p</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,<span style="color:#f92672">&amp;</span>(temp.a));
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%p</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,<span style="color:#f92672">&amp;</span>(temp.b));
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%p</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,<span style="color:#f92672">&amp;</span>(temp.c));
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>这是具体分配内存的图示</p>
+<p><img loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Embedded_high-level_C_programming/08_Struct_common-body_enumeration_image%206.png" alt="08_Struct_common-body_enumeration_image_6.png"  />
+</p>
+<p>结果分析：</p>
+<p>a 的地址和 b 的地址差 2 个字节</p>
+<p>b 的地址和 c 的地址差 2 个字节</p>
+<p>例子：temp 的大小为 12 个字节</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> stu{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> a;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> c;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">short</span> <span style="color:#66d9ef">int</span> b;
+</span></span><span style="display:flex;"><span>}temp;
+</span></span></code></pre></div><p><img loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Embedded_high-level_C_programming/08_Struct_common-body_enumeration_image%207.png" alt="08_Struct_common-body_enumeration_image_7.png"  />
+</p>
+<p>结果分析：</p>
+<p>a 和 c 的地址差 4 个字节</p>
+<p>c 和 b 的地址差 4 个字节</p>
+<p>例子：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> stu{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> a;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">double</span> b;
+</span></span><span style="display:flex;"><span>}temp;
+</span></span></code></pre></div><p>结果分析;</p>
+<p>在 vc 中占 16 个字节 a 和 b 的地址差 8 个字节</p>
+<p>在 gcc 中占 12 个字节 a 和 b 的地址差 4 个字节</p>
+<p>例子：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> stu{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> num;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> age;
+</span></span><span style="display:flex;"><span>}lucy;
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">8</span><span style="color:#960050;background-color:#1e0010">字节</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> stu{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> sex;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> age;
+</span></span><span style="display:flex;"><span>}lucy;
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">8</span><span style="color:#960050;background-color:#1e0010">字节</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> stu{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> a;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">short</span> <span style="color:#66d9ef">int</span> b;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> c;
+</span></span><span style="display:flex;"><span>}temp;
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">8</span><span style="color:#960050;background-color:#1e0010">字节</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> stu{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> a;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> c;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">short</span> <span style="color:#66d9ef">int</span> b;
+</span></span><span style="display:flex;"><span>}temp;
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">12</span><span style="color:#960050;background-color:#1e0010">字节</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> stu{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> buf[<span style="color:#ae81ff">10</span>];
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> a;
+</span></span><span style="display:flex;"><span>}temp;
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">16</span><span style="color:#960050;background-color:#1e0010">字节</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> stu{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> a;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">double</span> b;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">12</span><span style="color:#960050;background-color:#1e0010">字节</span>
+</span></span></code></pre></div><p>为什么要有字节对齐？</p>
+<p>用空间来换时间，提高cpu读取数据的效率</p>
+<p>看到这里的话，恭喜你，已经掌握了结构体的基本知识。🏅</p>
+<p>本章已过完1/3，下一节，我们将对《位段》进行学习。⏩</p>
+<h3 id="六位段">六、位段<a hidden class="anchor" aria-hidden="true" href="#六位段">#</a></h3>
+<p><strong>引言：</strong></p>
+<p>位段是偏底层的内容</p>
+<p>目前做应用层的话只需了解即可</p>
+<p>我目前也不知道这是做什么的😶‍🌫️(迷茫)</p>
+<p>一、位段</p>
+<p>在结构体中，以位为单位的成员，咱们称之为位段(位域)。</p>
+<p>struct packed_data{</p>
+<p>unsigned int a:2;</p>
+<p>unsigned int b:6;</p>
+<p>unsigned int c:4;</p>
+<p>unsigned int d:4;</p>
+<p>unsigned int i;</p>
+<p>} data;</p>
+<p><img loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Embedded_high-level_C_programming/08_Struct_common-body_enumeration_image%208.png" alt="08_Struct_common-body_enumeration_image_8.png"  />
+</p>
+<p>注意：不能对位段成员取地址</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">struct</span> packed_data{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> a:<span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> b:<span style="color:#ae81ff">6</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> c:<span style="color:#ae81ff">4</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> d:<span style="color:#ae81ff">4</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> i;
+</span></span><span style="display:flex;"><span>} data;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,<span style="color:#66d9ef">sizeof</span>(data));
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%p</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,<span style="color:#f92672">&amp;</span>data);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%p</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,<span style="color:#f92672">&amp;</span>(data.i));
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>位段注意：</strong></p>
+<p>1、对于位段成员的引用如下：</p>
+<p>data.a =2</p>
+<p>赋值时，不要超出位段定义的范围;</p>
+<p>如段成员a定义为2位，最大值为3,即（11）2</p>
+<p>所以data.a =5，就会取5的低两位进行赋值 101</p>
+<p>2、位段成员的类型必须指定为整形或字符型</p>
+<p>3、一个位段必须存放在一个存储单元中，不能跨两个单元</p>
+<p>第一个单元空间不能容纳下一个位段，则该空间不用，而从下一个单元起存放该位段。</p>
+<p><strong>位段的存储单元：</strong></p>
+<p>(1)：char型位段 存储单元是1个字节</p>
+<p>(2)：short int型的位段存储单元是2个字节</p>
+<p>(3)：int的位段，存储单元是4字节</p>
+<p>(4)：long int的位段，存储单元是4字节</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> stu{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> a:<span style="color:#ae81ff">7</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> b:<span style="color:#ae81ff">7</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> c:<span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>}temp;<span style="color:#75715e">//占3字节，b不能跨 存储单元存储
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">struct</span> stu{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> a:<span style="color:#ae81ff">7</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> b:<span style="color:#ae81ff">7</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> c:<span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>}temp;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,<span style="color:#66d9ef">sizeof</span>(temp));
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">结果为：</span><span style="color:#ae81ff">3</span> <span style="color:#960050;background-color:#1e0010">，证明位段不能跨其存储单元存储</span>
+</span></span></code></pre></div><p>注意：不能 取 temp.b的地址，因为b可能不够1字节，不能取地址。</p>
+<p>4、位段的长度不能大于存储单元的长度</p>
+<p>(1)：char型位段不能大于8位</p>
+<p>(2)：short int型位段不能大于16位</p>
+<p>(3)：int的位段，位段不能大于32位</p>
+<p>(4)：long int的位段，位段不能大于32位</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">struct</span> stu{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> a:<span style="color:#ae81ff">9</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> b:<span style="color:#ae81ff">7</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> c:<span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>}temp;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,<span style="color:#66d9ef">sizeof</span>(temp));
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">分析：</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">编译出错，位段</span>a不能大于其存储单元的大小
+</span></span></code></pre></div><p>5、如一个段要从另一个存储单元开始，可以定义：</p>
+<p>unsigned char a:1;</p>
+<p>unsigned char b:2;</p>
+<p>unsigned char :0;</p>
+<p>unsigned char c:3;(另一个单元)</p>
+<p>由于用了长度为0的位段，其作用是使下一个位段从下一个存储单元开始存放</p>
+<p>将a、b存储在一个存储单元中，c另存在下一个单元</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">struct</span> m_type{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">char</span> a:<span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">char</span> b:<span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">char</span> c:<span style="color:#ae81ff">3</span>;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">struct</span> m_type temp;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,<span style="color:#66d9ef">sizeof</span>(temp));
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>6、可以定义无意义位段,如：</p>
+<p>unsigned a: 1;</p>
+<p>unsigned : 2;</p>
+<p>unsigned b: 3;</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> data{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> a:<span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> b:<span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> c:<span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> d:<span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> e:<span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> f:<span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> g:<span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> h:<span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>}temp;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> p0;
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//p0=0x01;// 0000 0001
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  temp.a<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//p0=temp;//错的，类型不匹配
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">//p0=(char)temp;//错的，编译器不允许将结构体变量，强制转成基本类型的。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  p0 <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>((<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)(<span style="color:#f92672">&amp;</span>temp));
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>​</p>
+<p>指定对齐原则：</p>
+<p>使用#pragma pack改变默认对其原则</p>
+<p>格式：</p>
+<p>#pragma pack (value)时的指定对齐值value。</p>
+<p>📢 这个部分可以先不学习，一般情况下都是用的默认对齐原则</p>
+<h3 id="七共用体">七、共用体<a hidden class="anchor" aria-hidden="true" href="#七共用体">#</a></h3>
+<p>1：共用体和结构体类似，也是一种构造类型的数据结构。</p>
+<ul>
+<li>
+<p>既然是构造类型的，咱们得先定义出类型，然后用类型定义变量。</p>
+</li>
+<li>
+<p>定义共用体类型的方法和结构体非常相似，把struct 改成union 就可以了。</p>
+</li>
+<li>
+<p>在进行某些算法的时候，需要使几种不同类型的变量存到同一段内存单元中，几个变量所使用空间相互重叠。</p>
+<p>这种几个不同的变量共同占用一段内存的结构，在C语言中，被称作“共用体”类型结构</p>
+</li>
+<li>
+<p>共用体所有成员占有同一段地址空间</p>
+</li>
+<li>
+<p>共用体的大小是其占内存长度最大的成员的大小</p>
+</li>
+</ul>
+<p><strong>共用体的特点：</strong></p>
+<p>1、同一内存段可以用来存放几种不同类型的成员，但每一瞬时只有一种起作用</p>
+<p>2、共用体变量中起作用的成员是最后一次存放的成员，在存入一个新的成员后原有的</p>
+<p>成员的值会被覆盖</p>
+<p>3、共用体变量的地址和它的各成员的地址都是同一地址</p>
+<p>4、共用体变量的初始化union data a={123}; 初始化共用体为第一个成员</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//定义一个共用体
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">union</span> un{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> a;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> b;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> c;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//定义共用体变量
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">union</span> un myun;
+</span></span><span style="display:flex;"><span>  myun.a <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>;
+</span></span><span style="display:flex;"><span>  myun.b <span style="color:#f92672">=</span> <span style="color:#ae81ff">200</span>;
+</span></span><span style="display:flex;"><span>  myun.c <span style="color:#f92672">=</span> <span style="color:#ae81ff">300</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;a = %d, b = %d, c = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, myun.a, myun.b, myun.c);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>执行结果</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>a <span style="color:#f92672">=</span> <span style="color:#ae81ff">300</span>, b <span style="color:#f92672">=</span> <span style="color:#ae81ff">300</span>, c <span style="color:#f92672">=</span> <span style="color:#ae81ff">300</span>
+</span></span></code></pre></div><h3 id="八枚举">八、枚举<a hidden class="anchor" aria-hidden="true" href="#八枚举">#</a></h3>
+<p>将变量的值一一列举出来，变量的值只限于列举出来的值的范围内</p>
+<p>枚举类型也是个构造类型的</p>
+<p>1、枚举类型的定义</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">enum</span> <span style="color:#960050;background-color:#1e0010">枚举类型名</span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">枚举值列表；</span>
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>在枚举值表中应列出所有可用值,也称为枚举元素</p>
+<p>枚举变量仅能取枚举值所列元素</p>
+<p>2、枚举变量的定义方法</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">enum</span> <span style="color:#960050;background-color:#1e0010">枚举类型名</span> <span style="color:#960050;background-color:#1e0010">枚举变量名</span>;
+</span></span></code></pre></div><p>① 枚举值是常量,不能在程序中用赋值语句再对它赋值</p>
+<p>例如：sun=5; mon=2; sun=mon; 都是错误的.</p>
+<p>② 枚举元素本身由系统定义了一个表示序号的数值</p>
+<p>默认是从0开始顺序定义为0，1，2…</p>
+<p>如在week中，mon值为0，tue值为1， …,sun值为6</p>
+<p>③ 可以改变枚举值的默认值：如</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">enum</span> week <span style="color:#75715e">//枚举类型
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
+</span></span><span style="display:flex;"><span>  mon<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span><span style="color:#960050;background-color:#1e0010">，</span>tue<span style="color:#960050;background-color:#1e0010">，</span>wed<span style="color:#960050;background-color:#1e0010">，</span>thu<span style="color:#960050;background-color:#1e0010">，</span>fri<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span><span style="color:#960050;background-color:#1e0010">，</span>sat,sun
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  mon<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span> tue<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>,<span style="color:#960050;background-color:#1e0010">以此类推</span>
+</span></span><span style="display:flex;"><span>  fri<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span> <span style="color:#960050;background-color:#1e0010">以此类推</span>
+</span></span></code></pre></div><p>注意：在定义枚举类型的时候枚举元素可以用等号给它赋值，用来代表元素从几开始编号</p>
+<p>在程序中，不能再次对枚举元素赋值，因为枚举元素是常量。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//定义一个枚举类型
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">enum</span> week
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    mon<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>, tue, wed, thu<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, fri, sat, sun
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//定义枚举类型的变量
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">enum</span> week day <span style="color:#f92672">=</span> mon;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;day = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, day);
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  day <span style="color:#f92672">=</span> fri;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;day = %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, day);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>执行结果</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>day <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span>
+</span></span><span style="display:flex;"><span>day <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
+</span></span></code></pre></div><p><strong>彩蛋</strong>🎁</p>
+<p>我时常想，做学问，做事业，在人生中都只能算是第二桩事。人生第一桩事是生活。我所谓的“生活”是“领略”，是“培养生机”。假若为学问为事业而忘却生活，那种学问，事业在人生中便失去其真正意义与价值。</p>
+<ul>
+<li>朱光潜《给青年的十二封信》</li>
+</ul>
+<p>恭喜你🎉，完成了对第八章《结构体，共用体，枚举》部分的学习，下一章我们将学习链表。</p>
+<p>⏩第九章《链表》</p>
+
+
+        </div>
+
+        <footer class="post-footer">
+            
+<nav class="paginav">
+  <a class="prev" href="https://eddyblog.cn/posts/tech/c-programming-10file/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>【嵌入式高级C编程】第十章 文件</span>
+  </a>
+  <a class="next" href="https://eddyblog.cn/posts/tech/c-programming-06dynamic-memory/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>【嵌入式高级C编程】第六章 动态内存申请</span>
+  </a>
+</nav>
+
+        </footer>
+    </div>
+</article>
+</main>
+
+<footer class="footer">
+    <span>
+        Copyright
+        &copy;
+        -2024
+        <a href="https://eddyblog.cn/" style="color:#939393;">Eddy&#39;s blog</a>
+        All Rights Reserved
+    </span>
+    <a href="https://beian.miit.gov.cn/" target="_blank" style="color:#939393;"></a>&nbsp;
+    <span>
+        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=null"
+           style="display:inline-block;text-decoration:none;height:20px;color:#939393;">
+            <img src="" style="float:left;margin: 0px 5px 0px 0px;"/>
+            
+        </a>
+    </span>
+    <span id="busuanzi_container">
+        <span class="fa fa-user"></span> <span id="busuanzi_value_site_uv"></span>
+        <span class="fa fa-eye"></span> <span id="busuanzi_value_site_pv"></span>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <span class="topInner">
+        <svg class="topSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z"/>
+        </svg>
+        <span id="read_progress"></span>
+    </span>
+</a>
+
+<script>
+    document.addEventListener('scroll', function (e) {
+        const readProgress = document.getElementById("read_progress");
+        const scrollHeight = document.documentElement.scrollHeight;
+        const clientHeight = document.documentElement.clientHeight;
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        readProgress.innerText = ((scrollTop / (scrollHeight - clientHeight)).toFixed(2) * 100).toFixed(0);
+    })
+</script>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+</script>
+<script>
+    let mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        (function() {
+            document.cookie = "change-themes" + "="+ escape ("false");
+        })()
+
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    });
+</script>
+
+<script>
+    document.body.addEventListener('copy', function (e) {
+        if (window.getSelection().toString() && window.getSelection().toString().length > 50) {
+            let clipboardData = e.clipboardData || window.clipboardData;
+            if (clipboardData) {
+                e.preventDefault();
+                let htmlData = window.getSelection().toString() +
+                    '\r\n\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                let textData = window.getSelection().toString() +
+                    '\r\n\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                clipboardData.setData('text/html', htmlData);
+                clipboardData.setData('text/plain', textData);
+            }
+        }
+    });
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = '复制';
+
+        function copyingDone() {
+            copybutton.innerText = '已复制！';
+            setTimeout(() => {
+                copybutton.innerText = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                let text = codeblock.textContent +
+                    '\r\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                navigator.clipboard.writeText(text);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) {}
+            selection.removeRange(range);
+        });
+
+        let language = codeblock.className.replaceAll("language-", "")
+        let macTool = document.createElement("div")
+        let macTool1 = document.createElement("div")
+        let macTool2 = document.createElement("div")
+        let macTool3 = document.createElement("div")
+        let languageType = document.createElement("div")
+        languageType.innerText = language
+        macTool.setAttribute('class', 'mac-tool')
+        macTool1.setAttribute('class', 'mac bb1')
+        macTool2.setAttribute('class', 'mac bb2')
+        macTool3.setAttribute('class', 'mac bb3')
+        languageType.setAttribute('class', 'language-type')
+        macTool.appendChild(macTool1)
+        macTool.appendChild(macTool2)
+        macTool.appendChild(macTool3)
+        macTool.appendChild(languageType)
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+            container.appendChild(macTool)
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+            container.appendChild(macTool)
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+            container.appendChild(macTool)
+        }
+    });
+</script>
+
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style></body>
+
+</html>

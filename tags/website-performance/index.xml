@@ -9,19 +9,19 @@
     <lastBuildDate>Tue, 29 Aug 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/website-performance/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【Hugo网站搭建】网站速度优化-利用Pingdom测试与提升</title>
-      <link>https://eddyblog.cn/posts/tech/website_speed_optimization/</link>
+      <link>https://eddyblog.cn/posts/tech/website-speed-optimization/</link>
       <pubDate>Tue, 29 Aug 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/website_speed_optimization/</guid>
+      <guid>https://eddyblog.cn/posts/tech/website-speed-optimization/</guid>
       <description>了解如何通过Pingdom工具测试您的网站速度，并探索针对测试结果采取的优化方法。优化网页加载时间，提升用户体验，加速页面响应，从而提高搜索引擎排名和访客留存率。从测试到优化，本指南将指导您使网站速度达到最佳状态。</description>
     </item>
     
     <item>
       <title>【Hugo网站搭建】优化网站性能-使用PageSpeed Insights评估与改进</title>
-      <link>https://eddyblog.cn/posts/tech/optimize_website_performance/</link>
+      <link>https://eddyblog.cn/posts/tech/optimize-website-performance/</link>
       <pubDate>Tue, 29 Aug 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/optimize_website_performance/</guid>
+      <guid>https://eddyblog.cn/posts/tech/optimize-website-performance/</guid>
       <description>了解如何利用PageSpeed Insights评估您的网站性能，并通过优化措施提升加载速度和用户体验。本指南将为您详细解释如何分析测试结果，并采取步骤来改进网站性能，以满足现代用户对快速加载页面的需求。</description>
     </item>
     

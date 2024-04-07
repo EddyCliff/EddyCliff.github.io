@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Blog writing on Eddy&#39;s blog</title>
+    <title>Blog Writing on Eddy&#39;s blog</title>
     <link>https://eddyblog.cn/tags/blog-writing/</link>
-    <description>Recent content in Blog writing on Eddy&#39;s blog</description>
+    <description>Recent content in Blog Writing on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <lastBuildDate>Tue, 29 Aug 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/blog-writing/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【Hugo网站搭建】博客写作指南-创意封面设计与选择</title>
-      <link>https://eddyblog.cn/posts/tech/creative_cover_design_and_selection/</link>
+      <link>https://eddyblog.cn/posts/tech/blog-cover-design-selection/</link>
       <pubDate>Tue, 29 Aug 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/creative_cover_design_and_selection/</guid>
+      <guid>https://eddyblog.cn/posts/tech/blog-cover-design-selection/</guid>
       <description>探索创意封面设计与选择的博客写作指南，了解如何为您的博客内容选择合适的封面图像，并掌握设计工具和资源，让您的博客在视觉上更具吸引力和专业性。提升您的博客封面，吸引读者注意，传达您的主题与理念。</description>
     </item>
     

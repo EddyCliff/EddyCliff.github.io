@@ -9,19 +9,19 @@
     <lastBuildDate>Sun, 03 Dec 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【Hugo网站搭建】GitHub Action自动化部署Hugo博客</title>
-      <link>https://eddyblog.cn/posts/tech/github_action_hugo/</link>
+      <link>https://eddyblog.cn/posts/tech/github-action-hugo/</link>
       <pubDate>Wed, 06 Sep 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/github_action_hugo/</guid>
+      <guid>https://eddyblog.cn/posts/tech/github-action-hugo/</guid>
       <description>前言 在本文中，我们将介绍如何通过GitHub Action自动化部署Hugo博客。如果你是一个博客作者，你可能已经熟悉了使用Hugo构建和管理你的博客。Hugo是一个快速且灵活的静态网站生成器，但是手动部署博客可能会变得繁琐。为了解决这个问题，我们可以利用GitHub Action，</description>
     </item>
     
     <item>
       <title>【Hugo网站搭建】markdown中图片大小和对齐方式调整</title>
-      <link>https://eddyblog.cn/posts/tech/hugo_image_resizing_and_alignment_in_markdown/</link>
+      <link>https://eddyblog.cn/posts/tech/hugo-image-in-markdown/</link>
       <pubDate>Sun, 03 Dec 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/hugo_image_resizing_and_alignment_in_markdown/</guid>
+      <guid>https://eddyblog.cn/posts/tech/hugo-image-in-markdown/</guid>
       <description>使用HTML标签对markdown中图片大小和对齐方式调整</description>
     </item>
     
@@ -63,10 +63,10 @@
     
     <item>
       <title>【Hugo网站搭建】添加不蒜子Busuanzi页面浏览次数与阅读数据统计</title>
-      <link>https://eddyblog.cn/posts/tech/hugo_busuanzi/</link>
+      <link>https://eddyblog.cn/posts/tech/hugo-busuanzi/</link>
       <pubDate>Mon, 10 Jul 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/hugo_busuanzi/</guid>
+      <guid>https://eddyblog.cn/posts/tech/hugo-busuanzi/</guid>
       <description>Hugo添加不蒜子Busuanzi页面浏览次数与阅读数据统计</description>
     </item>
     

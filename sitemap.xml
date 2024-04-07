@@ -2,17 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://eddyblog.cn/posts/tech/llc_resonant_converters-chapter_0_definition_and-advantages_of_llc/</loc>
-    <lastmod>2023-11-05T00:17:58+08:00</lastmod>
-  </url><url>
-    <loc>https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_03fun/</loc>
-    <lastmod>2023-09-16T00:17:58+08:00</lastmod>
-  </url><url>
-    <loc>https://eddyblog.cn/posts/tech/github_action_hugo/</loc>
+    <loc>https://eddyblog.cn/posts/tech/github-action-hugo/</loc>
     <lastmod>2023-09-06T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/tech/github_git_action_error/</loc>
+    <loc>https://eddyblog.cn/posts/tech/github-jsdelivr-picgo/</loc>
+    <lastmod>2023-08-29T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/posts/tech/github-git-action-error/</loc>
     <lastmod>2023-09-12T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/posts/tech/gitub-error1/</loc>
+    <lastmod>2023-06-20T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/posts/tech/github-error-git-remote/</loc>
+    <lastmod>2023-07-20T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/posts/art/phone_photo_tutorial_01/</loc>
     <lastmod>2024-01-17T00:17:58+08:00</lastmod>
@@ -71,7 +74,7 @@
     <loc>https://eddyblog.cn/tags/video-editors-notes/</loc>
     <lastmod>2023-12-10T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/tech/hugo_image_resizing_and_alignment_in_markdown/</loc>
+    <loc>https://eddyblog.cn/posts/tech/hugo-image-in-markdown/</loc>
     <lastmod>2023-12-03T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/posts/art/video_editor_notes_the_editing_process_of_the_editing_masters/</loc>
@@ -92,31 +95,31 @@
     <loc>https://eddyblog.cn/tags/video-editing-process/</loc>
     <lastmod>2023-12-03T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/tech/computer_network_chapter_08/</loc>
+    <loc>https://eddyblog.cn/posts/tech/computer-network-08/</loc>
     <lastmod>2023-11-27T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/tech/computer_network_chapter_02/</loc>
+    <loc>https://eddyblog.cn/posts/tech/computer-network-02/</loc>
     <lastmod>2023-11-27T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/tech/computer_network_chapter_09/</loc>
+    <loc>https://eddyblog.cn/posts/tech/computer-network-09/</loc>
     <lastmod>2023-11-27T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/tech/computer_network_chapter_06/</loc>
+    <loc>https://eddyblog.cn/posts/tech/computer-network-06/</loc>
     <lastmod>2023-11-27T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/tech/computer_network_chapter_07/</loc>
+    <loc>https://eddyblog.cn/posts/tech/computer-network-07/</loc>
     <lastmod>2023-11-27T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/tech/computer_network_chapter_03/</loc>
+    <loc>https://eddyblog.cn/posts/tech/computer_network-03/</loc>
     <lastmod>2023-11-27T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/tech/computer_network_chapter_04/</loc>
+    <loc>https://eddyblog.cn/posts/tech/computer-network-04/</loc>
     <lastmod>2023-11-27T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/tech/computer_network_chapter_05/</loc>
+    <loc>https://eddyblog.cn/posts/tech/computer-network-05/</loc>
     <lastmod>2023-11-27T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/tech/computer_network_chapter_01/</loc>
+    <loc>https://eddyblog.cn/posts/tech/computer-network-01/</loc>
     <lastmod>2023-11-27T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/tags/computer-network/</loc>
@@ -134,13 +137,16 @@
     <loc>https://eddyblog.cn/tags/kitchen-notes/</loc>
     <lastmod>2023-11-21T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/tech/llc_resonant_converters-chapter_1_introduction_to_llc/</loc>
+    <loc>https://eddyblog.cn/posts/tech/llc-resonant-converters-0/</loc>
     <lastmod>2023-11-05T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/tech/llc_resonant_converter-chapter_2_llc_resonant_converter_principle_of_operation/</loc>
+    <loc>https://eddyblog.cn/posts/tech/llc-resonant-converters-1/</loc>
     <lastmod>2023-11-05T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/tech/llc_resonantconverter-chapter_3_llc_characterization/</loc>
+    <loc>https://eddyblog.cn/posts/tech/llc-resonant-converters-2/</loc>
+    <lastmod>2023-11-05T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/posts/tech/llc-resonant-converters-3/</loc>
     <lastmod>2023-11-05T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/tags/llc-resonant-converter/</loc>
@@ -152,7 +158,7 @@
     <loc>https://eddyblog.cn/tags/switching-mode-power-supply/</loc>
     <lastmod>2023-11-05T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_10file/</loc>
+    <loc>https://eddyblog.cn/posts/tech/c-programming-10file/</loc>
     <lastmod>2023-10-23T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/tags/c-programming/</loc>
@@ -164,19 +170,19 @@
     <loc>https://eddyblog.cn/tags/file/</loc>
     <lastmod>2023-10-23T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_08_struct_common-body_enumeration/</loc>
+    <loc>https://eddyblog.cn/posts/tech/c-programming-08struct/</loc>
     <lastmod>2023-10-01T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_06dynamic_memory_request/</loc>
+    <loc>https://eddyblog.cn/posts/tech/c-programming-06dynamic-memory/</loc>
     <lastmod>2023-10-01T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_07string_manipulation_functions/</loc>
+    <loc>https://eddyblog.cn/posts/tech/c-programming-07string/</loc>
     <lastmod>2023-10-01T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_04preprocessing/</loc>
+    <loc>https://eddyblog.cn/posts/tech/c-programming-04preprocessing/</loc>
     <lastmod>2023-10-01T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_05pointer/</loc>
+    <loc>https://eddyblog.cn/posts/tech/c-programming-05pointer/</loc>
     <lastmod>2023-10-01T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/tags/common-body/</loc>
@@ -212,7 +218,10 @@
     <loc>https://eddyblog.cn/tags/study-notes/</loc>
     <lastmod>2023-09-30T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_02array/</loc>
+    <loc>https://eddyblog.cn/posts/tech/c-programming-02array/</loc>
+    <lastmod>2023-09-16T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/posts/tech/c-programming-03fun/</loc>
     <lastmod>2023-09-16T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/tags/array/</loc>
@@ -221,13 +230,13 @@
     <loc>https://eddyblog.cn/tags/function/</loc>
     <lastmod>2023-09-16T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/tech/c_language_comment_specification/</loc>
+    <loc>https://eddyblog.cn/posts/tech/c-language-comment-specification/</loc>
     <lastmod>2023-09-12T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/tech/github_git_lfs/</loc>
+    <loc>https://eddyblog.cn/posts/tech/github-git-lfs/</loc>
     <lastmod>2023-09-12T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/tech/github_git_push_502_bad_gateway/</loc>
+    <loc>https://eddyblog.cn/posts/tech/github_error-git_push/</loc>
     <lastmod>2023-09-12T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/tags/c/</loc>
@@ -254,10 +263,10 @@
     <loc>https://eddyblog.cn/tags/website-construction/</loc>
     <lastmod>2023-09-06T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/tech/hugo_bug_yaml/</loc>
+    <loc>https://eddyblog.cn/posts/tech/hugo-bug-yaml/</loc>
     <lastmod>2023-08-30T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/tech/picgo_bug/</loc>
+    <loc>https://eddyblog.cn/posts/tech/picgo-bug/</loc>
     <lastmod>2023-08-30T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/tags/bug/</loc>
@@ -269,19 +278,16 @@
     <loc>https://eddyblog.cn/tags/picgo/</loc>
     <lastmod>2023-08-30T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/tech/github_jsdelivr_picgo/</loc>
-    <lastmod>2023-08-29T00:17:58+08:00</lastmod>
-  </url><url>
-    <loc>https://eddyblog.cn/posts/tech/creative_cover_design_and_selection/</loc>
+    <loc>https://eddyblog.cn/posts/tech/blog-cover-design-selection/</loc>
     <lastmod>2023-08-29T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/posts/tech/hugo_insert_png/</loc>
     <lastmod>2023-08-29T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/tech/website_speed_optimization/</loc>
+    <loc>https://eddyblog.cn/posts/tech/website-speed-optimization/</loc>
     <lastmod>2023-08-29T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/tech/optimize_website_performance/</loc>
+    <loc>https://eddyblog.cn/posts/tech/optimize-website-performance/</loc>
     <lastmod>2023-08-29T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/tags/blog-cover/</loc>
@@ -317,7 +323,7 @@
     <loc>https://eddyblog.cn/tags/tree/</loc>
     <lastmod>2023-08-25T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/tech/github_amd_arm/</loc>
+    <loc>https://eddyblog.cn/posts/tech/github-amd-arm/</loc>
     <lastmod>2022-08-20T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/posts/tech/hugo_server_failed/</loc>
@@ -326,7 +332,7 @@
     <loc>https://eddyblog.cn/tags/release/</loc>
     <lastmod>2022-08-20T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/tech/linux_vmware_copy_and_paste/</loc>
+    <loc>https://eddyblog.cn/posts/tech/linux-vmware-copy-and-paste/</loc>
     <lastmod>2023-08-19T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/tags/linux/</loc>
@@ -341,7 +347,7 @@
     <loc>https://eddyblog.cn/posts/tech/hugo_saving_source_code/</loc>
     <lastmod>2023-08-11T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/tech/github_delete_wrong_repository/</loc>
+    <loc>https://eddyblog.cn/posts/tech/github-delete-wrong-repository/</loc>
     <lastmod>2023-08-10T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/tags/repositories/</loc>
@@ -356,19 +362,13 @@
     <loc>https://eddyblog.cn/posts/projects/projects/</loc>
     <lastmod>2023-08-05T00:18:23+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/tech/github_error_remote_origin_already_exists/</loc>
-    <lastmod>2023-07-20T00:17:58+08:00</lastmod>
-  </url><url>
-    <loc>https://eddyblog.cn/posts/tech/hugo_busuanzi/</loc>
+    <loc>https://eddyblog.cn/posts/tech/hugo-busuanzi/</loc>
     <lastmod>2023-07-10T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/tags/busuanzi/</loc>
     <lastmod>2023-07-10T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/tech/gitub_error1/</loc>
-    <lastmod>2023-06-20T00:17:58+08:00</lastmod>
-  </url><url>
-    <loc>https://eddyblog.cn/posts/tech/github_merge_the_master_branch_into_the_main_branch/</loc>
+    <loc>https://eddyblog.cn/posts/tech/github-master-to-main-branch/</loc>
     <lastmod>2023-06-20T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/posts/tech/hugo_code_highlight/</loc>

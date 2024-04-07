@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>array on Eddy&#39;s blog</title>
+    <title>Array on Eddy&#39;s blog</title>
     <link>https://eddyblog.cn/tags/array/</link>
-    <description>Recent content in array on Eddy&#39;s blog</description>
+    <description>Recent content in Array on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <lastBuildDate>Sat, 16 Sep 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/array/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【嵌入式高级C编程】第二章 数组</title>
-      <link>https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_02array/</link>
+      <link>https://eddyblog.cn/posts/tech/c-programming-02array/</link>
       <pubDate>Sat, 16 Sep 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/embedded_high-level_c_programming_02array/</guid>
+      <guid>https://eddyblog.cn/posts/tech/c-programming-02array/</guid>
       <description>第二章 数组 一、数组的概念 数组是若干个相同类型的变量在内存中有序存储的集合。 概念理解： 数组用于存储一组数据 数组里面存储的数据类型必须是相同的 数组在内存中会开辟一块连续的空间 int a[10]; //定义了一个整型的数组a，a是数组的名字，数组中有10个元素，每个元素的类型都是int类型，而且在内存中</description>
     </item>
     
