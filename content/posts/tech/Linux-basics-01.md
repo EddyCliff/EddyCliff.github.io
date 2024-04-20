@@ -45,6 +45,7 @@ cover:
 <div align = "center">
 <img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/INIT.jpg" alt = "INIT.jpg" width = "70%" height = "auto">
 </div>
+<br>
 
 >**INIT：本节内容正式开始。action!**
 
@@ -61,8 +62,7 @@ cover:
 <div align = "center">
 <img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8-1.png" width = "70%" height = "auto">
 </div>
-
-<br/>
+<br>
 
 <div align = "center">
 <img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8-2.png" width = "70%" height = "auto">
@@ -216,6 +216,7 @@ drwxr-xr-x 2 ubuntu ubuntu 4096 Jul 6 2020 Music
 
 🔚用一个图来总结。
 
+<br>
 <div align = "center">
 <img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8-3.png" width = "70%" height = "auto">
 </div>
@@ -246,18 +247,15 @@ locate Even #从根目录开始查找所有包含 Even 字符串的文件名
 
 作用：打印输出文件内容。
 
-<br/>
-
-
+<br>
 </div align = "center">
 <img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8-4.png" width = "70%" height = "auto">
 </div>
-
-
-<br/>
+<br>
 
 
 ## 📌命令：head
+
 
 作用：查看某个文件的头部。
 
@@ -269,6 +267,7 @@ head -20 stdio.h #查看 stdio.h 文件的前20行(行数可以自行指定)
     
 
 ## 📌命令：tail  
+
 
 作用：查看某个文件的尾部。有助于查看日志文件的最后10行来阅读重要的系统信息。
 
@@ -289,7 +288,6 @@ grep printf stdio.h -n #在stdio.h中查找内容 printf 并输出内容所出�
 ```
 
 <br/>
-
 <div align = "center">
 <img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8-5.png" width = "70%" height = "auto">
 </div>
@@ -303,7 +301,7 @@ grep printf stdio.h -n #在stdio.h中查找内容 printf 并输出内容所出�
 chmod 367 Even #修改文件 Even 的权限为拥有者可写+可执行，同组用户可读+可写，其他用户可读+可写+可执行 
 ```
 
-<br/>
+<br>
 <div align = "center">
 <img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8-6.png" width = "70%" height = "auto">
 </div>
@@ -375,27 +373,27 @@ rm acc/ -r #目录文件 abc/
 作用：临时使用超级用户的权限做某事。
 
 
-<br/>
+<br>
 <div align = "center">
 <img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8-7.png" width = "70%" height = "auto">
 </div>
-<br/>
+<br>
 
 ```shell
 sudo touch abc.c #临时使用超级用户的权限，创建一个普通文件
 ```
-<br/>
+<br>
 <div align = "center">
 <img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8-8.png" width = "70%" height = "auto">
 </div>
-<br/>
+<br>
 
 ```shell
 sudo -s #临时切换为超级用户(不推荐这么使用，因为这样一直保持超级用户权限，容易误删东西。推荐sudo+命令去使用)
 exit #输入 exit 可以退出超级用户
 ```
 
-<br/>
+<br>
 <div align = "center">
 <img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8-9.png" width = "70%" height = "auto">
 </div>
@@ -438,22 +436,21 @@ man 3 mkfido #在第三本手册中查看 mkfido 的解析(命令)
 想要实现Linux和Windows之间的复制粘贴，则需安装VMtools。
   
   
-
 ## END
 
 >**END：本节内容到此结束。**
 
 个人提升之余，别忘了和小伙伴积极交流，很多人觉得他们在思考，而实际上他们只是在重新整理自己的偏见。请珍惜和他人交流讨论的机会。
 
-<br/>
+<br>
 <div align = "center">
 <img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/END1.jpg" alt = "END1.jpg" width = "70%" height = "auto">
 </div>
-<br/>
+<br>
 
 希望你每一天都有所收获，进步up up up。今天的我们并不比昨天更聪明，但一定要比昨天更睿智。
 
-<br/>
+<br>
 <div align = "center">
 <img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/END2.jpg" alt = "END2.jpg" width = "70%" height = "auto">
 </div>
