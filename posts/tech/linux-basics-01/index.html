@@ -671,19 +671,20 @@ var _hmt = _hmt || [];
 <br>
 <h2 id="命令head">📌命令：head<a hidden class="anchor" aria-hidden="true" href="#命令head">#</a></h2>
 <p>作用：查看某个文件的头部。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>head stdio.h <span style="color:#75715e">#查看 stdio.h 文件的前10行</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Shell" data-lang="Shell"><span style="display:flex;"><span>head stdio.h <span style="color:#75715e">#查看 stdio.h 文件的前10行</span>
 </span></span><span style="display:flex;"><span>head -20 stdio.h <span style="color:#75715e">#查看 stdio.h 文件的前20行(行数可以自行指定)</span>
 </span></span></code></pre></div><h2 id="命令tail">📌命令：tail<a hidden class="anchor" aria-hidden="true" href="#命令tail">#</a></h2>
 <p>作用：查看某个文件的尾部。有助于查看日志文件的最后10行来阅读重要的系统信息。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>tail stdio.h <span style="color:#75715e">#查看 stdio.h 文件的末尾10行</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Shell" data-lang="Shell"><span style="display:flex;"><span>tail stdio.h <span style="color:#75715e">#查看 stdio.h 文件的末尾10行</span>
 </span></span><span style="display:flex;"><span>tail -20 stdio.h <span style="color:#75715e">#查看 stdio.h 文件的末尾20行(行数可以自行指定)</span>
 </span></span></code></pre></div><h2 id="命令grep">📌命令：grep<a hidden class="anchor" aria-hidden="true" href="#命令grep">#</a></h2>
 <p>作用：在文件中查找指定的内容。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>grep printf stdio.h -n <span style="color:#75715e">#在stdio.h中查找内容 printf 并输出内容所出现的行号</span>
-</span></span></code></pre></div><br/>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Shell" data-lang="Shell"><span style="display:flex;"><span>grep printf stdio.h -n <span style="color:#75715e">#在stdio.h中查找内容 printf 并输出内容所出现的行号</span>
+</span></span></code></pre></div><br>
 <div align = "center">
 <img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8-5.png" width = "70%" height = "auto">
 </div>
+<br>    
 <h2 id="命令chmod">📌命令：chmod<a hidden class="anchor" aria-hidden="true" href="#命令chmod">#</a></h2>
 <p>作用：修改文件的权限。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>chmod <span style="color:#ae81ff">367</span> Even <span style="color:#75715e">#修改文件 Even 的权限为拥有者可写+可执行，同组用户可读+可写，其他用户可读+可写+可执行 </span>

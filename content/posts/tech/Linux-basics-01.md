@@ -254,44 +254,37 @@ locate Even #从根目录开始查找所有包含 Even 字符串的文件名
 <br>
 
 
-## 📌命令：head
+## 📌命令：head    
+  
+作用：查看某个文件的头部。                  
 
-
-作用：查看某个文件的头部。
-
-
-```shell
+```Shell
 head stdio.h #查看 stdio.h 文件的前10行
 head -20 stdio.h #查看 stdio.h 文件的前20行(行数可以自行指定)
 ```
     
-
-## 📌命令：tail  
-
-
+## 📌命令：tail    
+    
 作用：查看某个文件的尾部。有助于查看日志文件的最后10行来阅读重要的系统信息。
-
-
-```shell
+        
+```Shell
 tail stdio.h #查看 stdio.h 文件的末尾10行
 tail -20 stdio.h #查看 stdio.h 文件的末尾20行(行数可以自行指定)
 ```
-
-
-
+    
 ## 📌命令：grep
-
+  
 作用：在文件中查找指定的内容。
-
-```shell
+  
+```Shell
 grep printf stdio.h -n #在stdio.h中查找内容 printf 并输出内容所出现的行号
 ```
-
-<br/>
+  
+<br>
 <div align = "center">
 <img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8-5.png" width = "70%" height = "auto">
 </div>
-
+<br>    
 
 ## 📌命令：chmod
 
@@ -325,7 +318,7 @@ cp abc/ ade -r #把目录文件 adc 复制成 ade  -r为递归选项(复制目�
 
 
 ## 📌命令：mv
-
+  
 作用：移动文件/重命名。
 
 ```shell
