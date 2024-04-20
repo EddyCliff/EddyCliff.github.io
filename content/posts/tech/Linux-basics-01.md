@@ -254,20 +254,24 @@ locate Even #从根目录开始查找所有包含 Even 字符串的文件名
 </div>
 
 
+<br/>
 
 
 ## 📌命令：head
 
 作用：查看某个文件的头部。
 
+
 ```shell
 head stdio.h #查看 stdio.h 文件的前10行
 head -20 stdio.h #查看 stdio.h 文件的前20行(行数可以自行指定)
 ```
+    
 
-## 📌命令：tail
+## 📌命令：tail  
 
 作用：查看某个文件的尾部。有助于查看日志文件的最后10行来阅读重要的系统信息。
+
 
 ```shell
 tail stdio.h #查看 stdio.h 文件的末尾10行
@@ -300,7 +304,6 @@ chmod 367 Even #修改文件 Even 的权限为拥有者可写+可执行，同组
 ```
 
 <br/>
-
 <div align = "center">
 <img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8-6.png" width = "70%" height = "auto">
 </div>
@@ -334,7 +337,7 @@ mv abb acc #把文件 abb 重命名为 acc
 mv aaa/ bbb/ccc #把目录 abb 移动到目录 bbb中，并且将目录 abb 重命名为 ccc 
 ```
 
-📢注意：
+📢注意：  
 
 mv具体是移动还是重命名的功能取决于第三个参数是否存在，如果第三个参数是一个不存在的文件名，则是重命名。如果第三个参数存在并且是一个目录文件，则是移动文件。
 
@@ -372,20 +375,20 @@ rm acc/ -r #目录文件 abc/
 作用：临时使用超级用户的权限做某事。
 
 
+<br/>
 <div align = "center">
 <img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8-7.png" width = "70%" height = "auto">
 </div>
-
 <br/>
 
 ```shell
 sudo touch abc.c #临时使用超级用户的权限，创建一个普通文件
 ```
 <br/>
-
 <div align = "center">
 <img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8-8.png" width = "70%" height = "auto">
 </div>
+<br/>
 
 ```shell
 sudo -s #临时切换为超级用户(不推荐这么使用，因为这样一直保持超级用户权限，容易误删东西。推荐sudo+命令去使用)
@@ -393,14 +396,13 @@ exit #输入 exit 可以退出超级用户
 ```
 
 <br/>
-
-
 <div align = "center">
 <img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8-9.png" width = "70%" height = "auto">
 </div>
 
 
 ## 📌命令：man
+
 
 ```shell
 man man #查看一下 man 手册是什么
@@ -427,14 +429,15 @@ man 3 mkfido #在第三本手册中查看 mkfido 的解析(命令)
 
 而库调用就是，它已经帮你拼凑了很多系统函数来组成一个完整的库函数。
 
-这两者详细的细节暂且不表，在后续的部分会做详细解释。
-
+这两者详细的细节暂且不表，在后续的部分会做详细解释。  
+  
 
 
 ## VMtools安装
 
 想要实现Linux和Windows之间的复制粘贴，则需安装VMtools。
-
+  
+  
 
 ## END
 
@@ -443,17 +446,14 @@ man 3 mkfido #在第三本手册中查看 mkfido 的解析(命令)
 个人提升之余，别忘了和小伙伴积极交流，很多人觉得他们在思考，而实际上他们只是在重新整理自己的偏见。请珍惜和他人交流讨论的机会。
 
 <br/>
-
 <div align = "center">
 <img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/END1.jpg" alt = "END1.jpg" width = "70%" height = "auto">
 </div>
-
 <br/>
 
 希望你每一天都有所收获，进步up up up。今天的我们并不比昨天更聪明，但一定要比昨天更睿智。
 
 <br/>
-
 <div align = "center">
 <img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/END2.jpg" alt = "END2.jpg" width = "70%" height = "auto">
 </div>
