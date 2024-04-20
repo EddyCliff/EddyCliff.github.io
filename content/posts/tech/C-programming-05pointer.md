@@ -7,6 +7,11 @@ keywords:
 - C programming
 - Embedded Development
 - pointer
+- C语言
+- C语言编程
+- 嵌入式编程
+- 指针
+- C语言指针
 categories: 
 - 
 tags: 
@@ -33,6 +38,16 @@ cover:
 ---
 
 ## 第五章 指针
+
+## INIT
+
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/INIT.jpg" alt = "INIT.jpg" width = "70%" height = "auto">
+</div>
+
+<br/>
+
+>**INIT：本节内容正式开始。action!**
 
 ### 一、关于内存那点事
 
@@ -112,7 +127,16 @@ cover:
 
 指针就是地址。
 
-![05pointer_image_1.png](https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Embedded_high-level_C_programming/05pointer_image%20_1.png)
+<br/>
+
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Embedded_high-level_C_programming/05pointer_image%20_1.png" alt = "05pointer_image_1.png" width = "70%" height = "auto">
+</div>
+
+
+<br/>
+
+
 
 指针变量：是个变量，是个指针变量，即这个变量用来存放一个地址编号
 
@@ -136,7 +160,15 @@ cover:
 
 整型变量 int a; a占4个字节，它占有4个字节的存储单元，有4个地址编号。
 
-![05pointer_image_2.png](https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Embedded_high-level_C_programming/05pointer_image%20_2.png)
+<br/>
+
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Embedded_high-level_C_programming/05pointer_image%20_2.png" alt = "05pointer_image_2.png" width = "70%" height = "auto">
+</div>
+
+
+<br/>
+
 
 `Int a=0x00 00 23 4f`
 
@@ -164,7 +196,13 @@ cover:
 
 除此之外其他地方都表示获取一个指针变量保存的地址里面的内容
 
-![05pointer__image_3.png](https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Embedded_high-level_C_programming/05pointer_image%20_3.png)
+<br/>
+
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Embedded_high-level_C_programming/05pointer_image%20_3.png" alt = "05pointer_image_3.png" width = "70%" height = "auto">
+</div>
+
+<br/>
 
 ```C
 #include <stdio.h>
@@ -408,6 +446,31 @@ int main(int argc, char *argv[])
   return 0;
 }
 ```
+
+## END
+
+>**END：本节内容到此结束。**
+
+个人提升之余，别忘了和小伙伴积极交流，很多人觉得他们在思考，而实际上他们只是在重新整理自己的偏见。请珍惜和他人交流讨论的机会。
+
+<br/>
+
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/END1.jpg" alt = "END1.jpg" width = "70%" height = "auto">
+</div>
+
+<br/>
+
+希望你每一天都有所收获，进步up up up。今天的我们并不比昨天更聪明，但一定要比昨天更睿智。
+
+<br/>
+
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/END2.jpg" alt = "END2.jpg" width = "70%" height = "auto">
+</div>
+
+<br/>
+
 
 
 

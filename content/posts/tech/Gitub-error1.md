@@ -13,7 +13,7 @@ tags:
 - Github
 - error
 description: "解决{OpenSSL SSL_read: Connection was reset, errno 10054}"
-weight: 4
+weight: 
 slug: ""
 draft: false # 是否为草稿
 comments: false

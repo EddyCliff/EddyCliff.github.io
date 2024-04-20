@@ -12,7 +12,7 @@ tags:
 - Github
 - error
 description: "解决{error: remote origin already exists.}"
-weight: 5
+weight: 
 slug: ""
 draft: false # 是否为草稿
 comments: false

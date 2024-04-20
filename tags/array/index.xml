@@ -13,7 +13,7 @@
       <pubDate>Sat, 16 Sep 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/c-programming-02array/</guid>
-      <description>第二章 数组 一、数组的概念 数组是若干个相同类型的变量在内存中有序存储的集合。 概念理解： 数组用于存储一组数据 数组里面存储的数据类型必须是相同的 数组在内存中会开辟一块连续的空间 int a[10]; //定义了一个整型的数组a，a是数组的名字，数组中有10个元素，每个元素的类型都是int类型，而且在内存中</description>
+      <description>第二章 数组 INIT INIT：本节内容正式开始。action! 一、数组的概念 数组是若干个相同类型的变量在内存中有序存储的集合。 概念理解： 数组用于存储一组数据 数组里面存储的数据类型必须是相同的 数组在内存中会开辟一块连续的空间 int a[10]; //定义了一个整型的数组a，a是数组的名字，数组中有10个元素</description>
     </item>
     
   </channel>

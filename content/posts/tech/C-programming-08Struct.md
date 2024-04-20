@@ -9,6 +9,12 @@ keywords:
 - Struct
 - common body
 - enumeration
+- C语言
+- C语言编程
+- 嵌入式编程
+- 结构体
+- 共用体
+- 枚举
 categories: 
 - 
 tags: 
@@ -38,6 +44,19 @@ cover:
 
 
 ## 第八章 结构体，共用体，枚举
+
+## INIT
+
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/INIT.jpg" alt = "INIT.jpg" width = "70%" height = "auto">
+</div>
+
+<br/>
+
+>**INIT：本节内容正式开始。action!**
+
+
+
 
 ### 一、结构体类型的概念及定义
 
@@ -691,7 +710,14 @@ int main()
 
 这是具体分配内存的图示
 
-![08_Struct_common-body_enumeration_image_6.png](https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Embedded_high-level_C_programming/08_Struct_common-body_enumeration_image%206.png)
+<br/>
+
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Embedded_high-level_C_programming/08_Struct_common-body_enumeration_image%206.png" alt = "08_Struct_common-body_enumeration_image_6.png" width = "70%" height = "auto">
+</div>
+
+<br/>
+
 
 结果分析：
 
@@ -711,9 +737,15 @@ struct stu{
 }temp;
 ```
 
-![08_Struct_common-body_enumeration_image_7.png](https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Embedded_high-level_C_programming/08_Struct_common-body_enumeration_image%207.png)
+<br/>
 
-结果分析：
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Embedded_high-level_C_programming/08_Struct_common-body_enumeration_image%207.png" alt = "08_Struct_common-body_enumeration_image_7.png" width = "70%" height = "auto">
+</div>
+
+<br/>
+
+结果分析:
 
 a 和 c 的地址差 4 个字节
 
@@ -822,7 +854,16 @@ unsigned int i;
 
 } data;
 
-![08_Struct_common-body_enumeration_image_8.png](https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Embedded_high-level_C_programming/08_Struct_common-body_enumeration_image%208.png)
+<br/>
+
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Embedded_high-level_C_programming/08_Struct_common-body_enumeration_image%208.png" alt = "08_Struct_common-body_enumeration_image_8.png" width = "70%" height = "auto">
+</div>
+
+
+<br/>
+
+
 
 注意：不能对位段成员取地址
 
@@ -1153,6 +1194,29 @@ int main(int argc, char *argv[])
 day = 8
 day = 3
 ```
+
+## END
+
+>**END：本节内容到此结束。**
+
+个人提升之余，别忘了和小伙伴积极交流，很多人觉得他们在思考，而实际上他们只是在重新整理自己的偏见。请珍惜和他人交流讨论的机会。
+
+<br/>
+
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/END1.jpg" alt = "END1.jpg" width = "70%" height = "auto">
+</div>
+
+<br/>
+
+希望你每一天都有所收获，进步up up up。今天的我们并不比昨天更聪明，但一定要比昨天更睿智。
+
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/END2.jpg" alt = "END2.jpg" width = "70%" height = "auto">
+</div>
+
+<br/>
+
 
 
 

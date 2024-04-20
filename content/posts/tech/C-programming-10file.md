@@ -7,6 +7,11 @@ keywords:
 - C programming
 - Embedded Development
 - file
+- C语言
+- C语言编程
+- 嵌入式编程
+- 文件
+- C语言文件
 categories: 
 - 
 tags: 
@@ -31,7 +36,23 @@ cover:
     alt: ""
     relative: false
 ---
+
+## 第十章 文件
+
+## INIT
+
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/INIT.jpg" alt = "INIT.jpg" width = "70%" height = "auto">
+</div>
+
+<br/>
+
+>**INIT：本节内容正式开始。action!**
+
+
 ## 一、文件的概念
+
+
 
 文件用来存放程序、文档、音频、视频数据、图片等数据的。
 
@@ -69,7 +90,14 @@ cover:
 
 通过标准IO库相当于在内存当中对我们的磁盘文件做输入输出操作，也就是读写操作。
 
-![image.png](https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Embedded_high-level_C_programming/10_file_image.png)
+<br/>
+
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Embedded_high-level_C_programming/10_file_image.png" alt = "image.png" width = "70%" height = "auto">
+</div>
+
+<br/>
+
 
 
 
@@ -805,7 +833,15 @@ int main(int argc, char *argv[])
 
 - 第一次`fwrite`执行结果
 
-![image1.png](https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Embedded_high-level_C_programming/10_file_image1.png)
+
+<br/>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Embedded_high-level_C_programming/10_file_image1.png" alt = "image1.png" width = "70%" height = "auto">
+</div>
+
+<br/>
+
+
 
 - 第二次`fread`执行结果
 
@@ -1010,6 +1046,30 @@ abcdefghijklmn
 offset = 25
 [jklmn]  
 ```
+
+## END
+
+>**END：本节内容到此结束。**
+
+个人提升之余，别忘了和小伙伴积极交流，很多人觉得他们在思考，而实际上他们只是在重新整理自己的偏见。请珍惜和他人交流讨论的机会。
+
+<br/>
+
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/END1.jpg" alt = "END1.jpg" width = "70%" height = "auto">
+</div>
+
+<br/>
+
+希望你每一天都有所收获，进步up up up。今天的我们并不比昨天更聪明，但一定要比昨天更睿智。
+
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/END2.jpg" alt = "END2.jpg" width = "70%" height = "auto">
+</div>
+
+<br/>
+
+
 
 **彩蛋**🎁
 

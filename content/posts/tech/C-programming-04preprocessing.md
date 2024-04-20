@@ -7,6 +7,11 @@ keywords:
 - C programming
 - Embedded Development
 - preprocessing
+- C语言
+- C语言编程
+- 嵌入式编程
+- 预处理
+- C语言预处理
 categories: 
 - 
 tags: 
@@ -33,6 +38,16 @@ cover:
 ---
 
 ## 第四章 预处理
+
+## INIT
+
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/INIT.jpg" alt = "INIT.jpg" width = "70%" height = "auto">
+</div>
+
+<br/>
+
+>**INIT：本节内容正式开始。action!**
 
 ### 一、C语言编译过程
 
@@ -265,6 +280,32 @@ int main(int argc, char *argv[])
 ```
 
 选择性编译都是在预编译阶段干的事情。
+
+
+## END
+
+>**END：本节内容到此结束。**
+
+个人提升之余，别忘了和小伙伴积极交流，很多人觉得他们在思考，而实际上他们只是在重新整理自己的偏见。请珍惜和他人交流讨论的机会。
+
+<br/>
+
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/END1.jpg" alt = "END1.jpg" width = "70%" height = "auto">
+</div>
+
+<br/>
+
+希望你每一天都有所收获，进步up up up。今天的我们并不比昨天更聪明，但一定要比昨天更睿智。
+
+<br/>
+
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/END2.jpg" alt = "END2.jpg" width = "70%" height = "auto">
+</div>
+
+<br/>
+
 
 
 

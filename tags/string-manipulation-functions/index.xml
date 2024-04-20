@@ -13,7 +13,7 @@
       <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/c-programming-07string/</guid>
-      <description>第七章 字符串处理函数 一、获取字符串长度函数 #include &amp;lt;string.h&amp;gt; size_t strlen(const char *s); 功能：计算一个字符串的长度 参数： s：指定的字符串 返回值： 当前字符串的长度 注意：strlen获取的字符串长度遇到第一个\0结束且\0不算做字符串长度之中 #include &amp;lt;stdio.h&amp;gt; #include &amp;lt;string.h&amp;gt; int main(int argc, char *argv[]) { //使用strlen函数获取字符串的长度 //strlen</description>
+      <description>第七章 字符串处理函数 INIT INIT：本节内容正式开始。action! 一、获取字符串长度函数 #include &amp;lt;string.h&amp;gt; size_t strlen(const char *s); 功能：计算一个字符串的长度 参数： s：指定的字符串 返回值： 当前字符串的长度 注意：strlen获取的字符串长度遇到第一个\0结束且\0不算做字符串长度之中 #include &amp;lt;stdio.h&amp;gt; #include &amp;lt;string.h&amp;gt; int main(int argc, char *argv[]) { //使用st</description>
     </item>
     
   </channel>

@@ -7,6 +7,11 @@ keywords:
 - C programming
 - Embedded Development
 - Dynamic memory request
+- C语言
+- C语言编程
+- 嵌入式编程
+- 动态内存申请
+- C语言动态内存申请
 categories: 
 - 
 tags: 
@@ -33,6 +38,17 @@ cover:
 ---
 
 ## 第六章 动态内存申请
+
+## INIT
+
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/INIT.jpg" alt = "INIT.jpg" width = "70%" height = "auto">
+</div>
+
+<br/>
+
+>**INIT：本节内容正式开始。action!**
+
 
 ### 一、动态分配内存的概
 
@@ -156,7 +172,14 @@ void free(void *ptr)
 
 - 一块动态申请的内存只能free一次，不能多次free
 
-![06Dynamic_memory_request_image_4.png](https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Embedded_high-level_C_programming/06Dynamic_memory_request_image_4.png)
+<br/>
+
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Embedded_high-level_C_programming/06Dynamic_memory_request_image_4.png" alt = "06Dynamic_memory_request_image_4.png" width = "70%" height = "auto">
+</div>
+
+
+<br/>
 
 
 
@@ -216,7 +239,15 @@ p=(char *)malloc(100)
 p=(char *)realloc(p,150);//p指向的内存的新的大小为150个字节
 ```
 
-![06Dynamic_memory_request_image_5.png](https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Embedded_high-level_C_programming/06Dynamic_memory_request_image%205.png)
+<br/>
+
+<div align="center">
+<img src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Embedded_high-level_C_programming/06Dynamic_memory_request_image%205.png" alt = "06Dynamic_memory_request_image_5.png" width="70%" height="70%">
+</div>
+
+
+<br/>
+
 
 减少空间:
 
@@ -321,6 +352,29 @@ int main()
 ```
 
 总结：申请的内存，一定不要把首地址给丢了，在不用的时候一定要释放内存。
+
+
+## END
+
+>**END：本节内容到此结束。**
+
+个人提升之余，别忘了和小伙伴积极交流，很多人觉得他们在思考，而实际上他们只是在重新整理自己的偏见。请珍惜和他人交流讨论的机会。
+
+<br/>
+
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/END1.jpg" alt = "END1.jpg" width = "70%" height = "auto">
+</div>
+
+<br/>
+
+希望你每一天都有所收获，进步up up up。今天的我们并不比昨天更聪明，但一定要比昨天更睿智。
+
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/END2.jpg" alt = "END2.jpg" width = "70%" height = "auto">
+</div>
+
+<br/>
 
 
 

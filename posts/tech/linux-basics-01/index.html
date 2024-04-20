@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Linux新手必看：一文掌握操作系统基本命令 | Eddy&#39;s blog</title>
+<meta name="keywords" content="Linux, Operating System, Operating system command, 操作系统, 操作系统命令, 操作系统基本命令, Linux命令, Linux基本命令, Linux新手必看">
+<meta name="description" content="掌握Linux，从这里开始！轻松入门操作系统基本命令。">
+<meta name="author" content="Eddy">
+<link rel="canonical" href="https://eddyblog.cn/posts/tech/linux-basics-01/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.js" onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="icon" type="image/png" sizes="16x16" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="icon" type="image/png" sizes="32x32" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="apple-touch-icon" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="mask-icon" href="https://eddyblog.cn/img/logo3.jpg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://eddyblog.cn/posts/tech/linux-basics-01/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<script defer src="https://unpkg.com/mermaid@8.8.1/dist/mermaid.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = ""; 
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  
+
+<meta property="og:title" content="Linux新手必看：一文掌握操作系统基本命令" />
+<meta property="og:description" content="掌握Linux，从这里开始！轻松入门操作系统基本命令。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://eddyblog.cn/posts/tech/linux-basics-01/" />
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/linux.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-04-10T00:17:58+08:00" />
+<meta property="article:modified_time" content="2024-04-10T00:17:58+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/linux.png" />
+<meta name="twitter:title" content="Linux新手必看：一文掌握操作系统基本命令"/>
+<meta name="twitter:description" content="掌握Linux，从这里开始！轻松入门操作系统基本命令。"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+
+        {
+          "@type": "ListItem",
+          "position":  1 ,
+          "name": "📚文章",
+          "item": "https://eddyblog.cn/posts/"
+        },
+
+        {
+          "@type": "ListItem",
+          "position":  2 ,
+          "name": "👨🏻‍💻 技术",
+          "item": "https://eddyblog.cn/posts/tech/"
+        }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Linux新手必看：一文掌握操作系统基本命令",
+      "item": "https://eddyblog.cn/posts/tech/linux-basics-01/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Linux新手必看：一文掌握操作系统基本命令",
+  "name": "Linux新手必看：一文掌握操作系统基本命令",
+  "description": "掌握Linux，从这里开始！轻松入门操作系统基本命令。",
+  "keywords": [
+    "Linux", "Operating System", "Operating system command", "操作系统", "操作系统命令", "操作系统基本命令", "Linux命令", "Linux基本命令", "Linux新手必看"
+  ],
+  "articleBody": "Linux命令入门:17个基本命令 INIT INIT：本节内容正式开始。action!\n📌命令：pwd 作用：打印当前的工作路径，用于确认您当前在文件系统中的位置。\n这里有几个概念需要说明一下。\n~ . .. / ~ 就是当前用户的家目录缩写\n举例说明\ncd ~ 可以快速切换到你的家目录。\n如果用户john的家目录是/home/john，那么可以使用cd ~命令，它等同于cd home/john\n. 表示当前目录\n举例说明\nls . 这个命令会列出当前目录中的所有文件和文件夹。\n.. 表示上一级目录\ncd .. 从当前目录移动到上一级目录。\n/ 表示根目录\n在Unix-like系统中，没有像Windows那样的驱动器盘符（如C:、D:等），而是有一个单一的树状结构，以“/”作为整个文件系统的起点。\n例如：\n/home 通常包含用户的主目录。 /usr 用于存放用户安装的程序和文件。 /etc 包含系统的配置文件。 📌命令：cd 作用：切换工作路径。\ncd / #切换路径到根目录 cd #切换路径到当前用户的家目录 cd ~ #切换路径到当前用户的家目录 cd .. #切换到上一级目录 cd ../../Even/pic #返回上一级的上一级的Even里面的pic(相对路径) cd /home/Even/pic #切换路径到/home/Even/pic(绝对路径) cd - #返回上一次所在的路径 📌命令：ls 作用：列举当前目录下的内容\nls -l #列举当前目录下的详细内容 ls -a #列举当前目录下的所有内容(包括隐藏文件.Filename) 举例说明\n在一个文件夹下运行了ls 命令得到了如下\n-rw-r--r-- 1 ubuntu ubuntu 8980 Jul 6 2020 example.desktop drwxr-xr-x 2 ubuntu ubuntu 4096 Jul 6 2020 Music 🤔drwxr-xr-x这是什么意思呢？\n🔑我们可以把它拆解为4部分。\n1）d 是一种文件类型，这里为目录文件。\n文件系统类型：在Linux系统下一共有七种文件类型\n符号 文件类型 - 普通文件（mp3，mp4等） d 目录文件（文件夹） p 管道文件（一般用于进程间通信） l 链接文件（相当于快捷方式） s 套接字文件（一般用于网络通信） b 块设备文件（驱动的设备文件由驱动生成） c 字符设备文件（驱动的设备文件由驱动生成) 2）rwxr-xr-x 有三个部分，三个字母为一个部分，从左到右依次代表文件的拥有者的权限rwx，同组用户的权限r-x，其他用户的权限r-x。\n🤔r w x -这是什么意思呢？\n举个例子\nR 可读 W 可写 X 可执行 字母 值 1 1 0 rw- 4（二进制110换算成十进制） 0 1 0 -w- 2（二进制010换算成十进制） 这个权限值在我们后面更改权限时，或者设置初始权限时是有用处的。具体操作暂且不表。 🔑所以这里的drwxr-xr-x意思就是文件为目录文件，文件的拥有者的权限为可读可写可执行，同组用户的权限为可读不可写可执行，其他用户的权限为可读不可写可执行。\n-rw-r--r-- 1 ubuntu ubuntu 8980 Jul 6 2020 example.desktop drwxr-xr-x 2 ubuntu ubuntu 4096 Jul 6 2020 Music 🤔从drwxr-xr-x继续往后看，drwxr-xr-x后面的2是什么意思呢？\n🔑这个2表示的就是文件的链接数。\n目录文件：表示该目录中还有多少个目录。\n普通文件：就是指该文件有多少个链接（访问方式）。\n-rw-r--r-- 1 ubuntu ubuntu 8980 Jul 6 2020 example.desktop drwxr-xr-x 2 ubuntu ubuntu 4096 Jul 6 2020 Music 🤔drwxr-xr-x 2 后面的ubuntu ubuntu是什么意思呢？\n🔑第1个ubuntu表示文件的拥有者，第2个ubuntu表示所属小组。\n🤔ubuntu后面的8980是什么意思呢？\n🔑这个8980表示的是文件大小。\n🤔8980后面的Jul 6 2020是什么意思呢？\n🔑这个Jul 6 2020表示的是修改日期。\n🤔Jul 6 2020后面的example.desktop是什么意思呢？\n🔑这个example.desktop表示的是文件名。\n🔚用一个图来总结。\n📌命令：locate或find 作用：查找。\n而find命令我认为更好用，所以我一般用find命令。\n举例说明\nfind -name Even #在当前目录开始以名字查找 Even 文件 locate Even #从根目录开始查找所有包含 Even 字符串的文件名 📌命令：clear 作用：清除终端窗口。\n快捷方式：Ctrl + L\n📌命令：cat 作用：打印输出文件内容。\n📌命令：head 作用：查看某个文件的头部。\nhead stdio.h #查看 stdio.h 文件的前10行 head -20 stdio.h #查看 stdio.h 文件的前20行(行数可以自行指定) 📌命令：tail 作用：查看某个文件的尾部。有助于查看日志文件的最后10行来阅读重要的系统信息。\ntail stdio.h #查看 stdio.h 文件的末尾10行 tail -20 stdio.h #查看 stdio.h 文件的末尾20行(行数可以自行指定) 📌命令：grep 作用：在文件中查找指定的内容。\ngrep printf stdio.h -n #在stdio.h中查找内容 printf 并输出内容所出现的行号 📌命令：chmod 作用：修改文件的权限。\nchmod 367 Even #修改文件 Even 的权限为拥有者可写+可执行，同组用户可读+可写，其他用户可读+可写+可执行 📌命令：cp 作用：复制文件。\ncp Even Jacy #把普通文件 Even 复制成 Jacy cp abc/ ade -r #把目录文件 adc 复制成 ade -r为递归选项(复制目录文件就需要加 -r ) 💡小知识：\ncp adc/ ade -r这里的adc/这么写是为了提醒我们自己这是目录文件，建议输入命令时在目录文件后加/。\n也可以写cp adc ade -r效果是一样的。\n📌命令：mv 作用：移动文件/重命名。\nmv Even abc/ #把文件 Even 移动到目录 abc 中 mv adc/ ade/ #把目录 adc 移动到目录 ade 中 mv abb acc #把文件 abb 重命名为 acc mv aaa/ bbb/ccc #把目录 abb 移动到目录 bbb中，并且将目录 abb 重命名为 ccc 📢注意：\nmv具体是移动还是重命名的功能取决于第三个参数是否存在，如果第三个参数是一个不存在的文件名，则是重命名。如果第三个参数存在并且是一个目录文件，则是移动文件。\n📌命令：mkdir 作用：创建目录文件。\nmkdir abb #创建一个目录文件为 abb 📌命令：touch 作用：创建一个普通文件。\ntouch abc.c #创建一个普通文件 abc.c 📌命令：rm 作用：删除文件。\nrm abc.c #删除普通文件 abc.c rm acc/ -r #目录文件 abc/ 📌命令：sudo 作用：临时使用超级用户的权限做某事。\nsudo touch abc.c #临时使用超级用户的权限，创建一个普通文件 sudo -s #临时切换为超级用户(不推荐这么使用，因为这样一直保持超级用户权限，容易误删东西。推荐sudo+命令去使用) exit #输入 exit 可以退出超级用户 📌命令：man man man #查看一下 man 手册是什么 man -f mkfifo #查看一下 mkfifo 出现在哪一本手册中 man 1 mkfifo #在第一本手册中查看 mkfifo 的解析(命令) man 3 mkfido #在第三本手册中查看 mkfido 的解析(命令) 一共有9本手册。\n1）可执行程序或shell命令。\n2）系统调用（内核提供的函数）\n3）库调用（程序库中的函数） 等等……\n💡小知识：\n系统调用 VS 库调用\n你给女朋友准备一个晚饭，比如做一个小炒黄牛肉，系统调用就是你自己去买牛肉，买葱，买调料等等，包括怎么做，做多久，都由你把握。\n而库调用，就是你去一个餐馆，点一个小炒黄牛肉，你只需要买单就可以了。\n系统调用使用的系统提供的接口是比较简单而功能单一的，你需要去拼凑出来一个完整的功能。\n而库调用就是，它已经帮你拼凑了很多系统函数来组成一个完整的库函数。\n这两者详细的细节暂且不表，在后续的部分会做详细解释。\nVMtools安装 想要实现Linux和Windows之间的复制粘贴，则需安装VMtools。\nEND END：本节内容到此结束。\n个人提升之余，别忘了和小伙伴积极交流，很多人觉得他们在思考，而实际上他们只是在重新整理自己的偏见。请珍惜和他人交流讨论的机会。\n希望你每一天都有所收获，进步up up up。今天的我们并不比昨天更聪明，但一定要比昨天更睿智。\n",
+  "wordCount" : "2854",
+  "inLanguage": "zh",
+  "image":"https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/linux.png","datePublished": "2024-04-10T00:17:58+08:00",
+  "dateModified": "2024-04-10T00:17:58+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "Eddy"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://eddyblog.cn/posts/tech/linux-basics-01/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Eddy's blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://eddyblog.cn/img/logo3.jpg"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    (function () {
+        let  arr,reg = new RegExp("(^| )"+"change-themes"+"=([^;]*)(;|$)");
+        if(arr = document.cookie.match(reg)) {
+        } else {
+            if (new Date().getHours() >= 19 || new Date().getHours() < 6) {
+                document.body.classList.add('dark');
+                localStorage.setItem("pref-theme", 'dark');
+            } else {
+                document.body.classList.remove('dark');
+                localStorage.setItem("pref-theme", 'light');
+            }
+        }
+    })()
+
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://eddyblog.cn/" accesskey="h" title="Eddy&#39;s Blog (Alt + H)">
+            <img src="https://eddyblog.cn/img/logo3.jpg" alt="logo" aria-label="logo"
+                 height="35">Eddy&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://eddyblog.cn/search" title="🔍 搜索 (Alt &#43; /)" accesskey=/>
+                <span>🔍 搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/" title="🏠 主页">
+                <span>🏠 主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/posts" title="📚 文章">
+                <span>📚 文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/tags" title="🧩 标签">
+                <span>🧩 标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/archives/" title="⏱️ 时间轴">
+                <span>⏱️ 时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/about" title="🙋🏻‍♂️ 关于">
+                <span>🙋🏻‍♂️ 关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main page">
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+</style>
+
+<article class="post-single">
+    <div id="single-content">
+        <header class="post-header">
+            <div class="breadcrumbs"><a href="https://eddyblog.cn/">🏠 主页</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/">📚文章</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/tech/">👨🏻‍💻 技术</a></div>
+            <h1 class="post-title">
+                Linux新手必看：一文掌握操作系统基本命令
+            </h1>
+            <div class="post-description">
+                掌握Linux，从这里开始！轻松入门操作系统基本命令。
+            </div>
+            <div class="post-meta">
+
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+
+    .parent-post-meta {
+        display: flex;
+        flex-wrap: wrap;
+        opacity: 0.8;
+    }
+</style>
+
+<span class="parent-post-meta">
+    <span id="post_meta_style_1">
+        <span class="fa fa-calendar-check-o"></span>
+        <span>2024-04-10
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    
+    
+    
+    
+    
+    
+    
+    <span id="post_meta_style_3">
+        <span class="fa fa-file-word-o"></span>
+        <span>2854字
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_4">
+        <span class="fa fa-clock-o"></span>
+        <span>6分钟
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_5">
+        <span class="fa fa-user-o"></span>
+        <span>Eddy
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_6">
+        <span class="fa fa-tags" style="opacity: 0.8"></span>
+        <span>
+            <span class="post-tags-meta">
+                <a href="https://eddyblog.cn/tags/linux/" style="color: var(--secondary)!important;">Linux</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/operating-system/" style="color: var(--secondary)!important;">Operating System</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/operating-system-command/" style="color: var(--secondary)!important;">Operating System Command</a>
+            </span>
+        </span>
+    </span>
+</span>
+<span style="opacity: 0.8;">
+                    <span id="post_meta_style_7">
+                        &nbsp;&nbsp;
+                        <span class="fa fa-eye" ></span>
+                        <span>
+                            <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+                            &nbsp;&nbsp;
+                        </span>
+                    </span>
+                    <span id="post_meta_style_8">
+                        <span class="fa fa-commenting-o"></span>
+                        <span>
+                            <script src="https://cdn.staticfile.org/twikoo//twikoo.all.min.js"></script>
+                            <script>
+                                let url = document.documentURI
+                                
+                                let dnsUrl = "https://eddyblog.cn/"
+                                let urlSplit = url.split(dnsUrl)
+                                let finalUrl = urlSplit[1]
+                                if (finalUrl[0] !== '/') {
+                                    finalUrl = '/'+finalUrl
+                                }
+                                twikoo.getCommentsCount({
+                                    envId:  null , 
+                                region:  null , 
+                                urls: [ 
+                                    
+                                    finalUrl,
+                                ],
+                                    includeReply: false 
+                                }).then(function (res) {
+                                    let count = res[0].count
+                                    const obj = document.getElementById("comment_count");
+                                    obj.innerText = count
+                                    
+                                    
+                                    
+                                }).catch(function (err) {
+                                    
+                                    console.error(err);
+                                });
+                            </script>
+                            <span id="comment_count"></span>
+                        </span>
+                    </span>
+                </span>
+
+</div>
+        </header> 
+<figure class="entry-cover1"><img style="zoom:;" loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/linux.png" alt="">
+    
+</figure><aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#linux%e5%91%bd%e4%bb%a4%e5%85%a5%e9%97%a817%e4%b8%aa%e5%9f%ba%e6%9c%ac%e5%91%bd%e4%bb%a4" aria-label="Linux命令入门:17个基本命令">Linux命令入门:17个基本命令</a></li>
+                <li>
+                    <a href="#init" aria-label="INIT">INIT</a></li>
+                <li>
+                    <a href="#%e5%91%bd%e4%bb%a4pwd" aria-label="📌命令：pwd">📌命令：pwd</a></li>
+                <li>
+                    <a href="#%e5%91%bd%e4%bb%a4cd" aria-label="📌命令：cd">📌命令：cd</a></li>
+                <li>
+                    <a href="#%e5%91%bd%e4%bb%a4ls" aria-label="📌命令：ls">📌命令：ls</a></li>
+                <li>
+                    <a href="#%e5%91%bd%e4%bb%a4locate%e6%88%96find" aria-label="📌命令：locate或find">📌命令：locate或find</a></li>
+                <li>
+                    <a href="#%e5%91%bd%e4%bb%a4clear" aria-label="📌命令：clear">📌命令：clear</a></li>
+                <li>
+                    <a href="#%e5%91%bd%e4%bb%a4cat" aria-label="📌命令：cat">📌命令：cat</a></li>
+                <li>
+                    <a href="#%e5%91%bd%e4%bb%a4head" aria-label="📌命令：head">📌命令：head</a></li>
+                <li>
+                    <a href="#%e5%91%bd%e4%bb%a4tail" aria-label="📌命令：tail">📌命令：tail</a></li>
+                <li>
+                    <a href="#%e5%91%bd%e4%bb%a4grep" aria-label="📌命令：grep">📌命令：grep</a></li>
+                <li>
+                    <a href="#%e5%91%bd%e4%bb%a4chmod" aria-label="📌命令：chmod">📌命令：chmod</a></li>
+                <li>
+                    <a href="#%e5%91%bd%e4%bb%a4cp" aria-label="📌命令：cp">📌命令：cp</a></li>
+                <li>
+                    <a href="#%e5%91%bd%e4%bb%a4mv" aria-label="📌命令：mv">📌命令：mv</a></li>
+                <li>
+                    <a href="#%e5%91%bd%e4%bb%a4mkdir" aria-label="📌命令：mkdir">📌命令：mkdir</a></li>
+                <li>
+                    <a href="#%e5%91%bd%e4%bb%a4touch" aria-label="📌命令：touch">📌命令：touch</a></li>
+                <li>
+                    <a href="#%e5%91%bd%e4%bb%a4rm" aria-label="📌命令：rm">📌命令：rm</a></li>
+                <li>
+                    <a href="#%e5%91%bd%e4%bb%a4sudo" aria-label="📌命令：sudo">📌命令：sudo</a></li>
+                <li>
+                    <a href="#%e5%91%bd%e4%bb%a4man" aria-label="📌命令：man">📌命令：man</a></li>
+                <li>
+                    <a href="#vmtools%e5%ae%89%e8%a3%85" aria-label="VMtools安装">VMtools安装</a></li>
+                <li>
+                    <a href="#end" aria-label="END">END</a>
+                </li>
+            </ul>
+        </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+        
+        activeElement = elements[0];
+        const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+        document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+    }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        if (elements) {
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement){
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }
+    }, false);
+
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;
+    }
+</script>
+        <div class="post-content"><h2 id="linux命令入门17个基本命令">Linux命令入门:17个基本命令<a hidden class="anchor" aria-hidden="true" href="#linux命令入门17个基本命令">#</a></h2>
+<h2 id="init">INIT<a hidden class="anchor" aria-hidden="true" href="#init">#</a></h2>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/INIT.jpg" alt = "INIT.jpg" width = "70%" height = "auto">
+</div>
+<blockquote>
+<p><strong>INIT：本节内容正式开始。action!</strong></p>
+</blockquote>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8.png" alt = "Linux命令入门.png" width = "70%" height = "auto">
+</div>
+<h2 id="命令pwd">📌命令：pwd<a hidden class="anchor" aria-hidden="true" href="#命令pwd">#</a></h2>
+<p>作用：打印当前的工作路径，用于确认您当前在文件系统中的位置。</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8-1.png" width = "70%" height = "auto">
+</div>
+<br/>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8-2.png" width = "70%" height = "auto">
+</div>
+<p>这里有几个概念需要说明一下。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>~
+</span></span><span style="display:flex;"><span>.
+</span></span><span style="display:flex;"><span>..
+</span></span><span style="display:flex;"><span>/
+</span></span></code></pre></div><p><em><strong>~ 就是当前用户的家目录缩写</strong></em></p>
+<p>举例说明</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>cd ~ 
+</span></span></code></pre></div><p>可以快速切换到你的家目录。</p>
+<p>如果用户<code>john</code>的家目录是<code>/home/john</code>，那么可以使用<code>cd ~</code>命令，它等同于<code>cd home/john</code></p>
+<p><em><strong>. 表示当前目录</strong></em></p>
+<p>举例说明</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>ls . 
+</span></span></code></pre></div><p>这个命令会列出当前目录中的所有文件和文件夹。</p>
+<p><em><strong>.. 表示上一级目录</strong></em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>cd ..
+</span></span></code></pre></div><p>从当前目录移动到上一级目录。</p>
+<p><em><strong>/ 表示根目录</strong></em></p>
+<p>在Unix-like系统中，没有像Windows那样的驱动器盘符（如C:、D:等），而是有一个单一的树状结构，以“/”作为整个文件系统的起点。</p>
+<p>例如：</p>
+<ul>
+<li><code>/home</code> 通常包含用户的主目录。</li>
+<li><code>/usr</code> 用于存放用户安装的程序和文件。</li>
+<li><code>/etc</code> 包含系统的配置文件。</li>
+</ul>
+<h2 id="命令cd">📌命令：cd<a hidden class="anchor" aria-hidden="true" href="#命令cd">#</a></h2>
+<p>作用：切换工作路径。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>cd /  <span style="color:#75715e">#切换路径到根目录</span>
+</span></span><span style="display:flex;"><span>cd    <span style="color:#75715e">#切换路径到当前用户的家目录</span>
+</span></span><span style="display:flex;"><span>cd ~  <span style="color:#75715e">#切换路径到当前用户的家目录</span>
+</span></span><span style="display:flex;"><span>cd .. <span style="color:#75715e">#切换到上一级目录</span>
+</span></span><span style="display:flex;"><span>cd ../../Even/pic <span style="color:#75715e">#返回上一级的上一级的Even里面的pic(相对路径)</span>
+</span></span><span style="display:flex;"><span>cd /home/Even/pic <span style="color:#75715e">#切换路径到/home/Even/pic(绝对路径) </span>
+</span></span><span style="display:flex;"><span>cd - <span style="color:#75715e">#返回上一次所在的路径</span>
+</span></span></code></pre></div><h2 id="命令ls">📌命令：ls<a hidden class="anchor" aria-hidden="true" href="#命令ls">#</a></h2>
+<p>作用：列举当前目录下的内容</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>ls -l <span style="color:#75715e">#列举当前目录下的详细内容</span>
+</span></span><span style="display:flex;"><span>ls -a <span style="color:#75715e">#列举当前目录下的所有内容(包括隐藏文件.Filename)</span>
+</span></span></code></pre></div><p>举例说明</p>
+<p>在一个文件夹下运行了<code>ls</code> 命令得到了如下</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>-rw-r--r-- 1 ubuntu ubuntu 8980 Jul 6 2020 example.desktop
+</span></span><span style="display:flex;"><span>drwxr-xr-x 2 ubuntu ubuntu 4096 Jul 6 2020 Music
+</span></span></code></pre></div><p>🤔<code>drwxr-xr-x</code>这是什么意思呢？</p>
+<p>🔑我们可以把它拆解为4部分。</p>
+<p>1）<code>d</code> 是一种文件类型，这里为目录文件。</p>
+<p>文件系统类型：在Linux系统下一共有七种文件类型</p>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>文件类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-</td>
+<td>普通文件（mp3，mp4等）</td>
+</tr>
+<tr>
+<td>d</td>
+<td>目录文件（文件夹）</td>
+</tr>
+<tr>
+<td>p</td>
+<td>管道文件（一般用于进程间通信）</td>
+</tr>
+<tr>
+<td>l</td>
+<td>链接文件（相当于快捷方式）</td>
+</tr>
+<tr>
+<td>s</td>
+<td>套接字文件（一般用于网络通信）</td>
+</tr>
+<tr>
+<td>b</td>
+<td>块设备文件（驱动的设备文件由驱动生成）</td>
+</tr>
+<tr>
+<td>c</td>
+<td>字符设备文件（驱动的设备文件由驱动生成)</td>
+</tr>
+</tbody>
+</table>
+<p>2）<code>rwxr-xr-x</code> 有三个部分，三个字母为一个部分，从左到右依次代表文件的拥有者的权限<code>rwx</code>，同组用户的权限<code>r-x</code>，其他用户的权限<code>r-x</code>。</p>
+<p>🤔<code>r</code> <code>w</code> <code>x</code>  <code>-</code>这是什么意思呢？</p>
+<p>举个例子</p>
+<table>
+<thead>
+<tr>
+<th>R 可读</th>
+<th>W 可写</th>
+<th>X 可执行</th>
+<th>字母</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>rw-</td>
+<td>4（二进制110换算成十进制）</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>-w-</td>
+<td>2（二进制010换算成十进制）</td>
+</tr>
+<tr>
+<td>这个权限值在我们后面更改权限时，或者设置初始权限时是有用处的。具体操作暂且不表。</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>🔑所以这里的<code>drwxr-xr-x</code>意思就是文件为目录文件，文件的拥有者的权限为可读可写可执行，同组用户的权限为可读不可写可执行，其他用户的权限为可读不可写可执行。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>-rw-r--r-- 1 ubuntu ubuntu 8980 Jul 6 2020 example.desktop
+</span></span><span style="display:flex;"><span>drwxr-xr-x 2 ubuntu ubuntu 4096 Jul 6 2020 Music
+</span></span></code></pre></div><p>🤔从<code>drwxr-xr-x</code>继续往后看，<code>drwxr-xr-x</code>后面的<code>2</code>是什么意思呢？</p>
+<p>🔑这个<code>2</code>表示的就是文件的链接数。</p>
+<p>目录文件：表示该目录中还有多少个目录。</p>
+<p>普通文件：就是指该文件有多少个链接（访问方式）。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>-rw-r--r-- 1 ubuntu ubuntu 8980 Jul 6 2020 example.desktop
+</span></span><span style="display:flex;"><span>drwxr-xr-x 2 ubuntu ubuntu 4096 Jul 6 2020 Music
+</span></span></code></pre></div><p>🤔<code>drwxr-xr-x 2</code> 后面的<code>ubuntu ubuntu</code>是什么意思呢？</p>
+<p>🔑第1个<code>ubuntu</code>表示文件的拥有者，第2个<code>ubuntu</code>表示所属小组。</p>
+<p>🤔<code>ubuntu</code>后面的<code>8980</code>是什么意思呢？</p>
+<p>🔑这个<code>8980</code>表示的是文件大小。</p>
+<p>🤔<code>8980</code>后面的<code>Jul 6 2020</code>是什么意思呢？</p>
+<p>🔑这个<code>Jul 6 2020</code>表示的是修改日期。</p>
+<p>🤔<code>Jul 6 2020</code>后面的<code>example.desktop</code>是什么意思呢？</p>
+<p>🔑这个<code>example.desktop</code>表示的是文件名。</p>
+<p>🔚用一个图来总结。</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8-3.png" width = "70%" height = "auto">
+</div>
+<h2 id="命令locate或find">📌命令：locate或find<a hidden class="anchor" aria-hidden="true" href="#命令locate或find">#</a></h2>
+<p>作用：查找。</p>
+<p>而<code>find</code>命令我认为更好用，所以我一般用<code>find</code>命令。</p>
+<p>举例说明</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>find -name Even <span style="color:#75715e">#在当前目录开始以名字查找 Even 文件</span>
+</span></span><span style="display:flex;"><span>locate Even <span style="color:#75715e">#从根目录开始查找所有包含 Even 字符串的文件名</span>
+</span></span></code></pre></div><h2 id="命令clear">📌命令：clear<a hidden class="anchor" aria-hidden="true" href="#命令clear">#</a></h2>
+<p>作用：清除终端窗口。</p>
+<p>快捷方式：Ctrl + L</p>
+<h2 id="命令cat">📌命令：cat<a hidden class="anchor" aria-hidden="true" href="#命令cat">#</a></h2>
+<p>作用：打印输出文件内容。</p>
+<br/>
+</div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8-4.png" width = "70%" height = "auto">
+</div>
+<h2 id="命令head">📌命令：head<a hidden class="anchor" aria-hidden="true" href="#命令head">#</a></h2>
+<p>作用：查看某个文件的头部。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>head stdio.h <span style="color:#75715e">#查看 stdio.h 文件的前10行</span>
+</span></span><span style="display:flex;"><span>head -20 stdio.h <span style="color:#75715e">#查看 stdio.h 文件的前20行(行数可以自行指定)</span>
+</span></span></code></pre></div><h2 id="命令tail">📌命令：tail<a hidden class="anchor" aria-hidden="true" href="#命令tail">#</a></h2>
+<p>作用：查看某个文件的尾部。有助于查看日志文件的最后10行来阅读重要的系统信息。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>tail stdio.h <span style="color:#75715e">#查看 stdio.h 文件的末尾10行</span>
+</span></span><span style="display:flex;"><span>tail -20 stdio.h <span style="color:#75715e">#查看 stdio.h 文件的末尾20行(行数可以自行指定)</span>
+</span></span></code></pre></div><h2 id="命令grep">📌命令：grep<a hidden class="anchor" aria-hidden="true" href="#命令grep">#</a></h2>
+<p>作用：在文件中查找指定的内容。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>grep printf stdio.h -n <span style="color:#75715e">#在stdio.h中查找内容 printf 并输出内容所出现的行号</span>
+</span></span></code></pre></div><br/>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8-5.png" width = "70%" height = "auto">
+</div>
+<h2 id="命令chmod">📌命令：chmod<a hidden class="anchor" aria-hidden="true" href="#命令chmod">#</a></h2>
+<p>作用：修改文件的权限。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>chmod <span style="color:#ae81ff">367</span> Even <span style="color:#75715e">#修改文件 Even 的权限为拥有者可写+可执行，同组用户可读+可写，其他用户可读+可写+可执行 </span>
+</span></span></code></pre></div><br/>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8-6.png" width = "70%" height = "auto">
+</div>
+<h2 id="命令cp">📌命令：cp<a hidden class="anchor" aria-hidden="true" href="#命令cp">#</a></h2>
+<p>作用：复制文件。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>cp Even Jacy <span style="color:#75715e">#把普通文件 Even 复制成 Jacy</span>
+</span></span><span style="display:flex;"><span>cp abc/ ade -r <span style="color:#75715e">#把目录文件 adc 复制成 ade  -r为递归选项(复制目录文件就需要加 -r )</span>
+</span></span></code></pre></div><p>💡小知识：</p>
+<p><code>cp adc/ ade -r</code>这里的<code>adc/</code>这么写是为了提醒我们自己这是目录文件，建议输入命令时在目录文件后加<code>/</code>。</p>
+<p>也可以写<code>cp adc ade -r</code>效果是一样的。</p>
+<h2 id="命令mv">📌命令：mv<a hidden class="anchor" aria-hidden="true" href="#命令mv">#</a></h2>
+<p>作用：移动文件/重命名。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>mv Even abc/ <span style="color:#75715e">#把文件 Even 移动到目录 abc 中</span>
+</span></span><span style="display:flex;"><span>mv adc/ ade/ <span style="color:#75715e">#把目录 adc 移动到目录 ade 中</span>
+</span></span><span style="display:flex;"><span>mv abb acc <span style="color:#75715e">#把文件 abb 重命名为 acc</span>
+</span></span><span style="display:flex;"><span>mv aaa/ bbb/ccc <span style="color:#75715e">#把目录 abb 移动到目录 bbb中，并且将目录 abb 重命名为 ccc </span>
+</span></span></code></pre></div><p>📢注意：</p>
+<p>mv具体是移动还是重命名的功能取决于第三个参数是否存在，如果第三个参数是一个不存在的文件名，则是重命名。如果第三个参数存在并且是一个目录文件，则是移动文件。</p>
+<h2 id="命令mkdir">📌命令：mkdir<a hidden class="anchor" aria-hidden="true" href="#命令mkdir">#</a></h2>
+<p>作用：创建目录文件。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>mkdir abb <span style="color:#75715e">#创建一个目录文件为 abb</span>
+</span></span></code></pre></div><h2 id="命令touch">📌命令：touch<a hidden class="anchor" aria-hidden="true" href="#命令touch">#</a></h2>
+<p>作用：创建一个普通文件。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>touch abc.c <span style="color:#75715e">#创建一个普通文件 abc.c</span>
+</span></span></code></pre></div><h2 id="命令rm">📌命令：rm<a hidden class="anchor" aria-hidden="true" href="#命令rm">#</a></h2>
+<p>作用：删除文件。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>rm abc.c <span style="color:#75715e">#删除普通文件 abc.c</span>
+</span></span><span style="display:flex;"><span>rm acc/ -r <span style="color:#75715e">#目录文件 abc/</span>
+</span></span></code></pre></div><h2 id="命令sudo">📌命令：sudo<a hidden class="anchor" aria-hidden="true" href="#命令sudo">#</a></h2>
+<p>作用：临时使用超级用户的权限做某事。</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8-7.png" width = "70%" height = "auto">
+</div>
+<br/>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo touch abc.c <span style="color:#75715e">#临时使用超级用户的权限，创建一个普通文件</span>
+</span></span></code></pre></div><br/>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8-8.png" width = "70%" height = "auto">
+</div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo -s <span style="color:#75715e">#临时切换为超级用户(不推荐这么使用，因为这样一直保持超级用户权限，容易误删东西。推荐sudo+命令去使用)</span>
+</span></span><span style="display:flex;"><span>exit <span style="color:#75715e">#输入 exit 可以退出超级用户</span>
+</span></span></code></pre></div><br/>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8-9.png" width = "70%" height = "auto">
+</div>
+<h2 id="命令man">📌命令：man<a hidden class="anchor" aria-hidden="true" href="#命令man">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>man man <span style="color:#75715e">#查看一下 man 手册是什么</span>
+</span></span><span style="display:flex;"><span>man -f mkfifo <span style="color:#75715e">#查看一下 mkfifo 出现在哪一本手册中 </span>
+</span></span><span style="display:flex;"><span>man <span style="color:#ae81ff">1</span> mkfifo <span style="color:#75715e">#在第一本手册中查看 mkfifo 的解析(命令)</span>
+</span></span><span style="display:flex;"><span>man <span style="color:#ae81ff">3</span> mkfido <span style="color:#75715e">#在第三本手册中查看 mkfido 的解析(命令)</span>
+</span></span></code></pre></div><p>一共有9本手册。</p>
+<p>1）可执行程序或shell命令。<br>
+2）系统调用（内核提供的函数）<br>
+3）库调用（程序库中的函数）
+等等&hellip;&hellip;</p>
+<p>💡小知识：<br>
+系统调用 VS 库调用</p>
+<p>你给女朋友准备一个晚饭，比如做一个小炒黄牛肉，系统调用就是你自己去买牛肉，买葱，买调料等等，包括怎么做，做多久，都由你把握。</p>
+<p>而库调用，就是你去一个餐馆，点一个小炒黄牛肉，你只需要买单就可以了。</p>
+<p>系统调用使用的系统提供的接口是比较简单而功能单一的，你需要去拼凑出来一个完整的功能。</p>
+<p>而库调用就是，它已经帮你拼凑了很多系统函数来组成一个完整的库函数。</p>
+<p>这两者详细的细节暂且不表，在后续的部分会做详细解释。</p>
+<h2 id="vmtools安装">VMtools安装<a hidden class="anchor" aria-hidden="true" href="#vmtools安装">#</a></h2>
+<p>想要实现Linux和Windows之间的复制粘贴，则需安装VMtools。</p>
+<h2 id="end">END<a hidden class="anchor" aria-hidden="true" href="#end">#</a></h2>
+<blockquote>
+<p><strong>END：本节内容到此结束。</strong></p>
+</blockquote>
+<p>个人提升之余，别忘了和小伙伴积极交流，很多人觉得他们在思考，而实际上他们只是在重新整理自己的偏见。请珍惜和他人交流讨论的机会。</p>
+<br/>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/END1.jpg" alt = "END1.jpg" width = "70%" height = "auto">
+</div>
+<br/>
+<p>希望你每一天都有所收获，进步up up up。今天的我们并不比昨天更聪明，但一定要比昨天更睿智。</p>
+<br/>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/END2.jpg" alt = "END2.jpg" width = "70%" height = "auto">
+</div>
+
+
+        </div>
+
+        <footer class="post-footer">
+            
+<nav class="paginav">
+  <a class="next" href="https://eddyblog.cn/posts/art/phone_photo_tutorial_01/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>【手机摄影笔记】- 01认识手机摄影</span>
+  </a>
+</nav>
+
+        </footer>
+    </div>
+</article>
+</main>
+
+<footer class="footer">
+    <span>
+        Copyright
+        &copy;
+        -2024
+        <a href="https://eddyblog.cn/" style="color:#939393;">Eddy&#39;s blog</a>
+        All Rights Reserved
+    </span>
+    <a href="https://beian.miit.gov.cn/" target="_blank" style="color:#939393;"></a>&nbsp;
+    <span>
+        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=null"
+           style="display:inline-block;text-decoration:none;height:20px;color:#939393;">
+            <img src="" style="float:left;margin: 0px 5px 0px 0px;"/>
+            
+        </a>
+    </span>
+    <span id="busuanzi_container">
+        <span class="fa fa-user"></span> <span id="busuanzi_value_site_uv"></span>
+        <span class="fa fa-eye"></span> <span id="busuanzi_value_site_pv"></span>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <span class="topInner">
+        <svg class="topSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z"/>
+        </svg>
+        <span id="read_progress"></span>
+    </span>
+</a>
+
+<script>
+    document.addEventListener('scroll', function (e) {
+        const readProgress = document.getElementById("read_progress");
+        const scrollHeight = document.documentElement.scrollHeight;
+        const clientHeight = document.documentElement.clientHeight;
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        readProgress.innerText = ((scrollTop / (scrollHeight - clientHeight)).toFixed(2) * 100).toFixed(0);
+    })
+</script>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+</script>
+<script>
+    let mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        (function() {
+            document.cookie = "change-themes" + "="+ escape ("false");
+        })()
+
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    });
+</script>
+
+<script>
+    document.body.addEventListener('copy', function (e) {
+        if (window.getSelection().toString() && window.getSelection().toString().length > 50) {
+            let clipboardData = e.clipboardData || window.clipboardData;
+            if (clipboardData) {
+                e.preventDefault();
+                let htmlData = window.getSelection().toString() +
+                    '\r\n\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                let textData = window.getSelection().toString() +
+                    '\r\n\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                clipboardData.setData('text/html', htmlData);
+                clipboardData.setData('text/plain', textData);
+            }
+        }
+    });
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = '复制';
+
+        function copyingDone() {
+            copybutton.innerText = '已复制！';
+            setTimeout(() => {
+                copybutton.innerText = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                let text = codeblock.textContent +
+                    '\r\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                navigator.clipboard.writeText(text);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) {}
+            selection.removeRange(range);
+        });
+
+        let language = codeblock.className.replaceAll("language-", "")
+        let macTool = document.createElement("div")
+        let macTool1 = document.createElement("div")
+        let macTool2 = document.createElement("div")
+        let macTool3 = document.createElement("div")
+        let languageType = document.createElement("div")
+        languageType.innerText = language
+        macTool.setAttribute('class', 'mac-tool')
+        macTool1.setAttribute('class', 'mac bb1')
+        macTool2.setAttribute('class', 'mac bb2')
+        macTool3.setAttribute('class', 'mac bb3')
+        languageType.setAttribute('class', 'language-type')
+        macTool.appendChild(macTool1)
+        macTool.appendChild(macTool2)
+        macTool.appendChild(macTool3)
+        macTool.appendChild(languageType)
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+            container.appendChild(macTool)
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+            container.appendChild(macTool)
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+            container.appendChild(macTool)
+        }
+    });
+</script>
+
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style></body>
+
+</html>

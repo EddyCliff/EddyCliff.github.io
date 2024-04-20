@@ -7,6 +7,8 @@ keywords:
 - LLC resonant converter
 - switching mode power supply
 - Power technology
+- LLC谐振变换器
+- LLC电力电子变压器
 categories: 
 - 
 tags: 
@@ -35,9 +37,7 @@ cover:
 > 
 感谢您打开这篇博客，在这里，每次启程都承载着新的发现与学习的机会。
 
-本节将开始《浅谈谐振LLC谐振变换器》系列，本系列围绕LLC谐振变换器展开，一个在现代电子设备中不可或缺的神秘组件。它利用巧妙的物理原理有效减少能量损失，保证了我们设备的高效运行。
-
-在接下来的学习中，无论您是新手还是老手，我都希望这次学习能为您带来新的灵感和知识。请您准备好您的工具包，我们即将启程，深入探索LLC谐振变换器的奇妙世界。期待在旅途中与您共同探讨、学习，并享受这一探索之旅。  
+本节将开始《浅谈谐振LLC谐振变换器》系列，本系列围绕LLC谐振变换器展开，一个在现代电子设备中不可或缺的神秘组件。它利用巧妙的物理原理有效减少能量损失，保证了我们设备的高效运行。 
 
 本系列学习路线：LLC的定义及优势 - LLC入门 - LLC工作原理 - LLC特性分析  
 
@@ -56,7 +56,7 @@ LLC转换器像其他谐振转换器一样，由3个模块组成：电源开关�
 ### LLC的电源开关
 
 <div align = "center">
-<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/LLC_Resonant_Converters/00image.png" width = "70%" height = "auto">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/LLC_Resonant_Converters/00image.png" alt = "00image.png" width = "70%" height = "auto">
 </div>
 
 
@@ -102,16 +102,23 @@ LLC的电源开关可以在全桥或者半桥拓扑中实现，
 
 理想变压器的磁化电感与其输入绕组并联，我们可以将其用作与谐振回路输出端口并联的励磁电感Lm。
 
+<br/>
+
 <div align = "center">
-<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/LLC_Resonant_Converters/00image1.png" width = "70%" height = "auto">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/LLC_Resonant_Converters/00image1.png" alt = "00image1.png" width = "70%" height = "auto">
 </div>
 
+<br/>
 
 在现实世界中，变压器总是带有与变压器绕组串联的漏电感，如果我们以某种方式使用这个串联漏电感作为谐振电感Lr，我们就能降低电路的成本。
 
+<br/>
+
 <div align = "center">
-<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/LLC_Resonant_Converters/00image2.png" width = "70%" height = "auto">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/LLC_Resonant_Converters/00image2.png" alt = "00image2.png" width = "70%" height = "auto">
 </div>
+
+<br/>
 
 
 **原因2：**
@@ -130,17 +137,23 @@ LLC的谐振回路由一个谐振电容器和两个电感器组成。
 
 我们必须考虑开关频率和输出负载来调整谐振回路的响应，以确保转换器通过设计谐振回路的增益在广泛的负载范围内高效的运行。
 
+<br/>
+
 <div align = "center">
-<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/LLC_Resonant_Converters/00image3.png" width = "70%" height = "auto">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/LLC_Resonant_Converters/00image3.png" alt = "00image3.png" width = "70%" height = "auto">
 </div>
 
+<br/>
 
 由于谐振回路的双电感器，LLC转换器的工作范围较宽。
+
+<br/>
 
 <div align = "center">
 <img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/LLC_Resonant_Converters/00image4.png" width = "70%" height = "auto">
 </div>
 
+<br/>
 
 为了解其工作原理，我们将根据要求考虑容器对重载和轻载的响应。
 

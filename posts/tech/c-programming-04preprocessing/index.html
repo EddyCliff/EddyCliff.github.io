@@ -6,8 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>【嵌入式高级C编程】第四章 预处理 | Eddy&#39;s blog</title>
-<meta name="keywords" content="C programming, Embedded Development, preprocessing">
-<meta name="description" content="第四章 预处理 一、C语言编译过程 C语言的编译过程： 预处理、编译、汇编、链接 gcc -E hello.c -o hello.i 1、预处理 gcc -S hello.i –o hello.s 2、编译 gcc -c hello.s -o hello.o 3、汇编 gcc hello.o -o hello_elf 4、链接 1：预编译 将.c 中的头文件展开、宏展开 生成的文件是.i文件 2：编译 将预处理之后的.i 文件生成 .s 汇编文件 3、汇编 将.s汇编文件生成.o 目">
+<meta name="keywords" content="C programming, Embedded Development, preprocessing, C语言, C语言编程, 嵌入式编程, 预处理, C语言预处理">
+<meta name="description" content="第四章 预处理 INIT INIT：本节内容正式开始。action! 一、C语言编译过程 C语言的编译过程： 预处理、编译、汇编、链接 gcc -E hello.c -o hello.i 1、预处理 gcc -S hello.i –o hello.s 2、编译 gcc -c hello.s -o hello.o 3、汇编 gcc hello.o -o hello_elf 4、链接 1：预编译 将.c 中的头文件展开、宏展开 生成的文件是.i文件 2：编译 将预处理之后的.i 文件生">
 <meta name="author" content="Eddy">
 <link rel="canonical" href="https://eddyblog.cn/posts/tech/c-programming-04preprocessing/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
@@ -78,7 +78,7 @@ var _hmt = _hmt || [];
   
 
 <meta property="og:title" content="【嵌入式高级C编程】第四章 预处理" />
-<meta property="og:description" content="第四章 预处理 一、C语言编译过程 C语言的编译过程： 预处理、编译、汇编、链接 gcc -E hello.c -o hello.i 1、预处理 gcc -S hello.i –o hello.s 2、编译 gcc -c hello.s -o hello.o 3、汇编 gcc hello.o -o hello_elf 4、链接 1：预编译 将.c 中的头文件展开、宏展开 生成的文件是.i文件 2：编译 将预处理之后的.i 文件生成 .s 汇编文件 3、汇编 将.s汇编文件生成.o 目" />
+<meta property="og:description" content="第四章 预处理 INIT INIT：本节内容正式开始。action! 一、C语言编译过程 C语言的编译过程： 预处理、编译、汇编、链接 gcc -E hello.c -o hello.i 1、预处理 gcc -S hello.i –o hello.s 2、编译 gcc -c hello.s -o hello.o 3、汇编 gcc hello.o -o hello_elf 4、链接 1：预编译 将.c 中的头文件展开、宏展开 生成的文件是.i文件 2：编译 将预处理之后的.i 文件生" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://eddyblog.cn/posts/tech/c-programming-04preprocessing/" />
 <meta property="og:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/c2.jpg" /><meta property="article:section" content="posts" />
@@ -88,7 +88,7 @@ var _hmt = _hmt || [];
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/c2.jpg" />
 <meta name="twitter:title" content="【嵌入式高级C编程】第四章 预处理"/>
-<meta name="twitter:description" content="第四章 预处理 一、C语言编译过程 C语言的编译过程： 预处理、编译、汇编、链接 gcc -E hello.c -o hello.i 1、预处理 gcc -S hello.i –o hello.s 2、编译 gcc -c hello.s -o hello.o 3、汇编 gcc hello.o -o hello_elf 4、链接 1：预编译 将.c 中的头文件展开、宏展开 生成的文件是.i文件 2：编译 将预处理之后的.i 文件生成 .s 汇编文件 3、汇编 将.s汇编文件生成.o 目"/>
+<meta name="twitter:description" content="第四章 预处理 INIT INIT：本节内容正式开始。action! 一、C语言编译过程 C语言的编译过程： 预处理、编译、汇编、链接 gcc -E hello.c -o hello.i 1、预处理 gcc -S hello.i –o hello.s 2、编译 gcc -c hello.s -o hello.o 3、汇编 gcc hello.o -o hello_elf 4、链接 1：预编译 将.c 中的头文件展开、宏展开 生成的文件是.i文件 2：编译 将预处理之后的.i 文件生"/>
 
 
 <script type="application/ld+json">
@@ -125,12 +125,12 @@ var _hmt = _hmt || [];
   "@type": "BlogPosting",
   "headline": "【嵌入式高级C编程】第四章 预处理",
   "name": "【嵌入式高级C编程】第四章 预处理",
-  "description": "第四章 预处理 一、C语言编译过程 C语言的编译过程： 预处理、编译、汇编、链接 gcc -E hello.c -o hello.i 1、预处理 gcc -S hello.i –o hello.s 2、编译 gcc -c hello.s -o hello.o 3、汇编 gcc hello.o -o hello_elf 4、链接 1：预编译 将.c 中的头文件展开、宏展开 生成的文件是.i文件 2：编译 将预处理之后的.i 文件生成 .s 汇编文件 3、汇编 将.s汇编文件生成.o 目",
+  "description": "第四章 预处理 INIT INIT：本节内容正式开始。action! 一、C语言编译过程 C语言的编译过程： 预处理、编译、汇编、链接 gcc -E hello.c -o hello.i 1、预处理 gcc -S hello.i –o hello.s 2、编译 gcc -c hello.s -o hello.o 3、汇编 gcc hello.o -o hello_elf 4、链接 1：预编译 将.c 中的头文件展开、宏展开 生成的文件是.i文件 2：编译 将预处理之后的.i 文件生",
   "keywords": [
-    "C programming", "Embedded Development", "preprocessing"
+    "C programming", "Embedded Development", "preprocessing", "C语言", "C语言编程", "嵌入式编程", "预处理", "C语言预处理"
   ],
-  "articleBody": "第四章 预处理 一、C语言编译过程 C语言的编译过程：\n预处理、编译、汇编、链接\ngcc -E hello.c -o hello.i 1、预处理\ngcc -S hello.i –o hello.s 2、编译\ngcc -c hello.s -o hello.o 3、汇编\ngcc hello.o -o hello_elf 4、链接\n1：预编译\n将.c 中的头文件展开、宏展开\n生成的文件是.i文件\n2：编译\n将预处理之后的.i 文件生成 .s 汇编文件\n3、汇编\n将.s汇编文件生成.o 目标文件\n4、链接\n将.o 文件链接成目标文件\n二、include #include\u003c\u003e //用尖括号包含头文件，在系统指定的路径下找头文件\n#include \"\" //用双引号包含头文件，先在当前目录下找头文件，找不到，再到系统指定的路径下找。\n注意：include 经常用来包含头文件，可以包含 .c 文件，但是大家不要包含.c。\n因为include包含的文件会在预编译被展开，如果一个.c 被包含多次，展开多次，会导致函数重复定义。\n所以不要包含.c 文件\n注意：预处理只是对include 等预处理操作进行处理并不会进行语法检查。\n这个阶段有语法错误也不会报错，第二个阶段即编译阶段才进行语法检查。\n三、define 定义宏用define 去定义。\n宏是在预编译的时候进行替换。\n1、不带参宏 #define PI 3.14\n在预编译的时候如果代码中出现了PI 就用 3.14去替换。\n宏的好处：只要修改宏定义，其他地方在预编译的时候就会重新替换。\n注意：宏定义后边不要加分号。\n#include //宏定义的好处是只要改变了定义是的常量表达式，则代码中只要使用这个宏定义的位置都会改变 #define PI 3.1415926 int main(int argc, char *argv[]) { printf(\"PI = %lf\\n\", PI); double d = PI; printf(\"d = %lf\\n\", d); return 0; } 执行结果\nPI = 3.141593 d = 3.141593 宏定义的作用范围，从定义的地方到本文件末尾。\n如果想在中间终止宏的定义范围\n#undef PI //终止PI的作用\n2、带参宏 #define S(a,b) a*b\n注意带参宏的形参 a和b没有类型名，\nS(2,4) 将来在预处理的时候替换成 实参替代字符串的形参，其他字符保留，2 * 4\n#include //带参宏 //带参宏类似于一个简单的函数，将函数的参数进行设置，就可以传递给对应的表达式 //#define S(a, b) a*b #define S(a, b) ((a)*(b)) int main(int argc, char *argv[]) { printf(\"%d\\n\", S(2, 4)); //注意：宏定义只是简单的替换，不会自动加括号 //带参宏1：2 + 8 * 4 = 34 //带参宏2：((2 + 8) * (4)) = 40 printf(\"%d\\n\", S(2 + 8, 4)); return 0; } 3、带参宏和带参函数的区别 - 带参宏被调用多少次就会展开多少次，执行代码的时候没有函数调用的过程，不需要压栈弹栈。所以带参宏，是浪费了空间，因为被展开多次，节省时间。 - 带参函数，代码只有一份，存在代码段，调用的时候去代码段取指令，调用的时候要压栈弹栈。有个调用的过程。所以说，带参函数是浪费了时间，节省了空间。 - 带参函数的形参是有类型的，带参宏的形参没有类型名。 - 如果功能实现的代码相对简单，并且不需要开辟太多的空间，可以选择使用带参宏，但是大多数情况都会使用函数。 四、选择性编译 1、\n#ifdef AAA 代码段一 #else 代码段二 #endif 如果在当前.c ifdef 上边定义过AAA ，就编译代码段一，否则编译代码段二。\n注意和if else语句的区别，if else 语句都会被编译，通过条件选择性执行代码。\n而 选择性编译，只有一块代码被编译。\n#define AAA int main(int argc, char *argv[]) { #ifdef AAA printf(\"hello kitty!!\\n\"); #else printf(\"hello 千锋edu\\n\"); #endif return 0; } 2、\n#ifndef AAA 代码段一 #else 代码段二 #endif 和第一种互补。\n这种方法，经常用在防止头文件重复包含。\n常用于多文件编程中.h的第一行就是#ifndef，最后一行就是#endif\n3、\n#if 表达式 程序段一 #else 程序段二 #endif 如果表达式为真，编译第一段代码，否则编译第二段代码。\n这种形式一般用于注释多行代码。\n#if 0 ... #endif 选择性编译都是在预编译阶段干的事情。\n彩蛋🎁\n秋天的阳光醇厚，在建筑物顶端闪闪发光。河流，树林，软绵绵的草地，云絮从上面缓缓飘移。\n村上春树《有餐车多好》 恭喜你🎉，完成了对第四章《预处理》部分的学习，下一章我们将学习指针。\n⏩第五章 《指针》\n",
-  "wordCount" : "1459",
+  "articleBody": "第四章 预处理 INIT INIT：本节内容正式开始。action!\n一、C语言编译过程 C语言的编译过程：\n预处理、编译、汇编、链接\ngcc -E hello.c -o hello.i 1、预处理\ngcc -S hello.i –o hello.s 2、编译\ngcc -c hello.s -o hello.o 3、汇编\ngcc hello.o -o hello_elf 4、链接\n1：预编译\n将.c 中的头文件展开、宏展开\n生成的文件是.i文件\n2：编译\n将预处理之后的.i 文件生成 .s 汇编文件\n3、汇编\n将.s汇编文件生成.o 目标文件\n4、链接\n将.o 文件链接成目标文件\n二、include #include\u003c\u003e //用尖括号包含头文件，在系统指定的路径下找头文件\n#include \"\" //用双引号包含头文件，先在当前目录下找头文件，找不到，再到系统指定的路径下找。\n注意：include 经常用来包含头文件，可以包含 .c 文件，但是大家不要包含.c。\n因为include包含的文件会在预编译被展开，如果一个.c 被包含多次，展开多次，会导致函数重复定义。\n所以不要包含.c 文件\n注意：预处理只是对include 等预处理操作进行处理并不会进行语法检查。\n这个阶段有语法错误也不会报错，第二个阶段即编译阶段才进行语法检查。\n三、define 定义宏用define 去定义。\n宏是在预编译的时候进行替换。\n1、不带参宏 #define PI 3.14\n在预编译的时候如果代码中出现了PI 就用 3.14去替换。\n宏的好处：只要修改宏定义，其他地方在预编译的时候就会重新替换。\n注意：宏定义后边不要加分号。\n#include //宏定义的好处是只要改变了定义是的常量表达式，则代码中只要使用这个宏定义的位置都会改变 #define PI 3.1415926 int main(int argc, char *argv[]) { printf(\"PI = %lf\\n\", PI); double d = PI; printf(\"d = %lf\\n\", d); return 0; } 执行结果\nPI = 3.141593 d = 3.141593 宏定义的作用范围，从定义的地方到本文件末尾。\n如果想在中间终止宏的定义范围\n#undef PI //终止PI的作用\n2、带参宏 #define S(a,b) a*b\n注意带参宏的形参 a和b没有类型名，\nS(2,4) 将来在预处理的时候替换成 实参替代字符串的形参，其他字符保留，2 * 4\n#include //带参宏 //带参宏类似于一个简单的函数，将函数的参数进行设置，就可以传递给对应的表达式 //#define S(a, b) a*b #define S(a, b) ((a)*(b)) int main(int argc, char *argv[]) { printf(\"%d\\n\", S(2, 4)); //注意：宏定义只是简单的替换，不会自动加括号 //带参宏1：2 + 8 * 4 = 34 //带参宏2：((2 + 8) * (4)) = 40 printf(\"%d\\n\", S(2 + 8, 4)); return 0; } 3、带参宏和带参函数的区别 - 带参宏被调用多少次就会展开多少次，执行代码的时候没有函数调用的过程，不需要压栈弹栈。所以带参宏，是浪费了空间，因为被展开多次，节省时间。 - 带参函数，代码只有一份，存在代码段，调用的时候去代码段取指令，调用的时候要压栈弹栈。有个调用的过程。所以说，带参函数是浪费了时间，节省了空间。 - 带参函数的形参是有类型的，带参宏的形参没有类型名。 - 如果功能实现的代码相对简单，并且不需要开辟太多的空间，可以选择使用带参宏，但是大多数情况都会使用函数。 四、选择性编译 1、\n#ifdef AAA 代码段一 #else 代码段二 #endif 如果在当前.c ifdef 上边定义过AAA ，就编译代码段一，否则编译代码段二。\n注意和if else语句的区别，if else 语句都会被编译，通过条件选择性执行代码。\n而 选择性编译，只有一块代码被编译。\n#define AAA int main(int argc, char *argv[]) { #ifdef AAA printf(\"hello kitty!!\\n\"); #else printf(\"hello 千锋edu\\n\"); #endif return 0; } 2、\n#ifndef AAA 代码段一 #else 代码段二 #endif 和第一种互补。\n这种方法，经常用在防止头文件重复包含。\n常用于多文件编程中.h的第一行就是#ifndef，最后一行就是#endif\n3、\n#if 表达式 程序段一 #else 程序段二 #endif 如果表达式为真，编译第一段代码，否则编译第二段代码。\n这种形式一般用于注释多行代码。\n#if 0 ... #endif 选择性编译都是在预编译阶段干的事情。\nEND END：本节内容到此结束。\n个人提升之余，别忘了和小伙伴积极交流，很多人觉得他们在思考，而实际上他们只是在重新整理自己的偏见。请珍惜和他人交流讨论的机会。\n希望你每一天都有所收获，进步up up up。今天的我们并不比昨天更聪明，但一定要比昨天更睿智。\n彩蛋🎁\n秋天的阳光醇厚，在建筑物顶端闪闪发光。河流，树林，软绵绵的草地，云絮从上面缓缓飘移。\n村上春树《有餐车多好》 恭喜你🎉，完成了对第四章《预处理》部分的学习，下一章我们将学习指针。\n⏩第五章 《指针》\n",
+  "wordCount" : "1603",
   "inLanguage": "zh",
   "image":"https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/c2.jpg","datePublished": "2023-10-01T00:17:58+08:00",
   "dateModified": "2023-10-01T00:17:58+08:00",
@@ -292,13 +292,13 @@ var _hmt = _hmt || [];
     
     <span id="post_meta_style_3">
         <span class="fa fa-file-word-o"></span>
-        <span>1459字
+        <span>1603字
             &nbsp;&nbsp;
         </span>
     </span>
     <span id="post_meta_style_4">
         <span class="fa fa-clock-o"></span>
-        <span>3分钟
+        <span>4分钟
             &nbsp;&nbsp;
         </span>
     </span>
@@ -379,7 +379,9 @@ var _hmt = _hmt || [];
 
         <div class="inner"><ul>
                 <li>
-                    <a href="#%e7%ac%ac%e5%9b%9b%e7%ab%a0-%e9%a2%84%e5%a4%84%e7%90%86" aria-label="第四章 预处理">第四章 预处理</a><ul>
+                    <a href="#%e7%ac%ac%e5%9b%9b%e7%ab%a0-%e9%a2%84%e5%a4%84%e7%90%86" aria-label="第四章 预处理">第四章 预处理</a></li>
+                <li>
+                    <a href="#init" aria-label="INIT">INIT</a><ul>
                         
                 <li>
                     <a href="#%e4%b8%80c%e8%af%ad%e8%a8%80%e7%bc%96%e8%af%91%e8%bf%87%e7%a8%8b" aria-label="一、C语言编译过程">一、C语言编译过程</a></li>
@@ -396,10 +398,11 @@ var _hmt = _hmt || [];
                     <a href="#3%e5%b8%a6%e5%8f%82%e5%ae%8f%e5%92%8c%e5%b8%a6%e5%8f%82%e5%87%bd%e6%95%b0%e7%9a%84%e5%8c%ba%e5%88%ab" aria-label="3、带参宏和带参函数的区别">3、带参宏和带参函数的区别</a></li></ul>
                 </li>
                 <li>
-                    <a href="#%e5%9b%9b%e9%80%89%e6%8b%a9%e6%80%a7%e7%bc%96%e8%af%91" aria-label="四、选择性编译">四、选择性编译</a>
+                    <a href="#%e5%9b%9b%e9%80%89%e6%8b%a9%e6%80%a7%e7%bc%96%e8%af%91" aria-label="四、选择性编译">四、选择性编译</a></li></ul>
                 </li>
-            </ul>
-            </li>
+                <li>
+                    <a href="#end" aria-label="END">END</a>
+                </li>
             </ul>
         </div>
         </details>
@@ -466,6 +469,14 @@ var _hmt = _hmt || [];
     }
 </script>
         <div class="post-content"><h2 id="第四章-预处理">第四章 预处理<a hidden class="anchor" aria-hidden="true" href="#第四章-预处理">#</a></h2>
+<h2 id="init">INIT<a hidden class="anchor" aria-hidden="true" href="#init">#</a></h2>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/INIT.jpg" alt = "INIT.jpg" width = "70%" height = "auto">
+</div>
+<br/>
+<blockquote>
+<p><strong>INIT：本节内容正式开始。action!</strong></p>
+</blockquote>
 <h3 id="一c语言编译过程">一、C语言编译过程<a hidden class="anchor" aria-hidden="true" href="#一c语言编译过程">#</a></h3>
 <p>C语言的编译过程：</p>
 <p>预处理、编译、汇编、链接</p>
@@ -600,6 +611,22 @@ var _hmt = _hmt || [];
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>#endif
 </span></span></code></pre></div><p>选择性编译都是在预编译阶段干的事情。</p>
+<h2 id="end">END<a hidden class="anchor" aria-hidden="true" href="#end">#</a></h2>
+<blockquote>
+<p><strong>END：本节内容到此结束。</strong></p>
+</blockquote>
+<p>个人提升之余，别忘了和小伙伴积极交流，很多人觉得他们在思考，而实际上他们只是在重新整理自己的偏见。请珍惜和他人交流讨论的机会。</p>
+<br/>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/END1.jpg" alt = "END1.jpg" width = "70%" height = "auto">
+</div>
+<br/>
+<p>希望你每一天都有所收获，进步up up up。今天的我们并不比昨天更聪明，但一定要比昨天更睿智。</p>
+<br/>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/END2.jpg" alt = "END2.jpg" width = "70%" height = "auto">
+</div>
+<br/>
 <p><strong>彩蛋</strong>🎁</p>
 <p>秋天的阳光醇厚，在建筑物顶端闪闪发光。河流，树林，软绵绵的草地，云絮从上面缓缓飘移。</p>
 <ul>

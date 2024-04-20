@@ -13,7 +13,7 @@
       <pubDate>Mon, 23 Oct 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/c-programming-10file/</guid>
-      <description>一、文件的概念 文件用来存放程序、文档、音频、视频数据、图片等数据的。 文件就是存放在磁盘上的，一些数据的集合。在windows下可以通过写字板或记事本打开文本文件对文件进行编辑保存。写字板和记事 本是微软程序员写的程序，对文件进行打开、显示、读写、关闭。 作为一个程序员，必须掌握编程实</description>
+      <description>第十章 文件 INIT INIT：本节内容正式开始。action! 一、文件的概念 文件用来存放程序、文档、音频、视频数据、图片等数据的。 文件就是存放在磁盘上的，一些数据的集合。在windows下可以通过写字板或记事本打开文本文件对文件进行编辑保存。写字板和记事 本是微软程序员写的程序，对文件进行</description>
     </item>
     
   </channel>

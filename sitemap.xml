@@ -2,20 +2,29 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://eddyblog.cn/posts/tech/github-action-hugo/</loc>
-    <lastmod>2023-09-06T00:17:58+08:00</lastmod>
+    <loc>https://eddyblog.cn/posts/tech/linux-basics-01/</loc>
+    <lastmod>2024-04-10T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/tech/github-jsdelivr-picgo/</loc>
-    <lastmod>2023-08-29T00:17:58+08:00</lastmod>
+    <loc>https://eddyblog.cn/posts/tech/</loc>
+    <lastmod>2024-04-10T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/tech/github-git-action-error/</loc>
-    <lastmod>2023-09-12T00:17:58+08:00</lastmod>
+    <loc>https://eddyblog.cn/posts/</loc>
+    <lastmod>2024-04-10T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/tech/gitub-error1/</loc>
-    <lastmod>2023-06-20T00:17:58+08:00</lastmod>
+    <loc>https://eddyblog.cn/</loc>
+    <lastmod>2024-04-10T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/tech/github-error-git-remote/</loc>
-    <lastmod>2023-07-20T00:17:58+08:00</lastmod>
+    <loc>https://eddyblog.cn/tags/linux/</loc>
+    <lastmod>2024-04-10T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/tags/operating-system/</loc>
+    <lastmod>2024-04-10T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/tags/operating-system-command/</loc>
+    <lastmod>2024-04-10T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/tags/</loc>
+    <lastmod>2024-04-10T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/posts/art/phone_photo_tutorial_01/</loc>
     <lastmod>2024-01-17T00:17:58+08:00</lastmod>
@@ -23,19 +32,10 @@
     <loc>https://eddyblog.cn/posts/art/</loc>
     <lastmod>2024-01-17T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/</loc>
-    <lastmod>2024-01-17T00:17:58+08:00</lastmod>
-  </url><url>
-    <loc>https://eddyblog.cn/</loc>
-    <lastmod>2024-01-17T00:17:58+08:00</lastmod>
-  </url><url>
     <loc>https://eddyblog.cn/tags/phone-photography-notes/</loc>
     <lastmod>2024-01-17T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/tags/photographic-art/</loc>
-    <lastmod>2024-01-17T00:17:58+08:00</lastmod>
-  </url><url>
-    <loc>https://eddyblog.cn/tags/</loc>
     <lastmod>2024-01-17T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/posts/read/</loc>
@@ -78,9 +78,6 @@
     <lastmod>2023-12-03T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/posts/art/video_editor_notes_the_editing_process_of_the_editing_masters/</loc>
-    <lastmod>2023-12-03T00:17:58+08:00</lastmod>
-  </url><url>
-    <loc>https://eddyblog.cn/posts/tech/</loc>
     <lastmod>2023-12-03T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/tags/html/</loc>
@@ -239,6 +236,9 @@
     <loc>https://eddyblog.cn/posts/tech/github_error-git_push/</loc>
     <lastmod>2023-09-12T00:17:58+08:00</lastmod>
   </url><url>
+    <loc>https://eddyblog.cn/posts/tech/github-git-action-error/</loc>
+    <lastmod>2023-09-12T00:17:58+08:00</lastmod>
+  </url><url>
     <loc>https://eddyblog.cn/tags/c/</loc>
     <lastmod>2023-09-12T00:17:58+08:00</lastmod>
   </url><url>
@@ -260,6 +260,9 @@
     <loc>https://eddyblog.cn/tags/github-action/</loc>
     <lastmod>2023-09-12T00:17:58+08:00</lastmod>
   </url><url>
+    <loc>https://eddyblog.cn/posts/tech/github-action-hugo/</loc>
+    <lastmod>2023-09-06T00:17:58+08:00</lastmod>
+  </url><url>
     <loc>https://eddyblog.cn/tags/website-construction/</loc>
     <lastmod>2023-09-06T00:17:58+08:00</lastmod>
   </url><url>
@@ -277,6 +280,9 @@
   </url><url>
     <loc>https://eddyblog.cn/tags/picgo/</loc>
     <lastmod>2023-08-30T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/posts/tech/github-jsdelivr-picgo/</loc>
+    <lastmod>2023-08-29T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/posts/tech/blog-cover-design-selection/</loc>
     <lastmod>2023-08-29T00:17:58+08:00</lastmod>
@@ -335,9 +341,6 @@
     <loc>https://eddyblog.cn/posts/tech/linux-vmware-copy-and-paste/</loc>
     <lastmod>2023-08-19T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/tags/linux/</loc>
-    <lastmod>2023-08-19T00:17:58+08:00</lastmod>
-  </url><url>
     <loc>https://eddyblog.cn/tags/vmware/</loc>
     <lastmod>2023-08-19T00:17:58+08:00</lastmod>
   </url><url>
@@ -362,11 +365,17 @@
     <loc>https://eddyblog.cn/posts/projects/projects/</loc>
     <lastmod>2023-08-05T00:18:23+08:00</lastmod>
   </url><url>
+    <loc>https://eddyblog.cn/posts/tech/github-error-git-remote/</loc>
+    <lastmod>2023-07-20T00:17:58+08:00</lastmod>
+  </url><url>
     <loc>https://eddyblog.cn/posts/tech/hugo-busuanzi/</loc>
     <lastmod>2023-07-10T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/tags/busuanzi/</loc>
     <lastmod>2023-07-10T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/posts/tech/gitub-error1/</loc>
+    <lastmod>2023-06-20T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/posts/tech/github-master-to-main-branch/</loc>
     <lastmod>2023-06-20T00:17:58+08:00</lastmod>

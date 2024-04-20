@@ -7,6 +7,11 @@ keywords:
 - C programming
 - Embedded Development
 - array
+- C语言
+- C语言编程
+- 嵌入式编程
+- 数组
+- C语言数组
 categories: 
 - 
 tags: 
@@ -33,6 +38,19 @@ cover:
 ---
 
 ## 第二章 数组
+
+## INIT
+
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/INIT.jpg" alt = "INIT.jpg" width = "70%" height = "auto">
+</div>
+
+<br/>
+
+>**INIT：本节内容正式开始。action!**
+
+
+
 
 ### 一、数组的概念
 
@@ -417,7 +435,13 @@ a[5] = 666
 
 2.上面的数组c2在内存中的实际存放情况为：
 
-![02array_image.png](https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Embedded_high-level_C_programming/02array_image.png)
+<br/>
+
+<div align="center">
+<img src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Embedded_high-level_C_programming/02array_image.png" alt = "02array_image.png" width="70%" height="auto" />
+</div>
+
+<br/>
 
 注：'\0'是由C编译系统自动加上的3.由于采用了'\0'标志，字符数组的输入输出将变得简单方便.
 
@@ -448,7 +472,27 @@ nihao
 ch = nihao
 ```
 
+## END
 
+>**END：本节内容到此结束。**
+
+个人提升之余，别忘了和小伙伴积极交流，很多人觉得他们在思考，而实际上他们只是在重新整理自己的偏见。请珍惜和他人交流讨论的机会。
+
+<br/>
+
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/END1.jpg" alt = "END1.jpg" width = "70%" height = "auto">
+</div>
+
+希望你每一天都有所收获，进步up up up。今天的我们并不比昨天更聪明，但一定要比昨天更睿智。
+
+<br/>
+
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/END2.jpg" alt = "END2.jpg" width = "70%" height = "auto">
+</div>
+
+<br/>
 
 **彩蛋**🎁
 
@@ -457,5 +501,6 @@ ch = nihao
 - 林清玄《温一壶月光下酒》
 
 恭喜你🎉，完成了对第二章《数组》部分的学习，下一章我们将学习函数。
+
 
 ⏩第三章 《函数》

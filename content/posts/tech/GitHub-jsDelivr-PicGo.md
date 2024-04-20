@@ -18,7 +18,7 @@ tags:
 - CDN
 - image host
 description: "在这篇【博客写作指南】中，了解如何利用GitHub、jsDelivr和PicGo搭建博客图床，为你的博客添加稳定的图片存储和快速的CDN加速服务。跟随详细步骤，轻松创建自己的图床，为博客内容增添视觉魅力。"
-weight: 2
+weight: 
 slug: ""
 draft: false # 是否为草稿
 comments: false
