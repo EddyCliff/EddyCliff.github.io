@@ -248,9 +248,14 @@ locate Even #从根目录开始查找所有包含 Even 字符串的文件名
 <img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8-4.png" width = "70%" height = "auto">
 </div>
 
-## 📌命令：head    
-  
-作用：查看某个文件的头部。                  
+## 📌命令：head
+
+作用：查看某个文件的头部。
+
+```Shell
+head stdio.h #查看 stdio.h 文件的前10行
+head -20 stdio.h #查看 stdio.h 文件的前20行(行数可以自行指定)
+```
 
 ```Shell
 head stdio.h #查看 stdio.h 文件的前10行
