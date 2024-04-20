@@ -221,8 +221,6 @@ drwxr-xr-x 2 ubuntu ubuntu 4096 Jul 6 2020 Music
 <img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8-3.png" width = "70%" height = "auto">
 </div>
 
-
-
 ## 📌命令：locate或find
 
 作用：查找。
@@ -242,17 +240,13 @@ locate Even #从根目录开始查找所有包含 Even 字符串的文件名
 
 快捷方式：Ctrl + L
 
-
 ## 📌命令：cat
 
 作用：打印输出文件内容。
 
-<br>
 </div align = "center">
 <img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8-4.png" width = "70%" height = "auto">
 </div>
-<br>
-
 
 ## 📌命令：head    
   
@@ -279,12 +273,10 @@ tail -20 stdio.h #查看 stdio.h 文件的末尾20行(行数可以自行指定)
 ```Shell
 grep printf stdio.h -n #在stdio.h中查找内容 printf 并输出内容所出现的行号
 ```
-  
-<br>
+
 <div align = "center">
 <img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8-5.png" width = "70%" height = "auto">
 </div>
-<br>    
 
 ## 📌命令：chmod
 
@@ -294,7 +286,6 @@ grep printf stdio.h -n #在stdio.h中查找内容 printf 并输出内容所出�
 chmod 367 Even #修改文件 Even 的权限为拥有者可写+可执行，同组用户可读+可写，其他用户可读+可写+可执行 
 ```
 
-<br>
 <div align = "center">
 <img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8-6.png" width = "70%" height = "auto">
 </div>
@@ -342,8 +333,6 @@ mv具体是移动还是重命名的功能取决于第三个参数是否存在，
 mkdir abb #创建一个目录文件为 abb
 ```
 
-
-
 ## 📌命令：touch
 
 作用：创建一个普通文件。
@@ -365,35 +354,29 @@ rm acc/ -r #目录文件 abc/
 
 作用：临时使用超级用户的权限做某事。
 
-
-<br>
 <div align = "center">
 <img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8-7.png" width = "70%" height = "auto">
 </div>
-<br>
 
 ```shell
 sudo touch abc.c #临时使用超级用户的权限，创建一个普通文件
 ```
-<br>
+
 <div align = "center">
 <img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8-8.png" width = "70%" height = "auto">
 </div>
-<br>
 
 ```shell
 sudo -s #临时切换为超级用户(不推荐这么使用，因为这样一直保持超级用户权限，容易误删东西。推荐sudo+命令去使用)
 exit #输入 exit 可以退出超级用户
 ```
 
-<br>
 <div align = "center">
 <img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8-9.png" width = "70%" height = "auto">
 </div>
 
 
 ## 📌命令：man
-
 
 ```shell
 man man #查看一下 man 手册是什么
@@ -422,12 +405,9 @@ man 3 mkfido #在第三本手册中查看 mkfido 的解析(命令)
 
 这两者详细的细节暂且不表，在后续的部分会做详细解释。  
   
-
-
 ## VMtools安装
 
 想要实现Linux和Windows之间的复制粘贴，则需安装VMtools。
-  
   
 ## END
 
