@@ -244,7 +244,7 @@ locate Even #从根目录开始查找所有包含 Even 字符串的文件名
 
 作用：打印输出文件内容。
 
-</div align = "center">
+<div align = "center">
 <img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%91%BD%E4%BB%A4%E5%85%A5%E9%97%A8-4.png" width = "70%" height = "auto">
 </div>
 
