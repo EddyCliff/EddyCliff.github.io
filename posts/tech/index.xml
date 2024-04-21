@@ -6,7 +6,7 @@
     <description>Recent content in 👨🏻‍💻 技术 on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Wed, 10 Apr 2024 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/posts/tech/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 21 Apr 2024 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/posts/tech/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Linux新手必看：一文掌握操作系统基本命令</title>
       <link>https://eddyblog.cn/posts/tech/linux-basics-01/</link>
@@ -14,6 +14,15 @@
       
       <guid>https://eddyblog.cn/posts/tech/linux-basics-01/</guid>
       <description>掌握Linux，从这里开始！轻松入门操作系统基本命令。</description>
+    </item>
+    
+    <item>
+      <title>Linux入门：基础命令与实用技巧</title>
+      <link>https://eddyblog.cn/posts/tech/linux-basics-02/</link>
+      <pubDate>Sun, 21 Apr 2024 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/linux-basics-02/</guid>
+      <description>本博客为新手量身打造，系统介绍了Linux操作系统的基本概念、核心命令及其应用场景。通过实例演示，帮助读者快速掌握Linux操作技巧，为进一步学习打下坚实基础。</description>
     </item>
     
     <item>

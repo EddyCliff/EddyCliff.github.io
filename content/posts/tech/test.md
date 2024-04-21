@@ -18,7 +18,7 @@ categories:
 tags: 
 -
 description: "本文用于测试Hugo博客网站Papermod主题的博客渲染效果"
-weight: 2
+weight: 3
 slug: ""
 draft: false # 是否为草稿
 comments: false

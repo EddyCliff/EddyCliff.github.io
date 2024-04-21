@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Linux入门：基础命令与实用技巧 | Eddy&#39;s blog</title>
+<meta name="keywords" content="Linux, Operating System, Operating system command, 操作系统, 操作系统命令, 操作系统基本命令, Linux命令, Linux基本命令, Linux新手必看">
+<meta name="description" content="本博客为新手量身打造，系统介绍了Linux操作系统的基本概念、核心命令及其应用场景。通过实例演示，帮助读者快速掌握Linux操作技巧，为进一步学习打下坚实基础。">
+<meta name="author" content="Eddy">
+<link rel="canonical" href="https://eddyblog.cn/posts/tech/linux-basics-02/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.js" onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="icon" type="image/png" sizes="16x16" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="icon" type="image/png" sizes="32x32" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="apple-touch-icon" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="mask-icon" href="https://eddyblog.cn/img/logo3.jpg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://eddyblog.cn/posts/tech/linux-basics-02/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<script defer src="https://unpkg.com/mermaid@8.8.1/dist/mermaid.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = ""; 
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  
+
+<meta property="og:title" content="Linux入门：基础命令与实用技巧" />
+<meta property="og:description" content="本博客为新手量身打造，系统介绍了Linux操作系统的基本概念、核心命令及其应用场景。通过实例演示，帮助读者快速掌握Linux操作技巧，为进一步学习打下坚实基础。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://eddyblog.cn/posts/tech/linux-basics-02/" />
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/linux.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-04-21T00:17:58+08:00" />
+<meta property="article:modified_time" content="2024-04-21T00:17:58+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/linux.png" />
+<meta name="twitter:title" content="Linux入门：基础命令与实用技巧"/>
+<meta name="twitter:description" content="本博客为新手量身打造，系统介绍了Linux操作系统的基本概念、核心命令及其应用场景。通过实例演示，帮助读者快速掌握Linux操作技巧，为进一步学习打下坚实基础。"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+
+        {
+          "@type": "ListItem",
+          "position":  1 ,
+          "name": "📚文章",
+          "item": "https://eddyblog.cn/posts/"
+        },
+
+        {
+          "@type": "ListItem",
+          "position":  2 ,
+          "name": "👨🏻‍💻 技术",
+          "item": "https://eddyblog.cn/posts/tech/"
+        }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Linux入门：基础命令与实用技巧",
+      "item": "https://eddyblog.cn/posts/tech/linux-basics-02/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Linux入门：基础命令与实用技巧",
+  "name": "Linux入门：基础命令与实用技巧",
+  "description": "本博客为新手量身打造，系统介绍了Linux操作系统的基本概念、核心命令及其应用场景。通过实例演示，帮助读者快速掌握Linux操作技巧，为进一步学习打下坚实基础。",
+  "keywords": [
+    "Linux", "Operating System", "Operating system command", "操作系统", "操作系统命令", "操作系统基本命令", "Linux命令", "Linux基本命令", "Linux新手必看"
+  ],
+  "articleBody": "INIT INIT：本节内容正式开始。action!\nLinux是什么 🤔Linux是什么？\n🔑让我们来聊聊Linux这个电脑界的“开源侠客”。\nLinux，一个听起来像希腊神话中英雄的名字，实际上是一个自由、开源的操作系统内核，由林纳斯·托瓦兹（Linus Torvalds）在1991年“一剑封喉”，从此开启了开源世界的大门。想象一下，Linux就像是一位无私的大师，将内功心法（源代码）公开于世，让众多弟子（开发者）得以修炼、改进，使其成为众多服务器和超级计算机的“座右铭”（操作系统）。\nLinux以其稳定性、安全性和灵活性著称，就像一位多才多艺的侠客，无论是在企业服务器的“江湖”中，还是在嵌入式系统的“小巷”里，都能见到它的身影。它不需要昂贵的“武功秘籍”（许可证），也不需要定期向“朝廷”（软件公司）进贡（付费更新），它就像一位行侠仗义的隐士，默默地守护着数据和隐私。\nLinux的发行版（Distros）多如繁星，每个都有自己的特色和“门派”（社区），从新手友好的Ubuntu到高效能的Debian，从桌面系统到服务器，Linux都能提供合适的“武器”（软件）来应对各种挑战。\n总之，Linux就像是一位无所不能的电脑界英雄，以其开源的精神，让技术的世界更加多元和自由。无论你是编程新手还是资深开发者，Linux都能成为你值得信赖的“伙伴”，一起在数字世界中“行侠仗义”。\n📚定义：Linux是一种开源操作系统，以其稳定性、安全性和高度可定制性而受到广泛欢迎。它基于Unix，由林纳斯·托瓦兹在1991年首次发布。用户和开发者社区庞大，支持多种硬件平台，广泛应用于服务器、桌面和嵌入式系统等场景。\n当我们讲到Linux，其实它有两层含义。\n1）Linux内核它运行于系统的最底层，用户看不见也摸不到。\n内存的管理 文件管理 任务管理 网络管理 设备管理 2）Linux发行版本\nUbuntu\n国内乃至全球热门的Linux发行版。也是各种推荐入门Linux爱好者安装的一个Linux发行版。它的特点主要有以下：\n安装简单 Unity3D图形界面，比较华丽（因人而异） 对一些专有驱动支持比较好，例如显卡驱动 社区比较活跃，几乎遇到的问题都可以找到答案 版本更新较快，基本半年一个版本 Ubuntu的发行规律\n每个偶数年121416182022\u003e的4月份就发行一个长期支持版（正式版本5年）。\n参考：Linux系统调用 | 内核态与用户态的转换_用户态、内核态转换失败怎么办-CSDN博客\n如上图所示，从宏观上来看，Linux操作系统的体系架构分为用户态和内核态（或者用户空间和内核）。内核从本质上看是一种软件——控制计算机的硬件资源，并提供上层应用程序运行的环境。用户态即上层应用程序的活动空间，应用程序的执行必须依托于内核提供的资源，包括CPU资源、存储资源、I/O资源等。为了使上层应用能够访问到这些资源，内核必须为上层应用提供访问的接口：即系统调用。\n系统调用是操作系统的最小功能单位，这些系统调用根据不同的应用场景可以进行扩展和裁剪，现在各种版本的Unix实现都提供了不同数量的系统调用，如Linux的不同版本提供了240-260个系统调用，FreeBSD大约提供了320个（reference：UNIX环境高级编程）。我们可以把系统调用看成是一种不能再化简的操作，有人把它比作一个汉字的一个“笔画”，而一个“汉字”就代表一个上层应用，我觉得这个比喻非常贴切。因此，有时候如果要实现一个完整的汉字（给某个变量分配内存空间），就必须调用很多的系统调用。如果从实现者的角度来看，良好的程序设计方法是：重视上层的业务逻辑操作，而尽可能避免底层复杂的实现细节。库函数正是为了将开发者从复杂的细节中解脱出来而提出的一种有效方法。它实现对系统调用的封装，将简单的业务逻辑接口呈现给用户，方便用户调用，从这个角度上看，库函数就像是组成汉字的“偏旁”。这样的一种组成方式极大增强了程序设计的灵活性，对于简单的操作，我们可以直接调用系统调用来访问资源，如“人”，对于复杂操作，我们借助于库函数来实现。显然，这样的库函数依据不同的标准也可以有不同的实现版本，如ISO C 标准库，POSIX标准库等。\nShell是一个特殊的应用程序，俗称命令行，本质上是一个_命令解释器_，它下通系统调用，上通各种应用，通常充当着一种“胶水”的角色，来连接各个小功能程序，让不同程序能够以一个清晰的接口协同工作，从而增强各个程序的功能。同时，Shell是可编程的，它可以执行符合Shell语法的文本，这样的文本称为Shell脚本，通常短短的几行Shell脚本就可以实现一个非常大的功能，原因就是这些Shell语句通常都对系统调用做了一层封装。为了方便用户和系统交互，一般，一个Shell对应一个终端，终端是一个硬件设备，呈现给用户的是一个图形化窗口。我们可以通过这个窗口输入或者输出文本。这个文本直接传递给shell进行分析解释，然后执行。\n总结一下，用户态的应用程序可以通过三种方式来访问内核态的资源：\n系统调用 库函数 Shell脚本 vim编辑器 Linux vi/vim 所有的 Unix Like 系统都会内建 vi 文书编辑器，其他的文书编辑器则不一定会存在。\n但是目前我们使用比较多的是 vim 编辑器。\nvim 具有程序编辑的能力，可以主动的以字体颜色辨别语法的正确性，方便程序设计。\n什么是 vim？ Vim 是从 vi 发展出来的一个文本编辑器。代码补全、编译及错误跳转等方便编程的功能特别丰富，在程序员中被广泛使用。\n简单的来说， vi 是老式的字处理器，不过功能已经很齐全了，但是还是有可以进步的地方。 vim 则可以说是程序开发者的一项很好用的工具。\nvi/vim 的使用 参考：Linux vi/vim | 菜鸟教程 (runoob.com)\n基本上 vi/vim 共分为三种模式，命令模式（Command Mode）、输入模式（Insert Mode）和命令行模式（Command-Line Mode）。\n命令模式 用户刚刚启动 vi/vim，便进入了命令模式。\n此状态下敲击键盘动作会被 Vim 识别为命令，而非输入字符，比如我们此时按下 i，并不会输入一个字符，i 被当作了一个命令。\n以下是普通模式常用的几个命令：\ni – 切换到输入模式，在光标当前位置开始输入文本。 x – 删除当前光标所在处的字符。 : – 切换到底线命令模式，以在最底一行输入命令。 a – 进入插入模式，在光标下一个位置开始输入文本。 o：在当前行的下方插入一个新行，并进入插入模式。 O – 在当前行的上方插入一个新行，并进入插入模式。 dd – 剪切当前行。 yy – 复制当前行。 p（小写） – 粘贴剪贴板内容到光标下方。 P（大写）– 粘贴剪贴板内容到光标上方。 u – 撤销上一次操作。 Ctrl + r – 重做上一次撤销的操作。 :w – 保存文件。 :q – 退出 Vim 编辑器。 :q! – 强制退出Vim 编辑器，不保存修改。 若想要编辑文本，只需要启动 Vim，进入了命令模式，按下 i 切换到输入模式即可。\n命令模式只有一些最基本的命令，因此仍要依靠底线命令行模式输入更多命令。\n输入模式 在命令模式下按下 i 就进入了输入模式，使用 Esc 键可以返回到普通模式。\n在输入模式中，可以使用以下按键：\n字符按键以及Shift组合，输入字符 ENTER，回车键，换行 BACK SPACE，退格键，删除光标前一个字符 DEL，删除键，删除光标后一个字符 方向键，在文本中移动光标 HOME/END，移动光标到行首/行尾 Page Up/Page Down，上/下翻页 Insert，切换光标为输入/替换模式，光标将变成竖线/下划线 ESC，退出输入模式，切换到命令模式 底线命令模式 在命令模式下按下 :（英文冒号）就进入了底线命令模式。\n底线命令模式可以输入单个或多个字符的命令，可用的命令非常多。\n在底线命令模式中，基本的命令有（已经省略了冒号）：\n:w：保存文件。 :q：退出 Vim 编辑器。 :wq：保存文件并退出 Vim 编辑器。 :q!：强制退出Vim编辑器，不保存修改。 按 ESC 键可随时退出底线命令模式。\n简单的说，我们可以将这三个模式想成底下的图标来表示：\nLinux基础命令 📌命令：alias 作用：给某个命令取别名。\n上面操作为临时的操作，当终端重启后则恢复原状。\n如何让它永久？\n其中一个方法是修改配置文件《每一次打开终端都会执行该配置文件》\nvim ~/.bashrc #使用 vim 打开配置文件 在配置文件的末尾添加一行，把修改的命令写进去。\n📢修改配置文件时一定要小心，保险起见记得备份配置文件一份。\n💡小技巧：\n假如想要每次打开终端时都显示一句话，比如打印\"It’s another day full of energy. Come on.\"，（今天又是元气满满的一天，加油吧）\n那么可以修改配置文件。\nvim ~/.bashrc 在配置文件的末尾添加一行，把修改的命令写进去。\necho \"It's another day full of energy. Come on.\" 这样每次打开终端的时候，就会显示\"It’s another day full of energy. Come on.“了。\n📌命令：date 作用：直接输出日期与时间（也可以设置时间）\ndate #输出时间 sudo date -s \"2077/12/1\" #设置时间 📌命令：dpkg 作用：软件包安装。\n1）先下载dpkg的安装包，后缀.deb文件。\n📌命令：echo 作用：回显，把你输入的字符输出到终端。\n后面在shell编程中可以作为打印输出。\n📌命令：sort 作用：对文件内容进行排序。\nsort max.c \u003e max.txt #重定向输出，把原本输出到标准输入文件的内容重定向到sort.txt文件中。 📌命令：which 作用：查看命令所在的位置。\nwhich chmod 📌命令：uniq 作用：去掉文件中重复项然后输出。\nuniq max.c 📌 | 管道 可以用来链接两个命令。\n命令1 | 命令2\n把命令1的输出作为命令2的输入。\nls -la | sort #把 ls -la 的输出作为 sort的输入 sort max.c | uniq #先对文件进行排序，然后再通过 uniq 进行去重复 📌 命令：diff 作用：检查文件是否相同。\n这是一个非常牛的命令，用来对比两个文件或者目录的异同，并将之加工成符合某种格式的文档，这就是大名鼎鼎的补丁文件。毫不夸张地说：神器diff是各类版本管理软件（例如svn、git等）的基石。\n（嵌入式用得不太多，一般补丁都是在大工程里面，嵌入式工程再大也就几十mb，这个部分自行拓展吧）。\n📌 命令：file 作用：查看文件的格式信息。\nfile /bin/ls 可以看到这里显示这是x86-64位平台，我们的开发板可能是32位的，这个地方后面会改变，此处暂且不表。\n📌 命令：wc 作用：计算字符数，单词数，行数。\nwc ls.txt 7表示行数，56表示单词数，320表示字符数，ls.txt就是文件名。\n进程管理命令 🤔什么是进程？\n进程：运行起来的程序就称为进程，它占用一定内存空间。\n📌 命令：ps 作用：查看进程信息。\nps -ef init 进程是系统所有进程的起点，你可以把它比拟成系统所有进程的老祖宗，没有这个进程，系统中任何进程都不会启动。\n可以看到所有进程除了init 进程都有一个父进程号，也就是说除了init 进程，其他进程都有一个父进程。\n图中TTY为？的进程为守护进程，意思是终端的关闭并不影响该进程。（举个例子：你手机在打游戏，关闭手机的话，游戏也就关闭了，但是守护进程就是挂机的游戏，你关闭手机之后，它依然在后台运行。）\n进程名为-bash的进程就是你打开的终端，你打开两个终端的话，就会显示两个-bash的进程。\n💡小知识：守护进程\n许多程序需要开机启动。它们在Windows叫做\"服务”（service），在Linux就叫做\"守护进程\"（daemon）。\ninit进程的一大任务，就是去运行这些开机启动的程序。\n守护进程（Daemon）是在后台运行的服务进程，它不受用户直接控制，通常在系统启动时开始运行，并在系统关闭时结束。守护进程通常没有控制终端，这意味着它们不会与任何终端设备关联，可以在用户登录和注销的情况下持续运行。\n守护进程的目的是提供对系统资源或网络服务的持续监控和管理。它们负责执行系统任务，如打印作业的排队（lpd）、网络连接的管理（sshd）、文件系统的同步（fsync）等。守护进程通常以超级用户（root）权限运行，以访问系统资源和执行需要特权操作的任务。\n守护进程的特点包括：\n后台运行：守护进程在后台运行，不与任何终端会话直接交互。 无控制终端：守护进程没有控制终端，因此不会受到用户登录或注销的影响。 持续运行：守护进程通常在系统启动时启动，并在系统运行期间持续运行，直到系统关闭。 父进程：守护进程的父进程通常是init进程（在较新的系统中是systemd），这样即使原始的父进程结束了，守护进程仍然可以继续运行。 在Linux系统中，守护进程通常通过init系统（如systemd、upstart或传统的sysvinit）来管理，这些系统负责启动、停止和管理守护进程的生命周期。\n📌 命令：top 作用：查看进程信息（动态的）（类似于windows的进程管理器）。\ntop 📌命令：kill 作用：向某一个进程发送信号。\nkill -l #查看 Linux 的信号 kill -2 873 #向进程ID为873的进程发送了一个编号为1的信号，即 SIGINT 信号。 killall -3 a.out #向所有名为 a.out 的进程发送了一个编号为3的信号，即SIGQUIT 信号。默认情况下，SIGQUIT 信号会导致接收它的进程立即终止。 killall -SIGHUP a.out #向所有名为 a.out 的进程发送了一个 SIGHUP 信号，默认情况下，SIGHUP 会导致进程终止。 kill发送的信号大部分作用都是杀掉进程。\n📋案例：演示kill -1 进程号和kill -2 进程号关闭1个进程。\n首先写一个程序，让这个程序一直打印{啦啦啦德玛西亚}，这样我们再kill -2中断该进程时就能明显看到效果。\n#include int main(int argc, char const *argv[]) { int i = 0; while(1) { printf(\"%d--啦啦啦德玛西亚\\n\",i++); sleep(1); } return 0; } 然后我们编译运行该程序\n此时我们再开一个终端，去查看该进程。\n可以看到ps命令没有查看到进程，所以我们输入命令ps -ef查看全部进程。\n我们看到这个进程的进程号为842。\n接下来我们使用kill -1 进程号来挂起该进程（实际上就是终止该进程）。\nkill -1 842 #向进程ID为842的进程发送了一个编号为1的信号，即 SIGHUP 信号。 同样，我们再次运行该程序，ps -ef查到该进程号为873。\n接下来我们使用kill -2 进程号来中断该进程（实际上就是终止该进程）。\nkill -2 873 #向进程ID为873的进程发送了一个编号为1的信号，即 SIGINT 信号。 命令：killall 在Unix和Linux系统中，killall命令用于向所有匹配特定名称的进程发送信号。\n📋案例：演示用killall -3 进程名关闭一个进程。\nkillall -3 a.out #向所有名为 a.out 的进程发送了一个编号为3的信号，即SIGQUIT 信号。默认情况下，SIGQUIT 信号会导致接收它的进程立即终止。 📋案例：演示用killall -SIGHUP 进程名关闭一个进程。\nkillall -SIGHUP a.out #向所有名为 a.out 的进程发送了一个 SIGHUP 信号，默认情况下，SIGHUP 会导致进程终止。 kill发送的信号大部分作用都是杀掉进程。但是编号为18和19的信号不是杀掉进程的。\n📋案例：演示killall -18 进程名和killall -19 进程名的效果。\nkillall -19 a.out #这条命令是向所有名为 a.out 的进程发送了一个编号为19的信号，即 SIGSTOP 信号。SIGSTOP 信号用于停止一个进程的执行，而不会导致它终止。 killall -18 a.out #向所有名为 a.out 的进程发送了一个编号为18的信号，即 SIGCONT 信号。 SIGCONT 信号用于继续一个之前被 SIGSTOP 或 SIGTSTP 信号停止的进程。 💡小知识：\n1 SIGHUP 信号：\nSIGHUP 信号传统上用于通知终端的挂起，默认情况下，SIGHUP会导致进程终止。\n2 SIGINT信号：\nSIGINT通常用于中断一个进程，它类似于用户在终端上按下Ctrl+C时发送的信号。\n3 SIGQUIT信号：\n默认情况下，SIGQUIT信号会导致接收它的进程立即终止，并且在大多数情况下，会在当前工作目录下创建一个核心转储文件，文件名通常是core或core.，其中是进程的ID。\n18 SIGCONT信号：\nSIGCONT信号通常用于恢复被暂停的进程，特别是在进程管理或调试过程中。与SIGSTOP信号不同，SIGCONT可以被进程捕获和处理，但通常情况下，进程会继续其正常的执行。\n19 SIGSTOP信号：\nSIGSTOP信号用于停止一个进程的执行，而不会导致它终止。当进程接收到SIGSTOP信号时，它会立即暂停执行，并且不会继续直到收到SIGCONT信号。\n压缩与解压缩命令 📌 命令：tar tar的基础选项。\n-c: 创建归档文件。（创建一个压缩包） -x: 释放归档文件。（解压一个压缩包） -t: 查看归档文件（或者压缩文件） -f: 指定要归档、压缩或者查看的文件的名称。 -v: 显示命令执行过程。 -z: 使用 gzip 压缩工具进行相应的压缩/解压 -j: 使用bzip2 压缩工具进行相应的压缩/解压 -J: 解压xz文件可以使用该选项 归档（把若干个文件整合成一个文件）\ntar -cf demo.tar a.out demo.c ls.txt max.c min.c sort.txt #将文件`a.out`、`demo.c`、`ls.txt`、`max.c`、`min.c`和`sort.txt`打包到一个名为`demo.tar`的归档文件中。 tar -cf demo1.tar * #把当前路径下的所有文件进行归档生成为 demo1.tar 的文件 查看归档文件内容\ntar -tf demo1.tar #查看归档文件的内容 释放归档文件\ntar -xvf demo1.tar -C abc # -C 是指定文件释放的路径， abc 就是当前目录下的 abc 目录 压缩与解压缩 gzip 文件\ntar -czvf demo.tar.gz * # 把当前目录下所有文件归档并压缩为 `demo.tar.gz` tar -xzvf demo.tar.gz -C ~ #把 `demo.tar.gz` 解压并释放到家目录 压缩与解压缩 bzip2 文件\ntar -cjvf demo.tar.bz2 * # 把当前目录下所有文件归档并压缩为 `demo.tar.bz2` tar -xjvf demo.tar.bz2 -C ~ #把 `demo.tar.bz2` 解压并释放到家目录 xz格式的压缩与解压\nxz 命令不可以单独使用，因此必须先使用 tar 命令对文件进行归档， 归档后再使用xz进行压缩\nxz demo.tar # 直接使用 xz 命令对归档文件进行压缩 解压 xz 格式文件\ntar -Jxvf arm-linux-gnueabi-5.4.0.tar.xz 💡小知识：xz格式文件\n比如说我们的内核压缩包就是xz格式文件，包括我们的交叉工具链。\n📢注意：\n文件的格式并不取决于文件名的后缀，后缀只是给我们看的。\n举个例子\ntar -czvf demo.tar.gz * # 把当前目录下所有文件归档并压缩为 `demo.tar.gz` mv demo.tar.gz demo.tar.even #重命名文件 `demo.tar.gz` 为 `demo.tar.even` tar -xzvf demo.tar.even -C ~ #将`demo.tar.even`解压并释放到家目录 可以看到我们将demo.tar.gz 重命名为 demo.tar.even后，虽然后缀名不是压缩包的后缀名，但是我们依然可以解压它，它本身仍然是压缩包。\n📌 命令：zip zip命令并不是Ubuntu 自带的，它需要我们手动来安装\nsudo apt install zip #安装`zip` 使用zip 命令进行压缩：\nzip test.zip * # 压缩当前目录下的所有文件，不包含子目录内容 zip test.zip * -r #添加`-r`选项之后`zip`命令在压缩的时候会把子目录进行压缩 📋案例：演示zip test.zip *的效果。\n可以看到包含子目录的目录文件压缩率为0%，说明该命令压缩当前目录下的所有文件，不包含子目录内容。\n📋案例：演示zip test.zip * -r的效果。\n可以看到，有更深层次的压缩，这里压缩了当前目录下的abc/目录。说明添加-r选项之后zip命令在压缩的时候会把子目录进行压缩。\n使用unzip命令进行解压\nunzip test.zip apt命令 apt的定义：\napt是Linux操作系统中，特别是基于Debian的系统（如Ubuntu）中的一个命令行工具，用于处理软件包的安装、升级、配置和删除。它是高级包装工具（Advanced Package Tool）的简称，这个工具为用户提供了一个统一的接口来处理软件包。\n1）设置软件源。\nsudo vim /etc/apt/sources.list #编辑`/etc/apt/sources.list`文件来设置软件源 ubuntu也可以直接进入设置选项去设置软件源。也就是图中的Software\u0026Updates\n这里我们用的软件源是阿里云的。\n在Linux上使用apt安装软件通常包括以下步骤：\n1） 更新软件包列表：\n首先，你需要更新本地的软件包列表，以确保你看到的软件包信息是最新的。这可以通过以下命令完成：\nsudo apt update 2）升级已安装的软件包：\n在安装新软件之前，你可能想要升级系统中已有的软件包。这可以通过以下命令完成：\nsudo apt upgrade 这个步骤是可选的，但建议执行，以确保系统的稳定性和安全性。\n3）搜索软件包：\n如果你不知道要安装的软件包的确切名称，你可以使用apt的搜索功能来查找它：\napt search 替换为你想要安装的软件包的名称或相关关键词。\n4）安装软件包：\n一旦你知道了要安装的软件包的名称，你可以使用以下命令来安装它：\nsudo apt install 替换为你想要安装的软件包的名称。\n5）配置软件包：\n有些软件包在安装过程中会询问你一些配置问题。按照提示操作即可。如果你不确定如何配置，通常可以选择默认设置。\n6） 验证安装：\n安装完成后，你可以通过运行软件包或使用以下命令来验证它是否已正确安装：\ndpkg -l | grep 如果软件包已安装，这个命令将显示软件包的详细信息。\n7）卸载软件包（如果需要）：\n如果你不想要某个软件包了，可以使用以下命令来卸载它：\nsudo apt remove 如果你想要同时删除配置文件，可以使用purge代替remove：\nsudo apt purge 请注意，这些步骤需要在具有管理员权限的账户下执行，因此需要使用sudo命令。此外，不同的Linux发行版可能会有细微的差别，但上述步骤适用于大多数基于Debian的系统。\n网络命令 📌 命令：hostname 作用：查看主机名。\nhostname 📌 命令：ifconfig 作用： 查看当前的网络配置状态。\nifconfig #查看的网卡 eth0 --- ens33 为网卡的名字 修改ip地址\n📢修改IP地址前，记得先ping一下该地址，确保要使用的IP地址没有被占用。\nipconfig eth0 192.168.25.3 #修改 eth0 的网卡 ipconfig ens33 192.168.25.3 #修改 ens33 的网卡 开启/关闭网卡\nipconfig eth0 up #启动 eth0 的网卡 ipconfig eth0 down #关闭 eth0 的网卡 📌 命令：ping 作用：ping命令检查网络是否连通。\n如果像上面图中显示有延迟值，则说明网络没有问题。\n💡小知识：生存时间（TTL）\nTTL（Time To Live）是一个IP数据包中的一个值，它指定了数据包在被丢弃之前可以通过的最大路由器数。TTL的主要目的是防止数据包在网络中无限循环。每次数据包通过一个路由器时，TTL值就会减1。当TTL值减到0时，数据包将被路由器丢弃，并且通常会发送一个ICMP超时消息给源地址。\n在Linux和Windows系统中，TTL的默认值是不同的。例如：\n在Linux系统中，TTL通常设置为64。 在Windows系统中，TTL通常设置为128。 🤔这个值和我们在淘宝上抢购东西有关。何出此言呢？\nTTL值也可以用来大致判断数据包的源距离。例如，如果TTL值很高，那么数据包可能不需要经过很多路由器就能到达目的地，这意味着源和目的地可能在网络拓扑上比较近。相反，如果TTL值很低，那么数据包可能需要经过很多路由器，这意味着源和目的地可能在网络拓扑上比较远。\n每次数据包通过一个路由器时，TTL值就会减1。假如你ping淘宝网的时候，发现ttl值很小，那么说明你离淘宝的服务器很远，可能这就是抢购不到东西的原因。🤣\nubuntu设置网络信息 📢如果你用的是wsl系统，那么就不用另外设置虚拟机的IP，因为wsl系统和你的主机是同一个IP。假如要改IP的话，也是去改自己主机的IP。\n1）打开配置文件。\nsudo vim /etc/network/interfaces 2）修改配置文件，设置为自动使用DHCP来自动分配IP。\nauto ens33 iface ens33 inet dhcp 或者设置IP为静态地址\nauto ens33 #指示系统在启动时自动激活网络接口`ens33`。 iface ens33 inet static #指定`ens33`接口使用静态IP地址配置。 address 192.168.25.5 #设置接口的IPv4地址为`192.168.25.5`。 netmask 255.255.255.0 #设置子网掩码为`255.255.255.0`，这定义了网络的大小。 gateway 192.168.25.1 #设置默认网关为`192.168.25.1`，这是网络中用于访问其他网络或互联网的设备。 📢\n请注意，如果你使用的是NetworkManager来管理网络连接，那么您可能需要使用nmcli或nmtui工具来设置静态IP地址，而不是直接编辑/etc/network/interfaces文件。\n此外，一些Linux发行版可能已经迁移到使用systemd-networkd来管理网络配置，在这种情况下，您可能需要在/etc/systemd/network目录中创建网络配置文件。\n请注意，随着NetworkManager和其他网络配置工具的普及，直接编辑 /etc/network/interfaces 文件的方式在些现代Linux发行版中已经不那么常见了。在这些系统中，网络配置通常通过图形界面或命令行工具（如 nmcli 或 nmtui）来进行。\n3）重启网络服务\nsudo service networking force-reload sudo service networking restar windows设置网络 END END：本节内容到此结束。\n个人提升之余，别忘了和小伙伴积极交流，很多人觉得他们在思考，而实际上他们只是在重新整理自己的偏见。请珍惜和他人交流讨论的机会。\n希望你每一天都有所收获，进步up up up。今天的我们并不比昨天更聪明，但一定要比昨天更睿智。\n参考 （1） Linux系统调用 | 内核态与用户态的转换_用户态、内核态转换失败怎么办-CSDN博客\n（2）Linux vi/vim | 菜鸟教程 (runoob.com)\n（3）Linux 系统启动过程 | 菜鸟教程 (runoob.com)\n",
+  "wordCount" : "9876",
+  "inLanguage": "zh",
+  "image":"https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/linux.png","datePublished": "2024-04-21T00:17:58+08:00",
+  "dateModified": "2024-04-21T00:17:58+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "Eddy"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://eddyblog.cn/posts/tech/linux-basics-02/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Eddy's blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://eddyblog.cn/img/logo3.jpg"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    (function () {
+        let  arr,reg = new RegExp("(^| )"+"change-themes"+"=([^;]*)(;|$)");
+        if(arr = document.cookie.match(reg)) {
+        } else {
+            if (new Date().getHours() >= 19 || new Date().getHours() < 6) {
+                document.body.classList.add('dark');
+                localStorage.setItem("pref-theme", 'dark');
+            } else {
+                document.body.classList.remove('dark');
+                localStorage.setItem("pref-theme", 'light');
+            }
+        }
+    })()
+
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://eddyblog.cn/" accesskey="h" title="Eddy&#39;s Blog (Alt + H)">
+            <img src="https://eddyblog.cn/img/logo3.jpg" alt="logo" aria-label="logo"
+                 height="35">Eddy&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://eddyblog.cn/search" title="🔍 搜索 (Alt &#43; /)" accesskey=/>
+                <span>🔍 搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/" title="🏠 主页">
+                <span>🏠 主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/posts" title="📚 文章">
+                <span>📚 文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/tags" title="🧩 标签">
+                <span>🧩 标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/archives/" title="⏱️ 时间轴">
+                <span>⏱️ 时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/about" title="🙋🏻‍♂️ 关于">
+                <span>🙋🏻‍♂️ 关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main page">
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+</style>
+
+<article class="post-single">
+    <div id="single-content">
+        <header class="post-header">
+            <div class="breadcrumbs"><a href="https://eddyblog.cn/">🏠 主页</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/">📚文章</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/tech/">👨🏻‍💻 技术</a></div>
+            <h1 class="post-title">
+                Linux入门：基础命令与实用技巧
+            </h1>
+            <div class="post-description">
+                本博客为新手量身打造，系统介绍了Linux操作系统的基本概念、核心命令及其应用场景。通过实例演示，帮助读者快速掌握Linux操作技巧，为进一步学习打下坚实基础。
+            </div>
+            <div class="post-meta">
+
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+
+    .parent-post-meta {
+        display: flex;
+        flex-wrap: wrap;
+        opacity: 0.8;
+    }
+</style>
+
+<span class="parent-post-meta">
+    <span id="post_meta_style_1">
+        <span class="fa fa-calendar-check-o"></span>
+        <span>2024-04-21
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    
+    
+    
+    
+    
+    
+    
+    <span id="post_meta_style_3">
+        <span class="fa fa-file-word-o"></span>
+        <span>9876字
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_4">
+        <span class="fa fa-clock-o"></span>
+        <span>20分钟
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_5">
+        <span class="fa fa-user-o"></span>
+        <span>Eddy
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_6">
+        <span class="fa fa-tags" style="opacity: 0.8"></span>
+        <span>
+            <span class="post-tags-meta">
+                <a href="https://eddyblog.cn/tags/linux/" style="color: var(--secondary)!important;">Linux</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/operating-system/" style="color: var(--secondary)!important;">Operating System</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/operating-system-command/" style="color: var(--secondary)!important;">Operating System Command</a>
+            </span>
+        </span>
+    </span>
+</span>
+<span style="opacity: 0.8;">
+                    <span id="post_meta_style_7">
+                        &nbsp;&nbsp;
+                        <span class="fa fa-eye" ></span>
+                        <span>
+                            <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+                            &nbsp;&nbsp;
+                        </span>
+                    </span>
+                    <span id="post_meta_style_8">
+                        <span class="fa fa-commenting-o"></span>
+                        <span>
+                            <script src="https://cdn.staticfile.org/twikoo//twikoo.all.min.js"></script>
+                            <script>
+                                let url = document.documentURI
+                                
+                                let dnsUrl = "https://eddyblog.cn/"
+                                let urlSplit = url.split(dnsUrl)
+                                let finalUrl = urlSplit[1]
+                                if (finalUrl[0] !== '/') {
+                                    finalUrl = '/'+finalUrl
+                                }
+                                twikoo.getCommentsCount({
+                                    envId:  null , 
+                                region:  null , 
+                                urls: [ 
+                                    
+                                    finalUrl,
+                                ],
+                                    includeReply: false 
+                                }).then(function (res) {
+                                    let count = res[0].count
+                                    const obj = document.getElementById("comment_count");
+                                    obj.innerText = count
+                                    
+                                    
+                                    
+                                }).catch(function (err) {
+                                    
+                                    console.error(err);
+                                });
+                            </script>
+                            <span id="comment_count"></span>
+                        </span>
+                    </span>
+                </span>
+
+</div>
+        </header> 
+<figure class="entry-cover1"><img style="zoom:;" loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/linux.png" alt="">
+    
+</figure><aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#init" aria-label="INIT">INIT</a></li>
+                <li>
+                    <a href="#linux%e6%98%af%e4%bb%80%e4%b9%88" aria-label="Linux是什么">Linux是什么</a></li>
+                <li>
+                    <a href="#vim%e7%bc%96%e8%be%91%e5%99%a8" aria-label="vim编辑器">vim编辑器</a><ul>
+                        
+                <li>
+                    <a href="#linux-vivim" aria-label="Linux vi/vim">Linux vi/vim</a></li>
+                <li>
+                    <a href="#%e4%bb%80%e4%b9%88%e6%98%af-vim" aria-label="什么是 vim？">什么是 vim？</a></li>
+                <li>
+                    <a href="#vivim-%e7%9a%84%e4%bd%bf%e7%94%a8" aria-label="vi/vim 的使用">vi/vim 的使用</a><ul>
+                        
+                <li>
+                    <a href="#%e5%91%bd%e4%bb%a4%e6%a8%a1%e5%bc%8f" aria-label="命令模式">命令模式</a></li>
+                <li>
+                    <a href="#%e8%be%93%e5%85%a5%e6%a8%a1%e5%bc%8f" aria-label="输入模式">输入模式</a></li>
+                <li>
+                    <a href="#%e5%ba%95%e7%ba%bf%e5%91%bd%e4%bb%a4%e6%a8%a1%e5%bc%8f" aria-label="底线命令模式">底线命令模式</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#linux%e5%9f%ba%e7%a1%80%e5%91%bd%e4%bb%a4" aria-label="Linux基础命令">Linux基础命令</a><ul>
+                        
+                <li>
+                    <a href="#%e5%91%bd%e4%bb%a4alias" aria-label="📌命令：alias">📌命令：alias</a></li>
+                <li>
+                    <a href="#%e5%91%bd%e4%bb%a4date" aria-label="📌命令：date">📌命令：date</a></li>
+                <li>
+                    <a href="#%e5%91%bd%e4%bb%a4dpkg" aria-label="📌命令：dpkg">📌命令：dpkg</a></li>
+                <li>
+                    <a href="#%e5%91%bd%e4%bb%a4echo" aria-label="📌命令：echo">📌命令：echo</a></li>
+                <li>
+                    <a href="#%e5%91%bd%e4%bb%a4sort" aria-label="📌命令：sort">📌命令：sort</a></li>
+                <li>
+                    <a href="#%e5%91%bd%e4%bb%a4which" aria-label="📌命令：which">📌命令：which</a></li>
+                <li>
+                    <a href="#%e5%91%bd%e4%bb%a4uniq" aria-label="📌命令：uniq">📌命令：uniq</a></li>
+                <li>
+                    <a href="#--%e7%ae%a1%e9%81%93" aria-label="📌 | 管道">📌 | 管道</a></li>
+                <li>
+                    <a href="#-%e5%91%bd%e4%bb%a4diff" aria-label="📌 命令：diff">📌 命令：diff</a></li>
+                <li>
+                    <a href="#-%e5%91%bd%e4%bb%a4file" aria-label="📌 命令：file">📌 命令：file</a></li>
+                <li>
+                    <a href="#-%e5%91%bd%e4%bb%a4wc" aria-label="📌 命令：wc">📌 命令：wc</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e8%bf%9b%e7%a8%8b%e7%ae%a1%e7%90%86%e5%91%bd%e4%bb%a4" aria-label="进程管理命令">进程管理命令</a><ul>
+                        
+                <li>
+                    <a href="#-%e5%91%bd%e4%bb%a4ps" aria-label="📌 命令：ps">📌 命令：ps</a></li>
+                <li>
+                    <a href="#-%e5%91%bd%e4%bb%a4top" aria-label="📌 命令：top">📌 命令：top</a></li>
+                <li>
+                    <a href="#%e5%91%bd%e4%bb%a4kill" aria-label="📌命令：kill">📌命令：kill</a><ul>
+                        
+                <li>
+                    <a href="#%e5%91%bd%e4%bb%a4killall" aria-label="命令：killall">命令：killall</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%8e%8b%e7%bc%a9%e4%b8%8e%e8%a7%a3%e5%8e%8b%e7%bc%a9%e5%91%bd%e4%bb%a4" aria-label="压缩与解压缩命令">压缩与解压缩命令</a><ul>
+                        
+                <li>
+                    <a href="#-%e5%91%bd%e4%bb%a4tar" aria-label="📌 命令：tar">📌 命令：tar</a></li>
+                <li>
+                    <a href="#-%e5%91%bd%e4%bb%a4zip" aria-label="📌 命令：zip">📌 命令：zip</a></li></ul>
+                </li>
+                <li>
+                    <a href="#apt%e5%91%bd%e4%bb%a4" aria-label="apt命令">apt命令</a></li>
+                <li>
+                    <a href="#%e7%bd%91%e7%bb%9c%e5%91%bd%e4%bb%a4" aria-label="网络命令">网络命令</a><ul>
+                        
+                <li>
+                    <a href="#-%e5%91%bd%e4%bb%a4hostname" aria-label="📌 命令：hostname">📌 命令：hostname</a></li>
+                <li>
+                    <a href="#-%e5%91%bd%e4%bb%a4ifconfig" aria-label="📌 命令：ifconfig">📌 命令：ifconfig</a></li>
+                <li>
+                    <a href="#-%e5%91%bd%e4%bb%a4ping" aria-label="📌 命令：ping">📌 命令：ping</a><ul>
+                        
+                <li>
+                    <a href="#ubuntu%e8%ae%be%e7%bd%ae%e7%bd%91%e7%bb%9c%e4%bf%a1%e6%81%af" aria-label="ubuntu设置网络信息">ubuntu设置网络信息</a></li>
+                <li>
+                    <a href="#windows%e8%ae%be%e7%bd%ae%e7%bd%91%e7%bb%9c" aria-label="windows设置网络">windows设置网络</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#end" aria-label="END">END</a></li>
+                <li>
+                    <a href="#%e5%8f%82%e8%80%83" aria-label="参考">参考</a>
+                </li>
+            </ul>
+        </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+        
+        activeElement = elements[0];
+        const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+        document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+    }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        if (elements) {
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement){
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }
+    }, false);
+
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;
+    }
+</script>
+        <div class="post-content"><h2 id="init">INIT<a hidden class="anchor" aria-hidden="true" href="#init">#</a></h2>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/INIT.jpg" alt = "INIT.jpg" width = "70%" height = "auto">
+</div>
+<br>
+<blockquote>
+<p><strong>INIT：本节内容正式开始。action!</strong></p>
+</blockquote>
+<h2 id="linux是什么">Linux是什么<a hidden class="anchor" aria-hidden="true" href="#linux是什么">#</a></h2>
+<p>🤔Linux是什么？</p>
+<p>🔑让我们来聊聊Linux这个电脑界的“开源侠客”。</p>
+<p>Linux，一个听起来像希腊神话中英雄的名字，实际上是一个自由、开源的操作系统内核，由林纳斯·托瓦兹（Linus Torvalds）在1991年“一剑封喉”，从此开启了开源世界的大门。想象一下，Linux就像是一位无私的大师，将内功心法（源代码）公开于世，让众多弟子（开发者）得以修炼、改进，使其成为众多服务器和超级计算机的“座右铭”（操作系统）。</p>
+<p>Linux以其稳定性、安全性和灵活性著称，就像一位多才多艺的侠客，无论是在企业服务器的“江湖”中，还是在嵌入式系统的“小巷”里，都能见到它的身影。它不需要昂贵的“武功秘籍”（许可证），也不需要定期向“朝廷”（软件公司）进贡（付费更新），它就像一位行侠仗义的隐士，默默地守护着数据和隐私。</p>
+<p>Linux的发行版（Distros）多如繁星，每个都有自己的特色和“门派”（社区），从新手友好的Ubuntu到高效能的Debian，从桌面系统到服务器，Linux都能提供合适的“武器”（软件）来应对各种挑战。</p>
+<p>总之，Linux就像是一位无所不能的电脑界英雄，以其开源的精神，让技术的世界更加多元和自由。无论你是编程新手还是资深开发者，Linux都能成为你值得信赖的“伙伴”，一起在数字世界中“行侠仗义”。</p>
+<p>📚定义：Linux是一种开源操作系统，以其稳定性、安全性和高度可定制性而受到广泛欢迎。它基于Unix，由林纳斯·托瓦兹在1991年首次发布。用户和开发者社区庞大，支持多种硬件平台，广泛应用于服务器、桌面和嵌入式系统等场景。</p>
+<p>当我们讲到Linux，其实它有两层含义。</p>
+<p>1）Linux内核它运行于系统的最底层，用户看不见也摸不到。</p>
+<ul>
+<li>内存的管理</li>
+<li>文件管理</li>
+<li>任务管理</li>
+<li>网络管理</li>
+<li>设备管理</li>
+</ul>
+<p>2）Linux发行版本</p>
+<p>Ubuntu</p>
+<p>国内乃至全球热门的Linux发行版。也是各种推荐入门Linux爱好者安装的一个Linux发行版。它的特点主要有以下：</p>
+<ul>
+<li>安装简单</li>
+<li>Unity3D图形界面，比较华丽（因人而异）</li>
+<li>对一些专有驱动支持比较好，例如显卡驱动</li>
+<li>社区比较活跃，几乎遇到的问题都可以找到答案</li>
+<li>版本更新较快，基本半年一个版本</li>
+</ul>
+<p>Ubuntu的发行规律<br>
+每个偶数年121416182022&gt;的4月份就发行一个长期支持版（正式版本5年）。</p>
+<blockquote>
+<p>参考：<a href="https://blog.csdn.net/weixin_40134955/article/details/103223856">Linux系统调用 | 内核态与用户态的转换_用户态、内核态转换失败怎么办-CSDN博客</a></p>
+</blockquote>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%85%A5%E9%97%A8%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4.png" alt = "Linux入门与基础命令.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>如上图所示，从宏观上来看，Linux操作系统的体系架构分为<strong>用户态</strong>和<strong>内核态</strong>（或者用户空间和内核）。内核从本质上看是一种<strong>软件</strong>——<strong>控制计算机的硬件资源</strong>，并提供上层应用程序运行的环境。用户态即<strong>上层应用程序的活动空间</strong>，应用程序的执行必须依托于内核提供的资源，包括CPU资源、存储资源、I/O资源等。为了使上层应用能够访问到这些资源，内核必须为上层应用提供访问的接口：<strong>即系统调用。</strong></p>
+<p><strong>系统调用</strong>是操作系统的最小功能单位，这些系统调用根据不同的应用场景可以进行扩展和裁剪，现在各种版本的Unix实现都提供了不同数量的系统调用，如<strong>Linux的不同版本提供了240-260个系统调用</strong>，FreeBSD大约提供了320个（reference：UNIX环境高级编程）。我们可以把系统调用看成是一种不能再化简的操作，有人把它比作一个汉字的一个“笔画”，而一个“汉字”就代表一个上层应用，我觉得这个比喻非常贴切。因此，有时候如果要实现一个完整的汉字（给某个变量分配内存空间），就必须调用很多的系统调用。如果从实现者的角度来看，良好的程序设计方法是：<strong>重视上层的业务逻辑操作，而尽可能避免底层复杂的实现细节</strong>。库函数正是为了将开发者从复杂的细节中解脱出来而提出的一种有效方法。它实现对系统调用的封装，将简单的业务逻辑接口呈现给用户，方便用户调用，从这个角度上看，库函数就像是组成汉字的“偏旁”。这样的一种组成方式极大增强了程序设计的灵活性，对于简单的操作，我们可以直接调用系统调用来访问资源，如“人”，对于复杂操作，我们借助于库函数来实现。显然，这样的库函数依据不同的标准也可以有不同的实现版本，如ISO C 标准库，POSIX标准库等。</p>
+<p><strong>Shell是一个特殊的应用程序，俗称命令行</strong>，本质上是一个_命令解释器_，它下通系统调用，上通各种应用，通常充当着一种“胶水”的角色，来连接各个小功能程序，让不同程序能够以一个清晰的接口协同工作，从而增强各个程序的功能。同时，Shell是可编程的，它可以执行符合Shell语法的文本，这样的文本称为Shell脚本，通常短短的几行Shell脚本就可以实现一个非常大的功能，原因就是这些<strong>Shell语句通常都对系统调用做了一层封装</strong>。为了方便用户和系统交互，一般，一个Shell对应一个终端，终端是一个硬件设备，呈现给用户的是一个图形化窗口。我们可以通过这个窗口输入或者输出文本。这个文本直接传递给shell进行分析解释，然后执行。</p>
+<p>总结一下，用户态的应用程序可以通过三种方式来访问内核态的资源：</p>
+<ul>
+<li>系统调用</li>
+<li>库函数</li>
+<li>Shell脚本</li>
+</ul>
+<h2 id="vim编辑器">vim编辑器<a hidden class="anchor" aria-hidden="true" href="#vim编辑器">#</a></h2>
+<h3 id="linux-vivim">Linux vi/vim<a hidden class="anchor" aria-hidden="true" href="#linux-vivim">#</a></h3>
+<p>所有的 Unix Like 系统都会内建 vi 文书编辑器，其他的文书编辑器则不一定会存在。</p>
+<p>但是目前我们使用比较多的是 vim 编辑器。</p>
+<p>vim 具有程序编辑的能力，可以主动的以字体颜色辨别语法的正确性，方便程序设计。</p>
+<h3 id="什么是-vim">什么是 vim？<a hidden class="anchor" aria-hidden="true" href="#什么是-vim">#</a></h3>
+<p>Vim 是从 vi 发展出来的一个文本编辑器。代码补全、编译及错误跳转等方便编程的功能特别丰富，在程序员中被广泛使用。</p>
+<p>简单的来说， vi 是老式的字处理器，不过功能已经很齐全了，但是还是有可以进步的地方。 vim 则可以说是程序开发者的一项很好用的工具。</p>
+<h3 id="vivim-的使用">vi/vim 的使用<a hidden class="anchor" aria-hidden="true" href="#vivim-的使用">#</a></h3>
+<blockquote>
+<p>参考：<a href="https://www.runoob.com/linux/linux-vim.html">Linux vi/vim | 菜鸟教程 (runoob.com)</a></p>
+</blockquote>
+<p>基本上 vi/vim 共分为三种模式，<strong>命令模式（Command Mode）、输入模式（Insert Mode）和命令行模式（Command-Line Mode）</strong>。</p>
+<h4 id="命令模式">命令模式<a hidden class="anchor" aria-hidden="true" href="#命令模式">#</a></h4>
+<p><strong>用户刚刚启动 vi/vim，便进入了命令模式。</strong></p>
+<p>此状态下敲击键盘动作会被 Vim 识别为命令，而非输入字符，比如我们此时按下 i，并不会输入一个字符，i 被当作了一个命令。</p>
+<p>以下是普通模式常用的几个命令：</p>
+<ul>
+<li>i &ndash; 切换到输入模式，在光标当前位置开始输入文本。</li>
+<li>x &ndash; 删除当前光标所在处的字符。</li>
+<li>: &ndash; 切换到底线命令模式，以在最底一行输入命令。</li>
+<li>a &ndash; 进入插入模式，在光标下一个位置开始输入文本。</li>
+<li>o：在当前行的下方插入一个新行，并进入插入模式。</li>
+<li>O &ndash; 在当前行的上方插入一个新行，并进入插入模式。</li>
+<li>dd &ndash; 剪切当前行。</li>
+<li>yy &ndash; 复制当前行。</li>
+<li>p（小写） &ndash; 粘贴剪贴板内容到光标下方。</li>
+<li>P（大写）&ndash; 粘贴剪贴板内容到光标上方。</li>
+<li>u &ndash; 撤销上一次操作。</li>
+<li>Ctrl + r &ndash; 重做上一次撤销的操作。</li>
+<li>:w &ndash; 保存文件。</li>
+<li>:q &ndash; 退出 Vim 编辑器。</li>
+<li>:q! &ndash; 强制退出Vim 编辑器，不保存修改。</li>
+</ul>
+<p>若想要编辑文本，只需要启动 Vim，进入了命令模式，按下 i 切换到输入模式即可。</p>
+<p>命令模式只有一些最基本的命令，因此仍要依靠<strong>底线命令行模式</strong>输入更多命令。</p>
+<h4 id="输入模式">输入模式<a hidden class="anchor" aria-hidden="true" href="#输入模式">#</a></h4>
+<p>在命令模式下按下 i 就进入了输入模式，使用 Esc 键可以返回到普通模式。</p>
+<p>在输入模式中，可以使用以下按键：</p>
+<ul>
+<li><strong>字符按键以及Shift组合</strong>，输入字符</li>
+<li><strong>ENTER</strong>，回车键，换行</li>
+<li><strong>BACK SPACE</strong>，退格键，删除光标前一个字符</li>
+<li><strong>DEL</strong>，删除键，删除光标后一个字符</li>
+<li><strong>方向键</strong>，在文本中移动光标</li>
+<li><strong>HOME</strong>/<strong>END</strong>，移动光标到行首/行尾</li>
+<li><strong>Page Up</strong>/<strong>Page Down</strong>，上/下翻页</li>
+<li><strong>Insert</strong>，切换光标为输入/替换模式，光标将变成竖线/下划线</li>
+<li><strong>ESC</strong>，退出输入模式，切换到命令模式</li>
+</ul>
+<h4 id="底线命令模式">底线命令模式<a hidden class="anchor" aria-hidden="true" href="#底线命令模式">#</a></h4>
+<p>在命令模式下按下 :（英文冒号）就进入了底线命令模式。</p>
+<p>底线命令模式可以输入单个或多个字符的命令，可用的命令非常多。</p>
+<p>在底线命令模式中，基本的命令有（已经省略了冒号）：</p>
+<ul>
+<li><code>:w</code>：保存文件。</li>
+<li><code>:q</code>：退出 Vim 编辑器。</li>
+<li><code>:wq</code>：保存文件并退出 Vim 编辑器。</li>
+<li><code>:q!</code>：强制退出Vim编辑器，不保存修改。</li>
+</ul>
+<p>按 ESC 键可随时退出底线命令模式。</p>
+<p>简单的说，我们可以将这三个模式想成底下的图标来表示：</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%85%A5%E9%97%A8%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4-1.png" alt = "Linux入门与基础命令-1.png" width = "70%" height = "auto">
+</div>
+<h2 id="linux基础命令">Linux基础命令<a hidden class="anchor" aria-hidden="true" href="#linux基础命令">#</a></h2>
+<h3 id="命令alias">📌命令：alias<a hidden class="anchor" aria-hidden="true" href="#命令alias">#</a></h3>
+<p>作用：给某个命令取别名。</p>
+<br>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%85%A5%E9%97%A8%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4-2.png" alt = "Linux入门与基础命令-2.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>上面操作为临时的操作，当终端重启后则恢复原状。</p>
+<p>如何让它永久？</p>
+<p>其中一个方法是修改配置文件《每一次打开终端都会执行该配置文件》</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>vim ~/.bashrc <span style="color:#75715e">#使用 vim 打开配置文件</span>
+</span></span></code></pre></div><p>在配置文件的末尾添加一行，把修改的命令写进去。</p>
+<br>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%85%A5%E9%97%A8%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4-3.png" alt = "Linux入门与基础命令-3.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>📢修改配置文件时一定要小心，保险起见记得备份配置文件一份。</p>
+<p>💡小技巧：</p>
+<p>假如想要每次打开终端时都显示一句话，比如打印&quot;It&rsquo;s another day full of energy. Come on.&quot;，（今天又是元气满满的一天，加油吧）</p>
+<p>那么可以修改配置文件。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>vim ~/.bashrc
+</span></span></code></pre></div><p>在配置文件的末尾添加一行，把修改的命令写进去。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;It&#39;s another day full of energy. Come on.&#34;</span>
+</span></span></code></pre></div><p>这样每次打开终端的时候，就会显示&quot;It&rsquo;s another day full of energy. Come on.&ldquo;了。</p>
+<h3 id="命令date">📌命令：date<a hidden class="anchor" aria-hidden="true" href="#命令date">#</a></h3>
+<p>作用：直接输出日期与时间（也可以设置时间）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>date <span style="color:#75715e">#输出时间</span>
+</span></span></code></pre></div><br>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%85%A5%E9%97%A8%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4-4.png" alt = "Linux入门与基础命令-4.png" width = "70%" height = "auto">
+</div>
+<br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo date -s <span style="color:#e6db74">&#34;2077/12/1&#34;</span> <span style="color:#75715e">#设置时间</span>
+</span></span></code></pre></div><br>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%85%A5%E9%97%A8%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4-5.png" alt = "Linux入门与基础命令-5.png" width = "70%" height = "auto">
+</div>
+<br>
+<h3 id="命令dpkg">📌命令：dpkg<a hidden class="anchor" aria-hidden="true" href="#命令dpkg">#</a></h3>
+<p>作用：软件包安装。</p>
+<p>1）先下载dpkg的安装包，后缀.deb文件。</p>
+<h3 id="命令echo">📌命令：echo<a hidden class="anchor" aria-hidden="true" href="#命令echo">#</a></h3>
+<p>作用：回显，把你输入的字符输出到终端。</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%85%A5%E9%97%A8%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4-6.png" alt = "Linux入门与基础命令-6.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>后面在shell编程中可以作为打印输出。</p>
+<h3 id="命令sort">📌命令：sort<a hidden class="anchor" aria-hidden="true" href="#命令sort">#</a></h3>
+<p>作用：对文件内容进行排序。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sort max.c &gt; max.txt <span style="color:#75715e">#重定向输出，把原本输出到标准输入文件的内容重定向到sort.txt文件中。</span>
+</span></span></code></pre></div><h3 id="命令which">📌命令：which<a hidden class="anchor" aria-hidden="true" href="#命令which">#</a></h3>
+<p>作用：查看命令所在的位置。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>which chmod
+</span></span></code></pre></div><br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%85%A5%E9%97%A8%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4-7.png" alt = "Linux入门与基础命令-7.png" width = "70%" height = "auto">
+</div>
+<h3 id="命令uniq">📌命令：uniq<a hidden class="anchor" aria-hidden="true" href="#命令uniq">#</a></h3>
+<p>作用：去掉文件中重复项然后输出。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>uniq max.c
+</span></span></code></pre></div><h3 id="--管道">📌 | 管道<a hidden class="anchor" aria-hidden="true" href="#--管道">#</a></h3>
+<p>可以用来链接两个命令。</p>
+<p>命令1 | 命令2</p>
+<p>把命令1的输出作为命令2的输入。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>ls -la | sort <span style="color:#75715e">#把 ls -la 的输出作为 sort的输入</span>
+</span></span></code></pre></div><br>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%85%A5%E9%97%A8%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4-8.png" alt = "Linux入门与基础命令-8.png" width = "70%" height = "auto">
+</div>
+<br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sort max.c | uniq <span style="color:#75715e">#先对文件进行排序，然后再通过 uniq 进行去重复</span>
+</span></span></code></pre></div><h3 id="-命令diff">📌 命令：diff<a hidden class="anchor" aria-hidden="true" href="#-命令diff">#</a></h3>
+<p>作用：检查文件是否相同。</p>
+<p>这是一个非常牛的命令，用来对比两个文件或者目录的异同，并将之加工成符合某种格式的文档，这就是大名鼎鼎的补丁文件。毫不夸张地说：神器diff是各类版本管理软件（例如svn、git等）的基石。</p>
+<p>（嵌入式用得不太多，一般补丁都是在大工程里面，嵌入式工程再大也就几十mb，这个部分自行拓展吧）。</p>
+<h3 id="-命令file">📌 命令：file<a hidden class="anchor" aria-hidden="true" href="#-命令file">#</a></h3>
+<p>作用：查看文件的格式信息。</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%85%A5%E9%97%A8%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4-9.png" alt = "Linux入门与基础命令-9.png" width = "70%" height = "auto">
+</div>
+<br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>file /bin/ls
+</span></span></code></pre></div><br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%85%A5%E9%97%A8%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4-10.png" alt = "Linux入门与基础命令-10.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>可以看到这里显示这是x86-64位平台，我们的开发板可能是32位的，这个地方后面会改变，此处暂且不表。</p>
+<h3 id="-命令wc">📌 命令：wc<a hidden class="anchor" aria-hidden="true" href="#-命令wc">#</a></h3>
+<p>作用：计算字符数，单词数，行数。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>wc ls.txt
+</span></span></code></pre></div><br>
+<div align=center>
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%85%A5%E9%97%A8%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4-11.png" alt = "Linux入门与基础命令-11.png" width = "70%" height = "auto">
+</div>
+<br>
+<p><code>7</code>表示行数，<code>56</code>表示单词数，<code>320</code>表示字符数，<code>ls.txt</code>就是文件名。</p>
+<h2 id="进程管理命令">进程管理命令<a hidden class="anchor" aria-hidden="true" href="#进程管理命令">#</a></h2>
+<p>🤔什么是进程？</p>
+<p>进程：运行起来的程序就称为进程，它占用一定内存空间。</p>
+<h3 id="-命令ps">📌 命令：ps<a hidden class="anchor" aria-hidden="true" href="#-命令ps">#</a></h3>
+<p>作用：查看进程信息。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>ps -ef
+</span></span></code></pre></div><br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%85%A5%E9%97%A8%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4-12.png" alt = "Linux入门与基础命令-12.png" width = "70%" height = "auto">
+</div>
+<br>
+<p><code>init</code> 进程是系统所有进程的起点，你可以把它比拟成系统所有进程的老祖宗，没有这个进程，系统中任何进程都不会启动。</p>
+<p>可以看到所有进程除了<code>init</code> 进程都有一个父进程号，也就是说除了<code>init</code> 进程，其他进程都有一个父进程。</p>
+<p>图中<code>TTY</code>为？的进程为守护进程，意思是终端的关闭并不影响该进程。（举个例子：你手机在打游戏，关闭手机的话，游戏也就关闭了，但是守护进程就是挂机的游戏，你关闭手机之后，它依然在后台运行。）</p>
+<p>进程名为<code>-bash</code>的进程就是你打开的终端，你打开两个终端的话，就会显示两个<code>-bash</code>的进程。</p>
+<p>💡小知识：守护进程</p>
+<p>许多程序需要开机启动。它们在Windows叫做&quot;服务&rdquo;（service），在Linux就叫做&quot;守护进程&quot;（daemon）。</p>
+<p>init进程的一大任务，就是去运行这些开机启动的程序。</p>
+<p>守护进程（Daemon）是在后台运行的服务进程，它不受用户直接控制，通常在系统启动时开始运行，并在系统关闭时结束。守护进程通常没有控制终端，这意味着它们不会与任何终端设备关联，可以在用户登录和注销的情况下持续运行。</p>
+<p>守护进程的目的是提供对系统资源或网络服务的持续监控和管理。它们负责执行系统任务，如打印作业的排队（lpd）、网络连接的管理（sshd）、文件系统的同步（fsync）等。守护进程通常以超级用户（root）权限运行，以访问系统资源和执行需要特权操作的任务。</p>
+<p>守护进程的特点包括：</p>
+<ol>
+<li>后台运行：守护进程在后台运行，不与任何终端会话直接交互。</li>
+<li>无控制终端：守护进程没有控制终端，因此不会受到用户登录或注销的影响。</li>
+<li>持续运行：守护进程通常在系统启动时启动，并在系统运行期间持续运行，直到系统关闭。</li>
+<li>父进程：守护进程的父进程通常是<code>init</code>进程（在较新的系统中是<code>systemd</code>），这样即使原始的父进程结束了，守护进程仍然可以继续运行。</li>
+</ol>
+<p>在Linux系统中，守护进程通常通过<code>init</code>系统（如<code>systemd</code>、<code>upstart</code>或传统的<code>sysvinit</code>）来管理，这些系统负责启动、停止和管理守护进程的生命周期。</p>
+<h3 id="-命令top">📌 命令：top<a hidden class="anchor" aria-hidden="true" href="#-命令top">#</a></h3>
+<p>作用：查看进程信息（动态的）（类似于windows的进程管理器）。</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%85%A5%E9%97%A8%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4-13.png" alt = "Linux入门与基础命令-13.png" width = "70%" height = "auto">
+</div>
+<br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>top
+</span></span></code></pre></div><br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%85%A5%E9%97%A8%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4-14.png" alt = "Linux入门与基础命令-14.png" width = "70%" height = "auto">
+</div>
+<br>
+<h3 id="命令kill">📌命令：kill<a hidden class="anchor" aria-hidden="true" href="#命令kill">#</a></h3>
+<p>作用：向某一个进程发送信号。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>kill -l <span style="color:#75715e">#查看 Linux 的信号</span>
+</span></span><span style="display:flex;"><span>kill -2 <span style="color:#ae81ff">873</span> <span style="color:#75715e">#向进程ID为873的进程发送了一个编号为1的信号，即 SIGINT 信号。</span>
+</span></span><span style="display:flex;"><span>killall -3 a.out <span style="color:#75715e">#向所有名为 a.out 的进程发送了一个编号为3的信号，即SIGQUIT 信号。默认情况下，SIGQUIT 信号会导致接收它的进程立即终止。</span>
+</span></span><span style="display:flex;"><span>killall -SIGHUP a.out <span style="color:#75715e">#向所有名为 a.out 的进程发送了一个 SIGHUP 信号，默认情况下，SIGHUP 会导致进程终止。</span>
+</span></span></code></pre></div><br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%85%A5%E9%97%A8%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4-15.png" alt = "Linux入门与基础命令-15.png" width = "70%" height = "auto">
+</div>
+<br>
+<blockquote>
+<p>kill发送的信号大部分作用都是杀掉进程。</p>
+</blockquote>
+<p>📋案例：演示<code>kill -1 进程号</code>和<code>kill -2 进程号</code>关闭1个进程。</p>
+<p>首先写一个程序，让这个程序一直打印{啦啦啦德玛西亚}，这样我们再<code>kill -2</code>中断该进程时就能明显看到效果。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#66d9ef">const</span> <span style="color:#f92672">*</span>argv[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span>(<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%d--啦啦啦德玛西亚</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,i<span style="color:#f92672">++</span>);
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">sleep</span>(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>然后我们编译运行该程序</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%85%A5%E9%97%A8%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4-16.png" alt = "" width = "70%" height = "auto">
+</div>
+<br>
+<p>此时我们再开一个终端，去查看该进程。</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%85%A5%E9%97%A8%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4-17.png" alt = "Linux入门与基础命令-17.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>可以看到<code>ps</code>命令没有查看到进程，所以我们输入命令<code>ps -ef</code>查看全部进程。</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%85%A5%E9%97%A8%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4-18.png" alt = "Linux入门与基础命令-18.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>我们看到这个进程的进程号为842。</p>
+<p>接下来我们使用<code>kill -1 进程号</code>来挂起该进程（实际上就是终止该进程）。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>kill -1 <span style="color:#ae81ff">842</span> <span style="color:#75715e">#向进程ID为842的进程发送了一个编号为1的信号，即 SIGHUP 信号。</span>
+</span></span></code></pre></div><br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%85%A5%E9%97%A8%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4-19.png" alt = "Linux入门与基础命令-19.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>同样，我们再次运行该程序，<code>ps -ef</code>查到该进程号为873。</p>
+<p>接下来我们使用<code>kill -2 进程号</code>来中断该进程（实际上就是终止该进程）。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>kill -2 <span style="color:#ae81ff">873</span> <span style="color:#75715e">#向进程ID为873的进程发送了一个编号为1的信号，即 SIGINT 信号。</span>
+</span></span></code></pre></div><br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%85%A5%E9%97%A8%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4-20.png" alt = "Linux入门与基础命令-20.png" width = "70%" height = "auto">
+</div>
+<br>
+<h4 id="命令killall">命令：killall<a hidden class="anchor" aria-hidden="true" href="#命令killall">#</a></h4>
+<p>在Unix和Linux系统中，<code>killall</code>命令用于向所有匹配特定名称的进程发送信号。</p>
+<p>📋案例：演示用<code>killall -3 进程名</code>关闭一个进程。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>killall -3 a.out <span style="color:#75715e">#向所有名为 a.out 的进程发送了一个编号为3的信号，即SIGQUIT 信号。默认情况下，SIGQUIT 信号会导致接收它的进程立即终止。</span>
+</span></span></code></pre></div><br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%85%A5%E9%97%A8%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4-21.png" alt = "Linux入门与基础命令-21.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>📋案例：演示用<code>killall -SIGHUP 进程名</code>关闭一个进程。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>killall -SIGHUP a.out <span style="color:#75715e">#向所有名为 a.out 的进程发送了一个 SIGHUP 信号，默认情况下，SIGHUP 会导致进程终止。</span>
+</span></span></code></pre></div><br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%85%A5%E9%97%A8%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4-22.png" alt = "Linux入门与基础命令-22.png" width = "70%" height = "auto">
+</div>
+<br>
+<p><em>kill发送的信号大部分作用都是杀掉进程。但是编号为18和19的信号不是杀掉进程的。</em></p>
+<p>📋案例：演示<code>killall -18 进程名</code>和<code>killall -19 进程名</code>的效果。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>killall -19 a.out <span style="color:#75715e">#这条命令是向所有名为 a.out 的进程发送了一个编号为19的信号，即 SIGSTOP 信号。SIGSTOP 信号用于停止一个进程的执行，而不会导致它终止。</span>
+</span></span></code></pre></div><br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%85%A5%E9%97%A8%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4-23.png" alt = "Linux入门与基础命令-23.png" width = "70%" height = "auto">
+</div>
+<br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>killall -18 a.out <span style="color:#75715e">#向所有名为 a.out 的进程发送了一个编号为18的信号，即 SIGCONT 信号。 SIGCONT 信号用于继续一个之前被 SIGSTOP 或 SIGTSTP 信号停止的进程。</span>
+</span></span></code></pre></div><br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%85%A5%E9%97%A8%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4-24.png" alt = "Linux入门与基础命令-24.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>💡小知识：</p>
+<p><code>1 SIGHUP</code> 信号：</p>
+<p><code>SIGHUP</code> 信号传统上用于通知终端的挂起，默认情况下，<code>SIGHUP</code>会导致进程终止。</p>
+<p><code>2 SIGINT</code>信号：</p>
+<p><code>SIGINT</code>通常用于中断一个进程，它类似于用户在终端上按下<code>Ctrl+C</code>时发送的信号。</p>
+<p><code>3 SIGQUIT</code>信号：</p>
+<p>默认情况下，<code>SIGQUIT</code>信号会导致接收它的进程立即终止，并且在大多数情况下，会在当前工作目录下创建一个核心转储文件，文件名通常是<code>core</code>或<code>core.&lt;pid&gt;</code>，其中<code>&lt;pid&gt;</code>是进程的ID。</p>
+<p><code>18 SIGCONT</code>信号：</p>
+<p><code>SIGCONT</code>信号通常用于恢复被暂停的进程，特别是在进程管理或调试过程中。与<code>SIGSTOP</code>信号不同，<code>SIGCONT</code>可以被进程捕获和处理，但通常情况下，进程会继续其正常的执行。</p>
+<p><code>19 SIGSTOP</code>信号：</p>
+<p><code>SIGSTOP</code>信号用于停止一个进程的执行，而不会导致它终止。当进程接收到<code>SIGSTOP</code>信号时，它会立即暂停执行，并且不会继续直到收到<code>SIGCONT</code>信号。</p>
+<h2 id="压缩与解压缩命令">压缩与解压缩命令<a hidden class="anchor" aria-hidden="true" href="#压缩与解压缩命令">#</a></h2>
+<h3 id="-命令tar">📌 命令：tar<a hidden class="anchor" aria-hidden="true" href="#-命令tar">#</a></h3>
+<p>tar的基础选项。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span>-c: 创建归档文件。（创建一个压缩包）
+</span></span><span style="display:flex;"><span>-x: 释放归档文件。（解压一个压缩包）
+</span></span><span style="display:flex;"><span>-t: 查看归档文件（或者压缩文件）
+</span></span><span style="display:flex;"><span>-f: 指定要归档、压缩或者查看的文件的名称。
+</span></span><span style="display:flex;"><span>-v: 显示命令执行过程。
+</span></span><span style="display:flex;"><span>-z: 使用 gzip 压缩工具进行相应的压缩/解压
+</span></span><span style="display:flex;"><span>-j: 使用bzip2 压缩工具进行相应的压缩/解压
+</span></span><span style="display:flex;"><span>-J: 解压xz文件可以使用该选项
+</span></span></code></pre></div><p>归档（把若干个文件整合成一个文件）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>tar -cf demo.tar a.out demo.c ls.txt max.c min.c sort.txt <span style="color:#75715e">#将文件`a.out`、`demo.c`、`ls.txt`、`max.c`、`min.c`和`sort.txt`打包到一个名为`demo.tar`的归档文件中。</span>
+</span></span><span style="display:flex;"><span>tar -cf demo1.tar * <span style="color:#75715e">#把当前路径下的所有文件进行归档生成为 demo1.tar 的文件</span>
+</span></span></code></pre></div><br>
+<div align= "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%85%A5%E9%97%A8%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4.jpg" alt = "Linux入门与基础命令.jpg" width = "70%" height = "auto">
+</div>
+<br>
+<p>查看归档文件内容</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>tar -tf demo1.tar <span style="color:#75715e">#查看归档文件的内容 </span>
+</span></span></code></pre></div><p>释放归档文件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>tar -xvf demo1.tar -C abc <span style="color:#75715e"># -C 是指定文件释放的路径， abc 就是当前目录下的 abc 目录</span>
+</span></span></code></pre></div><p>压缩与解压缩 gzip 文件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>tar -czvf demo.tar.gz * <span style="color:#75715e"># 把当前目录下所有文件归档并压缩为 `demo.tar.gz`</span>
+</span></span><span style="display:flex;"><span>tar -xzvf demo.tar.gz -C ~ <span style="color:#75715e">#把 `demo.tar.gz` 解压并释放到家目录</span>
+</span></span></code></pre></div><p>压缩与解压缩 bzip2 文件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>tar -cjvf demo.tar.bz2 * <span style="color:#75715e"># 把当前目录下所有文件归档并压缩为 `demo.tar.bz2`</span>
+</span></span><span style="display:flex;"><span>tar -xjvf demo.tar.bz2 -C ~ <span style="color:#75715e">#把 `demo.tar.bz2` 解压并释放到家目录</span>
+</span></span></code></pre></div><p>xz格式的压缩与解压</p>
+<p>xz 命令不可以单独使用，因此必须先使用 tar 命令对文件进行归档， 归档后再使用xz进行压缩</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>xz demo.tar <span style="color:#75715e"># 直接使用 xz 命令对归档文件进行压缩</span>
+</span></span></code></pre></div><p>解压 xz 格式文件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>tar -Jxvf arm-linux-gnueabi-5.4.0.tar.xz
+</span></span></code></pre></div><p>💡小知识：xz格式文件</p>
+<p>比如说我们的内核压缩包就是xz格式文件，包括我们的交叉工具链。</p>
+<p>📢注意：</p>
+<p>文件的格式并不取决于文件名的后缀，后缀只是给我们看的。</p>
+<p>举个例子</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>tar -czvf demo.tar.gz * <span style="color:#75715e"># 把当前目录下所有文件归档并压缩为 `demo.tar.gz`</span>
+</span></span><span style="display:flex;"><span>mv demo.tar.gz demo.tar.even <span style="color:#75715e">#重命名文件 `demo.tar.gz` 为 `demo.tar.even`</span>
+</span></span><span style="display:flex;"><span>tar -xzvf demo.tar.even -C ~ <span style="color:#75715e">#将`demo.tar.even`解压并释放到家目录</span>
+</span></span></code></pre></div><p>可以看到我们将<code>demo.tar.gz</code> 重命名为 <code>demo.tar.even</code>后，虽然后缀名不是压缩包的后缀名，但是我们依然可以解压它，它本身仍然是压缩包。</p>
+<h3 id="-命令zip">📌 命令：zip<a hidden class="anchor" aria-hidden="true" href="#-命令zip">#</a></h3>
+<p>zip命令并不是Ubuntu 自带的，它需要我们手动来安装</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo apt install zip <span style="color:#75715e">#安装`zip`</span>
+</span></span></code></pre></div><p>使用zip 命令进行压缩：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>zip test.zip * <span style="color:#75715e"># 压缩当前目录下的所有文件，不包含子目录内容</span>
+</span></span><span style="display:flex;"><span>zip test.zip * -r <span style="color:#75715e">#添加`-r`选项之后`zip`命令在压缩的时候会把子目录进行压缩</span>
+</span></span></code></pre></div><p>📋案例：演示<code>zip test.zip *</code>的效果。</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%85%A5%E9%97%A8%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4-25.png" alt = "Linux入门与基础命令-25.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>可以看到包含子目录的目录文件压缩率为0%，说明该命令压缩当前目录下的所有文件，不包含子目录内容。</p>
+<p>📋案例：演示<code>zip test.zip * -r</code>的效果。</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%85%A5%E9%97%A8%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4-26.png" alt = "Linux入门与基础命令-26.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>可以看到，有更深层次的压缩，这里压缩了当前目录下的<code>abc/</code>目录。说明添加<code>-r</code>选项之后<code>zip</code>命令在压缩的时候会把子目录进行压缩。</p>
+<p>使用<code>unzip</code>命令进行解压</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>unzip test.zip
+</span></span></code></pre></div><h2 id="apt命令">apt命令<a hidden class="anchor" aria-hidden="true" href="#apt命令">#</a></h2>
+<p><code>apt</code>的定义：</p>
+<p><code>apt</code>是Linux操作系统中，特别是基于Debian的系统（如Ubuntu）中的一个命令行工具，用于处理软件包的安装、升级、配置和删除。它是高级包装工具（Advanced Package Tool）的简称，这个工具为用户提供了一个统一的接口来处理软件包。</p>
+<p>1）设置软件源。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo vim /etc/apt/sources.list <span style="color:#75715e">#编辑`/etc/apt/sources.list`文件来设置软件源</span>
+</span></span></code></pre></div><p><code>ubuntu</code>也可以直接进入设置选项去设置软件源。也就是图中的<code>Software&amp;Updates</code></p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%85%A5%E9%97%A8%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4-27.png" alt = "Linux入门与基础命令-27.png" width = "70%" height = "auto">
+</div>
+<br>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%85%A5%E9%97%A8%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4-1.jpg" alt = "Linux入门与基础命令-1.jpg" width = "70%" height = "auto">
+</div>
+<br>
+<p>这里我们用的软件源是阿里云的。</p>
+<p>在Linux上使用<code>apt</code>安装软件通常包括以下步骤：</p>
+<p>1） <strong>更新软件包列表</strong>：</p>
+<p>首先，你需要更新本地的软件包列表，以确保你看到的软件包信息是最新的。这可以通过以下命令完成：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt update
+</span></span></code></pre></div><p>2）<strong>升级已安装的软件包</strong>：</p>
+<p>在安装新软件之前，你可能想要升级系统中已有的软件包。这可以通过以下命令完成：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt upgrade
+</span></span></code></pre></div><p>这个步骤是可选的，但建议执行，以确保系统的稳定性和安全性。</p>
+<p>3）<strong>搜索软件包</strong>：</p>
+<p>如果你不知道要安装的软件包的确切名称，你可以使用<code>apt</code>的搜索功能来查找它：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>apt search &lt;package-name&gt;
+</span></span></code></pre></div><p>替换<code>&lt;package-name&gt;</code>为你想要安装的软件包的名称或相关关键词。</p>
+<p>4）<strong>安装软件包</strong>：</p>
+<p>一旦你知道了要安装的软件包的名称，你可以使用以下命令来安装它：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt install &lt;package-name&gt;
+</span></span></code></pre></div><p>替换<code>&lt;package-name&gt;</code>为你想要安装的软件包的名称。</p>
+<p>5）<strong>配置软件包</strong>：</p>
+<p>有些软件包在安装过程中会询问你一些配置问题。按照提示操作即可。如果你不确定如何配置，通常可以选择默认设置。</p>
+<p>6） <strong>验证安装</strong>：</p>
+<p>安装完成后，你可以通过运行软件包或使用以下命令来验证它是否已正确安装：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>dpkg -l | grep &lt;package-name&gt;
+</span></span></code></pre></div><p>如果软件包已安装，这个命令将显示软件包的详细信息。</p>
+<p>7）<strong>卸载软件包</strong>（如果需要）：</p>
+<p>如果你不想要某个软件包了，可以使用以下命令来卸载它：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt remove &lt;package-name&gt;
+</span></span></code></pre></div><p>如果你想要同时删除配置文件，可以使用<code>purge</code>代替<code>remove</code>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt purge &lt;package-name&gt;
+</span></span></code></pre></div><p>请注意，这些步骤需要在具有管理员权限的账户下执行，因此需要使用<code>sudo</code>命令。此外，不同的Linux发行版可能会有细微的差别，但上述步骤适用于大多数基于Debian的系统。</p>
+<h2 id="网络命令">网络命令<a hidden class="anchor" aria-hidden="true" href="#网络命令">#</a></h2>
+<h3 id="-命令hostname">📌 命令：hostname<a hidden class="anchor" aria-hidden="true" href="#-命令hostname">#</a></h3>
+<p>作用：查看主机名。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>hostname
+</span></span></code></pre></div><h3 id="-命令ifconfig">📌 命令：ifconfig<a hidden class="anchor" aria-hidden="true" href="#-命令ifconfig">#</a></h3>
+<p>作用： 查看当前的网络配置状态。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>ifconfig <span style="color:#75715e">#查看的网卡 eth0 --- ens33 为网卡的名字</span>
+</span></span></code></pre></div><br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%85%A5%E9%97%A8%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4-28.png" alt = "Linux入门与基础命令-28.png" width = "70%" height = "auto">
+</div>
+<br>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%85%A5%E9%97%A8%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4-29.png" alt = "Linux入门与基础命令-29.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>修改ip地址</p>
+<p>📢修改IP地址前，记得先<code>ping</code>一下该地址，确保要使用的IP地址没有被占用。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>ipconfig eth0 192.168.25.3 <span style="color:#75715e">#修改 eth0 的网卡</span>
+</span></span><span style="display:flex;"><span>ipconfig ens33 192.168.25.3 <span style="color:#75715e">#修改 ens33 的网卡</span>
+</span></span></code></pre></div><p>开启/关闭网卡</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span> ipconfig eth0 up <span style="color:#75715e">#启动 eth0 的网卡</span>
+</span></span><span style="display:flex;"><span> ipconfig eth0 down <span style="color:#75715e">#关闭 eth0 的网卡</span>
+</span></span></code></pre></div><h3 id="-命令ping">📌 命令：ping<a hidden class="anchor" aria-hidden="true" href="#-命令ping">#</a></h3>
+<p>作用：ping命令检查网络是否连通。</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%85%A5%E9%97%A8%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4-30.png" alt = "Linux入门与基础命令-30.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>如果像上面图中显示有延迟值，则说明网络没有问题。</p>
+<p>💡小知识：生存时间（TTL）</p>
+<p>TTL（Time To Live）是一个IP数据包中的一个值，它指定了数据包在被丢弃之前可以通过的最大路由器数。TTL的主要目的是防止数据包在网络中无限循环。每次数据包通过一个路由器时，TTL值就会减1。当TTL值减到0时，数据包将被路由器丢弃，并且通常会发送一个ICMP超时消息给源地址。</p>
+<p>在Linux和Windows系统中，TTL的默认值是不同的。例如：</p>
+<ul>
+<li>在Linux系统中，TTL通常设置为64。</li>
+<li>在Windows系统中，TTL通常设置为128。</li>
+</ul>
+<blockquote>
+<p>🤔<strong>这个值和我们在淘宝上抢购东西有关。何出此言呢？</strong></p>
+</blockquote>
+<p>TTL值也可以用来大致判断数据包的源距离。例如，如果TTL值很高，那么数据包可能不需要经过很多路由器就能到达目的地，这意味着源和目的地可能在网络拓扑上比较近。相反，如果TTL值很低，那么数据包可能需要经过很多路由器，这意味着源和目的地可能在网络拓扑上比较远。</p>
+<p>每次数据包通过一个路由器时，TTL值就会减1。假如你<code>ping</code>淘宝网的时候，发现<code>ttl</code>值很小，那么说明你离淘宝的服务器很远，可能这就是抢购不到东西的原因。🤣</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%85%A5%E9%97%A8%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4-31.png" alt = "Linux入门与基础命令-31.png" width = "70%" height = "auto">
+</div>
+<br>
+<h4 id="ubuntu设置网络信息">ubuntu设置网络信息<a hidden class="anchor" aria-hidden="true" href="#ubuntu设置网络信息">#</a></h4>
+<p>📢如果你用的是wsl系统，那么就不用另外设置虚拟机的IP，因为wsl系统和你的主机是同一个IP。假如要改IP的话，也是去改自己主机的IP。</p>
+<p>1）打开配置文件。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo vim /etc/network/interfaces
+</span></span></code></pre></div><p>2）修改配置文件，设置为自动使用DHCP来自动分配IP。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>auto ens33
+</span></span><span style="display:flex;"><span>iface ens33 inet dhcp
+</span></span></code></pre></div><br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%85%A5%E9%97%A8%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4-32.png" alt = "Linux入门与基础命令-32.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>或者设置IP为静态地址</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>auto ens33 <span style="color:#75715e">#指示系统在启动时自动激活网络接口`ens33`。</span>
+</span></span><span style="display:flex;"><span>iface ens33 inet static <span style="color:#75715e">#指定`ens33`接口使用静态IP地址配置。</span>
+</span></span><span style="display:flex;"><span>address 192.168.25.5 <span style="color:#75715e">#设置接口的IPv4地址为`192.168.25.5`。</span>
+</span></span><span style="display:flex;"><span>netmask 255.255.255.0 <span style="color:#75715e">#设置子网掩码为`255.255.255.0`，这定义了网络的大小。</span>
+</span></span><span style="display:flex;"><span>gateway 192.168.25.1 <span style="color:#75715e">#设置默认网关为`192.168.25.1`，这是网络中用于访问其他网络或互联网的设备。</span>
+</span></span></code></pre></div><br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%85%A5%E9%97%A8%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4-33.png" alt = "Linux入门与基础命令-33.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>📢</p>
+<p>请注意，如果你使用的是NetworkManager来管理网络连接，那么您可能需要使用<code>nmcli</code>或<code>nmtui</code>工具来设置静态IP地址，而不是直接编辑<code>/etc/network/interfaces</code>文件。</p>
+<p>此外，一些Linux发行版可能已经迁移到使用<code>systemd-networkd</code>来管理网络配置，在这种情况下，您可能需要在<code>/etc/systemd/network</code>目录中创建网络配置文件。</p>
+<p>请注意，随着NetworkManager和其他网络配置工具的普及，直接编辑 <code>/etc/network/interfaces</code> 文件的方式在些现代Linux发行版中已经不那么常见了。在这些系统中，网络配置通常通过图形界面或命令行工具（如 <code>nmcli</code> 或 <code>nmtui</code>）来进行。</p>
+<p>3）重启网络服务</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo service networking force-reload
+</span></span><span style="display:flex;"><span>sudo service networking restar
+</span></span></code></pre></div><h4 id="windows设置网络">windows设置网络<a hidden class="anchor" aria-hidden="true" href="#windows设置网络">#</a></h4>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Linux-Basics/Linux%E5%85%A5%E9%97%A8%E4%B8%8E%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4-34.png" alt = "Linux入门与基础命令-34.png" width = "100%" height = "auto">
+</div>
+<br>
+<h2 id="end">END<a hidden class="anchor" aria-hidden="true" href="#end">#</a></h2>
+<blockquote>
+<p><strong>END：本节内容到此结束。</strong></p>
+</blockquote>
+<p>个人提升之余，别忘了和小伙伴积极交流，很多人觉得他们在思考，而实际上他们只是在重新整理自己的偏见。请珍惜和他人交流讨论的机会。</p>
+<br>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/END1.jpg" alt = "END1.jpg" width = "70%" height = "auto">
+</div>
+<br>
+<p>希望你每一天都有所收获，进步up up up。今天的我们并不比昨天更聪明，但一定要比昨天更睿智。</p>
+<br>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/END2.jpg" alt = "END2.jpg" width = "70%" height = "auto">
+</div>
+<h2 id="参考">参考<a hidden class="anchor" aria-hidden="true" href="#参考">#</a></h2>
+<p>（1） <a href="https://blog.csdn.net/weixin_40134955/article/details/103223856">Linux系统调用 | 内核态与用户态的转换_用户态、内核态转换失败怎么办-CSDN博客</a></p>
+<p>（2）<a href="https://www.runoob.com/linux/linux-vim.html">Linux vi/vim | 菜鸟教程 (runoob.com)</a></p>
+<p>（3）<a href="https://www.runoob.com/linux/linux-system-boot.html">Linux 系统启动过程 | 菜鸟教程 (runoob.com)</a></p>
+
+
+        </div>
+
+        <footer class="post-footer">
+            
+<nav class="paginav">
+  <a class="prev" href="https://eddyblog.cn/posts/tech/linux-basics-01/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>Linux新手必看：一文掌握操作系统基本命令</span>
+  </a>
+  <a class="next" href="https://eddyblog.cn/posts/tech/test/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>markdown测试</span>
+  </a>
+</nav>
+
+        </footer>
+    </div>
+</article>
+</main>
+
+<footer class="footer">
+    <span>
+        Copyright
+        &copy;
+        -2024
+        <a href="https://eddyblog.cn/" style="color:#939393;">Eddy&#39;s blog</a>
+        All Rights Reserved
+    </span>
+    <a href="https://beian.miit.gov.cn/" target="_blank" style="color:#939393;"></a>&nbsp;
+    <span>
+        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=null"
+           style="display:inline-block;text-decoration:none;height:20px;color:#939393;">
+            <img src="" style="float:left;margin: 0px 5px 0px 0px;"/>
+            
+        </a>
+    </span>
+    <span id="busuanzi_container">
+        <span class="fa fa-user"></span> <span id="busuanzi_value_site_uv"></span>
+        <span class="fa fa-eye"></span> <span id="busuanzi_value_site_pv"></span>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <span class="topInner">
+        <svg class="topSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z"/>
+        </svg>
+        <span id="read_progress"></span>
+    </span>
+</a>
+
+<script>
+    document.addEventListener('scroll', function (e) {
+        const readProgress = document.getElementById("read_progress");
+        const scrollHeight = document.documentElement.scrollHeight;
+        const clientHeight = document.documentElement.clientHeight;
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        readProgress.innerText = ((scrollTop / (scrollHeight - clientHeight)).toFixed(2) * 100).toFixed(0);
+    })
+</script>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+</script>
+<script>
+    let mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        (function() {
+            document.cookie = "change-themes" + "="+ escape ("false");
+        })()
+
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    });
+</script>
+
+<script>
+    document.body.addEventListener('copy', function (e) {
+        if (window.getSelection().toString() && window.getSelection().toString().length > 50) {
+            let clipboardData = e.clipboardData || window.clipboardData;
+            if (clipboardData) {
+                e.preventDefault();
+                let htmlData = window.getSelection().toString() +
+                    '\r\n\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                let textData = window.getSelection().toString() +
+                    '\r\n\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                clipboardData.setData('text/html', htmlData);
+                clipboardData.setData('text/plain', textData);
+            }
+        }
+    });
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = '复制';
+
+        function copyingDone() {
+            copybutton.innerText = '已复制！';
+            setTimeout(() => {
+                copybutton.innerText = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                let text = codeblock.textContent +
+                    '\r\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                navigator.clipboard.writeText(text);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) {}
+            selection.removeRange(range);
+        });
+
+        let language = codeblock.className.replaceAll("language-", "")
+        let macTool = document.createElement("div")
+        let macTool1 = document.createElement("div")
+        let macTool2 = document.createElement("div")
+        let macTool3 = document.createElement("div")
+        let languageType = document.createElement("div")
+        languageType.innerText = language
+        macTool.setAttribute('class', 'mac-tool')
+        macTool1.setAttribute('class', 'mac bb1')
+        macTool2.setAttribute('class', 'mac bb2')
+        macTool3.setAttribute('class', 'mac bb3')
+        languageType.setAttribute('class', 'language-type')
+        macTool.appendChild(macTool1)
+        macTool.appendChild(macTool2)
+        macTool.appendChild(macTool3)
+        macTool.appendChild(languageType)
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+            container.appendChild(macTool)
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+            container.appendChild(macTool)
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+            container.appendChild(macTool)
+        }
+    });
+</script>
+
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style></body>
+
+</html>
