@@ -76,5 +76,5 @@ cover:
 
 [1][21节手机摄影课-零基础用手机轻松拍大片](https://www.bilibili.com/video/BV15A411Y7Ju?p=1&vd_source=c57cc7d724946a8cfa6381f148e147d5)
 
-⏩【手机摄影笔记】下一节是：手机拍摄基础操作及功能讲解
+
 
