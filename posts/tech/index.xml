@@ -6,7 +6,7 @@
     <description>Recent content in 👨🏻‍💻 技术 on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Sat, 11 May 2024 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/posts/tech/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 12 May 2024 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/posts/tech/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Linux新手必看：一文掌握操作系统基本命令</title>
       <link>https://eddyblog.cn/posts/tech/linux-basics-01/</link>
@@ -32,6 +32,15 @@
       
       <guid>https://eddyblog.cn/posts/tech/test/</guid>
       <description>本文用于测试Hugo博客网站Papermod主题的博客渲染效果</description>
+    </item>
+    
+    <item>
+      <title>嵌入式开发-STM32标准库学习：新建Keil工程</title>
+      <link>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p4/</link>
+      <pubDate>Sun, 12 May 2024 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p4/</guid>
+      <description>本博客讲解了STM32开发在Keil中新建工程，首先讲解了建立STM32工程的复杂结构，包括寄存器方式、标准库方式和HAL库方式。然后详细介绍了使用库函数方式建立工程的步骤，包括下载固件库文件、添加启动文件和内核寄存器描述文件等。最后演示了如何在Keil软件中添加必要文件并创建主函数。</description>
     </item>
     
     <item>
