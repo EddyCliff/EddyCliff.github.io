@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>MCU on Eddy&#39;s blog</title>
+    <link>https://eddyblog.cn/tags/mcu/</link>
+    <description>Recent content in MCU on Eddy&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Sat, 11 May 2024 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/mcu/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>嵌入式开发-STM32标准库学习：STM32简介</title>
+      <link>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p2/</link>
+      <pubDate>Sat, 11 May 2024 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p2/</guid>
+      <description>STM32的介绍和应用领域，以及该芯片的功能和性能优 势。STM32是基于ARM Cortex-M内核的32位微控制器 具有强大的性能和丰富的片上资源。该芯片广泛应用于 入式领域，如智能车、无人机、机器人、无线通信、物联网、工业控制和娱乐产品等。STM32具有强大的功能和优异的性能，是一款经典的嵌入式微控制器。</description>
+    </item>
+    
+  </channel>
+</rss>

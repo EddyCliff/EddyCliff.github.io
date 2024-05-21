@@ -6,7 +6,7 @@
     <description>Recent content in 👨🏻‍💻 技术 on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Sun, 21 Apr 2024 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/posts/tech/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 11 May 2024 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/posts/tech/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Linux新手必看：一文掌握操作系统基本命令</title>
       <link>https://eddyblog.cn/posts/tech/linux-basics-01/</link>
@@ -32,6 +32,15 @@
       
       <guid>https://eddyblog.cn/posts/tech/test/</guid>
       <description>本文用于测试Hugo博客网站Papermod主题的博客渲染效果</description>
+    </item>
+    
+    <item>
+      <title>嵌入式开发-STM32标准库学习：STM32简介</title>
+      <link>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p2/</link>
+      <pubDate>Sat, 11 May 2024 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p2/</guid>
+      <description>STM32的介绍和应用领域，以及该芯片的功能和性能优 势。STM32是基于ARM Cortex-M内核的32位微控制器 具有强大的性能和丰富的片上资源。该芯片广泛应用于 入式领域，如智能车、无人机、机器人、无线通信、物联网、工业控制和娱乐产品等。STM32具有强大的功能和优异的性能，是一款经典的嵌入式微控制器。</description>
     </item>
     
     <item>
