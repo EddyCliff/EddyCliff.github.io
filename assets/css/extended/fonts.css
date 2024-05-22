@@ -8,10 +8,7 @@
     src: url("/fonts/NeverMindHand-Regular.ttf") format("truetype");
 }
 
-@font-face {
-    font-family: "LXGWWenKaiScreen";
-    src: url("/fonts/LXGWWenKaiScreen.ttf") format("truetype");
-}
+
 
 @font-face {
     font-family: "AlibabaPuHuiTi-3-65-Medium";
