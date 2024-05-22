@@ -185,12 +185,97 @@ var _hmt = _hmt || [];
 <article class="post-entry">
   <div class="post-info">
     <header class="entry-header">
+      <h2>嵌入式开发-STM32标准库学习：GPIO输出
+      </h2>
+    </header>
+    <section class="entry-content">
+      <p>
+        本教程涵盖了STM32 GPIO的输出与输入功能，分为基础应用和理论知识两个部分。首先，通过LED闪烁、LED流水灯和蜂鸣器实验，介绍GPIO基本应用。随后，深入探讨了GPIO的理论知识，包括其作为通用I/O口的特性、工作模式及电平范围。进一步地，解析了STM32中GPIO的基本结构，涉及APB2外设总线、GPIO模块及其组成。此外，讨论了GPIO引脚的功能，包括输入和输出保护措施，以及施密特触发器的作用和应用。教程强调了STM32 GPIO的多样工作模式，如推挽输出、开漏输出等，及其在不同应用场景下的优势。最后，简述了面包板的应用，为读者提供了实际电路搭建的指导。
+        
+        ...
+      </p>
+    </section>
+    <footer class="entry-footer">
+
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+
+    .parent-post-meta {
+        display: flex;
+        flex-wrap: wrap;
+        opacity: 0.8;
+    }
+</style>
+
+<span class="parent-post-meta">
+    <span id="post_meta_style_1">
+        <span class="fa fa-calendar-check-o"></span>
+        <span>2024-05-13
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    
+    
+    
+    
+    
+    
+    
+    <span id="post_meta_style_3">
+        <span class="fa fa-file-word-o"></span>
+        <span>12044字
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_4">
+        <span class="fa fa-clock-o"></span>
+        <span>25分钟
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_5">
+        <span class="fa fa-user-o"></span>
+        <span>Eddy
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_6">
+        <span class="fa fa-tags" style="opacity: 0.8"></span>
+        <span>
+            <span class="post-tags-meta">
+                <a href="https://eddyblog.cn/tags/stm32/" style="color: var(--secondary)!important;">STM32</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/embedded/" style="color: var(--secondary)!important;">Embedded</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/embedded-development/" style="color: var(--secondary)!important;">Embedded Development</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/mcu/" style="color: var(--secondary)!important;">MCU</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/gpio/" style="color: var(--secondary)!important;">GPIO</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/led/" style="color: var(--secondary)!important;">LED</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/buzzer/" style="color: var(--secondary)!important;">Buzzer</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/arm/" style="color: var(--secondary)!important;">ARM</a>
+            </span>
+        </span>
+    </span>
+</span>
+</footer>
+  </div> 
+<figure class="entry-cover"><img loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/pc9.jpg" alt="">
+</figure>
+  <a class="entry-link" aria-label="post link to 嵌入式开发-STM32标准库学习：GPIO输出" href="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p5/"></a>
+</article>
+
+
+<article class="post-entry">
+  <div class="post-info">
+    <header class="entry-header">
       <h2>嵌入式开发-STM32标准库学习：新建Keil工程
       </h2>
     </header>
     <section class="entry-content">
       <p>
-        本博客讲解了STM32开发在Keil中新建工程，首先讲解了建立STM32工程的复杂结构，包括寄存器方式、标准库方式和HAL库方式。然后详细介绍了使用库函数方式建立工程的步骤，包括下载固件库文件、添加启动文件和内核寄存器描述文件等。最后演示了如何在Keil软件中添加必要文件并创建主函数。
+        本文档旨在指导STM32平台的新手开发者如何建立工程项目，并有效地运用标准库和HAL库来提高开发效率。首先，文档强调了基于寄存器、标准库和HAL库三种不同的STM32开发方式，并推荐初学者优先考虑使用标准库进行开发。其次，它详细介绍了在STM32环境中添加启动文件、设置头文件路径以及创建用户自定义函数的基本步骤，同时给出了基于寄存器进行开发的示例。文章还说明了如何通过库函数更方便地配置GPIO和控制LED，从而简化了对硬件的操作。此外，文档涵盖了如何新建工程、选择合适的启动文件以及调试器设置，旨在帮助开发者有效下载和运行程序。最后，通过一系列实例，文章阐述了基于库函数的STM32工程构建和理解，突出了中断服务函数的重要性和在工程中的应用。整体而言，本文档为STM32平台的开发者提供了一套完整且实用的开发指导，从基础设置到高级应用应有尽有。
         
         ...
       </p>
@@ -252,6 +337,8 @@ var _hmt = _hmt || [];
                 &nbsp;<a href="https://eddyblog.cn/tags/embedded-development/" style="color: var(--secondary)!important;">Embedded Development</a>
                 &nbsp;<a href="https://eddyblog.cn/tags/mcu/" style="color: var(--secondary)!important;">MCU</a>
                 &nbsp;<a href="https://eddyblog.cn/tags/keil/" style="color: var(--secondary)!important;">Keil</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/standard-library/" style="color: var(--secondary)!important;">Standard Library</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/arm/" style="color: var(--secondary)!important;">ARM</a>
             </span>
         </span>
     </span>
@@ -272,7 +359,7 @@ var _hmt = _hmt || [];
     </header>
     <section class="entry-content">
       <p>
-        STM32的介绍和应用领域，以及该芯片的功能和性能优 势。STM32是基于ARM Cortex-M内核的32位微控制器 具有强大的性能和丰富的片上资源。该芯片广泛应用于 入式领域，如智能车、无人机、机器人、无线通信、物联网、工业控制和娱乐产品等。STM32具有强大的功能和优异的性能，是一款经典的嵌入式微控制器。
+        STM32是基于ARM Cortex-M内核由ST公司开发的32位微控制器，拥有高性能和丰富片上资源，适合嵌入式系统应用。它包括多个系列，满足不同场景需求，例如高性能、主流、超低功耗和无线等。STM32F103C8T6是其中一款，采用ARM Cortex-M3内核，具有72MHz主频、20Kb RAM和64Kb Flash，适用于多种应用。该芯片拥有全面的外设资源，如NVIC、SysTick定时器、RCC、GPIO、AFIO、EXTI、TIM定时器、ADC、DMA、USART、I2C/SPI和USB OTG等，提供高度灵活且可定制化的平台。文章还介绍了该芯片的引脚定义、电源管理、启动配置和最小系统板构成，强调了正确配置电源、时钟和下载电路的重要性。通过连接稳压供电模块、复位电路、Boot配置电路、LED测试电路和下载电路，可以构建出能够稳定工作的STM32最小系统板。此外，文档推荐参考官方资料以深入理解STM32的工作原理和应用。
         
         ...
       </p>
@@ -333,6 +420,7 @@ var _hmt = _hmt || [];
                 &nbsp;<a href="https://eddyblog.cn/tags/embedded/" style="color: var(--secondary)!important;">Embedded</a>
                 &nbsp;<a href="https://eddyblog.cn/tags/embedded-development/" style="color: var(--secondary)!important;">Embedded Development</a>
                 &nbsp;<a href="https://eddyblog.cn/tags/mcu/" style="color: var(--secondary)!important;">MCU</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/arm/" style="color: var(--secondary)!important;">ARM</a>
             </span>
         </span>
     </span>
