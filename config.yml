@@ -144,6 +144,7 @@ params:
     text: "Eddy's Blog"
     icon: "img/logo3.jpg"
     iconHeight: 35
+    iconWidth: 35
 
   analytics:
     google:
