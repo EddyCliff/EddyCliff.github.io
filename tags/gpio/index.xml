@@ -6,23 +6,23 @@
     <description>Recent content in GPIO on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 13 May 2024 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/gpio/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>嵌入式开发-STM32标准库学习：GPIO输出</title>
-      <link>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p5/</link>
-      <pubDate>Mon, 13 May 2024 00:17:58 +0800</pubDate>
-      
-      <guid>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p5/</guid>
-      <description>本教程涵盖了STM32 GPIO的输出与输入功能，分为基础应用和理论知识两个部分。首先，通过LED闪烁、LED流水灯和蜂鸣器实验，介绍GPIO基本应用。随后，深入探讨了GPIO的理论知识，包括其作为通用I/O口的特性、工作模式及电平范围。进一步地，解析了STM32中GPIO的基本结构，涉及APB2外设总线、GPIO模块及其组成。此外，讨论了GPIO引脚的功能，包括输入和输出保护措施，以及施密特触发器的作用和应用。教程强调了STM32 GPIO的多样工作模式，如推挽输出、开漏输出等，及其在不同应用场景下的优势。最后，简述了面包板的应用，为读者提供了实际电路搭建的指导。</description>
-    </item>
-    
+    <lastBuildDate>Mon, 13 May 2024 00:17:58 +1000</lastBuildDate><atom:link href="https://eddyblog.cn/tags/gpio/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>嵌入式开发-STM32标准库学习：实现LED闪烁与流水灯，蜂鸣器</title>
       <link>https://eddyblog.cn/posts/tech/stm32-standard_library_learning-jkd-p6/</link>
-      <pubDate>Mon, 13 May 2024 00:17:58 +0900</pubDate>
+      <pubDate>Mon, 13 May 2024 00:17:58 +1000</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/stm32-standard_library_learning-jkd-p6/</guid>
       <description>本节内容指导如何使用面包板、STM32最小系统板及ST Link开发一个简单的LED闪烁程序。首先，介绍搭建硬件电路所需步骤，包括正确连接电源、STM32板、LED和相关跳线。接着，在Keil5 软件中创建新工程，复制必要文件并配置工程设置以完成LED闪烁程序的编写、编译、下载和测试。此外，还介绍了如何利用一个辅助工具清理编译产生的中间文件，以便更好地分享工程。该指南详细讲解了如何使用RCC和GPIO外设及其库函数来控制LED的亮灭，包括设置工作模式、方向和速度。特别提到了四种GPIO输出函数和它们在控制LED亮灭方面的应用。通过主循环实现LED闪烁功能，并讨论了不同驱动模式下LED的性能差异。进一步地，本节还扩展到LED流水灯的制作，介绍了如何利用按位操作来控制多路LED的亮灭。最后，提供了学习STM32库函数的建议，包括查看库函数源码、利用官方文档和在线资源等方法。整个内容旨在帮助初学者掌握STM32开发的基础知识和技能。</description>
+    </item>
+    
+    <item>
+      <title>嵌入式开发-STM32标准库学习：GPIO输出</title>
+      <link>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p5/</link>
+      <pubDate>Mon, 13 May 2024 00:17:58 +1100</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p5/</guid>
+      <description>本教程涵盖了STM32 GPIO的输出与输入功能，分为基础应用和理论知识两个部分。首先，通过LED闪烁、LED流水灯和蜂鸣器实验，介绍GPIO基本应用。随后，深入探讨了GPIO的理论知识，包括其作为通用I/O口的特性、工作模式及电平范围。进一步地，解析了STM32中GPIO的基本结构，涉及APB2外设总线、GPIO模块及其组成。此外，讨论了GPIO引脚的功能，包括输入和输出保护措施，以及施密特触发器的作用和应用。教程强调了STM32 GPIO的多样工作模式，如推挽输出、开漏输出等，及其在不同应用场景下的优势。最后，简述了面包板的应用，为读者提供了实际电路搭建的指导。</description>
     </item>
     
   </channel>

@@ -190,12 +190,12 @@ var _hmt = _hmt || [];
 <article class="post-entry">
   <div class="post-info">
     <header class="entry-header">
-      <h2>嵌入式开发-STM32标准库学习：GPIO输出
+      <h2>嵌入式开发-STM32标准库学习：EXTI外部中断
       </h2>
     </header>
     <section class="entry-content">
       <p>
-        本教程涵盖了STM32 GPIO的输出与输入功能，分为基础应用和理论知识两个部分。首先，通过LED闪烁、LED流水灯和蜂鸣器实验，介绍GPIO基本应用。随后，深入探讨了GPIO的理论知识，包括其作为通用I/O口的特性、工作模式及电平范围。进一步地，解析了STM32中GPIO的基本结构，涉及APB2外设总线、GPIO模块及其组成。此外，讨论了GPIO引脚的功能，包括输入和输出保护措施，以及施密特触发器的作用和应用。教程强调了STM32 GPIO的多样工作模式，如推挽输出、开漏输出等，及其在不同应用场景下的优势。最后，简述了面包板的应用，为读者提供了实际电路搭建的指导。
+        本博客主要介绍了STM32芯片的外部中断系统及其在实现特定功能中的应用，例如使用红外传感器检测光线变化和使用旋转编码器进行计数。核心概念是通过外部中断提高程序响应速度和执行效率，实现CPU在遇到重要事件时的暂停与处理。中断系统的关键要素包括中断优先级、嵌套处理、中断程序执行流程、中断保护和恢复现场，以及NVIC（中断向量控制器）在分配中断优先级和管理中断请求方面的作用。STM32拥有68个可屏蔽中断通道，支持多种外设中断源，所有中断请求均通过NVIC统一管理。外部中断（EXTI）功能特别值得一提，它允许CPU在检测到指定GPIO口的电平变化时暂停执行并执行中断服务程序，支持多种触发方式。此外，还讨论了外部中断在读取按键信号时的局限性，并提出了使用定时器中断作为替代方案。对于旋转编码器的应用，文章概述了其硬件连接方式、NVIC中断管理的基本知识，以及如何使用库函数简化中断处理过程和外部中断的配置方法。
         
         ...
       </p>
@@ -232,13 +232,13 @@ var _hmt = _hmt || [];
     
     <span id="post_meta_style_3">
         <span class="fa fa-file-word-o"></span>
-        <span>12044字
+        <span>13826字
             &nbsp;&nbsp;
         </span>
     </span>
     <span id="post_meta_style_4">
         <span class="fa fa-clock-o"></span>
-        <span>25分钟
+        <span>28分钟
             &nbsp;&nbsp;
         </span>
     </span>
@@ -254,14 +254,12 @@ var _hmt = _hmt || [];
             <span class="post-tags-meta">
                 <a href="https://eddyblog.cn/tags/stm32/" style="color: var(--secondary)!important;">STM32</a>
                 &nbsp;<a href="https://eddyblog.cn/tags/mcu/" style="color: var(--secondary)!important;">MCU</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/arm-cortex-m/" style="color: var(--secondary)!important;">ARM Cortex-M</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/%E5%BC%80%E5%8F%91%E6%9D%BF/" style="color: var(--secondary)!important;">开发板</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD/" style="color: var(--secondary)!important;">外部中断</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/%E4%B8%AD%E6%96%AD%E7%B3%BB%E7%BB%9F/" style="color: var(--secondary)!important;">中断系统</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/%E4%B8%AD%E6%96%AD%E4%BC%98%E5%85%88%E7%BA%A7/" style="color: var(--secondary)!important;">中断优先级</a>
                 &nbsp;<a href="https://eddyblog.cn/tags/stm32%E6%A0%87%E5%87%86%E5%BA%93%E5%BC%80%E5%8F%91/" style="color: var(--secondary)!important;">STM32标准库开发</a>
                 &nbsp;<a href="https://eddyblog.cn/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" style="color: var(--secondary)!important;">嵌入式开发</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/keil-uvision/" style="color: var(--secondary)!important;">Keil UVision</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/gpio/" style="color: var(--secondary)!important;">GPIO</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/led/" style="color: var(--secondary)!important;">LED</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/%E8%9C%82%E9%B8%A3%E5%99%A8/" style="color: var(--secondary)!important;">蜂鸣器</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/stm32f1/" style="color: var(--secondary)!important;">STM32F1</a>
             </span>
         </span>
     </span>
@@ -270,7 +268,348 @@ var _hmt = _hmt || [];
   </div> 
 <figure class="entry-cover"><img loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/pc9.jpg" alt="">
 </figure>
-  <a class="entry-link" aria-label="post link to 嵌入式开发-STM32标准库学习：GPIO输出" href="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p5/"></a>
+  <a class="entry-link" aria-label="post link to 嵌入式开发-STM32标准库学习：EXTI外部中断" href="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p11/"></a>
+</article>
+
+
+<article class="post-entry">
+  <div class="post-info">
+    <header class="entry-header">
+      <h2>嵌入式开发-STM32标准库学习：OLED显示屏
+      </h2>
+    </header>
+    <section class="entry-content">
+      <p>
+        本博客主要讲述了如何将OLED显示屏驱动程序模块整合至STM32工程中，并详细阐述了该驱动程序的设计与实现细节。重点讲解了硬件连接方式，尤其是如何通过PB6和PB7端口为OLED屏幕提供电源并通过四针脚接口进行数据传输。同时，介绍了如何根据现有的工程文件创建新的项目，并在其中嵌入OLED显示屏的驱动代码。文档还探讨了利用特定软件的调试模式对程序进行分析和优化的方法，涵盖了在线仿真和计算机模拟两种调试方式，及其对应的启动调试步骤和常用调试命令。此外，文中强调了通过这些调试手段可以有效地诊断和修复程序中的错误，加深对程序执行流程的理解。最后，文档简要介绍了 Keil 软件中的调试模式和相关功能，如命令窗口、反汇编窗口和符号窗口的使用方法，为进一步的程序调试提供了工具和技巧。
+        
+        ...
+      </p>
+    </section>
+    <footer class="entry-footer">
+
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+
+    .parent-post-meta {
+        display: flex;
+        flex-wrap: wrap;
+        opacity: 0.8;
+    }
+</style>
+
+<span class="parent-post-meta">
+    <span id="post_meta_style_1">
+        <span class="fa fa-calendar-check-o"></span>
+        <span>2024-05-13
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    
+    
+    
+    
+    
+    
+    
+    <span id="post_meta_style_3">
+        <span class="fa fa-file-word-o"></span>
+        <span>4927字
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_4">
+        <span class="fa fa-clock-o"></span>
+        <span>10分钟
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_5">
+        <span class="fa fa-user-o"></span>
+        <span>Eddy
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_6">
+        <span class="fa fa-tags" style="opacity: 0.8"></span>
+        <span>
+            <span class="post-tags-meta">
+                <a href="https://eddyblog.cn/tags/stm32/" style="color: var(--secondary)!important;">STM32</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/mcu/" style="color: var(--secondary)!important;">MCU</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/oled/" style="color: var(--secondary)!important;">OLED</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/oled%E6%98%BE%E7%A4%BA%E5%B1%8F/" style="color: var(--secondary)!important;">OLED显示屏</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/stm32%E6%A0%87%E5%87%86%E5%BA%93%E5%BC%80%E5%8F%91/" style="color: var(--secondary)!important;">STM32标准库开发</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" style="color: var(--secondary)!important;">嵌入式开发</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/stm32f1/" style="color: var(--secondary)!important;">STM32F1</a>
+            </span>
+        </span>
+    </span>
+</span>
+</footer>
+  </div> 
+<figure class="entry-cover"><img loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/pc9.jpg" alt="">
+</figure>
+  <a class="entry-link" aria-label="post link to 嵌入式开发-STM32标准库学习：OLED显示屏" href="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p10/"></a>
+</article>
+
+
+<article class="post-entry">
+  <div class="post-info">
+    <header class="entry-header">
+      <h2>嵌入式开发-STM32标准库学习：OLED调试工具
+      </h2>
+    </header>
+    <section class="entry-content">
+      <p>
+        本文介绍了如何利用OLED显示屏进行程序调试，着重讲解了OLED显示屏的基本功能和驱动函数模块的使用方法。首先，介绍了一种常见的显示屏模块——0.96寸OLED模块，它的特点是体积小、接口少、驱动简单，适用于多种电子设计应用。该模块提供单色显示，具有较低的分辨率（128x64），但可通过简单的通信协议进行操作，适配多种电源电压和接口类型。文章详细讨论了该模块的不同版本（四针脚和七针脚）以及其在实际项目中的硬件连接方式。随后，引入了一个驱动函数模块，涵盖了从模块初始化到显示各种文本和数字信息的一系列实用函数。整体而言，本文突出了程序调试的重要性，并通过介绍具体的调试方法和工具，为开发人员提供了一套有效的调试方案，尤其是针对那些使用OLED显示屏的项目。
+        
+        ...
+      </p>
+    </section>
+    <footer class="entry-footer">
+
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+
+    .parent-post-meta {
+        display: flex;
+        flex-wrap: wrap;
+        opacity: 0.8;
+    }
+</style>
+
+<span class="parent-post-meta">
+    <span id="post_meta_style_1">
+        <span class="fa fa-calendar-check-o"></span>
+        <span>2024-05-13
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    
+    
+    
+    
+    
+    
+    
+    <span id="post_meta_style_3">
+        <span class="fa fa-file-word-o"></span>
+        <span>4827字
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_4">
+        <span class="fa fa-clock-o"></span>
+        <span>10分钟
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_5">
+        <span class="fa fa-user-o"></span>
+        <span>Eddy
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_6">
+        <span class="fa fa-tags" style="opacity: 0.8"></span>
+        <span>
+            <span class="post-tags-meta">
+                <a href="https://eddyblog.cn/tags/stm32/" style="color: var(--secondary)!important;">STM32</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/mcu/" style="color: var(--secondary)!important;">MCU</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/arm-cortex/" style="color: var(--secondary)!important;">ARM Cortex</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/stm32%E6%A0%87%E5%87%86%E5%BA%93%E5%BC%80%E5%8F%91/" style="color: var(--secondary)!important;">STM32标准库开发</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" style="color: var(--secondary)!important;">嵌入式开发</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/stm32f1/" style="color: var(--secondary)!important;">STM32F1</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/oled%E6%98%BE%E7%A4%BA%E5%B1%8F/" style="color: var(--secondary)!important;">OLED显示屏</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/oled%E6%98%BE%E7%A4%BA%E5%B1%8F%E8%B0%83%E8%AF%95/" style="color: var(--secondary)!important;">OLED显示屏调试</a>
+            </span>
+        </span>
+    </span>
+</span>
+</footer>
+  </div> 
+<figure class="entry-cover"><img loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/pc9.jpg" alt="">
+</figure>
+  <a class="entry-link" aria-label="post link to 嵌入式开发-STM32标准库学习：OLED调试工具" href="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p9/"></a>
+</article>
+
+
+<article class="post-entry">
+  <div class="post-info">
+    <header class="entry-header">
+      <h2>嵌入式开发-STM32标准库学习：按键控制LED,光敏传感器控制蜂鸣器
+      </h2>
+    </header>
+    <section class="entry-content">
+      <p>
+        本博客详细介绍了一个基于STM32最小系统板的项目开发过程，重点涵盖了基本的LED控制电路设计、模块化编程的应用以及扩展至光敏传感器和蜂鸣器模块的功能实现。首先，通过对PB1和PB10引脚连接按键，以及PA1和PA2引脚连接LED的基本电路描述，项目导入了如何在STM32板上实现简单LED控制的基础。在此基础上，强调了模块化编程的重要性，即通过将驱动代码分离至单独的.C和.H文件中，以提升代码的管理与移植性。特别提到了在&#39;module&#39;文件夹下创建硬件驱动程序的方法，以及在这些文件中添加必要预处理指令和其他细节的重要性。 其次，详细叙述了LED初始化和模块化编程的具体实践，包括LED的时钟配置、端口模式设置，以及如何通过结构体变量实现对GPIO的精确控制。此外，还介绍了如何处理警告和错误信息，从而保证了程序的稳定运行。通过这些步骤，成功实现了LED的点亮与熄灭功能，验证了程序的正确性。 进一步地，文章扩展到如何完善LED驱动程序模块，包括提供两种不同功能实现方式以及在硬件目录下创建新文件来组织代码的方法。接下来，详细介绍了使用RCC APB2外设时钟控制、配置GPIO端口模式、读取按键值等功能，以及如何通过GPL库消除按键抖动，并实现光照强度检测与蜂鸣器控制的综合应用。 总之，该段内容围绕着STM32开发板上的LED、光敏传感器和蜂鸣器模块的控制，展示了从基础电路设计到模块化编程，再到复杂功能实现的完整开发流程。每个环节都突出了理论与实践相结合的重要性，旨在提高代码的质量和项目的可维护性。
+        
+        ...
+      </p>
+    </section>
+    <footer class="entry-footer">
+
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+
+    .parent-post-meta {
+        display: flex;
+        flex-wrap: wrap;
+        opacity: 0.8;
+    }
+</style>
+
+<span class="parent-post-meta">
+    <span id="post_meta_style_1">
+        <span class="fa fa-calendar-check-o"></span>
+        <span>2024-05-13
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    
+    
+    
+    
+    
+    
+    
+    <span id="post_meta_style_3">
+        <span class="fa fa-file-word-o"></span>
+        <span>10349字
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_4">
+        <span class="fa fa-clock-o"></span>
+        <span>21分钟
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_5">
+        <span class="fa fa-user-o"></span>
+        <span>Eddy
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_6">
+        <span class="fa fa-tags" style="opacity: 0.8"></span>
+        <span>
+            <span class="post-tags-meta">
+                <a href="https://eddyblog.cn/tags/stm32/" style="color: var(--secondary)!important;">STM32</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/mcu/" style="color: var(--secondary)!important;">MCU</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/arm-cortex/" style="color: var(--secondary)!important;">ARM Cortex</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/led/" style="color: var(--secondary)!important;">LED</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/%E6%8C%89%E9%94%AE%E6%8E%A7%E5%88%B6led/" style="color: var(--secondary)!important;">按键控制LED</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/%E8%9C%82%E9%B8%A3%E5%99%A8/" style="color: var(--secondary)!important;">蜂鸣器</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/%E5%85%89%E6%95%8F%E4%BC%A0%E6%84%9F%E5%99%A8%E6%8E%A7%E5%88%B6%E8%9C%82%E9%B8%A3%E5%99%A8/" style="color: var(--secondary)!important;">光敏传感器控制蜂鸣器</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/stm32%E6%A0%87%E5%87%86%E5%BA%93%E5%BC%80%E5%8F%91/" style="color: var(--secondary)!important;">STM32标准库开发</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" style="color: var(--secondary)!important;">嵌入式开发</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/stm32f1/" style="color: var(--secondary)!important;">STM32F1</a>
+            </span>
+        </span>
+    </span>
+</span>
+</footer>
+  </div> 
+<figure class="entry-cover"><img loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/pc9.jpg" alt="">
+</figure>
+  <a class="entry-link" aria-label="post link to 嵌入式开发-STM32标准库学习：按键控制LED,光敏传感器控制蜂鸣器" href="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p8/"></a>
+</article>
+
+
+<article class="post-entry">
+  <div class="post-info">
+    <header class="entry-header">
+      <h2>嵌入式开发-STM32标准库学习：GPIO输入
+      </h2>
+    </header>
+    <section class="entry-content">
+      <p>
+        本博客首先介绍了通过按键控制LED的基础操作，随后转向光敏传感器控制蜂鸣器的应用，涵盖了硬件连接和预期现象的讨论。课程还强调了C语言中指针的重要性，并给出了简单介绍。特别提到了处理按键抖动的方法，建议通过增加延时来改善，以确保程序的稳定性和准确性。此外，课程还介绍了四种传感器模块的工作原理，包括光敏电阻、热敏电阻、对射式及反射式红外传感器，并讲述了如何通过这些模块获取外部模拟量的变化信息。在讨论模拟电压和数字电压的生成及转换过程中，突出了各种电子元件的作用和选择合适的输入模式的重要性。同时，还覆盖了C语言中的数据类型、宏定义、结构体和枚举的使用，强调了这些概念在程序设计中的重要作用。
+        
+        ...
+      </p>
+    </section>
+    <footer class="entry-footer">
+
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+
+    .parent-post-meta {
+        display: flex;
+        flex-wrap: wrap;
+        opacity: 0.8;
+    }
+</style>
+
+<span class="parent-post-meta">
+    <span id="post_meta_style_1">
+        <span class="fa fa-calendar-check-o"></span>
+        <span>2024-05-13
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    
+    
+    
+    
+    
+    
+    
+    <span id="post_meta_style_3">
+        <span class="fa fa-file-word-o"></span>
+        <span>14204字
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_4">
+        <span class="fa fa-clock-o"></span>
+        <span>29分钟
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_5">
+        <span class="fa fa-user-o"></span>
+        <span>Eddy
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_6">
+        <span class="fa fa-tags" style="opacity: 0.8"></span>
+        <span>
+            <span class="post-tags-meta">
+                <a href="https://eddyblog.cn/tags/stm32/" style="color: var(--secondary)!important;">STM32</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/mcu/" style="color: var(--secondary)!important;">MCU</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/arm-cortex/" style="color: var(--secondary)!important;">ARM Cortex</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/led/" style="color: var(--secondary)!important;">LED</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/%E4%BC%A0%E6%84%9F%E5%99%A8%E6%A8%A1%E5%9D%97/" style="color: var(--secondary)!important;">传感器模块</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/stm32%E6%A0%87%E5%87%86%E5%BA%93%E5%BC%80%E5%8F%91/" style="color: var(--secondary)!important;">STM32标准库开发</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" style="color: var(--secondary)!important;">嵌入式开发</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/stm32f1/" style="color: var(--secondary)!important;">STM32F1</a>
+            </span>
+        </span>
+    </span>
+</span>
+</footer>
+  </div> 
+<figure class="entry-cover"><img loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/pc9.jpg" alt="">
+</figure>
+  <a class="entry-link" aria-label="post link to 嵌入式开发-STM32标准库学习：GPIO输入" href="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p7/"></a>
 </article>
 
 
@@ -365,12 +704,12 @@ var _hmt = _hmt || [];
 <article class="post-entry">
   <div class="post-info">
     <header class="entry-header">
-      <h2>嵌入式开发-STM32标准库学习：GPIO输入
+      <h2>嵌入式开发-STM32标准库学习：GPIO输出
       </h2>
     </header>
     <section class="entry-content">
       <p>
-        本博客首先介绍了通过按键控制LED的基础操作，随后转向光敏传感器控制蜂鸣器的应用，涵盖了硬件连接和预期现象的讨论。课程还强调了C语言中指针的重要性，并给出了简单介绍。特别提到了处理按键抖动的方法，建议通过增加延时来改善，以确保程序的稳定性和准确性。此外，课程还介绍了四种传感器模块的工作原理，包括光敏电阻、热敏电阻、对射式及反射式红外传感器，并讲述了如何通过这些模块获取外部模拟量的变化信息。在讨论模拟电压和数字电压的生成及转换过程中，突出了各种电子元件的作用和选择合适的输入模式的重要性。同时，还覆盖了C语言中的数据类型、宏定义、结构体和枚举的使用，强调了这些概念在程序设计中的重要作用。
+        本教程涵盖了STM32 GPIO的输出与输入功能，分为基础应用和理论知识两个部分。首先，通过LED闪烁、LED流水灯和蜂鸣器实验，介绍GPIO基本应用。随后，深入探讨了GPIO的理论知识，包括其作为通用I/O口的特性、工作模式及电平范围。进一步地，解析了STM32中GPIO的基本结构，涉及APB2外设总线、GPIO模块及其组成。此外，讨论了GPIO引脚的功能，包括输入和输出保护措施，以及施密特触发器的作用和应用。教程强调了STM32 GPIO的多样工作模式，如推挽输出、开漏输出等，及其在不同应用场景下的优势。最后，简述了面包板的应用，为读者提供了实际电路搭建的指导。
         
         ...
       </p>
@@ -407,13 +746,13 @@ var _hmt = _hmt || [];
     
     <span id="post_meta_style_3">
         <span class="fa fa-file-word-o"></span>
-        <span>14204字
+        <span>12044字
             &nbsp;&nbsp;
         </span>
     </span>
     <span id="post_meta_style_4">
         <span class="fa fa-clock-o"></span>
-        <span>29分钟
+        <span>25分钟
             &nbsp;&nbsp;
         </span>
     </span>
@@ -429,98 +768,14 @@ var _hmt = _hmt || [];
             <span class="post-tags-meta">
                 <a href="https://eddyblog.cn/tags/stm32/" style="color: var(--secondary)!important;">STM32</a>
                 &nbsp;<a href="https://eddyblog.cn/tags/mcu/" style="color: var(--secondary)!important;">MCU</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/arm-cortex/" style="color: var(--secondary)!important;">ARM Cortex</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/led/" style="color: var(--secondary)!important;">LED</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/%E4%BC%A0%E6%84%9F%E5%99%A8%E6%A8%A1%E5%9D%97/" style="color: var(--secondary)!important;">传感器模块</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/arm-cortex-m/" style="color: var(--secondary)!important;">ARM Cortex-M</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/%E5%BC%80%E5%8F%91%E6%9D%BF/" style="color: var(--secondary)!important;">开发板</a>
                 &nbsp;<a href="https://eddyblog.cn/tags/stm32%E6%A0%87%E5%87%86%E5%BA%93%E5%BC%80%E5%8F%91/" style="color: var(--secondary)!important;">STM32标准库开发</a>
                 &nbsp;<a href="https://eddyblog.cn/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" style="color: var(--secondary)!important;">嵌入式开发</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/stm32f1/" style="color: var(--secondary)!important;">STM32F1</a>
-            </span>
-        </span>
-    </span>
-</span>
-</footer>
-  </div> 
-<figure class="entry-cover"><img loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/pc9.jpg" alt="">
-</figure>
-  <a class="entry-link" aria-label="post link to 嵌入式开发-STM32标准库学习：GPIO输入" href="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p7/"></a>
-</article>
-
-
-<article class="post-entry">
-  <div class="post-info">
-    <header class="entry-header">
-      <h2>嵌入式开发-STM32标准库学习：按键控制LED,光敏传感器控制蜂鸣器
-      </h2>
-    </header>
-    <section class="entry-content">
-      <p>
-        
-        ...
-      </p>
-    </section>
-    <footer class="entry-footer">
-
-<style>
-    i[id*="post_meta_style"] {
-        display: flex;
-        align-items: center;
-        margin: 0 0 10px 0;
-    }
-
-    .parent-post-meta {
-        display: flex;
-        flex-wrap: wrap;
-        opacity: 0.8;
-    }
-</style>
-
-<span class="parent-post-meta">
-    <span id="post_meta_style_1">
-        <span class="fa fa-calendar-check-o"></span>
-        <span>2024-05-13
-            &nbsp;&nbsp;
-        </span>
-    </span>
-    
-    
-    
-    
-    
-    
-    
-    <span id="post_meta_style_3">
-        <span class="fa fa-file-word-o"></span>
-        <span>10349字
-            &nbsp;&nbsp;
-        </span>
-    </span>
-    <span id="post_meta_style_4">
-        <span class="fa fa-clock-o"></span>
-        <span>21分钟
-            &nbsp;&nbsp;
-        </span>
-    </span>
-    <span id="post_meta_style_5">
-        <span class="fa fa-user-o"></span>
-        <span>Eddy
-            &nbsp;&nbsp;
-        </span>
-    </span>
-    <span id="post_meta_style_6">
-        <span class="fa fa-tags" style="opacity: 0.8"></span>
-        <span>
-            <span class="post-tags-meta">
-                <a href="https://eddyblog.cn/tags/stm32/" style="color: var(--secondary)!important;">STM32</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/mcu/" style="color: var(--secondary)!important;">MCU</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/arm-cortex/" style="color: var(--secondary)!important;">ARM Cortex</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/keil-uvision/" style="color: var(--secondary)!important;">Keil UVision</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/gpio/" style="color: var(--secondary)!important;">GPIO</a>
                 &nbsp;<a href="https://eddyblog.cn/tags/led/" style="color: var(--secondary)!important;">LED</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/%E6%8C%89%E9%94%AE%E6%8E%A7%E5%88%B6led/" style="color: var(--secondary)!important;">按键控制LED</a>
                 &nbsp;<a href="https://eddyblog.cn/tags/%E8%9C%82%E9%B8%A3%E5%99%A8/" style="color: var(--secondary)!important;">蜂鸣器</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/%E5%85%89%E6%95%8F%E4%BC%A0%E6%84%9F%E5%99%A8%E6%8E%A7%E5%88%B6%E8%9C%82%E9%B8%A3%E5%99%A8/" style="color: var(--secondary)!important;">光敏传感器控制蜂鸣器</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/stm32%E6%A0%87%E5%87%86%E5%BA%93%E5%BC%80%E5%8F%91/" style="color: var(--secondary)!important;">STM32标准库开发</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" style="color: var(--secondary)!important;">嵌入式开发</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/stm32f1/" style="color: var(--secondary)!important;">STM32F1</a>
             </span>
         </span>
     </span>
@@ -529,7 +784,7 @@ var _hmt = _hmt || [];
   </div> 
 <figure class="entry-cover"><img loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/pc9.jpg" alt="">
 </figure>
-  <a class="entry-link" aria-label="post link to 嵌入式开发-STM32标准库学习：按键控制LED,光敏传感器控制蜂鸣器" href="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p8/"></a>
+  <a class="entry-link" aria-label="post link to 嵌入式开发-STM32标准库学习：GPIO输出" href="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p5/"></a>
 </article>
 
 

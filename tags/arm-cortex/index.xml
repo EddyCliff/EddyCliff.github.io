@@ -6,32 +6,41 @@
     <description>Recent content in ARM Cortex on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 13 May 2024 00:17:58 +0900</lastBuildDate><atom:link href="https://eddyblog.cn/tags/arm-cortex/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 13 May 2024 00:17:58 +0700</lastBuildDate><atom:link href="https://eddyblog.cn/tags/arm-cortex/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>嵌入式开发-STM32标准库学习：实现LED闪烁与流水灯，蜂鸣器</title>
-      <link>https://eddyblog.cn/posts/tech/stm32-standard_library_learning-jkd-p6/</link>
-      <pubDate>Mon, 13 May 2024 00:17:58 +0900</pubDate>
+      <title>嵌入式开发-STM32标准库学习：OLED调试工具</title>
+      <link>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p9/</link>
+      <pubDate>Mon, 13 May 2024 00:17:58 +0700</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/stm32-standard_library_learning-jkd-p6/</guid>
-      <description>本节内容指导如何使用面包板、STM32最小系统板及ST Link开发一个简单的LED闪烁程序。首先，介绍搭建硬件电路所需步骤，包括正确连接电源、STM32板、LED和相关跳线。接着，在Keil5 软件中创建新工程，复制必要文件并配置工程设置以完成LED闪烁程序的编写、编译、下载和测试。此外，还介绍了如何利用一个辅助工具清理编译产生的中间文件，以便更好地分享工程。该指南详细讲解了如何使用RCC和GPIO外设及其库函数来控制LED的亮灭，包括设置工作模式、方向和速度。特别提到了四种GPIO输出函数和它们在控制LED亮灭方面的应用。通过主循环实现LED闪烁功能，并讨论了不同驱动模式下LED的性能差异。进一步地，本节还扩展到LED流水灯的制作，介绍了如何利用按位操作来控制多路LED的亮灭。最后，提供了学习STM32库函数的建议，包括查看库函数源码、利用官方文档和在线资源等方法。整个内容旨在帮助初学者掌握STM32开发的基础知识和技能。</description>
+      <guid>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p9/</guid>
+      <description>本文介绍了如何利用OLED显示屏进行程序调试，着重讲解了OLED显示屏的基本功能和驱动函数模块的使用方法。首先，介绍了一种常见的显示屏模块——0.96寸OLED模块，它的特点是体积小、接口少、驱动简单，适用于多种电子设计应用。该模块提供单色显示，具有较低的分辨率（128x64），但可通过简单的通信协议进行操作，适配多种电源电压和接口类型。文章详细讨论了该模块的不同版本（四针脚和七针脚）以及其在实际项目中的硬件连接方式。随后，引入了一个驱动函数模块，涵盖了从模块初始化到显示各种文本和数字信息的一系列实用函数。整体而言，本文突出了程序调试的重要性，并通过介绍具体的调试方法和工具，为开发人员提供了一套有效的调试方案，尤其是针对那些使用OLED显示屏的项目。</description>
+    </item>
+    
+    <item>
+      <title>嵌入式开发-STM32标准库学习：按键控制LED,光敏传感器控制蜂鸣器</title>
+      <link>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p8/</link>
+      <pubDate>Mon, 13 May 2024 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p8/</guid>
+      <description>本博客详细介绍了一个基于STM32最小系统板的项目开发过程，重点涵盖了基本的LED控制电路设计、模块化编程的应用以及扩展至光敏传感器和蜂鸣器模块的功能实现。首先，通过对PB1和PB10引脚连接按键，以及PA1和PA2引脚连接LED的基本电路描述，项目导入了如何在STM32板上实现简单LED控制的基础。在此基础上，强调了模块化编程的重要性，即通过将驱动代码分离至单独的.C和.H文件中，以提升代码的管理与移植性。特别提到了在&amp;#39;module&amp;#39;文件夹下创建硬件驱动程序的方法，以及在这些文件中添加必要预处理指令和其他细节的重要性。 其次，详细叙述了LED初始化和模块化编程的具体实践，包括LED的时钟配置、端口模式设置，以及如何通过结构体变量实现对GPIO的精确控制。此外，还介绍了如何处理警告和错误信息，从而保证了程序的稳定运行。通过这些步骤，成功实现了LED的点亮与熄灭功能，验证了程序的正确性。 进一步地，文章扩展到如何完善LED驱动程序模块，包括提供两种不同功能实现方式以及在硬件目录下创建新文件来组织代码的方法。接下来，详细介绍了使用RCC APB2外设时钟控制、配置GPIO端口模式、读取按键值等功能，以及如何通过GPL库消除按键抖动，并实现光照强度检测与蜂鸣器控制的综合应用。 总之，该段内容围绕着STM32开发板上的LED、光敏传感器和蜂鸣器模块的控制，展示了从基础电路设计到模块化编程，再到复杂功能实现的完整开发流程。每个环节都突出了理论与实践相结合的重要性，旨在提高代码的质量和项目的可维护性。</description>
     </item>
     
     <item>
       <title>嵌入式开发-STM32标准库学习：GPIO输入</title>
       <link>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p7/</link>
-      <pubDate>Mon, 13 May 2024 00:17:58 +1000</pubDate>
+      <pubDate>Mon, 13 May 2024 00:17:58 +0900</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p7/</guid>
       <description>本博客首先介绍了通过按键控制LED的基础操作，随后转向光敏传感器控制蜂鸣器的应用，涵盖了硬件连接和预期现象的讨论。课程还强调了C语言中指针的重要性，并给出了简单介绍。特别提到了处理按键抖动的方法，建议通过增加延时来改善，以确保程序的稳定性和准确性。此外，课程还介绍了四种传感器模块的工作原理，包括光敏电阻、热敏电阻、对射式及反射式红外传感器，并讲述了如何通过这些模块获取外部模拟量的变化信息。在讨论模拟电压和数字电压的生成及转换过程中，突出了各种电子元件的作用和选择合适的输入模式的重要性。同时，还覆盖了C语言中的数据类型、宏定义、结构体和枚举的使用，强调了这些概念在程序设计中的重要作用。</description>
     </item>
     
     <item>
-      <title>嵌入式开发-STM32标准库学习：按键控制LED,光敏传感器控制蜂鸣器</title>
-      <link>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p8/</link>
-      <pubDate>Mon, 13 May 2024 00:17:58 +1100</pubDate>
+      <title>嵌入式开发-STM32标准库学习：实现LED闪烁与流水灯，蜂鸣器</title>
+      <link>https://eddyblog.cn/posts/tech/stm32-standard_library_learning-jkd-p6/</link>
+      <pubDate>Mon, 13 May 2024 00:17:58 +1000</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p8/</guid>
-      <description>INIT INIT：本节内容正式开始。action! 按键控制LED 按键控制LED-硬件电路连接 接下来我们来写一下GPIO输入部分的代码。先看一下第一个代码的接线图。 图：按键控制LED 这里我接了两个按键和2个LED，其中两个按键分别接在了PB1和PB11两个口上。按键一端接GPIO口，另一</description>
+      <guid>https://eddyblog.cn/posts/tech/stm32-standard_library_learning-jkd-p6/</guid>
+      <description>本节内容指导如何使用面包板、STM32最小系统板及ST Link开发一个简单的LED闪烁程序。首先，介绍搭建硬件电路所需步骤，包括正确连接电源、STM32板、LED和相关跳线。接着，在Keil5 软件中创建新工程，复制必要文件并配置工程设置以完成LED闪烁程序的编写、编译、下载和测试。此外，还介绍了如何利用一个辅助工具清理编译产生的中间文件，以便更好地分享工程。该指南详细讲解了如何使用RCC和GPIO外设及其库函数来控制LED的亮灭，包括设置工作模式、方向和速度。特别提到了四种GPIO输出函数和它们在控制LED亮灭方面的应用。通过主循环实现LED闪烁功能，并讨论了不同驱动模式下LED的性能差异。进一步地，本节还扩展到LED流水灯的制作，介绍了如何利用按位操作来控制多路LED的亮灭。最后，提供了学习STM32库函数的建议，包括查看库函数源码、利用官方文档和在线资源等方法。整个内容旨在帮助初学者掌握STM32开发的基础知识和技能。</description>
     </item>
     
     <item>

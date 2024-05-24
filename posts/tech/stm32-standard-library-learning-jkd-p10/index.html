@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>嵌入式开发-STM32标准库学习：OLED显示屏 | Eddy&#39;s blog</title>
+<meta name="keywords" content="STM32, embedded, Embedded development, MCU, ARM Cortex-M, Development Board, 开发板, STM32简介, STM32标准库, 嵌入式开发">
+<meta name="description" content="本博客主要讲述了如何将OLED显示屏驱动程序模块整合至STM32工程中，并详细阐述了该驱动程序的设计与实现细节。重点讲解了硬件连接方式，尤其是如何通过PB6和PB7端口为OLED屏幕提供电源并通过四针脚接口进行数据传输。同时，介绍了如何根据现有的工程文件创建新的项目，并在其中嵌入OLED显示屏的驱动代码。文档还探讨了利用特定软件的调试模式对程序进行分析和优化的方法，涵盖了在线仿真和计算机模拟两种调试方式，及其对应的启动调试步骤和常用调试命令。此外，文中强调了通过这些调试手段可以有效地诊断和修复程序中的错误，加深对程序执行流程的理解。最后，文档简要介绍了 Keil 软件中的调试模式和相关功能，如命令窗口、反汇编窗口和符号窗口的使用方法，为进一步的程序调试提供了工具和技巧。">
+<meta name="author" content="Eddy">
+<link rel="canonical" href="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p10/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.js" onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="icon" type="image/png" sizes="16x16" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="icon" type="image/png" sizes="32x32" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="apple-touch-icon" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="mask-icon" href="https://eddyblog.cn/img/logo3.jpg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p10/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<script defer src="https://unpkg.com/mermaid@8.8.1/dist/mermaid.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="https://registry.npmmirror.com/lxgw-wenkai-screen-web/latest/files/style.css" />
+
+
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = ""; 
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  
+
+<meta property="og:title" content="嵌入式开发-STM32标准库学习：OLED显示屏" />
+<meta property="og:description" content="本博客主要讲述了如何将OLED显示屏驱动程序模块整合至STM32工程中，并详细阐述了该驱动程序的设计与实现细节。重点讲解了硬件连接方式，尤其是如何通过PB6和PB7端口为OLED屏幕提供电源并通过四针脚接口进行数据传输。同时，介绍了如何根据现有的工程文件创建新的项目，并在其中嵌入OLED显示屏的驱动代码。文档还探讨了利用特定软件的调试模式对程序进行分析和优化的方法，涵盖了在线仿真和计算机模拟两种调试方式，及其对应的启动调试步骤和常用调试命令。此外，文中强调了通过这些调试手段可以有效地诊断和修复程序中的错误，加深对程序执行流程的理解。最后，文档简要介绍了 Keil 软件中的调试模式和相关功能，如命令窗口、反汇编窗口和符号窗口的使用方法，为进一步的程序调试提供了工具和技巧。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p10/" />
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/pc9.jpg" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-05-13T00:17:58+06:00" />
+<meta property="article:modified_time" content="2024-05-13T00:17:58+06:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/pc9.jpg" />
+<meta name="twitter:title" content="嵌入式开发-STM32标准库学习：OLED显示屏"/>
+<meta name="twitter:description" content="本博客主要讲述了如何将OLED显示屏驱动程序模块整合至STM32工程中，并详细阐述了该驱动程序的设计与实现细节。重点讲解了硬件连接方式，尤其是如何通过PB6和PB7端口为OLED屏幕提供电源并通过四针脚接口进行数据传输。同时，介绍了如何根据现有的工程文件创建新的项目，并在其中嵌入OLED显示屏的驱动代码。文档还探讨了利用特定软件的调试模式对程序进行分析和优化的方法，涵盖了在线仿真和计算机模拟两种调试方式，及其对应的启动调试步骤和常用调试命令。此外，文中强调了通过这些调试手段可以有效地诊断和修复程序中的错误，加深对程序执行流程的理解。最后，文档简要介绍了 Keil 软件中的调试模式和相关功能，如命令窗口、反汇编窗口和符号窗口的使用方法，为进一步的程序调试提供了工具和技巧。"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+
+        {
+          "@type": "ListItem",
+          "position":  1 ,
+          "name": "📚文章",
+          "item": "https://eddyblog.cn/posts/"
+        },
+
+        {
+          "@type": "ListItem",
+          "position":  2 ,
+          "name": "👨🏻‍💻 技术",
+          "item": "https://eddyblog.cn/posts/tech/"
+        }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "嵌入式开发-STM32标准库学习：OLED显示屏",
+      "item": "https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p10/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "嵌入式开发-STM32标准库学习：OLED显示屏",
+  "name": "嵌入式开发-STM32标准库学习：OLED显示屏",
+  "description": "本博客主要讲述了如何将OLED显示屏驱动程序模块整合至STM32工程中，并详细阐述了该驱动程序的设计与实现细节。重点讲解了硬件连接方式，尤其是如何通过PB6和PB7端口为OLED屏幕提供电源并通过四针脚接口进行数据传输。同时，介绍了如何根据现有的工程文件创建新的项目，并在其中嵌入OLED显示屏的驱动代码。文档还探讨了利用特定软件的调试模式对程序进行分析和优化的方法，涵盖了在线仿真和计算机模拟两种调试方式，及其对应的启动调试步骤和常用调试命令。此外，文中强调了通过这些调试手段可以有效地诊断和修复程序中的错误，加深对程序执行流程的理解。最后，文档简要介绍了 Keil 软件中的调试模式和相关功能，如命令窗口、反汇编窗口和符号窗口的使用方法，为进一步的程序调试提供了工具和技巧。",
+  "keywords": [
+    "STM32", "embedded", "Embedded development", "MCU", "ARM Cortex-M", "Development Board", "开发板", "STM32简介", "STM32标准库", "嵌入式开发"
+  ],
+  "articleBody": " INIT INIT：本节内容正式开始。action!\n引言 本小节我们来学习一下如何使用OLED显示屏的驱动函数模块。\n首先我们还是看一下接线图，我们打开4-1 OLED显示屏的图片看一下。\n图：接线图 OLED显示屏\n这里我把OLED插在了面包板的右下角，以后我们就一直把这个屏幕插在这里，需要用的时候随时可以使用，而且放在右下角也不是很占地方。\n……具体的连接 省略一万字\n图：接线 实物图\n编写OLED显示屏 Keil工程 然后我们回到工程文件夹，复制一下按键控制led的工程文件夹，改个名字叫4-1 OLED显示屏。打开工程。\n接着我们回到工程文件夹里，我给大家准备的OLED驱动函数模块就放到这个1-4的文件夹里了。大家可以下载程序源码查看，那我们打开这个文件夹里面有两个版本，一个是4针脚I2C版本，另一个是7针脚SPI版本。\n我们打开4针脚版本的文件夹，里面有三个文件，我们直接全部选中复制到OLED显示屏这个工程里来。\nOLED.c 我们打开分别看一下这三个文件都是什么东西。首先OLED.c里面就是函数的主体代码了，里面包括了引脚配置、引脚初始化、I2C通信的基本时序和OLED用户调用的代码等。\n这些函数我都已经写好了，绝大部分都不需要更改。我们需要更改的就只有上面的这两部分代码。\n第一部分是引脚配置，这里选择的是你硬件电路上把SCL和SDA这两个引脚接在了哪两个端口上。比如我这里SCL接在了PB8，那这个地方就是GPIOB、GPIO_Pin_8。\n/*引脚配置*/ #define OLED_W_SCL(x)\tGPIO_WriteBit(GPIOB, GPIO_Pin_8, (BitAction)(x)) #define OLED_W_SDA(x)\tGPIO_WriteBit(GPIOB, GPIO_Pin_9, (BitAction)(x)) 如果你换个端口，比如接在PA6上，那这个地方就要改成GPIOA，GPIO_Pin_6。下面这个SDA的引脚配置也是一样，SDA接在了哪个位置，就改成GPIO啥，GPIO_Pin_啥。\n然后下面这个，OLED_I2C_Init函数里也得更改。这里面就是把SCL和SGA的两个引脚都初始化为开漏输出模式。这部分代码大家学了上一节GPIO之后应该就已经非常熟悉了。具体更改就是使用到的GPIO外设都先用RCC开启一下时钟，然后下面初始化GPIOB的Pin8，再初始化GPIOB的Pin9，这样就完成了。\n所以对于这个模块来说，我这里默认用的是SCL接PB8，SDA接PB9。\n如果你想修改，那先把上面这两行引角配置改一下。\n再把下面这里的端口初始化改一下。剩下的都不需要修改，就可以直接使用我这个OLED驱动函数模块了。这就是OLED.c里面的东西。\n编写代码：需要修改的Hardware/OLED.c中的代码\n#include \"stm32f10x.h\" #include \"OLED_Font.h\" /*引脚配置*/ #define OLED_W_SCL(x)\tGPIO_WriteBit(GPIOB, GPIO_Pin_8, (BitAction)(x)) #define OLED_W_SDA(x)\tGPIO_WriteBit(GPIOB, GPIO_Pin_9, (BitAction)(x)) /*引脚初始化*/ void OLED_I2C_Init(void) { RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE); GPIO_InitTypeDef GPIO_InitStructure; GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_OD; GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8; GPIO_Init(GPIOB, \u0026GPIO_InitStructure); GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9; GPIO_Init(GPIOB, \u0026GPIO_InitStructure); OLED_W_SCL(1); OLED_W_SDA(1); } OLED.h 接下来OLED.h里面，这里就是外部可调用函数的声明，其他的也没啥了。\nOLED_Font.h 最后是OLED_Font.h文件，这里存的是OLED的字库数据，因为这个OLED显示屏是不带字库的，想要显示字符图形，还得先定义字符的点阵数据。\n那这里就是这些字符的点阵数据，也就是字库OLED.c文件的显示函数会用到这些数据，当然字库也是不用我们修改的。\nmain.c 编写main.c，上面先引入头文件。\n#include \"stm32f10x.h\" // Device header #include \"Delay.h\" #include \"OLED.h\" main函数里主循环之前先调用OLED_Init();初始化OLED。\nOLED_ShowChar()\n然后试一下OLED_ShowChar显示一个字符。先写行列坐标，坐标的定义是这样的，总共4行16列。\n那我们写1行1列。第三个参数写一个字符，字符需要用单引号括起来，然后A，这样就完成了，我们试一下编译。下载。\nOLED_ShowChar(1, 1, 'A');\t//1行1列显示字符A 可以看到OLED的1行1列显示了一个字符A。\n图：OLED的1行1列显示了一个字符A\nOLED_ShowString()\n然后OLED_ShowString显示字符串，1行3列显示字符串，字符串需要用双引号括起来，然后hello word!再看一下。\nOLED_ShowString(1, 3, \"HelloWorld!\");\t//1行3列显示字符串HelloWorld! 图：OLED的1行3列显示字符串\n这里注意计算一下坐标和字符串长度，不要让它超出屏幕，这就是显示字符串。\nOLED_ShowNum()\n然后OLED_ShowNum()显示无符号十进制数字，在2行1列，显示12345这个数字，长度为5，看一下。\nOLED_ShowNum(2, 1, 12345, 5);\t//2行1列显示十进制数字12345，长度为5 就是这个效果。\n图：在2行1列，显示12345这个数字\n如果你这个长度参数比数字长度长，比如6，那它就会在前面补0。\nOLED_ShowNum(2, 1, 12345, 6);\t//2行1列显示十进制数字12345，长度为6 像这样\n图：OLED_ShowNum 长度参数比数字长度长，那它就会在前面补0\n如果这个长度参数比数字长度小，那比如4，它就会把高位的数据切掉。\nOLED_ShowNum(2, 1, 12345, 4);\t//2行1列显示十进制数字12345，长度为4 像这样\n图：OLED_ShowNum 长度参数比数字长度小，它就会把高位的数据切掉\n最高位的1就没有了，这就是显示无符号十进制数字，这个只能显示无符号数。\nOLED_ShowSignedNum\n然后OLED_ShowSignedNum，这个是显示有符号十进制数字的函数。比如2行7列，显示12345，长度为5，编译一下。\nOLED_ShowSignedNum(2, 7, 12345, 5);\t//2行7列显示有符号十进制数字12345，长度为5 下载。\n图：OLED_ShowSignedNum 2行7列，显示12345\n那现象就是这样，数字的前面会带一个正负号。\n如果显示-66长度为2，再看一下。现象就是这样。\n图：OLED_ShowSignedNum 显示-66长度为2\nOLED_ShowHexNum()\n然后是OLED_ShowHexNum()，显示十六进制数。比如3行1列显示0xAA55长度为4，看一下。\nOLED_ShowBinNum(3, 1, 0xAA55, 4);\t//3行1列显示二进制数字0xAA55，长度为4 //C语言无法直接写出二进制数字，故需要用十六进制表示 图：OLED_ShowHexNum() 3行1列显示0xAA55长度为4\nOLED_ShowBinNum()\n显示二进制数\nOLED_ShowBinNum(4, 1, 0xAA55, 16);\t//4行1列显示二进制数字0xA5A5，长度为16 //C语言无法直接写出二进制数字，故需要用十六进制表示 显示二进制数，这里写4行1列显示0xAA55这个数。因为C语言不能直接写二进制的数，所以这里我们只能用十六进制来代替。这个我还是比较奇怪的，为什么C语言作为一个底层计算机编程语言，却不支持直接写二进制的数呢？况且C语言最终还是要翻译成汇编语言的，汇编就支持直接写二进制，C语言却不支持。\n所以说二进制比较长，一般都用十六进制来表示。但难免有的时候直接写二进制会更加方便，C语言里面直接就不支持写二进制，那咱也没办法，这里就只能用十六进制来写了。这个十六进制表示的二进制数是16位的，所以这个长度给16。\n编译，下载，看一下。这里就显示的AA55对应的二进制数据。\n图：OLED_ShowBinNum() 显示的AA55对应的二进制数据\nOLED_Clear\n最后还有一个函数OLED_Clear清屏，我们再最后调用一下看一下。这时候OLED就不会显示任何东西，因为在最后OLED_Clear把全屏都清屏了。\nOLED_Clear(); 如果你只想清除部分字符，那可以用OLED_ShowString()，在你想要清掉的地方显示空格字符就行了。\n好，这些就是我这个模块里所有的函数用法。\nKeil的调试模式 接下来的时间我给大家演示一下Keil的调试模式。这个调试模式我教程里可能用的比较少，但是它确实是一个非常强大的工具。\n在这里给大家介绍一下，大家之后遇到一些复杂的问题，可以考虑一下这个调试模式，说不定就能很方便的解决你的问题了。那我们换一个LED闪烁的工程作为例子。\nDebug选项选择调试模式 然后工程选项debug，这里可以对调试选项进行配置。这里默认是选择右边的这一项，这个是在硬件上在线仿真，需要我们把STLINK和STM32都连接好。如果你不想连接硬件，也可以选择左边的使用仿真器这个选项，这样就是电脑模拟STM32的运行了。\n图：Debug选项\n那我们就使用硬件的在线仿真版。首先在进入调试模式之前，需要先连接好STM32之后编译一下，确保工程没有问题。\n现在这里编译是没有问题的。然后点击这里的放大镜，里面带一个D的图标，进入调试模式。\n开始调试 图：Keil调试模式\n在这个界面里主窗口就是我们的C语言程序，上面这个窗口就是C语言翻译成的汇编程序的。这个你感兴趣的话，可以对照这里看一下，每句C语言实际上都执行了哪些操作。\n然后左边的这个窗口是寄存器组和状态标志位等信息。这个是单片机硬件底层很重要的东西，如果你用汇编编程的话，这些东西都是必须要非常清楚的。\n图：编译的界面\n但如果你用的是C语言，那这些东西就不用管的。\n浅尝调试模式 之后上面这一部分是程序运行控制的。第一个是复位，第二个是全速运行，第三个是停止全速运行。然后接着这四个是单步运行、跳过当前行单步运行，跳出当前函数单步运行，跳到光标指定行单步运行。\n图：程序运行控制\n那我们可以试一下，这个黄色箭头指示的就是下一句将要执行的代码。我们当前的程序就是从main函数开始的。我们可以点一下单步运行，那它就执行到了下一行，然后再单步，他就进到了RCC这个函数里面来了。点击这个跳出函数，它就可以跳到函数外面来了。指定这一行，然后点击运行到光标指令行，那程序就运行到这个位置了。\n我们可以点击程序左边这里深灰色的区域，设置断点，然后点击全速运行程序就会一直运行直到断点停下。如果没有断点的话，再全速运行程序就不会自动停下来了。\n那我们就需要点击这里的停止按钮，这样程序就会停下来了，可以看到目前程序停在了Delay函数里面，然后我们点击RST复位，程序就会回到最开始的地方，这里我们可以看到，现在程序是在启动文件的复位中断函数里，说明复位后程序是从这里开始执行的。\n好了，这就是调试模式下控制程序运行的方法。这个方法可以精确追踪我们的程序是如何运行的。如果你不清楚程序是如何一步步运行的。那在这个调试模式里单步运行探索一下，相信你对程序的运行逻辑就会有更深的理解。当然这只是调试模式下的一小部分功能，调试模式还有更强大的功能。\n图：调试模式的各种按钮\n接着我们来看一下上面的这一堆功能。第一个是命令窗口，我们点击它可以打开和关闭命令窗口。第二个是反汇编窗口，也是可以打开和关闭的。第三个是符号窗口，在这里我们可以实时查看程序中所有变量的值。\n我们试一下，比如我想看一下这个GPIO_InitStructure结构体的值，那就可以在这个符号窗口里找一下，main.c里面，然后main函数这里就可以看到这个变量了，里面可以看到结构体的三个成员。如果想看一下结构体值的变化，可以在这里右键添加到watch一窗口。在这里就能看到结构体的值了。\n图：查看GPIO_InitStructure结构体的值\n比如我们在这里单步运行，这里就能看到这个变量值的变化了，还是非常方便的。\n然后剩下的这里还有串口显示，逻辑分析仪等等，这些工具的功能也都是非常强大的，大家可以自行了解一下，我就不再演示了。\n另外我们还可以点击这个外设菜单栏、系统资源查看，这里就可以看到所有的外设寄存器。比如我们选择GPIOA，右边的这里就会显示GPIOA外设的所有寄存器。\nSTM32实时执行程序，Keil软件实时显示外设寄存器状态。\n图：查看所有外设的寄存器\n所以当你以后遇到一个比较难调的程序，比如不清楚程序是如何执行的，或者想要看一大堆变量却不方便显示的，或者想看一下寄存器是不是配置正确了，都可以考虑一下使用这个Keil自带的调试模式。\n最后再说明一下，如果你想修改程序的话，是不能直接在这个调试模式下修改的。修改程序得先退出调试模式，重新编译再进入调试模式，这个注意一下，以上这些就是对kill调试模式的简单介绍。\n这个软件更多的功能还得需要大家自己慢慢探索了。探索的方法可以是这些按钮、菜单、都随便点点，看看有啥功能。或者百度搜索一下各个功能是咋用的，或者点这里的帮助。第一项这里可以打开Keil软件的官方帮助文档，这个帮助文档里有对这整个软件最权威最细致的介绍。如果你对某个功能不熟悉的话，可以在这里找一找。好，以上就是本节的全部内容了，我们下节再见。\nEND END：本节内容到此结束。\n个人提升之余，别忘了和小伙伴积极交流，很多人觉得他们在思考，而实际上他们只是在重新整理自己的偏见。请珍惜和他人交流讨论的机会。\n希望你每一天都有所收获，进步up up up。今天的我们并不比昨天更聪明，但一定要比昨天更睿智。\n",
+  "wordCount" : "4927",
+  "inLanguage": "zh",
+  "image":"https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/pc9.jpg","datePublished": "2024-05-13T00:17:58+06:00",
+  "dateModified": "2024-05-13T00:17:58+06:00",
+  "author":[{
+    "@type": "Person",
+    "name": "Eddy"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p10/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Eddy's blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://eddyblog.cn/img/logo3.jpg"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    (function () {
+        let  arr,reg = new RegExp("(^| )"+"change-themes"+"=([^;]*)(;|$)");
+        if(arr = document.cookie.match(reg)) {
+        } else {
+            if (new Date().getHours() >= 19 || new Date().getHours() < 6) {
+                document.body.classList.add('dark');
+                localStorage.setItem("pref-theme", 'dark');
+            } else {
+                document.body.classList.remove('dark');
+                localStorage.setItem("pref-theme", 'light');
+            }
+        }
+    })()
+
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://eddyblog.cn/" accesskey="h" title="Eddy&#39;s Blog (Alt + H)">
+            <img src="https://eddyblog.cn/img/logo3.jpg" alt="logo" aria-label="logo"
+                 height="35">Eddy&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://eddyblog.cn/search" title="🔍 搜索 (Alt &#43; /)" accesskey=/>
+                <span>🔍 搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/" title="🏠 主页">
+                <span>🏠 主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/posts" title="📚 文章">
+                <span>📚 文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/tags" title="🧩 标签">
+                <span>🧩 标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/archives/" title="⏱️ 时间轴">
+                <span>⏱️ 时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/about" title="🙋🏻‍♂️ 关于">
+                <span>🙋🏻‍♂️ 关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main page">
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+</style>
+
+<article class="post-single">
+    <div id="single-content">
+        <header class="post-header">
+            <div class="breadcrumbs"><a href="https://eddyblog.cn/">🏠 主页</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/">📚文章</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/tech/">👨🏻‍💻 技术</a></div>
+            <h1 class="post-title">
+                嵌入式开发-STM32标准库学习：OLED显示屏
+            </h1>
+            <div class="post-description">
+                本博客主要讲述了如何将OLED显示屏驱动程序模块整合至STM32工程中，并详细阐述了该驱动程序的设计与实现细节。重点讲解了硬件连接方式，尤其是如何通过PB6和PB7端口为OLED屏幕提供电源并通过四针脚接口进行数据传输。同时，介绍了如何根据现有的工程文件创建新的项目，并在其中嵌入OLED显示屏的驱动代码。文档还探讨了利用特定软件的调试模式对程序进行分析和优化的方法，涵盖了在线仿真和计算机模拟两种调试方式，及其对应的启动调试步骤和常用调试命令。此外，文中强调了通过这些调试手段可以有效地诊断和修复程序中的错误，加深对程序执行流程的理解。最后，文档简要介绍了 Keil 软件中的调试模式和相关功能，如命令窗口、反汇编窗口和符号窗口的使用方法，为进一步的程序调试提供了工具和技巧。
+            </div>
+            <div class="post-meta">
+
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+
+    .parent-post-meta {
+        display: flex;
+        flex-wrap: wrap;
+        opacity: 0.8;
+    }
+</style>
+
+<span class="parent-post-meta">
+    <span id="post_meta_style_1">
+        <span class="fa fa-calendar-check-o"></span>
+        <span>2024-05-13
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    
+    
+    
+    
+    
+    
+    
+    <span id="post_meta_style_3">
+        <span class="fa fa-file-word-o"></span>
+        <span>4927字
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_4">
+        <span class="fa fa-clock-o"></span>
+        <span>10分钟
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_5">
+        <span class="fa fa-user-o"></span>
+        <span>Eddy
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_6">
+        <span class="fa fa-tags" style="opacity: 0.8"></span>
+        <span>
+            <span class="post-tags-meta">
+                <a href="https://eddyblog.cn/tags/stm32/" style="color: var(--secondary)!important;">STM32</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/mcu/" style="color: var(--secondary)!important;">MCU</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/oled/" style="color: var(--secondary)!important;">OLED</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/oled%E6%98%BE%E7%A4%BA%E5%B1%8F/" style="color: var(--secondary)!important;">OLED显示屏</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/stm32%E6%A0%87%E5%87%86%E5%BA%93%E5%BC%80%E5%8F%91/" style="color: var(--secondary)!important;">STM32标准库开发</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" style="color: var(--secondary)!important;">嵌入式开发</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/stm32f1/" style="color: var(--secondary)!important;">STM32F1</a>
+            </span>
+        </span>
+    </span>
+</span>
+<span style="opacity: 0.8;">
+                    <span id="post_meta_style_7">
+                        &nbsp;&nbsp;
+                        <span class="fa fa-eye" ></span>
+                        <span>
+                            <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+                            &nbsp;&nbsp;
+                        </span>
+                    </span>
+                    <span id="post_meta_style_8">
+                        <span class="fa fa-commenting-o"></span>
+                        <span>
+                            <script src="https://cdn.staticfile.org/twikoo//twikoo.all.min.js"></script>
+                            <script>
+                                let url = document.documentURI
+                                
+                                let dnsUrl = "https://eddyblog.cn/"
+                                let urlSplit = url.split(dnsUrl)
+                                let finalUrl = urlSplit[1]
+                                if (finalUrl[0] !== '/') {
+                                    finalUrl = '/'+finalUrl
+                                }
+                                twikoo.getCommentsCount({
+                                    envId:  null , 
+                                region:  null , 
+                                urls: [ 
+                                    
+                                    finalUrl,
+                                ],
+                                    includeReply: false 
+                                }).then(function (res) {
+                                    let count = res[0].count
+                                    const obj = document.getElementById("comment_count");
+                                    obj.innerText = count
+                                    
+                                    
+                                    
+                                }).catch(function (err) {
+                                    
+                                    console.error(err);
+                                });
+                            </script>
+                            <span id="comment_count"></span>
+                        </span>
+                    </span>
+                </span>
+
+</div>
+        </header> 
+<figure class="entry-cover1"><img style="zoom:;" loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/pc9.jpg" alt="">
+    
+</figure><aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#init" aria-label="INIT">INIT</a></li>
+                <li>
+                    <a href="#%e5%bc%95%e8%a8%80" aria-label="引言">引言</a></li>
+                <li>
+                    <a href="#%e7%bc%96%e5%86%99oled%e6%98%be%e7%a4%ba%e5%b1%8f-keil%e5%b7%a5%e7%a8%8b" aria-label="编写OLED显示屏 Keil工程">编写OLED显示屏 Keil工程</a><ul>
+                        
+                <li>
+                    <a href="#oledc" aria-label="OLED.c">OLED.c</a></li>
+                <li>
+                    <a href="#oledh" aria-label="OLED.h">OLED.h</a></li>
+                <li>
+                    <a href="#oled_fonth" aria-label="OLED_Font.h">OLED_Font.h</a></li>
+                <li>
+                    <a href="#mainc" aria-label="main.c">main.c</a></li></ul>
+                </li>
+                <li>
+                    <a href="#keil%e7%9a%84%e8%b0%83%e8%af%95%e6%a8%a1%e5%bc%8f" aria-label="Keil的调试模式">Keil的调试模式</a><ul>
+                        
+                <li>
+                    <a href="#debug%e9%80%89%e9%a1%b9%e9%80%89%e6%8b%a9%e8%b0%83%e8%af%95%e6%a8%a1%e5%bc%8f" aria-label="Debug选项选择调试模式">Debug选项选择调试模式</a></li>
+                <li>
+                    <a href="#%e5%bc%80%e5%a7%8b%e8%b0%83%e8%af%95" aria-label="开始调试">开始调试</a><ul>
+                        
+                <li>
+                    <a href="#%e6%b5%85%e5%b0%9d%e8%b0%83%e8%af%95%e6%a8%a1%e5%bc%8f" aria-label="浅尝调试模式">浅尝调试模式</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#end" aria-label="END">END</a>
+                </li>
+            </ul>
+        </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+        
+        activeElement = elements[0];
+        const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+        document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+    }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        if (elements) {
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement){
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }
+    }, false);
+
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;
+    }
+</script>
+        <div class="post-content"><div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/%E7%9F%A5%E8%AF%86%E8%92%99%E8%94%BD%E4%BA%86%E6%88%91%E7%9A%84%E5%8F%8C%E7%9C%BC.jpg" alt = "知识蒙蔽了我的双眼.jpg" width = "70%" height = "auto">
+</div>
+<br>
+<h2 id="init">INIT<a hidden class="anchor" aria-hidden="true" href="#init">#</a></h2>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/INIT.jpg" alt = "INIT.jpg" width = "70%" height = "auto">
+</div>
+<br>
+<blockquote>
+<p><strong>INIT：本节内容正式开始。action!</strong></p>
+</blockquote>
+<h2 id="引言">引言<a hidden class="anchor" aria-hidden="true" href="#引言">#</a></h2>
+<p>本小节我们来学习一下如何使用OLED显示屏的驱动函数模块。</p>
+<p>首先我们还是看一下接线图，我们打开4-1 OLED显示屏的图片看一下。</p>
+<p>图：接线图 OLED显示屏</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P10-OLED%E6%98%BE%E7%A4%BA%E5%B1%8F.jpg" alt = "P10-OLED显示屏.jpg" width = "70%" height = "auto">
+</div>
+<br>
+<p>这里我把OLED插在了面包板的右下角，以后我们就一直把这个屏幕插在这里，需要用的时候随时可以使用，而且放在右下角也不是很占地方。</p>
+<p>&hellip;&hellip;具体的连接 省略一万字</p>
+<p>图：接线 实物图</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P10-OLED%E6%98%BE%E7%A4%BA%E5%B1%8F.png" alt = "P10-OLED显示屏.png" width = "70%" height = "auto">
+</div>
+<br>
+<h2 id="编写oled显示屏-keil工程">编写OLED显示屏 Keil工程<a hidden class="anchor" aria-hidden="true" href="#编写oled显示屏-keil工程">#</a></h2>
+<p>然后我们回到工程文件夹，复制一下按键控制led的工程文件夹，改个名字叫4-1 OLED显示屏。打开工程。</p>
+<p>接着我们回到工程文件夹里，我给大家准备的OLED驱动函数模块就放到这个1-4的文件夹里了。大家可以下载程序源码查看，那我们打开这个文件夹里面有两个版本，一个是4针脚I2C版本，另一个是7针脚SPI版本。</p>
+<p>我们打开4针脚版本的文件夹，里面有三个文件，我们直接全部选中复制到OLED显示屏这个工程里来。</p>
+<h3 id="oledc">OLED.c<a hidden class="anchor" aria-hidden="true" href="#oledc">#</a></h3>
+<p>我们打开分别看一下这三个文件都是什么东西。首先OLED.c里面就是函数的主体代码了，里面包括了引脚配置、引脚初始化、I2C通信的基本时序和OLED用户调用的代码等。</p>
+<p>这些函数我都已经写好了，绝大部分都不需要更改。我们需要更改的就只有上面的这两部分代码。</p>
+<p>第一部分是引脚配置，这里选择的是你硬件电路上把SCL和SDA这两个引脚接在了哪两个端口上。比如我这里SCL接在了PB8，那这个地方就是GPIOB、GPIO_Pin_8。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">/*引脚配置*/</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#define OLED_W_SCL(x)		GPIO_WriteBit(GPIOB, GPIO_Pin_8, (BitAction)(x))
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define OLED_W_SDA(x)		GPIO_WriteBit(GPIOB, GPIO_Pin_9, (BitAction)(x))
+</span></span></span></code></pre></div><p>如果你换个端口，比如接在PA6上，那这个地方就要改成GPIOA，GPIO_Pin_6。下面这个SDA的引脚配置也是一样，SDA接在了哪个位置，就改成GPIO啥，GPIO_Pin_啥。</p>
+<p>然后下面这个，OLED_I2C_Init函数里也得更改。这里面就是把SCL和SGA的两个引脚都初始化为开漏输出模式。这部分代码大家学了上一节GPIO之后应该就已经非常熟悉了。具体更改就是使用到的GPIO外设都先用RCC开启一下时钟，然后下面初始化GPIOB的Pin8，再初始化GPIOB的Pin9，这样就完成了。</p>
+<p>所以对于这个模块来说，我这里默认用的是SCL接PB8，SDA接PB9。</p>
+<p>如果你想修改，那先把上面这两行引角配置改一下。</p>
+<p>再把下面这里的端口初始化改一下。剩下的都不需要修改，就可以直接使用我这个OLED驱动函数模块了。这就是OLED.c里面的东西。</p>
+<p>编写代码：需要修改的Hardware/OLED.c中的代码</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;stm32f10x.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;OLED_Font.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/*引脚配置*/</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#define OLED_W_SCL(x)		GPIO_WriteBit(GPIOB, GPIO_Pin_8, (BitAction)(x))
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define OLED_W_SDA(x)		GPIO_WriteBit(GPIOB, GPIO_Pin_9, (BitAction)(x))
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/*引脚初始化*/</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">OLED_I2C_Init</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">RCC_APB2PeriphClockCmd</span>(RCC_APB2Periph_GPIOB, ENABLE);
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	GPIO_InitTypeDef GPIO_InitStructure;
+</span></span><span style="display:flex;"><span> 	GPIO_InitStructure.GPIO_Mode <span style="color:#f92672">=</span> GPIO_Mode_Out_OD;
+</span></span><span style="display:flex;"><span>	GPIO_InitStructure.GPIO_Speed <span style="color:#f92672">=</span> GPIO_Speed_50MHz;
+</span></span><span style="display:flex;"><span>	GPIO_InitStructure.GPIO_Pin <span style="color:#f92672">=</span> GPIO_Pin_8;
+</span></span><span style="display:flex;"><span> 	<span style="color:#a6e22e">GPIO_Init</span>(GPIOB, <span style="color:#f92672">&amp;</span>GPIO_InitStructure);
+</span></span><span style="display:flex;"><span>	GPIO_InitStructure.GPIO_Pin <span style="color:#f92672">=</span> GPIO_Pin_9;
+</span></span><span style="display:flex;"><span> 	<span style="color:#a6e22e">GPIO_Init</span>(GPIOB, <span style="color:#f92672">&amp;</span>GPIO_InitStructure);
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">OLED_W_SCL</span>(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">OLED_W_SDA</span>(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="oledh">OLED.h<a hidden class="anchor" aria-hidden="true" href="#oledh">#</a></h3>
+<p>接下来OLED.h里面，这里就是外部可调用函数的声明，其他的也没啥了。</p>
+<h3 id="oled_fonth">OLED_Font.h<a hidden class="anchor" aria-hidden="true" href="#oled_fonth">#</a></h3>
+<p>最后是OLED_Font.h文件，这里存的是OLED的字库数据，因为这个OLED显示屏是不带字库的，想要显示字符图形，还得先定义字符的点阵数据。</p>
+<p>那这里就是这些字符的点阵数据，也就是字库OLED.c文件的显示函数会用到这些数据，当然字库也是不用我们修改的。</p>
+<h3 id="mainc">main.c<a hidden class="anchor" aria-hidden="true" href="#mainc">#</a></h3>
+<p>编写main.c，上面先引入头文件。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;stm32f10x.h&#34;                  // Device header</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;Delay.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;OLED.h&#34;</span><span style="color:#75715e">
+</span></span></span></code></pre></div><p>main函数里主循环之前先调用OLED_Init();初始化OLED。</p>
+<p><strong>OLED_ShowChar()</strong></p>
+<p>然后试一下OLED_ShowChar显示一个字符。先写行列坐标，坐标的定义是这样的，总共4行16列。</p>
+<p>那我们写1行1列。第三个参数写一个字符，字符需要用单引号括起来，然后A，这样就完成了，我们试一下编译。下载。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#a6e22e">OLED_ShowChar</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;A&#39;</span>);				<span style="color:#75715e">//1行1列显示字符A
+</span></span></span></code></pre></div><p>可以看到OLED的1行1列显示了一个字符A。</p>
+<p>图：OLED的1行1列显示了一个字符A</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P10-OLED%E6%98%BE%E7%A4%BA%E5%B1%8F-1.png" alt = "P10-OLED显示屏-1.png" width = "70%" height = "auto">
+</div>
+<br>
+<p><strong>OLED_ShowString()</strong></p>
+<p>然后OLED_ShowString显示字符串，1行3列显示字符串，字符串需要用双引号括起来，然后hello word!再看一下。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#a6e22e">OLED_ShowString</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#34;HelloWorld!&#34;</span>);	<span style="color:#75715e">//1行3列显示字符串HelloWorld!
+</span></span></span></code></pre></div><p>图：OLED的1行3列显示字符串</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P10-OLED%E6%98%BE%E7%A4%BA%E5%B1%8F-2.png" alt = "P10-OLED显示屏-2.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>这里注意计算一下坐标和字符串长度，不要让它超出屏幕，这就是显示字符串。</p>
+<p><strong>OLED_ShowNum()</strong></p>
+<p>然后OLED_ShowNum()显示无符号十进制数字，在2行1列，显示12345这个数字，长度为5，看一下。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#a6e22e">OLED_ShowNum</span>(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">12345</span>, <span style="color:#ae81ff">5</span>);			<span style="color:#75715e">//2行1列显示十进制数字12345，长度为5
+</span></span></span></code></pre></div><p>就是这个效果。</p>
+<p>图：在2行1列，显示12345这个数字</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P10-OLED%E6%98%BE%E7%A4%BA%E5%B1%8F-3.png" alt = "P10-OLED显示屏-3.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>如果你这个长度参数比数字长度长，比如6，那它就会在前面补0。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#a6e22e">OLED_ShowNum</span>(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">12345</span>, <span style="color:#ae81ff">6</span>);			<span style="color:#75715e">//2行1列显示十进制数字12345，长度为6
+</span></span></span></code></pre></div><p>像这样</p>
+<p>图：OLED_ShowNum 长度参数比数字长度长，那它就会在前面补0</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P10-OLED%E6%98%BE%E7%A4%BA%E5%B1%8F-4.png" alt = "P10-OLED显示屏-4.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>如果这个长度参数比数字长度小，那比如4，它就会把高位的数据切掉。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#a6e22e">OLED_ShowNum</span>(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">12345</span>, <span style="color:#ae81ff">4</span>);			<span style="color:#75715e">//2行1列显示十进制数字12345，长度为4
+</span></span></span></code></pre></div><p>像这样</p>
+<p>图：OLED_ShowNum 长度参数比数字长度小，它就会把高位的数据切掉</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P10-OLED%E6%98%BE%E7%A4%BA%E5%B1%8F-5.png" alt = "P10-OLED显示屏-5.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>最高位的1就没有了，这就是显示无符号十进制数字，这个只能显示无符号数。</p>
+<p><strong>OLED_ShowSignedNum</strong></p>
+<p>然后OLED_ShowSignedNum，这个是显示有符号十进制数字的函数。比如2行7列，显示12345，长度为5，编译一下。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#a6e22e">OLED_ShowSignedNum</span>(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">12345</span>, <span style="color:#ae81ff">5</span>);		<span style="color:#75715e">//2行7列显示有符号十进制数字12345，长度为5
+</span></span></span></code></pre></div><p>下载。</p>
+<p>图：OLED_ShowSignedNum 2行7列，显示12345</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P10-OLED%E6%98%BE%E7%A4%BA%E5%B1%8F-6.png" alt = "P10-OLED显示屏-6.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>那现象就是这样，数字的前面会带一个正负号。</p>
+<p>如果显示-66长度为2，再看一下。现象就是这样。</p>
+<p>图：OLED_ShowSignedNum 显示-66长度为2</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P10-OLED%E6%98%BE%E7%A4%BA%E5%B1%8F-7.png" alt = "P10-OLED显示屏-7.png" width = "70%" height = "auto">
+</div>
+<br>
+<p><strong>OLED_ShowHexNum()</strong></p>
+<p>然后是OLED_ShowHexNum()，显示十六进制数。比如3行1列显示0xAA55长度为4，看一下。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#a6e22e">OLED_ShowBinNum</span>(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0xAA55</span>, <span style="color:#ae81ff">4</span>);		<span style="color:#75715e">//3行1列显示二进制数字0xAA55，长度为4
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>											<span style="color:#75715e">//C语言无法直接写出二进制数字，故需要用十六进制表示
+</span></span></span></code></pre></div><p>图：OLED_ShowHexNum() 3行1列显示0xAA55长度为4</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P10-OLED%E6%98%BE%E7%A4%BA%E5%B1%8F-8.png" alt = "P10-OLED显示屏-8.png" width = "70%" height = "auto">
+</div>
+<br>
+<p><strong>OLED_ShowBinNum()</strong></p>
+<p>显示二进制数</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#a6e22e">OLED_ShowBinNum</span>(<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0xAA55</span>, <span style="color:#ae81ff">16</span>);		<span style="color:#75715e">//4行1列显示二进制数字0xA5A5，长度为16
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>											<span style="color:#75715e">//C语言无法直接写出二进制数字，故需要用十六进制表示
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span></code></pre></div><p>显示二进制数，这里写4行1列显示0xAA55这个数。因为C语言不能直接写二进制的数，所以这里我们只能用十六进制来代替。这个我还是比较奇怪的，为什么C语言作为一个底层计算机编程语言，却不支持直接写二进制的数呢？况且C语言最终还是要翻译成汇编语言的，汇编就支持直接写二进制，C语言却不支持。</p>
+<p>所以说二进制比较长，一般都用十六进制来表示。但难免有的时候直接写二进制会更加方便，C语言里面直接就不支持写二进制，那咱也没办法，这里就只能用十六进制来写了。这个十六进制表示的二进制数是16位的，所以这个长度给16。</p>
+<p>编译，下载，看一下。这里就显示的AA55对应的二进制数据。</p>
+<p>图：OLED_ShowBinNum() 显示的AA55对应的二进制数据</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P10-OLED%E6%98%BE%E7%A4%BA%E5%B1%8F-9.png" alt = "P10-OLED显示屏-9.png" width = "70%" height = "auto">
+</div>
+<br>
+<p><strong>OLED_Clear</strong></p>
+<p>最后还有一个函数OLED_Clear清屏，我们再最后调用一下看一下。这时候OLED就不会显示任何东西，因为在最后OLED_Clear把全屏都清屏了。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#a6e22e">OLED_Clear</span>();
+</span></span></code></pre></div><p>如果你只想清除部分字符，那可以用OLED_ShowString()，在你想要清掉的地方显示空格字符就行了。</p>
+<p>好，这些就是我这个模块里所有的函数用法。</p>
+<h2 id="keil的调试模式">Keil的调试模式<a hidden class="anchor" aria-hidden="true" href="#keil的调试模式">#</a></h2>
+<p>接下来的时间我给大家演示一下Keil的调试模式。这个调试模式我教程里可能用的比较少，但是它确实是一个非常强大的工具。</p>
+<p>在这里给大家介绍一下，大家之后遇到一些复杂的问题，可以考虑一下这个调试模式，说不定就能很方便的解决你的问题了。那我们换一个LED闪烁的工程作为例子。</p>
+<h3 id="debug选项选择调试模式">Debug选项选择调试模式<a hidden class="anchor" aria-hidden="true" href="#debug选项选择调试模式">#</a></h3>
+<p>然后工程选项debug，这里可以对调试选项进行配置。这里默认是选择右边的这一项，这个是在硬件上在线仿真，需要我们把STLINK和STM32都连接好。如果你不想连接硬件，也可以选择左边的使用仿真器这个选项，这样就是电脑模拟STM32的运行了。</p>
+<p>图：Debug选项</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P10-OLED%E6%98%BE%E7%A4%BA%E5%B1%8F-10.png" alt = "P10-OLED显示屏-10.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>那我们就使用硬件的在线仿真版。首先在进入调试模式之前，需要先连接好STM32之后编译一下，确保工程没有问题。</p>
+<p>现在这里编译是没有问题的。然后点击这里的放大镜，里面带一个D的图标，进入调试模式。</p>
+<h3 id="开始调试">开始调试<a hidden class="anchor" aria-hidden="true" href="#开始调试">#</a></h3>
+<p>图：Keil调试模式</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P10-OLED%E6%98%BE%E7%A4%BA%E5%B1%8F-11.png" alt = "P10-OLED显示屏-11.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>在这个界面里主窗口就是我们的C语言程序，上面这个窗口就是C语言翻译成的汇编程序的。这个你感兴趣的话，可以对照这里看一下，每句C语言实际上都执行了哪些操作。</p>
+<p>然后左边的这个窗口是寄存器组和状态标志位等信息。这个是单片机硬件底层很重要的东西，如果你用汇编编程的话，这些东西都是必须要非常清楚的。</p>
+<p>图：编译的界面</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P10-OLED%E6%98%BE%E7%A4%BA%E5%B1%8F-13.png" alt = "P10-OLED显示屏-13.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>但如果你用的是C语言，那这些东西就不用管的。</p>
+<h4 id="浅尝调试模式">浅尝调试模式<a hidden class="anchor" aria-hidden="true" href="#浅尝调试模式">#</a></h4>
+<p>之后上面这一部分是程序运行控制的。第一个是复位，第二个是全速运行，第三个是停止全速运行。然后接着这四个是单步运行、跳过当前行单步运行，跳出当前函数单步运行，跳到光标指定行单步运行。</p>
+<p>图：程序运行控制</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P10-OLED%E6%98%BE%E7%A4%BA%E5%B1%8F-12.png" alt = "P10-OLED显示屏-12.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>那我们可以试一下，这个黄色箭头指示的就是下一句将要执行的代码。我们当前的程序就是从main函数开始的。我们可以点一下单步运行，那它就执行到了下一行，然后再单步，他就进到了RCC这个函数里面来了。点击这个跳出函数，它就可以跳到函数外面来了。指定这一行，然后点击运行到光标指令行，那程序就运行到这个位置了。</p>
+<p>我们可以点击程序左边这里深灰色的区域，设置断点，然后点击全速运行程序就会一直运行直到断点停下。如果没有断点的话，再全速运行程序就不会自动停下来了。</p>
+<p>那我们就需要点击这里的停止按钮，这样程序就会停下来了，可以看到目前程序停在了Delay函数里面，然后我们点击RST复位，程序就会回到最开始的地方，这里我们可以看到，现在程序是在启动文件的复位中断函数里，说明复位后程序是从这里开始执行的。</p>
+<p>好了，这就是调试模式下控制程序运行的方法。这个方法可以精确追踪我们的程序是如何运行的。如果你不清楚程序是如何一步步运行的。那在这个调试模式里单步运行探索一下，相信你对程序的运行逻辑就会有更深的理解。当然这只是调试模式下的一小部分功能，调试模式还有更强大的功能。</p>
+<p>图：调试模式的各种按钮</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P10-OLED%E6%98%BE%E7%A4%BA%E5%B1%8F-15.png" alt = "P10-OLED显示屏-15.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>接着我们来看一下上面的这一堆功能。第一个是命令窗口，我们点击它可以打开和关闭命令窗口。第二个是反汇编窗口，也是可以打开和关闭的。第三个是符号窗口，在这里我们可以实时查看程序中所有变量的值。</p>
+<p>我们试一下，比如我想看一下这个GPIO_InitStructure结构体的值，那就可以在这个符号窗口里找一下，main.c里面，然后main函数这里就可以看到这个变量了，里面可以看到结构体的三个成员。如果想看一下结构体值的变化，可以在这里右键添加到watch一窗口。在这里就能看到结构体的值了。</p>
+<p>图：查看GPIO_InitStructure结构体的值</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P10-OLED%E6%98%BE%E7%A4%BA%E5%B1%8F-14.png" alt = "P10-OLED显示屏-14.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>比如我们在这里单步运行，这里就能看到这个变量值的变化了，还是非常方便的。</p>
+<p>然后剩下的这里还有串口显示，逻辑分析仪等等，这些工具的功能也都是非常强大的，大家可以自行了解一下，我就不再演示了。</p>
+<p>另外我们还可以点击这个外设菜单栏、系统资源查看，这里就可以看到所有的外设寄存器。比如我们选择GPIOA，右边的这里就会显示GPIOA外设的所有寄存器。</p>
+<p>STM32实时执行程序，Keil软件实时显示外设寄存器状态。</p>
+<p>图：查看所有外设的寄存器</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P10-OLED%E6%98%BE%E7%A4%BA%E5%B1%8F-16.png" alt = "P10-OLED显示屏-16.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>所以当你以后遇到一个比较难调的程序，比如不清楚程序是如何执行的，或者想要看一大堆变量却不方便显示的，或者想看一下寄存器是不是配置正确了，都可以考虑一下使用这个Keil自带的调试模式。</p>
+<p>最后再说明一下，如果你想修改程序的话，是不能直接在这个调试模式下修改的。修改程序得先退出调试模式，重新编译再进入调试模式，这个注意一下，以上这些就是对kill调试模式的简单介绍。</p>
+<p>这个软件更多的功能还得需要大家自己慢慢探索了。探索的方法可以是这些按钮、菜单、都随便点点，看看有啥功能。或者百度搜索一下各个功能是咋用的，或者点这里的帮助。第一项这里可以打开Keil软件的官方帮助文档，这个帮助文档里有对这整个软件最权威最细致的介绍。如果你对某个功能不熟悉的话，可以在这里找一找。好，以上就是本节的全部内容了，我们下节再见。</p>
+<h2 id="end">END<a hidden class="anchor" aria-hidden="true" href="#end">#</a></h2>
+<blockquote>
+<p><strong>END：本节内容到此结束。</strong></p>
+</blockquote>
+<p>个人提升之余，别忘了和小伙伴积极交流，很多人觉得他们在思考，而实际上他们只是在重新整理自己的偏见。请珍惜和他人交流讨论的机会。</p>
+<br>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/END1.jpg" alt = "END1.jpg" width = "70%" height = "auto">
+</div>
+<br>
+<p>希望你每一天都有所收获，进步up up up。今天的我们并不比昨天更聪明，但一定要比昨天更睿智。</p>
+<br>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/END2.jpg" alt = "END2.jpg" width = "70%" height = "auto">
+</div>
+
+        </div>
+
+        <footer class="post-footer">
+            
+<nav class="paginav">
+  <a class="prev" href="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p11/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>嵌入式开发-STM32标准库学习：EXTI外部中断</span>
+  </a>
+  <a class="next" href="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p9/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>嵌入式开发-STM32标准库学习：OLED调试工具</span>
+  </a>
+</nav>
+
+        </footer>
+    </div>
+</article>
+</main>
+
+<footer class="footer">
+    <span>
+        Copyright
+        &copy;
+        -2024
+        <a href="https://eddyblog.cn/" style="color:#939393;">Eddy&#39;s blog</a>
+        All Rights Reserved
+    </span>
+    <a href="https://beian.miit.gov.cn/" target="_blank" style="color:#939393;"></a>&nbsp;
+    <span>
+        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=null"
+           style="display:inline-block;text-decoration:none;height:20px;color:#939393;">
+            <img src="" style="float:left;margin: 0px 5px 0px 0px;"/>
+            
+        </a>
+    </span>
+    <span id="busuanzi_container">
+        <span class="fa fa-user"></span> <span id="busuanzi_value_site_uv"></span>
+        <span class="fa fa-eye"></span> <span id="busuanzi_value_site_pv"></span>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <span class="topInner">
+        <svg class="topSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z"/>
+        </svg>
+        <span id="read_progress"></span>
+    </span>
+</a>
+
+<script>
+    document.addEventListener('scroll', function (e) {
+        const readProgress = document.getElementById("read_progress");
+        const scrollHeight = document.documentElement.scrollHeight;
+        const clientHeight = document.documentElement.clientHeight;
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        readProgress.innerText = ((scrollTop / (scrollHeight - clientHeight)).toFixed(2) * 100).toFixed(0);
+    })
+</script>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+</script>
+<script>
+    let mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        (function() {
+            document.cookie = "change-themes" + "="+ escape ("false");
+        })()
+
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    });
+</script>
+
+<script>
+    document.body.addEventListener('copy', function (e) {
+        if (window.getSelection().toString() && window.getSelection().toString().length > 50) {
+            let clipboardData = e.clipboardData || window.clipboardData;
+            if (clipboardData) {
+                e.preventDefault();
+                let htmlData = window.getSelection().toString() +
+                    '\r\n\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                let textData = window.getSelection().toString() +
+                    '\r\n\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                clipboardData.setData('text/html', htmlData);
+                clipboardData.setData('text/plain', textData);
+            }
+        }
+    });
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = '复制';
+
+        function copyingDone() {
+            copybutton.innerText = '已复制！';
+            setTimeout(() => {
+                copybutton.innerText = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                let text = codeblock.textContent +
+                    '\r\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                navigator.clipboard.writeText(text);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) {}
+            selection.removeRange(range);
+        });
+
+        let language = codeblock.className.replaceAll("language-", "")
+        let macTool = document.createElement("div")
+        let macTool1 = document.createElement("div")
+        let macTool2 = document.createElement("div")
+        let macTool3 = document.createElement("div")
+        let languageType = document.createElement("div")
+        languageType.innerText = language
+        macTool.setAttribute('class', 'mac-tool')
+        macTool1.setAttribute('class', 'mac bb1')
+        macTool2.setAttribute('class', 'mac bb2')
+        macTool3.setAttribute('class', 'mac bb3')
+        languageType.setAttribute('class', 'language-type')
+        macTool.appendChild(macTool1)
+        macTool.appendChild(macTool2)
+        macTool.appendChild(macTool3)
+        macTool.appendChild(languageType)
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+            container.appendChild(macTool)
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+            container.appendChild(macTool)
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+            container.appendChild(macTool)
+        }
+    });
+</script>
+
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style></body>
+
+</html>

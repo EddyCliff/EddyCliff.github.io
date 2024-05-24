@@ -190,12 +190,12 @@ var _hmt = _hmt || [];
 <article class="post-entry">
   <div class="post-info">
     <header class="entry-header">
-      <h2>嵌入式开发-STM32标准库学习：GPIO输出
+      <h2>嵌入式开发-STM32标准库学习：按键控制LED,光敏传感器控制蜂鸣器
       </h2>
     </header>
     <section class="entry-content">
       <p>
-        本教程涵盖了STM32 GPIO的输出与输入功能，分为基础应用和理论知识两个部分。首先，通过LED闪烁、LED流水灯和蜂鸣器实验，介绍GPIO基本应用。随后，深入探讨了GPIO的理论知识，包括其作为通用I/O口的特性、工作模式及电平范围。进一步地，解析了STM32中GPIO的基本结构，涉及APB2外设总线、GPIO模块及其组成。此外，讨论了GPIO引脚的功能，包括输入和输出保护措施，以及施密特触发器的作用和应用。教程强调了STM32 GPIO的多样工作模式，如推挽输出、开漏输出等，及其在不同应用场景下的优势。最后，简述了面包板的应用，为读者提供了实际电路搭建的指导。
+        本博客详细介绍了一个基于STM32最小系统板的项目开发过程，重点涵盖了基本的LED控制电路设计、模块化编程的应用以及扩展至光敏传感器和蜂鸣器模块的功能实现。首先，通过对PB1和PB10引脚连接按键，以及PA1和PA2引脚连接LED的基本电路描述，项目导入了如何在STM32板上实现简单LED控制的基础。在此基础上，强调了模块化编程的重要性，即通过将驱动代码分离至单独的.C和.H文件中，以提升代码的管理与移植性。特别提到了在&#39;module&#39;文件夹下创建硬件驱动程序的方法，以及在这些文件中添加必要预处理指令和其他细节的重要性。 其次，详细叙述了LED初始化和模块化编程的具体实践，包括LED的时钟配置、端口模式设置，以及如何通过结构体变量实现对GPIO的精确控制。此外，还介绍了如何处理警告和错误信息，从而保证了程序的稳定运行。通过这些步骤，成功实现了LED的点亮与熄灭功能，验证了程序的正确性。 进一步地，文章扩展到如何完善LED驱动程序模块，包括提供两种不同功能实现方式以及在硬件目录下创建新文件来组织代码的方法。接下来，详细介绍了使用RCC APB2外设时钟控制、配置GPIO端口模式、读取按键值等功能，以及如何通过GPL库消除按键抖动，并实现光照强度检测与蜂鸣器控制的综合应用。 总之，该段内容围绕着STM32开发板上的LED、光敏传感器和蜂鸣器模块的控制，展示了从基础电路设计到模块化编程，再到复杂功能实现的完整开发流程。每个环节都突出了理论与实践相结合的重要性，旨在提高代码的质量和项目的可维护性。
         
         ...
       </p>
@@ -232,13 +232,13 @@ var _hmt = _hmt || [];
     
     <span id="post_meta_style_3">
         <span class="fa fa-file-word-o"></span>
-        <span>12044字
+        <span>10349字
             &nbsp;&nbsp;
         </span>
     </span>
     <span id="post_meta_style_4">
         <span class="fa fa-clock-o"></span>
-        <span>25分钟
+        <span>21分钟
             &nbsp;&nbsp;
         </span>
     </span>
@@ -254,14 +254,14 @@ var _hmt = _hmt || [];
             <span class="post-tags-meta">
                 <a href="https://eddyblog.cn/tags/stm32/" style="color: var(--secondary)!important;">STM32</a>
                 &nbsp;<a href="https://eddyblog.cn/tags/mcu/" style="color: var(--secondary)!important;">MCU</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/arm-cortex-m/" style="color: var(--secondary)!important;">ARM Cortex-M</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/%E5%BC%80%E5%8F%91%E6%9D%BF/" style="color: var(--secondary)!important;">开发板</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/arm-cortex/" style="color: var(--secondary)!important;">ARM Cortex</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/led/" style="color: var(--secondary)!important;">LED</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/%E6%8C%89%E9%94%AE%E6%8E%A7%E5%88%B6led/" style="color: var(--secondary)!important;">按键控制LED</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/%E8%9C%82%E9%B8%A3%E5%99%A8/" style="color: var(--secondary)!important;">蜂鸣器</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/%E5%85%89%E6%95%8F%E4%BC%A0%E6%84%9F%E5%99%A8%E6%8E%A7%E5%88%B6%E8%9C%82%E9%B8%A3%E5%99%A8/" style="color: var(--secondary)!important;">光敏传感器控制蜂鸣器</a>
                 &nbsp;<a href="https://eddyblog.cn/tags/stm32%E6%A0%87%E5%87%86%E5%BA%93%E5%BC%80%E5%8F%91/" style="color: var(--secondary)!important;">STM32标准库开发</a>
                 &nbsp;<a href="https://eddyblog.cn/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" style="color: var(--secondary)!important;">嵌入式开发</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/keil-uvision/" style="color: var(--secondary)!important;">Keil UVision</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/gpio/" style="color: var(--secondary)!important;">GPIO</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/led/" style="color: var(--secondary)!important;">LED</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/%E8%9C%82%E9%B8%A3%E5%99%A8/" style="color: var(--secondary)!important;">蜂鸣器</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/stm32f1/" style="color: var(--secondary)!important;">STM32F1</a>
             </span>
         </span>
     </span>
@@ -270,7 +270,7 @@ var _hmt = _hmt || [];
   </div> 
 <figure class="entry-cover"><img loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/pc9.jpg" alt="">
 </figure>
-  <a class="entry-link" aria-label="post link to 嵌入式开发-STM32标准库学习：GPIO输出" href="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p5/"></a>
+  <a class="entry-link" aria-label="post link to 嵌入式开发-STM32标准库学习：按键控制LED,光敏传感器控制蜂鸣器" href="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p8/"></a>
 </article>
 
 
@@ -365,11 +365,12 @@ var _hmt = _hmt || [];
 <article class="post-entry">
   <div class="post-info">
     <header class="entry-header">
-      <h2>嵌入式开发-STM32标准库学习：按键控制LED,光敏传感器控制蜂鸣器
+      <h2>嵌入式开发-STM32标准库学习：GPIO输出
       </h2>
     </header>
     <section class="entry-content">
       <p>
+        本教程涵盖了STM32 GPIO的输出与输入功能，分为基础应用和理论知识两个部分。首先，通过LED闪烁、LED流水灯和蜂鸣器实验，介绍GPIO基本应用。随后，深入探讨了GPIO的理论知识，包括其作为通用I/O口的特性、工作模式及电平范围。进一步地，解析了STM32中GPIO的基本结构，涉及APB2外设总线、GPIO模块及其组成。此外，讨论了GPIO引脚的功能，包括输入和输出保护措施，以及施密特触发器的作用和应用。教程强调了STM32 GPIO的多样工作模式，如推挽输出、开漏输出等，及其在不同应用场景下的优势。最后，简述了面包板的应用，为读者提供了实际电路搭建的指导。
         
         ...
       </p>
@@ -406,13 +407,13 @@ var _hmt = _hmt || [];
     
     <span id="post_meta_style_3">
         <span class="fa fa-file-word-o"></span>
-        <span>10349字
+        <span>12044字
             &nbsp;&nbsp;
         </span>
     </span>
     <span id="post_meta_style_4">
         <span class="fa fa-clock-o"></span>
-        <span>21分钟
+        <span>25分钟
             &nbsp;&nbsp;
         </span>
     </span>
@@ -428,14 +429,14 @@ var _hmt = _hmt || [];
             <span class="post-tags-meta">
                 <a href="https://eddyblog.cn/tags/stm32/" style="color: var(--secondary)!important;">STM32</a>
                 &nbsp;<a href="https://eddyblog.cn/tags/mcu/" style="color: var(--secondary)!important;">MCU</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/arm-cortex/" style="color: var(--secondary)!important;">ARM Cortex</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/led/" style="color: var(--secondary)!important;">LED</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/%E6%8C%89%E9%94%AE%E6%8E%A7%E5%88%B6led/" style="color: var(--secondary)!important;">按键控制LED</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/%E8%9C%82%E9%B8%A3%E5%99%A8/" style="color: var(--secondary)!important;">蜂鸣器</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/%E5%85%89%E6%95%8F%E4%BC%A0%E6%84%9F%E5%99%A8%E6%8E%A7%E5%88%B6%E8%9C%82%E9%B8%A3%E5%99%A8/" style="color: var(--secondary)!important;">光敏传感器控制蜂鸣器</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/arm-cortex-m/" style="color: var(--secondary)!important;">ARM Cortex-M</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/%E5%BC%80%E5%8F%91%E6%9D%BF/" style="color: var(--secondary)!important;">开发板</a>
                 &nbsp;<a href="https://eddyblog.cn/tags/stm32%E6%A0%87%E5%87%86%E5%BA%93%E5%BC%80%E5%8F%91/" style="color: var(--secondary)!important;">STM32标准库开发</a>
                 &nbsp;<a href="https://eddyblog.cn/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" style="color: var(--secondary)!important;">嵌入式开发</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/stm32f1/" style="color: var(--secondary)!important;">STM32F1</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/keil-uvision/" style="color: var(--secondary)!important;">Keil UVision</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/gpio/" style="color: var(--secondary)!important;">GPIO</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/led/" style="color: var(--secondary)!important;">LED</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/%E8%9C%82%E9%B8%A3%E5%99%A8/" style="color: var(--secondary)!important;">蜂鸣器</a>
             </span>
         </span>
     </span>
@@ -444,7 +445,7 @@ var _hmt = _hmt || [];
   </div> 
 <figure class="entry-cover"><img loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/pc9.jpg" alt="">
 </figure>
-  <a class="entry-link" aria-label="post link to 嵌入式开发-STM32标准库学习：按键控制LED,光敏传感器控制蜂鸣器" href="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p8/"></a>
+  <a class="entry-link" aria-label="post link to 嵌入式开发-STM32标准库学习：GPIO输出" href="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p5/"></a>
 </article>
 
 <br />

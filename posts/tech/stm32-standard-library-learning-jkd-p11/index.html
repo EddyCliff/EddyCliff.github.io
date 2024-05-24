@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>嵌入式开发-STM32标准库学习：EXTI外部中断 | Eddy&#39;s blog</title>
+<meta name="keywords" content="STM32, embedded, Embedded development, MCU, ARM Cortex-M, Development Board, 开发板, STM32简介, STM32标准库, 嵌入式开发">
+<meta name="description" content="本博客主要介绍了STM32芯片的外部中断系统及其在实现特定功能中的应用，例如使用红外传感器检测光线变化和使用旋转编码器进行计数。核心概念是通过外部中断提高程序响应速度和执行效率，实现CPU在遇到重要事件时的暂停与处理。中断系统的关键要素包括中断优先级、嵌套处理、中断程序执行流程、中断保护和恢复现场，以及NVIC（中断向量控制器）在分配中断优先级和管理中断请求方面的作用。STM32拥有68个可屏蔽中断通道，支持多种外设中断源，所有中断请求均通过NVIC统一管理。外部中断（EXTI）功能特别值得一提，它允许CPU在检测到指定GPIO口的电平变化时暂停执行并执行中断服务程序，支持多种触发方式。此外，还讨论了外部中断在读取按键信号时的局限性，并提出了使用定时器中断作为替代方案。对于旋转编码器的应用，文章概述了其硬件连接方式、NVIC中断管理的基本知识，以及如何使用库函数简化中断处理过程和外部中断的配置方法。">
+<meta name="author" content="Eddy">
+<link rel="canonical" href="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p11/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.js" onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="icon" type="image/png" sizes="16x16" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="icon" type="image/png" sizes="32x32" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="apple-touch-icon" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="mask-icon" href="https://eddyblog.cn/img/logo3.jpg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p11/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<script defer src="https://unpkg.com/mermaid@8.8.1/dist/mermaid.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="https://registry.npmmirror.com/lxgw-wenkai-screen-web/latest/files/style.css" />
+
+
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = ""; 
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  
+
+<meta property="og:title" content="嵌入式开发-STM32标准库学习：EXTI外部中断" />
+<meta property="og:description" content="本博客主要介绍了STM32芯片的外部中断系统及其在实现特定功能中的应用，例如使用红外传感器检测光线变化和使用旋转编码器进行计数。核心概念是通过外部中断提高程序响应速度和执行效率，实现CPU在遇到重要事件时的暂停与处理。中断系统的关键要素包括中断优先级、嵌套处理、中断程序执行流程、中断保护和恢复现场，以及NVIC（中断向量控制器）在分配中断优先级和管理中断请求方面的作用。STM32拥有68个可屏蔽中断通道，支持多种外设中断源，所有中断请求均通过NVIC统一管理。外部中断（EXTI）功能特别值得一提，它允许CPU在检测到指定GPIO口的电平变化时暂停执行并执行中断服务程序，支持多种触发方式。此外，还讨论了外部中断在读取按键信号时的局限性，并提出了使用定时器中断作为替代方案。对于旋转编码器的应用，文章概述了其硬件连接方式、NVIC中断管理的基本知识，以及如何使用库函数简化中断处理过程和外部中断的配置方法。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p11/" />
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/pc9.jpg" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-05-13T00:17:58+05:00" />
+<meta property="article:modified_time" content="2024-05-13T00:17:58+05:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/pc9.jpg" />
+<meta name="twitter:title" content="嵌入式开发-STM32标准库学习：EXTI外部中断"/>
+<meta name="twitter:description" content="本博客主要介绍了STM32芯片的外部中断系统及其在实现特定功能中的应用，例如使用红外传感器检测光线变化和使用旋转编码器进行计数。核心概念是通过外部中断提高程序响应速度和执行效率，实现CPU在遇到重要事件时的暂停与处理。中断系统的关键要素包括中断优先级、嵌套处理、中断程序执行流程、中断保护和恢复现场，以及NVIC（中断向量控制器）在分配中断优先级和管理中断请求方面的作用。STM32拥有68个可屏蔽中断通道，支持多种外设中断源，所有中断请求均通过NVIC统一管理。外部中断（EXTI）功能特别值得一提，它允许CPU在检测到指定GPIO口的电平变化时暂停执行并执行中断服务程序，支持多种触发方式。此外，还讨论了外部中断在读取按键信号时的局限性，并提出了使用定时器中断作为替代方案。对于旋转编码器的应用，文章概述了其硬件连接方式、NVIC中断管理的基本知识，以及如何使用库函数简化中断处理过程和外部中断的配置方法。"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+
+        {
+          "@type": "ListItem",
+          "position":  1 ,
+          "name": "📚文章",
+          "item": "https://eddyblog.cn/posts/"
+        },
+
+        {
+          "@type": "ListItem",
+          "position":  2 ,
+          "name": "👨🏻‍💻 技术",
+          "item": "https://eddyblog.cn/posts/tech/"
+        }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "嵌入式开发-STM32标准库学习：EXTI外部中断",
+      "item": "https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p11/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "嵌入式开发-STM32标准库学习：EXTI外部中断",
+  "name": "嵌入式开发-STM32标准库学习：EXTI外部中断",
+  "description": "本博客主要介绍了STM32芯片的外部中断系统及其在实现特定功能中的应用，例如使用红外传感器检测光线变化和使用旋转编码器进行计数。核心概念是通过外部中断提高程序响应速度和执行效率，实现CPU在遇到重要事件时的暂停与处理。中断系统的关键要素包括中断优先级、嵌套处理、中断程序执行流程、中断保护和恢复现场，以及NVIC（中断向量控制器）在分配中断优先级和管理中断请求方面的作用。STM32拥有68个可屏蔽中断通道，支持多种外设中断源，所有中断请求均通过NVIC统一管理。外部中断（EXTI）功能特别值得一提，它允许CPU在检测到指定GPIO口的电平变化时暂停执行并执行中断服务程序，支持多种触发方式。此外，还讨论了外部中断在读取按键信号时的局限性，并提出了使用定时器中断作为替代方案。对于旋转编码器的应用，文章概述了其硬件连接方式、NVIC中断管理的基本知识，以及如何使用库函数简化中断处理过程和外部中断的配置方法。",
+  "keywords": [
+    "STM32", "embedded", "Embedded development", "MCU", "ARM Cortex-M", "Development Board", "开发板", "STM32简介", "STM32标准库", "嵌入式开发"
+  ],
+  "articleBody": " INIT INIT：本节内容正式开始。action!\n引言-观察本节的程序实验现象 本节我们来学习STM32的外部中断和中断系统。\n首先我们看一下本节课程序的现象，本节课有两个程序，第一个是对射式红外传感器计次，第二个是旋转编码器计次。\n实验一：对射式红外传感器计次 实验现象 我们先看一下第一个程序现象，\n图：程序一：对射式红外传感器计次\n这里接了一个红外对管的传感器，OLED显示了一个数字，现在是000。我们用挡光片挡在这个红外对管中间，此时这个模块的输出指示灯灭了，代表现在输出高电平。\n图：用挡光片挡在这个红外对管中间，此时这个模块的输出指示灯灭了\n然后再拿开挡光片，此时输出指示灯亮了，在灭到亮之间会产生一个下降盐，这个下降沿触发单片机引脚的外部中断，然后执行数字加1的中断程序，所以现在屏幕就显示到001。\n图：下降沿触发单片机引脚的外部中断，然后执行数字加1的中断程序，所以现在屏幕就显示到001。\n那我们再挡光几次。屏幕上的数字就对我们挡光的次数进行了统计，这就是第一个程序的现象。\n实验二：旋转编码器计次 实验现象 图：初试状态\n图：向左旋转编码器，OLED上的数字增加\n图：向右旋转编码器，OLED上的数字减小\n好，那我们来看一下本节的知识点。本节课要讲的是STM32的中断系统和外部中断。中断系统是管理和执行中断的逻辑结构，外部中断是众多能产生中断的外设之一，所以本节我们就借助外部中断来学习一下中断系统。在以后学其他外设的时候也是会经常和中断打交道的。\n那我们先来了解一下中断的概念。\n中断系统 1、中断：\n在主程序运行过程中，出现了特定的中断触发条件（中断源），使得CPU暂停当前正在运行的程序，转而去处理中断程序，处理完成后又返回原来被暂停的位置继续运行\n2、中断优先级：\n当有多个中断源同时申请中断时，CPU会根据中断源的轻重缓急进行裁决，优先响应更加紧急的中断源\n3、中断嵌套：\n当一个中断程序正在运行时，又有新的更高优先级的中断源申请中断，CPU再次暂停当前中断程序，转而去处理新的中断程序，处理完成后依次进行返回\n中断的定义 首先中断的定义，是在主程序运行过程中出现了特定的中断触发条件，这个中断触发条件就是中断源，那使得CPU暂停当前正在运行的程序，转而去处理中断程序，处理完成后又返回原来被暂停的位置继续运行。\n可以看出来，中断就是在正常主程序执行的某个时刻发生了中断触发条件。比如对于外部中断来说，可以是引脚发生的电平跳变。对于定时器来说，可以是定时时间到了。对于串口通信来说，可以是接收到的数据。\n当这些事件发生时，情况会比较紧急，比如外部中断来了，你如果不来处理，下一个跳变信号就跟着过来了。比如串口接收中断来了，如果你不来读取接收到的数据，那下一个数据再过来就会把原来的数据覆盖掉了。\n所以我们希望当中断条件满足时，CPU能够立即停下当前执行的程序，转而去处理这些中断事件的程序。比如外部中断来了，我想要计次，那就变量++。串口中断来了，我就把接收到的数据转存起来。当这些紧急事件处理完成后，CPU还能回到原来停下的地方继续运行，这就是中断的处理流程和用途，使用中断系统能够极大的提高程序的效率。\n比如如果没有终端系统，为了防止外部中断被忽略或者串口数据被覆盖，那主程序就只能不断的查询是否有这些事件发生，不能再干其他事情了。\n比如如果没有定时器中断，那主程序只有Delay函数才能实现定时的功能。但有了中断系统之后，主程序就可以放心执行其他事情，有中断的时候再去处理，这样效率就会大大提升。\n💡单片机不能没有中断系统！\n这就好像你早上定了一个闹钟，定好之后就可以放心睡觉了。时间到了闹钟会提醒你，就相当于产生了一个中断信号。如果你没有闹钟，那你就得不断的看时间，生怕错过了起床点，那这样你就没法安心睡觉了，是吧？\n中断优先级 接着我们来看一下中断优先级，它是当有多个中断源同时申请中断时，CPU会根据中断源的轻重缓急进行裁决，优先响应更加紧急的中断源。\n也就是说中断优先级就是中断的紧急程度。这个中断优先级是我们根据程序设计的需求自己设置的。中断优先级是为了在多个中断同时申请时判断一下应该先处理哪个。\n如果事件非常紧急，那你就把优先级设置高一些。如果不是那么紧急，那你就可以把优先级设置低一些。这样可以更好的安排这些中断事件，防止紧急的事件被别的中断耽误。\n在STM32中中断优先级还有多种分类，这个我们等会儿再详细讲。\n中断嵌套 然后我们再看一下下面一个概念，中断嵌套。它是当一个中断程序正在运行时，又有新的更高优先级的中断申请中断，CPU再次暂停当前中断程序，转而去处理新的中断程序，处理完成后依次进行返回。\n这种把中断程序再次中断的现象就叫做中断嵌套。中断嵌套也是为了照顾非常紧急的中断的。如果现在CPU已经在执行某个中断程序了，这时又发生了一个非常紧急的中断，那这个中断就可以把当前的中断程序进行二次中断，这样新的紧急中断就可以立即被执行了。\n那能否进行中断嵌套也是由中断优先级来决定的。这个等会儿再细说。\n中断流程图 然后我们看一下这几个中断的执行流程图。\n中断程序的执行流程 第一个是中断程序的执行流程。\n图：中断程序的执行流程。\n左边是主程序，当它执行到某个地方时，外设的中断条件满足了。那这时无论主程序在干什么事情，比如加减乘除还没算完，OLED显示程序才执行一半，Delay函数还正在等待。中断来了，主程序都得立即暂停程序，由硬件电路自动跳转到中断程序中。\n当中断程序执行完之后，程序在返回被暂停的地方继续运行。比如加减乘除没算完，现在就可以继续算了。OLED没显示完，现在就继续显示，Delay没延时完，现在就继续延时。\n那这个被暂停的地方我们就称它为断点。为了程序能在中断返回后继续原来的工作。在中断执行前会对程序的现场进行保护，中断执行后会再还原现场，这样可以保证主程序即使被中断了，回来之后也能继续运行。\n当然我们用C语言编程，保护现场和还原现场的工作并不需要我们来做，编译器自动帮我们做好了，所以这里了解一下即可。\n中断嵌套的执行流程 接着中间这个图就是中断嵌套的执行流程。\n图：中断嵌套的执行流程\n比如这里就是正常的中断程序，当这个中断正在执行时，又有新的优先级更高的中断，那这里就会再次打断，然后执行新的中断，新的中断结束，再继续原来的中断，原来的中断结束再继续主程序，这就是中断嵌套的执行流程。\n带有中断的程序 最后看一下右边的C语言程序，带有中断的程序就是这个样子的。\n图：带有中断的程序\n上面是主函数，while(1)死循环里就是主程序。\n正常情况下程序就是在主程序里不断循环执行，当中断条件满足时，主程序就会暂停，然后自动跳转到中断程序里运行。中断程序顺序执行完之后，再返回主程序继续执行。\n一般中断程序都是在一个子函数里的，这个函数不需要我们调用。当中断来临时由硬件自动调用这个函数，这就是在C语言程序中中断的执行流程。\n了解完中断的概念，我们就来看一下STM32的终端。\nSTM32中断 STM32中断的概念 1、68个可屏蔽中断通道，包含EXTI、TIM、ADC、USART、SPI、I2C、RTC等多个外设\n2、使用NVIC统一管理中断，每个中断通道都拥有16个可编程的优先等级，可对优先级进行分组，进一步设置抢占优先级和响应优先级\n第一条是68个可屏蔽中断通道，这个中断通道就是中断源的意思，68个中断源这个是F1系列最多的中断数量。对于一个具体的型号可能没有这么多中转，所以这个数量看看就行，具体以对应型号的数据手册为准。\n接着STM32的中断包含EXTI外部中断、TIM定时器、ADC模数转换器、USART串口、SPI通信、I2C通信、RTC实时时钟等多个外设。\n通过这一句我们知道STM32的中断是非常多的，几乎所有的模块都能申请中断。\n第二条是使用NVIC统一管理中转，每个中断通道都拥有16个可编程的优先等级，还可以对优先级进行分组，进一步设置抢占优先级和响应优先级。\n这个NVIC就是STM32中用来管理中断分配优先级的。NVIC的中断优先级总共有16个等级，还可以设置抢占优先级和响应优先级，这个是非常灵活的。\nSTM32里的中断资源 这个图就是STM32里的中断资源。\n图：STM32里的中断资源\n内核的中断 这里看一下，上面这些灰色的是内核的中断。\n比如第一个复位中断，当产生复位事件时，程序就会自动执行复位中断函数，也就是我们复位后程序开始执行的位置。\n然后NMI不可屏蔽中断、硬件失效、存储管理、总线错误、错误应用等等，这些都是内核里面的。\n一般这些中断都比较高层，我们看上去也挺难理解的。但是这些中断我们一般用不到，所以了解一下即可。\nSTM32外设的中断 然后下面这些不是灰色的部分，就是STM32外设的中断了。\n窗口定时器中断 比如第一个窗口看门狗，这个是用来监测程序运行状态的中断。比如你程序卡死了，没有及时喂狗，窗口看门狗就会申请中断，让你的程序调到窗口看门狗的中断程序里。那你在中断程序里就可以进行一些错误检查，看看出现什么问题了。\n连到EXTI的电源电压检测(PVD)中断 然后PVD电源电压监测，如果你供电电压不足，PVD电路就会申请中断。你在中断里就知道现在供电不足，是不是电池没电了，赶紧保存一下重要数据。\n接着下面这些也都是类似的功能，外设电路检测到有什么异常或者事件需要提示一下CPU的时候，它就可以申请中断，让程序跳到对应的中断函数里运行一次，用来处理这个异常或事件。\nEXTI中断 那下面这个EXTI0到EXTI4(EXTI线0中断~EXTI线1中断)，然后下面的EXTI9_5(EXTI线[9:5]中断)和最右边的EXTI15_10(EXTI线[15:10]中断)，就是我们本节要学的外部中断对应的中断资源。\n中断的地址(中断向量表) 然后这个表右边这里还有个中断的地址，这个地址是干什么的呢？\n这个是因为我们程序中的中断函数，它的地址是由编译器来分配的，是不固定的。但是我们的中断跳转由于硬件的限制，只能跳到固定的地址执行程序。所以为了能让硬件跳转到一个不固定的中转函数里，这里就需要在内存中定义一个地址的列表，这个列表地址是固定的，中断发生后就跳到这个固定位置。\n然后在这个固定位置，由编译器再加上一条跳转到中断函数的代码，这样中断跳转就可以跳到任意位置了。\n这个中断地址列表就叫中断向量表，相当于中断跳转的一个跳板。不过我们用C语言编程的话，是不需要管这个中断向量表的。因为编译器都帮我们做好了，所以我们还是很省心的。\nNVIC的基本结构 🕺NVIC他来了！他就是CPU的小助手。\n然后接下来我们来看一下NVIC的基本结构，这个NVIC的名字叫做嵌套中断向量控制器。在STM32中它是用来统一分配中断优先级和管理中断的。NVIC是一个内核外设，是CPU的小助手。\n我们刚才看到了STM32的中断非常多，如果把这些中断全都接到CPU上，那CPU还得引出很多线进行适配，设计上就很麻烦了。并且如果很多中断同时申请，或者中断很多产生了拥堵，CPU也会很难处理。毕竟CPU主要是用来运算的，中断分配的任务就放到别的地方。所以NVIC就出现了。\n图：NVIC的基本结构\nNVIC有很多输入口，你有多少个中转线路都可以接过来。比如这里可以接到EXTI、TIM、ADC、USART等等，这里线上画了个斜杠，上面写个n，这个意思是一个外设可能会同时占用多个中断通道，所以这里有n条线。\n然后NVIC只有一个输出口，NVIC根据每个中断的优先级分配中断的先后顺序之后，通过右边这一个输出口告诉CPU你该处理哪个中断。\n对于中断先后顺序分配的任务，CPU不需要知道。\n我们用一个例子来说明NVIC和CPU的关系\n所以举个例子，比如这个CPU是一个医生，如果医院只有医生的话，当看病的人很多时，医生就得安排一下，先看谁后看谁。如果有紧急的病人，那还得让紧急的病人最先来。这个安排先后次序的任务很繁琐，会影响医生看病的效率，所以医院就安排了一个叫号系统，来病人统一取号，并且根据病人的等级分配一个优先级。然后叫号系统看一下现在在排队的病人，优先叫号紧急的病人。最后叫号系统给医生输出的就是一个一个排好队的病人，医生就可以专心看病了。\n这个叫号系统在STM32里就是NVIC。\nNVIC优先级分组 然后我们看一下中断的分组，为了处理不同形式的优先级，STM32的NVIC可以对优先级进行分组，分为抢占优先级和响应优先级。\n那这两种形式的优先级有什么区别呢？\n我们还来看一下病人叫号的这个例子。\n响应优先级：\n对于紧急的病人，其实有两种形式的优先。一种是上一个病人在看病，外面排队了很多病人。当上一个病人看完后，紧急的病人即使是后来的也会最先进去看病。这种相当于插队的优先级的就叫响应优先级，响应优先级高的可以插队提前看病。\n抢占优先级：\n另外如果这个病人更加紧急，并且此时已经有人在看病了，那他还可以不等上一个人看完，直接冲到医生的屋里，让上一个病人先靠边站，先给他看病，等他看完了上一个病人再继续，然后上一个病人结束了叫号系统再看看有没有人来，这种形式的优先级就是我们之前讲的中断嵌套，这种决定是不是可以中断嵌套的优先级就叫抢占优先级。抢占优先级高的可以进行中断嵌套。\n为什么优先级要分组？\n我们刚才说了每个中断有16个优先级，为了把这个优先级再区分为抢占优先级和响应优先级，就需要对这16个优先级进行分组了。\nPPT\n1、NVIC的中断优先级由优先级寄存器的4位（0~15）决定，这4位可以进行切分，分为高n位的抢占优先级和低4-n位的响应优先级\n2、抢占优先级高的可以中断嵌套，响应优先级高的可以优先排队，抢占优先级和响应优先级均相同的按中断号排队\n我们看一下PPT的第一句，NVIC的中断优先级由优先级寄存器的四位决定。这里4位二进制可以表示0到15的数，对应16个优先级，这个优先级的数是值越小优先级越高，0就是最高优先级。\n这4位可以进行切分，分为高n位的抢占优先级和低4-n位的响应优先级。\n然后下面这一句，抢占优先级高的可以中断嵌套，响应优先级高的可以优先排队。这个通过刚才的例子应该就好理解了。\n然后还有抢占优先级和响应优先级均相同的，按中断号排队。这个中断号就是这里这个表里的这个数字。当抢占优先级和响应优先级均相同时，就按照这里的这个数字来排队。数值小的优先响应，所以STM32的中断不存在先来后到的排队方式，在任何时候都是优先级高先响应。\n优先级的分组表 然后看一下下面的这个表，因为优先级总共是4位，所以就有(0,4)、(1,3)、(2,2)、(3,1)、(4,0)这5种分组方式。\n图：\n分数0就是0位的抢占等级取值只能为0，4位的响应等级取值可以是0到15，分组1是1位的抢占等级取值是0到1，3位的响应等级取值是0到7，然后分组2、3、4，都是按照这个规律来分配的。\n大家自己看一下，这个分组方式在程序中是我们自己来选择的。选好分组方式之后，我们在配置优先级的时候，就要注意抢占优先级和响应优先级的取值范围了，不要超出这个表里规定的取值范围。\n了解完NVIC这个叫号系统和叫号的规则，我们就来看一下第一个病人EXTI外部中断。\nEXTI简介 PPT\n1、EXTI（Extern Interrupt）外部中断 2、EXTI可以监测指定GPIO口的电平信号，当其指定的GPIO口产生电平变化时，EXTI将立即向NVIC发出中断申请，经过NVIC裁决后即可中断CPU主程序，使CPU执行EXTI对应的中断程序 3、支持的触发方式：上升沿/下降沿/双边沿/软件触发 4、支持的GPIO口：所有GPIO口，但相同的Pin不能同时触发中断 5、通道数：16个GPIO_Pin，外加PVD输出、RTC闹钟、USB唤醒、以太网唤醒 6、触发响应方式：中断响应/事件响应 1、 EXTI（Extern Interrupt）外部中断\n先看一下第一条，EXTI它是Extern Interrupt的缩写，意思是外部中断。\n2、 EXTI可以监测指定GPIO口的电平信号，当其指定的GPIO口产生电平变化时，EXTI将立即向NVIC发出中断申请，经过NVIC裁决后即可中断CPU主程序，使CPU执行EXTI对应的中断程序\n然后第二条是EXTI可以监测指定GPIO口的电平信号。当其指定的GPIO口产生电平变化时，EXTI立即向NVIC发出中断申请，经过NVIC裁决后，即可中断CPU主程序，使CPU执行EXTI对应的中断程序。\n这就是EXTI的基本功能。简单来说就是引脚电平变化，申请中断。\n3、 支持的触发方式：上升沿/下降沿/双边沿/软件触发\n然后看一下触发方式。\nEXTI支持引脚电平的变化类型为上升沿，就是电平从低电平变到高电平的瞬间触发中断。\n下降沿就是高电平变到低电平的瞬间触发中断。\n双边沿就是上升沿和下降沿都可以触发中转。\n另外还支持软件触发，就是引脚啥事没有，程序里执行一句代码就能触发中断。\n4、 支持的GPIO口：所有GPIO口，但相同的Pin不能同时触发中断\n接着再看一下外部中断支持的GPIO口，它支持所有的GPIO口，也就是任意的GPIO口都可以当做外部中断的引脚。但相同的Pin不能同时触发中断。\n这个意思就是比如PA0和PB0不能同时用，或者PA1、PB1、PC1这样的端口GPIO_Pin一样的，只能选1个作为中断引脚。所以你如果有多个中断引脚，要选择不同Pin的引脚，比如PA6和PA7，PA9和PB15，PB0和PB1这样的都可以。\n5、 通道数：16个GPIO_Pin，外加PVD输出、RTC闹钟、USB唤醒、以太网唤醒\n然后再看一下外部中断占用的通道，其中有16个GPIO_Pin，这就对应GPIO_Pin_0到GPIO_Pin_15，外加PVD输出，RTC闹钟、USB唤醒、以太网唤醒，这些加起来总共有20个中转线路。\n这里的16个GPIO_Pin是外部中断的主要功能，后面跟着的这四个东西其实是来\"蹭网\"的。为啥这些东西要来外部中断“蹭网”呢？因为这个外部中断有个功能，就是从低功耗模式的停止模式下唤醒SDM32。\n那对PVD电源电压监测，当电源从电压过低恢复时，就需要PVD借助一下外部中断退出停止模式。\n对于RTC闹钟来说，有时候为了来省电，RTC定一个闹钟之后，STM32会进入停止模式，等到闹钟响的时候再唤醒，这也需要借助外部中断。\n还有USB唤醒、以太网唤醒也都是类似的作用。当然我们本节主要学习引脚外部中断，这是四个“蹭网”的，知道一下就行了。\n6、 触发响应方式：中断响应/事件响应\n最后外部中断的触发响应方式可以是中断响应和事件响应。\n中断响应好理解，就是申请中断，让CPU执行中断函数。\n那事件响应是什么意思呢？这个其实是STM32对外部中断增加的一种额外的功能，当外部中断检测到引脚电平变化时，正常的流程是选择触发中断。但在STM32中也可以选择触发一个事件。如果选择触发事件，那外部中断的信号就不会通向CPU了，而是通向其他的外设，用来触发其他外设的操作。比如触发ADC转换，触发DMA等。\n所以总结一下就是中断响应是正常的流程。引脚电平触发。中断事件响应不会触发中断，而是触发别的外设操作，属于外设之间的联合工作。\nEXTI基本结构 接下来我们就来看一下外部中断的基本结构，这个图就是外部中断的整体结构图。\n图：EXTI基本结构图\n首先最左边是GPIO口的外设的，比如GPIOA、GPIOB、GPIOC等等。每个GPIO外设有16个引脚，所以进来16根线。\n我们刚才这里说了EXTI模块只有16个GPIO的通道，但这里每个GPL外设都有16个引脚。如果每个引脚占用一个通道，那EXTI的16个通道显然就不够用了。\n所以在这里会有一个AFIO中断引脚选择的电路模块。\n这个AFIO就是一个数据选择器，它可以在这前面3个GPIO外设的16个引脚，选择其中一个连接到后面的EXTI的通道里。\n所以这前面说相同的Pin不能同时触发中断。因为对于PA0、PB0、PC0这些通过AFIO选择之后，只有其中一个能接到EXEI的通道0上。同理PA1、PB1、PC1这些也只能有一个接到通道1上，这就是所有GPIO口都能触发中断，但相同的Pin不能同时触发中断的原因。\n然后通过AFIO选择之后的16个通道，就接到了EXTI边沿检测及控制电路上。同时下面这4个蹭网的外设也是并列接进来的。\n这些加起来就组成了EXTI的20个输入信号。\n然后经过EXTI电路之后，分为了两种输出。其中上面的这些接到了NVIC就是用来触发中断的。\n这里注意一下，本来20路输出应该有20路中断的输出，但是可能ST公司觉得这20个输出太多了，比较占用NVIC的通道资源。所以就把其中外部中断的9到5和15到10给分配到了一个通道里。也就是说外部中断的9到5会触发同一个中断函数，15到10也会触发同一个中断函数。\n在编程的时候，我们在这两个中断函数里需要再根据标志位来区分到底是哪个中断进来的。这个注意一下。\n然后下面这里有20条输出线路到了其他外设，这就是用来触发其他外设操作的，也就是我们刚才说的事件响应。看完这个图，相信你对中断的整体流程就应该熟悉一些了。\nAFIO复用IO口 然后我们再具体的看一下这里AFIO和EXTI的内部电路。那先看一下AFIO复用IO口。\n- 1、AFIO主要用于引脚复用功能的选择和重定义 - 2、在STM32中，AFIO主要完成两个任务：复用功能引脚重映射、中断引脚选择 图：AFIO选择中断引脚的结构图\n这个结构图看上去就比较简单了，这里就是一系列的数据选择器。第一个输入是PA0、PB0、PC0等等，一直到PG0，尾号都是0。然后通过数据选择器最终选择一个接到EXTI0上，上面写的是配置这个寄存器的这些位，可以决定选择哪一个输入。\n然后下面的EXTI1等等，一直到EXTI15都是数据选择器，这个好理解吧。\n接着我们看一下左边的文字。\n1、 AFIO主要用于引脚复用功能的选择和重定义\n第一条是AFIO主要用于引脚复用功能的选择和重定义，也就是数据选择器的作用。\n2、 在STM32中，AFIO主要完成两个任务：复用功能引脚重映射、中断引脚选择\n然后第二条，在STM32中，AFIO主要完成两个任务，复用功能引脚重映射，中断引脚选择。其中复用功能引脚重映射就是这里，就是我们最开始提到的这个引脚定义表。当我们想把这些默认复用功能的引角换到重定义的这个位置来，就是用AFIO来完成。这也是AFIO的一大主要功能。\n图：引脚定义表\n那另外一个功能就是我们刚才提到的中段引脚选择了，这个也是用AFIO来完成的。\nEXTI的内部框图 下面就是EXTI的内部框图了。\n图：EXTI的内部框图\n这里可以看到EXTI的右边就是20根输入线。然后输入线首先进入边沿检测电路，在上面的上升沿寄存器和下降沿寄存器可以选择是上身沿触发还是下降沿触发，或者两个都触发。接着触发信号就进入到这个或门的输入端了。\n或门\n简单介绍一下，这种弯弯的符号是或门，它可以有多个输入，但只能有一个输出，执行的是或的逻辑。在输入端只要有一个是高电平1，输出就是高电平1，只有全部输入低电平0，输出才为0。\n与门\n然后还有这种带点直边的符号是与门。它同样也可以有多个输入，但只能有一个输出，执行的是与的逻辑。在输入端只要有一个是低电平0，输出就是0，只有全部输入1，输出才为1。\n非门\n另外还有一种三角号加个圈的是非门，它只有一个输入一个输出，输入1就输出0，输入0就输出1，执行的是非的逻辑。\n数据选择器\n最后还有一种就是刚才这里说的数据选择器，它的符号是一个梯形，有多个输入一个输出，在侧面有选择控制端，根据控制端的数据从输入选择一个接到输出。\n这些就是常见的逻辑符号，了解一下，在STM32的模块框图里还是非常常见的。\n……省略对EXTI的内部框图的讲解\n到这里有关中断系统、NVIC中断控制器和EXTI外部中断的内容我们就讲完了。\n使用外部中断模块的特性 最后看一下本节课配合外部中断我们所使用的硬件模块。对于外部中断来说，我们刚学习完它的原理和结构，那到底什么样的设备需要用到外部终端呢？使用外部中断有什么好处呢？\n在这里我大概总结了使用外部中断模块的特性。\n就是对于STM32来说，想要获取的信号是外部驱动的很快的突发信号。\n旋转编码器 比如旋转编码器的输出信号，我可能很久都不会拧它，这时不需要STM32做任何事，但是我一拧它就会有很多脉冲波形，需要STM32接收。这个信号是突发的，STM32不知道什么时候来。同时它是外部驱动的，STM32只能被动读取，最后这个信号非常快，STM32稍微晚来一点读取，就会错过很多波形。所以对于这种情况来说，就可以考虑使用STM32的外部中断了。有脉冲过来，STM32立即进入中断函数处理，没有脉冲的时候，STM32就专心做其他事情。\n红外遥控接收头 另外还有，比如红外遥控接收头的输出，接收到遥控数据之后，它会输出一段波形，这个波形转瞬即逝并且不会等你，所以就需要我们用外部中断来读取。\n按键 最后还有一个按键，虽然它的动作也是外部驱动的突发事件，但我并不推荐使用外部中断来读取按键，因为外部中断不好处理按键抖动和松手检测的问题。对于按键来说，它的输出波形也不是转瞬即逝的，所以要求不高的话可以在主程序中循环读取。如果不想用主循环读取的话，可以考虑一下定时器中断读取的方式，这样既可以做到后台读取按键值不阻塞主程序，也可以很好的处理按键抖动和松手检测的问题。这个感兴趣的话可以了解一下。\n了解完外部中断的适用场景之后，我们就来看一下这个编码器介绍。\n旋转编码器 概念 1、旋转编码器：用来测量位置、速度或旋转方向的装置，当其旋转轴旋转时，其输出端可以输出与旋转速度和方向对应的方波信号，读取方波信号的频率和相位信息即可得知旋转轴的速度和方向\n2、类型：机械触点式/霍尔传感器式/光栅式\n旋转编码器-详解 首先旋转编码器它是用来测量位置、速度或旋转方向的装置。当其旋转轴旋转时，其输出端可以输出与旋转速度和方向对应的方波信号，读取方波信号的频率和相位信息即可得知旋转轴的速度和方向。\n下面是旋转编码器的类型，有机械触点式、霍尔传感器式、光栅式等类型。\n最简单的旋转编码器 那旋转编码器其实是怎么工作的呢？首先看一下下面的第一个图。\n图：最简单的旋转编码器\n它是一种最简单的编码器样式的。这里使用的也是对射式红外传感器来测速的。为了测速还需要配合一个这样的光栅编码盘。当这个编码盘转动时，红外传感器的红外光就会出现遮挡、透过、遮挡、透过这样的现象，对应模块输出的电平就是高低电平交替的方波。这个方波的个数代表了转过的角度，方波的频率代表转速。\n那我们就可以用外部中断来捕获这个方波的边沿，以此判断位置和速度。不过这个模块只有一路输出，正转反转输出波形没法区分，所以这种测速方法只能测位置和速度，不能测量旋转方向。为了进一步测量方向，我们就可以用后面的几种编码器。\n我们采用的旋转编码器 第二个图片就是我们套件里的旋转编码器。\n图：我们采用的旋转编码器\n左边是它的外观，右边是它的内部拆解结构。可以看到它内部是用金属触点来进行通断的，所以它是一种机械触点式编码器。这里左右是两部分开关触点，其中内侧的这两根细的触点，都是和中间的这个引角连接的。外侧的触点，左边的接在这个引脚，右边的接在这个引脚，这就是这些触点的连接方式。然后中间这个圆的金属片是一个按键，我们这个旋转编码器的轴是可以按下去的。这个按键的两根线就在上面引出来了。按键的轴按下，上面两根线短路，松手，上面两根线断开，就是个普通按键。\n然后再看一下编码盘，它也是一系列像光栅一样的东西，只不过这是金属触点，在旋转时，依次接通和断开两边的触点。并且还有一个关键的部分是这个金属盘的位置是经过设计的，它能让两侧触点的通断产生一个90度的相位差，最终配合一下外部电路，这个编码器的两个输出就会输出这样的波形。当正转时，左边的银角就是A相引脚，输出一个方波信号，同时右侧的引脚就是B项引脚，输出一个和它相位相差90度的波形。\n比如正向旋转时，B相输出是滞后90度的，就是这样的。反向旋转时A相还是方波信号。那B相就会提前90度。\n图：第一种情况。正向旋转时，B相输出是滞后90度。第二种情况。反向旋转时，B相输出是提前90度。\n这样正转和反转就可以区分开了，这种相位相差90度的波形就叫正交波形。带正交波形信号输出的编码器是可以用来测方向的，这就是单相输出和两相正交输出的区别。当然还有的编码器不是输出正交波形，而是一个引脚输出方波信号代表转速，另一个输出高低电平代表旋转方向。这种不是正交数字的编码器，但也是可以测量方向的。\n第三个图，这种是直接附在电机后面的编码器，这种是霍尔传感器形式的。编码器中间是一个圆形磁铁，边上有两个位置错开的霍尔传感器。当磁铁旋转时，通过霍尔传感器就可以输出正交的风波信号。\n最后一个就是独立的编码器原件，它的输入轴转动时输出就会有波形，这个也是可以测速和测方向的，具体用法再看相应的手册。当然第二个图里的这个编码器一般是用来进行调解的，比如音响调节音量这样的用途。因为它是触点接触的形式，所以不适合电机这种高速旋转的地方。另外几种都是非接触的形式，可以用于电机测速。电机测速在电机驱动的应用中还是非常常见的。\n我们本节就用这种旋转编码器模块来学习一下。当然我们本节先学习一下外部中断读取编码器计次数据的用法。以后我们学了定时器，还会再来看一下编码器测速的用途了。\n旋转编码器的硬件电路 旋转编码器的硬件电路-分析 接下来我们看一下这个旋转编码器的硬件电路。\n图：旋转编码器的硬件电路\n这里左边这个是模块的电路图，这个图里中间这个就是旋转编码器上面按键的两根线，这个模块并没有使用，是悬空的。下面的这里就是编码器内部的两个触点，旋转轴旋转时，这两个触点以相位相差90度的方式交替导通。因为这只是个开关信号，所以要配合外围电路才能输出高低电平。\n看一下左边，这里接了一个10k的上拉电阻，默认没旋转的情况下，这个点被上拉为高电平。通过R3这个电阻输出到A端口的就也是高电平。当旋转时内部这里触点导通，那这个点就直接被拉低到GND了，再通过R3输出A端口就是低电平了。\n之后，这个R3是一个输出限流电阻，它是为了防止模块引脚电流过大的。这个C1是输出滤波电容，可以防止一些输出信号抖动。这个滤波电容见了很多是吧？\n然后右边的这一部分电路和左边的也是一模一样的，它的输出接到了B端口上。最后中间这里可以看到这个模块的C端口就直接接到了GND，那这些就是这个模块的电路图。\n旋转编码器接线 图：旋转编码器接线\n然后右边我们在使用这个模块的时候，接线就很简单了，上面的VCC，GND接电源，下面的A相输出和B相输出接到STM32的两个引脚上。比如PB0和PB1，注意引脚的GPIO_Pin编号不要一样就行了。然后中间的C引脚就是GND，我们暂时不用。\n看手册 最后我们再来看一下手册，大概的看一下每个外设在手册里的介绍。\n首先是NVIC，因为NVIC是内核外设，所以要在这个Coretex-M3编程手册(《STM32F10xxx Coretex-M3编程手册.pdf》)里找。这个Coretex-M3编程手册里就是内核和内核外设的详细介绍。\n如果你想研究一下内核的运转细节，可以看一下这个手册。不过这个手册我目前还没找到中文的版本。我们可以在目录里找到内核外设NVIC这一节，这里就有NVIC的一些说明，大家感兴趣的话可以自己用翻译软件看一下。\n图：Coretex-M3编程手册 中的 NVIC部分截图\n然后是NVIC的一些寄存器，包括中断设置使能寄存器、中断清除使能寄存器、中断设置挂起寄存器、中断清除挂起寄存器、中断活动位寄存器、中断优先级寄存器。\n这个中断优先级寄存器就是用来设置每个中断的优先级的。这个如果直接配置寄存器设置优先级的话，那还是比较复杂的。不过我们用库函数的话，那就简单了，直接给结构体赋值就行了。所以这个寄存器就大致看一下就行了。不过你要知道我们的库函数最终还是要落实到这个寄存器上来的。\n接着下面还有一个软件触发中断寄存器，然后这后面还有一些中断执行细节的描述，感兴趣的可以自己看一下。这些就是手册里对NVIC的介绍了。另外这些NVIC寄存器里还少了一个东西，就是中断分组的配置。\n中断分组的配置寄存器是被分配到了这个SCB里面的，在这个SCB_AIRCR里，这三位就是用来配置中断分组的。\n然后下面有中断分组的描述，和我PPT里也是一样，大家可以看一下。好，NVIC的手册，我就带大家要看到这里。\n图：中断分组的配置寄存器\n然后我们再打开这个STM32的参考手册，带大家快速过一下手册的内容。我们可以在目录里找到中断和事件这一节，这里就是中断系统和外部中断的介绍。首先是NVIC的概述，然后是中断向量表。\n接着就是外部中断EXTI的介绍了。然后是框图，这个我也给大家讲过，这里还有外部中断唤醒事件的说明。最后是外部中断的功能说明。然后是中断的线路映象，也就是中断引脚的选择。\n这一部分实际上是在AFIO里的，那最后就是外部中断的寄存器描述了，这里有中断屏蔽寄存器、事件屏蔽计算器、上升沿触发选择寄存器、下降沿触发选择寄存器、软件触发计算器、挂起寄存器。这些寄存器看上去应该不难理解吧。在这个中断的框图里也都有体现。\n最后来看一下AFIO，在这个目录里找到GPIO和AFIO，打开AFIO这一节，这里对AFIO的描述就只有这一句话，就是复用功能引脚重映射的意思。然后下面这些全部都是重映射的表，通过配置寄存器就可以在这些映射关系表里切换了。最后就是寄存器描述了，怎么切换配置这些寄存器就行了。当然我们使用库函数那就更加方便了，调用一个函数填两个参数就行了。最后几个卷起我们就可以看到，这些就是用来选择外部中断引脚的。好，那本小节中断系统和外部中断的理论部分我们就学到这里。下一小节我们再来学习一下外部中断的代码部分。\nEND END：本节内容到此结束。\n个人提升之余，别忘了和小伙伴积极交流，很多人觉得他们在思考，而实际上他们只是在重新整理自己的偏见。请珍惜和他人交流讨论的机会。\n希望你每一天都有所收获，进步up up up。今天的我们并不比昨天更聪明，但一定要比昨天更睿智。\n",
+  "wordCount" : "13826",
+  "inLanguage": "zh",
+  "image":"https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/pc9.jpg","datePublished": "2024-05-13T00:17:58+05:00",
+  "dateModified": "2024-05-13T00:17:58+05:00",
+  "author":[{
+    "@type": "Person",
+    "name": "Eddy"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p11/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Eddy's blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://eddyblog.cn/img/logo3.jpg"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    (function () {
+        let  arr,reg = new RegExp("(^| )"+"change-themes"+"=([^;]*)(;|$)");
+        if(arr = document.cookie.match(reg)) {
+        } else {
+            if (new Date().getHours() >= 19 || new Date().getHours() < 6) {
+                document.body.classList.add('dark');
+                localStorage.setItem("pref-theme", 'dark');
+            } else {
+                document.body.classList.remove('dark');
+                localStorage.setItem("pref-theme", 'light');
+            }
+        }
+    })()
+
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://eddyblog.cn/" accesskey="h" title="Eddy&#39;s Blog (Alt + H)">
+            <img src="https://eddyblog.cn/img/logo3.jpg" alt="logo" aria-label="logo"
+                 height="35">Eddy&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://eddyblog.cn/search" title="🔍 搜索 (Alt &#43; /)" accesskey=/>
+                <span>🔍 搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/" title="🏠 主页">
+                <span>🏠 主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/posts" title="📚 文章">
+                <span>📚 文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/tags" title="🧩 标签">
+                <span>🧩 标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/archives/" title="⏱️ 时间轴">
+                <span>⏱️ 时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/about" title="🙋🏻‍♂️ 关于">
+                <span>🙋🏻‍♂️ 关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main page">
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+</style>
+
+<article class="post-single">
+    <div id="single-content">
+        <header class="post-header">
+            <div class="breadcrumbs"><a href="https://eddyblog.cn/">🏠 主页</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/">📚文章</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/tech/">👨🏻‍💻 技术</a></div>
+            <h1 class="post-title">
+                嵌入式开发-STM32标准库学习：EXTI外部中断
+            </h1>
+            <div class="post-description">
+                本博客主要介绍了STM32芯片的外部中断系统及其在实现特定功能中的应用，例如使用红外传感器检测光线变化和使用旋转编码器进行计数。核心概念是通过外部中断提高程序响应速度和执行效率，实现CPU在遇到重要事件时的暂停与处理。中断系统的关键要素包括中断优先级、嵌套处理、中断程序执行流程、中断保护和恢复现场，以及NVIC（中断向量控制器）在分配中断优先级和管理中断请求方面的作用。STM32拥有68个可屏蔽中断通道，支持多种外设中断源，所有中断请求均通过NVIC统一管理。外部中断（EXTI）功能特别值得一提，它允许CPU在检测到指定GPIO口的电平变化时暂停执行并执行中断服务程序，支持多种触发方式。此外，还讨论了外部中断在读取按键信号时的局限性，并提出了使用定时器中断作为替代方案。对于旋转编码器的应用，文章概述了其硬件连接方式、NVIC中断管理的基本知识，以及如何使用库函数简化中断处理过程和外部中断的配置方法。
+            </div>
+            <div class="post-meta">
+
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+
+    .parent-post-meta {
+        display: flex;
+        flex-wrap: wrap;
+        opacity: 0.8;
+    }
+</style>
+
+<span class="parent-post-meta">
+    <span id="post_meta_style_1">
+        <span class="fa fa-calendar-check-o"></span>
+        <span>2024-05-13
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    
+    
+    
+    
+    
+    
+    
+    <span id="post_meta_style_3">
+        <span class="fa fa-file-word-o"></span>
+        <span>13826字
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_4">
+        <span class="fa fa-clock-o"></span>
+        <span>28分钟
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_5">
+        <span class="fa fa-user-o"></span>
+        <span>Eddy
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_6">
+        <span class="fa fa-tags" style="opacity: 0.8"></span>
+        <span>
+            <span class="post-tags-meta">
+                <a href="https://eddyblog.cn/tags/stm32/" style="color: var(--secondary)!important;">STM32</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/mcu/" style="color: var(--secondary)!important;">MCU</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD/" style="color: var(--secondary)!important;">外部中断</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/%E4%B8%AD%E6%96%AD%E7%B3%BB%E7%BB%9F/" style="color: var(--secondary)!important;">中断系统</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/%E4%B8%AD%E6%96%AD%E4%BC%98%E5%85%88%E7%BA%A7/" style="color: var(--secondary)!important;">中断优先级</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/stm32%E6%A0%87%E5%87%86%E5%BA%93%E5%BC%80%E5%8F%91/" style="color: var(--secondary)!important;">STM32标准库开发</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" style="color: var(--secondary)!important;">嵌入式开发</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/stm32f1/" style="color: var(--secondary)!important;">STM32F1</a>
+            </span>
+        </span>
+    </span>
+</span>
+<span style="opacity: 0.8;">
+                    <span id="post_meta_style_7">
+                        &nbsp;&nbsp;
+                        <span class="fa fa-eye" ></span>
+                        <span>
+                            <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+                            &nbsp;&nbsp;
+                        </span>
+                    </span>
+                    <span id="post_meta_style_8">
+                        <span class="fa fa-commenting-o"></span>
+                        <span>
+                            <script src="https://cdn.staticfile.org/twikoo//twikoo.all.min.js"></script>
+                            <script>
+                                let url = document.documentURI
+                                
+                                let dnsUrl = "https://eddyblog.cn/"
+                                let urlSplit = url.split(dnsUrl)
+                                let finalUrl = urlSplit[1]
+                                if (finalUrl[0] !== '/') {
+                                    finalUrl = '/'+finalUrl
+                                }
+                                twikoo.getCommentsCount({
+                                    envId:  null , 
+                                region:  null , 
+                                urls: [ 
+                                    
+                                    finalUrl,
+                                ],
+                                    includeReply: false 
+                                }).then(function (res) {
+                                    let count = res[0].count
+                                    const obj = document.getElementById("comment_count");
+                                    obj.innerText = count
+                                    
+                                    
+                                    
+                                }).catch(function (err) {
+                                    
+                                    console.error(err);
+                                });
+                            </script>
+                            <span id="comment_count"></span>
+                        </span>
+                    </span>
+                </span>
+
+</div>
+        </header> 
+<figure class="entry-cover1"><img style="zoom:;" loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/pc9.jpg" alt="">
+    
+</figure><aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#init" aria-label="INIT">INIT</a></li>
+                <li>
+                    <a href="#%e5%bc%95%e8%a8%80-%e8%a7%82%e5%af%9f%e6%9c%ac%e8%8a%82%e7%9a%84%e7%a8%8b%e5%ba%8f%e5%ae%9e%e9%aa%8c%e7%8e%b0%e8%b1%a1" aria-label="引言-观察本节的程序实验现象">引言-观察本节的程序实验现象</a><ul>
+                        
+                <li>
+                    <a href="#%e5%ae%9e%e9%aa%8c%e4%b8%80%e5%af%b9%e5%b0%84%e5%bc%8f%e7%ba%a2%e5%a4%96%e4%bc%a0%e6%84%9f%e5%99%a8%e8%ae%a1%e6%ac%a1-%e5%ae%9e%e9%aa%8c%e7%8e%b0%e8%b1%a1" aria-label="实验一：对射式红外传感器计次 实验现象">实验一：对射式红外传感器计次 实验现象</a></li>
+                <li>
+                    <a href="#%e5%ae%9e%e9%aa%8c%e4%ba%8c%e6%97%8b%e8%bd%ac%e7%bc%96%e7%a0%81%e5%99%a8%e8%ae%a1%e6%ac%a1-%e5%ae%9e%e9%aa%8c%e7%8e%b0%e8%b1%a1" aria-label="实验二：旋转编码器计次 实验现象">实验二：旋转编码器计次 实验现象</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%b8%ad%e6%96%ad%e7%b3%bb%e7%bb%9f" aria-label="中断系统">中断系统</a><ul>
+                        
+                <li>
+                    <a href="#%e4%b8%ad%e6%96%ad%e7%9a%84%e5%ae%9a%e4%b9%89" aria-label="中断的定义">中断的定义</a></li>
+                <li>
+                    <a href="#%e4%b8%ad%e6%96%ad%e4%bc%98%e5%85%88%e7%ba%a7" aria-label="中断优先级">中断优先级</a></li>
+                <li>
+                    <a href="#%e4%b8%ad%e6%96%ad%e5%b5%8c%e5%a5%97" aria-label="中断嵌套">中断嵌套</a></li>
+                <li>
+                    <a href="#%e4%b8%ad%e6%96%ad%e6%b5%81%e7%a8%8b%e5%9b%be" aria-label="中断流程图">中断流程图</a><ul>
+                        
+                <li>
+                    <a href="#%e4%b8%ad%e6%96%ad%e7%a8%8b%e5%ba%8f%e7%9a%84%e6%89%a7%e8%a1%8c%e6%b5%81%e7%a8%8b" aria-label="中断程序的执行流程">中断程序的执行流程</a></li>
+                <li>
+                    <a href="#%e4%b8%ad%e6%96%ad%e5%b5%8c%e5%a5%97%e7%9a%84%e6%89%a7%e8%a1%8c%e6%b5%81%e7%a8%8b" aria-label="中断嵌套的执行流程">中断嵌套的执行流程</a></li>
+                <li>
+                    <a href="#%e5%b8%a6%e6%9c%89%e4%b8%ad%e6%96%ad%e7%9a%84%e7%a8%8b%e5%ba%8f" aria-label="带有中断的程序">带有中断的程序</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#stm32%e4%b8%ad%e6%96%ad" aria-label="STM32中断">STM32中断</a><ul>
+                        
+                <li>
+                    <a href="#stm32%e4%b8%ad%e6%96%ad%e7%9a%84%e6%a6%82%e5%bf%b5" aria-label="STM32中断的概念">STM32中断的概念</a></li>
+                <li>
+                    <a href="#stm32%e9%87%8c%e7%9a%84%e4%b8%ad%e6%96%ad%e8%b5%84%e6%ba%90" aria-label="STM32里的中断资源">STM32里的中断资源</a><ul>
+                        
+                <li>
+                    <a href="#%e5%86%85%e6%a0%b8%e7%9a%84%e4%b8%ad%e6%96%ad" aria-label="内核的中断">内核的中断</a></li>
+                <li>
+                    <a href="#stm32%e5%a4%96%e8%ae%be%e7%9a%84%e4%b8%ad%e6%96%ad" aria-label="STM32外设的中断">STM32外设的中断</a><ul>
+                        
+                <li>
+                    <a href="#%e7%aa%97%e5%8f%a3%e5%ae%9a%e6%97%b6%e5%99%a8%e4%b8%ad%e6%96%ad" aria-label="窗口定时器中断">窗口定时器中断</a></li>
+                <li>
+                    <a href="#%e8%bf%9e%e5%88%b0exti%e7%9a%84%e7%94%b5%e6%ba%90%e7%94%b5%e5%8e%8b%e6%a3%80%e6%b5%8bpvd%e4%b8%ad%e6%96%ad" aria-label="连到EXTI的电源电压检测(PVD)中断">连到EXTI的电源电压检测(PVD)中断</a></li>
+                <li>
+                    <a href="#exti%e4%b8%ad%e6%96%ad" aria-label="EXTI中断">EXTI中断</a></li>
+                <li>
+                    <a href="#%e4%b8%ad%e6%96%ad%e7%9a%84%e5%9c%b0%e5%9d%80%e4%b8%ad%e6%96%ad%e5%90%91%e9%87%8f%e8%a1%a8" aria-label="中断的地址(中断向量表)">中断的地址(中断向量表)</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#nvic%e7%9a%84%e5%9f%ba%e6%9c%ac%e7%bb%93%e6%9e%84" aria-label="NVIC的基本结构">NVIC的基本结构</a><ul>
+                        
+                <li>
+                    <a href="#nvic%e4%bc%98%e5%85%88%e7%ba%a7%e5%88%86%e7%bb%84" aria-label="NVIC优先级分组">NVIC优先级分组</a><ul>
+                        
+                <li>
+                    <a href="#%e4%bc%98%e5%85%88%e7%ba%a7%e7%9a%84%e5%88%86%e7%bb%84%e8%a1%a8" aria-label="优先级的分组表">优先级的分组表</a></li></ul>
+                </li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#exti%e7%ae%80%e4%bb%8b" aria-label="EXTI简介">EXTI简介</a></li>
+                <li>
+                    <a href="#exti%e5%9f%ba%e6%9c%ac%e7%bb%93%e6%9e%84" aria-label="EXTI基本结构">EXTI基本结构</a></li>
+                <li>
+                    <a href="#afio%e5%a4%8d%e7%94%a8io%e5%8f%a3" aria-label="AFIO复用IO口">AFIO复用IO口</a></li>
+                <li>
+                    <a href="#exti%e7%9a%84%e5%86%85%e9%83%a8%e6%a1%86%e5%9b%be" aria-label="EXTI的内部框图">EXTI的内部框图</a></li>
+                <li>
+                    <a href="#%e4%bd%bf%e7%94%a8%e5%a4%96%e9%83%a8%e4%b8%ad%e6%96%ad%e6%a8%a1%e5%9d%97%e7%9a%84%e7%89%b9%e6%80%a7" aria-label="使用外部中断模块的特性">使用外部中断模块的特性</a><ul>
+                        
+                <li>
+                    <a href="#%e6%97%8b%e8%bd%ac%e7%bc%96%e7%a0%81%e5%99%a8" aria-label="旋转编码器">旋转编码器</a></li>
+                <li>
+                    <a href="#%e7%ba%a2%e5%a4%96%e9%81%a5%e6%8e%a7%e6%8e%a5%e6%94%b6%e5%a4%b4" aria-label="红外遥控接收头">红外遥控接收头</a></li>
+                <li>
+                    <a href="#%e6%8c%89%e9%94%ae" aria-label="按键">按键</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e6%97%8b%e8%bd%ac%e7%bc%96%e7%a0%81%e5%99%a8-1" aria-label="旋转编码器">旋转编码器</a><ul>
+                        
+                <li>
+                    <a href="#%e6%a6%82%e5%bf%b5" aria-label="概念">概念</a></li>
+                <li>
+                    <a href="#%e6%97%8b%e8%bd%ac%e7%bc%96%e7%a0%81%e5%99%a8-%e8%af%a6%e8%a7%a3" aria-label="旋转编码器-详解">旋转编码器-详解</a><ul>
+                        
+                <li>
+                    <a href="#%e6%9c%80%e7%ae%80%e5%8d%95%e7%9a%84%e6%97%8b%e8%bd%ac%e7%bc%96%e7%a0%81%e5%99%a8" aria-label="最简单的旋转编码器">最简单的旋转编码器</a></li>
+                <li>
+                    <a href="#%e6%88%91%e4%bb%ac%e9%87%87%e7%94%a8%e7%9a%84%e6%97%8b%e8%bd%ac%e7%bc%96%e7%a0%81%e5%99%a8" aria-label="我们采用的旋转编码器">我们采用的旋转编码器</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e6%97%8b%e8%bd%ac%e7%bc%96%e7%a0%81%e5%99%a8%e7%9a%84%e7%a1%ac%e4%bb%b6%e7%94%b5%e8%b7%af" aria-label="旋转编码器的硬件电路">旋转编码器的硬件电路</a><ul>
+                        
+                <li>
+                    <a href="#%e6%97%8b%e8%bd%ac%e7%bc%96%e7%a0%81%e5%99%a8%e7%9a%84%e7%a1%ac%e4%bb%b6%e7%94%b5%e8%b7%af-%e5%88%86%e6%9e%90" aria-label="旋转编码器的硬件电路-分析">旋转编码器的硬件电路-分析</a></li>
+                <li>
+                    <a href="#%e6%97%8b%e8%bd%ac%e7%bc%96%e7%a0%81%e5%99%a8%e6%8e%a5%e7%ba%bf" aria-label="旋转编码器接线">旋转编码器接线</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#%e7%9c%8b%e6%89%8b%e5%86%8c" aria-label="看手册">看手册</a></li>
+                <li>
+                    <a href="#end" aria-label="END">END</a>
+                </li>
+            </ul>
+        </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+        
+        activeElement = elements[0];
+        const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+        document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+    }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        if (elements) {
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement){
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }
+    }, false);
+
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;
+    }
+</script>
+        <div class="post-content"><div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P11-EXTI%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD-1.jpg" alt = "P11-EXTI外部中断-1.jpg" width = "70%" height = "auto">
+</div>
+<br>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P11-EXTI%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD.jpg" alt = "P11-EXTI外部中断.jpg" width = "70%" height = "auto">
+</div>
+<br>
+<h2 id="init">INIT<a hidden class="anchor" aria-hidden="true" href="#init">#</a></h2>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/INIT.jpg" alt = "INIT.jpg" width = "70%" height = "auto">
+</div>
+<br>
+<blockquote>
+<p><strong>INIT：本节内容正式开始。action!</strong></p>
+</blockquote>
+<h2 id="引言-观察本节的程序实验现象">引言-观察本节的程序实验现象<a hidden class="anchor" aria-hidden="true" href="#引言-观察本节的程序实验现象">#</a></h2>
+<p>本节我们来学习STM32的外部中断和中断系统。</p>
+<p>首先我们看一下本节课程序的现象，本节课有两个程序，第一个是对射式红外传感器计次，第二个是旋转编码器计次。</p>
+<h3 id="实验一对射式红外传感器计次-实验现象">实验一：对射式红外传感器计次 实验现象<a hidden class="anchor" aria-hidden="true" href="#实验一对射式红外传感器计次-实验现象">#</a></h3>
+<p>我们先看一下第一个程序现象，</p>
+<p>图：程序一：对射式红外传感器计次</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P11-EXTI%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD.png" alt = "P11-EXTI外部中断.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>这里接了一个红外对管的传感器，OLED显示了一个数字，现在是000。我们用挡光片挡在这个红外对管中间，此时这个模块的输出指示灯灭了，代表现在输出高电平。</p>
+<p>图：用挡光片挡在这个红外对管中间，此时这个模块的输出指示灯灭了</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P11-EXTI%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD-2.png" alt = "P11-EXTI外部中断-2.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>然后再拿开挡光片，此时输出指示灯亮了，在灭到亮之间会产生一个下降盐，这个下降沿触发单片机引脚的外部中断，然后执行数字加1的中断程序，所以现在屏幕就显示到001。</p>
+<p>图：下降沿触发单片机引脚的外部中断，然后执行数字加1的中断程序，所以现在屏幕就显示到001。</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P11-EXTI%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD-1.png" alt = "P11-EXTI外部中断-1.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>那我们再挡光几次。屏幕上的数字就对我们挡光的次数进行了统计，这就是第一个程序的现象。</p>
+<h3 id="实验二旋转编码器计次-实验现象">实验二：旋转编码器计次 实验现象<a hidden class="anchor" aria-hidden="true" href="#实验二旋转编码器计次-实验现象">#</a></h3>
+<p>图：初试状态</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P11-EXTI%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD-5.png" alt = "P11-EXTI外部中断-5.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>图：向左旋转编码器，OLED上的数字增加</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P11-EXTI%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD-4.png" alt = "P11-EXTI外部中断-4.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>图：向右旋转编码器，OLED上的数字减小</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P11-EXTI%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD-3.png" alt = "P11-EXTI外部中断-3.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>好，那我们来看一下本节的知识点。本节课要讲的是STM32的中断系统和外部中断。中断系统是管理和执行中断的逻辑结构，外部中断是众多能产生中断的外设之一，所以本节我们就借助外部中断来学习一下中断系统。在以后学其他外设的时候也是会经常和中断打交道的。</p>
+<p>那我们先来了解一下中断的概念。</p>
+<h2 id="中断系统">中断系统<a hidden class="anchor" aria-hidden="true" href="#中断系统">#</a></h2>
+<p>1、中断：</p>
+<p>在主程序运行过程中，出现了特定的中断触发条件（中断源），使得CPU暂停当前正在运行的程序，转而去处理中断程序，处理完成后又返回原来被暂停的位置继续运行</p>
+<p>2、中断优先级：</p>
+<p>当有多个中断源同时申请中断时，CPU会根据中断源的轻重缓急进行裁决，优先响应更加紧急的中断源</p>
+<p>3、中断嵌套：</p>
+<p>当一个中断程序正在运行时，又有新的更高优先级的中断源申请中断，CPU再次暂停当前中断程序，转而去处理新的中断程序，处理完成后依次进行返回</p>
+<h3 id="中断的定义">中断的定义<a hidden class="anchor" aria-hidden="true" href="#中断的定义">#</a></h3>
+<p>首先中断的定义，是在主程序运行过程中出现了特定的中断触发条件，这个中断触发条件就是中断源，那使得CPU暂停当前正在运行的程序，转而去处理中断程序，处理完成后又返回原来被暂停的位置继续运行。</p>
+<p>可以看出来，中断就是在正常主程序执行的某个时刻发生了中断触发条件。比如对于外部中断来说，可以是引脚发生的电平跳变。对于定时器来说，可以是定时时间到了。对于串口通信来说，可以是接收到的数据。</p>
+<p>当这些事件发生时，情况会比较紧急，比如外部中断来了，你如果不来处理，下一个跳变信号就跟着过来了。比如串口接收中断来了，如果你不来读取接收到的数据，那下一个数据再过来就会把原来的数据覆盖掉了。</p>
+<p>所以我们希望当中断条件满足时，CPU能够立即停下当前执行的程序，转而去处理这些中断事件的程序。比如外部中断来了，我想要计次，那就变量++。串口中断来了，我就把接收到的数据转存起来。当这些紧急事件处理完成后，CPU还能回到原来停下的地方继续运行，这就是中断的处理流程和用途，使用中断系统能够极大的提高程序的效率。</p>
+<p>比如如果没有终端系统，为了防止外部中断被忽略或者串口数据被覆盖，那主程序就只能不断的查询是否有这些事件发生，不能再干其他事情了。</p>
+<p>比如如果没有定时器中断，那主程序只有Delay函数才能实现定时的功能。但有了中断系统之后，主程序就可以放心执行其他事情，有中断的时候再去处理，这样效率就会大大提升。</p>
+<p>💡单片机不能没有中断系统！</p>
+<p>这就好像你早上定了一个闹钟，定好之后就可以放心睡觉了。时间到了闹钟会提醒你，就相当于产生了一个中断信号。如果你没有闹钟，那你就得不断的看时间，生怕错过了起床点，那这样你就没法安心睡觉了，是吧？</p>
+<h3 id="中断优先级">中断优先级<a hidden class="anchor" aria-hidden="true" href="#中断优先级">#</a></h3>
+<p>接着我们来看一下中断优先级，它是当有多个中断源同时申请中断时，CPU会根据中断源的轻重缓急进行裁决，优先响应更加紧急的中断源。</p>
+<p>也就是说中断优先级就是中断的紧急程度。这个中断优先级是我们根据程序设计的需求自己设置的。中断优先级是为了在多个中断同时申请时判断一下应该先处理哪个。</p>
+<p>如果事件非常紧急，那你就把优先级设置高一些。如果不是那么紧急，那你就可以把优先级设置低一些。这样可以更好的安排这些中断事件，防止紧急的事件被别的中断耽误。</p>
+<p>在STM32中中断优先级还有多种分类，这个我们等会儿再详细讲。</p>
+<h3 id="中断嵌套">中断嵌套<a hidden class="anchor" aria-hidden="true" href="#中断嵌套">#</a></h3>
+<p>然后我们再看一下下面一个概念，中断嵌套。它是当一个中断程序正在运行时，又有新的更高优先级的中断申请中断，CPU再次暂停当前中断程序，转而去处理新的中断程序，处理完成后依次进行返回。</p>
+<p>这种把中断程序再次中断的现象就叫做中断嵌套。中断嵌套也是为了照顾非常紧急的中断的。如果现在CPU已经在执行某个中断程序了，这时又发生了一个非常紧急的中断，那这个中断就可以把当前的中断程序进行二次中断，这样新的紧急中断就可以立即被执行了。</p>
+<p>那能否进行中断嵌套也是由中断优先级来决定的。这个等会儿再细说。</p>
+<h3 id="中断流程图">中断流程图<a hidden class="anchor" aria-hidden="true" href="#中断流程图">#</a></h3>
+<p>然后我们看一下这几个中断的执行流程图。</p>
+<h4 id="中断程序的执行流程">中断程序的执行流程<a hidden class="anchor" aria-hidden="true" href="#中断程序的执行流程">#</a></h4>
+<p>第一个是中断程序的执行流程。</p>
+<p>图：中断程序的执行流程。</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P11-EXTI%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD-6.png" alt = "P11-EXTI外部中断-6.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>左边是主程序，当它执行到某个地方时，外设的中断条件满足了。那这时无论主程序在干什么事情，比如加减乘除还没算完，OLED显示程序才执行一半，Delay函数还正在等待。中断来了，主程序都得立即暂停程序，由硬件电路自动跳转到中断程序中。</p>
+<p>当中断程序执行完之后，程序在返回被暂停的地方继续运行。比如加减乘除没算完，现在就可以继续算了。OLED没显示完，现在就继续显示，Delay没延时完，现在就继续延时。</p>
+<p>那这个被暂停的地方我们就称它为断点。为了程序能在中断返回后继续原来的工作。在中断执行前会对程序的现场进行保护，中断执行后会再还原现场，这样可以保证主程序即使被中断了，回来之后也能继续运行。</p>
+<p>当然我们用C语言编程，保护现场和还原现场的工作并不需要我们来做，编译器自动帮我们做好了，所以这里了解一下即可。</p>
+<h4 id="中断嵌套的执行流程">中断嵌套的执行流程<a hidden class="anchor" aria-hidden="true" href="#中断嵌套的执行流程">#</a></h4>
+<p>接着中间这个图就是中断嵌套的执行流程。</p>
+<p>图：中断嵌套的执行流程</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P11-EXTI%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD-7.png" alt = "P11-EXTI外部中断-7.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>比如这里就是正常的中断程序，当这个中断正在执行时，又有新的优先级更高的中断，那这里就会再次打断，然后执行新的中断，新的中断结束，再继续原来的中断，原来的中断结束再继续主程序，这就是中断嵌套的执行流程。</p>
+<h4 id="带有中断的程序">带有中断的程序<a hidden class="anchor" aria-hidden="true" href="#带有中断的程序">#</a></h4>
+<p>最后看一下右边的C语言程序，带有中断的程序就是这个样子的。</p>
+<p>图：带有中断的程序</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P11-EXTI%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD-8.png" alt = "P11-EXTI外部中断-8.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>上面是主函数，while(1)死循环里就是主程序。</p>
+<p>正常情况下程序就是在主程序里不断循环执行，当中断条件满足时，主程序就会暂停，然后自动跳转到中断程序里运行。中断程序顺序执行完之后，再返回主程序继续执行。</p>
+<p>一般中断程序都是在一个子函数里的，这个函数不需要我们调用。当中断来临时由硬件自动调用这个函数，这就是在C语言程序中中断的执行流程。</p>
+<p>了解完中断的概念，我们就来看一下STM32的终端。</p>
+<h2 id="stm32中断">STM32中断<a hidden class="anchor" aria-hidden="true" href="#stm32中断">#</a></h2>
+<h3 id="stm32中断的概念">STM32中断的概念<a hidden class="anchor" aria-hidden="true" href="#stm32中断的概念">#</a></h3>
+<p>1、68个可屏蔽中断通道，包含EXTI、TIM、ADC、USART、SPI、I2C、RTC等多个外设</p>
+<p>2、使用NVIC统一管理中断，每个中断通道都拥有16个可编程的优先等级，可对优先级进行分组，进一步设置抢占优先级和响应优先级</p>
+<p>第一条是68个可屏蔽中断通道，这个中断通道就是中断源的意思，68个中断源这个是F1系列最多的中断数量。对于一个具体的型号可能没有这么多中转，所以这个数量看看就行，具体以对应型号的数据手册为准。</p>
+<p>接着STM32的中断包含EXTI外部中断、TIM定时器、ADC模数转换器、USART串口、SPI通信、I2C通信、RTC实时时钟等多个外设。</p>
+<p>通过这一句我们知道STM32的中断是非常多的，几乎所有的模块都能申请中断。</p>
+<p>第二条是使用NVIC统一管理中转，每个中断通道都拥有16个可编程的优先等级，还可以对优先级进行分组，进一步设置抢占优先级和响应优先级。</p>
+<p>这个NVIC就是STM32中用来管理中断分配优先级的。NVIC的中断优先级总共有16个等级，还可以设置抢占优先级和响应优先级，这个是非常灵活的。</p>
+<h3 id="stm32里的中断资源">STM32里的中断资源<a hidden class="anchor" aria-hidden="true" href="#stm32里的中断资源">#</a></h3>
+<p>这个图就是STM32里的中断资源。</p>
+<p>图：STM32里的中断资源</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P11-EXTI%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD-9.png" alt = "P11-EXTI外部中断-9.png" width = "70%" height = "auto">
+</div>
+<br>
+<h4 id="内核的中断">内核的中断<a hidden class="anchor" aria-hidden="true" href="#内核的中断">#</a></h4>
+<p>这里看一下，上面这些灰色的是内核的中断。</p>
+<p>比如第一个复位中断，当产生复位事件时，程序就会自动执行复位中断函数，也就是我们复位后程序开始执行的位置。</p>
+<p>然后NMI不可屏蔽中断、硬件失效、存储管理、总线错误、错误应用等等，这些都是内核里面的。</p>
+<p>一般这些中断都比较高层，我们看上去也挺难理解的。但是这些中断我们一般用不到，所以了解一下即可。</p>
+<h4 id="stm32外设的中断">STM32外设的中断<a hidden class="anchor" aria-hidden="true" href="#stm32外设的中断">#</a></h4>
+<p>然后下面这些不是灰色的部分，就是STM32外设的中断了。</p>
+<h5 id="窗口定时器中断">窗口定时器中断<a hidden class="anchor" aria-hidden="true" href="#窗口定时器中断">#</a></h5>
+<p>比如第一个窗口看门狗，这个是用来监测程序运行状态的中断。比如你程序卡死了，没有及时喂狗，窗口看门狗就会申请中断，让你的程序调到窗口看门狗的中断程序里。那你在中断程序里就可以进行一些错误检查，看看出现什么问题了。</p>
+<h5 id="连到exti的电源电压检测pvd中断">连到EXTI的电源电压检测(PVD)中断<a hidden class="anchor" aria-hidden="true" href="#连到exti的电源电压检测pvd中断">#</a></h5>
+<p>然后PVD电源电压监测，如果你供电电压不足，PVD电路就会申请中断。你在中断里就知道现在供电不足，是不是电池没电了，赶紧保存一下重要数据。</p>
+<p>接着下面这些也都是类似的功能，外设电路检测到有什么异常或者事件需要提示一下CPU的时候，它就可以申请中断，让程序跳到对应的中断函数里运行一次，用来处理这个异常或事件。</p>
+<h5 id="exti中断">EXTI中断<a hidden class="anchor" aria-hidden="true" href="#exti中断">#</a></h5>
+<p>那下面这个EXTI0到EXTI4(EXTI线0中断~EXTI线1中断)，然后下面的EXTI9_5(EXTI线[9:5]中断)和最右边的EXTI15_10(EXTI线[15:10]中断)，就是我们本节要学的外部中断对应的中断资源。</p>
+<h5 id="中断的地址中断向量表">中断的地址(中断向量表)<a hidden class="anchor" aria-hidden="true" href="#中断的地址中断向量表">#</a></h5>
+<p>然后这个表右边这里还有个中断的地址，这个地址是干什么的呢？</p>
+<p>这个是因为我们程序中的中断函数，它的地址是由编译器来分配的，是不固定的。但是我们的中断跳转由于硬件的限制，只能跳到固定的地址执行程序。所以为了能让硬件跳转到一个不固定的中转函数里，这里就需要在内存中定义一个地址的列表，这个列表地址是固定的，中断发生后就跳到这个固定位置。</p>
+<p>然后在这个固定位置，由编译器再加上一条跳转到中断函数的代码，这样中断跳转就可以跳到任意位置了。</p>
+<p>这个中断地址列表就叫中断向量表，相当于中断跳转的一个跳板。不过我们用C语言编程的话，是不需要管这个中断向量表的。因为编译器都帮我们做好了，所以我们还是很省心的。</p>
+<h3 id="nvic的基本结构">NVIC的基本结构<a hidden class="anchor" aria-hidden="true" href="#nvic的基本结构">#</a></h3>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P11-EXTI%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD.gif" alt = "P11-EXTI外部中断.gif" width = "70%" height = "auto">
+</div>
+<br>
+<p>🕺NVIC他来了！他就是CPU的小助手。</p>
+<p>然后接下来我们来看一下NVIC的基本结构，这个NVIC的名字叫做嵌套中断向量控制器。在STM32中它是用来统一分配中断优先级和管理中断的。NVIC是一个内核外设，是CPU的小助手。</p>
+<p>我们刚才看到了STM32的中断非常多，如果把这些中断全都接到CPU上，那CPU还得引出很多线进行适配，设计上就很麻烦了。并且如果很多中断同时申请，或者中断很多产生了拥堵，CPU也会很难处理。毕竟CPU主要是用来运算的，中断分配的任务就放到别的地方。所以NVIC就出现了。</p>
+<p>图：NVIC的基本结构</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P11-EXTI%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD-10.png" alt = "P11-EXTI外部中断-10.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>NVIC有很多输入口，你有多少个中转线路都可以接过来。比如这里可以接到EXTI、TIM、ADC、USART等等，这里线上画了个斜杠，上面写个n，这个意思是一个外设可能会同时占用多个中断通道，所以这里有n条线。</p>
+<p>然后NVIC只有一个输出口，NVIC根据每个中断的优先级分配中断的先后顺序之后，通过右边这一个输出口告诉CPU你该处理哪个中断。</p>
+<p>对于中断先后顺序分配的任务，CPU不需要知道。</p>
+<p><strong>我们用一个例子来说明NVIC和CPU的关系</strong></p>
+<p>所以举个例子，比如这个CPU是一个医生，如果医院只有医生的话，当看病的人很多时，医生就得安排一下，先看谁后看谁。如果有紧急的病人，那还得让紧急的病人最先来。这个安排先后次序的任务很繁琐，会影响医生看病的效率，所以医院就安排了一个叫号系统，来病人统一取号，并且根据病人的等级分配一个优先级。然后叫号系统看一下现在在排队的病人，优先叫号紧急的病人。最后叫号系统给医生输出的就是一个一个排好队的病人，医生就可以专心看病了。</p>
+<p>这个叫号系统在STM32里就是NVIC。</p>
+<h4 id="nvic优先级分组">NVIC优先级分组<a hidden class="anchor" aria-hidden="true" href="#nvic优先级分组">#</a></h4>
+<p>然后我们看一下中断的分组，为了处理不同形式的优先级，STM32的NVIC可以对优先级进行分组，分为抢占优先级和响应优先级。</p>
+<p>那这两种形式的优先级有什么区别呢？</p>
+<p>我们还来看一下病人叫号的这个例子。</p>
+<p><strong>响应优先级：</strong></p>
+<p>对于紧急的病人，其实有两种形式的优先。一种是上一个病人在看病，外面排队了很多病人。当上一个病人看完后，紧急的病人即使是后来的也会最先进去看病。这种相当于插队的优先级的就叫响应优先级，响应优先级高的可以插队提前看病。</p>
+<p><strong>抢占优先级：</strong></p>
+<p>另外如果这个病人更加紧急，并且此时已经有人在看病了，那他还可以不等上一个人看完，直接冲到医生的屋里，让上一个病人先靠边站，先给他看病，等他看完了上一个病人再继续，然后上一个病人结束了叫号系统再看看有没有人来，这种形式的优先级就是我们之前讲的中断嵌套，这种决定是不是可以中断嵌套的优先级就叫抢占优先级。抢占优先级高的可以进行中断嵌套。</p>
+<p><strong>为什么优先级要分组？</strong></p>
+<p>我们刚才说了每个中断有16个优先级，为了把这个优先级再区分为抢占优先级和响应优先级，就需要对这16个优先级进行分组了。</p>
+<p><strong>PPT</strong></p>
+<p>1、NVIC的中断优先级由优先级寄存器的4位（0~15）决定，这4位可以进行切分，分为高n位的抢占优先级和低4-n位的响应优先级</p>
+<p>2、抢占优先级高的可以中断嵌套，响应优先级高的可以优先排队，抢占优先级和响应优先级均相同的按中断号排队</p>
+<p>我们看一下PPT的第一句，NVIC的中断优先级由优先级寄存器的四位决定。这里4位二进制可以表示0到15的数，对应16个优先级，这个优先级的数是值越小优先级越高，0就是最高优先级。</p>
+<p>这4位可以进行切分，分为高n位的抢占优先级和低4-n位的响应优先级。</p>
+<p>然后下面这一句，抢占优先级高的可以中断嵌套，响应优先级高的可以优先排队。这个通过刚才的例子应该就好理解了。</p>
+<p>然后还有抢占优先级和响应优先级均相同的，按中断号排队。这个中断号就是这里这个表里的这个数字。当抢占优先级和响应优先级均相同时，就按照这里的这个数字来排队。数值小的优先响应，所以STM32的中断不存在先来后到的排队方式，在任何时候都是优先级高先响应。</p>
+<h5 id="优先级的分组表">优先级的分组表<a hidden class="anchor" aria-hidden="true" href="#优先级的分组表">#</a></h5>
+<p>然后看一下下面的这个表，因为优先级总共是4位，所以就有(0,4)、(1,3)、(2,2)、(3,1)、(4,0)这5种分组方式。</p>
+<p>图：</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P11-EXTI%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD-11.png" alt = "P11-EXTI外部中断-11.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>分数0就是0位的抢占等级取值只能为0，4位的响应等级取值可以是0到15，分组1是1位的抢占等级取值是0到1，3位的响应等级取值是0到7，然后分组2、3、4，都是按照这个规律来分配的。</p>
+<p>大家自己看一下，这个分组方式在程序中是我们自己来选择的。选好分组方式之后，我们在配置优先级的时候，就要注意抢占优先级和响应优先级的取值范围了，不要超出这个表里规定的取值范围。</p>
+<p>了解完NVIC这个叫号系统和叫号的规则，我们就来看一下第一个病人EXTI外部中断。</p>
+<h2 id="exti简介">EXTI简介<a hidden class="anchor" aria-hidden="true" href="#exti简介">#</a></h2>
+<p><strong>PPT</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>1、EXTI（Extern Interrupt）外部中断
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>2、EXTI可以监测指定GPIO口的电平信号，当其指定的GPIO口产生电平变化时，EXTI将立即向NVIC发出中断申请，经过NVIC裁决后即可中断CPU主程序，使CPU执行EXTI对应的中断程序
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>3、支持的触发方式：上升沿/下降沿/双边沿/软件触发
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>4、支持的GPIO口：所有GPIO口，但相同的Pin不能同时触发中断
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>5、通道数：16个GPIO_Pin，外加PVD输出、RTC闹钟、USB唤醒、以太网唤醒
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>6、触发响应方式：中断响应/事件响应
+</span></span></code></pre></div><p><strong>1、</strong> EXTI（Extern Interrupt）外部中断</p>
+<p>先看一下第一条，EXTI它是Extern Interrupt的缩写，意思是外部中断。</p>
+<p><strong>2、</strong> EXTI可以监测指定GPIO口的电平信号，当其指定的GPIO口产生电平变化时，EXTI将立即向NVIC发出中断申请，经过NVIC裁决后即可中断CPU主程序，使CPU执行EXTI对应的中断程序</p>
+<p>然后第二条是EXTI可以监测指定GPIO口的电平信号。当其指定的GPIO口产生电平变化时，EXTI立即向NVIC发出中断申请，经过NVIC裁决后，即可中断CPU主程序，使CPU执行EXTI对应的中断程序。</p>
+<p>这就是EXTI的基本功能。简单来说就是引脚电平变化，申请中断。</p>
+<p><strong>3、</strong> 支持的触发方式：上升沿/下降沿/双边沿/软件触发</p>
+<p>然后看一下触发方式。</p>
+<p>EXTI支持引脚电平的变化类型为上升沿，就是电平从低电平变到高电平的瞬间触发中断。</p>
+<p>下降沿就是高电平变到低电平的瞬间触发中断。</p>
+<p>双边沿就是上升沿和下降沿都可以触发中转。</p>
+<p>另外还支持软件触发，就是引脚啥事没有，程序里执行一句代码就能触发中断。</p>
+<p><strong>4、</strong> 支持的GPIO口：所有GPIO口，但相同的Pin不能同时触发中断</p>
+<p>接着再看一下外部中断支持的GPIO口，它支持所有的GPIO口，也就是任意的GPIO口都可以当做外部中断的引脚。但相同的Pin不能同时触发中断。</p>
+<p>这个意思就是比如PA0和PB0不能同时用，或者PA1、PB1、PC1这样的端口GPIO_Pin一样的，只能选1个作为中断引脚。所以你如果有多个中断引脚，要选择不同Pin的引脚，比如PA6和PA7，PA9和PB15，PB0和PB1这样的都可以。</p>
+<p><strong>5、</strong> 通道数：16个GPIO_Pin，外加PVD输出、RTC闹钟、USB唤醒、以太网唤醒</p>
+<p>然后再看一下外部中断占用的通道，其中有16个GPIO_Pin，这就对应GPIO_Pin_0到GPIO_Pin_15，外加PVD输出，RTC闹钟、USB唤醒、以太网唤醒，这些加起来总共有20个中转线路。</p>
+<p>这里的16个GPIO_Pin是外部中断的主要功能，后面跟着的这四个东西其实是来&quot;蹭网&quot;的。为啥这些东西要来外部中断“蹭网”呢？因为这个外部中断有个功能，就是从低功耗模式的停止模式下唤醒SDM32。</p>
+<p>那对PVD电源电压监测，当电源从电压过低恢复时，就需要PVD借助一下外部中断退出停止模式。</p>
+<p>对于RTC闹钟来说，有时候为了来省电，RTC定一个闹钟之后，STM32会进入停止模式，等到闹钟响的时候再唤醒，这也需要借助外部中断。</p>
+<p>还有USB唤醒、以太网唤醒也都是类似的作用。当然我们本节主要学习引脚外部中断，这是四个“蹭网”的，知道一下就行了。</p>
+<p><strong>6、</strong> 触发响应方式：中断响应/事件响应</p>
+<p>最后外部中断的触发响应方式可以是中断响应和事件响应。</p>
+<p>中断响应好理解，就是申请中断，让CPU执行中断函数。</p>
+<p>那事件响应是什么意思呢？这个其实是STM32对外部中断增加的一种额外的功能，当外部中断检测到引脚电平变化时，正常的流程是选择触发中断。但在STM32中也可以选择触发一个事件。如果选择触发事件，那外部中断的信号就不会通向CPU了，而是通向其他的外设，用来触发其他外设的操作。比如触发ADC转换，触发DMA等。</p>
+<p>所以总结一下就是中断响应是正常的流程。引脚电平触发。中断事件响应不会触发中断，而是触发别的外设操作，属于外设之间的联合工作。</p>
+<h2 id="exti基本结构">EXTI基本结构<a hidden class="anchor" aria-hidden="true" href="#exti基本结构">#</a></h2>
+<p>接下来我们就来看一下外部中断的基本结构，这个图就是外部中断的整体结构图。</p>
+<p>图：EXTI基本结构图</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P11-EXTI%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD-13.png" alt = "P11-EXTI外部中断-13.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>首先最左边是GPIO口的外设的，比如GPIOA、GPIOB、GPIOC等等。每个GPIO外设有16个引脚，所以进来16根线。</p>
+<p>我们刚才这里说了EXTI模块只有16个GPIO的通道，但这里每个GPL外设都有16个引脚。如果每个引脚占用一个通道，那EXTI的16个通道显然就不够用了。</p>
+<p>所以在这里会有一个AFIO中断引脚选择的电路模块。</p>
+<p>这个AFIO就是一个数据选择器，它可以在这前面3个GPIO外设的16个引脚，选择其中一个连接到后面的EXTI的通道里。</p>
+<p>所以这前面说相同的Pin不能同时触发中断。因为对于PA0、PB0、PC0这些通过AFIO选择之后，只有其中一个能接到EXEI的通道0上。同理PA1、PB1、PC1这些也只能有一个接到通道1上，这就是所有GPIO口都能触发中断，但相同的Pin不能同时触发中断的原因。</p>
+<p>然后通过AFIO选择之后的16个通道，就接到了EXTI边沿检测及控制电路上。同时下面这4个蹭网的外设也是并列接进来的。</p>
+<p>这些加起来就组成了EXTI的20个输入信号。</p>
+<p>然后经过EXTI电路之后，分为了两种输出。其中上面的这些接到了NVIC就是用来触发中断的。</p>
+<p>这里注意一下，本来20路输出应该有20路中断的输出，但是可能ST公司觉得这20个输出太多了，比较占用NVIC的通道资源。所以就把其中外部中断的9到5和15到10给分配到了一个通道里。也就是说外部中断的9到5会触发同一个中断函数，15到10也会触发同一个中断函数。</p>
+<p>在编程的时候，我们在这两个中断函数里需要再根据标志位来区分到底是哪个中断进来的。这个注意一下。</p>
+<p>然后下面这里有20条输出线路到了其他外设，这就是用来触发其他外设操作的，也就是我们刚才说的事件响应。看完这个图，相信你对中断的整体流程就应该熟悉一些了。</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P11-EXTI%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD-12.png" alt = "P11-EXTI外部中断-12.png" width = "70%" height = "auto">
+</div>
+<br>
+<h2 id="afio复用io口">AFIO复用IO口<a hidden class="anchor" aria-hidden="true" href="#afio复用io口">#</a></h2>
+<p>然后我们再具体的看一下这里AFIO和EXTI的内部电路。那先看一下AFIO复用IO口。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 1、AFIO主要用于引脚复用功能的选择和重定义
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 2、在STM32中，AFIO主要完成两个任务：复用功能引脚重映射、中断引脚选择
+</span></span></code></pre></div><p>图：AFIO选择中断引脚的结构图</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P11-EXTI%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD-14.png" alt = "P11-EXTI外部中断-14.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>这个结构图看上去就比较简单了，这里就是一系列的数据选择器。第一个输入是PA0、PB0、PC0等等，一直到PG0，尾号都是0。然后通过数据选择器最终选择一个接到EXTI0上，上面写的是配置这个寄存器的这些位，可以决定选择哪一个输入。</p>
+<p>然后下面的EXTI1等等，一直到EXTI15都是数据选择器，这个好理解吧。</p>
+<p>接着我们看一下左边的文字。</p>
+<p><strong>1、</strong> AFIO主要用于引脚复用功能的选择和重定义</p>
+<p>第一条是AFIO主要用于引脚复用功能的选择和重定义，也就是数据选择器的作用。</p>
+<p><strong>2、</strong> 在STM32中，AFIO主要完成两个任务：复用功能引脚重映射、中断引脚选择</p>
+<p>然后第二条，在STM32中，AFIO主要完成两个任务，复用功能引脚重映射，中断引脚选择。其中复用功能引脚重映射就是这里，就是我们最开始提到的这个引脚定义表。当我们想把这些默认复用功能的引角换到重定义的这个位置来，就是用AFIO来完成。这也是AFIO的一大主要功能。</p>
+<p>图：引脚定义表</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P11-EXTI%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD-15.png" alt = "P11-EXTI外部中断-15.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>那另外一个功能就是我们刚才提到的中段引脚选择了，这个也是用AFIO来完成的。</p>
+<h2 id="exti的内部框图">EXTI的内部框图<a hidden class="anchor" aria-hidden="true" href="#exti的内部框图">#</a></h2>
+<p>下面就是EXTI的内部框图了。</p>
+<p>图：EXTI的内部框图</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P11-EXTI%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD-16.png" alt = "P11-EXTI外部中断-16.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>这里可以看到EXTI的右边就是20根输入线。然后输入线首先进入边沿检测电路，在上面的上升沿寄存器和下降沿寄存器可以选择是上身沿触发还是下降沿触发，或者两个都触发。接着触发信号就进入到这个或门的输入端了。</p>
+<p><strong>或门</strong></p>
+<p>简单介绍一下，这种弯弯的符号是或门，它可以有多个输入，但只能有一个输出，执行的是或的逻辑。在输入端只要有一个是高电平1，输出就是高电平1，只有全部输入低电平0，输出才为0。</p>
+<p><strong>与门</strong></p>
+<p>然后还有这种带点直边的符号是与门。它同样也可以有多个输入，但只能有一个输出，执行的是与的逻辑。在输入端只要有一个是低电平0，输出就是0，只有全部输入1，输出才为1。</p>
+<p><strong>非门</strong></p>
+<p>另外还有一种三角号加个圈的是非门，它只有一个输入一个输出，输入1就输出0，输入0就输出1，执行的是非的逻辑。</p>
+<p><strong>数据选择器</strong></p>
+<p>最后还有一种就是刚才这里说的数据选择器，它的符号是一个梯形，有多个输入一个输出，在侧面有选择控制端，根据控制端的数据从输入选择一个接到输出。</p>
+<p>这些就是常见的逻辑符号，了解一下，在STM32的模块框图里还是非常常见的。</p>
+<p>&hellip;&hellip;省略对EXTI的内部框图的讲解</p>
+<p>到这里有关中断系统、NVIC中断控制器和EXTI外部中断的内容我们就讲完了。</p>
+<h2 id="使用外部中断模块的特性">使用外部中断模块的特性<a hidden class="anchor" aria-hidden="true" href="#使用外部中断模块的特性">#</a></h2>
+<p>最后看一下本节课配合外部中断我们所使用的硬件模块。对于外部中断来说，我们刚学习完它的原理和结构，那到底什么样的设备需要用到外部终端呢？使用外部中断有什么好处呢？</p>
+<p>在这里我大概总结了使用外部中断模块的特性。</p>
+<p><strong>就是对于STM32来说，想要获取的信号是外部驱动的很快的突发信号。</strong></p>
+<h3 id="旋转编码器">旋转编码器<a hidden class="anchor" aria-hidden="true" href="#旋转编码器">#</a></h3>
+<p>比如旋转编码器的输出信号，我可能很久都不会拧它，这时不需要STM32做任何事，但是我一拧它就会有很多脉冲波形，需要STM32接收。这个信号是突发的，STM32不知道什么时候来。同时它是外部驱动的，STM32只能被动读取，最后这个信号非常快，STM32稍微晚来一点读取，就会错过很多波形。所以对于这种情况来说，就可以考虑使用STM32的外部中断了。有脉冲过来，STM32立即进入中断函数处理，没有脉冲的时候，STM32就专心做其他事情。</p>
+<h3 id="红外遥控接收头">红外遥控接收头<a hidden class="anchor" aria-hidden="true" href="#红外遥控接收头">#</a></h3>
+<p>另外还有，比如红外遥控接收头的输出，接收到遥控数据之后，它会输出一段波形，这个波形转瞬即逝并且不会等你，所以就需要我们用外部中断来读取。</p>
+<h3 id="按键">按键<a hidden class="anchor" aria-hidden="true" href="#按键">#</a></h3>
+<p>最后还有一个按键，虽然它的动作也是外部驱动的突发事件，但我并不推荐使用外部中断来读取按键，因为外部中断不好处理按键抖动和松手检测的问题。对于按键来说，它的输出波形也不是转瞬即逝的，所以要求不高的话可以在主程序中循环读取。如果不想用主循环读取的话，可以考虑一下定时器中断读取的方式，这样既可以做到后台读取按键值不阻塞主程序，也可以很好的处理按键抖动和松手检测的问题。这个感兴趣的话可以了解一下。</p>
+<p>了解完外部中断的适用场景之后，我们就来看一下这个编码器介绍。</p>
+<h2 id="旋转编码器-1">旋转编码器<a hidden class="anchor" aria-hidden="true" href="#旋转编码器-1">#</a></h2>
+<h3 id="概念">概念<a hidden class="anchor" aria-hidden="true" href="#概念">#</a></h3>
+<p>1、旋转编码器：用来测量位置、速度或旋转方向的装置，当其旋转轴旋转时，其输出端可以输出与旋转速度和方向对应的方波信号，读取方波信号的频率和相位信息即可得知旋转轴的速度和方向</p>
+<p>2、类型：机械触点式/霍尔传感器式/光栅式</p>
+<h3 id="旋转编码器-详解">旋转编码器-详解<a hidden class="anchor" aria-hidden="true" href="#旋转编码器-详解">#</a></h3>
+<p>首先旋转编码器它是用来测量位置、速度或旋转方向的装置。当其旋转轴旋转时，其输出端可以输出与旋转速度和方向对应的方波信号，读取方波信号的频率和相位信息即可得知旋转轴的速度和方向。</p>
+<p>下面是旋转编码器的类型，有机械触点式、霍尔传感器式、光栅式等类型。</p>
+<h4 id="最简单的旋转编码器">最简单的旋转编码器<a hidden class="anchor" aria-hidden="true" href="#最简单的旋转编码器">#</a></h4>
+<p>那旋转编码器其实是怎么工作的呢？首先看一下下面的第一个图。</p>
+<p>图：最简单的旋转编码器</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P11-EXTI%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD-17.png" alt = "P11-EXTI外部中断-17.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>它是一种最简单的编码器样式的。这里使用的也是对射式红外传感器来测速的。为了测速还需要配合一个这样的光栅编码盘。当这个编码盘转动时，红外传感器的红外光就会出现遮挡、透过、遮挡、透过这样的现象，对应模块输出的电平就是高低电平交替的方波。这个方波的个数代表了转过的角度，方波的频率代表转速。</p>
+<p>那我们就可以用外部中断来捕获这个方波的边沿，以此判断位置和速度。不过这个模块只有一路输出，正转反转输出波形没法区分，所以这种测速方法只能测位置和速度，不能测量旋转方向。为了进一步测量方向，我们就可以用后面的几种编码器。</p>
+<h4 id="我们采用的旋转编码器">我们采用的旋转编码器<a hidden class="anchor" aria-hidden="true" href="#我们采用的旋转编码器">#</a></h4>
+<p>第二个图片就是我们套件里的旋转编码器。</p>
+<p>图：我们采用的旋转编码器</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P11-EXTI%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD-18.png" alt = "P11-EXTI外部中断-18.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>左边是它的外观，右边是它的内部拆解结构。可以看到它内部是用金属触点来进行通断的，所以它是一种机械触点式编码器。这里左右是两部分开关触点，其中内侧的这两根细的触点，都是和中间的这个引角连接的。外侧的触点，左边的接在这个引脚，右边的接在这个引脚，这就是这些触点的连接方式。然后中间这个圆的金属片是一个按键，我们这个旋转编码器的轴是可以按下去的。这个按键的两根线就在上面引出来了。按键的轴按下，上面两根线短路，松手，上面两根线断开，就是个普通按键。</p>
+<p>然后再看一下编码盘，它也是一系列像光栅一样的东西，只不过这是金属触点，在旋转时，依次接通和断开两边的触点。并且还有一个关键的部分是这个金属盘的位置是经过设计的，它能让两侧触点的通断产生一个90度的相位差，最终配合一下外部电路，这个编码器的两个输出就会输出这样的波形。当正转时，左边的银角就是A相引脚，输出一个方波信号，同时右侧的引脚就是B项引脚，输出一个和它相位相差90度的波形。</p>
+<p>比如正向旋转时，B相输出是滞后90度的，就是这样的。反向旋转时A相还是方波信号。那B相就会提前90度。</p>
+<p>图：第一种情况。正向旋转时，B相输出是滞后90度。第二种情况。反向旋转时，B相输出是提前90度。</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P11-EXTI%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD-19.png" alt = "P11-EXTI外部中断-19.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>这样正转和反转就可以区分开了，这种相位相差90度的波形就叫正交波形。带正交波形信号输出的编码器是可以用来测方向的，这就是单相输出和两相正交输出的区别。当然还有的编码器不是输出正交波形，而是一个引脚输出方波信号代表转速，另一个输出高低电平代表旋转方向。这种不是正交数字的编码器，但也是可以测量方向的。</p>
+<p>第三个图，这种是直接附在电机后面的编码器，这种是霍尔传感器形式的。编码器中间是一个圆形磁铁，边上有两个位置错开的霍尔传感器。当磁铁旋转时，通过霍尔传感器就可以输出正交的风波信号。</p>
+<p>最后一个就是独立的编码器原件，它的输入轴转动时输出就会有波形，这个也是可以测速和测方向的，具体用法再看相应的手册。当然第二个图里的这个编码器一般是用来进行调解的，比如音响调节音量这样的用途。因为它是触点接触的形式，所以不适合电机这种高速旋转的地方。另外几种都是非接触的形式，可以用于电机测速。电机测速在电机驱动的应用中还是非常常见的。</p>
+<p>我们本节就用这种旋转编码器模块来学习一下。当然我们本节先学习一下外部中断读取编码器计次数据的用法。以后我们学了定时器，还会再来看一下编码器测速的用途了。</p>
+<h3 id="旋转编码器的硬件电路">旋转编码器的硬件电路<a hidden class="anchor" aria-hidden="true" href="#旋转编码器的硬件电路">#</a></h3>
+<h4 id="旋转编码器的硬件电路-分析">旋转编码器的硬件电路-分析<a hidden class="anchor" aria-hidden="true" href="#旋转编码器的硬件电路-分析">#</a></h4>
+<p>接下来我们看一下这个旋转编码器的硬件电路。</p>
+<p>图：旋转编码器的硬件电路</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P11-EXTI%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD-20.png" alt = "P11-EXTI外部中断-20.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>这里左边这个是模块的电路图，这个图里中间这个就是旋转编码器上面按键的两根线，这个模块并没有使用，是悬空的。下面的这里就是编码器内部的两个触点，旋转轴旋转时，这两个触点以相位相差90度的方式交替导通。因为这只是个开关信号，所以要配合外围电路才能输出高低电平。</p>
+<p>看一下左边，这里接了一个10k的上拉电阻，默认没旋转的情况下，这个点被上拉为高电平。通过R3这个电阻输出到A端口的就也是高电平。当旋转时内部这里触点导通，那这个点就直接被拉低到GND了，再通过R3输出A端口就是低电平了。</p>
+<p>之后，这个R3是一个输出限流电阻，它是为了防止模块引脚电流过大的。这个C1是输出滤波电容，可以防止一些输出信号抖动。这个滤波电容见了很多是吧？</p>
+<p>然后右边的这一部分电路和左边的也是一模一样的，它的输出接到了B端口上。最后中间这里可以看到这个模块的C端口就直接接到了GND，那这些就是这个模块的电路图。</p>
+<h4 id="旋转编码器接线">旋转编码器接线<a hidden class="anchor" aria-hidden="true" href="#旋转编码器接线">#</a></h4>
+<p>图：旋转编码器接线</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P11-EXTI%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD-21.png" alt = "P11-EXTI外部中断-21.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>然后右边我们在使用这个模块的时候，接线就很简单了，上面的VCC，GND接电源，下面的A相输出和B相输出接到STM32的两个引脚上。比如PB0和PB1，注意引脚的GPIO_Pin编号不要一样就行了。然后中间的C引脚就是GND，我们暂时不用。</p>
+<h2 id="看手册">看手册<a hidden class="anchor" aria-hidden="true" href="#看手册">#</a></h2>
+<p>最后我们再来看一下手册，大概的看一下每个外设在手册里的介绍。</p>
+<p>首先是NVIC，因为NVIC是内核外设，所以要在这个Coretex-M3编程手册(《STM32F10xxx Coretex-M3编程手册.pdf》)里找。这个Coretex-M3编程手册里就是内核和内核外设的详细介绍。</p>
+<p>如果你想研究一下内核的运转细节，可以看一下这个手册。不过这个手册我目前还没找到中文的版本。我们可以在目录里找到内核外设NVIC这一节，这里就有NVIC的一些说明，大家感兴趣的话可以自己用翻译软件看一下。</p>
+<p>图：Coretex-M3编程手册 中的 NVIC部分截图</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P11-EXTI%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD-22.png" alt = "P11-EXTI外部中断-22.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>然后是NVIC的一些寄存器，包括中断设置使能寄存器、中断清除使能寄存器、中断设置挂起寄存器、中断清除挂起寄存器、中断活动位寄存器、中断优先级寄存器。</p>
+<p>这个中断优先级寄存器就是用来设置每个中断的优先级的。这个如果直接配置寄存器设置优先级的话，那还是比较复杂的。不过我们用库函数的话，那就简单了，直接给结构体赋值就行了。所以这个寄存器就大致看一下就行了。不过你要知道我们的库函数最终还是要落实到这个寄存器上来的。</p>
+<p>接着下面还有一个软件触发中断寄存器，然后这后面还有一些中断执行细节的描述，感兴趣的可以自己看一下。这些就是手册里对NVIC的介绍了。另外这些NVIC寄存器里还少了一个东西，就是中断分组的配置。</p>
+<p>中断分组的配置寄存器是被分配到了这个SCB里面的，在这个SCB_AIRCR里，这三位就是用来配置中断分组的。</p>
+<p>然后下面有中断分组的描述，和我PPT里也是一样，大家可以看一下。好，NVIC的手册，我就带大家要看到这里。</p>
+<p>图：中断分组的配置寄存器</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P11-EXTI%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD-23.png" alt = "P11-EXTI外部中断-23.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>然后我们再打开这个STM32的参考手册，带大家快速过一下手册的内容。我们可以在目录里找到中断和事件这一节，这里就是中断系统和外部中断的介绍。首先是NVIC的概述，然后是中断向量表。</p>
+<p>接着就是外部中断EXTI的介绍了。然后是框图，这个我也给大家讲过，这里还有外部中断唤醒事件的说明。最后是外部中断的功能说明。然后是中断的线路映象，也就是中断引脚的选择。</p>
+<p>这一部分实际上是在AFIO里的，那最后就是外部中断的寄存器描述了，这里有中断屏蔽寄存器、事件屏蔽计算器、上升沿触发选择寄存器、下降沿触发选择寄存器、软件触发计算器、挂起寄存器。这些寄存器看上去应该不难理解吧。在这个中断的框图里也都有体现。</p>
+<p>最后来看一下AFIO，在这个目录里找到GPIO和AFIO，打开AFIO这一节，这里对AFIO的描述就只有这一句话，就是复用功能引脚重映射的意思。然后下面这些全部都是重映射的表，通过配置寄存器就可以在这些映射关系表里切换了。最后就是寄存器描述了，怎么切换配置这些寄存器就行了。当然我们使用库函数那就更加方便了，调用一个函数填两个参数就行了。最后几个卷起我们就可以看到，这些就是用来选择外部中断引脚的。好，那本小节中断系统和外部中断的理论部分我们就学到这里。下一小节我们再来学习一下外部中断的代码部分。</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P11-EXTI%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD-2.jpg" alt = "P11-EXTI外部中断-2.jpg" width = "70%" height = "auto">
+</div>
+<br>
+<h2 id="end">END<a hidden class="anchor" aria-hidden="true" href="#end">#</a></h2>
+<blockquote>
+<p><strong>END：本节内容到此结束。</strong></p>
+</blockquote>
+<p>个人提升之余，别忘了和小伙伴积极交流，很多人觉得他们在思考，而实际上他们只是在重新整理自己的偏见。请珍惜和他人交流讨论的机会。</p>
+<br>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/END1.jpg" alt = "END1.jpg" width = "70%" height = "auto">
+</div>
+<br>
+<p>希望你每一天都有所收获，进步up up up。今天的我们并不比昨天更聪明，但一定要比昨天更睿智。</p>
+<br>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/END2.jpg" alt = "END2.jpg" width = "70%" height = "auto">
+</div>
+
+        </div>
+
+        <footer class="post-footer">
+            
+<nav class="paginav">
+  <a class="prev" href="https://eddyblog.cn/posts/tech/linux-basics-02/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>Linux入门：基础命令与实用技巧</span>
+  </a>
+  <a class="next" href="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p10/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>嵌入式开发-STM32标准库学习：OLED显示屏</span>
+  </a>
+</nav>
+
+        </footer>
+    </div>
+</article>
+</main>
+
+<footer class="footer">
+    <span>
+        Copyright
+        &copy;
+        -2024
+        <a href="https://eddyblog.cn/" style="color:#939393;">Eddy&#39;s blog</a>
+        All Rights Reserved
+    </span>
+    <a href="https://beian.miit.gov.cn/" target="_blank" style="color:#939393;"></a>&nbsp;
+    <span>
+        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=null"
+           style="display:inline-block;text-decoration:none;height:20px;color:#939393;">
+            <img src="" style="float:left;margin: 0px 5px 0px 0px;"/>
+            
+        </a>
+    </span>
+    <span id="busuanzi_container">
+        <span class="fa fa-user"></span> <span id="busuanzi_value_site_uv"></span>
+        <span class="fa fa-eye"></span> <span id="busuanzi_value_site_pv"></span>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <span class="topInner">
+        <svg class="topSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z"/>
+        </svg>
+        <span id="read_progress"></span>
+    </span>
+</a>
+
+<script>
+    document.addEventListener('scroll', function (e) {
+        const readProgress = document.getElementById("read_progress");
+        const scrollHeight = document.documentElement.scrollHeight;
+        const clientHeight = document.documentElement.clientHeight;
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        readProgress.innerText = ((scrollTop / (scrollHeight - clientHeight)).toFixed(2) * 100).toFixed(0);
+    })
+</script>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+</script>
+<script>
+    let mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        (function() {
+            document.cookie = "change-themes" + "="+ escape ("false");
+        })()
+
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    });
+</script>
+
+<script>
+    document.body.addEventListener('copy', function (e) {
+        if (window.getSelection().toString() && window.getSelection().toString().length > 50) {
+            let clipboardData = e.clipboardData || window.clipboardData;
+            if (clipboardData) {
+                e.preventDefault();
+                let htmlData = window.getSelection().toString() +
+                    '\r\n\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                let textData = window.getSelection().toString() +
+                    '\r\n\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                clipboardData.setData('text/html', htmlData);
+                clipboardData.setData('text/plain', textData);
+            }
+        }
+    });
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = '复制';
+
+        function copyingDone() {
+            copybutton.innerText = '已复制！';
+            setTimeout(() => {
+                copybutton.innerText = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                let text = codeblock.textContent +
+                    '\r\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                navigator.clipboard.writeText(text);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) {}
+            selection.removeRange(range);
+        });
+
+        let language = codeblock.className.replaceAll("language-", "")
+        let macTool = document.createElement("div")
+        let macTool1 = document.createElement("div")
+        let macTool2 = document.createElement("div")
+        let macTool3 = document.createElement("div")
+        let languageType = document.createElement("div")
+        languageType.innerText = language
+        macTool.setAttribute('class', 'mac-tool')
+        macTool1.setAttribute('class', 'mac bb1')
+        macTool2.setAttribute('class', 'mac bb2')
+        macTool3.setAttribute('class', 'mac bb3')
+        languageType.setAttribute('class', 'language-type')
+        macTool.appendChild(macTool1)
+        macTool.appendChild(macTool2)
+        macTool.appendChild(macTool3)
+        macTool.appendChild(languageType)
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+            container.appendChild(macTool)
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+            container.appendChild(macTool)
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+            container.appendChild(macTool)
+        }
+    });
+</script>
+
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style></body>
+
+</html>
