@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>嵌入式开发-STM32标准库学习：实现LED闪烁与流水灯，蜂鸣器 | Eddy&#39;s blog</title>
+<meta name="keywords" content="STM32, embedded, Embedded development, MCU, ARM Cortex-M, Development Board, 开发板, STM32简介, STM32标准库, 嵌入式开发">
+<meta name="description" content="本节内容指导如何使用面包板、STM32最小系统板及ST Link开发一个简单的LED闪烁程序。首先，介绍搭建硬件电路所需步骤，包括正确连接电源、STM32板、LED和相关跳线。接着，在Keil5 软件中创建新工程，复制必要文件并配置工程设置以完成LED闪烁程序的编写、编译、下载和测试。此外，还介绍了如何利用一个辅助工具清理编译产生的中间文件，以便更好地分享工程。该指南详细讲解了如何使用RCC和GPIO外设及其库函数来控制LED的亮灭，包括设置工作模式、方向和速度。特别提到了四种GPIO输出函数和它们在控制LED亮灭方面的应用。通过主循环实现LED闪烁功能，并讨论了不同驱动模式下LED的性能差异。进一步地，本节还扩展到LED流水灯的制作，介绍了如何利用按位操作来控制多路LED的亮灭。最后，提供了学习STM32库函数的建议，包括查看库函数源码、利用官方文档和在线资源等方法。整个内容旨在帮助初学者掌握STM32开发的基础知识和技能。">
+<meta name="author" content="Eddy">
+<link rel="canonical" href="https://eddyblog.cn/posts/tech/stm32-standard_library_learning-jkd-p6/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.js" onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="icon" type="image/png" sizes="16x16" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="icon" type="image/png" sizes="32x32" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="apple-touch-icon" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="mask-icon" href="https://eddyblog.cn/img/logo3.jpg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://eddyblog.cn/posts/tech/stm32-standard_library_learning-jkd-p6/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<script defer src="https://unpkg.com/mermaid@8.8.1/dist/mermaid.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="https://registry.npmmirror.com/lxgw-wenkai-screen-web/latest/files/style.css" />
+
+
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = ""; 
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  
+
+<meta property="og:title" content="嵌入式开发-STM32标准库学习：实现LED闪烁与流水灯，蜂鸣器" />
+<meta property="og:description" content="本节内容指导如何使用面包板、STM32最小系统板及ST Link开发一个简单的LED闪烁程序。首先，介绍搭建硬件电路所需步骤，包括正确连接电源、STM32板、LED和相关跳线。接着，在Keil5 软件中创建新工程，复制必要文件并配置工程设置以完成LED闪烁程序的编写、编译、下载和测试。此外，还介绍了如何利用一个辅助工具清理编译产生的中间文件，以便更好地分享工程。该指南详细讲解了如何使用RCC和GPIO外设及其库函数来控制LED的亮灭，包括设置工作模式、方向和速度。特别提到了四种GPIO输出函数和它们在控制LED亮灭方面的应用。通过主循环实现LED闪烁功能，并讨论了不同驱动模式下LED的性能差异。进一步地，本节还扩展到LED流水灯的制作，介绍了如何利用按位操作来控制多路LED的亮灭。最后，提供了学习STM32库函数的建议，包括查看库函数源码、利用官方文档和在线资源等方法。整个内容旨在帮助初学者掌握STM32开发的基础知识和技能。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://eddyblog.cn/posts/tech/stm32-standard_library_learning-jkd-p6/" />
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/pc9.jpg" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-05-13T00:17:58+08:00" />
+<meta property="article:modified_time" content="2024-05-13T00:17:58+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/pc9.jpg" />
+<meta name="twitter:title" content="嵌入式开发-STM32标准库学习：实现LED闪烁与流水灯，蜂鸣器"/>
+<meta name="twitter:description" content="本节内容指导如何使用面包板、STM32最小系统板及ST Link开发一个简单的LED闪烁程序。首先，介绍搭建硬件电路所需步骤，包括正确连接电源、STM32板、LED和相关跳线。接着，在Keil5 软件中创建新工程，复制必要文件并配置工程设置以完成LED闪烁程序的编写、编译、下载和测试。此外，还介绍了如何利用一个辅助工具清理编译产生的中间文件，以便更好地分享工程。该指南详细讲解了如何使用RCC和GPIO外设及其库函数来控制LED的亮灭，包括设置工作模式、方向和速度。特别提到了四种GPIO输出函数和它们在控制LED亮灭方面的应用。通过主循环实现LED闪烁功能，并讨论了不同驱动模式下LED的性能差异。进一步地，本节还扩展到LED流水灯的制作，介绍了如何利用按位操作来控制多路LED的亮灭。最后，提供了学习STM32库函数的建议，包括查看库函数源码、利用官方文档和在线资源等方法。整个内容旨在帮助初学者掌握STM32开发的基础知识和技能。"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+
+        {
+          "@type": "ListItem",
+          "position":  1 ,
+          "name": "📚文章",
+          "item": "https://eddyblog.cn/posts/"
+        },
+
+        {
+          "@type": "ListItem",
+          "position":  2 ,
+          "name": "👨🏻‍💻 技术",
+          "item": "https://eddyblog.cn/posts/tech/"
+        }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "嵌入式开发-STM32标准库学习：实现LED闪烁与流水灯，蜂鸣器",
+      "item": "https://eddyblog.cn/posts/tech/stm32-standard_library_learning-jkd-p6/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "嵌入式开发-STM32标准库学习：实现LED闪烁与流水灯，蜂鸣器",
+  "name": "嵌入式开发-STM32标准库学习：实现LED闪烁与流水灯，蜂鸣器",
+  "description": "本节内容指导如何使用面包板、STM32最小系统板及ST Link开发一个简单的LED闪烁程序。首先，介绍搭建硬件电路所需步骤，包括正确连接电源、STM32板、LED和相关跳线。接着，在Keil5 软件中创建新工程，复制必要文件并配置工程设置以完成LED闪烁程序的编写、编译、下载和测试。此外，还介绍了如何利用一个辅助工具清理编译产生的中间文件，以便更好地分享工程。该指南详细讲解了如何使用RCC和GPIO外设及其库函数来控制LED的亮灭，包括设置工作模式、方向和速度。特别提到了四种GPIO输出函数和它们在控制LED亮灭方面的应用。通过主循环实现LED闪烁功能，并讨论了不同驱动模式下LED的性能差异。进一步地，本节还扩展到LED流水灯的制作，介绍了如何利用按位操作来控制多路LED的亮灭。最后，提供了学习STM32库函数的建议，包括查看库函数源码、利用官方文档和在线资源等方法。整个内容旨在帮助初学者掌握STM32开发的基础知识和技能。",
+  "keywords": [
+    "STM32", "embedded", "Embedded development", "MCU", "ARM Cortex-M", "Development Board", "开发板", "STM32简介", "STM32标准库", "嵌入式开发"
+  ],
+  "articleBody": " INIT INIT：本节内容正式开始。action!\nLED闪烁 接线图 本小节我们就来编写代码，完成上一小节演示的三个示例程序。首先我们需要先搭建一下面包板电路，我会把每个代码的接线图都放到工程文件夹的第一个文件夹里，大家可以下载程序源码的文件查看。\nD:\\江科大 STM32\\程序源码\\程序源码\\STM32Project-有注释版\\1-1 接线图\n图：LED闪烁\nLED闪烁 硬件搭建 我们打开接线图，打开3-1 LED闪烁的图片，这就是本节第一个程序的硬件电路。\n那我们拿出面包板，把正极的红线朝上，注意别拿反了。然后拿出STM32最小系统版，在这里按照图示位置，上边和右边留两个孔，下边留三个孔，然后插到面包板上。\n接着拿出跳线，将最小系统板的正负极引到面包板的供电引脚上，这样上下四排供电引脚就可以通过最小系统板获取电源了。这里G引到负极，3.3引到正极的。下面也是一样。\n图：拿出跳线，将最小系统板的正负极引到面包板的供电引脚上\n跳线连接完成后，我们把STLINK按照上面的引脚标识符连接到最小系统上。\n这里引脚并不是按照顺序来的，注意别插错线了。我们这整个系统的供电是STLINK的3.3V接到最小系统，然后最小系统又通过跳线接到上下4排的供电孔的。\n最后我们拿出一个LED，长脚正极接到正极供电孔，短脚负极接到PA0端口上。这里使用的是低电平点亮的操作方式，为了方便就没有接限流电阻。\n图：硬件电路搭建\n这样我们的硬件电路就搭建完成了，我们把STLINK插到电脑上。这里的电源灯亮起。\nLED闪烁-新建工程 文件准备 好，那我们打开Keil软件。然后新建一个工程，这里新建工程比较麻烦，我再给大家快速演示一遍，以后我们就直接复制现有的工程。\n我们点击Project-\u003enew project，选择存放工程的文件夹，在这里再新建一个文件夹，我们可以按Ctrl+Shift+N 快捷键新建文件夹，然后起个名字叫3-1LED闪烁，点进去起个工程名叫Project。保存。\n接着选择芯片STM32F103C8，ok这个窗口×掉。\n然后在文件管理里打开我们的工程文件夹，再新建三个文件夹，分别叫Start、Library、User。\n打开固件库文件。找到启动文件。\n按Ctrl+A全选，再按Ctrl+C复制。然后把它们放到Start文件夹下，再找到stm32f10x和system的两个文件，Ctrl+C复制粘贴到Start文件夹下，再找到core_cm3的两个文件，复制粘贴到Start文件夹下，这样Start文件夹的文件就复制完成了。\n然后找到标准外设驱动的文件夹，打开src全选复制。粘贴到Library文件夹下。然后打开inc，全选复制，也粘贴到Library文件夹下，这样Library文件夹的文件也就复制完成了。\n最后打开project文件夹，然后打开后缀是template的文件夹，按住Ctrl键，选择这里的main、 conf、2个it文件，复制粘贴到User文件夹下，这里main.c我们也直接复制过来，这样就不用再新建文件了。\n到此为止我们的工程文件就复制完成了。\n在Keil中对工程设置 新建三个组Start、Library、User，并添加文件 然后回到Keil，点击这个三个箱子的工程文件管理按钮，把默认的这个组×掉，点这个按钮再新建三个组，叫Start、Library、User。\n然后选中Start，在右边点击添加文件，打开Start文件夹，文件类型选所有文件。首先添加后缀为md的启动文件，然后按住Ctrl，把其他的.c和.h文件都选中，然后Add，这样Start组里的文件就添加好了。\n然后是Library，点添加文件，打开Library文件夹，然后文件类型选所有文件，Ctrl+A全选，Add，这样Library组里的文件就添加好了。\n然后是User添加文件，打开User，文件类型选所有文件，全选，Add，最后点击ok，这样我们工程里的组和文件就都添加好了。\nC/C++ 选项设置 Include Paths 添加头文件路径 接着点击魔术棒按钮，打开工程选项，选择C/C++的，在Include Paths栏，把我们自己建的文件夹路径都添加进来。Start、Library、User, 然后OK。\nDefine 添加宏定义 在Define栏写上USE_STDPERIPH_DRIVER(USE使用、下划线、STD标准、PERIPH外设、下划线、DRIVER驱动)这个字符串。\nDebug 调试器选择STLINK 最后是Debug，调试器选择STLINK。\n调试器设置 Debug -\u003e ST-Link Debugger -\u003e Settings -\u003e Flash Download\n然后设置、Flash下载、勾上复位并执行这个勾，最后确定。\nOk这样工程选项就配置好了。\n将main.c中内容清空 接着我们打开这个main.c，把它这里面的原来的代码全都删掉了，然后右键添加头文件，写上主函数，这样整个工程就建好了，我们编译测试一下。 没有错误，没有警告，然后下载测试也是没有问题的。\n批处理工具-删除工程编译中产生的中间文件 最后再给大家分享个小工具，我把它放到了工程的第二个文件夹里，这个东西是一个批处理文件，它可以把工程编译产生的中间文件都删掉。\n图：批处理工具 D:\\江科大 STM32\\程序源码\\程序源码\\STM32Project-有注释版\\1-2 keilkill批处理\n我们可以把它复制到工程文件夹里，放在这里。因为这个工程编译产生的文件比较大。我们可以看一下这个LED闪烁的工程就有20Mb。\n这里主要占空间的就是Listing和Objects这两个文件夹，这些都是工程的中间文件。如果你要把工程分享给别人的话，可以先双击一下这个批处理文件。这时他就会把这些中间文件都删掉，我们再看一下，这样就只要2Mb左右的大小了。然后你就可以把这个文件夹打包，把工程分享给别人了。\n图：批处理工具在工程文件夹中 D:\\Keil5Project\\STM32Project\\3-1 LED闪烁\nLED闪烁-编写工程 好，那我们回到Keil中，正式开始点亮一个LED。\n上节课我们也介绍过，操作STM32的GPIO总共需要3个步骤。第一步使用RCC开启GPIO的时钟。第二步使用GPIO_Init函数初始化GPIO。第三步，使用输出或者输入的函数控制GPIO口。\n在这里总共涉及了RCC和GPIO两个外设。\nRCC的库函数 我们先来看一下这两个外设都有哪些库函数吧。我们可以在Library中找到rcc.h这个文件，双击打开，然后拖到最下面。\n在.h文件的最下面，一般都是库函数所有函数的声明，在这里我们可以看到RCC有很多的库函数，但实际上这里的大部分函数我们都不会用到，我们最常用的只有这三个函数。RCC AHB外设时钟控制，RCC APB2外设时钟控制，RCC APB1外设时钟控制。\n图：stm32f10x_rcc.h中 我们常用的三个RCC函数\n我们可以右键跳到定义，这时就来到了.c文件里的函数定义上面。上面这有一个函数的介绍，这个AHB外设时钟控制的函数就是使能或者失能AHB外设时钟的。\n下面介绍第一个参数就是选择哪个外设。这里说STM32互联型的设备可以在在这个列表选择，其他设备在下面这个列表选择。\n接着第二个参数就是ENABLE或者DISABLE。\n然后下面的AP2外设时钟控制和APB1外设时钟控制都是一样的操作方法。第一个参数选择外设，第二个参数使能或者失能。如果你不清楚哪个外设是连接在哪个总线上的，还可以在这个列表找一下，列表中出现的就肯定是这个总线的外设，对吧？\n那RCC的库函数就介绍完了，最主要的就是这三个函数，其他的函数基本都用不到。\nGPIO的库函数 接着我们再看一下GPIO的库函数，我们打开gpio.h(stm32f10x_gpio.h)的文件，然后拖到最后，这些就是GPIO的全部库函数了。\n我们目前需要了解的就是前面的这些函数。\n图：我们需要了解的GPIO的库函数\n库函数GPIO_DeInit 第一个就是GPIO_DeInit，参数可以写GPIOA，GPIOB等等。\n调用这个函数之后，所指定的GPIO外设就会被复位，这就是这个函数的用途。\n库函数GPIO_AFIODeInit 第二个GPIO_AFIODeInit也是一样，可以复位AFIO外设，这个AFIO我们后面再讲。\n库函数GPIO_Init 接着第三个GPIO_Init就是非常重要的函数了。\n这个函数的作用是，用结构体的参数来初始化GPIO口。我们需要先定义一个结构体变量，然后再给结构体赋值，最后调用这个函数。\n这个函数内部就会自动读取结构体的值，然后自动把外设的各个参数配置好。这种Init函数在STM32中基本所有的外设都有。一般我们初始化外设都是使用这个Init的函数来完成的。\n库函数GPIO_StructInit 第四个是GPIO_StructInit， 这个函数可以把结构体变量赋一个默认值。\n库函数GPIO_Read读取函数(共4个) 接下来这四个就是GPIO的读取函数了。然后下面跟着的四个就是GPO的写入函数。\n库函数GPIO写入函数(共4个) GPIO_SetBits()到GPIO_Write()\n这些函数就可以实现读写GPL口的功能。\n然后剩下的这些函数我们暂时不会用到，所以这里面重要的函数就是GPIO_Init和这8个读写函数。好，那我们就来试试用这些函数来操作GPIO吧。\n开始写main.c 我们回到main.c文件，首先调用的是，RCC里面的APB2外设时钟控制函数。我们复制粘贴到这里，然后右键跳转到定义，我们需要点亮PA0 口的LED，所以选择RCC_APB2外设_GPIOA这一项，放到第一个参数。\n然后继续第二个参数，选择ENABLE，放到第二个参数，这样时钟就开启了。\n编写代码：main.c\n#include \"stm32f10x.h\" // Device header int main(void) { /*开启时钟*/ RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);\t//开启GPIOA的时钟 //使用各个外设前必须开启时钟，否则对外设的操作无效 /*主循环，循环体内的代码会一直循环执行*/ while (1) { } } 接着调用GPIO_Init的函数。跳转定义，第一个参数选择GPIOA。\n第二个参数是一个结构体，我们先把结构体类型复制下来，在GPIO_Init上面粘贴，起个名字，叫GPIO_Initstructure。\n这里这个结构体实际上也是一种局部变量。在有些老的编译器，它要求所有的局部变量定义必须放到函数的最前面。如果你的编译器是这样的话，就需要把这一行提到最前面去。那我这个编译器是支持在函数中间定义变量的，所以就放在这个位置。接着我们复制结构体名字，用点把结构体的成员都引出来。\n然后还是一个套路，右键跳转看一下说明，复制粘贴一下参数。这样看上去库函数还是很简单的是吧？基本上都是复制粘贴，复制粘贴。\n这就印证了程序员的最高境界，Ctrl+C，Ctrl+V走天下，对吧。那我们选择这个GPIOMode_TypeDef，Ctrl+F搜索一下。\n然后这里就是GPIO的8种工作模式。AIN是模拟输入，IN_FLOATING是浮空输入，IPD是下拉输入，IPU是上拉输入，Out_OD是开漏输出，Out_PP是推挽输出，AF_OD是复用开漏，AF_PP是复用推挽。\n那我们点灯用的是推挽输出。所以复制Out_PP这一项粘贴到GPIO_ Mode这里，接下来GPIO_Pin选择引脚，我们继续右键跳转。\n这里GPIO_Pin有多个定义，我们选择member这一项。然后选中这个，CtrL+F，这里因为我们用的是GPIOA外设的0号引脚，所以选择GPIO_Pin_0放到这里。\n接着第三个，还是一样的套路。输出速度选择50MHz就行了。最后把GPIO初始化结构体的地址放到GPIO_Init的第二个参数，这样初始化就完成了。\n当这个GPIO_Init函数执行完，这个GPIOA外设的0号引脚就自动被配置为推挽输出、50MHz的速度了。\n它内部的主要执行逻辑就是读取结构体的参数，执行一堆判断和运算，最后写入到GPIO配置寄存器。至于操作的细节我们就不用再关心了。\n编写代码：main.c\n#include \"stm32f10x.h\" // Device header int main(void) { /*开启时钟*/ RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);\t//开启GPIOA的时钟 //使用各个外设前必须开启时钟，否则对外设的操作无效 /*GPIO初始化*/ GPIO_InitTypeDef GPIO_InitStructure;\t//定义结构体变量 GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;\t//GPIO模式，赋值为推挽输出模式 GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;\t//GPIO引脚，赋值为第0号引脚 GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;\t//GPIO速度，赋值为50MHz /*主循环，循环体内的代码会一直循环执行*/ while (1) { } } 到现在GPIO初始化就已经完成了，我们接下来就可以使用GPIO的这些输入输出函数了。本小节先介绍这4个GPIO的输出函数。\n第一个GPIO_SetBits，第一个参数是GPIOx，第二个参数是GPIO_Pin。这个函数可以把指定的端口设置为高电平。\n第二个GPIO_ResetBits，参数和上面的一样，这个可以把指定的端口设置为低电平。\n第三个GPIO_WriteBit，这个函数有三个参数，前两个也是指定端口的。第三个是BitVal，这个是根据第三个参数的值来设置指定的端口。\n第四个是GPIO_Write，第一个参数是GPIOx选择外设，第二个参数是PortVal，这个函数可以同时对16个端口进行写入操作。\n那我们分别来用一下试试。\n尝试GPIO_ResetBits 首先试一下GPIO_ResetBits。可以看一下函数说明。第一个是GPIOx，可以是A到G。第二个是要写入的GPIO_Pin_x，x可以是0到15。\n那我们就写入GPIOA，GPIO_Pin_0。\n编写代码：main.c\n#include \"stm32f10x.h\" // Device header int main(void) { /*开启时钟*/ RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);\t//开启GPIOA的时钟 //使用各个外设前必须开启时钟，否则对外设的操作无效 /*GPIO初始化*/ GPIO_InitTypeDef GPIO_InitStructure;\t//定义结构体变量 GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;\t//GPIO模式，赋值为推挽输出模式 GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;\t//GPIO引脚，赋值为第0号引脚 GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;\t//GPIO速度，赋值为50MHz GPIO_Init(GPIOA, \u0026GPIO_InitStructure);\t//将赋值后的构体变量传递给GPIO_Init函数 //函数内部会自动根据结构体的参数配置相应寄存器 //实现GPIOA的初始化 /*主循环，循环体内的代码会一直循环执行*/ while (1) { GPIO_ResetBits(GPIOA, GPIO_Pin_0);\t//将PA0引脚设置为低电平 } } 这样就行了，编译一下，没有错误，下载看一下。可以看到这个LED就已经点亮了，这说明我们端口配置的没问题，而且PA0已经输出了低电平。\n尝试GPIO_SetBits 那我们再换GPIO_SetBits函数试试。\n编写代码：main.c\n#include \"stm32f10x.h\" // Device header int main(void) { /*开启时钟*/ RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);\t//开启GPIOA的时钟 //使用各个外设前必须开启时钟，否则对外设的操作无效 /*GPIO初始化*/ GPIO_InitTypeDef GPIO_InitStructure;\t//定义结构体变量 GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;\t//GPIO模式，赋值为推挽输出模式 GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;\t//GPIO引脚，赋值为第0号引脚 GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;\t//GPIO速度，赋值为50MHz GPIO_Init(GPIOA, \u0026GPIO_InitStructure);\t//将赋值后的构体变量传递给GPIO_Init函数 //函数内部会自动根据结构体的参数配置相应寄存器 //实现GPIOA的初始化 /*主循环，循环体内的代码会一直循环执行*/ while (1) { GPIO_SetBits(GPIOA, GPIO_Pin_0);\t//将PA0引脚设置为高电平 } } 这个参数是一样的，不用更改，编译下载。可以看到LED就已经熄灭了。\n尝试GPIO_WriteBit 然后我们再试一下第三个函数，GPIO_WriteBit. 这里前两个参数也是一样的。第三个参数我们转到定义看一下。第三个参数的介绍是指定写入的数据值。这个参数可以是BitAction这个枚举中的一个值。Bit_RESET 是清除端口值，也就是置低电平。Bit_SET是设置端口值，也就是置高电平。\n我们先复制一下Bit_RESET ，放到这里编译下载。可以看到LED又亮起来了。再把这个改成Bit_SET编译下载。可以看到LED又熄灭了。这就是这三个函数的用法。\n编写代码：main.c\n#include \"stm32f10x.h\" // Device header #include \"Delay.h\" int main(void) { /*开启时钟*/ RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);\t//开启GPIOA的时钟 //使用各个外设前必须开启时钟，否则对外设的操作无效 /*GPIO初始化*/ GPIO_InitTypeDef GPIO_InitStructure;\t//定义结构体变量 GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;\t//GPIO模式，赋值为推挽输出模式 GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;\t//GPIO引脚，赋值为第0号引脚 GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;\t//GPIO速度，赋值为50MHz GPIO_Init(GPIOA, \u0026GPIO_InitStructure);\t//将赋值后的构体变量传递给GPIO_Init函数 //函数内部会自动根据结构体的参数配置相应寄存器 //实现GPIOA的初始化 /*主循环，循环体内的代码会一直循环执行*/ while (1) { GPIO_WriteBit(GPIOA, GPIO_Pin_0, Bit_RESET);\t//将PA0引脚设置为低电平 } } 第四个函数GPIO_Write我们下一个例程再介绍，接下来我们先来完成LED闪烁的任务。为了实现LED闪烁，我们就需要在主循环里写上点量LED，延时一段时间，熄灭LED，延时一段时间这样的逻辑吧。\n点亮LED，我们可以用这一句。\nGPIO_WriteBit(GPIOA, GPIO_Pin_0, Bit_RESET);\t这样就是点亮RED了。然后复制一下改成 Bit_SET，这就是熄灭LED，\nGPIO_WriteBit(GPIOA, GPIO_Pin_0, Bit_SET); Delay()延时函数 那中间需要加两个延时函数来进行一段延时。\n这里我已经给大家提供了一个现成的延时函数代码，在工程的第三个文件夹里，这两个就是延时函数的模块。我们先把它们添加到工程里面来。\n我们先复制，打开LED闪烁的工程，这里再新建一个文件夹，名称可以叫System，存放系统的资源。然后把Delay粘贴到这里。\n回到Keil软件，点击三个箱子的按钮，添加组也叫System。把它往上挪个位置，然后右边添加文件，打开System把Delay的两个文件添加进来，然后OK，这样Delay文件就添加完成了。\n最后不要忘了点击魔术棒按钮，添加这个新文件夹的头文件路径。这样就完成了。\n我们可以打开Delay.h去看一下，这里就是三个延时函数，分别是微秒延时、毫秒延时和秒延时。\n代码：Keil工程/System/Delay.h\n#ifndef __DELAY_H #define __DELAY_H void Delay_us(uint32_t us); void Delay_ms(uint32_t ms); void Delay_s(uint32_t s); #endif 打开.c文件可以看到这些函数的定义，这里是用SysTick定时器来实现的延时，具体怎么实现的，大家不用管的。这个延时函数一般都是直接拿来用就行了，不需要修改什么。\n那我们回到main.c使用这个延时函数模块，需要先在上面写上\n#include\"Delay.h\" 然后复制毫秒延时函数放在这里，参数给500，这样就可以延时500毫秒了。然后复制一下下面这里也给500毫秒的延时，我们试一下编译。\n编写代码：main.c\n#include \"stm32f10x.h\" // Device header #include \"Delay.h\" int main(void) { /*开启时钟*/ RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);\t//开启GPIOA的时钟 //使用各个外设前必须开启时钟，否则对外设的操作无效 /*GPIO初始化*/ GPIO_InitTypeDef GPIO_InitStructure;\t//定义结构体变量 GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;\t//GPIO模式，赋值为推挽输出模式 GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;\t//GPIO引脚，赋值为第0号引脚 GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;\t//GPIO速度，赋值为50MHz GPIO_Init(GPIOA, \u0026GPIO_InitStructure);\t//将赋值后的构体变量传递给GPIO_Init函数 //函数内部会自动根据结构体的参数配置相应寄存器 //实现GPIOA的初始化 /*主循环，循环体内的代码会一直循环执行*/ while (1) { GPIO_WriteBit(GPIOA, GPIO_Pin_0, Bit_RESET);\t//将PA0引脚设置为低电平 Delay_ms(500);\t//延时500ms GPIO_WriteBit(GPIOA, GPIO_Pin_0, Bit_SET);\t//将PA0引脚设置为高电平 Delay_ms(500);\t//延时500ms } } 没有错误，下载，我们看一下，这时LED就开始闪烁了。如果我们把这个延时改短点，比如100毫秒，编译下载，这样LED就闪的更快了。这就是第一个LED闪烁的代码了。这里先把100改回成500，这里除了WriteBit函数外，还可以用SetBits和ResetBits来实现。那我把它们都写上给大家参考一下。\n#include \"stm32f10x.h\" // Device header #include \"Delay.h\" int main(void) { /*开启时钟*/ RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);\t//开启GPIOA的时钟 //使用各个外设前必须开启时钟，否则对外设的操作无效 /*GPIO初始化*/ GPIO_InitTypeDef GPIO_InitStructure;\t//定义结构体变量 GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;\t//GPIO模式，赋值为推挽输出模式 GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;\t//GPIO引脚，赋值为第0号引脚 GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;\t//GPIO速度，赋值为50MHz GPIO_Init(GPIOA, \u0026GPIO_InitStructure);\t//将赋值后的构体变量传递给GPIO_Init函数 //函数内部会自动根据结构体的参数配置相应寄存器 //实现GPIOA的初始化 /*主循环，循环体内的代码会一直循环执行*/ while (1) { /*设置PA0引脚的高低电平，实现LED闪烁，下面展示2种方法*/ /*方法1：GPIO_ResetBits设置低电平，GPIO_SetBits设置高电平*/ GPIO_ResetBits(GPIOA, GPIO_Pin_0);\t//将PA0引脚设置为低电平 Delay_ms(500);\t//延时500ms GPIO_SetBits(GPIOA, GPIO_Pin_0);\t//将PA0引脚设置为高电平 Delay_ms(500);\t//延时500ms /*方法2：GPIO_WriteBit设置低/高电平，由Bit_RESET/Bit_SET指定*/ GPIO_WriteBit(GPIOA, GPIO_Pin_0, Bit_RESET);\t//将PA0引脚设置为低电平 Delay_ms(500);\t//延时500ms GPIO_WriteBit(GPIOA, GPIO_Pin_0, Bit_SET);\t//将PA0引脚设置为高电平 Delay_ms(500);\t//延时500ms } } 最后大家可能觉得调用这些函数只能填它给的指定参数。如果我们非要给一个数，1是高电平，0是低电平，这样该怎么办呢？\n那我们可以复制一下这个WriteBit函数，然后把Bit_RESET改成0， Bit_SET改成1。但如果直接这样编译的话，会有两个警告，说的是枚举类型中混入了其他类型的变量。\n所以如果想直接写1和0的话，需要在这里加上强制类型转换，把一和零类型转换为BitAction的枚举类型。这样再编译就没有问题了。然后下载，这样也是没有问题的。\n#include \"stm32f10x.h\" // Device header #include \"Delay.h\" int main(void) { /*开启时钟*/ RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);\t//开启GPIOA的时钟 //使用各个外设前必须开启时钟，否则对外设的操作无效 /*GPIO初始化*/ GPIO_InitTypeDef GPIO_InitStructure;\t//定义结构体变量 GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;\t//GPIO模式，赋值为推挽输出模式 GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;\t//GPIO引脚，赋值为第0号引脚 GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;\t//GPIO速度，赋值为50MHz GPIO_Init(GPIOA, \u0026GPIO_InitStructure);\t//将赋值后的构体变量传递给GPIO_Init函数 //函数内部会自动根据结构体的参数配置相应寄存器 //实现GPIOA的初始化 /*主循环，循环体内的代码会一直循环执行*/ while (1) { /*设置PA0引脚的高低电平，实现LED闪烁，下面展示3种方法*/ /*方法1：GPIO_ResetBits设置低电平，GPIO_SetBits设置高电平*/ GPIO_ResetBits(GPIOA, GPIO_Pin_0);\t//将PA0引脚设置为低电平 Delay_ms(500);\t//延时500ms GPIO_SetBits(GPIOA, GPIO_Pin_0);\t//将PA0引脚设置为高电平 Delay_ms(500);\t//延时500ms /*方法2：GPIO_WriteBit设置低/高电平，由Bit_RESET/Bit_SET指定*/ GPIO_WriteBit(GPIOA, GPIO_Pin_0, Bit_RESET);\t//将PA0引脚设置为低电平 Delay_ms(500);\t//延时500ms GPIO_WriteBit(GPIOA, GPIO_Pin_0, Bit_SET);\t//将PA0引脚设置为高电平 Delay_ms(500);\t//延时500ms /*方法3：GPIO_WriteBit设置低/高电平，由数据0/1指定，数据需要强转为BitAction类型*/ GPIO_WriteBit(GPIOA, GPIO_Pin_0, (BitAction)0);\t//将PA0引脚设置为低电平 Delay_ms(500);\t//延时500ms GPIO_WriteBit(GPIOA, GPIO_Pin_0, (BitAction)1);\t//将PA0引脚设置为高电平 Delay_ms(500);\t//延时500ms } } 验证推挽输出和开漏输出的驱动问题 最后我们再研究一下推挽输出和开漏输出的驱动问题。我们把这个LED拔掉，然后把长脚插到PA0口，短脚插到负极，这样LED就是高电平点亮的方式。可以看到LED也是正常闪烁，说明在推挽模式下，高低电平都是有驱动能力的。\n那我们把这个端口的模式换成Out_OD，开漏输出模式，编译下载。可以看到LED就不亮了，现在LED还是高电平点亮的方式。LED不亮，说明开漏输出的模式高电平是没有驱动能力的。\n我们把LED再改回低电平驱动的方式，可以看到LED又亮起来了。这说明开漏模式的低电平是有驱动能力的，这就印证了我们上一小节讲的推挽输出和开漏输出的特性。\n推挽输出高低电均有驱动能力，开漏输出高电平相当于高阻态，没有驱动能力，低电平有驱动能力。那我们把这个改回推挽输出，一般输出用推挽模式就行了，特殊的地方才会用到开漏模式。\n好，这就是LED闪烁代码的全部内容了。\nLED流水灯 LED流水灯接线图 我们关掉Keil来看一下第二个代码，LED流水灯，先来看一下接线图。这里需要拿出8个LED，正极都插到正极的供电孔，负极依次插到PA0到PA7的端口。\n图：LED流水灯 接线图\n那我们来插一下电路。这里可以先插两边的LED，然后掰弯一下，再插中间的LED这样方便一些。\n图：LED流水灯接线\n插完电路后，我们复制一下LED闪烁的工程，改个名字叫3-2LED流水灯。这样直接复制现有工程，就不用再费时间新建工程了。然后我们来修改一下这个代码，实现LED流水灯的程序。\n编写工程 在这里第一句打开GPIOA的时钟。因为我们连接的都是GPIOA的端口，所以第一句不用变的。接着初始化端口的这一部分，这里只初始化了GPIO的0号端口。我们流水灯用的是GPIOA的0到7号端口，所以这里要加一些端口，那怎么加呢？在这里我们可以直接在GPIO_Pin_0后面加上，或，GPIO_Pin_1再加上，或，GPIO_Pin_3，这样就可以一次性把三个端口都初始化了。\n为什么可以这样来使用呢？我们转到定义看一下，这里可以看到Pin0对应的数据是0x0001，然后Pin1、Pin2、Pin3依次为0x0002，0x0004，0x0008。如果把这个16进制换成二进制的话，就是0000 0000 000 0001，然后是0010、0100、1000。在这里每个端口对应一个位，如果把它们进行按位或的操作，比如Pin0、Pin1和Pin2按位或，那结果就是0111，这样就相当于同时选中了三个端口，这就是按位或的操作逻辑。\n图：位或\n最后我们还可以看到这里有个GPIO_Pin_ALL，它对应的数据就是0xFFFF，也就是所有位都为1，这样就相当于选中了所有的引脚。\n在这里除了这个GPIO_Pin可以用按位或的操作方式外，这个时钟控制的这一项(RCC_APB2Periph_GPIOA)也是可以用按位或的操作方式来选择多个外设的。你看它这里的定义也是一样的，数据的规律是每一位对应一个外设。\n图：stm32f10x_rcc.h\n还有这个GPIO_SetBits这里也可以用按照位或选择多个引脚，这样就能同时设置多个引脚了。所以这个函数名字也多了个S叫SetBits，所以ResetBits也是一个意思，在这个函数介绍里也写了这个参数可以是GPIO_Pin_x的任意“组合”，说的就是这个方式。\n那介绍完按位或的这种操作方式，我们就可以在这里使用位或把这八个引脚都选上。当然这里我就直接写GPIO_Pin_ALL了，这样就把16个端口全部配置为了推挽输出模式。\n然后是主循环里面，我们先把这些删掉。\n编写代码：main.c\n#include \"stm32f10x.h\" // Device header #include \"Delay.h\" int main(void) { /*开启时钟*/ RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);\t//开启GPIOA的时钟 //使用各个外设前必须开启时钟，否则对外设的操作无效 /*GPIO初始化*/ GPIO_InitTypeDef GPIO_InitStructure;\t//定义结构体变量 GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;\t//GPIO模式，赋值为推挽输出模式 GPIO_InitStructure.GPIO_Pin = GPIO_Pin_All;\t//GPIO引脚，赋值为所有引脚 GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;\t//GPIO速度，赋值为50MHz GPIO_Init(GPIOA, \u0026GPIO_InitStructure);\t//将赋值后的构体变量传递给GPIO_Init函数 //函数内部会自动根据结构体的参数配置相应寄存器 //实现GPIOA的初始化 /*主循环，循环体内的代码会一直循环执行*/ while (1) { } } 现在为了同时控制16个端口，我们就可以使用GPIO_Write这个函数了。我们复制过来，第一个参数是GPIOX，我们直接写GPIOA。第二个参数我们转到定义看一下，这里写的是，指定写到输出数据寄存器的值，下面我们可以看到，这第二个参数就是直接写到GPIO的ODR寄存器里的，所以我们可以写0x0001，对应二进制就是0000 0000 0000 0001。\n因为C语言不支持直接写二进制，所以这里只能转化为16进制来写。这16个二进制分别对应PA0到PA15，总共16个端口，最低位对应PA0，然后往上依次是PA1、PA2一直到PA15。\n因为是低电平点亮，所以前面再加一个按位取反的符号，这样就是第一个LED点亮，其他都熄灭了，接着Delay 500毫秒。然后复制一下。\n然后这里依次改为02，这里对应二进制就是0010，04，0100，08，1000，10。高八位我们暂时不用，我们编译看一下。没有错误下载可以看到LED依次点亮。\n如果想快一点的话，这里可以改成100毫秒。\n再试一下。现在就快一些了。如果你想换一种形式的流水灯，这里的数据对应更改一下就行了。或者定义一个数组，依次取出数组中的数据来进行花式点灯，这都是没问题的。在这里我就不过多演示了，那我们第二个程序LED流水灯到这里就完成了。\n编写代码：main.c(完整版)\n#include \"stm32f10x.h\" // Device header #include \"Delay.h\" int main(void) { /*开启时钟*/ RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);\t//开启GPIOA的时钟 //使用各个外设前必须开启时钟，否则对外设的操作无效 /*GPIO初始化*/ GPIO_InitTypeDef GPIO_InitStructure;\t//定义结构体变量 GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;\t//GPIO模式，赋值为推挽输出模式 GPIO_InitStructure.GPIO_Pin = GPIO_Pin_All;\t//GPIO引脚，赋值为所有引脚 GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;\t//GPIO速度，赋值为50MHz GPIO_Init(GPIOA, \u0026GPIO_InitStructure);\t//将赋值后的构体变量传递给GPIO_Init函数 //函数内部会自动根据结构体的参数配置相应寄存器 //实现GPIOA的初始化 /*主循环，循环体内的代码会一直循环执行*/ while (1) { /*使用GPIO_Write，同时设置GPIOA所有引脚的高低电平，实现LED流水灯*/ GPIO_Write(GPIOA, ~0x0001);\t//0000 0000 0000 0001，PA0引脚为低电平，其他引脚均为高电平，注意数据有按位取反 Delay_ms(100);\t//延时100ms GPIO_Write(GPIOA, ~0x0002);\t//0000 0000 0000 0010，PA1引脚为低电平，其他引脚均为高电平 Delay_ms(100);\t//延时100ms GPIO_Write(GPIOA, ~0x0004);\t//0000 0000 0000 0100，PA2引脚为低电平，其他引脚均为高电平 Delay_ms(100);\t//延时100ms GPIO_Write(GPIOA, ~0x0008);\t//0000 0000 0000 1000，PA3引脚为低电平，其他引脚均为高电平 Delay_ms(100);\t//延时100ms GPIO_Write(GPIOA, ~0x0010);\t//0000 0000 0001 0000，PA4引脚为低电平，其他引脚均为高电平 Delay_ms(100);\t//延时100ms GPIO_Write(GPIOA, ~0x0020);\t//0000 0000 0010 0000，PA5引脚为低电平，其他引脚均为高电平 Delay_ms(100);\t//延时100ms GPIO_Write(GPIOA, ~0x0040);\t//0000 0000 0100 0000，PA6引脚为低电平，其他引脚均为高电平 Delay_ms(100);\t//延时100ms GPIO_Write(GPIOA, ~0x0080);\t//0000 0000 1000 0000，PA7引脚为低电平，其他引脚均为高电平 Delay_ms(100);\t//延时100ms } } 蜂鸣器 接下来是第三个程序，蜂鸣器。通过前两个程序的学习，这个就应该简单多了。\n蜂鸣器接线图 我们先看一下接线图。\n图：蜂鸣器接线图\n这个VCC正极接到正极供电孔，GND负极接到负极供电孔。然后I/O控极就随便选择一个I/O口接上就行了。\n这里我选择的是PB12号口，那大家注意一下，这个A15、B3、B4这3个口大家先别选。我们从引脚定义图可以看到，这三个口默认是JTAG的调试端口，如果要用作普通端口的话，还需要再进行一些配置。我之前在使用的时候就没注意到这一点，我说我明明已经配置好了，这三个端口怎么就不输出呢？最后才发现这三个是调试端口。\n好，那我们就来连一下电路。首先拿出蜂鸣器模块和3根公对母的杜邦线，带孔的这一端插在蜂鸣器上，另一端橙色的是VCC，插在正极供电孔，灰色的是GND，插在负极供电孔，红色的是控制脚，插在PB12号口。这样我们硬件电路就完成了。\n我们给PB12输出低电平，蜂鸣器就会响，输出高电平，蜂鸣器就不响。那我们复制一下LED闪烁的程序，改个名字叫3-3蜂鸣器，打开工程。\n编写工程 这里程序相信大家应该都已经会写了吧。首先是时钟，因为我们用的是PB口，所以这里改为GPIOB。然后是端口，PB12号，所以这里是Pin12。端口模式，仍然是推挽输出。速度50M。\n初始化这里也应该是对GPIOB的初始化。到这里我们的PB12号口就已经初始化好了。我然后是输出，我们把这些先删掉，这两个地方都改为B、12。这就完成了，我们看一下编译。下载可以听到蜂鸣器已经在响了，我们让它换个响的模式，这里改成这样复制一下，响100毫秒，停100毫秒，再响100毫秒，再停700毫秒，编译下载。这样的声音就和我们最开始演示的一样了。\n编写代码：main.c(完整版)\n#include \"stm32f10x.h\" // Device header #include \"Delay.h\" int main(void) { /*开启时钟*/ RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);\t//开启GPIOB的时钟 //使用各个外设前必须开启时钟，否则对外设的操作无效 /*GPIO初始化*/ GPIO_InitTypeDef GPIO_InitStructure;\t//定义结构体变量 GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;\t//GPIO模式，赋值为推挽输出模式 GPIO_InitStructure.GPIO_Pin = GPIO_Pin_12;\t//GPIO引脚，赋值为第12号引脚 GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;\t//GPIO速度，赋值为50MHz GPIO_Init(GPIOB, \u0026GPIO_InitStructure);\t//将赋值后的构体变量传递给GPIO_Init函数 //函数内部会自动根据结构体的参数配置相应寄存器 //实现GPIOB的初始化 /*主循环，循环体内的代码会一直循环执行*/ while (1) { GPIO_ResetBits(GPIOB, GPIO_Pin_12);\t//将PB12引脚设置为低电平，蜂鸣器鸣叫 Delay_ms(100);\t//延时100ms GPIO_SetBits(GPIOB, GPIO_Pin_12);\t//将PB12引脚设置为高电平，蜂鸣器停止 Delay_ms(100);\t//延时100ms GPIO_ResetBits(GPIOB, GPIO_Pin_12);\t//将PB12引脚设置为低电平，蜂鸣器鸣叫 Delay_ms(100);\t//延时100ms GPIO_SetBits(GPIOB, GPIO_Pin_12);\t//将PB12引脚设置为高电平，蜂鸣器停止 Delay_ms(700);\t//延时700ms } } 如何学习库函数的使用 最后再给大家介绍几种使用库函数的方法。第一种就是像我这样，先打开点儿.h文件的最后，看一下都有哪些函数，然后在右键转到定义，查看一下函数和参数的用法。这里全都是英文的，如果看不懂的话，借助一下翻译软件就行了。\n第二种就是打开我提供资料文件夹里的这个库函数用户手册。这里面有所有函数的介绍和使用方法。这个文档是中文的，看起来比较好理解，而且这个函数下面都还给了例子，要用的话直接复制过来就行了。不过这个用户手册的版本并不对应我们现在用的这个库函数的版本，我们看一下。\n我们使用的扩函数是V3.5.0版本的。这个用户手册是老版本库函数的，所以有部分用法会有些出入，但是整体上的差异都不大，参考这个用户手册也是没有问题的。\n那V3.5.0的库函数有没有这样的用户手册呢？我从网上了解的是目前还是没有的。ST公司并没有发布V3.5.0版本的库函数用户手册，而是在这个固件库压缩包中给了这样的一个帮助文档，我们可以打开看一下。可以找到GPIO这一节。\n来看一下这种帮助文档，可以像这样跳来跳去的。如果你习惯这种方式的话，也可以参考这个文档。不过这个只有英文的版本。\n最后一种方式就是百度搜索，参考一下别人的代码。我们可以打开百度搜索STM32 GPIO，这里都有介绍。我们搜索一下GPIO初始化程序。可以点开看看。这里都有例子，直接参考一下拿过来用就行了。\n像我在学习STM32的时候，也会经常去参考别人的程序，要不然怎么知道该用哪些函数，是吧？好，那我们本小节的任务到这里就全部完成了。我们下小节再来继续学习GPIO的输入部分。\nEND END：本节内容到此结束。\n个人提升之余，别忘了和小伙伴积极交流，很多人觉得他们在思考，而实际上他们只是在重新整理自己的偏见。请珍惜和他人交流讨论的机会。\n希望你每一天都有所收获，进步up up up。今天的我们并不比昨天更聪明，但一定要比昨天更睿智。\n",
+  "wordCount" : "13683",
+  "inLanguage": "zh",
+  "image":"https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/pc9.jpg","datePublished": "2024-05-13T00:17:58+08:00",
+  "dateModified": "2024-05-13T00:17:58+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "Eddy"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://eddyblog.cn/posts/tech/stm32-standard_library_learning-jkd-p6/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Eddy's blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://eddyblog.cn/img/logo3.jpg"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    (function () {
+        let  arr,reg = new RegExp("(^| )"+"change-themes"+"=([^;]*)(;|$)");
+        if(arr = document.cookie.match(reg)) {
+        } else {
+            if (new Date().getHours() >= 19 || new Date().getHours() < 6) {
+                document.body.classList.add('dark');
+                localStorage.setItem("pref-theme", 'dark');
+            } else {
+                document.body.classList.remove('dark');
+                localStorage.setItem("pref-theme", 'light');
+            }
+        }
+    })()
+
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://eddyblog.cn/" accesskey="h" title="Eddy&#39;s Blog (Alt + H)">
+            <img src="https://eddyblog.cn/img/logo3.jpg" alt="logo" aria-label="logo"
+                 height="35">Eddy&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://eddyblog.cn/search" title="🔍 搜索 (Alt &#43; /)" accesskey=/>
+                <span>🔍 搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/" title="🏠 主页">
+                <span>🏠 主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/posts" title="📚 文章">
+                <span>📚 文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/tags" title="🧩 标签">
+                <span>🧩 标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/archives/" title="⏱️ 时间轴">
+                <span>⏱️ 时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/about" title="🙋🏻‍♂️ 关于">
+                <span>🙋🏻‍♂️ 关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main page">
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+</style>
+
+<article class="post-single">
+    <div id="single-content">
+        <header class="post-header">
+            <div class="breadcrumbs"><a href="https://eddyblog.cn/">🏠 主页</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/">📚文章</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/tech/">👨🏻‍💻 技术</a></div>
+            <h1 class="post-title">
+                嵌入式开发-STM32标准库学习：实现LED闪烁与流水灯，蜂鸣器
+            </h1>
+            <div class="post-description">
+                本节内容指导如何使用面包板、STM32最小系统板及ST Link开发一个简单的LED闪烁程序。首先，介绍搭建硬件电路所需步骤，包括正确连接电源、STM32板、LED和相关跳线。接着，在Keil5 软件中创建新工程，复制必要文件并配置工程设置以完成LED闪烁程序的编写、编译、下载和测试。此外，还介绍了如何利用一个辅助工具清理编译产生的中间文件，以便更好地分享工程。该指南详细讲解了如何使用RCC和GPIO外设及其库函数来控制LED的亮灭，包括设置工作模式、方向和速度。特别提到了四种GPIO输出函数和它们在控制LED亮灭方面的应用。通过主循环实现LED闪烁功能，并讨论了不同驱动模式下LED的性能差异。进一步地，本节还扩展到LED流水灯的制作，介绍了如何利用按位操作来控制多路LED的亮灭。最后，提供了学习STM32库函数的建议，包括查看库函数源码、利用官方文档和在线资源等方法。整个内容旨在帮助初学者掌握STM32开发的基础知识和技能。
+            </div>
+            <div class="post-meta">
+
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+
+    .parent-post-meta {
+        display: flex;
+        flex-wrap: wrap;
+        opacity: 0.8;
+    }
+</style>
+
+<span class="parent-post-meta">
+    <span id="post_meta_style_1">
+        <span class="fa fa-calendar-check-o"></span>
+        <span>2024-05-13
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    
+    
+    
+    
+    
+    
+    
+    <span id="post_meta_style_3">
+        <span class="fa fa-file-word-o"></span>
+        <span>13683字
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_4">
+        <span class="fa fa-clock-o"></span>
+        <span>28分钟
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_5">
+        <span class="fa fa-user-o"></span>
+        <span>Eddy
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_6">
+        <span class="fa fa-tags" style="opacity: 0.8"></span>
+        <span>
+            <span class="post-tags-meta">
+                <a href="https://eddyblog.cn/tags/stm32/" style="color: var(--secondary)!important;">STM32</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/mcu/" style="color: var(--secondary)!important;">MCU</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/arm-cortex/" style="color: var(--secondary)!important;">ARM Cortex</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/led/" style="color: var(--secondary)!important;">LED</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/led%E9%97%AA%E7%83%81/" style="color: var(--secondary)!important;">LED闪烁</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/led%E6%B5%81%E6%B0%B4%E7%81%AF/" style="color: var(--secondary)!important;">LED流水灯</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/stm32%E6%A0%87%E5%87%86%E5%BA%93%E5%BC%80%E5%8F%91/" style="color: var(--secondary)!important;">STM32标准库开发</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" style="color: var(--secondary)!important;">嵌入式开发</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/stm32f1/" style="color: var(--secondary)!important;">STM32F1</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/gpio/" style="color: var(--secondary)!important;">GPIO</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/%E8%9C%82%E9%B8%A3%E5%99%A8/" style="color: var(--secondary)!important;">蜂鸣器</a>
+            </span>
+        </span>
+    </span>
+</span>
+<span style="opacity: 0.8;">
+                    <span id="post_meta_style_7">
+                        &nbsp;&nbsp;
+                        <span class="fa fa-eye" ></span>
+                        <span>
+                            <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+                            &nbsp;&nbsp;
+                        </span>
+                    </span>
+                    <span id="post_meta_style_8">
+                        <span class="fa fa-commenting-o"></span>
+                        <span>
+                            <script src="https://cdn.staticfile.org/twikoo//twikoo.all.min.js"></script>
+                            <script>
+                                let url = document.documentURI
+                                
+                                let dnsUrl = "https://eddyblog.cn/"
+                                let urlSplit = url.split(dnsUrl)
+                                let finalUrl = urlSplit[1]
+                                if (finalUrl[0] !== '/') {
+                                    finalUrl = '/'+finalUrl
+                                }
+                                twikoo.getCommentsCount({
+                                    envId:  null , 
+                                region:  null , 
+                                urls: [ 
+                                    
+                                    finalUrl,
+                                ],
+                                    includeReply: false 
+                                }).then(function (res) {
+                                    let count = res[0].count
+                                    const obj = document.getElementById("comment_count");
+                                    obj.innerText = count
+                                    
+                                    
+                                    
+                                }).catch(function (err) {
+                                    
+                                    console.error(err);
+                                });
+                            </script>
+                            <span id="comment_count"></span>
+                        </span>
+                    </span>
+                </span>
+
+</div>
+        </header> 
+<figure class="entry-cover1"><img style="zoom:;" loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/pc9.jpg" alt="">
+    
+</figure><aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#init" aria-label="INIT">INIT</a></li>
+                <li>
+                    <a href="#led%e9%97%aa%e7%83%81-%e6%8e%a5%e7%ba%bf%e5%9b%be" aria-label="LED闪烁 接线图">LED闪烁 接线图</a></li>
+                <li>
+                    <a href="#led%e9%97%aa%e7%83%81-%e7%a1%ac%e4%bb%b6%e6%90%ad%e5%bb%ba" aria-label="LED闪烁 硬件搭建">LED闪烁 硬件搭建</a></li>
+                <li>
+                    <a href="#led%e9%97%aa%e7%83%81-%e6%96%b0%e5%bb%ba%e5%b7%a5%e7%a8%8b" aria-label="LED闪烁-新建工程">LED闪烁-新建工程</a><ul>
+                        
+                <li>
+                    <a href="#%e6%96%87%e4%bb%b6%e5%87%86%e5%a4%87" aria-label="文件准备">文件准备</a></li>
+                <li>
+                    <a href="#%e5%9c%a8keil%e4%b8%ad%e5%af%b9%e5%b7%a5%e7%a8%8b%e8%ae%be%e7%bd%ae" aria-label="在Keil中对工程设置">在Keil中对工程设置</a><ul>
+                        
+                <li>
+                    <a href="#%e6%96%b0%e5%bb%ba%e4%b8%89%e4%b8%aa%e7%bb%84startlibraryuser%e5%b9%b6%e6%b7%bb%e5%8a%a0%e6%96%87%e4%bb%b6" aria-label="新建三个组Start、Library、User，并添加文件">新建三个组Start、Library、User，并添加文件</a></li>
+                <li>
+                    <a href="#cc-%e9%80%89%e9%a1%b9%e8%ae%be%e7%bd%ae" aria-label="C/C&#43;&#43; 选项设置">C/C++ 选项设置</a><ul>
+                        
+                <li>
+                    <a href="#include-paths-%e6%b7%bb%e5%8a%a0%e5%a4%b4%e6%96%87%e4%bb%b6%e8%b7%af%e5%be%84" aria-label="Include Paths 添加头文件路径">Include Paths 添加头文件路径</a></li>
+                <li>
+                    <a href="#define-%e6%b7%bb%e5%8a%a0%e5%ae%8f%e5%ae%9a%e4%b9%89" aria-label="Define 添加宏定义">Define 添加宏定义</a></li>
+                <li>
+                    <a href="#debug-%e8%b0%83%e8%af%95%e5%99%a8%e9%80%89%e6%8b%a9stlink" aria-label="Debug 调试器选择STLINK">Debug 调试器选择STLINK</a></li>
+                <li>
+                    <a href="#%e8%b0%83%e8%af%95%e5%99%a8%e8%ae%be%e7%bd%ae" aria-label="调试器设置">调试器设置</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%b0%86mainc%e4%b8%ad%e5%86%85%e5%ae%b9%e6%b8%85%e7%a9%ba" aria-label="将main.c中内容清空">将main.c中内容清空</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e6%89%b9%e5%a4%84%e7%90%86%e5%b7%a5%e5%85%b7-%e5%88%a0%e9%99%a4%e5%b7%a5%e7%a8%8b%e7%bc%96%e8%af%91%e4%b8%ad%e4%ba%a7%e7%94%9f%e7%9a%84%e4%b8%ad%e9%97%b4%e6%96%87%e4%bb%b6" aria-label="批处理工具-删除工程编译中产生的中间文件">批处理工具-删除工程编译中产生的中间文件</a></li></ul>
+                </li>
+                <li>
+                    <a href="#led%e9%97%aa%e7%83%81-%e7%bc%96%e5%86%99%e5%b7%a5%e7%a8%8b" aria-label="LED闪烁-编写工程">LED闪烁-编写工程</a><ul>
+                        
+                <li>
+                    <a href="#rcc%e7%9a%84%e5%ba%93%e5%87%bd%e6%95%b0" aria-label="RCC的库函数">RCC的库函数</a></li>
+                <li>
+                    <a href="#gpio%e7%9a%84%e5%ba%93%e5%87%bd%e6%95%b0" aria-label="GPIO的库函数">GPIO的库函数</a><ul>
+                        
+                <li>
+                    <a href="#%e5%ba%93%e5%87%bd%e6%95%b0gpio_deinit" aria-label="库函数GPIO_DeInit">库函数GPIO_DeInit</a></li>
+                <li>
+                    <a href="#%e5%ba%93%e5%87%bd%e6%95%b0gpio_afiodeinit" aria-label="库函数GPIO_AFIODeInit">库函数GPIO_AFIODeInit</a></li>
+                <li>
+                    <a href="#%e5%ba%93%e5%87%bd%e6%95%b0gpio_init" aria-label="库函数GPIO_Init">库函数GPIO_Init</a></li>
+                <li>
+                    <a href="#%e5%ba%93%e5%87%bd%e6%95%b0gpio_structinit" aria-label="库函数GPIO_StructInit">库函数GPIO_StructInit</a></li>
+                <li>
+                    <a href="#%e5%ba%93%e5%87%bd%e6%95%b0gpio_read%e8%af%bb%e5%8f%96%e5%87%bd%e6%95%b0%e5%85%b14%e4%b8%aa" aria-label="库函数GPIO_Read读取函数(共4个)">库函数GPIO_Read读取函数(共4个)</a></li>
+                <li>
+                    <a href="#%e5%ba%93%e5%87%bd%e6%95%b0gpio%e5%86%99%e5%85%a5%e5%87%bd%e6%95%b0%e5%85%b14%e4%b8%aa" aria-label="库函数GPIO写入函数(共4个)">库函数GPIO写入函数(共4个)</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%bc%80%e5%a7%8b%e5%86%99mainc" aria-label="开始写main.c">开始写main.c</a><ul>
+                        
+                <li>
+                    <a href="#%e5%b0%9d%e8%af%95gpio_resetbits" aria-label="尝试GPIO_ResetBits">尝试GPIO_ResetBits</a></li>
+                <li>
+                    <a href="#%e5%b0%9d%e8%af%95gpio_setbits" aria-label="尝试GPIO_SetBits">尝试GPIO_SetBits</a></li>
+                <li>
+                    <a href="#%e5%b0%9d%e8%af%95gpio_writebit" aria-label="尝试GPIO_WriteBit">尝试GPIO_WriteBit</a></li>
+                <li>
+                    <a href="#delay%e5%bb%b6%e6%97%b6%e5%87%bd%e6%95%b0" aria-label="Delay()延时函数">Delay()延时函数</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e9%aa%8c%e8%af%81%e6%8e%a8%e6%8c%bd%e8%be%93%e5%87%ba%e5%92%8c%e5%bc%80%e6%bc%8f%e8%be%93%e5%87%ba%e7%9a%84%e9%a9%b1%e5%8a%a8%e9%97%ae%e9%a2%98" aria-label="验证推挽输出和开漏输出的驱动问题">验证推挽输出和开漏输出的驱动问题</a></li></ul>
+                </li>
+                <li>
+                    <a href="#led%e6%b5%81%e6%b0%b4%e7%81%af" aria-label="LED流水灯">LED流水灯</a><ul>
+                        
+                <li>
+                    <a href="#led%e6%b5%81%e6%b0%b4%e7%81%af%e6%8e%a5%e7%ba%bf%e5%9b%be" aria-label="LED流水灯接线图">LED流水灯接线图</a></li>
+                <li>
+                    <a href="#%e7%bc%96%e5%86%99%e5%b7%a5%e7%a8%8b" aria-label="编写工程">编写工程</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e8%9c%82%e9%b8%a3%e5%99%a8" aria-label="蜂鸣器">蜂鸣器</a><ul>
+                        
+                <li>
+                    <a href="#%e8%9c%82%e9%b8%a3%e5%99%a8%e6%8e%a5%e7%ba%bf%e5%9b%be" aria-label="蜂鸣器接线图">蜂鸣器接线图</a></li>
+                <li>
+                    <a href="#%e7%bc%96%e5%86%99%e5%b7%a5%e7%a8%8b-1" aria-label="编写工程">编写工程</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%a6%82%e4%bd%95%e5%ad%a6%e4%b9%a0%e5%ba%93%e5%87%bd%e6%95%b0%e7%9a%84%e4%bd%bf%e7%94%a8" aria-label="如何学习库函数的使用">如何学习库函数的使用</a></li>
+                <li>
+                    <a href="#end" aria-label="END">END</a>
+                </li>
+            </ul>
+        </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+        
+        activeElement = elements[0];
+        const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+        document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+    }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        if (elements) {
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement){
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }
+    }, false);
+
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;
+    }
+</script>
+        <div class="post-content"><div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/%E7%9F%A5%E8%AF%86%E8%92%99%E8%94%BD%E4%BA%86%E6%88%91%E7%9A%84%E5%8F%8C%E7%9C%BC.jpg" alt = "知识蒙蔽了我的双眼.jpg" width = "70%" height = "auto">
+</div>
+<br>
+<h2 id="init">INIT<a hidden class="anchor" aria-hidden="true" href="#init">#</a></h2>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/INIT.jpg" alt = "INIT.jpg" width = "70%" height = "auto">
+</div>
+<br>
+<blockquote>
+<p><strong>INIT：本节内容正式开始。action!</strong></p>
+</blockquote>
+<h2 id="led闪烁-接线图">LED闪烁 接线图<a hidden class="anchor" aria-hidden="true" href="#led闪烁-接线图">#</a></h2>
+<p>本小节我们就来编写代码，完成上一小节演示的三个示例程序。首先我们需要先搭建一下面包板电路，我会把每个代码的接线图都放到工程文件夹的第一个文件夹里，大家可以下载程序源码的文件查看。</p>
+<p><code>D:\江科大 STM32\程序源码\程序源码\STM32Project-有注释版\1-1 接线图</code></p>
+<p>图：LED闪烁</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P6-LED%E9%97%AA%E7%83%81LED%E6%B5%81%E6%B0%B4%E7%81%AF%E8%9C%82%E9%B8%A3%E5%99%A8.jpg" alt = "P6-LED闪烁LED流水灯蜂鸣器.jpg" width = "70%" height = "auto">
+</div>
+<br>
+<h2 id="led闪烁-硬件搭建">LED闪烁 硬件搭建<a hidden class="anchor" aria-hidden="true" href="#led闪烁-硬件搭建">#</a></h2>
+<p>我们打开接线图，打开3-1 LED闪烁的图片，这就是本节第一个程序的硬件电路。</p>
+<p>那我们拿出面包板，把正极的红线朝上，注意别拿反了。然后拿出STM32最小系统版，在这里按照图示位置，上边和右边留两个孔，下边留三个孔，然后插到面包板上。</p>
+<p>接着拿出跳线，将最小系统板的正负极引到面包板的供电引脚上，这样上下四排供电引脚就可以通过最小系统板获取电源了。这里G引到负极，3.3引到正极的。下面也是一样。</p>
+<p>图：拿出跳线，将最小系统板的正负极引到面包板的供电引脚上</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P6-LED%E9%97%AA%E7%83%81LED%E6%B5%81%E6%B0%B4%E7%81%AF%E8%9C%82%E9%B8%A3%E5%99%A8.png" alt = "P6-LED闪烁LED流水灯蜂鸣器.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>跳线连接完成后，我们把STLINK按照上面的引脚标识符连接到最小系统上。</p>
+<p>这里引脚并不是按照顺序来的，注意别插错线了。我们这整个系统的供电是STLINK的3.3V接到最小系统，然后最小系统又通过跳线接到上下4排的供电孔的。</p>
+<p>最后我们拿出一个LED，长脚正极接到正极供电孔，短脚负极接到PA0端口上。这里使用的是低电平点亮的操作方式，为了方便就没有接限流电阻。</p>
+<p>图：硬件电路搭建</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P6-LED%E9%97%AA%E7%83%81LED%E6%B5%81%E6%B0%B4%E7%81%AF%E8%9C%82%E9%B8%A3%E5%99%A8-1.png" alt = "P6-LED闪烁LED流水灯蜂鸣器-1.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>这样我们的硬件电路就搭建完成了，我们把STLINK插到电脑上。这里的电源灯亮起。</p>
+<h2 id="led闪烁-新建工程">LED闪烁-新建工程<a hidden class="anchor" aria-hidden="true" href="#led闪烁-新建工程">#</a></h2>
+<h3 id="文件准备">文件准备<a hidden class="anchor" aria-hidden="true" href="#文件准备">#</a></h3>
+<p>好，那我们打开Keil软件。然后新建一个工程，这里新建工程比较麻烦，我再给大家快速演示一遍，以后我们就直接复制现有的工程。</p>
+<p>我们点击Project-&gt;new project，选择存放工程的文件夹，在这里再新建一个文件夹，我们可以按Ctrl+Shift+N 快捷键新建文件夹，然后起个名字叫3-1LED闪烁，点进去起个工程名叫Project。保存。</p>
+<p>接着选择芯片STM32F103C8，ok这个窗口×掉。</p>
+<p>然后在文件管理里打开我们的工程文件夹，再新建三个文件夹，分别叫Start、Library、User。</p>
+<p>打开固件库文件。找到启动文件。</p>
+<p>按Ctrl+A全选，再按Ctrl+C复制。然后把它们放到Start文件夹下，再找到stm32f10x和system的两个文件，Ctrl+C复制粘贴到Start文件夹下，再找到core_cm3的两个文件，复制粘贴到Start文件夹下，这样Start文件夹的文件就复制完成了。</p>
+<p>然后找到标准外设驱动的文件夹，打开src全选复制。粘贴到Library文件夹下。然后打开inc，全选复制，也粘贴到Library文件夹下，这样Library文件夹的文件也就复制完成了。</p>
+<p>最后打开project文件夹，然后打开后缀是template的文件夹，按住Ctrl键，选择这里的main、 conf、2个it文件，复制粘贴到User文件夹下，这里main.c我们也直接复制过来，这样就不用再新建文件了。</p>
+<p>到此为止我们的工程文件就复制完成了。</p>
+<h3 id="在keil中对工程设置">在Keil中对工程设置<a hidden class="anchor" aria-hidden="true" href="#在keil中对工程设置">#</a></h3>
+<h4 id="新建三个组startlibraryuser并添加文件">新建三个组Start、Library、User，并添加文件<a hidden class="anchor" aria-hidden="true" href="#新建三个组startlibraryuser并添加文件">#</a></h4>
+<p>然后回到Keil，点击这个三个箱子的工程文件管理按钮，把默认的这个组×掉，点这个按钮再新建三个组，叫Start、Library、User。</p>
+<p>然后选中Start，在右边点击添加文件，打开Start文件夹，文件类型选所有文件。首先添加后缀为md的启动文件，然后按住Ctrl，把其他的.c和.h文件都选中，然后Add，这样Start组里的文件就添加好了。</p>
+<p>然后是Library，点添加文件，打开Library文件夹，然后文件类型选所有文件，Ctrl+A全选，Add，这样Library组里的文件就添加好了。</p>
+<p>然后是User添加文件，打开User，文件类型选所有文件，全选，Add，最后点击ok，这样我们工程里的组和文件就都添加好了。</p>
+<h4 id="cc-选项设置">C/C++ 选项设置<a hidden class="anchor" aria-hidden="true" href="#cc-选项设置">#</a></h4>
+<h5 id="include-paths-添加头文件路径">Include Paths 添加头文件路径<a hidden class="anchor" aria-hidden="true" href="#include-paths-添加头文件路径">#</a></h5>
+<p>接着点击魔术棒按钮，打开工程选项，选择C/C++的，在Include Paths栏，把我们自己建的文件夹路径都添加进来。Start、Library、User, 然后OK。</p>
+<h5 id="define-添加宏定义">Define 添加宏定义<a hidden class="anchor" aria-hidden="true" href="#define-添加宏定义">#</a></h5>
+<p>在Define栏写上USE_STDPERIPH_DRIVER(USE使用、下划线、STD标准、PERIPH外设、下划线、DRIVER驱动)这个字符串。</p>
+<h5 id="debug-调试器选择stlink">Debug 调试器选择STLINK<a hidden class="anchor" aria-hidden="true" href="#debug-调试器选择stlink">#</a></h5>
+<p>最后是Debug，调试器选择STLINK。</p>
+<h5 id="调试器设置">调试器设置<a hidden class="anchor" aria-hidden="true" href="#调试器设置">#</a></h5>
+<p>Debug -&gt; ST-Link Debugger -&gt; Settings -&gt; Flash Download</p>
+<p>然后设置、Flash下载、勾上复位并执行这个勾，最后确定。</p>
+<p>Ok这样工程选项就配置好了。</p>
+<h4 id="将mainc中内容清空">将main.c中内容清空<a hidden class="anchor" aria-hidden="true" href="#将mainc中内容清空">#</a></h4>
+<p>接着我们打开这个main.c，把它这里面的原来的代码全都删掉了，然后右键添加头文件，写上主函数，这样整个工程就建好了，我们编译测试一下。
+没有错误，没有警告，然后下载测试也是没有问题的。</p>
+<h3 id="批处理工具-删除工程编译中产生的中间文件">批处理工具-删除工程编译中产生的中间文件<a hidden class="anchor" aria-hidden="true" href="#批处理工具-删除工程编译中产生的中间文件">#</a></h3>
+<p>最后再给大家分享个小工具，我把它放到了工程的第二个文件夹里，这个东西是一个批处理文件，它可以把工程编译产生的中间文件都删掉。</p>
+<p>图：批处理工具 <code>D:\江科大 STM32\程序源码\程序源码\STM32Project-有注释版\1-2 keilkill批处理</code></p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P6-LED%E9%97%AA%E7%83%81LED%E6%B5%81%E6%B0%B4%E7%81%AF%E8%9C%82%E9%B8%A3%E5%99%A8-2.png" alt = "P6-LED闪烁LED流水灯蜂鸣器-2.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>我们可以把它复制到工程文件夹里，放在这里。因为这个工程编译产生的文件比较大。我们可以看一下这个LED闪烁的工程就有20Mb。</p>
+<p>这里主要占空间的就是Listing和Objects这两个文件夹，这些都是工程的中间文件。如果你要把工程分享给别人的话，可以先双击一下这个批处理文件。这时他就会把这些中间文件都删掉，我们再看一下，这样就只要2Mb左右的大小了。然后你就可以把这个文件夹打包，把工程分享给别人了。</p>
+<p>图：批处理工具在工程文件夹中 <code>D:\Keil5Project\STM32Project\3-1 LED闪烁</code></p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P6-LED%E9%97%AA%E7%83%81LED%E6%B5%81%E6%B0%B4%E7%81%AF%E8%9C%82%E9%B8%A3%E5%99%A8-3.png" alt = "P6-LED闪烁LED流水灯蜂鸣器-3.png" width = "70%" height = "auto">
+</div>
+<br>
+<h2 id="led闪烁-编写工程">LED闪烁-编写工程<a hidden class="anchor" aria-hidden="true" href="#led闪烁-编写工程">#</a></h2>
+<p>好，那我们回到Keil中，正式开始点亮一个LED。</p>
+<p>上节课我们也介绍过，操作STM32的GPIO总共需要3个步骤。第一步使用RCC开启GPIO的时钟。第二步使用GPIO_Init函数初始化GPIO。第三步，使用输出或者输入的函数控制GPIO口。</p>
+<p>在这里总共涉及了RCC和GPIO两个外设。</p>
+<h3 id="rcc的库函数">RCC的库函数<a hidden class="anchor" aria-hidden="true" href="#rcc的库函数">#</a></h3>
+<p>我们先来看一下这两个外设都有哪些库函数吧。我们可以在Library中找到rcc.h这个文件，双击打开，然后拖到最下面。</p>
+<p>在.h文件的最下面，一般都是库函数所有函数的声明，在这里我们可以看到RCC有很多的库函数，但实际上这里的大部分函数我们都不会用到，我们最常用的只有这三个函数。RCC AHB外设时钟控制，RCC APB2外设时钟控制，RCC APB1外设时钟控制。</p>
+<p>图：stm32f10x_rcc.h中 我们常用的三个RCC函数</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P6-LED%E9%97%AA%E7%83%81LED%E6%B5%81%E6%B0%B4%E7%81%AF%E8%9C%82%E9%B8%A3%E5%99%A8-4.png" alt = "P6-LED闪烁LED流水灯蜂鸣器-4.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>我们可以右键跳到定义，这时就来到了.c文件里的函数定义上面。上面这有一个函数的介绍，这个AHB外设时钟控制的函数就是使能或者失能AHB外设时钟的。</p>
+<p>下面介绍第一个参数就是选择哪个外设。这里说STM32互联型的设备可以在在这个列表选择，其他设备在下面这个列表选择。</p>
+<p>接着第二个参数就是ENABLE或者DISABLE。</p>
+<p>然后下面的AP2外设时钟控制和APB1外设时钟控制都是一样的操作方法。第一个参数选择外设，第二个参数使能或者失能。如果你不清楚哪个外设是连接在哪个总线上的，还可以在这个列表找一下，列表中出现的就肯定是这个总线的外设，对吧？</p>
+<p>那RCC的库函数就介绍完了，最主要的就是这三个函数，其他的函数基本都用不到。</p>
+<h3 id="gpio的库函数">GPIO的库函数<a hidden class="anchor" aria-hidden="true" href="#gpio的库函数">#</a></h3>
+<p>接着我们再看一下GPIO的库函数，我们打开gpio.h(stm32f10x_gpio.h)的文件，然后拖到最后，这些就是GPIO的全部库函数了。</p>
+<p>我们目前需要了解的就是前面的这些函数。</p>
+<p>图：我们需要了解的GPIO的库函数</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P6-LED%E9%97%AA%E7%83%81LED%E6%B5%81%E6%B0%B4%E7%81%AF%E8%9C%82%E9%B8%A3%E5%99%A8-5.png" alt = "P6-LED闪烁LED流水灯蜂鸣器-5.png" width = "70%" height = "auto">
+</div>
+<br>
+<h4 id="库函数gpio_deinit">库函数GPIO_DeInit<a hidden class="anchor" aria-hidden="true" href="#库函数gpio_deinit">#</a></h4>
+<p>第一个就是GPIO_DeInit，参数可以写GPIOA，GPIOB等等。</p>
+<p>调用这个函数之后，所指定的GPIO外设就会被复位，这就是这个函数的用途。</p>
+<h4 id="库函数gpio_afiodeinit">库函数GPIO_AFIODeInit<a hidden class="anchor" aria-hidden="true" href="#库函数gpio_afiodeinit">#</a></h4>
+<p>第二个GPIO_AFIODeInit也是一样，可以复位AFIO外设，这个AFIO我们后面再讲。</p>
+<h4 id="库函数gpio_init">库函数GPIO_Init<a hidden class="anchor" aria-hidden="true" href="#库函数gpio_init">#</a></h4>
+<p>接着第三个GPIO_Init就是非常重要的函数了。</p>
+<p>这个函数的作用是，用结构体的参数来初始化GPIO口。我们需要先定义一个结构体变量，然后再给结构体赋值，最后调用这个函数。</p>
+<p>这个函数内部就会自动读取结构体的值，然后自动把外设的各个参数配置好。这种Init函数在STM32中基本所有的外设都有。一般我们初始化外设都是使用这个Init的函数来完成的。</p>
+<h4 id="库函数gpio_structinit">库函数GPIO_StructInit<a hidden class="anchor" aria-hidden="true" href="#库函数gpio_structinit">#</a></h4>
+<p>第四个是GPIO_StructInit， 这个函数可以把结构体变量赋一个默认值。</p>
+<h4 id="库函数gpio_read读取函数共4个">库函数GPIO_Read读取函数(共4个)<a hidden class="anchor" aria-hidden="true" href="#库函数gpio_read读取函数共4个">#</a></h4>
+<p>接下来这四个就是GPIO的读取函数了。然后下面跟着的四个就是GPO的写入函数。</p>
+<h4 id="库函数gpio写入函数共4个">库函数GPIO写入函数(共4个)<a hidden class="anchor" aria-hidden="true" href="#库函数gpio写入函数共4个">#</a></h4>
+<p>GPIO_SetBits()到GPIO_Write()</p>
+<p>这些函数就可以实现读写GPL口的功能。</p>
+<p>然后剩下的这些函数我们暂时不会用到，所以这里面重要的函数就是GPIO_Init和这8个读写函数。好，那我们就来试试用这些函数来操作GPIO吧。</p>
+<h3 id="开始写mainc">开始写main.c<a hidden class="anchor" aria-hidden="true" href="#开始写mainc">#</a></h3>
+<p>我们回到main.c文件，首先调用的是，RCC里面的APB2外设时钟控制函数。我们复制粘贴到这里，然后右键跳转到定义，我们需要点亮PA0 口的LED，所以选择RCC_APB2外设_GPIOA这一项，放到第一个参数。</p>
+<p>然后继续第二个参数，选择ENABLE，放到第二个参数，这样时钟就开启了。</p>
+<p>编写代码：main.c</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;stm32f10x.h&#34;                  // Device header</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*开启时钟*/</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">RCC_APB2PeriphClockCmd</span>(RCC_APB2Periph_GPIOA, ENABLE);	<span style="color:#75715e">//开启GPIOA的时钟
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>															<span style="color:#75715e">//使用各个外设前必须开启时钟，否则对外设的操作无效
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*主循环，循环体内的代码会一直循环执行*/</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>											
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>接着调用GPIO_Init的函数。跳转定义，第一个参数选择GPIOA。</p>
+<p>第二个参数是一个结构体，我们先把结构体类型复制下来，在GPIO_Init上面粘贴，起个名字，叫GPIO_Initstructure。</p>
+<p>这里这个结构体实际上也是一种局部变量。在有些老的编译器，它要求所有的局部变量定义必须放到函数的最前面。如果你的编译器是这样的话，就需要把这一行提到最前面去。那我这个编译器是支持在函数中间定义变量的，所以就放在这个位置。接着我们复制结构体名字，用点把结构体的成员都引出来。</p>
+<p>然后还是一个套路，右键跳转看一下说明，复制粘贴一下参数。这样看上去库函数还是很简单的是吧？基本上都是复制粘贴，复制粘贴。</p>
+<p>这就印证了程序员的最高境界，Ctrl+C，Ctrl+V走天下，对吧。那我们选择这个GPIOMode_TypeDef，Ctrl+F搜索一下。</p>
+<p>然后这里就是GPIO的8种工作模式。AIN是模拟输入，IN_FLOATING是浮空输入，IPD是下拉输入，IPU是上拉输入，Out_OD是开漏输出，Out_PP是推挽输出，AF_OD是复用开漏，AF_PP是复用推挽。</p>
+<p>那我们点灯用的是推挽输出。所以复制Out_PP这一项粘贴到GPIO_ Mode这里，接下来GPIO_Pin选择引脚，我们继续右键跳转。</p>
+<p>这里GPIO_Pin有多个定义，我们选择member这一项。然后选中这个，CtrL+F，这里因为我们用的是GPIOA外设的0号引脚，所以选择GPIO_Pin_0放到这里。</p>
+<p>接着第三个，还是一样的套路。输出速度选择50MHz就行了。最后把GPIO初始化结构体的地址放到GPIO_Init的第二个参数，这样初始化就完成了。</p>
+<p>当这个GPIO_Init函数执行完，这个GPIOA外设的0号引脚就自动被配置为推挽输出、50MHz的速度了。</p>
+<p>它内部的主要执行逻辑就是读取结构体的参数，执行一堆判断和运算，最后写入到GPIO配置寄存器。至于操作的细节我们就不用再关心了。</p>
+<p>编写代码：main.c</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;stm32f10x.h&#34;                  // Device header</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*开启时钟*/</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">RCC_APB2PeriphClockCmd</span>(RCC_APB2Periph_GPIOA, ENABLE);	<span style="color:#75715e">//开启GPIOA的时钟
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>															<span style="color:#75715e">//使用各个外设前必须开启时钟，否则对外设的操作无效
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*GPIO初始化*/</span>
+</span></span><span style="display:flex;"><span>	GPIO_InitTypeDef GPIO_InitStructure;					<span style="color:#75715e">//定义结构体变量
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	GPIO_InitStructure.GPIO_Mode <span style="color:#f92672">=</span> GPIO_Mode_Out_PP;		<span style="color:#75715e">//GPIO模式，赋值为推挽输出模式
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	GPIO_InitStructure.GPIO_Pin <span style="color:#f92672">=</span> GPIO_Pin_0;				<span style="color:#75715e">//GPIO引脚，赋值为第0号引脚
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	GPIO_InitStructure.GPIO_Speed <span style="color:#f92672">=</span> GPIO_Speed_50MHz;		<span style="color:#75715e">//GPIO速度，赋值为50MHz
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*主循环，循环体内的代码会一直循环执行*/</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>											
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>到现在GPIO初始化就已经完成了，我们接下来就可以使用GPIO的这些输入输出函数了。本小节先介绍这4个GPIO的输出函数。</p>
+<p>第一个GPIO_SetBits，第一个参数是GPIOx，第二个参数是GPIO_Pin。这个函数可以把指定的端口设置为高电平。</p>
+<p>第二个GPIO_ResetBits，参数和上面的一样，这个可以把指定的端口设置为低电平。</p>
+<p>第三个GPIO_WriteBit，这个函数有三个参数，前两个也是指定端口的。第三个是BitVal，这个是根据第三个参数的值来设置指定的端口。</p>
+<p>第四个是GPIO_Write，第一个参数是GPIOx选择外设，第二个参数是PortVal，这个函数可以同时对16个端口进行写入操作。</p>
+<p>那我们分别来用一下试试。</p>
+<h4 id="尝试gpio_resetbits">尝试GPIO_ResetBits<a hidden class="anchor" aria-hidden="true" href="#尝试gpio_resetbits">#</a></h4>
+<p>首先试一下GPIO_ResetBits。可以看一下函数说明。第一个是GPIOx，可以是A到G。第二个是要写入的GPIO_Pin_x，x可以是0到15。</p>
+<p>那我们就写入GPIOA，GPIO_Pin_0。</p>
+<p>编写代码：main.c</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;stm32f10x.h&#34;                  // Device header</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*开启时钟*/</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">RCC_APB2PeriphClockCmd</span>(RCC_APB2Periph_GPIOA, ENABLE);	<span style="color:#75715e">//开启GPIOA的时钟
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>															<span style="color:#75715e">//使用各个外设前必须开启时钟，否则对外设的操作无效
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*GPIO初始化*/</span>
+</span></span><span style="display:flex;"><span>	GPIO_InitTypeDef GPIO_InitStructure;					<span style="color:#75715e">//定义结构体变量
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	GPIO_InitStructure.GPIO_Mode <span style="color:#f92672">=</span> GPIO_Mode_Out_PP;		<span style="color:#75715e">//GPIO模式，赋值为推挽输出模式
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	GPIO_InitStructure.GPIO_Pin <span style="color:#f92672">=</span> GPIO_Pin_0;				<span style="color:#75715e">//GPIO引脚，赋值为第0号引脚
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	GPIO_InitStructure.GPIO_Speed <span style="color:#f92672">=</span> GPIO_Speed_50MHz;		<span style="color:#75715e">//GPIO速度，赋值为50MHz
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">GPIO_Init</span>(GPIOA, <span style="color:#f92672">&amp;</span>GPIO_InitStructure);					<span style="color:#75715e">//将赋值后的构体变量传递给GPIO_Init函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>															<span style="color:#75715e">//函数内部会自动根据结构体的参数配置相应寄存器
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>															<span style="color:#75715e">//实现GPIOA的初始化
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*主循环，循环体内的代码会一直循环执行*/</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">GPIO_ResetBits</span>(GPIOA, GPIO_Pin_0);					<span style="color:#75715e">//将PA0引脚设置为低电平
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>这样就行了，编译一下，没有错误，下载看一下。可以看到这个LED就已经点亮了，这说明我们端口配置的没问题，而且PA0已经输出了低电平。</p>
+<h4 id="尝试gpio_setbits">尝试GPIO_SetBits<a hidden class="anchor" aria-hidden="true" href="#尝试gpio_setbits">#</a></h4>
+<p>那我们再换GPIO_SetBits函数试试。</p>
+<p>编写代码：main.c</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;stm32f10x.h&#34;                  // Device header</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*开启时钟*/</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">RCC_APB2PeriphClockCmd</span>(RCC_APB2Periph_GPIOA, ENABLE);	<span style="color:#75715e">//开启GPIOA的时钟
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>															<span style="color:#75715e">//使用各个外设前必须开启时钟，否则对外设的操作无效
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*GPIO初始化*/</span>
+</span></span><span style="display:flex;"><span>	GPIO_InitTypeDef GPIO_InitStructure;					<span style="color:#75715e">//定义结构体变量
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	GPIO_InitStructure.GPIO_Mode <span style="color:#f92672">=</span> GPIO_Mode_Out_PP;		<span style="color:#75715e">//GPIO模式，赋值为推挽输出模式
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	GPIO_InitStructure.GPIO_Pin <span style="color:#f92672">=</span> GPIO_Pin_0;				<span style="color:#75715e">//GPIO引脚，赋值为第0号引脚
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	GPIO_InitStructure.GPIO_Speed <span style="color:#f92672">=</span> GPIO_Speed_50MHz;		<span style="color:#75715e">//GPIO速度，赋值为50MHz
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">GPIO_Init</span>(GPIOA, <span style="color:#f92672">&amp;</span>GPIO_InitStructure);					<span style="color:#75715e">//将赋值后的构体变量传递给GPIO_Init函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>															<span style="color:#75715e">//函数内部会自动根据结构体的参数配置相应寄存器
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>															<span style="color:#75715e">//实现GPIOA的初始化
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*主循环，循环体内的代码会一直循环执行*/</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">GPIO_SetBits</span>(GPIOA, GPIO_Pin_0);					<span style="color:#75715e">//将PA0引脚设置为高电平
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>这个参数是一样的，不用更改，编译下载。可以看到LED就已经熄灭了。</p>
+<h4 id="尝试gpio_writebit">尝试GPIO_WriteBit<a hidden class="anchor" aria-hidden="true" href="#尝试gpio_writebit">#</a></h4>
+<p>然后我们再试一下第三个函数，GPIO_WriteBit. 这里前两个参数也是一样的。第三个参数我们转到定义看一下。第三个参数的介绍是指定写入的数据值。这个参数可以是BitAction这个枚举中的一个值。Bit_RESET 是清除端口值，也就是置低电平。Bit_SET是设置端口值，也就是置高电平。</p>
+<p>我们先复制一下Bit_RESET ，放到这里编译下载。可以看到LED又亮起来了。再把这个改成Bit_SET编译下载。可以看到LED又熄灭了。这就是这三个函数的用法。</p>
+<p>编写代码：main.c</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;stm32f10x.h&#34;                  // Device header</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;Delay.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*开启时钟*/</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">RCC_APB2PeriphClockCmd</span>(RCC_APB2Periph_GPIOA, ENABLE);	<span style="color:#75715e">//开启GPIOA的时钟
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>															<span style="color:#75715e">//使用各个外设前必须开启时钟，否则对外设的操作无效
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*GPIO初始化*/</span>
+</span></span><span style="display:flex;"><span>	GPIO_InitTypeDef GPIO_InitStructure;					<span style="color:#75715e">//定义结构体变量
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	GPIO_InitStructure.GPIO_Mode <span style="color:#f92672">=</span> GPIO_Mode_Out_PP;		<span style="color:#75715e">//GPIO模式，赋值为推挽输出模式
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	GPIO_InitStructure.GPIO_Pin <span style="color:#f92672">=</span> GPIO_Pin_0;				<span style="color:#75715e">//GPIO引脚，赋值为第0号引脚
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	GPIO_InitStructure.GPIO_Speed <span style="color:#f92672">=</span> GPIO_Speed_50MHz;		<span style="color:#75715e">//GPIO速度，赋值为50MHz
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">GPIO_Init</span>(GPIOA, <span style="color:#f92672">&amp;</span>GPIO_InitStructure);					<span style="color:#75715e">//将赋值后的构体变量传递给GPIO_Init函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>															<span style="color:#75715e">//函数内部会自动根据结构体的参数配置相应寄存器
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>															<span style="color:#75715e">//实现GPIOA的初始化
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*主循环，循环体内的代码会一直循环执行*/</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">GPIO_WriteBit</span>(GPIOA, GPIO_Pin_0, Bit_RESET);		<span style="color:#75715e">//将PA0引脚设置为低电平
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>第四个函数GPIO_Write我们下一个例程再介绍，接下来我们先来完成LED闪烁的任务。为了实现LED闪烁，我们就需要在主循环里写上点量LED，延时一段时间，熄灭LED，延时一段时间这样的逻辑吧。</p>
+<p>点亮LED，我们可以用这一句。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#a6e22e">GPIO_WriteBit</span>(GPIOA, GPIO_Pin_0, Bit_RESET);	
+</span></span></code></pre></div><p>这样就是点亮RED了。然后复制一下改成 Bit_SET，这就是熄灭LED，</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#a6e22e">GPIO_WriteBit</span>(GPIOA, GPIO_Pin_0, Bit_SET);
+</span></span></code></pre></div><h4 id="delay延时函数">Delay()延时函数<a hidden class="anchor" aria-hidden="true" href="#delay延时函数">#</a></h4>
+<p>那中间需要加两个延时函数来进行一段延时。</p>
+<p>这里我已经给大家提供了一个现成的延时函数代码，在工程的第三个文件夹里，这两个就是延时函数的模块。我们先把它们添加到工程里面来。</p>
+<p>我们先复制，打开LED闪烁的工程，这里再新建一个文件夹，名称可以叫System，存放系统的资源。然后把Delay粘贴到这里。</p>
+<p>回到Keil软件，点击三个箱子的按钮，添加组也叫System。把它往上挪个位置，然后右边添加文件，打开System把Delay的两个文件添加进来，然后OK，这样Delay文件就添加完成了。</p>
+<p>最后不要忘了点击魔术棒按钮，添加这个新文件夹的头文件路径。这样就完成了。</p>
+<p>我们可以打开Delay.h去看一下，这里就是三个延时函数，分别是微秒延时、毫秒延时和秒延时。</p>
+<p>代码：Keil工程/System/Delay.h</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#ifndef __DELAY_H
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define __DELAY_H
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Delay_us</span>(<span style="color:#66d9ef">uint32_t</span> us);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Delay_ms</span>(<span style="color:#66d9ef">uint32_t</span> ms);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Delay_s</span>(<span style="color:#66d9ef">uint32_t</span> s);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif
+</span></span></span></code></pre></div><p>打开.c文件可以看到这些函数的定义，这里是用SysTick定时器来实现的延时，具体怎么实现的，大家不用管的。这个延时函数一般都是直接拿来用就行了，不需要修改什么。</p>
+<p>那我们回到main.c使用这个延时函数模块，需要先在上面写上</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&#34;Delay.h&#34;</span><span style="color:#75715e">
+</span></span></span></code></pre></div><p>然后复制毫秒延时函数放在这里，参数给500，这样就可以延时500毫秒了。然后复制一下下面这里也给500毫秒的延时，我们试一下编译。</p>
+<p>编写代码：main.c</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;stm32f10x.h&#34;                  // Device header</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;Delay.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*开启时钟*/</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">RCC_APB2PeriphClockCmd</span>(RCC_APB2Periph_GPIOA, ENABLE);	<span style="color:#75715e">//开启GPIOA的时钟
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>															<span style="color:#75715e">//使用各个外设前必须开启时钟，否则对外设的操作无效
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*GPIO初始化*/</span>
+</span></span><span style="display:flex;"><span>	GPIO_InitTypeDef GPIO_InitStructure;					<span style="color:#75715e">//定义结构体变量
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	GPIO_InitStructure.GPIO_Mode <span style="color:#f92672">=</span> GPIO_Mode_Out_PP;		<span style="color:#75715e">//GPIO模式，赋值为推挽输出模式
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	GPIO_InitStructure.GPIO_Pin <span style="color:#f92672">=</span> GPIO_Pin_0;				<span style="color:#75715e">//GPIO引脚，赋值为第0号引脚
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	GPIO_InitStructure.GPIO_Speed <span style="color:#f92672">=</span> GPIO_Speed_50MHz;		<span style="color:#75715e">//GPIO速度，赋值为50MHz
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">GPIO_Init</span>(GPIOA, <span style="color:#f92672">&amp;</span>GPIO_InitStructure);					<span style="color:#75715e">//将赋值后的构体变量传递给GPIO_Init函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>															<span style="color:#75715e">//函数内部会自动根据结构体的参数配置相应寄存器
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>															<span style="color:#75715e">//实现GPIOA的初始化
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*主循环，循环体内的代码会一直循环执行*/</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">GPIO_WriteBit</span>(GPIOA, GPIO_Pin_0, Bit_RESET);		<span style="color:#75715e">//将PA0引脚设置为低电平
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">Delay_ms</span>(<span style="color:#ae81ff">500</span>);										<span style="color:#75715e">//延时500ms
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">GPIO_WriteBit</span>(GPIOA, GPIO_Pin_0, Bit_SET);			<span style="color:#75715e">//将PA0引脚设置为高电平
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">Delay_ms</span>(<span style="color:#ae81ff">500</span>);										<span style="color:#75715e">//延时500ms
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>没有错误，下载，我们看一下，这时LED就开始闪烁了。如果我们把这个延时改短点，比如100毫秒，编译下载，这样LED就闪的更快了。这就是第一个LED闪烁的代码了。这里先把100改回成500，这里除了WriteBit函数外，还可以用SetBits和ResetBits来实现。那我把它们都写上给大家参考一下。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;stm32f10x.h&#34;                  // Device header</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;Delay.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*开启时钟*/</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">RCC_APB2PeriphClockCmd</span>(RCC_APB2Periph_GPIOA, ENABLE);	<span style="color:#75715e">//开启GPIOA的时钟
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>															<span style="color:#75715e">//使用各个外设前必须开启时钟，否则对外设的操作无效
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*GPIO初始化*/</span>
+</span></span><span style="display:flex;"><span>	GPIO_InitTypeDef GPIO_InitStructure;					<span style="color:#75715e">//定义结构体变量
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	GPIO_InitStructure.GPIO_Mode <span style="color:#f92672">=</span> GPIO_Mode_Out_PP;		<span style="color:#75715e">//GPIO模式，赋值为推挽输出模式
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	GPIO_InitStructure.GPIO_Pin <span style="color:#f92672">=</span> GPIO_Pin_0;				<span style="color:#75715e">//GPIO引脚，赋值为第0号引脚
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	GPIO_InitStructure.GPIO_Speed <span style="color:#f92672">=</span> GPIO_Speed_50MHz;		<span style="color:#75715e">//GPIO速度，赋值为50MHz
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">GPIO_Init</span>(GPIOA, <span style="color:#f92672">&amp;</span>GPIO_InitStructure);					<span style="color:#75715e">//将赋值后的构体变量传递给GPIO_Init函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>															<span style="color:#75715e">//函数内部会自动根据结构体的参数配置相应寄存器
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>															<span style="color:#75715e">//实现GPIOA的初始化
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*主循环，循环体内的代码会一直循环执行*/</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">/*设置PA0引脚的高低电平，实现LED闪烁，下面展示2种方法*/</span>
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">/*方法1：GPIO_ResetBits设置低电平，GPIO_SetBits设置高电平*/</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">GPIO_ResetBits</span>(GPIOA, GPIO_Pin_0);					<span style="color:#75715e">//将PA0引脚设置为低电平
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">Delay_ms</span>(<span style="color:#ae81ff">500</span>);										<span style="color:#75715e">//延时500ms
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">GPIO_SetBits</span>(GPIOA, GPIO_Pin_0);					<span style="color:#75715e">//将PA0引脚设置为高电平
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">Delay_ms</span>(<span style="color:#ae81ff">500</span>);										<span style="color:#75715e">//延时500ms
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">/*方法2：GPIO_WriteBit设置低/高电平，由Bit_RESET/Bit_SET指定*/</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">GPIO_WriteBit</span>(GPIOA, GPIO_Pin_0, Bit_RESET);		<span style="color:#75715e">//将PA0引脚设置为低电平
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">Delay_ms</span>(<span style="color:#ae81ff">500</span>);										<span style="color:#75715e">//延时500ms
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">GPIO_WriteBit</span>(GPIOA, GPIO_Pin_0, Bit_SET);			<span style="color:#75715e">//将PA0引脚设置为高电平
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">Delay_ms</span>(<span style="color:#ae81ff">500</span>);										<span style="color:#75715e">//延时500ms
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>最后大家可能觉得调用这些函数只能填它给的指定参数。如果我们非要给一个数，1是高电平，0是低电平，这样该怎么办呢？</p>
+<p>那我们可以复制一下这个WriteBit函数，然后把Bit_RESET改成0， Bit_SET改成1。但如果直接这样编译的话，会有两个警告，说的是枚举类型中混入了其他类型的变量。</p>
+<p>所以如果想直接写1和0的话，需要在这里加上强制类型转换，把一和零类型转换为BitAction的枚举类型。这样再编译就没有问题了。然后下载，这样也是没有问题的。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;stm32f10x.h&#34;                  // Device header</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;Delay.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*开启时钟*/</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">RCC_APB2PeriphClockCmd</span>(RCC_APB2Periph_GPIOA, ENABLE);	<span style="color:#75715e">//开启GPIOA的时钟
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>															<span style="color:#75715e">//使用各个外设前必须开启时钟，否则对外设的操作无效
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*GPIO初始化*/</span>
+</span></span><span style="display:flex;"><span>	GPIO_InitTypeDef GPIO_InitStructure;					<span style="color:#75715e">//定义结构体变量
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	GPIO_InitStructure.GPIO_Mode <span style="color:#f92672">=</span> GPIO_Mode_Out_PP;		<span style="color:#75715e">//GPIO模式，赋值为推挽输出模式
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	GPIO_InitStructure.GPIO_Pin <span style="color:#f92672">=</span> GPIO_Pin_0;				<span style="color:#75715e">//GPIO引脚，赋值为第0号引脚
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	GPIO_InitStructure.GPIO_Speed <span style="color:#f92672">=</span> GPIO_Speed_50MHz;		<span style="color:#75715e">//GPIO速度，赋值为50MHz
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">GPIO_Init</span>(GPIOA, <span style="color:#f92672">&amp;</span>GPIO_InitStructure);					<span style="color:#75715e">//将赋值后的构体变量传递给GPIO_Init函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>															<span style="color:#75715e">//函数内部会自动根据结构体的参数配置相应寄存器
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>															<span style="color:#75715e">//实现GPIOA的初始化
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*主循环，循环体内的代码会一直循环执行*/</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">/*设置PA0引脚的高低电平，实现LED闪烁，下面展示3种方法*/</span>
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">/*方法1：GPIO_ResetBits设置低电平，GPIO_SetBits设置高电平*/</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">GPIO_ResetBits</span>(GPIOA, GPIO_Pin_0);					<span style="color:#75715e">//将PA0引脚设置为低电平
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">Delay_ms</span>(<span style="color:#ae81ff">500</span>);										<span style="color:#75715e">//延时500ms
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">GPIO_SetBits</span>(GPIOA, GPIO_Pin_0);					<span style="color:#75715e">//将PA0引脚设置为高电平
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">Delay_ms</span>(<span style="color:#ae81ff">500</span>);										<span style="color:#75715e">//延时500ms
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">/*方法2：GPIO_WriteBit设置低/高电平，由Bit_RESET/Bit_SET指定*/</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">GPIO_WriteBit</span>(GPIOA, GPIO_Pin_0, Bit_RESET);		<span style="color:#75715e">//将PA0引脚设置为低电平
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">Delay_ms</span>(<span style="color:#ae81ff">500</span>);										<span style="color:#75715e">//延时500ms
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">GPIO_WriteBit</span>(GPIOA, GPIO_Pin_0, Bit_SET);			<span style="color:#75715e">//将PA0引脚设置为高电平
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">Delay_ms</span>(<span style="color:#ae81ff">500</span>);										<span style="color:#75715e">//延时500ms
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">/*方法3：GPIO_WriteBit设置低/高电平，由数据0/1指定，数据需要强转为BitAction类型*/</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">GPIO_WriteBit</span>(GPIOA, GPIO_Pin_0, (BitAction)<span style="color:#ae81ff">0</span>);		<span style="color:#75715e">//将PA0引脚设置为低电平
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">Delay_ms</span>(<span style="color:#ae81ff">500</span>);										<span style="color:#75715e">//延时500ms
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">GPIO_WriteBit</span>(GPIOA, GPIO_Pin_0, (BitAction)<span style="color:#ae81ff">1</span>);		<span style="color:#75715e">//将PA0引脚设置为高电平
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">Delay_ms</span>(<span style="color:#ae81ff">500</span>);										<span style="color:#75715e">//延时500ms
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="验证推挽输出和开漏输出的驱动问题">验证推挽输出和开漏输出的驱动问题<a hidden class="anchor" aria-hidden="true" href="#验证推挽输出和开漏输出的驱动问题">#</a></h3>
+<p>最后我们再研究一下推挽输出和开漏输出的驱动问题。我们把这个LED拔掉，然后把长脚插到PA0口，短脚插到负极，这样LED就是高电平点亮的方式。可以看到LED也是正常闪烁，说明在推挽模式下，高低电平都是有驱动能力的。</p>
+<p>那我们把这个端口的模式换成Out_OD，开漏输出模式，编译下载。可以看到LED就不亮了，现在LED还是高电平点亮的方式。LED不亮，说明开漏输出的模式高电平是没有驱动能力的。</p>
+<p>我们把LED再改回低电平驱动的方式，可以看到LED又亮起来了。这说明开漏模式的低电平是有驱动能力的，这就印证了我们上一小节讲的推挽输出和开漏输出的特性。</p>
+<p>推挽输出高低电均有驱动能力，开漏输出高电平相当于高阻态，没有驱动能力，低电平有驱动能力。那我们把这个改回推挽输出，一般输出用推挽模式就行了，特殊的地方才会用到开漏模式。</p>
+<p>好，这就是LED闪烁代码的全部内容了。</p>
+<h2 id="led流水灯">LED流水灯<a hidden class="anchor" aria-hidden="true" href="#led流水灯">#</a></h2>
+<h3 id="led流水灯接线图">LED流水灯接线图<a hidden class="anchor" aria-hidden="true" href="#led流水灯接线图">#</a></h3>
+<p>我们关掉Keil来看一下第二个代码，LED流水灯，先来看一下接线图。这里需要拿出8个LED，正极都插到正极的供电孔，负极依次插到PA0到PA7的端口。</p>
+<p>图：LED流水灯 接线图</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P6-LED%E9%97%AA%E7%83%81LED%E6%B5%81%E6%B0%B4%E7%81%AF%E8%9C%82%E9%B8%A3%E5%99%A8-1.jpg" alt = "P6-LED闪烁LED流水灯蜂鸣器-1.jpg" width = "70%" height = "auto">
+</div>
+<br>
+<p>那我们来插一下电路。这里可以先插两边的LED，然后掰弯一下，再插中间的LED这样方便一些。</p>
+<p>图：LED流水灯接线</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P6-LED%E9%97%AA%E7%83%81LED%E6%B5%81%E6%B0%B4%E7%81%AF%E8%9C%82%E9%B8%A3%E5%99%A8-6.png" alt = "P6-LED闪烁LED流水灯蜂鸣器-6.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>插完电路后，我们复制一下LED闪烁的工程，改个名字叫3-2LED流水灯。这样直接复制现有工程，就不用再费时间新建工程了。然后我们来修改一下这个代码，实现LED流水灯的程序。</p>
+<h3 id="编写工程">编写工程<a hidden class="anchor" aria-hidden="true" href="#编写工程">#</a></h3>
+<p>在这里第一句打开GPIOA的时钟。因为我们连接的都是GPIOA的端口，所以第一句不用变的。接着初始化端口的这一部分，这里只初始化了GPIO的0号端口。我们流水灯用的是GPIOA的0到7号端口，所以这里要加一些端口，那怎么加呢？在这里我们可以直接在GPIO_Pin_0后面加上，或，GPIO_Pin_1再加上，或，GPIO_Pin_3，这样就可以一次性把三个端口都初始化了。</p>
+<p>为什么可以这样来使用呢？我们转到定义看一下，这里可以看到Pin0对应的数据是0x0001，然后Pin1、Pin2、Pin3依次为0x0002，0x0004，0x0008。如果把这个16进制换成二进制的话，就是0000 0000 000 0001，然后是0010、0100、1000。在这里每个端口对应一个位，如果把它们进行按位或的操作，比如Pin0、Pin1和Pin2按位或，那结果就是0111，这样就相当于同时选中了三个端口，这就是按位或的操作逻辑。</p>
+<p>图：位或</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P6-LED%E9%97%AA%E7%83%81LED%E6%B5%81%E6%B0%B4%E7%81%AF%E8%9C%82%E9%B8%A3%E5%99%A8-7.png" alt = "P6-LED闪烁LED流水灯蜂鸣器-7.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>最后我们还可以看到这里有个GPIO_Pin_ALL，它对应的数据就是0xFFFF，也就是所有位都为1，这样就相当于选中了所有的引脚。</p>
+<p>在这里除了这个GPIO_Pin可以用按位或的操作方式外，这个时钟控制的这一项(RCC_APB2Periph_GPIOA)也是可以用按位或的操作方式来选择多个外设的。你看它这里的定义也是一样的，数据的规律是每一位对应一个外设。</p>
+<p>图：stm32f10x_rcc.h</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P6-LED%E9%97%AA%E7%83%81LED%E6%B5%81%E6%B0%B4%E7%81%AF%E8%9C%82%E9%B8%A3%E5%99%A8-8.png" alt = "P6-LED闪烁LED流水灯蜂鸣器-8.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>还有这个GPIO_SetBits这里也可以用按照位或选择多个引脚，这样就能同时设置多个引脚了。所以这个函数名字也多了个S叫SetBits，所以ResetBits也是一个意思，在这个函数介绍里也写了这个参数可以是GPIO_Pin_x的任意“组合”，说的就是这个方式。</p>
+<p>那介绍完按位或的这种操作方式，我们就可以在这里使用位或把这八个引脚都选上。当然这里我就直接写GPIO_Pin_ALL了，这样就把16个端口全部配置为了推挽输出模式。</p>
+<p>然后是主循环里面，我们先把这些删掉。</p>
+<p>编写代码：main.c</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;stm32f10x.h&#34;                  // Device header</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;Delay.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*开启时钟*/</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">RCC_APB2PeriphClockCmd</span>(RCC_APB2Periph_GPIOA, ENABLE);	<span style="color:#75715e">//开启GPIOA的时钟
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>															<span style="color:#75715e">//使用各个外设前必须开启时钟，否则对外设的操作无效
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*GPIO初始化*/</span>
+</span></span><span style="display:flex;"><span>	GPIO_InitTypeDef GPIO_InitStructure;					<span style="color:#75715e">//定义结构体变量
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	GPIO_InitStructure.GPIO_Mode <span style="color:#f92672">=</span> GPIO_Mode_Out_PP;		<span style="color:#75715e">//GPIO模式，赋值为推挽输出模式
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	GPIO_InitStructure.GPIO_Pin <span style="color:#f92672">=</span> GPIO_Pin_All;				<span style="color:#75715e">//GPIO引脚，赋值为所有引脚
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	GPIO_InitStructure.GPIO_Speed <span style="color:#f92672">=</span> GPIO_Speed_50MHz;		<span style="color:#75715e">//GPIO速度，赋值为50MHz
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">GPIO_Init</span>(GPIOA, <span style="color:#f92672">&amp;</span>GPIO_InitStructure);					<span style="color:#75715e">//将赋值后的构体变量传递给GPIO_Init函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>															<span style="color:#75715e">//函数内部会自动根据结构体的参数配置相应寄存器
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>															<span style="color:#75715e">//实现GPIOA的初始化
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*主循环，循环体内的代码会一直循环执行*/</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>现在为了同时控制16个端口，我们就可以使用GPIO_Write这个函数了。我们复制过来，第一个参数是GPIOX，我们直接写GPIOA。第二个参数我们转到定义看一下，这里写的是，指定写到输出数据寄存器的值，下面我们可以看到，这第二个参数就是直接写到GPIO的ODR寄存器里的，所以我们可以写0x0001，对应二进制就是0000 0000 0000 0001。</p>
+<p>因为C语言不支持直接写二进制，所以这里只能转化为16进制来写。这16个二进制分别对应PA0到PA15，总共16个端口，最低位对应PA0，然后往上依次是PA1、PA2一直到PA15。</p>
+<p>因为是低电平点亮，所以前面再加一个按位取反的符号，这样就是第一个LED点亮，其他都熄灭了，接着Delay 500毫秒。然后复制一下。</p>
+<p>然后这里依次改为02，这里对应二进制就是0010，04，0100，08，1000，10。高八位我们暂时不用，我们编译看一下。没有错误下载可以看到LED依次点亮。</p>
+<p>如果想快一点的话，这里可以改成100毫秒。</p>
+<p>再试一下。现在就快一些了。如果你想换一种形式的流水灯，这里的数据对应更改一下就行了。或者定义一个数组，依次取出数组中的数据来进行花式点灯，这都是没问题的。在这里我就不过多演示了，那我们第二个程序LED流水灯到这里就完成了。</p>
+<p>编写代码：main.c(完整版)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;stm32f10x.h&#34;                  // Device header</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;Delay.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*开启时钟*/</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">RCC_APB2PeriphClockCmd</span>(RCC_APB2Periph_GPIOA, ENABLE);	<span style="color:#75715e">//开启GPIOA的时钟
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>															<span style="color:#75715e">//使用各个外设前必须开启时钟，否则对外设的操作无效
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*GPIO初始化*/</span>
+</span></span><span style="display:flex;"><span>	GPIO_InitTypeDef GPIO_InitStructure;					<span style="color:#75715e">//定义结构体变量
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	GPIO_InitStructure.GPIO_Mode <span style="color:#f92672">=</span> GPIO_Mode_Out_PP;		<span style="color:#75715e">//GPIO模式，赋值为推挽输出模式
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	GPIO_InitStructure.GPIO_Pin <span style="color:#f92672">=</span> GPIO_Pin_All;				<span style="color:#75715e">//GPIO引脚，赋值为所有引脚
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	GPIO_InitStructure.GPIO_Speed <span style="color:#f92672">=</span> GPIO_Speed_50MHz;		<span style="color:#75715e">//GPIO速度，赋值为50MHz
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">GPIO_Init</span>(GPIOA, <span style="color:#f92672">&amp;</span>GPIO_InitStructure);					<span style="color:#75715e">//将赋值后的构体变量传递给GPIO_Init函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>															<span style="color:#75715e">//函数内部会自动根据结构体的参数配置相应寄存器
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>															<span style="color:#75715e">//实现GPIOA的初始化
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*主循环，循环体内的代码会一直循环执行*/</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">/*使用GPIO_Write，同时设置GPIOA所有引脚的高低电平，实现LED流水灯*/</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">GPIO_Write</span>(GPIOA, <span style="color:#f92672">~</span><span style="color:#ae81ff">0x0001</span>);	<span style="color:#75715e">//0000 0000 0000 0001，PA0引脚为低电平，其他引脚均为高电平，注意数据有按位取反
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">Delay_ms</span>(<span style="color:#ae81ff">100</span>);				<span style="color:#75715e">//延时100ms
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">GPIO_Write</span>(GPIOA, <span style="color:#f92672">~</span><span style="color:#ae81ff">0x0002</span>);	<span style="color:#75715e">//0000 0000 0000 0010，PA1引脚为低电平，其他引脚均为高电平
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">Delay_ms</span>(<span style="color:#ae81ff">100</span>);				<span style="color:#75715e">//延时100ms
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">GPIO_Write</span>(GPIOA, <span style="color:#f92672">~</span><span style="color:#ae81ff">0x0004</span>);	<span style="color:#75715e">//0000 0000 0000 0100，PA2引脚为低电平，其他引脚均为高电平
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">Delay_ms</span>(<span style="color:#ae81ff">100</span>);				<span style="color:#75715e">//延时100ms
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">GPIO_Write</span>(GPIOA, <span style="color:#f92672">~</span><span style="color:#ae81ff">0x0008</span>);	<span style="color:#75715e">//0000 0000 0000 1000，PA3引脚为低电平，其他引脚均为高电平
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">Delay_ms</span>(<span style="color:#ae81ff">100</span>);				<span style="color:#75715e">//延时100ms
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">GPIO_Write</span>(GPIOA, <span style="color:#f92672">~</span><span style="color:#ae81ff">0x0010</span>);	<span style="color:#75715e">//0000 0000 0001 0000，PA4引脚为低电平，其他引脚均为高电平
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">Delay_ms</span>(<span style="color:#ae81ff">100</span>);				<span style="color:#75715e">//延时100ms
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">GPIO_Write</span>(GPIOA, <span style="color:#f92672">~</span><span style="color:#ae81ff">0x0020</span>);	<span style="color:#75715e">//0000 0000 0010 0000，PA5引脚为低电平，其他引脚均为高电平
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">Delay_ms</span>(<span style="color:#ae81ff">100</span>);				<span style="color:#75715e">//延时100ms
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">GPIO_Write</span>(GPIOA, <span style="color:#f92672">~</span><span style="color:#ae81ff">0x0040</span>);	<span style="color:#75715e">//0000 0000 0100 0000，PA6引脚为低电平，其他引脚均为高电平
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">Delay_ms</span>(<span style="color:#ae81ff">100</span>);				<span style="color:#75715e">//延时100ms
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">GPIO_Write</span>(GPIOA, <span style="color:#f92672">~</span><span style="color:#ae81ff">0x0080</span>);	<span style="color:#75715e">//0000 0000 1000 0000，PA7引脚为低电平，其他引脚均为高电平
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">Delay_ms</span>(<span style="color:#ae81ff">100</span>);				<span style="color:#75715e">//延时100ms
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="蜂鸣器">蜂鸣器<a hidden class="anchor" aria-hidden="true" href="#蜂鸣器">#</a></h2>
+<p>接下来是第三个程序，蜂鸣器。通过前两个程序的学习，这个就应该简单多了。</p>
+<h3 id="蜂鸣器接线图">蜂鸣器接线图<a hidden class="anchor" aria-hidden="true" href="#蜂鸣器接线图">#</a></h3>
+<p>我们先看一下接线图。</p>
+<p>图：蜂鸣器接线图</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P6-LED%E9%97%AA%E7%83%81-LED%E6%B5%81%E6%B0%B4%E7%81%AF-%E8%9C%82%E9%B8%A3%E5%99%A8.jpg" alt = "P6-LED闪烁LED流水灯蜂鸣器.jpg" width = "70%" height = "auto">
+</div>
+<br>
+<p>这个VCC正极接到正极供电孔，GND负极接到负极供电孔。然后I/O控极就随便选择一个I/O口接上就行了。</p>
+<p>这里我选择的是PB12号口，那大家注意一下，这个A15、B3、B4这3个口大家先别选。我们从引脚定义图可以看到，这三个口默认是JTAG的调试端口，如果要用作普通端口的话，还需要再进行一些配置。我之前在使用的时候就没注意到这一点，我说我明明已经配置好了，这三个端口怎么就不输出呢？最后才发现这三个是调试端口。</p>
+<p>好，那我们就来连一下电路。首先拿出蜂鸣器模块和3根公对母的杜邦线，带孔的这一端插在蜂鸣器上，另一端橙色的是VCC，插在正极供电孔，灰色的是GND，插在负极供电孔，红色的是控制脚，插在PB12号口。这样我们硬件电路就完成了。</p>
+<p>我们给PB12输出低电平，蜂鸣器就会响，输出高电平，蜂鸣器就不响。那我们复制一下LED闪烁的程序，改个名字叫3-3蜂鸣器，打开工程。</p>
+<h3 id="编写工程-1">编写工程<a hidden class="anchor" aria-hidden="true" href="#编写工程-1">#</a></h3>
+<p>这里程序相信大家应该都已经会写了吧。首先是时钟，因为我们用的是PB口，所以这里改为GPIOB。然后是端口，PB12号，所以这里是Pin12。端口模式，仍然是推挽输出。速度50M。</p>
+<p>初始化这里也应该是对GPIOB的初始化。到这里我们的PB12号口就已经初始化好了。我然后是输出，我们把这些先删掉，这两个地方都改为B、12。这就完成了，我们看一下编译。下载可以听到蜂鸣器已经在响了，我们让它换个响的模式，这里改成这样复制一下，响100毫秒，停100毫秒，再响100毫秒，再停700毫秒，编译下载。这样的声音就和我们最开始演示的一样了。</p>
+<p>编写代码：main.c(完整版)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;stm32f10x.h&#34;                  // Device header</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;Delay.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*开启时钟*/</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">RCC_APB2PeriphClockCmd</span>(RCC_APB2Periph_GPIOB, ENABLE);	<span style="color:#75715e">//开启GPIOB的时钟
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>															<span style="color:#75715e">//使用各个外设前必须开启时钟，否则对外设的操作无效
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*GPIO初始化*/</span>
+</span></span><span style="display:flex;"><span>	GPIO_InitTypeDef GPIO_InitStructure;					<span style="color:#75715e">//定义结构体变量
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	GPIO_InitStructure.GPIO_Mode <span style="color:#f92672">=</span> GPIO_Mode_Out_PP;		<span style="color:#75715e">//GPIO模式，赋值为推挽输出模式
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	GPIO_InitStructure.GPIO_Pin <span style="color:#f92672">=</span> GPIO_Pin_12;				<span style="color:#75715e">//GPIO引脚，赋值为第12号引脚
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	GPIO_InitStructure.GPIO_Speed <span style="color:#f92672">=</span> GPIO_Speed_50MHz;		<span style="color:#75715e">//GPIO速度，赋值为50MHz
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">GPIO_Init</span>(GPIOB, <span style="color:#f92672">&amp;</span>GPIO_InitStructure);					<span style="color:#75715e">//将赋值后的构体变量传递给GPIO_Init函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>															<span style="color:#75715e">//函数内部会自动根据结构体的参数配置相应寄存器
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>															<span style="color:#75715e">//实现GPIOB的初始化
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*主循环，循环体内的代码会一直循环执行*/</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">GPIO_ResetBits</span>(GPIOB, GPIO_Pin_12);		<span style="color:#75715e">//将PB12引脚设置为低电平，蜂鸣器鸣叫
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">Delay_ms</span>(<span style="color:#ae81ff">100</span>);							<span style="color:#75715e">//延时100ms
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">GPIO_SetBits</span>(GPIOB, GPIO_Pin_12);		<span style="color:#75715e">//将PB12引脚设置为高电平，蜂鸣器停止
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">Delay_ms</span>(<span style="color:#ae81ff">100</span>);							<span style="color:#75715e">//延时100ms
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">GPIO_ResetBits</span>(GPIOB, GPIO_Pin_12);		<span style="color:#75715e">//将PB12引脚设置为低电平，蜂鸣器鸣叫
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">Delay_ms</span>(<span style="color:#ae81ff">100</span>);							<span style="color:#75715e">//延时100ms
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">GPIO_SetBits</span>(GPIOB, GPIO_Pin_12);		<span style="color:#75715e">//将PB12引脚设置为高电平，蜂鸣器停止
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">Delay_ms</span>(<span style="color:#ae81ff">700</span>);							<span style="color:#75715e">//延时700ms
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="如何学习库函数的使用">如何学习库函数的使用<a hidden class="anchor" aria-hidden="true" href="#如何学习库函数的使用">#</a></h2>
+<p>最后再给大家介绍几种使用库函数的方法。第一种就是像我这样，先打开点儿.h文件的最后，看一下都有哪些函数，然后在右键转到定义，查看一下函数和参数的用法。这里全都是英文的，如果看不懂的话，借助一下翻译软件就行了。</p>
+<p>第二种就是打开我提供资料文件夹里的这个库函数用户手册。这里面有所有函数的介绍和使用方法。这个文档是中文的，看起来比较好理解，而且这个函数下面都还给了例子，要用的话直接复制过来就行了。不过这个用户手册的版本并不对应我们现在用的这个库函数的版本，我们看一下。</p>
+<p>我们使用的扩函数是V3.5.0版本的。这个用户手册是老版本库函数的，所以有部分用法会有些出入，但是整体上的差异都不大，参考这个用户手册也是没有问题的。</p>
+<p>那V3.5.0的库函数有没有这样的用户手册呢？我从网上了解的是目前还是没有的。ST公司并没有发布V3.5.0版本的库函数用户手册，而是在这个固件库压缩包中给了这样的一个帮助文档，我们可以打开看一下。可以找到GPIO这一节。</p>
+<p>来看一下这种帮助文档，可以像这样跳来跳去的。如果你习惯这种方式的话，也可以参考这个文档。不过这个只有英文的版本。</p>
+<p>最后一种方式就是百度搜索，参考一下别人的代码。我们可以打开百度搜索STM32 GPIO，这里都有介绍。我们搜索一下GPIO初始化程序。可以点开看看。这里都有例子，直接参考一下拿过来用就行了。</p>
+<p>像我在学习STM32的时候，也会经常去参考别人的程序，要不然怎么知道该用哪些函数，是吧？好，那我们本小节的任务到这里就全部完成了。我们下小节再来继续学习GPIO的输入部分。</p>
+<h2 id="end">END<a hidden class="anchor" aria-hidden="true" href="#end">#</a></h2>
+<blockquote>
+<p><strong>END：本节内容到此结束。</strong></p>
+</blockquote>
+<p>个人提升之余，别忘了和小伙伴积极交流，很多人觉得他们在思考，而实际上他们只是在重新整理自己的偏见。请珍惜和他人交流讨论的机会。</p>
+<br>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/END1.jpg" alt = "END1.jpg" width = "70%" height = "auto">
+</div>
+<br>
+<p>希望你每一天都有所收获，进步up up up。今天的我们并不比昨天更聪明，但一定要比昨天更睿智。</p>
+<br>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/END2.jpg" alt = "END2.jpg" width = "70%" height = "auto">
+</div>
+
+        </div>
+
+        <footer class="post-footer">
+            
+<nav class="paginav">
+  <a class="prev" href="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p7/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>嵌入式开发-STM32标准库学习：GPIO输入</span>
+  </a>
+  <a class="next" href="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p4/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>嵌入式开发-STM32标准库学习：新建Keil工程</span>
+  </a>
+</nav>
+
+        </footer>
+    </div>
+</article>
+</main>
+
+<footer class="footer">
+    <span>
+        Copyright
+        &copy;
+        -2024
+        <a href="https://eddyblog.cn/" style="color:#939393;">Eddy&#39;s blog</a>
+        All Rights Reserved
+    </span>
+    <a href="https://beian.miit.gov.cn/" target="_blank" style="color:#939393;"></a>&nbsp;
+    <span>
+        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=null"
+           style="display:inline-block;text-decoration:none;height:20px;color:#939393;">
+            <img src="" style="float:left;margin: 0px 5px 0px 0px;"/>
+            
+        </a>
+    </span>
+    <span id="busuanzi_container">
+        <span class="fa fa-user"></span> <span id="busuanzi_value_site_uv"></span>
+        <span class="fa fa-eye"></span> <span id="busuanzi_value_site_pv"></span>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <span class="topInner">
+        <svg class="topSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z"/>
+        </svg>
+        <span id="read_progress"></span>
+    </span>
+</a>
+
+<script>
+    document.addEventListener('scroll', function (e) {
+        const readProgress = document.getElementById("read_progress");
+        const scrollHeight = document.documentElement.scrollHeight;
+        const clientHeight = document.documentElement.clientHeight;
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        readProgress.innerText = ((scrollTop / (scrollHeight - clientHeight)).toFixed(2) * 100).toFixed(0);
+    })
+</script>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+</script>
+<script>
+    let mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        (function() {
+            document.cookie = "change-themes" + "="+ escape ("false");
+        })()
+
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    });
+</script>
+
+<script>
+    document.body.addEventListener('copy', function (e) {
+        if (window.getSelection().toString() && window.getSelection().toString().length > 50) {
+            let clipboardData = e.clipboardData || window.clipboardData;
+            if (clipboardData) {
+                e.preventDefault();
+                let htmlData = window.getSelection().toString() +
+                    '\r\n\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                let textData = window.getSelection().toString() +
+                    '\r\n\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                clipboardData.setData('text/html', htmlData);
+                clipboardData.setData('text/plain', textData);
+            }
+        }
+    });
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = '复制';
+
+        function copyingDone() {
+            copybutton.innerText = '已复制！';
+            setTimeout(() => {
+                copybutton.innerText = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                let text = codeblock.textContent +
+                    '\r\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                navigator.clipboard.writeText(text);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) {}
+            selection.removeRange(range);
+        });
+
+        let language = codeblock.className.replaceAll("language-", "")
+        let macTool = document.createElement("div")
+        let macTool1 = document.createElement("div")
+        let macTool2 = document.createElement("div")
+        let macTool3 = document.createElement("div")
+        let languageType = document.createElement("div")
+        languageType.innerText = language
+        macTool.setAttribute('class', 'mac-tool')
+        macTool1.setAttribute('class', 'mac bb1')
+        macTool2.setAttribute('class', 'mac bb2')
+        macTool3.setAttribute('class', 'mac bb3')
+        languageType.setAttribute('class', 'language-type')
+        macTool.appendChild(macTool1)
+        macTool.appendChild(macTool2)
+        macTool.appendChild(macTool3)
+        macTool.appendChild(languageType)
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+            container.appendChild(macTool)
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+            container.appendChild(macTool)
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+            container.appendChild(macTool)
+        }
+    });
+</script>
+
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style></body>
+
+</html>

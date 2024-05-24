@@ -542,6 +542,177 @@ var _hmt = _hmt || [];
 <article class="post-entry">
   <div class="post-info">
     <header class="entry-header">
+      <h2>嵌入式开发-STM32标准库学习：GPIO输入
+      </h2>
+    </header>
+    <section class="entry-content">
+      <p>
+        本博客首先介绍了通过按键控制LED的基础操作，随后转向光敏传感器控制蜂鸣器的应用，涵盖了硬件连接和预期现象的讨论。课程还强调了C语言中指针的重要性，并给出了简单介绍。特别提到了处理按键抖动的方法，建议通过增加延时来改善，以确保程序的稳定性和准确性。此外，课程还介绍了四种传感器模块的工作原理，包括光敏电阻、热敏电阻、对射式及反射式红外传感器，并讲述了如何通过这些模块获取外部模拟量的变化信息。在讨论模拟电压和数字电压的生成及转换过程中，突出了各种电子元件的作用和选择合适的输入模式的重要性。同时，还覆盖了C语言中的数据类型、宏定义、结构体和枚举的使用，强调了这些概念在程序设计中的重要作用。
+        
+        ...
+      </p>
+    </section>
+    <footer class="entry-footer">
+
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+
+    .parent-post-meta {
+        display: flex;
+        flex-wrap: wrap;
+        opacity: 0.8;
+    }
+</style>
+
+<span class="parent-post-meta">
+    <span id="post_meta_style_1">
+        <span class="fa fa-calendar-check-o"></span>
+        <span>2024-05-13
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    
+    
+    
+    
+    
+    
+    
+    <span id="post_meta_style_3">
+        <span class="fa fa-file-word-o"></span>
+        <span>14204字
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_4">
+        <span class="fa fa-clock-o"></span>
+        <span>29分钟
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_5">
+        <span class="fa fa-user-o"></span>
+        <span>Eddy
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_6">
+        <span class="fa fa-tags" style="opacity: 0.8"></span>
+        <span>
+            <span class="post-tags-meta">
+                <a href="https://eddyblog.cn/tags/stm32/" style="color: var(--secondary)!important;">STM32</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/mcu/" style="color: var(--secondary)!important;">MCU</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/arm-cortex/" style="color: var(--secondary)!important;">ARM Cortex</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/led/" style="color: var(--secondary)!important;">LED</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/%E4%BC%A0%E6%84%9F%E5%99%A8%E6%A8%A1%E5%9D%97/" style="color: var(--secondary)!important;">传感器模块</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/stm32%E6%A0%87%E5%87%86%E5%BA%93%E5%BC%80%E5%8F%91/" style="color: var(--secondary)!important;">STM32标准库开发</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" style="color: var(--secondary)!important;">嵌入式开发</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/stm32f1/" style="color: var(--secondary)!important;">STM32F1</a>
+            </span>
+        </span>
+    </span>
+</span>
+</footer>
+  </div> 
+<figure class="entry-cover"><img loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/pc9.jpg" alt="">
+</figure>
+  <a class="entry-link" aria-label="post link to 嵌入式开发-STM32标准库学习：GPIO输入" href="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p7/"></a>
+</article>
+
+<article class="post-entry">
+  <div class="post-info">
+    <header class="entry-header">
+      <h2>嵌入式开发-STM32标准库学习：实现LED闪烁与流水灯，蜂鸣器
+      </h2>
+    </header>
+    <section class="entry-content">
+      <p>
+        本节内容指导如何使用面包板、STM32最小系统板及ST Link开发一个简单的LED闪烁程序。首先，介绍搭建硬件电路所需步骤，包括正确连接电源、STM32板、LED和相关跳线。接着，在Keil5 软件中创建新工程，复制必要文件并配置工程设置以完成LED闪烁程序的编写、编译、下载和测试。此外，还介绍了如何利用一个辅助工具清理编译产生的中间文件，以便更好地分享工程。该指南详细讲解了如何使用RCC和GPIO外设及其库函数来控制LED的亮灭，包括设置工作模式、方向和速度。特别提到了四种GPIO输出函数和它们在控制LED亮灭方面的应用。通过主循环实现LED闪烁功能，并讨论了不同驱动模式下LED的性能差异。进一步地，本节还扩展到LED流水灯的制作，介绍了如何利用按位操作来控制多路LED的亮灭。最后，提供了学习STM32库函数的建议，包括查看库函数源码、利用官方文档和在线资源等方法。整个内容旨在帮助初学者掌握STM32开发的基础知识和技能。
+        
+        ...
+      </p>
+    </section>
+    <footer class="entry-footer">
+
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+
+    .parent-post-meta {
+        display: flex;
+        flex-wrap: wrap;
+        opacity: 0.8;
+    }
+</style>
+
+<span class="parent-post-meta">
+    <span id="post_meta_style_1">
+        <span class="fa fa-calendar-check-o"></span>
+        <span>2024-05-13
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    
+    
+    
+    
+    
+    
+    
+    <span id="post_meta_style_3">
+        <span class="fa fa-file-word-o"></span>
+        <span>13683字
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_4">
+        <span class="fa fa-clock-o"></span>
+        <span>28分钟
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_5">
+        <span class="fa fa-user-o"></span>
+        <span>Eddy
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_6">
+        <span class="fa fa-tags" style="opacity: 0.8"></span>
+        <span>
+            <span class="post-tags-meta">
+                <a href="https://eddyblog.cn/tags/stm32/" style="color: var(--secondary)!important;">STM32</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/mcu/" style="color: var(--secondary)!important;">MCU</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/arm-cortex/" style="color: var(--secondary)!important;">ARM Cortex</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/led/" style="color: var(--secondary)!important;">LED</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/led%E9%97%AA%E7%83%81/" style="color: var(--secondary)!important;">LED闪烁</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/led%E6%B5%81%E6%B0%B4%E7%81%AF/" style="color: var(--secondary)!important;">LED流水灯</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/stm32%E6%A0%87%E5%87%86%E5%BA%93%E5%BC%80%E5%8F%91/" style="color: var(--secondary)!important;">STM32标准库开发</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" style="color: var(--secondary)!important;">嵌入式开发</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/stm32f1/" style="color: var(--secondary)!important;">STM32F1</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/gpio/" style="color: var(--secondary)!important;">GPIO</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/%E8%9C%82%E9%B8%A3%E5%99%A8/" style="color: var(--secondary)!important;">蜂鸣器</a>
+            </span>
+        </span>
+    </span>
+</span>
+</footer>
+  </div> 
+<figure class="entry-cover"><img loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/pc9.jpg" alt="">
+</figure>
+  <a class="entry-link" aria-label="post link to 嵌入式开发-STM32标准库学习：实现LED闪烁与流水灯，蜂鸣器" href="https://eddyblog.cn/posts/tech/stm32-standard_library_learning-jkd-p6/"></a>
+</article>
+
+<article class="post-entry">
+  <div class="post-info">
+    <header class="entry-header">
       <h2>嵌入式开发-STM32标准库学习：新建Keil工程
       </h2>
     </header>
@@ -865,158 +1036,6 @@ var _hmt = _hmt || [];
 <figure class="entry-cover"><img loading="lazy" src="https://fastly.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/pc8.jpg" alt="">
 </figure>
   <a class="entry-link" aria-label="post link to 【Hugo网站搭建】markdown中图片大小和对齐方式调整" href="https://eddyblog.cn/posts/tech/hugo-image-in-markdown/"></a>
-</article>
-
-<article class="post-entry">
-  <div class="post-info">
-    <header class="entry-header">
-      <h2>【计算机网络】第八章 互联网上的音频/视频服务
-      </h2>
-    </header>
-    <section class="entry-content">
-      <p>
-        
-        ...
-      </p>
-    </section>
-    <footer class="entry-footer">
-
-<style>
-    i[id*="post_meta_style"] {
-        display: flex;
-        align-items: center;
-        margin: 0 0 10px 0;
-    }
-
-    .parent-post-meta {
-        display: flex;
-        flex-wrap: wrap;
-        opacity: 0.8;
-    }
-</style>
-
-<span class="parent-post-meta">
-    <span id="post_meta_style_1">
-        <span class="fa fa-calendar-check-o"></span>
-        <span>2023-11-27
-            &nbsp;&nbsp;
-        </span>
-    </span>
-    
-    
-    
-    
-    
-    
-    
-    <span id="post_meta_style_3">
-        <span class="fa fa-file-word-o"></span>
-        <span>1803字
-            &nbsp;&nbsp;
-        </span>
-    </span>
-    <span id="post_meta_style_4">
-        <span class="fa fa-clock-o"></span>
-        <span>4分钟
-            &nbsp;&nbsp;
-        </span>
-    </span>
-    <span id="post_meta_style_5">
-        <span class="fa fa-user-o"></span>
-        <span>Eddy
-            &nbsp;&nbsp;
-        </span>
-    </span>
-    <span id="post_meta_style_6">
-        <span class="fa fa-tags" style="opacity: 0.8"></span>
-        <span>
-            <span class="post-tags-meta">
-                <a href="https://eddyblog.cn/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="color: var(--secondary)!important;">计算机网络</a>
-            </span>
-        </span>
-    </span>
-</span>
-</footer>
-  </div> 
-<figure class="entry-cover"><img loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/note6.jpg" alt="">
-</figure>
-  <a class="entry-link" aria-label="post link to 【计算机网络】第八章 互联网上的音频/视频服务" href="https://eddyblog.cn/posts/tech/computer-network-08/"></a>
-</article>
-
-<article class="post-entry">
-  <div class="post-info">
-    <header class="entry-header">
-      <h2>【计算机网络】第二章 物理层
-      </h2>
-    </header>
-    <section class="entry-content">
-      <p>
-        
-        ...
-      </p>
-    </section>
-    <footer class="entry-footer">
-
-<style>
-    i[id*="post_meta_style"] {
-        display: flex;
-        align-items: center;
-        margin: 0 0 10px 0;
-    }
-
-    .parent-post-meta {
-        display: flex;
-        flex-wrap: wrap;
-        opacity: 0.8;
-    }
-</style>
-
-<span class="parent-post-meta">
-    <span id="post_meta_style_1">
-        <span class="fa fa-calendar-check-o"></span>
-        <span>2023-11-27
-            &nbsp;&nbsp;
-        </span>
-    </span>
-    
-    
-    
-    
-    
-    
-    
-    <span id="post_meta_style_3">
-        <span class="fa fa-file-word-o"></span>
-        <span>983字
-            &nbsp;&nbsp;
-        </span>
-    </span>
-    <span id="post_meta_style_4">
-        <span class="fa fa-clock-o"></span>
-        <span>2分钟
-            &nbsp;&nbsp;
-        </span>
-    </span>
-    <span id="post_meta_style_5">
-        <span class="fa fa-user-o"></span>
-        <span>Eddy
-            &nbsp;&nbsp;
-        </span>
-    </span>
-    <span id="post_meta_style_6">
-        <span class="fa fa-tags" style="opacity: 0.8"></span>
-        <span>
-            <span class="post-tags-meta">
-                <a href="https://eddyblog.cn/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="color: var(--secondary)!important;">计算机网络</a>
-            </span>
-        </span>
-    </span>
-</span>
-</footer>
-  </div> 
-<figure class="entry-cover"><img loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/note6.jpg" alt="">
-</figure>
-  <a class="entry-link" aria-label="post link to 【计算机网络】第二章 物理层" href="https://eddyblog.cn/posts/tech/computer-network-02/"></a>
 </article>
 
 <br />

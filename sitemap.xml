@@ -17,6 +17,9 @@
     <loc>https://eddyblog.cn/posts/</loc>
     <lastmod>2024-05-13T00:17:58+08:00</lastmod>
   </url><url>
+    <loc>https://eddyblog.cn/tags/arm-cortex/</loc>
+    <lastmod>2024-05-13T00:17:58+08:00</lastmod>
+  </url><url>
     <loc>https://eddyblog.cn/tags/arm-cortex-m/</loc>
     <lastmod>2024-05-13T00:17:58+08:00</lastmod>
   </url><url>
@@ -32,16 +35,28 @@
     <loc>https://eddyblog.cn/tags/led/</loc>
     <lastmod>2024-05-13T00:17:58+08:00</lastmod>
   </url><url>
+    <loc>https://eddyblog.cn/tags/led%E6%B5%81%E6%B0%B4%E7%81%AF/</loc>
+    <lastmod>2024-05-13T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/tags/led%E9%97%AA%E7%83%81/</loc>
+    <lastmod>2024-05-13T00:17:58+08:00</lastmod>
+  </url><url>
     <loc>https://eddyblog.cn/tags/mcu/</loc>
     <lastmod>2024-05-13T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/tags/stm32/</loc>
     <lastmod>2024-05-13T00:17:58+08:00</lastmod>
   </url><url>
+    <loc>https://eddyblog.cn/tags/stm32f1/</loc>
+    <lastmod>2024-05-13T00:17:58+08:00</lastmod>
+  </url><url>
     <loc>https://eddyblog.cn/tags/stm32%E6%A0%87%E5%87%86%E5%BA%93%E5%BC%80%E5%8F%91/</loc>
     <lastmod>2024-05-13T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/tags/</loc>
+    <lastmod>2024-05-13T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/tags/%E4%BC%A0%E6%84%9F%E5%99%A8%E6%A8%A1%E5%9D%97/</loc>
     <lastmod>2024-05-13T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/tags/%E8%9C%82%E9%B8%A3%E5%99%A8/</loc>
@@ -56,14 +71,14 @@
     <loc>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p5/</loc>
     <lastmod>2024-05-13T00:17:58+08:00</lastmod>
   </url><url>
+    <loc>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p7/</loc>
+    <lastmod>2024-05-13T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/posts/tech/stm32-standard_library_learning-jkd-p6/</loc>
+    <lastmod>2024-05-13T00:17:58+08:00</lastmod>
+  </url><url>
     <loc>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p4/</loc>
     <lastmod>2024-05-12T00:17:58+08:00</lastmod>
-  </url><url>
-    <loc>https://eddyblog.cn/tags/arm-cortex/</loc>
-    <lastmod>2024-05-11T00:17:58+08:00</lastmod>
-  </url><url>
-    <loc>https://eddyblog.cn/tags/stm32f1/</loc>
-    <lastmod>2024-05-11T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/tags/stm32f1%E6%9C%80%E5%B0%8F%E7%B3%BB%E7%BB%9F%E7%94%B5%E8%B7%AF/</loc>
     <lastmod>2024-05-11T00:17:58+08:00</lastmod>

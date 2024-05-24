@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>传感器模块 on Eddy&#39;s blog</title>
+    <link>https://eddyblog.cn/tags/%E4%BC%A0%E6%84%9F%E5%99%A8%E6%A8%A1%E5%9D%97/</link>
+    <description>Recent content in 传感器模块 on Eddy&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Mon, 13 May 2024 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/%E4%BC%A0%E6%84%9F%E5%99%A8%E6%A8%A1%E5%9D%97/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>嵌入式开发-STM32标准库学习：GPIO输入</title>
+      <link>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p7/</link>
+      <pubDate>Mon, 13 May 2024 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p7/</guid>
+      <description>本博客首先介绍了通过按键控制LED的基础操作，随后转向光敏传感器控制蜂鸣器的应用，涵盖了硬件连接和预期现象的讨论。课程还强调了C语言中指针的重要性，并给出了简单介绍。特别提到了处理按键抖动的方法，建议通过增加延时来改善，以确保程序的稳定性和准确性。此外，课程还介绍了四种传感器模块的工作原理，包括光敏电阻、热敏电阻、对射式及反射式红外传感器，并讲述了如何通过这些模块获取外部模拟量的变化信息。在讨论模拟电压和数字电压的生成及转换过程中，突出了各种电子元件的作用和选择合适的输入模式的重要性。同时，还覆盖了C语言中的数据类型、宏定义、结构体和枚举的使用，强调了这些概念在程序设计中的重要作用。</description>
+    </item>
+    
+  </channel>
+</rss>

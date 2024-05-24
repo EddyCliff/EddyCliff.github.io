@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>LED流水灯 on Eddy&#39;s blog</title>
+    <link>https://eddyblog.cn/tags/led%E6%B5%81%E6%B0%B4%E7%81%AF/</link>
+    <description>Recent content in LED流水灯 on Eddy&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Mon, 13 May 2024 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/led%E6%B5%81%E6%B0%B4%E7%81%AF/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>嵌入式开发-STM32标准库学习：实现LED闪烁与流水灯，蜂鸣器</title>
+      <link>https://eddyblog.cn/posts/tech/stm32-standard_library_learning-jkd-p6/</link>
+      <pubDate>Mon, 13 May 2024 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/stm32-standard_library_learning-jkd-p6/</guid>
+      <description>本节内容指导如何使用面包板、STM32最小系统板及ST Link开发一个简单的LED闪烁程序。首先，介绍搭建硬件电路所需步骤，包括正确连接电源、STM32板、LED和相关跳线。接着，在Keil5 软件中创建新工程，复制必要文件并配置工程设置以完成LED闪烁程序的编写、编译、下载和测试。此外，还介绍了如何利用一个辅助工具清理编译产生的中间文件，以便更好地分享工程。该指南详细讲解了如何使用RCC和GPIO外设及其库函数来控制LED的亮灭，包括设置工作模式、方向和速度。特别提到了四种GPIO输出函数和它们在控制LED亮灭方面的应用。通过主循环实现LED闪烁功能，并讨论了不同驱动模式下LED的性能差异。进一步地，本节还扩展到LED流水灯的制作，介绍了如何利用按位操作来控制多路LED的亮灭。最后，提供了学习STM32库函数的建议，包括查看库函数源码、利用官方文档和在线资源等方法。整个内容旨在帮助初学者掌握STM32开发的基础知识和技能。</description>
+    </item>
+    
+  </channel>
+</rss>
