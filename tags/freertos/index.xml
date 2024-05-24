@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>💽项目 on Eddy&#39;s blog</title>
-    <link>https://eddyblog.cn/posts/projects/</link>
-    <description>Recent content in 💽项目 on Eddy&#39;s blog</description>
+    <title>FreeRTOS on Eddy&#39;s blog</title>
+    <link>https://eddyblog.cn/tags/freertos/</link>
+    <description>Recent content in FreeRTOS on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 01 May 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/posts/projects/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 01 May 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/freertos/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>基于 FreeRTOS 的嵌入式超声波智能避障平衡车</title>
       <link>https://eddyblog.cn/posts/projects/rtos-stm32-intelligent-car/</link>

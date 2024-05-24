@@ -485,15 +485,6 @@
     </item>
     
     <item>
-      <title>Projects</title>
-      <link>https://eddyblog.cn/posts/projects/projects/</link>
-      <pubDate>Sat, 05 Aug 2023 00:18:23 +0800</pubDate>
-      
-      <guid>https://eddyblog.cn/posts/projects/projects/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>【Github使用指南】bug日志-git remote</title>
       <link>https://eddyblog.cn/posts/tech/github-error-git-remote/</link>
       <pubDate>Thu, 20 Jul 2023 00:17:58 +0800</pubDate>
@@ -545,6 +536,15 @@
       
       <guid>https://eddyblog.cn/posts/tech/hugo_emoji/</guid>
       <description>Hugo主题美化-添加emoji</description>
+    </item>
+    
+    <item>
+      <title>基于 FreeRTOS 的嵌入式超声波智能避障平衡车</title>
+      <link>https://eddyblog.cn/posts/projects/rtos-stm32-intelligent-car/</link>
+      <pubDate>Mon, 01 May 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/projects/rtos-stm32-intelligent-car/</guid>
+      <description>RTOS-STM32-Intelligent-Car 本项目是基于FreeRTOS的STM32超声波智能避障平衡小车，实现了小车的自平衡、超声波避障以及通过智能手机远程控制的功能。 项目整体框架 开始main FS_Explorer_Init外设模块初始化 Freertos_Init操作系统初始化 启动系统 StartTask_200HZ环境</description>
     </item>
     
     <item>

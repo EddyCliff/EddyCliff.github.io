@@ -800,15 +800,6 @@
     </item>
     
     <item>
-      <title>Projects</title>
-      <link>https://eddyblog.cn/tags/projects/</link>
-      <pubDate>Sat, 05 Aug 2023 00:18:23 +0800</pubDate>
-      
-      <guid>https://eddyblog.cn/tags/projects/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Git Remote</title>
       <link>https://eddyblog.cn/tags/git-remote/</link>
       <pubDate>Thu, 20 Jul 2023 00:17:58 +0800</pubDate>
@@ -868,6 +859,33 @@
       <pubDate>Sat, 13 May 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/tags/hugo%E7%BD%91%E7%AB%99%E7%BE%8E%E5%8C%96/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>FreeRTOS</title>
+      <link>https://eddyblog.cn/tags/freertos/</link>
+      <pubDate>Mon, 01 May 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/tags/freertos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MPU6050</title>
+      <link>https://eddyblog.cn/tags/mpu6050/</link>
+      <pubDate>Mon, 01 May 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/tags/mpu6050/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>项目经历</title>
+      <link>https://eddyblog.cn/tags/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E5%8E%86/</link>
+      <pubDate>Mon, 01 May 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/tags/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E5%8E%86/</guid>
       <description></description>
     </item>
     

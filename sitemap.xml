@@ -446,15 +446,6 @@
     <loc>https://eddyblog.cn/tags/github%E4%BB%93%E5%BA%93/</loc>
     <lastmod>2023-08-10T00:17:58+08:00</lastmod>
   </url><url>
-    <loc>https://eddyblog.cn/posts/projects/</loc>
-    <lastmod>2023-08-05T00:18:23+08:00</lastmod>
-  </url><url>
-    <loc>https://eddyblog.cn/tags/projects/</loc>
-    <lastmod>2023-08-05T00:18:23+08:00</lastmod>
-  </url><url>
-    <loc>https://eddyblog.cn/posts/projects/projects/</loc>
-    <lastmod>2023-08-05T00:18:23+08:00</lastmod>
-  </url><url>
     <loc>https://eddyblog.cn/posts/tech/github-error-git-remote/</loc>
     <lastmod>2023-07-20T00:17:58+08:00</lastmod>
   </url><url>
@@ -493,6 +484,21 @@
   </url><url>
     <loc>https://eddyblog.cn/tags/hugo%E7%BD%91%E7%AB%99%E7%BE%8E%E5%8C%96/</loc>
     <lastmod>2023-05-13T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/posts/projects/</loc>
+    <lastmod>2023-05-01T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/tags/freertos/</loc>
+    <lastmod>2023-05-01T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/tags/mpu6050/</loc>
+    <lastmod>2023-05-01T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/posts/projects/rtos-stm32-intelligent-car/</loc>
+    <lastmod>2023-05-01T00:17:58+08:00</lastmod>
+  </url><url>
+    <loc>https://eddyblog.cn/tags/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E5%8E%86/</loc>
+    <lastmod>2023-05-01T00:17:58+08:00</lastmod>
   </url><url>
     <loc>https://eddyblog.cn/posts/tech/hugo_error1/</loc>
     <lastmod>2023-04-17T00:17:58+08:00</lastmod>
