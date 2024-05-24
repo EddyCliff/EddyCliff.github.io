@@ -1,5 +1,5 @@
 ---
-title: "【嵌入式高级C编程】第四章 预处理"
+title: "【嵌入式C语言编程】第四章 预处理"
 date: 2023-10-01T00:17:58+08:00
 lastmod: 2023-10-01T00:17:58+08:00
 author: ["Eddy"]
@@ -15,9 +15,9 @@ keywords:
 categories: 
 - 
 tags: 
-- C programming
-- Embedded Development
-- preprocessing
+- C语言
+- C语言宏定义
+- C语言预处理
 description: 
 weight:
 slug: ""

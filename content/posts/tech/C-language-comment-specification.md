@@ -9,8 +9,8 @@ keywords:
 categories: 
 - 
 tags: 
-- C
-- Code comment specifications
+- C语言
+- 代码注释规范
 description: ""
 weight:
 slug: ""

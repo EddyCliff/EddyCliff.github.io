@@ -17,8 +17,15 @@ categories:
 - 
 tags: 
 - Linux
-- Operating System
-- Operating system command
+- 操作系统
+- 操作系统命令
+- 操作系统基本命令
+- Linux命令
+- Linux基本命令
+- vim编辑器
+- Linux进程管理命令
+- Linux压缩与解压缩命令
+- Linux网络命令
 description: "本博客为新手量身打造，系统介绍了Linux操作系统的基本概念、核心命令及其应用场景。通过实例演示，帮助读者快速掌握Linux操作技巧，为进一步学习打下坚实基础。"
 weight: 2
 slug: ""

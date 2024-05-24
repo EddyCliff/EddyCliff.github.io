@@ -16,5 +16,14 @@
       <description>使用HTML标签对markdown中图片大小和对齐方式调整</description>
     </item>
     
+    <item>
+      <title>【Hugo网站搭建】在网站主页添加icon&#43;socialIcons(利用svg.html和config.yml)</title>
+      <link>https://eddyblog.cn/posts/tech/hugo_icon/</link>
+      <pubDate>Fri, 20 Jan 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/hugo_icon/</guid>
+      <description>Hugo添加icon&#43;socialIcons</description>
+    </item>
+    
   </channel>
 </rss>

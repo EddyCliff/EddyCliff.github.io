@@ -9,9 +9,9 @@ keywords:
 categories: 
 - 
 tags: 
-- Hugo
+- Hugo网站搭建
 - Github
-- error
+- bug日志
 description: "error:在本地使用Hugo构建网站并在本地服务器上正常运行，但在将网站部署到GitHub远程仓库时出现了错误"
 weight:
 slug: ""

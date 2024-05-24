@@ -7,6 +7,8 @@ keywords:
 - Database
 - SQL
 - SQLite
+- 数据库
+- 结构化查询语言
 categories: 
 - 
 tags: 

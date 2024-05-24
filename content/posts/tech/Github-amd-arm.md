@@ -11,8 +11,9 @@ keywords:
 categories: 
 - 
 tags: 
+- Github使用指南
 - Github
-- release
+- Github release安装包
 description: "release上的安装包amd和arm的选择"
 weight:
 slug: ""

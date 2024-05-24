@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Hugo网站 Svg.html on Eddy&#39;s blog</title>
+    <link>https://eddyblog.cn/tags/hugo%E7%BD%91%E7%AB%99-svg.html/</link>
+    <description>Recent content in Hugo网站 Svg.html on Eddy&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Fri, 20 Jan 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/hugo%E7%BD%91%E7%AB%99-svg.html/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【Hugo网站搭建】在网站主页添加icon&#43;socialIcons(利用svg.html和config.yml)</title>
+      <link>https://eddyblog.cn/posts/tech/hugo_icon/</link>
+      <pubDate>Fri, 20 Jan 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/hugo_icon/</guid>
+      <description>Hugo添加icon&#43;socialIcons</description>
+    </item>
+    
+  </channel>
+</rss>

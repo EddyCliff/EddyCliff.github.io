@@ -8,9 +8,13 @@ keywords:
 - embedded
 - Embedded development
 - MCU
+- ARM Cortex-M
+- Development Board
+- 开发板
 - STM32简介
 - STM32标准库
 - 嵌入式开发
+- Keil uVision
 - GPIO
 - LED
 - LED闪烁
@@ -21,13 +25,15 @@ categories:
 - 
 tags: 
 - STM32
-- embedded
-- Embedded development
 - MCU
+- ARM Cortex-M
+- 开发板
+- STM32标准库开发
+- 嵌入式开发
+- Keil uVision
 - GPIO
 - LED
-- buzzer
-- ARM
+- 蜂鸣器
 description: "本教程涵盖了STM32 GPIO的输出与输入功能，分为基础应用和理论知识两个部分。首先，通过LED闪烁、LED流水灯和蜂鸣器实验，介绍GPIO基本应用。随后，深入探讨了GPIO的理论知识，包括其作为通用I/O口的特性、工作模式及电平范围。进一步地，解析了STM32中GPIO的基本结构，涉及APB2外设总线、GPIO模块及其组成。此外，讨论了GPIO引脚的功能，包括输入和输出保护措施，以及施密特触发器的作用和应用。教程强调了STM32 GPIO的多样工作模式，如推挽输出、开漏输出等，及其在不同应用场景下的优势。最后，简述了面包板的应用，为读者提供了实际电路搭建的指导。"
 weight: 
 slug: ""

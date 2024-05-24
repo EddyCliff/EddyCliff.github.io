@@ -17,8 +17,11 @@ categories:
 - 
 tags: 
 - Linux
-- Operating System
-- Operating system command
+- 操作系统
+- 操作系统命令
+- 操作系统基本命令
+- Linux命令
+- Linux基本命令
 description: "掌握Linux，从这里开始！轻松入门操作系统基本命令。"
 weight: 1
 slug: ""

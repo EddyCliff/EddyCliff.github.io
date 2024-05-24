@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Hugo网站搭建 on Eddy&#39;s blog</title>
+    <link>https://eddyblog.cn/tags/hugo%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/</link>
+    <description>Recent content in Hugo网站搭建 on Eddy&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Sun, 03 Dec 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/hugo%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【Hugo网站搭建】markdown中图片大小和对齐方式调整</title>
+      <link>https://eddyblog.cn/posts/tech/hugo-image-in-markdown/</link>
+      <pubDate>Sun, 03 Dec 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/hugo-image-in-markdown/</guid>
+      <description>使用HTML标签对markdown中图片大小和对齐方式调整</description>
+    </item>
+    
+    <item>
+      <title>【Hugo网站搭建】GitHub Action自动化部署Hugo博客</title>
+      <link>https://eddyblog.cn/posts/tech/github-action-hugo/</link>
+      <pubDate>Wed, 06 Sep 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/github-action-hugo/</guid>
+      <description>前言 在本文中，我们将介绍如何通过GitHub Action自动化部署Hugo博客。如果你是一个博客作者，你可能已经熟悉了使用Hugo构建和管理你的博客。Hugo是一个快速且灵活的静态网站生成器，但是手动部署博客可能会变得繁琐。为了解决这个问题，我们可以利用GitHub Action，</description>
+    </item>
+    
+    <item>
+      <title>【Hugo网站搭建】bug日志 - 解决 YAML 解析错误</title>
+      <link>https://eddyblog.cn/posts/tech/hugo-bug-yaml/</link>
+      <pubDate>Wed, 30 Aug 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/hugo-bug-yaml/</guid>
+      <description>解决 Hugo 构建过程中出现的 YAML 解析错误。了解错误背后的原因，探讨正确的 YAML 头部格式，并提供修复方案，确保 Hugo 网站构建顺利进行。</description>
+    </item>
+    
+    <item>
+      <title>【Hugo网站搭建】GitHub&#43;jsDelivr&#43;PicGo搭建博客图床</title>
+      <link>https://eddyblog.cn/posts/tech/github-jsdelivr-picgo/</link>
+      <pubDate>Tue, 29 Aug 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/github-jsdelivr-picgo/</guid>
+      <description>在这篇【博客写作指南】中，了解如何利用GitHub、jsDelivr和PicGo搭建博客图床，为你的博客添加稳定的图片存储和快速的CDN加速服务。跟随详细步骤，轻松创建自己的图床，为博客内容增添视觉魅力。</description>
+    </item>
+    
+    <item>
+      <title>【Hugo网站搭建】博客写作指南-如何在Hugo博客中巧妙运用照片</title>
+      <link>https://eddyblog.cn/posts/tech/hugo_insert_png/</link>
+      <pubDate>Tue, 29 Aug 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/hugo_insert_png/</guid>
+      <description>了解如何在Hugo博客中巧妙使用照片，为您的内容增添视觉吸引力和表现力。</description>
+    </item>
+    
+    <item>
+      <title>【Hugo网站搭建】实现post-markdown引入树状目录</title>
+      <link>https://eddyblog.cn/posts/tech/hugo_introduce_a_tree_directory/</link>
+      <pubDate>Fri, 25 Aug 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/hugo_introduce_a_tree_directory/</guid>
+      <description>markdown引入树状目录</description>
+    </item>
+    
+    <item>
+      <title>【Hugo网站搭建】bug日志-hugo server失败</title>
+      <link>https://eddyblog.cn/posts/tech/hugo_server_failed/</link>
+      <pubDate>Sun, 20 Aug 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/hugo_server_failed/</guid>
+      <description>error:hugo server失败</description>
+    </item>
+    
+    <item>
+      <title>【Hugo网站搭建】实现post-markdown引用本地图片</title>
+      <link>https://eddyblog.cn/posts/tech/hugo_referencing_local_images/</link>
+      <pubDate>Sun, 13 Aug 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/hugo_referencing_local_images/</guid>
+      <description>markdown引用本地图片</description>
+    </item>
+    
+    <item>
+      <title>【Hugo网站搭建】在Github仓库分别储存博客源码和静态页面</title>
+      <link>https://eddyblog.cn/posts/tech/hugo_saving_source_code/</link>
+      <pubDate>Fri, 11 Aug 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/hugo_saving_source_code/</guid>
+      <description>在Github仓库分别储存博客源码和静态页面</description>
+    </item>
+    
+    <item>
+      <title>【Hugo网站搭建】添加不蒜子Busuanzi页面浏览次数与阅读数据统计</title>
+      <link>https://eddyblog.cn/posts/tech/hugo-busuanzi/</link>
+      <pubDate>Mon, 10 Jul 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/hugo-busuanzi/</guid>
+      <description>Hugo添加不蒜子Busuanzi页面浏览次数与阅读数据统计</description>
+    </item>
+    
+    <item>
+      <title>【Hugo网站搭建】实现代码高亮</title>
+      <link>https://eddyblog.cn/posts/tech/hugo_code_highlight/</link>
+      <pubDate>Sat, 10 Jun 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/hugo_code_highlight/</guid>
+      <description>Hugo代码高亮</description>
+    </item>
+    
+    <item>
+      <title>【Hugo网站搭建】主题美化-添加emoji</title>
+      <link>https://eddyblog.cn/posts/tech/hugo_emoji/</link>
+      <pubDate>Sat, 13 May 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/hugo_emoji/</guid>
+      <description>Hugo主题美化-添加emoji</description>
+    </item>
+    
+    <item>
+      <title>【Hugo网站搭建】bug日志-将网站部署到GitHub远程仓库时出现了错误</title>
+      <link>https://eddyblog.cn/posts/tech/hugo_error1/</link>
+      <pubDate>Mon, 17 Apr 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/hugo_error1/</guid>
+      <description>error:在本地使用Hugo构建网站并在本地服务器上正常运行，但在将网站部署到GitHub远程仓库时出现了错误</description>
+    </item>
+    
+    <item>
+      <title>【Hugo网站搭建】Githubpages托管服务对应仓库username.github.io</title>
+      <link>https://eddyblog.cn/posts/tech/hugo_githubpages/</link>
+      <pubDate>Sat, 11 Mar 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/hugo_githubpages/</guid>
+      <description>githubpages对应仓库username.github.io删除之后,重新创建一次仍然可以匹配到githubpages</description>
+    </item>
+    
+    <item>
+      <title>【Hugo网站搭建】在config.yml中设置主页头像</title>
+      <link>https://eddyblog.cn/posts/tech/hugo_homepage_avatar/</link>
+      <pubDate>Sat, 11 Mar 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/hugo_homepage_avatar/</guid>
+      <description>Hugo设置主页头像</description>
+    </item>
+    
+    <item>
+      <title>【Hugo网站搭建】在网站主页添加icon&#43;socialIcons(利用svg.html和config.yml)</title>
+      <link>https://eddyblog.cn/posts/tech/hugo_icon/</link>
+      <pubDate>Fri, 20 Jan 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/hugo_icon/</guid>
+      <description>Hugo添加icon&#43;socialIcons</description>
+    </item>
+    
+  </channel>
+</rss>

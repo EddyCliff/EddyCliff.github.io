@@ -1,5 +1,5 @@
 ---
-title: "【Hugo网站搭建】githubpages对应仓库username.github.io"
+title: "【Hugo网站搭建】Githubpages托管服务对应仓库username.github.io"
 date: 2023-03-11T00:17:58+08:00
 lastmod: 2023-03-11T00:17:58+08:00
 author: ["Eddy"]
@@ -9,8 +9,10 @@ keywords:
 categories: 
 - 
 tags: 
-- Hugo
+- Hugo网站搭建
+- Github Pages网站托管服务
 - Github Pages
+- Github
 description: "githubpages对应仓库username.github.io删除之后,重新创建一次仍然可以匹配到githubpages"
 weight:
 slug: ""

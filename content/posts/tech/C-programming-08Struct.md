@@ -1,5 +1,5 @@
 ---
-title: "【嵌入式高级C编程】第八章 结构体，共用体，枚举"
+title: "【嵌入式C语言编程】第八章 结构体，共用体，枚举"
 date: 2023-10-01T00:17:58+08:00
 lastmod: 2023-10-01T00:17:58+08:00
 author: ["Eddy"]
@@ -18,11 +18,10 @@ keywords:
 categories: 
 - 
 tags: 
-- C programming
-- Embedded Development
-- Struct
-- common body
-- enumeration
+- C语言
+- C语言结构体
+- C语言枚举
+- C语言共用体
 description: 
 weight:
 slug: ""

@@ -11,10 +11,9 @@ keywords:
 categories: 
 - 
 tags: 
-- PicGo
-- error
-- bug
-- image host
+- SSL证书验证机制
+- bug日志
+- 图床工具PicGo
 description: '解决 PicGo 图床工具中的 "unable to verify the first certificate" 错误。了解错误原因、网络加速工具可能引发的问题，并探讨关闭 fastgithub 解决方案。同时介绍 PicGo 官方文档中的常见问题和解决方法，确保图床上传稳定可靠。'
 weight:
 slug: ""

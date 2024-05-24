@@ -9,8 +9,9 @@ keywords:
 categories: 
 - 
 tags: 
-- Hugo
-- error
+- Hugo网站搭建
+- bug日志
+- hugo server失败
 description: "error:hugo server失败"
 weight:
 slug: ""

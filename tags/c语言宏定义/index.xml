@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>C语言宏定义 on Eddy&#39;s blog</title>
+    <link>https://eddyblog.cn/tags/c%E8%AF%AD%E8%A8%80%E5%AE%8F%E5%AE%9A%E4%B9%89/</link>
+    <description>Recent content in C语言宏定义 on Eddy&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Sun, 01 Oct 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/c%E8%AF%AD%E8%A8%80%E5%AE%8F%E5%AE%9A%E4%B9%89/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【嵌入式C语言编程】第四章 预处理</title>
+      <link>https://eddyblog.cn/posts/tech/c-programming-04preprocessing/</link>
+      <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/c-programming-04preprocessing/</guid>
+      <description>第四章 预处理 INIT INIT：本节内容正式开始。action! 一、C语言编译过程 C语言的编译过程： 预处理、编译、汇编、链接 gcc -E hello.c -o hello.i 1、预处理 gcc -S hello.i –o hello.s 2、编译 gcc -c hello.s -o hello.o 3、汇编 gcc hello.o -o hello_elf 4、链接 1：预编译 将.c 中的头文件展开、宏展开 生成的文件是.i文件 2：编译 将预处理之后的.i 文件生</description>
+    </item>
+    
+  </channel>
+</rss>

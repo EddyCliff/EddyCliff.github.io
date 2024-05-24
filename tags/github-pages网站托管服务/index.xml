@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Github Pages网站托管服务 on Eddy&#39;s blog</title>
+    <link>https://eddyblog.cn/tags/github-pages%E7%BD%91%E7%AB%99%E6%89%98%E7%AE%A1%E6%9C%8D%E5%8A%A1/</link>
+    <description>Recent content in Github Pages网站托管服务 on Eddy&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Tue, 29 Aug 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/github-pages%E7%BD%91%E7%AB%99%E6%89%98%E7%AE%A1%E6%9C%8D%E5%8A%A1/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【Hugo网站搭建】GitHub&#43;jsDelivr&#43;PicGo搭建博客图床</title>
+      <link>https://eddyblog.cn/posts/tech/github-jsdelivr-picgo/</link>
+      <pubDate>Tue, 29 Aug 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/github-jsdelivr-picgo/</guid>
+      <description>在这篇【博客写作指南】中，了解如何利用GitHub、jsDelivr和PicGo搭建博客图床，为你的博客添加稳定的图片存储和快速的CDN加速服务。跟随详细步骤，轻松创建自己的图床，为博客内容增添视觉魅力。</description>
+    </item>
+    
+    <item>
+      <title>【Hugo网站搭建】在Github仓库分别储存博客源码和静态页面</title>
+      <link>https://eddyblog.cn/posts/tech/hugo_saving_source_code/</link>
+      <pubDate>Fri, 11 Aug 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/hugo_saving_source_code/</guid>
+      <description>在Github仓库分别储存博客源码和静态页面</description>
+    </item>
+    
+    <item>
+      <title>【Hugo网站搭建】Githubpages托管服务对应仓库username.github.io</title>
+      <link>https://eddyblog.cn/posts/tech/hugo_githubpages/</link>
+      <pubDate>Sat, 11 Mar 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/hugo_githubpages/</guid>
+      <description>githubpages对应仓库username.github.io删除之后,重新创建一次仍然可以匹配到githubpages</description>
+    </item>
+    
+  </channel>
+</rss>

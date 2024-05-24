@@ -9,8 +9,8 @@ keywords:
 categories: 
 - 
 tags: 
-- Hugo
-- Busuanzi
+- Hugo网站搭建
+- Busuanzi统计网站数据
 description: "Hugo添加不蒜子Busuanzi页面浏览次数与阅读数据统计"
 weight:
 slug: ""

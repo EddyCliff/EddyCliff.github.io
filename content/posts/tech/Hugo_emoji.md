@@ -9,8 +9,8 @@ keywords:
 categories: 
 - 
 tags: 
-- Hugo
-- emoji
+- Hugo网站搭建
+- Hugo网站美化
 description: "Hugo主题美化-添加emoji"
 weight:
 slug: ""

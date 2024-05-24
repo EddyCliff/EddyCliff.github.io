@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>C语言 指针 on Eddy&#39;s blog</title>
+    <link>https://eddyblog.cn/tags/c%E8%AF%AD%E8%A8%80-%E6%8C%87%E9%92%88/</link>
+    <description>Recent content in C语言 指针 on Eddy&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Sun, 01 Oct 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/c%E8%AF%AD%E8%A8%80-%E6%8C%87%E9%92%88/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【嵌入式C语言编程】第五章 指针</title>
+      <link>https://eddyblog.cn/posts/tech/c-programming-05pointer/</link>
+      <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/c-programming-05pointer/</guid>
+      <description>第五章 指针 INIT INIT：本节内容正式开始。action! 一、关于内存那点事 存储器：存储数据器件 外存 外存又叫外部存储器，长期存放数据，掉电不丢失数据 常见的外存设备：硬盘、flash、rom、u盘、光盘、磁带 内存 内存又叫内部存储器，暂时存放数据，掉电数据丢失 常见的内存设备：ram、DD</description>
+    </item>
+    
+  </channel>
+</rss>

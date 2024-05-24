@@ -10,8 +10,12 @@ keywords:
 categories: 
 - 
 tags: 
+- Github使用指南
 - Github
-- error
+- bug日志
+- SSL验证
+- Git命令
+- Git push失败
 description: "解决{OpenSSL SSL_read: Connection was reset, errno 10054}"
 weight: 
 slug: ""

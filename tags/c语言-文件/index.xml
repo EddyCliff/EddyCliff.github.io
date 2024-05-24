@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>C语言 文件 on Eddy&#39;s blog</title>
+    <link>https://eddyblog.cn/tags/c%E8%AF%AD%E8%A8%80-%E6%96%87%E4%BB%B6/</link>
+    <description>Recent content in C语言 文件 on Eddy&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Mon, 23 Oct 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/c%E8%AF%AD%E8%A8%80-%E6%96%87%E4%BB%B6/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【嵌入式C语言编程】第十章 文件</title>
+      <link>https://eddyblog.cn/posts/tech/c-programming-10file/</link>
+      <pubDate>Mon, 23 Oct 2023 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/c-programming-10file/</guid>
+      <description>第十章 文件 INIT INIT：本节内容正式开始。action! 一、文件的概念 文件用来存放程序、文档、音频、视频数据、图片等数据的。 文件就是存放在磁盘上的，一些数据的集合。在windows下可以通过写字板或记事本打开文本文件对文件进行编辑保存。写字板和记事 本是微软程序员写的程序，对文件进行</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -197,7 +197,7 @@
     </item>
     
     <item>
-      <title>【嵌入式高级C编程】第十章 文件</title>
+      <title>【嵌入式C语言编程】第十章 文件</title>
       <link>https://eddyblog.cn/posts/tech/c-programming-10file/</link>
       <pubDate>Mon, 23 Oct 2023 00:17:58 +0800</pubDate>
       
@@ -206,7 +206,7 @@
     </item>
     
     <item>
-      <title>【嵌入式高级C编程】第八章 结构体，共用体，枚举</title>
+      <title>【嵌入式C语言编程】第八章 结构体，共用体，枚举</title>
       <link>https://eddyblog.cn/posts/tech/c-programming-08struct/</link>
       <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
       
@@ -215,7 +215,7 @@
     </item>
     
     <item>
-      <title>【嵌入式高级C编程】第六章 动态内存申请</title>
+      <title>【嵌入式C语言编程】第六章 动态内存申请</title>
       <link>https://eddyblog.cn/posts/tech/c-programming-06dynamic-memory/</link>
       <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
       
@@ -224,7 +224,7 @@
     </item>
     
     <item>
-      <title>【嵌入式高级C编程】第七章 字符串处理函数</title>
+      <title>【嵌入式C语言编程】第七章 字符串处理函数</title>
       <link>https://eddyblog.cn/posts/tech/c-programming-07string/</link>
       <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
       
@@ -233,7 +233,7 @@
     </item>
     
     <item>
-      <title>【嵌入式高级C编程】第四章 预处理</title>
+      <title>【嵌入式C语言编程】第四章 预处理</title>
       <link>https://eddyblog.cn/posts/tech/c-programming-04preprocessing/</link>
       <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
       
@@ -242,7 +242,7 @@
     </item>
     
     <item>
-      <title>【嵌入式高级C编程】第五章 指针</title>
+      <title>【嵌入式C语言编程】第五章 指针</title>
       <link>https://eddyblog.cn/posts/tech/c-programming-05pointer/</link>
       <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
       
@@ -251,7 +251,7 @@
     </item>
     
     <item>
-      <title>【嵌入式高级C编程】第二章 数组</title>
+      <title>【嵌入式C语言编程】第二章 数组</title>
       <link>https://eddyblog.cn/posts/tech/c-programming-02array/</link>
       <pubDate>Sat, 16 Sep 2023 00:17:58 +0800</pubDate>
       
@@ -260,7 +260,7 @@
     </item>
     
     <item>
-      <title>【嵌入式高级C编程】第三章 函数</title>
+      <title>【嵌入式C语言编程】第三章 函数</title>
       <link>https://eddyblog.cn/posts/tech/c-programming-03fun/</link>
       <pubDate>Sat, 16 Sep 2023 00:17:58 +0800</pubDate>
       
@@ -503,7 +503,7 @@
     </item>
     
     <item>
-      <title>【Hugo网站搭建】githubpages对应仓库username.github.io</title>
+      <title>【Hugo网站搭建】Githubpages托管服务对应仓库username.github.io</title>
       <link>https://eddyblog.cn/posts/tech/hugo_githubpages/</link>
       <pubDate>Sat, 11 Mar 2023 00:17:58 +0800</pubDate>
       
@@ -512,7 +512,7 @@
     </item>
     
     <item>
-      <title>【Hugo网站搭建】设置主页头像</title>
+      <title>【Hugo网站搭建】在config.yml中设置主页头像</title>
       <link>https://eddyblog.cn/posts/tech/hugo_homepage_avatar/</link>
       <pubDate>Sat, 11 Mar 2023 00:17:58 +0800</pubDate>
       
@@ -521,7 +521,7 @@
     </item>
     
     <item>
-      <title>【Hugo网站搭建】添加icon&#43;socialIcons</title>
+      <title>【Hugo网站搭建】在网站主页添加icon&#43;socialIcons(利用svg.html和config.yml)</title>
       <link>https://eddyblog.cn/posts/tech/hugo_icon/</link>
       <pubDate>Fri, 20 Jan 2023 00:17:58 +0800</pubDate>
       

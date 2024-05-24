@@ -10,9 +10,10 @@ keywords:
 categories: 
 - 
 tags: 
+- Github使用指南
 - Github
-- error
-- Github action
+- bug日志
+- Github action 自动化工作流
 description: ""
 weight: 
 slug: ""

@@ -1,5 +1,5 @@
 ---
-title: "【Hugo网站搭建】添加icon+socialIcons"
+title: "【Hugo网站搭建】在网站主页添加icon+socialIcons(利用svg.html和config.yml)"
 date: 2023-01-20T00:17:58+08:00
 lastmod: 2023-01-20T00:17:58+08:00
 author: ["Eddy"]
@@ -10,9 +10,11 @@ keywords:
 categories: 
 - 
 tags: 
-- Hugo
-- icon
-- socialIcons
+- Hugo网站搭建
+- Hugo网站主页添加icon
+- Hugo网站 svg.html
+- Hugo网站 config.yml
+- HTML
 description: "Hugo添加icon+socialIcons"
 weight:
 slug: ""

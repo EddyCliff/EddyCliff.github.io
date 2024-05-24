@@ -9,8 +9,11 @@ keywords:
 categories: 
 - 
 tags: 
+- Github使用指南
 - Github
-- error
+- bug日志
+- Git命令
+- Git remote
 description: "解决{error: remote origin already exists.}"
 weight: 
 slug: ""

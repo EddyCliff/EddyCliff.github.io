@@ -8,6 +8,9 @@ keywords:
 - embedded
 - Embedded development
 - MCU
+- ARM Cortex-M
+- Development Board
+- 开发板
 - STM32简介
 - STM32标准库
 - 嵌入式开发
@@ -15,10 +18,14 @@ categories:
 - 
 tags: 
 - STM32
-- embedded
-- Embedded development
 - MCU
-- ARM
+- ARM Cortex
+- 开发板
+- STM32简介
+- STM32标准库
+- 嵌入式开发
+- STM32F1
+- STM32F1最小系统电路
 description: "STM32是基于ARM Cortex-M内核由ST公司开发的32位微控制器，拥有高性能和丰富片上资源，适合嵌入式系统应用。它包括多个系列，满足不同场景需求，例如高性能、主流、超低功耗和无线等。STM32F103C8T6是其中一款，采用ARM Cortex-M3内核，具有72MHz主频、20Kb RAM和64Kb Flash，适用于多种应用。该芯片拥有全面的外设资源，如NVIC、SysTick定时器、RCC、GPIO、AFIO、EXTI、TIM定时器、ADC、DMA、USART、I2C/SPI和USB OTG等，提供高度灵活且可定制化的平台。文章还介绍了该芯片的引脚定义、电源管理、启动配置和最小系统板构成，强调了正确配置电源、时钟和下载电路的重要性。通过连接稳压供电模块、复位电路、Boot配置电路、LED测试电路和下载电路，可以构建出能够稳定工作的STM32最小系统板。此外，文档推荐参考官方资料以深入理解STM32的工作原理和应用。"
 weight: 
 slug: ""

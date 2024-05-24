@@ -10,9 +10,10 @@ keywords:
 categories: 
 - 
 tags: 
+- Github使用指南
 - Github
-- error
-- Repositories
+- bug日志
+- Github仓库
 description: "删除本地仓库/错误的远程仓库关联"
 weight:
 slug: ""

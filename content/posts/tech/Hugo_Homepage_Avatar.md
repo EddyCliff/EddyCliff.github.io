@@ -1,5 +1,5 @@
 ---
-title: "【Hugo网站搭建】设置主页头像"
+title: "【Hugo网站搭建】在config.yml中设置主页头像"
 date: 2023-03-11T00:17:58+08:00
 lastmod: 2023-03-11T00:17:58+08:00
 author: ["Eddy"]
@@ -9,8 +9,9 @@ keywords:
 categories: 
 - 
 tags: 
-- Hugo
-- Homepage_Avatar
+- Hugo网站搭建
+- Hugo网站主页头像
+- Hugo网站 config.yml
 description: "Hugo设置主页头像"
 weight:
 slug: ""

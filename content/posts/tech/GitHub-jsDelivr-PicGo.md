@@ -12,11 +12,13 @@ keywords:
 categories: 
 - 
 tags: 
+- Github Pages网站托管服务
 - Github
-- jsDelivr
-- PicGo
-- CDN
-- image host
+- jsDelivr CDN服务
+- 图床工具PicGo
+- 内容分发网络CDN
+- 图床
+- Hugo网站搭建
 description: "在这篇【博客写作指南】中，了解如何利用GitHub、jsDelivr和PicGo搭建博客图床，为你的博客添加稳定的图片存储和快速的CDN加速服务。跟随详细步骤，轻松创建自己的图床，为博客内容增添视觉魅力。"
 weight: 
 slug: ""

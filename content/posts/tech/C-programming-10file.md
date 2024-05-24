@@ -1,5 +1,5 @@
 ---
-title: "【嵌入式高级C编程】第十章 文件"
+title: "【嵌入式C语言编程】第十章 文件"
 date: 2023-10-23T00:17:58+08:00
 lastmod: 2023-10-23T00:17:58+08:00
 author: ["Eddy"]
@@ -15,9 +15,8 @@ keywords:
 categories: 
 - 
 tags: 
-- C programming
-- Embedded Development
-- file
+- C语言
+- C语言 文件
 description: 
 weight:
 slug: ""

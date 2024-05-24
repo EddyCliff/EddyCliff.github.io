@@ -13,8 +13,8 @@ categories:
 - 
 tags: 
 - LLC resonant converter
-- switching mode power supply
-- Power technology
+- LLC谐振变换器
+- LLC电力电子变压器
 description: 
 weight: 
 slug: ""

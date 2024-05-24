@@ -11,10 +11,9 @@ keywords:
 categories: 
 - 
 tags: 
-- PicGo
-- error
-- bug
-- image host
+- Hugo网站搭建
+- bug日志
+- YAML解析错误
 description: "解决 Hugo 构建过程中出现的 YAML 解析错误。了解错误背后的原因，探讨正确的 YAML 头部格式，并提供修复方案，确保 Hugo 网站构建顺利进行。"
 weight:
 slug: ""

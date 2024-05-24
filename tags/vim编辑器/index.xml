@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Vim编辑器 on Eddy&#39;s blog</title>
+    <link>https://eddyblog.cn/tags/vim%E7%BC%96%E8%BE%91%E5%99%A8/</link>
+    <description>Recent content in Vim编辑器 on Eddy&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Sun, 21 Apr 2024 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/vim%E7%BC%96%E8%BE%91%E5%99%A8/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux入门：基础命令与实用技巧</title>
+      <link>https://eddyblog.cn/posts/tech/linux-basics-02/</link>
+      <pubDate>Sun, 21 Apr 2024 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/linux-basics-02/</guid>
+      <description>本博客为新手量身打造，系统介绍了Linux操作系统的基本概念、核心命令及其应用场景。通过实例演示，帮助读者快速掌握Linux操作技巧，为进一步学习打下坚实基础。</description>
+    </item>
+    
+  </channel>
+</rss>

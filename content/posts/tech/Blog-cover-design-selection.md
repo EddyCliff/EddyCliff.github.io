@@ -9,8 +9,8 @@ keywords:
 categories: 
 - 
 tags: 
-- Blog writing
-- Blog cover
+- 博客写作
+- 博客封面
 description: "探索创意封面设计与选择的博客写作指南，了解如何为您的博客内容选择合适的封面图像，并掌握设计工具和资源，让您的博客在视觉上更具吸引力和专业性。提升您的博客封面，吸引读者注意，传达您的主题与理念。"
 weight:
 slug: ""

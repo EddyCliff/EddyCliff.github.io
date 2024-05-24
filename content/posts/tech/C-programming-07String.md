@@ -1,5 +1,5 @@
 ---
-title: "【嵌入式高级C编程】第七章 字符串处理函数"
+title: "【嵌入式C语言编程】第七章 字符串处理函数"
 date: 2023-10-01T00:17:58+08:00
 lastmod: 2023-10-01T00:17:58+08:00
 author: ["Eddy"]
@@ -15,9 +15,8 @@ keywords:
 categories: 
 - 
 tags: 
-- C programming
-- Embedded Development
-- String Manipulation functions
+- C语言
+- C语言 字符串处理函数
 description: 
 weight:
 slug: ""

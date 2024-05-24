@@ -10,7 +10,8 @@ keywords:
 categories: 
 - 
 tags: 
-- Hugo
+- Hugo网站搭建
+- Github Pages网站托管服务
 - Github
 description: "在Github仓库分别储存博客源码和静态页面"
 weight:

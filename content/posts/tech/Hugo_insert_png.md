@@ -9,8 +9,9 @@ keywords:
 categories: 
 - 
 tags: 
-- Blog writing
-- picture
+- 博客写作
+- Hugo网站搭建
+- Hugo网站博客插入图片
 description: "了解如何在Hugo博客中巧妙使用照片，为您的内容增添视觉吸引力和表现力。"
 weight:
 slug: ""

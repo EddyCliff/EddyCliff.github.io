@@ -10,8 +10,10 @@ keywords:
 categories: 
 - 
 tags: 
+- Github使用指南
 - Github
-- error
+- bug日志
+- Git命令
 - Git push
 description: ""
 weight:

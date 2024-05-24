@@ -10,7 +10,7 @@ keywords:
 categories: 
 - 
 tags: 
-- Hugo
+- Hugo网站搭建
 - Markdown
 - HTML
 description: "使用HTML标签对markdown中图片大小和对齐方式调整"
