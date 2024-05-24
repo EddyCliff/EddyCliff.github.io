@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>嵌入式开发-STM32标准库学习：按键控制LED,光敏传感器控制蜂鸣器 | Eddy&#39;s blog</title>
+<meta name="keywords" content="STM32, embedded, Embedded development, MCU, ARM Cortex-M, Development Board, 开发板, STM32简介, STM32标准库, 嵌入式开发">
+<meta name="description" content="INIT INIT：本节内容正式开始。action! 按键控制LED 按键控制LED-硬件电路连接 接下来我们来写一下GPIO输入部分的代码。先看一下第一个代码的接线图。 图：按键控制LED 这里我接了两个按键和2个LED，其中两个按键分别接在了PB1和PB11两个口上。按键一端接GPIO口，另一">
+<meta name="author" content="Eddy">
+<link rel="canonical" href="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p8/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.js" onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="icon" type="image/png" sizes="16x16" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="icon" type="image/png" sizes="32x32" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="apple-touch-icon" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="mask-icon" href="https://eddyblog.cn/img/logo3.jpg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p8/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<script defer src="https://unpkg.com/mermaid@8.8.1/dist/mermaid.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="https://registry.npmmirror.com/lxgw-wenkai-screen-web/latest/files/style.css" />
+
+
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = ""; 
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  
+
+<meta property="og:title" content="嵌入式开发-STM32标准库学习：按键控制LED,光敏传感器控制蜂鸣器" />
+<meta property="og:description" content="INIT INIT：本节内容正式开始。action! 按键控制LED 按键控制LED-硬件电路连接 接下来我们来写一下GPIO输入部分的代码。先看一下第一个代码的接线图。 图：按键控制LED 这里我接了两个按键和2个LED，其中两个按键分别接在了PB1和PB11两个口上。按键一端接GPIO口，另一" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p8/" />
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/pc9.jpg" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-05-13T00:17:58+11:00" />
+<meta property="article:modified_time" content="2024-05-13T00:17:58+11:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/pc9.jpg" />
+<meta name="twitter:title" content="嵌入式开发-STM32标准库学习：按键控制LED,光敏传感器控制蜂鸣器"/>
+<meta name="twitter:description" content="INIT INIT：本节内容正式开始。action! 按键控制LED 按键控制LED-硬件电路连接 接下来我们来写一下GPIO输入部分的代码。先看一下第一个代码的接线图。 图：按键控制LED 这里我接了两个按键和2个LED，其中两个按键分别接在了PB1和PB11两个口上。按键一端接GPIO口，另一"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+
+        {
+          "@type": "ListItem",
+          "position":  1 ,
+          "name": "📚文章",
+          "item": "https://eddyblog.cn/posts/"
+        },
+
+        {
+          "@type": "ListItem",
+          "position":  2 ,
+          "name": "👨🏻‍💻 技术",
+          "item": "https://eddyblog.cn/posts/tech/"
+        }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "嵌入式开发-STM32标准库学习：按键控制LED,光敏传感器控制蜂鸣器",
+      "item": "https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p8/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "嵌入式开发-STM32标准库学习：按键控制LED,光敏传感器控制蜂鸣器",
+  "name": "嵌入式开发-STM32标准库学习：按键控制LED,光敏传感器控制蜂鸣器",
+  "description": "INIT INIT：本节内容正式开始。action! 按键控制LED 按键控制LED-硬件电路连接 接下来我们来写一下GPIO输入部分的代码。先看一下第一个代码的接线图。 图：按键控制LED 这里我接了两个按键和2个LED，其中两个按键分别接在了PB1和PB11两个口上。按键一端接GPIO口，另一",
+  "keywords": [
+    "STM32", "embedded", "Embedded development", "MCU", "ARM Cortex-M", "Development Board", "开发板", "STM32简介", "STM32标准库", "嵌入式开发"
+  ],
+  "articleBody": " INIT INIT：本节内容正式开始。action!\n按键控制LED 按键控制LED-硬件电路连接 接下来我们来写一下GPIO输入部分的代码。先看一下第一个代码的接线图。\n图：按键控制LED\n这里我接了两个按键和2个LED，其中两个按键分别接在了PB1和PB11两个口上。按键一端接GPIO口，另一端接GND，就是我们PPT中的第一种解法。\n图：按键的硬件电路\n2个LED分别接在了PA1和PA2两个口。LED一端接GPIO口，另一端接VCC，就是低电平点亮的接法。这个按键、LED的数量和连接的端口都是随意的，具体接多少个，接到哪些端口就看你的需求了。\n然后我们拿出插好STM32最小系统板的面包板，把两个按键插在PB1和PB11两个端口上。\n再把2个LED插在PA1和PA2两个端口上。这样就完成了这个代码的硬件电路。\n图：按键控制LED-实物接线图\n按键控制LED-Keil工程准备 接下来我们打开工程文件夹，复制一下蜂鸣器工程的代码，改个名字叫3-4按键控制LED。然后点进去，打开工程。\n接下来我们就需要在这个工程上完成LED和按键的驱动代码。但是如果把这两部分驱动代码都混在主函数里面，那代码就太乱了是吧？不容易管理，也不容易移植。\n所以对于这种驱动代码而言，我们一般都会把它封装起来，单独放在另外的.c和.h文件里。这就是模块化编程的方式我在51单片机教程的模块化编程那节讲过，不会的可以去看一下，在这里我就直接操作了。\n1、首先我们打开工程文件夹，再建一个文件夹叫Hardware，用来存放硬件驱动。\n2、然后回到Keil还是一样的步骤。点击三个箱子的按钮，打开工程管理，新建一个组，也叫Hardware，挪个位置。\n3、然后再点击魔术棒按钮，打开工程选项，选择C/C++，点击这里三个点的按钮，把刚才新建的Hardware文件夹添加到头文件路径列表中。Ok这样我们就又在工程添加了一个Hardware文件夹。\n4、然后在Hardware这里右键添加新的文件，选择C文件起个名字叫LED，这个文件就用来封装LED的驱动程序。然后路径也别忘了，选择Hardware文件夹，存在这个文件夹里。\n5、接着继续在Hardware处右键添加新的文件，选择H文件，起个名字也叫LED。下面的路径也是一样，选择Hardware文件夹。\n这样我们就建好了LED.c和LED.h两个文件，用来封装LED驱动程序。LED.c用来存放驱动程序的主体代码，LED.h用来存放这个驱动可以对外提供的函数或变量的声明。\n按键控制LED-编写工程 编写LED的代码-LED.h 这两个文件建好之后，还得添加一些必要的代码。首先.c文件的第一行，右键include一个stm32f10x的.h头文件。\n要添加一个防止头文件重复包含的代码，这里格式都是固定的。就是#ifndef_LED_H ，如果没有定义LED这个字符串，那么#define_LED_H，那么就定义这个字符串，最后再加上#endif，这个是和#ifndef组成的。括号，我们的函数和变量声明就放在这个括号里面。最后注意这个文件要以空行结尾，这样就完成了。\n代码：编写led.h\n#ifndef __LED_H #define __LED_H #endif 编写LED的代码-LED.c 接着我们就来封装一下LED的代码，我们打开led.c文件，首先先写一个LED初始化函数。\nvoid LED_Init(void) 初始化LED 在这里写void LED_Init(void)。\n这个函数是用来初始化LED的。那里面写的就是打开时钟、配置端口模式这些东西，这就是我们之前学的代码，也就是RCC_APB2PeriphClockCmd，我们的LED都是接在GPIO上的。所以第一个参数是RCC_APB2Periph_GPIOA。然后第二个参数写ENABLE，开启时钟。\n接着配置端口模式。先定义一个结构体变量，GPIO_InitTypeDef。这里如果不显示代码提示的话，可以按一下快捷键，Ctrl+Alt+空格，这样就可以弹出代码提示框了。\n我们选择GPIO_InitTypeDef变量名叫GPIO_InitStructure 。然后把结构体的成员用点运算符都引出来，先放在这儿，最后调用GPL elite函数。\n第一个参数是GPIOA，初始化GPIOA外设。第二个是结构体变量名，前面加上取地址的符号，这里使用的是地址传递。\n接着填一下参数。\n第一个GPIO_Mode，我们写GPIO_Mode_Out_PP，推挽输出。\n第二个GPIO_Pin，我们写GPIO_Pin_1再或上GPIO_Pin_2选中1号和2号口。\n第三个GPIO_Speed，我们写GPIO_Speed_50MHz，选择50M的速度，这样LED初始化的代码就写完了。\n编写代码：LED.c\nvoid LED_Init(void) { /*开启时钟*/ RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);\t//开启GPIOA的时钟 /*GPIO初始化*/ GPIO_InitTypeDef GPIO_InitStructure; GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1 | GPIO_Pin_2; GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; GPIO_Init(GPIOA, \u0026GPIO_InitStructure);\t//将PA1和PA2引脚初始化为推挽输出 /*设置GPIO初始化后的默认电平*/ GPIO_SetBits(GPIOA, GPIO_Pin_1 | GPIO_Pin_2);\t//设置PA1和PA2引脚为高电平 } 这个代码大家多打几遍，再根据代码提示，基本上就可以直接上手了，还是比较好用的是吧。那到这里我们只需要调用一个LED_Init的函数，LED的2个GPIO口就可以直接初始化完成了。那我们先试一下.\n因为这个函数是需要被外部引用的，所以我们需要复制一下函数的第一行，把这个函数的第一行放在.h文件的这里，这样就是对模块外部声明，这个函数是可以被外部调用的函数。\n编写代码：LED.h\n#ifndef __LED_H #define __LED_H void LED_Init(void); #endif 那我们回到main.c先把蜂鸣器的这些代码删掉，然后在上面的这里写上include “LED.h\"去包含led模块的头文件之后，在主函数里直接调用LED_Init，这样就完成了LED的初始化。\n编写代码：main.c\n#include \"stm32f10x.h\" // Device header #include \"LED.h\" int main(void) { /*模块初始化*/ LED_Init();\t//LED初始化 while (1) { } } 这里有提示一个警告，这是因为我们新写的代码还没有更新，软件还不知道有这个函数，那我们编译一下。这个是0错误0警告。\n有时候这个软件也会时不时报告警告或错误。这个有可能是语法检查更新较慢，直接编译一下没有问题就行了，然后下载。\n这里可以看到2个LED都亮起来了，这说明我们的端口配置和模块化编程是没有问题的。这里因为GPIO配置好了之后，默认就是低电平，所以我们还没操作LED，LED就都亮起来了。\n那我们可以在LED edit函数的最后写上GPIO_SetBits()。这样初始化之后，如果不操作LED，LED就是熄灭的了。试一下编译没有错误，下载初始化之后，LED默认就是关闭的状态了。\n编写代码：LED.c\n#include \"stm32f10x.h\" // Device header /** * 函 数：LED初始化 * 参 数：无 * 返 回 值：无 */ void LED_Init(void) { /*开启时钟*/ RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);\t//开启GPIOA的时钟 /*GPIO初始化*/ GPIO_InitTypeDef GPIO_InitStructure; GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1 | GPIO_Pin_2; GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; GPIO_Init(GPIOA, \u0026GPIO_InitStructure);\t//将PA1和PA2引脚初始化为推挽输出 /*设置GPIO初始化后的默认电平*/ GPIO_SetBits(GPIOA, GPIO_Pin_1 | GPIO_Pin_2);\t//设置PA1和PA2引脚为高电平 } LED点亮和熄灭 的 函数实现 接着我们就来快速完善一下LED驱动程序模块。除了初始化，我们还需要点亮和熄灭LED的函数。\n这里可以写一个void LED1_ON(void)，点亮LED1，里面写\nGPIO_ResetBits(GPIOA, GPIO_Pin_1);\t//设置PA1引脚为低电平。\n我们暂且把PA1的LED叫LED1。\n然后再来一个void LED1_OFF(void)，熄灭LED1。里面写\nGPIO_SetBits(GPIOA, GPIO_Pin_1);\t//设置PA1引脚为高电平\n然后把这两个函数复制粘贴一下。\n把下面的改成LED2，GPIO_Pin_2，这就是打开和关闭LED2的函数了。\n当然我这里用了四个函数来实现两个灯的打开和关闭。如果你觉得函数太多了，那你也可以定义一个LED_Set函数。然后定义两个参数，一个参数选择操作哪个灯，另一个参数选择开还是关，这都是没问题的。根据你的实际需求来。\n我这里LED比较少，就直接这样写了。\n那我们把这四个函数都放在LED.h去文件里声明一下。\n#ifndef __LED_H #define __LED_H void LED_Init(void); void LED1_ON(void); void LED1_OFF(void); void LED2_ON(void); void LED2_OFF(void); #endif 这样LED的驱动函数模块就封装好了。\n我们在主函数里调用LED1_ON，Delay 500毫秒，LED1_OFF， Delay 500毫秒。编译。下载。看一下LED就在闪烁了。\n我们再在这里加上LED2_OFF，然后这里LED2_ON，编译，下载。\n编写代码：LED.c\n#include \"stm32f10x.h\" // Device header /** * 函 数：LED初始化 * 参 数：无 * 返 回 值：无 */ void LED_Init(void) { /*开启时钟*/ RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);\t//开启GPIOA的时钟 /*GPIO初始化*/ GPIO_InitTypeDef GPIO_InitStructure; GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1 | GPIO_Pin_2; GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; GPIO_Init(GPIOA, \u0026GPIO_InitStructure);\t//将PA1和PA2引脚初始化为推挽输出 /*设置GPIO初始化后的默认电平*/ GPIO_SetBits(GPIOA, GPIO_Pin_1 | GPIO_Pin_2);\t//设置PA1和PA2引脚为高电平 } /** * 函 数：LED1开启 * 参 数：无 * 返 回 值：无 */ void LED1_ON(void) { GPIO_ResetBits(GPIOA, GPIO_Pin_1);\t//设置PA1引脚为低电平 } /** * 函 数：LED1关闭 * 参 数：无 * 返 回 值：无 */ void LED1_OFF(void) { GPIO_SetBits(GPIOA, GPIO_Pin_1);\t//设置PA1引脚为高电平 } /** * 函 数：LED2开启 * 参 数：无 * 返 回 值：无 */ void LED2_ON(void) { GPIO_ResetBits(GPIOA, GPIO_Pin_2);\t//设置PA2引脚为低电平 } /** * 函 数：LED2关闭 * 参 数：无 * 返 回 值：无 */ void LED2_OFF(void) { GPIO_SetBits(GPIOA, GPIO_Pin_2);\t//设置PA2引脚为高电平 } 编写代码：main.c\n#include \"stm32f10x.h\" // Device header #include \"Delay.h\" #include \"LED.h\" int main(void) { /*模块初始化*/ LED_Init();\t//LED初始化 while (1) { LED1_ON(); LED1_OFF(); Delay_ms(500); LED2_ON(); LED2_OFF(); Delay_ms(500); } } 可以看到2个LED交替闪烁，这说明我们的驱动代码是没问题的。\n在主函数里我们的代码也变得更加简洁。初始化就是初始化，开灯就是开灯，关灯就是关灯，不需要再管那些底层的各种参数了，这就是模块化编程的好处。\n编写按键的代码 编写代码：按键1按下，LED1点亮，按键2按下，LED1熄灭 新建Key.h和Key.c 接着我们就来开始写按键部分的代码了，同样我们也把按键封装在驱动函数模块里。我们在Hardware目录下右键添加新的文件，选择C文件起个名字叫Key，下面的路径，选择Hardware文件夹。\n接着继续在Hardware出右键添加新的文件，选择H文件起个名字也叫Key，下面的路径也是写Hardware文件夹。\n编写Key.c 然后Key.c文件，右键添加stm32f10x头文件。\n编写代码：Key.h\n#ifndef __KEY_H #define __KEY_H #endif 这样函数的基本框架就建好了。\n在Key.c中编写-按键初始化函数 我们到Key.c文件里先写一个按键初始化函数，void Key_Init(void) 在这里面我们将按键的两个端口都初始化为上拉输入的模式。\n第一步还是开启时钟，RCC_APB2PeriphClockCmd。我们的按键是接在GPIOB上的。所以第一个参数是RCC_APB2Periph_GPIOB，然后第二个参数写ENABLE开启时钟。\n第二步GPIO输出，定义一个结构体变量GPIO_InitTypeDef，变量名叫GPIO_InitStructur。然后把结构体的成员用点运算符都引出来，先放在这儿。最后调用GPIO_Init函数。\n第一个参数是GPIOB初始化GPIOB外设。第二个参数是结构体变量名,前面加上取地址的符号，然后填一下参数。\n第一个GPIO_Mode这里因为我们需要读取按键，所以我们需要选择GPIO_Mode_IPU，上拉输入。\n第二个GPIO_Pin，因为我们案件接在了PB1和PB11口上，所以写GPIO_Pin_1 | GPIO_Pin_11选中1号和11号口。\n第三个GPIO_Speed，这里的速度是GPIO的输出速度，在输入模式下，这个参数其实是没用的。\n那我们还是填上GPIO_Speed_50MHz，这个也没啥影响，这样按键的初始化就完成了。\n在Key.c中编写-读取按键值的函数 接着我们再来写一个读取按键值的函数，我们在这下面写上\nuint8_t Key_GetNum(void)，调用这个函数就可以返回按下按键的键码，它的返回值是uint8_t。\n我们之前讲过，这就是unsigned char的意思。接着我们在里面再定一个变量，uint8_t KeyNum = 0。最后return KeyNum。将这个变量作为返回值。 按键键码默认给0。如果没有按键按下，就返回0。\n编写代码：Key.c\n#include \"stm32f10x.h\" // Device header /** * 函 数：按键初始化 * 参 数：无 * 返 回 值：无 */ void Key_Init(void) { /*开启时钟*/ RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);\t//开启GPIOB的时钟 /*GPIO初始化*/ GPIO_InitTypeDef GPIO_InitStructure; GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU; GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1 | GPIO_Pin_11; GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; GPIO_Init(GPIOB, \u0026GPIO_InitStructure);\t//将PB1和PB11引脚初始化为上拉输入 } /** * 函 数：按键获取键码 * 参 数：无 * 返 回 值：按下按键的键码值，范围：0~2，返回0代表没有按键按下 * 注意事项：此函数是阻塞式操作，当按键按住不放时，函数会卡住，直到按键松手 */ uint8_t Key_GetNum(void) { uint8_t KeyNum = 0;\t//定义变量，默认键码值为0 return KeyNum;\t//返回键码值，如果没有按键按下，所有if都不成立，则键码为默认值0 } 然后在中间这里我们就需要用到读取GPIO端口的功能。那先找一下GPIO的库函数文件，打开gpio.h这个文件，翻到最后来看一下这4个GPIO的读取函数。\n代码：gpio.h中4个GPIO的读取函数\nuint8_t GPIO_ReadInputDataBit(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin); uint16_t GPIO_ReadInputData(GPIO_TypeDef* GPIOx); uint8_t GPIO_ReadOutputDataBit(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin); uint16_t GPIO_ReadOutputData(GPIO_TypeDef* GPIOx); 第一个是GPIO_ReadInputDataBit，这个函数是用来读取输入数据寄存器某一个端口的输入值，它的参数是GPIOx和GPIO_Pin用来指定某一个端口，返回值是uint8_t代表这个端口的高低电平。\n读取按键我们就需要用到这个函数。\n第二个GPIO_ReadInputData，这个函数比上一个函数少了个Bit，它是用来读取整个输入数据寄存器的，参数只有一个GPIOx用来指定外设，返回值是uint16_t是一个16位的数据，每一位代表一个端口值。\n第三个GPIO_ReadOutputDataBit，这个函数是用来读取输出数据寄存器的某一个位，所以原则上来说它并不是用来读取端口的输入数据的。这个函数一般用于输出模式下，用来看一下自己输出的是什么，具体有什么用，我等会儿可以给大家演示一下。\n最后一个GPIO_ReadOutputData，这个函数也是少了一个Bit，意思也是一样，是用来读取整个输出寄存器的。\n我们打开PPT看一下这个图，对照一下这个图应该就好理解了。\n图：根据GPIO位结构图来理解GPIO的4个读取函数\nGPIO_ReadInputDataBit就是读取这里输入数据寄存器的某一位，GPIO_ReadInputData就是读取这整个输入数据寄存器器。GPIO_ReadOutputDataBit就是读取这里输出数据寄存器的某一位，GPIO_ReadOutputData就是读取这整个输出数据寄存器。\n所以说如果你想读取GPIO口的话，需要用ReadInput的这两个函数。如果在输出模式下想要看一下现在输出了什么，才需要用到ReadOutput的这两个函数，这就是这四个函数的用途。\n那么回到Key.c这里来，在这里我们需要读取外部输入的一个端口值，所以我们到gpio,h这里复制一下GPIO_ReadOutputDataBit这个函数放到按键读取函数这里，然后参数写GPIOB，GPIO_Pin_1，读取PB1端口的值。这里的返回值就是输入数据寄存器某一位的值，0代表低电平，1代表高电平。\n所以我们加上if判断，把这个函数括起来。然后如果读取PB1端口值 == 0，就代表按键按下，我们进入if里操作。\n这次按键刚按下会有个抖动，所以需要delay一段时间。那在这个文件里需要用的Delay函数，还需要在上面加上#include\"Delay.h”。\n然后在这里Delay_ms(20) 20毫秒消抖。\n接着我们还需要检测一下按键松手的情况，因为我们的按键一般是松手之后才有动作的，所以在这里加上一个while循环。判断条件还是读取PB1 == 0。这个如果按键一直按下，就卡在这里，直到松手。\n那下面松手之后再delay 20毫秒消一下按键松手的抖动，接着我们赋值KeyNum = 1，用这个变量将键码1传递出去，这就是PB1按键的检测。\n接着PB11的按键也是一样，我们复制粘贴一下这部分。然后GPIO_Pin_1这里改成11， PB11的键码，我们定义为2。最后是将KeyNum这个变量返回回去，这样就完成了按键的读取。\n编写代码：Key.c\n#include \"stm32f10x.h\" // Device header #include \"Delay.h\" /** * 函 数：按键初始化 * 参 数：无 * 返 回 值：无 */ void Key_Init(void) { /*开启时钟*/ RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);\t//开启GPIOB的时钟 /*GPIO初始化*/ GPIO_InitTypeDef GPIO_InitStructure; GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU; GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1 | GPIO_Pin_11; GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; GPIO_Init(GPIOB, \u0026GPIO_InitStructure);\t//将PB1和PB11引脚初始化为上拉输入 } /** * 函 数：按键获取键码 * 参 数：无 * 返 回 值：按下按键的键码值，范围：0~2，返回0代表没有按键按下 * 注意事项：此函数是阻塞式操作，当按键按住不放时，函数会卡住，直到按键松手 */ uint8_t Key_GetNum(void) { uint8_t KeyNum = 0;\t//定义变量，默认键码值为0 if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_1) == 0)\t//读PB1输入寄存器的状态，如果为0，则代表按键1按下 { Delay_ms(20);\t//延时消抖 while (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_1) == 0);\t//等待按键松手 Delay_ms(20);\t//延时消抖 KeyNum = 1;\t//置键码为1 } if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_11) == 0)\t//读PB11输入寄存器的状态，如果为0，则代表按键2按下 { Delay_ms(20);\t//延时消抖 while (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_11) == 0);\t//等待按键松手 Delay_ms(20);\t//延时消抖 KeyNum = 2;\t//置键码为2 } return KeyNum;\t//返回键码值，如果没有按键按下，所有if都不成立，则键码为默认值0 } 我们来试一下，先把两个函数的第一行都复制到Key.h里的声明。之后到main点C里面，首先#include\"Key.h\"，然后主循环之前初始化一下按键。接着我们先定义一个全局变量KeyNum，用来存一下键码的返回值。\n这个注意一下，虽然我们这个也叫KeyNum，但是这个KeyNum和这里的KeyNum不是一个变量，这里是全局变量，Key函数里面的是局部变量，两者的作用域不一样。即使我在主函数这里再定义一个同名的KeyNum， 他们三个也都是不一样的。在函数里面的是局部变量，只能在本函数里使用。在函数外面的是全局变量，每个函数都可以使用。\n在函数里优先使用自己的局部变量，如果没有才会使用外部的全局变量。那我就用这个全局变量来接返回值。编译一下。\n在主循环里写KeyNum = Key_GetNum();不断读取键码值放在KeyNum变量里。接着if (KeyNum == 1)，这就是按键1按下了，我们就可以执行对应的操作了。比如LED1_ON()点亮LED1，然后继续。\nif (KeyNum == 2)，按键2按下，LED1_OFF()熄灭LED1，我们试一下编译。下载。按一下右边的按键1，LED1点亮，按一下左边的按键2，LED1熄灭，这些就是按键的基本操作了。\n编写代码：按键1按下LED状态翻转，按键2按下，LED2状态翻转 那么演示的程序是按一下熄灭，再按一下点亮，也就是按键按下，LED的状态取反。这个该怎么实现呢？这就需要用到GPIO_ReadOutput的函数了。\n我们可以在LDE的驱动里再加一个函数，void LED1_Turn(void)，调用这个函数LED1的状态取反，在里面我们可以写if。\n这整个逻辑就是调用GPIO_ReadOutputDataBit的函数读取当前的端口输出状态。如果当前输出0就给它置1，否则就置0，这样就实现了端口的电平翻转。这也是GPIO_ReadOutput函数的用途，一般用于输出模式下。\n编写代码：Key.c中void LED1_Turn(void) 实现LED1状态翻转\n/** * 函 数：LED1状态翻转 * 参 数：无 * 返 回 值：无 */ void LED1_Turn(void) { if (GPIO_ReadOutputDataBit(GPIOA, GPIO_Pin_1) == 0)\t//获取输出寄存器的状态，如果当前引脚输出低电平 { GPIO_SetBits(GPIOA, GPIO_Pin_1);\t//则设置PA1引脚为高电平 } else\t//否则，即当前引脚输出高电平 { GPIO_ResetBits(GPIOA, GPIO_Pin_1);\t//则设置PA1引脚为低电平 } } 接着我们复制一下这个函数，给LED2也加上翻转的功能，这里改成LED2，GPIO_Pin_2。最后把这两个函数的第一行放到头文件里声明一下。这样我们就可以在主函数里使用这两个功能了。\n编写代码：Key.h\n#ifndef __LED_H #define __LED_H void LED_Init(void); void LED1_ON(void); void LED1_OFF(void); void LED1_Turn(void); void LED2_ON(void); void LED2_OFF(void); void LED2_Turn(void); #endif 比如，按键1按下，LED1_Turn，按键2，LED2_Turn，我们再试一下编译。下载。这时的现象就和我们演示的一样了。\n最后注意一下这个驱动函数模块写好之后，尽量在这些函数的上面加一些注释，说明一下函数的用途，参数的取值和返回值的意思这些东西。这样别人在使用你的函数驱动时才知道咋用，对吧？\n就像STM32的库函数一样，在每个函数上面写一下这样的注释。那我这里时间关系就不在视频里写注释了，我课下会写好提供给大家的。大家自己写代码也尽量打打注释，这样方便自己和别人理解。\n光敏传感器控制蜂鸣器 光敏传感器控制蜂鸣器-硬件电路连接 好，第一个代码到这里就结束了，接着我们来写一下第二个代码，我们打开工程文件夹，先看一下接线图。\n图：接线图-光敏传感器控制蜂鸣器\n在这里接了两个模块，左边的蜂鸣器和之前的接法还是一样。VCC。GND接电源，控制脚接PB12号口。\n右边接的就是光敏传感器模块了。VCC，GND同样是接电源，DO数字输出端接PB13号口。\n那我们拿出面包板先接一下蜂鸣器。VCC接电源正，GND接电源负，控制脚接PB12。然后是光敏传感器，VCC接电源正，GND接电源负，DO输出脚接PB13，上电，可以看到光敏传感器的灯亮了。\n当我们遮住光线时，输出指示灯灭，代表输出高电平，松手时输出指示灯亮代表输出低电平。这个电位器可以调节高低电平的判断阈值，大家可以试一下，我就不演示了。\n编写蜂鸣器的驱动程序Buzzer.c和Buzzer.h 接着我们回到工程文件夹，复制一下3-4的代码，改一下名叫3-5光敏传感器控制蜂鸣器。然后打开工程。\n这个程序应该还是比较简单的，大家可能一看就会。那我们的主要步骤还是驱动程序的封装。我们封装一下蜂鸣器。\n工程Hardware下新建Buzzer.c和Buzzer.h。\n编写代码：Hardware/Buzzer.h\n#ifndef __BUZZER_H #define __BUZZER_H #endif Buzzer.c中的函数逻辑和LED.c中几乎一样，我们直接把LED.c复制过来修改。\n编写代码：Hardware/Buzzer.c\n蜂鸣器是GPIOB和GPIO_Pin_12\n#include \"stm32f10x.h\" // Device header /** * 函 数：蜂鸣器初始化 * 参 数：无 * 返 回 值：无 */ void Buzzer_Init(void) { /*开启时钟*/ RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);\t//开启GPIOB的时钟 /*GPIO初始化*/ GPIO_InitTypeDef GPIO_InitStructure; GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; GPIO_InitStructure.GPIO_Pin = GPIO_Pin_12; GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; GPIO_Init(GPIOB, \u0026GPIO_InitStructure);\t//将PB12引脚初始化为推挽输出 /*设置GPIO初始化后的默认电平*/ GPIO_SetBits(GPIOB, GPIO_Pin_12);\t//设置PB12引脚为高电平 } /** * 函 数：蜂鸣器开启 * 参 数：无 * 返 回 值：无 */ void Buzzer_ON(void) { GPIO_ResetBits(GPIOB, GPIO_Pin_12);\t//设置PB12引脚为低电平 } /** * 函 数：蜂鸣器关闭 * 参 数：无 * 返 回 值：无 */ void Buzzer_OFF(void) { GPIO_SetBits(GPIOB, GPIO_Pin_12);\t//设置PB12引脚为高电平 } /** * 函 数：蜂鸣器状态翻转 * 参 数：无 * 返 回 值：无 */ void Buzzer_Turn(void) { if (GPIO_ReadOutputDataBit(GPIOB, GPIO_Pin_12) == 0)\t//获取输出寄存器的状态，如果当前引脚输出低电平 { GPIO_SetBits(GPIOB, GPIO_Pin_12);\t//则设置PB12引脚为高电平 } else\t//否则，即当前引脚输出高电平 { GPIO_ResetBits(GPIOB, GPIO_Pin_12);\t//则设置PB12引脚为低电平 } } 这样蜂鸣器的驱动程序就完成了。我们把函数也都放到头文件里，声明一下。\n编写代码：Hardware/Buzzer.h\n#ifndef __BUZZER_H #define __BUZZER_H void Buzzer_Init(void); void Buzzer_ON(void); void Buzzer_OFF(void); void Buzzer_Turn(void); #endif 我们在main.c中编写。\n编写代码：Hardware/main.c\n#include \"stm32f10x.h\" // Device header #include \"Delay.h\" #include \"Buzzer.h\" int main(void) { /*模块初始化*/ Buzzer_Init();\t//蜂鸣器初始化 while (1) { Buzzer_ON(); Delay_ms(500); Buzzer_OFF(); Delay_ms(500); Buzzer_Turn(); Delay_ms(500); Buzzer_Turn(); Delay_ms(500); } } 编译。下载，这时听到蜂鸣器不断鸣响，说明驱动函数没有问题。\n编写光敏传感器的驱动程序Buzzer.c和Buzzer.h 工程Hardware下新建LightSensor.c和LightSensor.h。\n光敏传感器初始化函数中 GPIOB 上拉输入 GPIO_Pin_13\n光敏传感器的读取函数，返回端口值。\n编写代码：Hardware/LightSensor.c\n#include \"stm32f10x.h\" // Device header /** * 函 数：光敏传感器初始化 * 参 数：无 * 返 回 值：无 */ void LightSensor_Init(void) { /*开启时钟*/ RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);\t//开启GPIOB的时钟 /*GPIO初始化*/ GPIO_InitTypeDef GPIO_InitStructure; GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU; GPIO_InitStructure.GPIO_Pin = GPIO_Pin_13; GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; GPIO_Init(GPIOB, \u0026GPIO_InitStructure);\t//将PB13引脚初始化为上拉输入 } /** * 函 数：获取当前光敏传感器输出的高低电平 * 参 数：无 * 返 回 值：光敏传感器输出的高低电平，范围：0/1 */ uint8_t LightSensor_Get(void) { return GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_13);\t//返回PB13输入寄存器的状态 } 编写代码：Hardware/LightSensor.h\n#ifndef __LIGHT_SENSOR_H #define __LIGHT_SENSOR_H void LightSensor_Init(void); uint8_t LightSensor_Get(void); #endif 编写代码：User/main.c\n#include \"stm32f10x.h\" // Device header #include \"Delay.h\" #include \"Buzzer.h\" #include \"LightSensor.h\" int main(void) { /*模块初始化*/ Buzzer_Init();\t//蜂鸣器初始化 LightSensor_Init();\t//光敏传感器初始化 while (1) { if (LightSensor_Get() == 1)\t//如果当前光敏输出1 { Buzzer_ON();\t//蜂鸣器开启 } else\t//否则 { Buzzer_OFF();\t//蜂鸣器关闭 } } } 现象就是遮住光敏传感器，蜂鸣器响，不遮住，就不响。这就完成了我们本节课的第二个代码。本节课的内容到这里就差不多了。\nGPIO总结 最后我们来总结一下GPIO的使用方法，总体上来说还是比较简单的。\n首先初始化时钟，然后定义结构体，赋值结构体。GPIO_Mode可以选择我们讲的那8种输入输出模式。GPIO_Pin选择引脚，可以用按位或的方式同时选中多个引脚。GPIO_Speed选择输出速度，这个不是很重要，要求不高的话直接选50MHz就行了。\n最后使用GPIO_Init函数将指定的GPIO外设初始化好，然后这里有8个读取和写入的函数，我们读写GPIO口主要就用这些函数就行，具体用法我也都讲过，之后我们学习了模块化编程的方法。\n一般我们自己做一个产品的话，外围硬件比较多。这时候就要尽量把每个硬件的驱动函数单独提取出来，分装在.c和.h文件里，这样有利于简化主函数的逻辑。\n在主函数中我们还有更重要的任务要完成，不要让这些驱动函数混在主函数里影响我们。另外把硬件驱动提取出来，也有利于我们移植程序，还有利于我们进行分工合作。\n比如让别人来写驱动函数，你的主要精力就可以集中在主程序的逻辑上了。最后既然要做分装，那函数的注释就需要写清楚，这样可以方便使用你这个模块的人快速上手这些函数。\n好，以上就是本节课的全部内容了，我们下节再见。\nEND END：本节内容到此结束。\n个人提升之余，别忘了和小伙伴积极交流，很多人觉得他们在思考，而实际上他们只是在重新整理自己的偏见。请珍惜和他人交流讨论的机会。\n希望你每一天都有所收获，进步up up up。今天的我们并不比昨天更聪明，但一定要比昨天更睿智。\n",
+  "wordCount" : "10349",
+  "inLanguage": "zh",
+  "image":"https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/pc9.jpg","datePublished": "2024-05-13T00:17:58+11:00",
+  "dateModified": "2024-05-13T00:17:58+11:00",
+  "author":[{
+    "@type": "Person",
+    "name": "Eddy"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p8/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Eddy's blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://eddyblog.cn/img/logo3.jpg"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    (function () {
+        let  arr,reg = new RegExp("(^| )"+"change-themes"+"=([^;]*)(;|$)");
+        if(arr = document.cookie.match(reg)) {
+        } else {
+            if (new Date().getHours() >= 19 || new Date().getHours() < 6) {
+                document.body.classList.add('dark');
+                localStorage.setItem("pref-theme", 'dark');
+            } else {
+                document.body.classList.remove('dark');
+                localStorage.setItem("pref-theme", 'light');
+            }
+        }
+    })()
+
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://eddyblog.cn/" accesskey="h" title="Eddy&#39;s Blog (Alt + H)">
+            <img src="https://eddyblog.cn/img/logo3.jpg" alt="logo" aria-label="logo"
+                 height="35">Eddy&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://eddyblog.cn/search" title="🔍 搜索 (Alt &#43; /)" accesskey=/>
+                <span>🔍 搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/" title="🏠 主页">
+                <span>🏠 主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/posts" title="📚 文章">
+                <span>📚 文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/tags" title="🧩 标签">
+                <span>🧩 标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/archives/" title="⏱️ 时间轴">
+                <span>⏱️ 时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/about" title="🙋🏻‍♂️ 关于">
+                <span>🙋🏻‍♂️ 关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main page">
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+</style>
+
+<article class="post-single">
+    <div id="single-content">
+        <header class="post-header">
+            <div class="breadcrumbs"><a href="https://eddyblog.cn/">🏠 主页</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/">📚文章</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/tech/">👨🏻‍💻 技术</a></div>
+            <h1 class="post-title">
+                嵌入式开发-STM32标准库学习：按键控制LED,光敏传感器控制蜂鸣器
+            </h1>
+            <div class="post-meta">
+
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+
+    .parent-post-meta {
+        display: flex;
+        flex-wrap: wrap;
+        opacity: 0.8;
+    }
+</style>
+
+<span class="parent-post-meta">
+    <span id="post_meta_style_1">
+        <span class="fa fa-calendar-check-o"></span>
+        <span>2024-05-13
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    
+    
+    
+    
+    
+    
+    
+    <span id="post_meta_style_3">
+        <span class="fa fa-file-word-o"></span>
+        <span>10349字
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_4">
+        <span class="fa fa-clock-o"></span>
+        <span>21分钟
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_5">
+        <span class="fa fa-user-o"></span>
+        <span>Eddy
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_6">
+        <span class="fa fa-tags" style="opacity: 0.8"></span>
+        <span>
+            <span class="post-tags-meta">
+                <a href="https://eddyblog.cn/tags/stm32/" style="color: var(--secondary)!important;">STM32</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/mcu/" style="color: var(--secondary)!important;">MCU</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/arm-cortex/" style="color: var(--secondary)!important;">ARM Cortex</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/led/" style="color: var(--secondary)!important;">LED</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/%E6%8C%89%E9%94%AE%E6%8E%A7%E5%88%B6led/" style="color: var(--secondary)!important;">按键控制LED</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/%E8%9C%82%E9%B8%A3%E5%99%A8/" style="color: var(--secondary)!important;">蜂鸣器</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/%E5%85%89%E6%95%8F%E4%BC%A0%E6%84%9F%E5%99%A8%E6%8E%A7%E5%88%B6%E8%9C%82%E9%B8%A3%E5%99%A8/" style="color: var(--secondary)!important;">光敏传感器控制蜂鸣器</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/stm32%E6%A0%87%E5%87%86%E5%BA%93%E5%BC%80%E5%8F%91/" style="color: var(--secondary)!important;">STM32标准库开发</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" style="color: var(--secondary)!important;">嵌入式开发</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/stm32f1/" style="color: var(--secondary)!important;">STM32F1</a>
+            </span>
+        </span>
+    </span>
+</span>
+<span style="opacity: 0.8;">
+                    <span id="post_meta_style_7">
+                        &nbsp;&nbsp;
+                        <span class="fa fa-eye" ></span>
+                        <span>
+                            <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+                            &nbsp;&nbsp;
+                        </span>
+                    </span>
+                    <span id="post_meta_style_8">
+                        <span class="fa fa-commenting-o"></span>
+                        <span>
+                            <script src="https://cdn.staticfile.org/twikoo//twikoo.all.min.js"></script>
+                            <script>
+                                let url = document.documentURI
+                                
+                                let dnsUrl = "https://eddyblog.cn/"
+                                let urlSplit = url.split(dnsUrl)
+                                let finalUrl = urlSplit[1]
+                                if (finalUrl[0] !== '/') {
+                                    finalUrl = '/'+finalUrl
+                                }
+                                twikoo.getCommentsCount({
+                                    envId:  null , 
+                                region:  null , 
+                                urls: [ 
+                                    
+                                    finalUrl,
+                                ],
+                                    includeReply: false 
+                                }).then(function (res) {
+                                    let count = res[0].count
+                                    const obj = document.getElementById("comment_count");
+                                    obj.innerText = count
+                                    
+                                    
+                                    
+                                }).catch(function (err) {
+                                    
+                                    console.error(err);
+                                });
+                            </script>
+                            <span id="comment_count"></span>
+                        </span>
+                    </span>
+                </span>
+
+</div>
+        </header> 
+<figure class="entry-cover1"><img style="zoom:;" loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/pc9.jpg" alt="">
+    
+</figure><aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#init" aria-label="INIT">INIT</a></li>
+                <li>
+                    <a href="#%e6%8c%89%e9%94%ae%e6%8e%a7%e5%88%b6led" aria-label="按键控制LED">按键控制LED</a></li>
+                <li>
+                    <a href="#%e6%8c%89%e9%94%ae%e6%8e%a7%e5%88%b6led-%e7%a1%ac%e4%bb%b6%e7%94%b5%e8%b7%af%e8%bf%9e%e6%8e%a5" aria-label="按键控制LED-硬件电路连接">按键控制LED-硬件电路连接</a></li>
+                <li>
+                    <a href="#%e6%8c%89%e9%94%ae%e6%8e%a7%e5%88%b6led-keil%e5%b7%a5%e7%a8%8b%e5%87%86%e5%a4%87" aria-label="按键控制LED-Keil工程准备">按键控制LED-Keil工程准备</a></li>
+                <li>
+                    <a href="#%e6%8c%89%e9%94%ae%e6%8e%a7%e5%88%b6led-%e7%bc%96%e5%86%99%e5%b7%a5%e7%a8%8b" aria-label="按键控制LED-编写工程">按键控制LED-编写工程</a><ul>
+                        
+                <li>
+                    <a href="#%e7%bc%96%e5%86%99led%e7%9a%84%e4%bb%a3%e7%a0%81-ledh" aria-label="编写LED的代码-LED.h">编写LED的代码-LED.h</a></li>
+                <li>
+                    <a href="#%e7%bc%96%e5%86%99led%e7%9a%84%e4%bb%a3%e7%a0%81-ledc" aria-label="编写LED的代码-LED.c">编写LED的代码-LED.c</a><ul>
+                        
+                <li>
+                    <a href="#void-led_initvoid-%e5%88%9d%e5%a7%8b%e5%8c%96led" aria-label="void LED_Init(void) 初始化LED">void LED_Init(void) 初始化LED</a></li>
+                <li>
+                    <a href="#led%e7%82%b9%e4%ba%ae%e5%92%8c%e7%86%84%e7%81%ad-%e7%9a%84-%e5%87%bd%e6%95%b0%e5%ae%9e%e7%8e%b0" aria-label="LED点亮和熄灭 的 函数实现">LED点亮和熄灭 的 函数实现</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e7%bc%96%e5%86%99%e6%8c%89%e9%94%ae%e7%9a%84%e4%bb%a3%e7%a0%81" aria-label="编写按键的代码">编写按键的代码</a></li>
+                <li>
+                    <a href="#%e7%bc%96%e5%86%99%e4%bb%a3%e7%a0%81%e6%8c%89%e9%94%ae1%e6%8c%89%e4%b8%8bled1%e7%82%b9%e4%ba%ae%e6%8c%89%e9%94%ae2%e6%8c%89%e4%b8%8bled1%e7%86%84%e7%81%ad" aria-label="编写代码：按键1按下，LED1点亮，按键2按下，LED1熄灭">编写代码：按键1按下，LED1点亮，按键2按下，LED1熄灭</a><ul>
+                        
+                <li>
+                    <a href="#%e6%96%b0%e5%bb%bakeyh%e5%92%8ckeyc" aria-label="新建Key.h和Key.c">新建Key.h和Key.c</a></li>
+                <li>
+                    <a href="#%e7%bc%96%e5%86%99keyc" aria-label="编写Key.c">编写Key.c</a><ul>
+                        
+                <li>
+                    <a href="#%e5%9c%a8keyc%e4%b8%ad%e7%bc%96%e5%86%99-%e6%8c%89%e9%94%ae%e5%88%9d%e5%a7%8b%e5%8c%96%e5%87%bd%e6%95%b0" aria-label="在Key.c中编写-按键初始化函数">在Key.c中编写-按键初始化函数</a></li>
+                <li>
+                    <a href="#%e5%9c%a8keyc%e4%b8%ad%e7%bc%96%e5%86%99-%e8%af%bb%e5%8f%96%e6%8c%89%e9%94%ae%e5%80%bc%e7%9a%84%e5%87%bd%e6%95%b0" aria-label="在Key.c中编写-读取按键值的函数">在Key.c中编写-读取按键值的函数</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#%e7%bc%96%e5%86%99%e4%bb%a3%e7%a0%81%e6%8c%89%e9%94%ae1%e6%8c%89%e4%b8%8bled%e7%8a%b6%e6%80%81%e7%bf%bb%e8%bd%ac%e6%8c%89%e9%94%ae2%e6%8c%89%e4%b8%8bled2%e7%8a%b6%e6%80%81%e7%bf%bb%e8%bd%ac" aria-label="编写代码：按键1按下LED状态翻转，按键2按下，LED2状态翻转">编写代码：按键1按下LED状态翻转，按键2按下，LED2状态翻转</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%85%89%e6%95%8f%e4%bc%a0%e6%84%9f%e5%99%a8%e6%8e%a7%e5%88%b6%e8%9c%82%e9%b8%a3%e5%99%a8" aria-label="光敏传感器控制蜂鸣器">光敏传感器控制蜂鸣器</a></li>
+                <li>
+                    <a href="#%e5%85%89%e6%95%8f%e4%bc%a0%e6%84%9f%e5%99%a8%e6%8e%a7%e5%88%b6%e8%9c%82%e9%b8%a3%e5%99%a8-%e7%a1%ac%e4%bb%b6%e7%94%b5%e8%b7%af%e8%bf%9e%e6%8e%a5" aria-label="光敏传感器控制蜂鸣器-硬件电路连接">光敏传感器控制蜂鸣器-硬件电路连接</a><ul>
+                        
+                <li>
+                    <a href="#%e7%bc%96%e5%86%99%e8%9c%82%e9%b8%a3%e5%99%a8%e7%9a%84%e9%a9%b1%e5%8a%a8%e7%a8%8b%e5%ba%8fbuzzerc%e5%92%8cbuzzerh" aria-label="编写蜂鸣器的驱动程序Buzzer.c和Buzzer.h">编写蜂鸣器的驱动程序Buzzer.c和Buzzer.h</a></li>
+                <li>
+                    <a href="#%e7%bc%96%e5%86%99%e5%85%89%e6%95%8f%e4%bc%a0%e6%84%9f%e5%99%a8%e7%9a%84%e9%a9%b1%e5%8a%a8%e7%a8%8b%e5%ba%8fbuzzerc%e5%92%8cbuzzerh" aria-label="编写光敏传感器的驱动程序Buzzer.c和Buzzer.h">编写光敏传感器的驱动程序Buzzer.c和Buzzer.h</a></li></ul>
+                </li>
+                <li>
+                    <a href="#gpio%e6%80%bb%e7%bb%93" aria-label="GPIO总结">GPIO总结</a></li>
+                <li>
+                    <a href="#end" aria-label="END">END</a>
+                </li>
+            </ul>
+        </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+        
+        activeElement = elements[0];
+        const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+        document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+    }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        if (elements) {
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement){
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }
+    }, false);
+
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;
+    }
+</script>
+        <div class="post-content"><div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/%E7%9F%A5%E8%AF%86%E8%92%99%E8%94%BD%E4%BA%86%E6%88%91%E7%9A%84%E5%8F%8C%E7%9C%BC.jpg" alt = "知识蒙蔽了我的双眼.jpg" width = "70%" height = "auto">
+</div>
+<br>
+<h2 id="init">INIT<a hidden class="anchor" aria-hidden="true" href="#init">#</a></h2>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/INIT.jpg" alt = "INIT.jpg" width = "70%" height = "auto">
+</div>
+<br>
+<blockquote>
+<p><strong>INIT：本节内容正式开始。action!</strong></p>
+</blockquote>
+<h2 id="按键控制led">按键控制LED<a hidden class="anchor" aria-hidden="true" href="#按键控制led">#</a></h2>
+<h2 id="按键控制led-硬件电路连接">按键控制LED-硬件电路连接<a hidden class="anchor" aria-hidden="true" href="#按键控制led-硬件电路连接">#</a></h2>
+<p>接下来我们来写一下GPIO输入部分的代码。先看一下第一个代码的接线图。</p>
+<p>图：按键控制LED</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P8-%E6%8C%89%E9%94%AE%E6%8E%A7%E5%88%B6LED-%E5%85%89%E6%95%8F%E4%BC%A0%E6%84%9F%E5%99%A8%E6%8E%A7%E5%88%B6%E8%9C%82%E9%B8%A3%E5%99%A8.jpg" alt = "P8-按键控制LED-光敏传感器控制蜂鸣器.jpg" width = "70%" height = "auto">
+</div>
+<br>
+<p>这里我接了两个按键和2个LED，其中两个按键分别接在了PB1和PB11两个口上。按键一端接GPIO口，另一端接GND，就是我们PPT中的第一种解法。</p>
+<p>图：按键的硬件电路</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P8-%E6%8C%89%E9%94%AE%E6%8E%A7%E5%88%B6LED-%E5%85%89%E6%95%8F%E4%BC%A0%E6%84%9F%E5%99%A8%E6%8E%A7%E5%88%B6%E8%9C%82%E9%B8%A3%E5%99%A8.png" alt = "P8-按键控制LED-光敏传感器控制蜂鸣器.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>2个LED分别接在了PA1和PA2两个口。LED一端接GPIO口，另一端接VCC，就是低电平点亮的接法。这个按键、LED的数量和连接的端口都是随意的，具体接多少个，接到哪些端口就看你的需求了。</p>
+<p>然后我们拿出插好STM32最小系统板的面包板，把两个按键插在PB1和PB11两个端口上。</p>
+<p>再把2个LED插在PA1和PA2两个端口上。这样就完成了这个代码的硬件电路。</p>
+<p>图：按键控制LED-实物接线图</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P8-%E6%8C%89%E9%94%AE%E6%8E%A7%E5%88%B6LED-%E5%85%89%E6%95%8F%E4%BC%A0%E6%84%9F%E5%99%A8%E6%8E%A7%E5%88%B6%E8%9C%82%E9%B8%A3%E5%99%A8-1.png" alt = "P8-按键控制LED-光敏传感器控制蜂鸣器-1.png" width = "70%" height = "auto">
+</div>
+<br>
+<h2 id="按键控制led-keil工程准备">按键控制LED-Keil工程准备<a hidden class="anchor" aria-hidden="true" href="#按键控制led-keil工程准备">#</a></h2>
+<p>接下来我们打开工程文件夹，复制一下蜂鸣器工程的代码，改个名字叫3-4按键控制LED。然后点进去，打开工程。</p>
+<p>接下来我们就需要在这个工程上完成LED和按键的驱动代码。但是如果把这两部分驱动代码都混在主函数里面，那代码就太乱了是吧？不容易管理，也不容易移植。</p>
+<p>所以对于这种驱动代码而言，我们一般都会把它封装起来，单独放在另外的.c和.h文件里。这就是模块化编程的方式我在51单片机教程的模块化编程那节讲过，不会的可以去看一下，在这里我就直接操作了。</p>
+<p>1、首先我们打开工程文件夹，再建一个文件夹叫Hardware，用来存放硬件驱动。</p>
+<p>2、然后回到Keil还是一样的步骤。点击三个箱子的按钮，打开工程管理，新建一个组，也叫Hardware，挪个位置。</p>
+<p>3、然后再点击魔术棒按钮，打开工程选项，选择C/C++，点击这里三个点的按钮，把刚才新建的Hardware文件夹添加到头文件路径列表中。Ok这样我们就又在工程添加了一个Hardware文件夹。</p>
+<p>4、然后在Hardware这里右键添加新的文件，选择C文件起个名字叫LED，这个文件就用来封装LED的驱动程序。然后路径也别忘了，选择Hardware文件夹，存在这个文件夹里。</p>
+<p>5、接着继续在Hardware处右键添加新的文件，选择H文件，起个名字也叫LED。下面的路径也是一样，选择Hardware文件夹。</p>
+<p>这样我们就建好了LED.c和LED.h两个文件，用来封装LED驱动程序。LED.c用来存放驱动程序的主体代码，LED.h用来存放这个驱动可以对外提供的函数或变量的声明。</p>
+<h2 id="按键控制led-编写工程">按键控制LED-编写工程<a hidden class="anchor" aria-hidden="true" href="#按键控制led-编写工程">#</a></h2>
+<h3 id="编写led的代码-ledh">编写LED的代码-LED.h<a hidden class="anchor" aria-hidden="true" href="#编写led的代码-ledh">#</a></h3>
+<p>这两个文件建好之后，还得添加一些必要的代码。首先.c文件的第一行，右键include一个stm32f10x的.h头文件。</p>
+<p>要添加一个防止头文件重复包含的代码，这里格式都是固定的。就是#ifndef_LED_H ，如果没有定义LED这个字符串，那么#define_LED_H，那么就定义这个字符串，最后再加上#endif，这个是和#ifndef组成的。括号，我们的函数和变量声明就放在这个括号里面。最后注意这个文件要以空行结尾，这样就完成了。</p>
+<p>代码：编写led.h</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#ifndef __LED_H
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define __LED_H
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif
+</span></span></span></code></pre></div><h3 id="编写led的代码-ledc">编写LED的代码-LED.c<a hidden class="anchor" aria-hidden="true" href="#编写led的代码-ledc">#</a></h3>
+<p>接着我们就来封装一下LED的代码，我们打开led.c文件，首先先写一个LED初始化函数。</p>
+<h4 id="void-led_initvoid-初始化led">void LED_Init(void) 初始化LED<a hidden class="anchor" aria-hidden="true" href="#void-led_initvoid-初始化led">#</a></h4>
+<p>在这里写<code>void LED_Init(void)</code>。</p>
+<p>这个函数是用来初始化LED的。那里面写的就是打开时钟、配置端口模式这些东西，这就是我们之前学的代码，也就是<code>RCC_APB2PeriphClockCmd</code>，我们的LED都是接在GPIO上的。所以第一个参数是<code>RCC_APB2Periph_GPIOA</code>。然后第二个参数写<code>ENABLE</code>，开启时钟。</p>
+<p>接着配置端口模式。先定义一个结构体变量，GPIO_InitTypeDef。这里如果不显示代码提示的话，可以按一下快捷键，Ctrl+Alt+空格，这样就可以弹出代码提示框了。</p>
+<p>我们选择GPIO_InitTypeDef变量名叫GPIO_InitStructure 。然后把结构体的成员用点运算符都引出来，先放在这儿，最后调用GPL elite函数。</p>
+<p>第一个参数是GPIOA，初始化GPIOA外设。第二个是结构体变量名，前面加上取地址的符号，这里使用的是地址传递。</p>
+<p>接着填一下参数。</p>
+<p>第一个GPIO_Mode，我们写GPIO_Mode_Out_PP，推挽输出。</p>
+<p>第二个GPIO_Pin，我们写GPIO_Pin_1再或上GPIO_Pin_2选中1号和2号口。</p>
+<p>第三个GPIO_Speed，我们写GPIO_Speed_50MHz，选择50M的速度，这样LED初始化的代码就写完了。</p>
+<p>编写代码：LED.c</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">LED_Init</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*开启时钟*/</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">RCC_APB2PeriphClockCmd</span>(RCC_APB2Periph_GPIOA, ENABLE);		<span style="color:#75715e">//开启GPIOA的时钟
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*GPIO初始化*/</span>
+</span></span><span style="display:flex;"><span>	GPIO_InitTypeDef GPIO_InitStructure;
+</span></span><span style="display:flex;"><span>	GPIO_InitStructure.GPIO_Mode <span style="color:#f92672">=</span> GPIO_Mode_Out_PP;
+</span></span><span style="display:flex;"><span>	GPIO_InitStructure.GPIO_Pin <span style="color:#f92672">=</span> GPIO_Pin_1 <span style="color:#f92672">|</span> GPIO_Pin_2;
+</span></span><span style="display:flex;"><span>	GPIO_InitStructure.GPIO_Speed <span style="color:#f92672">=</span> GPIO_Speed_50MHz;
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">GPIO_Init</span>(GPIOA, <span style="color:#f92672">&amp;</span>GPIO_InitStructure);						<span style="color:#75715e">//将PA1和PA2引脚初始化为推挽输出
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*设置GPIO初始化后的默认电平*/</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">GPIO_SetBits</span>(GPIOA, GPIO_Pin_1 <span style="color:#f92672">|</span> GPIO_Pin_2);				<span style="color:#75715e">//设置PA1和PA2引脚为高电平
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p>这个代码大家多打几遍，再根据代码提示，基本上就可以直接上手了，还是比较好用的是吧。那到这里我们只需要调用一个LED_Init的函数，LED的2个GPIO口就可以直接初始化完成了。那我们先试一下.</p>
+<p>因为这个函数是需要被外部引用的，所以我们需要复制一下函数的第一行，把这个函数的第一行放在.h文件的这里，这样就是对模块外部声明，这个函数是可以被外部调用的函数。</p>
+<p>编写代码：LED.h</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#ifndef __LED_H
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define __LED_H
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">LED_Init</span>(<span style="color:#66d9ef">void</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif
+</span></span></span></code></pre></div><p>那我们回到main.c先把蜂鸣器的这些代码删掉，然后在上面的这里写上include &ldquo;LED.h&quot;去包含led模块的头文件之后，在主函数里直接调用LED_Init，这样就完成了LED的初始化。</p>
+<p>编写代码：main.c</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;stm32f10x.h&#34;                  // Device header</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;LED.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*模块初始化*/</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">LED_Init</span>();		<span style="color:#75715e">//LED初始化
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>这里有提示一个警告，这是因为我们新写的代码还没有更新，软件还不知道有这个函数，那我们编译一下。这个是0错误0警告。</p>
+<p>有时候这个软件也会时不时报告警告或错误。这个有可能是语法检查更新较慢，直接编译一下没有问题就行了，然后下载。</p>
+<p>这里可以看到2个LED都亮起来了，这说明我们的端口配置和模块化编程是没有问题的。这里因为GPIO配置好了之后，默认就是低电平，所以我们还没操作LED，LED就都亮起来了。</p>
+<p>那我们可以在LED edit函数的最后写上GPIO_SetBits()。这样初始化之后，如果不操作LED，LED就是熄灭的了。试一下编译没有错误，下载初始化之后，LED默认就是关闭的状态了。</p>
+<p>编写代码：LED.c</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;stm32f10x.h&#34;                  // Device header</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 函    数：LED初始化
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 参    数：无
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 返 回 值：无
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">LED_Init</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*开启时钟*/</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">RCC_APB2PeriphClockCmd</span>(RCC_APB2Periph_GPIOA, ENABLE);		<span style="color:#75715e">//开启GPIOA的时钟
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*GPIO初始化*/</span>
+</span></span><span style="display:flex;"><span>	GPIO_InitTypeDef GPIO_InitStructure;
+</span></span><span style="display:flex;"><span>	GPIO_InitStructure.GPIO_Mode <span style="color:#f92672">=</span> GPIO_Mode_Out_PP;
+</span></span><span style="display:flex;"><span>	GPIO_InitStructure.GPIO_Pin <span style="color:#f92672">=</span> GPIO_Pin_1 <span style="color:#f92672">|</span> GPIO_Pin_2;
+</span></span><span style="display:flex;"><span>	GPIO_InitStructure.GPIO_Speed <span style="color:#f92672">=</span> GPIO_Speed_50MHz;
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">GPIO_Init</span>(GPIOA, <span style="color:#f92672">&amp;</span>GPIO_InitStructure);						<span style="color:#75715e">//将PA1和PA2引脚初始化为推挽输出
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*设置GPIO初始化后的默认电平*/</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">GPIO_SetBits</span>(GPIOA, GPIO_Pin_1 <span style="color:#f92672">|</span> GPIO_Pin_2);				<span style="color:#75715e">//设置PA1和PA2引脚为高电平
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><h4 id="led点亮和熄灭-的-函数实现">LED点亮和熄灭 的 函数实现<a hidden class="anchor" aria-hidden="true" href="#led点亮和熄灭-的-函数实现">#</a></h4>
+<p>接着我们就来快速完善一下LED驱动程序模块。除了初始化，我们还需要点亮和熄灭LED的函数。</p>
+<p>这里可以写一个void LED1_ON(void)，点亮LED1，里面写</p>
+<p>GPIO_ResetBits(GPIOA, GPIO_Pin_1);		//设置PA1引脚为低电平。</p>
+<p>我们暂且把PA1的LED叫LED1。</p>
+<p>然后再来一个void LED1_OFF(void)，熄灭LED1。里面写</p>
+<p>GPIO_SetBits(GPIOA, GPIO_Pin_1);		//设置PA1引脚为高电平</p>
+<p>然后把这两个函数复制粘贴一下。</p>
+<p>把下面的改成LED2，GPIO_Pin_2，这就是打开和关闭LED2的函数了。</p>
+<p>当然我这里用了四个函数来实现两个灯的打开和关闭。如果你觉得函数太多了，那你也可以定义一个LED_Set函数。然后定义两个参数，一个参数选择操作哪个灯，另一个参数选择开还是关，这都是没问题的。根据你的实际需求来。</p>
+<p>我这里LED比较少，就直接这样写了。</p>
+<p>那我们把这四个函数都放在LED.h去文件里声明一下。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#ifndef __LED_H
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define __LED_H
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">LED_Init</span>(<span style="color:#66d9ef">void</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">LED1_ON</span>(<span style="color:#66d9ef">void</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">LED1_OFF</span>(<span style="color:#66d9ef">void</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">LED2_ON</span>(<span style="color:#66d9ef">void</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">LED2_OFF</span>(<span style="color:#66d9ef">void</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif
+</span></span></span></code></pre></div><p>这样LED的驱动函数模块就封装好了。</p>
+<p>我们在主函数里调用LED1_ON，Delay 500毫秒，LED1_OFF， Delay 500毫秒。编译。下载。看一下LED就在闪烁了。</p>
+<p>我们再在这里加上LED2_OFF，然后这里LED2_ON，编译，下载。</p>
+<p>编写代码：LED.c</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;stm32f10x.h&#34;                  // Device header</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 函    数：LED初始化
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 参    数：无
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 返 回 值：无
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">LED_Init</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*开启时钟*/</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">RCC_APB2PeriphClockCmd</span>(RCC_APB2Periph_GPIOA, ENABLE);		<span style="color:#75715e">//开启GPIOA的时钟
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*GPIO初始化*/</span>
+</span></span><span style="display:flex;"><span>	GPIO_InitTypeDef GPIO_InitStructure;
+</span></span><span style="display:flex;"><span>	GPIO_InitStructure.GPIO_Mode <span style="color:#f92672">=</span> GPIO_Mode_Out_PP;
+</span></span><span style="display:flex;"><span>	GPIO_InitStructure.GPIO_Pin <span style="color:#f92672">=</span> GPIO_Pin_1 <span style="color:#f92672">|</span> GPIO_Pin_2;
+</span></span><span style="display:flex;"><span>	GPIO_InitStructure.GPIO_Speed <span style="color:#f92672">=</span> GPIO_Speed_50MHz;
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">GPIO_Init</span>(GPIOA, <span style="color:#f92672">&amp;</span>GPIO_InitStructure);						<span style="color:#75715e">//将PA1和PA2引脚初始化为推挽输出
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*设置GPIO初始化后的默认电平*/</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">GPIO_SetBits</span>(GPIOA, GPIO_Pin_1 <span style="color:#f92672">|</span> GPIO_Pin_2);				<span style="color:#75715e">//设置PA1和PA2引脚为高电平
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 函    数：LED1开启
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 参    数：无
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 返 回 值：无
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">LED1_ON</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">GPIO_ResetBits</span>(GPIOA, GPIO_Pin_1);		<span style="color:#75715e">//设置PA1引脚为低电平
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 函    数：LED1关闭
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 参    数：无
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 返 回 值：无
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">LED1_OFF</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">GPIO_SetBits</span>(GPIOA, GPIO_Pin_1);		<span style="color:#75715e">//设置PA1引脚为高电平
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 函    数：LED2开启
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 参    数：无
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 返 回 值：无
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">LED2_ON</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">GPIO_ResetBits</span>(GPIOA, GPIO_Pin_2);		<span style="color:#75715e">//设置PA2引脚为低电平
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 函    数：LED2关闭
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 参    数：无
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 返 回 值：无
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">LED2_OFF</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">GPIO_SetBits</span>(GPIOA, GPIO_Pin_2);		<span style="color:#75715e">//设置PA2引脚为高电平
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p>编写代码：main.c</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;stm32f10x.h&#34;                  // Device header</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;Delay.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;LED.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*模块初始化*/</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">LED_Init</span>();		<span style="color:#75715e">//LED初始化
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">LED1_ON</span>();
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">LED1_OFF</span>();
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Delay_ms</span>(<span style="color:#ae81ff">500</span>);
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">LED2_ON</span>();
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">LED2_OFF</span>();
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Delay_ms</span>(<span style="color:#ae81ff">500</span>);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>可以看到2个LED交替闪烁，这说明我们的驱动代码是没问题的。</p>
+<p>在主函数里我们的代码也变得更加简洁。初始化就是初始化，开灯就是开灯，关灯就是关灯，不需要再管那些底层的各种参数了，这就是模块化编程的好处。</p>
+<h3 id="编写按键的代码">编写按键的代码<a hidden class="anchor" aria-hidden="true" href="#编写按键的代码">#</a></h3>
+<h3 id="编写代码按键1按下led1点亮按键2按下led1熄灭">编写代码：按键1按下，LED1点亮，按键2按下，LED1熄灭<a hidden class="anchor" aria-hidden="true" href="#编写代码按键1按下led1点亮按键2按下led1熄灭">#</a></h3>
+<h4 id="新建keyh和keyc">新建Key.h和Key.c<a hidden class="anchor" aria-hidden="true" href="#新建keyh和keyc">#</a></h4>
+<p>接着我们就来开始写按键部分的代码了，同样我们也把按键封装在驱动函数模块里。我们在Hardware目录下右键添加新的文件，选择C文件起个名字叫Key，下面的路径，选择Hardware文件夹。</p>
+<p>接着继续在Hardware出右键添加新的文件，选择H文件起个名字也叫Key，下面的路径也是写Hardware文件夹。</p>
+<h4 id="编写keyc">编写Key.c<a hidden class="anchor" aria-hidden="true" href="#编写keyc">#</a></h4>
+<p>然后Key.c文件，右键添加stm32f10x头文件。</p>
+<p>编写代码：Key.h</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#ifndef __KEY_H
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define __KEY_H
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif
+</span></span></span></code></pre></div><p>这样函数的基本框架就建好了。</p>
+<h5 id="在keyc中编写-按键初始化函数">在Key.c中编写-按键初始化函数<a hidden class="anchor" aria-hidden="true" href="#在keyc中编写-按键初始化函数">#</a></h5>
+<p>我们到Key.c文件里先写一个按键初始化函数，void Key_Init(void) 在这里面我们将按键的两个端口都初始化为上拉输入的模式。</p>
+<p>第一步还是开启时钟，RCC_APB2PeriphClockCmd。我们的按键是接在GPIOB上的。所以第一个参数是RCC_APB2Periph_GPIOB，然后第二个参数写ENABLE开启时钟。</p>
+<p>第二步GPIO输出，定义一个结构体变量GPIO_InitTypeDef，变量名叫GPIO_InitStructur。然后把结构体的成员用点运算符都引出来，先放在这儿。最后调用GPIO_Init函数。</p>
+<p>第一个参数是GPIOB初始化GPIOB外设。第二个参数是结构体变量名,前面加上取地址的符号，然后填一下参数。</p>
+<p>第一个GPIO_Mode这里因为我们需要读取按键，所以我们需要选择GPIO_Mode_IPU，上拉输入。</p>
+<p>第二个GPIO_Pin，因为我们案件接在了PB1和PB11口上，所以写GPIO_Pin_1 | GPIO_Pin_11选中1号和11号口。</p>
+<p>第三个GPIO_Speed，这里的速度是GPIO的输出速度，在输入模式下，这个参数其实是没用的。</p>
+<p>那我们还是填上GPIO_Speed_50MHz，这个也没啥影响，这样按键的初始化就完成了。</p>
+<h5 id="在keyc中编写-读取按键值的函数">在Key.c中编写-读取按键值的函数<a hidden class="anchor" aria-hidden="true" href="#在keyc中编写-读取按键值的函数">#</a></h5>
+<p>接着我们再来写一个读取按键值的函数，我们在这下面写上</p>
+<p>uint8_t Key_GetNum(void)，调用这个函数就可以返回按下按键的键码，它的返回值是uint8_t。</p>
+<p>我们之前讲过，这就是unsigned char的意思。接着我们在里面再定一个变量，uint8_t KeyNum = 0。最后return KeyNum。将这个变量作为返回值。
+按键键码默认给0。如果没有按键按下，就返回0。</p>
+<p>编写代码：Key.c</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;stm32f10x.h&#34;                  // Device header</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 函    数：按键初始化
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 参    数：无
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 返 回 值：无
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Key_Init</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*开启时钟*/</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">RCC_APB2PeriphClockCmd</span>(RCC_APB2Periph_GPIOB, ENABLE);		<span style="color:#75715e">//开启GPIOB的时钟
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*GPIO初始化*/</span>
+</span></span><span style="display:flex;"><span>	GPIO_InitTypeDef GPIO_InitStructure;
+</span></span><span style="display:flex;"><span>	GPIO_InitStructure.GPIO_Mode <span style="color:#f92672">=</span> GPIO_Mode_IPU;
+</span></span><span style="display:flex;"><span>	GPIO_InitStructure.GPIO_Pin <span style="color:#f92672">=</span> GPIO_Pin_1 <span style="color:#f92672">|</span> GPIO_Pin_11;
+</span></span><span style="display:flex;"><span>	GPIO_InitStructure.GPIO_Speed <span style="color:#f92672">=</span> GPIO_Speed_50MHz;
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">GPIO_Init</span>(GPIOB, <span style="color:#f92672">&amp;</span>GPIO_InitStructure);						<span style="color:#75715e">//将PB1和PB11引脚初始化为上拉输入
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 函    数：按键获取键码
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 参    数：无
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 返 回 值：按下按键的键码值，范围：0~2，返回0代表没有按键按下
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 注意事项：此函数是阻塞式操作，当按键按住不放时，函数会卡住，直到按键松手
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">uint8_t</span> <span style="color:#a6e22e">Key_GetNum</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">uint8_t</span> KeyNum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;		<span style="color:#75715e">//定义变量，默认键码值为0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> KeyNum;			<span style="color:#75715e">//返回键码值，如果没有按键按下，所有if都不成立，则键码为默认值0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p>然后在中间这里我们就需要用到读取GPIO端口的功能。那先找一下GPIO的库函数文件，打开gpio.h这个文件，翻到最后来看一下这4个GPIO的读取函数。</p>
+<p>代码：gpio.h中4个GPIO的读取函数</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">uint8_t</span> <span style="color:#a6e22e">GPIO_ReadInputDataBit</span>(GPIO_TypeDef<span style="color:#f92672">*</span> GPIOx, <span style="color:#66d9ef">uint16_t</span> GPIO_Pin);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">uint16_t</span> <span style="color:#a6e22e">GPIO_ReadInputData</span>(GPIO_TypeDef<span style="color:#f92672">*</span> GPIOx);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">uint8_t</span> <span style="color:#a6e22e">GPIO_ReadOutputDataBit</span>(GPIO_TypeDef<span style="color:#f92672">*</span> GPIOx, <span style="color:#66d9ef">uint16_t</span> GPIO_Pin);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">uint16_t</span> <span style="color:#a6e22e">GPIO_ReadOutputData</span>(GPIO_TypeDef<span style="color:#f92672">*</span> GPIOx);
+</span></span></code></pre></div><p>第一个是GPIO_ReadInputDataBit，这个函数是用来读取输入数据寄存器某一个端口的输入值，它的参数是GPIOx和GPIO_Pin用来指定某一个端口，返回值是uint8_t代表这个端口的高低电平。</p>
+<p>读取按键我们就需要用到这个函数。</p>
+<p>第二个GPIO_ReadInputData，这个函数比上一个函数少了个Bit，它是用来读取整个输入数据寄存器的，参数只有一个GPIOx用来指定外设，返回值是uint16_t是一个16位的数据，每一位代表一个端口值。</p>
+<p>第三个GPIO_ReadOutputDataBit，这个函数是用来读取输出数据寄存器的某一个位，所以原则上来说它并不是用来读取端口的输入数据的。这个函数一般用于输出模式下，用来看一下自己输出的是什么，具体有什么用，我等会儿可以给大家演示一下。</p>
+<p>最后一个GPIO_ReadOutputData，这个函数也是少了一个Bit，意思也是一样，是用来读取整个输出寄存器的。</p>
+<p>我们打开PPT看一下这个图，对照一下这个图应该就好理解了。</p>
+<p>图：根据GPIO位结构图来理解GPIO的4个读取函数</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P8-%E6%8C%89%E9%94%AE%E6%8E%A7%E5%88%B6LED-%E5%85%89%E6%95%8F%E4%BC%A0%E6%84%9F%E5%99%A8%E6%8E%A7%E5%88%B6%E8%9C%82%E9%B8%A3%E5%99%A8-2.png" alt = "P8-按键控制LED-光敏传感器控制蜂鸣器-2.png" width = "70%" height = "auto">
+</div>
+<br>
+<p>GPIO_ReadInputDataBit就是读取这里输入数据寄存器的某一位，GPIO_ReadInputData就是读取这整个输入数据寄存器器。GPIO_ReadOutputDataBit就是读取这里输出数据寄存器的某一位，GPIO_ReadOutputData就是读取这整个输出数据寄存器。</p>
+<p>所以说如果你想读取GPIO口的话，需要用ReadInput的这两个函数。如果在输出模式下想要看一下现在输出了什么，才需要用到ReadOutput的这两个函数，这就是这四个函数的用途。</p>
+<p>那么回到Key.c这里来，在这里我们需要读取外部输入的一个端口值，所以我们到gpio,h这里复制一下GPIO_ReadOutputDataBit这个函数放到按键读取函数这里，然后参数写GPIOB，GPIO_Pin_1，读取PB1端口的值。这里的返回值就是输入数据寄存器某一位的值，0代表低电平，1代表高电平。</p>
+<p>所以我们加上if判断，把这个函数括起来。然后如果读取PB1端口值 == 0，就代表按键按下，我们进入if里操作。</p>
+<p>这次按键刚按下会有个抖动，所以需要delay一段时间。那在这个文件里需要用的Delay函数，还需要在上面加上#include&quot;Delay.h&rdquo;。</p>
+<p>然后在这里Delay_ms(20) 20毫秒消抖。</p>
+<p>接着我们还需要检测一下按键松手的情况，因为我们的按键一般是松手之后才有动作的，所以在这里加上一个while循环。判断条件还是读取PB1 == 0。这个如果按键一直按下，就卡在这里，直到松手。</p>
+<p>那下面松手之后再delay 20毫秒消一下按键松手的抖动，接着我们赋值KeyNum = 1，用这个变量将键码1传递出去，这就是PB1按键的检测。</p>
+<p>接着PB11的按键也是一样，我们复制粘贴一下这部分。然后GPIO_Pin_1这里改成11， PB11的键码，我们定义为2。最后是将KeyNum这个变量返回回去，这样就完成了按键的读取。</p>
+<p>编写代码：Key.c</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;stm32f10x.h&#34;                  // Device header</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;Delay.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 函    数：按键初始化
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 参    数：无
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 返 回 值：无
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Key_Init</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*开启时钟*/</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">RCC_APB2PeriphClockCmd</span>(RCC_APB2Periph_GPIOB, ENABLE);		<span style="color:#75715e">//开启GPIOB的时钟
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*GPIO初始化*/</span>
+</span></span><span style="display:flex;"><span>	GPIO_InitTypeDef GPIO_InitStructure;
+</span></span><span style="display:flex;"><span>	GPIO_InitStructure.GPIO_Mode <span style="color:#f92672">=</span> GPIO_Mode_IPU;
+</span></span><span style="display:flex;"><span>	GPIO_InitStructure.GPIO_Pin <span style="color:#f92672">=</span> GPIO_Pin_1 <span style="color:#f92672">|</span> GPIO_Pin_11;
+</span></span><span style="display:flex;"><span>	GPIO_InitStructure.GPIO_Speed <span style="color:#f92672">=</span> GPIO_Speed_50MHz;
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">GPIO_Init</span>(GPIOB, <span style="color:#f92672">&amp;</span>GPIO_InitStructure);						<span style="color:#75715e">//将PB1和PB11引脚初始化为上拉输入
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 函    数：按键获取键码
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 参    数：无
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 返 回 值：按下按键的键码值，范围：0~2，返回0代表没有按键按下
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 注意事项：此函数是阻塞式操作，当按键按住不放时，函数会卡住，直到按键松手
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">uint8_t</span> <span style="color:#a6e22e">Key_GetNum</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">uint8_t</span> KeyNum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;		<span style="color:#75715e">//定义变量，默认键码值为0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">GPIO_ReadInputDataBit</span>(GPIOB, GPIO_Pin_1) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)			<span style="color:#75715e">//读PB1输入寄存器的状态，如果为0，则代表按键1按下
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Delay_ms</span>(<span style="color:#ae81ff">20</span>);											<span style="color:#75715e">//延时消抖
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">while</span> (<span style="color:#a6e22e">GPIO_ReadInputDataBit</span>(GPIOB, GPIO_Pin_1) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>);	<span style="color:#75715e">//等待按键松手
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">Delay_ms</span>(<span style="color:#ae81ff">20</span>);											<span style="color:#75715e">//延时消抖
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		KeyNum <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;												<span style="color:#75715e">//置键码为1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	}
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">GPIO_ReadInputDataBit</span>(GPIOB, GPIO_Pin_11) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)			<span style="color:#75715e">//读PB11输入寄存器的状态，如果为0，则代表按键2按下
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Delay_ms</span>(<span style="color:#ae81ff">20</span>);											<span style="color:#75715e">//延时消抖
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">while</span> (<span style="color:#a6e22e">GPIO_ReadInputDataBit</span>(GPIOB, GPIO_Pin_11) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>);	<span style="color:#75715e">//等待按键松手
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">Delay_ms</span>(<span style="color:#ae81ff">20</span>);											<span style="color:#75715e">//延时消抖
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		KeyNum <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;												<span style="color:#75715e">//置键码为2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	}
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> KeyNum;			<span style="color:#75715e">//返回键码值，如果没有按键按下，所有if都不成立，则键码为默认值0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p>我们来试一下，先把两个函数的第一行都复制到Key.h里的声明。之后到main点C里面，首先#include&quot;Key.h&quot;，然后主循环之前初始化一下按键。接着我们先定义一个全局变量KeyNum，用来存一下键码的返回值。</p>
+<p>这个注意一下，虽然我们这个也叫KeyNum，但是这个KeyNum和这里的KeyNum不是一个变量，这里是全局变量，Key函数里面的是局部变量，两者的作用域不一样。即使我在主函数这里再定义一个同名的KeyNum，
+他们三个也都是不一样的。在函数里面的是局部变量，只能在本函数里使用。在函数外面的是全局变量，每个函数都可以使用。</p>
+<p>在函数里优先使用自己的局部变量，如果没有才会使用外部的全局变量。那我就用这个全局变量来接返回值。编译一下。</p>
+<p>在主循环里写KeyNum = Key_GetNum();不断读取键码值放在KeyNum变量里。接着if (KeyNum == 1)，这就是按键1按下了，我们就可以执行对应的操作了。比如LED1_ON()点亮LED1，然后继续。</p>
+<p>if (KeyNum == 2)，按键2按下，LED1_OFF()熄灭LED1，我们试一下编译。下载。按一下右边的按键1，LED1点亮，按一下左边的按键2，LED1熄灭，这些就是按键的基本操作了。</p>
+<h3 id="编写代码按键1按下led状态翻转按键2按下led2状态翻转">编写代码：按键1按下LED状态翻转，按键2按下，LED2状态翻转<a hidden class="anchor" aria-hidden="true" href="#编写代码按键1按下led状态翻转按键2按下led2状态翻转">#</a></h3>
+<p>那么演示的程序是按一下熄灭，再按一下点亮，也就是按键按下，LED的状态取反。这个该怎么实现呢？这就需要用到GPIO_ReadOutput的函数了。</p>
+<p>我们可以在LDE的驱动里再加一个函数，void LED1_Turn(void)，调用这个函数LED1的状态取反，在里面我们可以写if。</p>
+<p>这整个逻辑就是调用GPIO_ReadOutputDataBit的函数读取当前的端口输出状态。如果当前输出0就给它置1，否则就置0，这样就实现了端口的电平翻转。这也是GPIO_ReadOutput函数的用途，一般用于输出模式下。</p>
+<p>编写代码：Key.c中void LED1_Turn(void) 实现LED1状态翻转</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 函    数：LED1状态翻转
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 参    数：无
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 返 回 值：无
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">LED1_Turn</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">GPIO_ReadOutputDataBit</span>(GPIOA, GPIO_Pin_1) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)		<span style="color:#75715e">//获取输出寄存器的状态，如果当前引脚输出低电平
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">GPIO_SetBits</span>(GPIOA, GPIO_Pin_1);					<span style="color:#75715e">//则设置PA1引脚为高电平
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">else</span>													<span style="color:#75715e">//否则，即当前引脚输出高电平
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">GPIO_ResetBits</span>(GPIOA, GPIO_Pin_1);					<span style="color:#75715e">//则设置PA1引脚为低电平
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>接着我们复制一下这个函数，给LED2也加上翻转的功能，这里改成LED2，GPIO_Pin_2。最后把这两个函数的第一行放到头文件里声明一下。这样我们就可以在主函数里使用这两个功能了。</p>
+<p>编写代码：Key.h</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#ifndef __LED_H
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define __LED_H
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">LED_Init</span>(<span style="color:#66d9ef">void</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">LED1_ON</span>(<span style="color:#66d9ef">void</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">LED1_OFF</span>(<span style="color:#66d9ef">void</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">LED1_Turn</span>(<span style="color:#66d9ef">void</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">LED2_ON</span>(<span style="color:#66d9ef">void</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">LED2_OFF</span>(<span style="color:#66d9ef">void</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">LED2_Turn</span>(<span style="color:#66d9ef">void</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif
+</span></span></span></code></pre></div><p>比如，按键1按下，LED1_Turn，按键2，LED2_Turn，我们再试一下编译。下载。这时的现象就和我们演示的一样了。</p>
+<p>最后注意一下这个驱动函数模块写好之后，尽量在这些函数的上面加一些注释，说明一下函数的用途，参数的取值和返回值的意思这些东西。这样别人在使用你的函数驱动时才知道咋用，对吧？</p>
+<p>就像STM32的库函数一样，在每个函数上面写一下这样的注释。那我这里时间关系就不在视频里写注释了，我课下会写好提供给大家的。大家自己写代码也尽量打打注释，这样方便自己和别人理解。</p>
+<h2 id="光敏传感器控制蜂鸣器">光敏传感器控制蜂鸣器<a hidden class="anchor" aria-hidden="true" href="#光敏传感器控制蜂鸣器">#</a></h2>
+<h2 id="光敏传感器控制蜂鸣器-硬件电路连接">光敏传感器控制蜂鸣器-硬件电路连接<a hidden class="anchor" aria-hidden="true" href="#光敏传感器控制蜂鸣器-硬件电路连接">#</a></h2>
+<p>好，第一个代码到这里就结束了，接着我们来写一下第二个代码，我们打开工程文件夹，先看一下接线图。</p>
+<p>图：接线图-光敏传感器控制蜂鸣器</p>
+<br>
+<div align="center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P8-%E6%8C%89%E9%94%AE%E6%8E%A7%E5%88%B6LED-%E5%85%89%E6%95%8F%E4%BC%A0%E6%84%9F%E5%99%A8%E6%8E%A7%E5%88%B6%E8%9C%82%E9%B8%A3%E5%99%A8-1.jpg" alt = "P8-按键控制LED-光敏传感器控制蜂鸣器-1.jpg" width = "70%" height = "auto">
+</div>
+<br>
+<p>在这里接了两个模块，左边的蜂鸣器和之前的接法还是一样。VCC。GND接电源，控制脚接PB12号口。</p>
+<p>右边接的就是光敏传感器模块了。VCC，GND同样是接电源，DO数字输出端接PB13号口。</p>
+<p>那我们拿出面包板先接一下蜂鸣器。VCC接电源正，GND接电源负，控制脚接PB12。然后是光敏传感器，VCC接电源正，GND接电源负，DO输出脚接PB13，上电，可以看到光敏传感器的灯亮了。</p>
+<p>当我们遮住光线时，输出指示灯灭，代表输出高电平，松手时输出指示灯亮代表输出低电平。这个电位器可以调节高低电平的判断阈值，大家可以试一下，我就不演示了。</p>
+<h3 id="编写蜂鸣器的驱动程序buzzerc和buzzerh">编写蜂鸣器的驱动程序Buzzer.c和Buzzer.h<a hidden class="anchor" aria-hidden="true" href="#编写蜂鸣器的驱动程序buzzerc和buzzerh">#</a></h3>
+<p>接着我们回到工程文件夹，复制一下3-4的代码，改一下名叫3-5光敏传感器控制蜂鸣器。然后打开工程。</p>
+<p>这个程序应该还是比较简单的，大家可能一看就会。那我们的主要步骤还是驱动程序的封装。我们封装一下蜂鸣器。</p>
+<p>工程Hardware下新建Buzzer.c和Buzzer.h。</p>
+<p>编写代码：Hardware/Buzzer.h</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#ifndef __BUZZER_H
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define __BUZZER_H
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif
+</span></span></span></code></pre></div><p>Buzzer.c中的函数逻辑和LED.c中几乎一样，我们直接把LED.c复制过来修改。</p>
+<p>编写代码：Hardware/Buzzer.c</p>
+<p>蜂鸣器是GPIOB和GPIO_Pin_12</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;stm32f10x.h&#34;                  // Device header</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 函    数：蜂鸣器初始化
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 参    数：无
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 返 回 值：无
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Buzzer_Init</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*开启时钟*/</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">RCC_APB2PeriphClockCmd</span>(RCC_APB2Periph_GPIOB, ENABLE);		<span style="color:#75715e">//开启GPIOB的时钟
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*GPIO初始化*/</span>
+</span></span><span style="display:flex;"><span>	GPIO_InitTypeDef GPIO_InitStructure;
+</span></span><span style="display:flex;"><span>	GPIO_InitStructure.GPIO_Mode <span style="color:#f92672">=</span> GPIO_Mode_Out_PP;
+</span></span><span style="display:flex;"><span>	GPIO_InitStructure.GPIO_Pin <span style="color:#f92672">=</span> GPIO_Pin_12;
+</span></span><span style="display:flex;"><span>	GPIO_InitStructure.GPIO_Speed <span style="color:#f92672">=</span> GPIO_Speed_50MHz;
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">GPIO_Init</span>(GPIOB, <span style="color:#f92672">&amp;</span>GPIO_InitStructure);						<span style="color:#75715e">//将PB12引脚初始化为推挽输出
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*设置GPIO初始化后的默认电平*/</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">GPIO_SetBits</span>(GPIOB, GPIO_Pin_12);							<span style="color:#75715e">//设置PB12引脚为高电平
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 函    数：蜂鸣器开启
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 参    数：无
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 返 回 值：无
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Buzzer_ON</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">GPIO_ResetBits</span>(GPIOB, GPIO_Pin_12);		<span style="color:#75715e">//设置PB12引脚为低电平
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 函    数：蜂鸣器关闭
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 参    数：无
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 返 回 值：无
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Buzzer_OFF</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">GPIO_SetBits</span>(GPIOB, GPIO_Pin_12);		<span style="color:#75715e">//设置PB12引脚为高电平
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 函    数：蜂鸣器状态翻转
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 参    数：无
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 返 回 值：无
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Buzzer_Turn</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">GPIO_ReadOutputDataBit</span>(GPIOB, GPIO_Pin_12) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)		<span style="color:#75715e">//获取输出寄存器的状态，如果当前引脚输出低电平
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">GPIO_SetBits</span>(GPIOB, GPIO_Pin_12);						<span style="color:#75715e">//则设置PB12引脚为高电平
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">else</span>														<span style="color:#75715e">//否则，即当前引脚输出高电平
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">GPIO_ResetBits</span>(GPIOB, GPIO_Pin_12);						<span style="color:#75715e">//则设置PB12引脚为低电平
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>这样蜂鸣器的驱动程序就完成了。我们把函数也都放到头文件里，声明一下。</p>
+<p>编写代码：Hardware/Buzzer.h</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#ifndef __BUZZER_H
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define __BUZZER_H
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Buzzer_Init</span>(<span style="color:#66d9ef">void</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Buzzer_ON</span>(<span style="color:#66d9ef">void</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Buzzer_OFF</span>(<span style="color:#66d9ef">void</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Buzzer_Turn</span>(<span style="color:#66d9ef">void</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif
+</span></span></span></code></pre></div><p>我们在main.c中编写。</p>
+<p>编写代码：Hardware/main.c</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;stm32f10x.h&#34;                  // Device header</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;Delay.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;Buzzer.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*模块初始化*/</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">Buzzer_Init</span>();			<span style="color:#75715e">//蜂鸣器初始化
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Buzzer_ON</span>();
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Delay_ms</span>(<span style="color:#ae81ff">500</span>);
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Buzzer_OFF</span>();
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Delay_ms</span>(<span style="color:#ae81ff">500</span>);
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Buzzer_Turn</span>();
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Delay_ms</span>(<span style="color:#ae81ff">500</span>);
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Buzzer_Turn</span>();
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Delay_ms</span>(<span style="color:#ae81ff">500</span>);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>编译。下载，这时听到蜂鸣器不断鸣响，说明驱动函数没有问题。</p>
+<h3 id="编写光敏传感器的驱动程序buzzerc和buzzerh">编写光敏传感器的驱动程序Buzzer.c和Buzzer.h<a hidden class="anchor" aria-hidden="true" href="#编写光敏传感器的驱动程序buzzerc和buzzerh">#</a></h3>
+<p>工程Hardware下新建LightSensor.c和LightSensor.h。</p>
+<p>光敏传感器初始化函数中 GPIOB 上拉输入 GPIO_Pin_13</p>
+<p>光敏传感器的读取函数，返回端口值。</p>
+<p>编写代码：Hardware/LightSensor.c</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;stm32f10x.h&#34;                  // Device header</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 函    数：光敏传感器初始化
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 参    数：无
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 返 回 值：无
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">LightSensor_Init</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*开启时钟*/</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">RCC_APB2PeriphClockCmd</span>(RCC_APB2Periph_GPIOB, ENABLE);		<span style="color:#75715e">//开启GPIOB的时钟
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*GPIO初始化*/</span>
+</span></span><span style="display:flex;"><span>	GPIO_InitTypeDef GPIO_InitStructure;
+</span></span><span style="display:flex;"><span>	GPIO_InitStructure.GPIO_Mode <span style="color:#f92672">=</span> GPIO_Mode_IPU;
+</span></span><span style="display:flex;"><span>	GPIO_InitStructure.GPIO_Pin <span style="color:#f92672">=</span> GPIO_Pin_13;
+</span></span><span style="display:flex;"><span>	GPIO_InitStructure.GPIO_Speed <span style="color:#f92672">=</span> GPIO_Speed_50MHz;
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">GPIO_Init</span>(GPIOB, <span style="color:#f92672">&amp;</span>GPIO_InitStructure);						<span style="color:#75715e">//将PB13引脚初始化为上拉输入
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 函    数：获取当前光敏传感器输出的高低电平
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 参    数：无
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  * 返 回 值：光敏传感器输出的高低电平，范围：0/1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">uint8_t</span> <span style="color:#a6e22e">LightSensor_Get</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">GPIO_ReadInputDataBit</span>(GPIOB, GPIO_Pin_13);			<span style="color:#75715e">//返回PB13输入寄存器的状态
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p>编写代码：Hardware/LightSensor.h</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#ifndef __LIGHT_SENSOR_H
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define __LIGHT_SENSOR_H
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">LightSensor_Init</span>(<span style="color:#66d9ef">void</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">uint8_t</span> <span style="color:#a6e22e">LightSensor_Get</span>(<span style="color:#66d9ef">void</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif
+</span></span></span></code></pre></div><p>编写代码：User/main.c</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;stm32f10x.h&#34;                  // Device header</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;Delay.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;Buzzer.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;LightSensor.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">/*模块初始化*/</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">Buzzer_Init</span>();			<span style="color:#75715e">//蜂鸣器初始化
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">LightSensor_Init</span>();		<span style="color:#75715e">//光敏传感器初始化
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">LightSensor_Get</span>() <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)		<span style="color:#75715e">//如果当前光敏输出1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		{
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">Buzzer_ON</span>();				<span style="color:#75715e">//蜂鸣器开启
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">else</span>							<span style="color:#75715e">//否则
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		{
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">Buzzer_OFF</span>();				<span style="color:#75715e">//蜂鸣器关闭
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>现象就是遮住光敏传感器，蜂鸣器响，不遮住，就不响。这就完成了我们本节课的第二个代码。本节课的内容到这里就差不多了。</p>
+<h2 id="gpio总结">GPIO总结<a hidden class="anchor" aria-hidden="true" href="#gpio总结">#</a></h2>
+<p>最后我们来总结一下GPIO的使用方法，总体上来说还是比较简单的。</p>
+<p>首先初始化时钟，然后定义结构体，赋值结构体。GPIO_Mode可以选择我们讲的那8种输入输出模式。GPIO_Pin选择引脚，可以用按位或的方式同时选中多个引脚。GPIO_Speed选择输出速度，这个不是很重要，要求不高的话直接选50MHz就行了。</p>
+<p>最后使用GPIO_Init函数将指定的GPIO外设初始化好，然后这里有8个读取和写入的函数，我们读写GPIO口主要就用这些函数就行，具体用法我也都讲过，之后我们学习了模块化编程的方法。</p>
+<p>一般我们自己做一个产品的话，外围硬件比较多。这时候就要尽量把每个硬件的驱动函数单独提取出来，分装在.c和.h文件里，这样有利于简化主函数的逻辑。</p>
+<p>在主函数中我们还有更重要的任务要完成，不要让这些驱动函数混在主函数里影响我们。另外把硬件驱动提取出来，也有利于我们移植程序，还有利于我们进行分工合作。</p>
+<p>比如让别人来写驱动函数，你的主要精力就可以集中在主程序的逻辑上了。最后既然要做分装，那函数的注释就需要写清楚，这样可以方便使用你这个模块的人快速上手这些函数。</p>
+<p>好，以上就是本节课的全部内容了，我们下节再见。</p>
+<h2 id="end">END<a hidden class="anchor" aria-hidden="true" href="#end">#</a></h2>
+<blockquote>
+<p><strong>END：本节内容到此结束。</strong></p>
+</blockquote>
+<p>个人提升之余，别忘了和小伙伴积极交流，很多人觉得他们在思考，而实际上他们只是在重新整理自己的偏见。请珍惜和他人交流讨论的机会。</p>
+<br>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/END1.jpg" alt = "END1.jpg" width = "70%" height = "auto">
+</div>
+<br>
+<p>希望你每一天都有所收获，进步up up up。今天的我们并不比昨天更聪明，但一定要比昨天更睿智。</p>
+<br>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/END2.jpg" alt = "END2.jpg" width = "70%" height = "auto">
+</div>
+
+        </div>
+
+        <footer class="post-footer">
+            
+<nav class="paginav">
+  <a class="prev" href="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p7/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>嵌入式开发-STM32标准库学习：GPIO输入</span>
+  </a>
+  <a class="next" href="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p4/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>嵌入式开发-STM32标准库学习：新建Keil工程</span>
+  </a>
+</nav>
+
+        </footer>
+    </div>
+</article>
+</main>
+
+<footer class="footer">
+    <span>
+        Copyright
+        &copy;
+        -2024
+        <a href="https://eddyblog.cn/" style="color:#939393;">Eddy&#39;s blog</a>
+        All Rights Reserved
+    </span>
+    <a href="https://beian.miit.gov.cn/" target="_blank" style="color:#939393;"></a>&nbsp;
+    <span>
+        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=null"
+           style="display:inline-block;text-decoration:none;height:20px;color:#939393;">
+            <img src="" style="float:left;margin: 0px 5px 0px 0px;"/>
+            
+        </a>
+    </span>
+    <span id="busuanzi_container">
+        <span class="fa fa-user"></span> <span id="busuanzi_value_site_uv"></span>
+        <span class="fa fa-eye"></span> <span id="busuanzi_value_site_pv"></span>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <span class="topInner">
+        <svg class="topSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z"/>
+        </svg>
+        <span id="read_progress"></span>
+    </span>
+</a>
+
+<script>
+    document.addEventListener('scroll', function (e) {
+        const readProgress = document.getElementById("read_progress");
+        const scrollHeight = document.documentElement.scrollHeight;
+        const clientHeight = document.documentElement.clientHeight;
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        readProgress.innerText = ((scrollTop / (scrollHeight - clientHeight)).toFixed(2) * 100).toFixed(0);
+    })
+</script>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+</script>
+<script>
+    let mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        (function() {
+            document.cookie = "change-themes" + "="+ escape ("false");
+        })()
+
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    });
+</script>
+
+<script>
+    document.body.addEventListener('copy', function (e) {
+        if (window.getSelection().toString() && window.getSelection().toString().length > 50) {
+            let clipboardData = e.clipboardData || window.clipboardData;
+            if (clipboardData) {
+                e.preventDefault();
+                let htmlData = window.getSelection().toString() +
+                    '\r\n\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                let textData = window.getSelection().toString() +
+                    '\r\n\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                clipboardData.setData('text/html', htmlData);
+                clipboardData.setData('text/plain', textData);
+            }
+        }
+    });
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = '复制';
+
+        function copyingDone() {
+            copybutton.innerText = '已复制！';
+            setTimeout(() => {
+                copybutton.innerText = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                let text = codeblock.textContent +
+                    '\r\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                navigator.clipboard.writeText(text);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) {}
+            selection.removeRange(range);
+        });
+
+        let language = codeblock.className.replaceAll("language-", "")
+        let macTool = document.createElement("div")
+        let macTool1 = document.createElement("div")
+        let macTool2 = document.createElement("div")
+        let macTool3 = document.createElement("div")
+        let languageType = document.createElement("div")
+        languageType.innerText = language
+        macTool.setAttribute('class', 'mac-tool')
+        macTool1.setAttribute('class', 'mac bb1')
+        macTool2.setAttribute('class', 'mac bb2')
+        macTool3.setAttribute('class', 'mac bb3')
+        languageType.setAttribute('class', 'language-type')
+        macTool.appendChild(macTool1)
+        macTool.appendChild(macTool2)
+        macTool.appendChild(macTool3)
+        macTool.appendChild(languageType)
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+            container.appendChild(macTool)
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+            container.appendChild(macTool)
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+            container.appendChild(macTool)
+        }
+    });
+</script>
+
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style></body>
+
+</html>

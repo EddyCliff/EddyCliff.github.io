@@ -18,7 +18,7 @@ categories:
 tags: 
 - Hugo框架博客网站Papermode主题的博客渲染效果测试
 description: "本文用于测试Hugo博客网站Papermod主题的博客渲染效果"
-weight: 3
+weight: 
 slug: ""
 draft: false # 是否为草稿
 comments: false
