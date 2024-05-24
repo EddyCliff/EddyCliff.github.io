@@ -9,8 +9,8 @@ keywords:
 categories: 
 - 
 tags: 
-- Kitchen Notes
-- culinary arts
+- 厨房笔记
+- 烹饪艺术
 description: ""
 weight:
 slug: ""

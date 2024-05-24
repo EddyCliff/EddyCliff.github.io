@@ -15,7 +15,7 @@
 
 ## 3. 修改信息
 
-模板内部有许多个人信息需要自己配置，请耐心修改完，可以参考Sulv大佬的建站教程：[https://www.sulvblog.cn/posts/blog/](https://www.sulvblog.cn/posts/blog/) 还有我的建站教程[https://eddyblog.cn/en/tags/hugo/](https://eddyblog.cn/en/tags/hugo/)
+模板内部有许多个人信息需要自己配置，请耐心修改完，可以参考Sulv大佬的建站教程：[https://www.sulvblog.cn/posts/blog/](https://www.sulvblog.cn/posts/blog/) 还有我的建站教程[https://eddyblog.cn/tags/hugo%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/](https://eddyblog.cn/tags/hugo%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/)
 
 
 ## 4. shortcodes使用方法

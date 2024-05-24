@@ -10,9 +10,10 @@ keywords:
 categories: 
 - 
 tags: 
-- Video Editor's Notes
-- Video editing technique
-- cinematic arts
+- 剪辑师笔记
+- 剪辑流程
+- 电影艺术
+- 剪辑技法
 description: ""
 weight:
 slug: ""

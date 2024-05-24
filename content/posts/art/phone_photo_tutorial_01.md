@@ -9,8 +9,8 @@ keywords:
 categories: 
 - 
 tags: 
-- Phone Photography Notes
-- Photographic Art
+- 手机摄影笔记
+- 摄影
 description: ""
 weight:
 slug: ""
