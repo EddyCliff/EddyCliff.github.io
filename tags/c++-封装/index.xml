@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>C&#43;&#43; 封装 on Eddy&#39;s blog</title>
+    <link>https://eddyblog.cn/tags/c&#43;&#43;-%E5%B0%81%E8%A3%85/</link>
+    <description>Recent content in C&#43;&#43; 封装 on Eddy&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Tue, 30 Apr 2024 00:17:58 +0900</lastBuildDate><atom:link href="https://eddyblog.cn/tags/c++-%E5%B0%81%E8%A3%85/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>C&#43;&#43;编程入门：类和对象-封装</title>
+      <link>https://eddyblog.cn/posts/tech/cpp-programming-p4/</link>
+      <pubDate>Tue, 30 Apr 2024 00:17:58 +0900</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/cpp-programming-p4/</guid>
+      <description>INIT INIT：本节内容正式开始。action! 4 类和对象 C++面向对象的三大特性为：封装、继承、多态。 C++认为万事万物都皆为对象，对象上有其属性和行为。 例如： 人可以作为对象，属性有姓名、年龄、身高、体重&amp;hellip;，行为有走、跑、跳、吃饭、唱歌&amp;hellip;。 车也可以作为对</description>
+    </item>
+    
+  </channel>
+</rss>

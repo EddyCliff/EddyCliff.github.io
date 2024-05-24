@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>C&#43;&#43; 函数重载 on Eddy&#39;s blog</title>
+    <link>https://eddyblog.cn/tags/c&#43;&#43;-%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD/</link>
+    <description>Recent content in C&#43;&#43; 函数重载 on Eddy&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Tue, 30 Apr 2024 00:17:58 +1000</lastBuildDate><atom:link href="https://eddyblog.cn/tags/c++-%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>C&#43;&#43;编程入门：函数提高-函数重载</title>
+      <link>https://eddyblog.cn/posts/tech/cpp-programming-p3/</link>
+      <pubDate>Tue, 30 Apr 2024 00:17:58 +1000</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/cpp-programming-p3/</guid>
+      <description>INIT INIT：本节内容正式开始。action! 3 函数提高 3.1 函数默认参数 在C++中，函数的形参列表中的形参是可以有默认值的。 语法：返回值类型 函数名 （参数= 默认值）{} 示例代码 #include&amp;lt;iostream&amp;gt; using namespace std; //函数默认参数 //如果我们自己传入数据，就用自己的数据，如果没有，那么用默认值 //语法：返回值类型 函</description>
+    </item>
+    
+  </channel>
+</rss>
