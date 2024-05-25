@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>【温故而知新】单片机基础知识回顾 | Eddy&#39;s blog</title>
+<meta name="keywords" content="MCU, 单片机">
+<meta name="description" content="一、单片机三要素？ 单片机最小系统的三要素为：电源、晶振和复位电路。 二、单片机最小系统由哪几个部分组成？ 单片机最小系统由五部分组成，分别是MCU(微处理控制单元)、电源、时钟电路/晶振、复位电路、程序加载口。其中三要素是电源、时钟电路和复位电路。 三、IO口工作方式 上拉输入，下拉输入">
+<meta name="author" content="Eddy">
+<link rel="canonical" href="https://eddyblog.cn/posts/tech/exp-sticker-mcu-basic-knowledge-review/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.js" onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="icon" type="image/png" sizes="16x16" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="icon" type="image/png" sizes="32x32" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="apple-touch-icon" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="mask-icon" href="https://eddyblog.cn/img/logo3.jpg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://eddyblog.cn/posts/tech/exp-sticker-mcu-basic-knowledge-review/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<script defer src="https://unpkg.com/mermaid@8.8.1/dist/mermaid.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="https://registry.npmmirror.com/lxgw-wenkai-screen-web/latest/files/style.css" />
+
+
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = ""; 
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  
+
+<meta property="og:title" content="【温故而知新】单片机基础知识回顾" />
+<meta property="og:description" content="一、单片机三要素？ 单片机最小系统的三要素为：电源、晶振和复位电路。 二、单片机最小系统由哪几个部分组成？ 单片机最小系统由五部分组成，分别是MCU(微处理控制单元)、电源、时钟电路/晶振、复位电路、程序加载口。其中三要素是电源、时钟电路和复位电路。 三、IO口工作方式 上拉输入，下拉输入" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://eddyblog.cn/posts/tech/exp-sticker-mcu-basic-knowledge-review/" />
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/c2.jpg" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-05-01T00:17:58+08:00" />
+<meta property="article:modified_time" content="2024-05-01T00:17:58+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/c2.jpg" />
+<meta name="twitter:title" content="【温故而知新】单片机基础知识回顾"/>
+<meta name="twitter:description" content="一、单片机三要素？ 单片机最小系统的三要素为：电源、晶振和复位电路。 二、单片机最小系统由哪几个部分组成？ 单片机最小系统由五部分组成，分别是MCU(微处理控制单元)、电源、时钟电路/晶振、复位电路、程序加载口。其中三要素是电源、时钟电路和复位电路。 三、IO口工作方式 上拉输入，下拉输入"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+
+        {
+          "@type": "ListItem",
+          "position":  1 ,
+          "name": "📚文章",
+          "item": "https://eddyblog.cn/posts/"
+        },
+
+        {
+          "@type": "ListItem",
+          "position":  2 ,
+          "name": "👨🏻‍💻 技术",
+          "item": "https://eddyblog.cn/posts/tech/"
+        }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "【温故而知新】单片机基础知识回顾",
+      "item": "https://eddyblog.cn/posts/tech/exp-sticker-mcu-basic-knowledge-review/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "【温故而知新】单片机基础知识回顾",
+  "name": "【温故而知新】单片机基础知识回顾",
+  "description": "一、单片机三要素？ 单片机最小系统的三要素为：电源、晶振和复位电路。 二、单片机最小系统由哪几个部分组成？ 单片机最小系统由五部分组成，分别是MCU(微处理控制单元)、电源、时钟电路/晶振、复位电路、程序加载口。其中三要素是电源、时钟电路和复位电路。 三、IO口工作方式 上拉输入，下拉输入",
+  "keywords": [
+    "MCU", "单片机"
+  ],
+  "articleBody": " 一、单片机三要素？ 单片机最小系统的三要素为：电源、晶振和复位电路。\n二、单片机最小系统由哪几个部分组成？ 单片机最小系统由五部分组成，分别是MCU(微处理控制单元)、电源、时钟电路/晶振、复位电路、程序加载口。其中三要素是电源、时钟电路和复位电路。\n三、IO口工作方式 上拉输入，下拉输入，推挽输出，开漏输出。\n四、UART有几根线？ 串行，异步，全双工。2根线 Rx，Tx。\nUART是通用异步串行数据总线，是一种全双工传输总线。UART在单片机中是最基本的配置，作为单片机的串口，它有TX(数据发送接口)和RX(数据接收接口)两个接口。使用UART总线接口进行通信的时候，两个设备间的TX和RX相连，RX和TX相连即可。\n五、SPI是什么？有几条线？几种模式？ 串行，同步，全双工。3根或4根。\nSPI，是一种高速的，全双工，同步的通信总线，在芯片的管脚上只占用四根线。\n它以主从方式工作，这种模式通常有一个主设备和一个或多个从设备。\n四根线分别是：SDI(数据输入)、SDO(数据输出)、SCLK(时钟)、CS(片选)。\n需要说明的是，我们SPI通信有4种不同的模式，不同的从设备可能在出厂是就是配置为某种模式，这是不能改变的；但我们的通信双方必须是工作在同一模式下，所以我们可以对我们的主设备的SPI模式进行配置，通过CPOL（时钟极性）和CPHA（时钟相位）来控制我们主设备的通信模式。\nCPOL（时钟极性）决定了通信过程中的有效电平：极性是0，表示空闲状态是低电平，有效电平是高电平；极性是1，表示空闲状态是高电平，有效电平是低电平。\nCPHA（时钟相位）决定了采集的时候是在时钟脉冲的第一个还是第二个边沿。\n六、使用I2C总线时需要考虑哪些问题 一般需要考虑的问题包括：信号线上拉电阻、信号线负载电容、信号线串联电阻。\n七、I2C需不需要上拉电阻？为什么？ 上拉电阻是指将不确定的信号钳位在高电平，同时起限流作用的电阻。由于I2C通信是开漏输出的(只能输出低电平不能输出高电平)，因此需要加上拉电阻，使其可以输出高电平。\n八、DMA有什么用 DMA用来提供在外设和存储器之间或者存储器和存储器之间的高速数据传输。无须CPU的干预，通过DMA数据可以快速地移动。这就节省了CPU的资源来做其他操作。\n九、STM32 中断是怎么进入到中断服务程序的 在STM32中，为了区分不同的中断，每个设备有自己的中断号。系统有0-255一共256个中断。系统有一张中断向量表，用于存放256个中断的中断服务程序入口地址。每个入口地址对应一段代码，即中断服务程序。\n十、单片机上电后没有运转，首先要检查什么 检查电源是否正常，若装有复位芯片，也需查看复位芯片是否工作正常。\n检查硬件复位电路是否正常。\n查看外部晶振是否启振，一般用示波器X10挡位，应选取较高带宽.\n查看BOOT位设置启动方式是否正确。\n十一、请说明总线接口USRT、I2C、USB的异同点 十二、I2C总线通信原理 目录\n1）I2C总线简介\n2）I2C总线协议\n3）I2C总线读写操作\n4）STM32F0-I2C控制器特性\nI2C总线简介 I2C总线介绍\nI2C总线（也称IIC或I2C）是由PHILIPS公司开发的两线式串行总线，用于连接微控制器及其外围设备，是微电子通信控制领域广泛采用的一种总线标准。它是同步通信的一种特殊形式，具有接口线少，控制方式简单，期间封装形式少，通信速率高等优点。\nI2C总线特征\n两条总线线路：一条串行数据SDA，一条串行时钟线SCL来完成数据的传输及外围器件的扩展。\nI2C总线上的每一个设备都可以作为主设备或者从设备，而且每一个设备都对应一个唯一的地址。\nI2C总线数据传输速率在标准模式下可达100kbit/s，快速模式性爱可达400kbit/s，高速模式下可达3.4Mbit/s。一般可通过I2C总线接口可编程时钟来实现传输速率的调整，同时也跟所接的上拉电阻的阻值有关。\nI2C总线上的主设备与从设备之间以字节（8位）为单位进行单双工的数据传输。\nI2C总线物理-拓扑结构 I2C 总线在物理连接上非常简单，分别由SDA(串行数据线)和SCL(串行时钟线)及上拉电阻组成。通信原理是通过对SCL和SDA线高低电平时序的控制，来产生I2C总线协议所需要的信号进行数据的传递。在总线空闲状态时，这两根线一般被上面所接的上拉电阻拉高，保持着高电平。I2C通信方式为半双工，只有一根SDA线，同一时间只可以单向通信，485也为半双工，SPI和uart为双工。\nI2C总线协议 I2C协议规定：总线上数据的传输必须以一个起始信号作为开始条件，以一个结束信号作为传输的停止条件。起始和结束信号总是由主设备产生。总线在空闲状态时，SCL和SDA都保持着高电平。\n起始信号：当SCL为高电平而SDA由高到低的跳变，表示产生一个起始条件。\n结束信号：当SCL为高而SDA由低到高的跳变，表示产生一个停止条件。\n数据传输：\n数据传输以字节为单位，主设备在SCL线上产生每个时钟脉冲的过程中将在SDA线上传输一个数据位，数据在时钟的高电平被采样，一个字节按数据位从高位到低位的顺序进行传输。\n主设备在传输有效数据之前，要先指定从设备的地址，一般为7位，然后再发生数据传输的方向位，0表示主设备向从设备写数据，1表示主设备向从设备读数据\n应答信号：\n接收数据的器件在接收到8bit数据后，向发送数据的器件发出低电平的应答信号，表示已收到数据。这个信号可以是主控器件发出的，也可以是从动器件发出的。总之，由接收数据的器件发出。\n通俗来讲：\nI2C协议规定，总线上数据的传输必须以一个起始信号作为开始条件，以一个结束信号作为传输的停止条件。起始和结束信号总是由主设备产生(意味着从设备不可以主动通信？所有的通信都是主设备发起的，主可以发出询问的command，然后等待从设备的通信)。\n起始和结束信号产生条件：\n总线在空闲状态时，SCL和SDA都保持着高电平：\n当SCL为高电平而SDA由高到低的跳变，表示产生一个起始条件；\n当SCL为高而SDA由低到高的跳变，表示产生一个停止条件。\n在起始条件产生后，总线处于忙状态，由本次数据传输的主从设备独占，其他I2C器件无法访问总线；而在停止条件产生后，本次数据传输的主从设备将释放总线，总线再次处于空闲状态。\n起始和结束如图所示：\n再来看看在这个过程中数据的传输是如何进行的。前面我们已经提到过，数据传输以字节为单位（8bit位）。\n主设备在SCL线上产生每个时钟脉冲的过程中将在SDA线上传输一个数据位，当一个字节按数据位从高位到低位的顺序传输完后，紧接着从设备将拉低SDA线，回传给主设备一个应答位， 此时才认为一个字节真正的被传输完成。\n当然，并不是所有的字节传输都必须有一个应答位，比如：当从设备不能再接收主设备发送的数据时，从设备将回传一个否 定应答位。\n传输的过程如图所示：\n在前面我们还提到过，I2C总线上的每一个设备都对应一个唯一的地址，主从设备之间的数据传输是建立在地址的基础上，也就是说，主设备在传输有效数据之前要先指定从设备的地址，地址指定的过程和上面数据传输的过程一样，只不过大多数从设备的地址是7位的，\n然后协议规定再给地址添加一个最低位用来表示接下来数据传输的方向，0表示主设备向从设备写数据，1表示主设备向从设备读数据。\n向指定设备发送数据的格式如图所示：(每一最小包数据由9bit组成，8bit内容+1bit ACK, 如果是地址数据，则8bit包含1bit方向)：\nI2C总线读写操作 对I2C总线的操作实际就是主从设备之间的读写操作。大致可分为以下三种操作情况：\n1、主设备往从设备中写数据。数据传输格式如下：\n2、主设备从从设备中读数据。数据传输格式如下：\n3、主设备往从设备中写数据，然后重启起始条件，紧接着从从设备中读取数据；或者是主设备从从设备中读数据，然后重启起始条件，紧接着主设备往从设备中写数据。数据传输格式如下：\nSTM32F0-I2C控制器特性 软件模拟I2C时序 由于直接控制GPIO引脚电平产生通讯时序时，需要由 CPU 控制每个时刻的引脚状态，所以称之为“软件模拟协议”方式。\n硬件控制产生I2C时序 STM32的I2C片上外设专门负责I2C通讯协议，只要配置好该外设，它就会自动根据协议要求产生通讯信号，收发数据并缓存起来，CPU只要检测外设的状态和访问数据寄存器，就能完成数据收发。这种由硬件外设处理I2C协议的方式减轻了CPU的工作，且使软件设计更加简单。\nI2C的主要特点 I2C总线规范rev03兼容性：\n从机模式和主机模式\n多主机功能\n标准模式（高达100kHz）\n快速模式（高达400kHz）\n超快速模式（高达1MHz）\n7位和10位地址模式\n软件复位\n1字节缓冲带DMA功能\n总结 启示信号：SCL高，SDA出现下降沿\n结束信号：SCL高，SDA出现上升沿\n应答信号：在数据传输后(8位)，从机拉低SDA，则为应答ACK\n写：在地址（7位）后加上0，发三（从机地址，寄存器地址，数据）应答三；\n读：先假写（7位后+0），再读（7位后+1），启动两次，发三（从机地址，寄存器地址，从机地址）\n读一（读就行了）应答3，最后没有应答，从机写完数据之后就释放总线。\n十三、STM32总线协议通信的相关概念 同步通信和异步通信 通信，最少要有两个对象，一个收，一个发\n同步通信：\n一般情况下同步通信指的是通信双方根据同步信号进行通信的方式。比如通信双方有一个共同的时钟信号，大家根据时钟信号的变化进行通信。\nSPI I2C就是同步通信。\n异步通信： 是指数据传输速度匹配依赖于通信双方自己独立的系统时钟，大家约定好通信的速度。异步通信不需要同步信号，但是并不是说通信的过程不同步。\n优点：不受时钟的限制\n缺点：通讯速度相比同步通信更慢，通信数据相比同步通信更小\nUART就是异步通信。\n串行通信和并行通信的区别 串行通信：指的是同一时刻只能收或发一个bit位信息、因此只用1根信号线即可。\n并行通信：指的是同一时刻可以收或发多个bit位的信息，因此需要多根信号线才行。\n串行传输：数据按位顺序传输\n优点：占用引脚资源较少\n缺点：速度相对较慢\n比如我们通信的距离非常长，假如选择并行通信的话就要接很多的电器线路，就合很耗费电器线路的资源。\n并行传输：数据各个位同时传输\n优点：速度快\n缺点：占用引脚资源多（IO口资源是有限的）\n单工，半双工，全双工 单工：要么收，要么发，只能做接收设备或者发送设备。比如收音机\n半双工：可以收，可以发，但是不能同时收发，比如对讲机\n全双工：可以在同一时刻既接收又发送。比如手机。\n十四、SPI总线通信协议原理 我们之前讲解了 I2C，I2C 是串行通信的一种，只需要两根线就可以完成主机和从机之间的通信，但是 I2C 的速度最高只能到 400KHz，如果对于访问速度要求比价高的话 I2C 就不适合了。\n本章我们就来学习一下另外一个和 I2C 一样广泛使用的串行通信：SPI，SPI 全称是 Serial Perripheral Interface，也就是串行外围设备接口。SPI 是 Motorola 公司推出的一种同步串行接口技术，是一种高速、全双工的同步通信总线，SPI 时钟频率相比 I2C 要高很多，最高可以工作在上百 MHz。SPI 以主从方式工作，通常是有一个主设备和一个或多个从设备，一般 SPI 需要4 根线，但是也可以使用三根线(单向传输)，本章我们讲解标准的 4 线 SPI，这四根线如下：\n①、CS/SS，Slave Select/Chip Select，这个是片选信号线，用于选择需要进行通信的从设备。\nI2C 主机是通过发送从机设备地址来选择需要进行通信的从机设备的，SPI 主机不需要发送从机设备，直接将相应的从机设备片选信号拉低即可。\n②、SCK，Serial Clock，串行时钟，和 I2C 的 SCL 一样，为 SPI 通信提供时钟。\n③、MOSI/SDO，Master Out Slave In/Serial Data Output，简称主出从入信号线，这根数据线只能用于主机向从机发送数据，也就是主机输出，从机输入。\n④、MISO/SDI，Master In Slave Out/Serial Data Input，简称主入从出信号线，这根数据线只能用户从机向主机发送数据，也就是主机输入，从机输出。\nSPI 通信都是由主机发起的，主机需要提供通信的时钟信号。主机通过 SPI 线连接多个从设备的结构如图所示\nSPI 有四种工作模式，通过串行时钟极性(CPOL)和相位(CPHA)的搭配来得到四种工作模式：\n①、CPOL=0，串行时钟空闲状态为低电平。\n②、CPOL=1，串行时钟空闲状态为高电平，此时可以通过配置时钟相位(CPHA)来选择具体的传输协议。\n③、CPHA=0，串行时钟的第一个跳变沿(上升沿或下降沿)采集数据。\n④、CPHA=1，串行时钟的第二个跳变沿(上升沿或下降沿)采集数据。\nSPI四种工作模式\n跟 I2C 一样，SPI 也是有时序图的，以 CPOL=0，CPHA=0 这个工作模式为例，SPI 进行全双工通信的时序如图所示：\n图：SPI时序图\n从图可以看出，SPI 的时序图很简单，不像 I2C 那样还要分为读时序和写时序，因为 SPI 是全双工的，所以读写时序可以一起完成。图 27.1.1.3 中，CS 片选信号先拉低，选中要通信的从设备，然后通过 MOSI 和 MISO 这两根数据线进行收发数据，MOSI 数据线发出了0XD2 这个数据给从设备，同时从设备也通过 MISO 线给主设备返回了 0X66 这个数据。\n十五、STM32启动方式 3种\n1、从Flash启动，将Flash地址0x0800 0000映射到0x00000000，这样启动以后就相当于从0x08000000开始的，这是我们最常用的模式；\n2、从SRAM启动，将SRAM地址0x20000000映射到0x00000000，这样启动以后就相当于从0x20000000开始的，用于调试，笔者基本没用过\n3、从系统存储器启动(System memory)，将系统存储器地址0x1FFFF000映射到0x00000000，这样启动以后就相当于从0x1FFFF000开始执行的，值得注意的是这个系统存储器里面存储的其实是STM32自带的Bootloader代码，这其实是一个官方的IAP，它提供了可以通过UART1接口将用户的代码下载到Flash中的功能,然后将boot0置0，复位单片机，便可以Flash启动。\n注：系统内存存储器我们没办法烧些，因为他是一个只读的ROM，我们只能读取，但是可以通过从系统存储器启动，通过串口UART1烧录代码。\n十六、STM32上电到main函数之前做了什么事？ ; Reset handler Reset_Handler PROC :定义函数 EXPORT Reset_Handler [WEAK] IMPORT __main : 引入函数 IMPORT SystemInit : 引入函数 LDR R0, =SystemInit : 将函数放到R0 BLX R0 : 执行 LDR R0, =__main BX R010 ENDP 1、初始化堆栈指针SP=_initial_sp，启动方式不同，指向地址不同。\n2、初始化PC（通用寄存器指针）指针=Reset_Handler，若果是Flash启动就是0x0800 0000\n3、SystemInit（配置系统时钟）\n4、__main(MDK自带的函数)，初始化堆栈，.data .bss\n5、最终调用main 函数去到C 的世界\n十七、开漏输出和推挽输出的区别？ 推挽输出的最大特点是可以真正能真正的输出高电平和低电平，在两种电平下都具有驱动能力。常说的与推挽输出相对的就是开漏输出，对于开漏输出和推挽输出的区别最普遍的说法就是开漏输出无法真正输出高电平，即高电平时没有驱动能力，需要借助外部上拉电阻完成对外驱动。\n所谓的驱动能力，就是指输出电流的能力。\n",
+  "wordCount" : "6137",
+  "inLanguage": "zh",
+  "image":"https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/c2.jpg","datePublished": "2024-05-01T00:17:58+08:00",
+  "dateModified": "2024-05-01T00:17:58+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "Eddy"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://eddyblog.cn/posts/tech/exp-sticker-mcu-basic-knowledge-review/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Eddy's blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://eddyblog.cn/img/logo3.jpg"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    (function () {
+        let  arr,reg = new RegExp("(^| )"+"change-themes"+"=([^;]*)(;|$)");
+        if(arr = document.cookie.match(reg)) {
+        } else {
+            if (new Date().getHours() >= 19 || new Date().getHours() < 6) {
+                document.body.classList.add('dark');
+                localStorage.setItem("pref-theme", 'dark');
+            } else {
+                document.body.classList.remove('dark');
+                localStorage.setItem("pref-theme", 'light');
+            }
+        }
+    })()
+
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://eddyblog.cn/" accesskey="h" title="Eddy&#39;s Blog (Alt + H)">
+            <img src="https://eddyblog.cn/img/logo3.jpg" alt="logo" aria-label="logo"
+                 height="35">Eddy&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://eddyblog.cn/search" title="🔍 搜索 (Alt &#43; /)" accesskey=/>
+                <span>🔍 搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/" title="🏠 主页">
+                <span>🏠 主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/posts" title="📚 文章">
+                <span>📚 文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/tags" title="🧩 标签">
+                <span>🧩 标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/archives/" title="⏱️ 时间轴">
+                <span>⏱️ 时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/about" title="🙋🏻‍♂️ 关于">
+                <span>🙋🏻‍♂️ 关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main page">
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+</style>
+
+<article class="post-single">
+    <div id="single-content">
+        <header class="post-header">
+            <div class="breadcrumbs"><a href="https://eddyblog.cn/">🏠 主页</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/">📚文章</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/tech/">👨🏻‍💻 技术</a></div>
+            <h1 class="post-title">
+                【温故而知新】单片机基础知识回顾
+            </h1>
+            <div class="post-meta">
+
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+
+    .parent-post-meta {
+        display: flex;
+        flex-wrap: wrap;
+        opacity: 0.8;
+    }
+</style>
+
+<span class="parent-post-meta">
+    <span id="post_meta_style_1">
+        <span class="fa fa-calendar-check-o"></span>
+        <span>2024-05-01
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    
+    
+    
+    
+    
+    
+    
+    <span id="post_meta_style_3">
+        <span class="fa fa-file-word-o"></span>
+        <span>6137字
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_4">
+        <span class="fa fa-clock-o"></span>
+        <span>13分钟
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_5">
+        <span class="fa fa-user-o"></span>
+        <span>Eddy
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_6">
+        <span class="fa fa-tags" style="opacity: 0.8"></span>
+        <span>
+            <span class="post-tags-meta">
+                <a href="https://eddyblog.cn/tags/mcu/" style="color: var(--secondary)!important;">MCU</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/%E5%8D%95%E7%89%87%E6%9C%BA/" style="color: var(--secondary)!important;">单片机</a>
+            </span>
+        </span>
+    </span>
+</span>
+<span style="opacity: 0.8;">
+                    <span id="post_meta_style_7">
+                        &nbsp;&nbsp;
+                        <span class="fa fa-eye" ></span>
+                        <span>
+                            <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+                            &nbsp;&nbsp;
+                        </span>
+                    </span>
+                    <span id="post_meta_style_8">
+                        <span class="fa fa-commenting-o"></span>
+                        <span>
+                            <script src="https://cdn.staticfile.org/twikoo//twikoo.all.min.js"></script>
+                            <script>
+                                let url = document.documentURI
+                                
+                                let dnsUrl = "https://eddyblog.cn/"
+                                let urlSplit = url.split(dnsUrl)
+                                let finalUrl = urlSplit[1]
+                                if (finalUrl[0] !== '/') {
+                                    finalUrl = '/'+finalUrl
+                                }
+                                twikoo.getCommentsCount({
+                                    envId:  null , 
+                                region:  null , 
+                                urls: [ 
+                                    
+                                    finalUrl,
+                                ],
+                                    includeReply: false 
+                                }).then(function (res) {
+                                    let count = res[0].count
+                                    const obj = document.getElementById("comment_count");
+                                    obj.innerText = count
+                                    
+                                    
+                                    
+                                }).catch(function (err) {
+                                    
+                                    console.error(err);
+                                });
+                            </script>
+                            <span id="comment_count"></span>
+                        </span>
+                    </span>
+                </span>
+
+</div>
+        </header> 
+<figure class="entry-cover1"><img style="zoom:;" loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/c2.jpg" alt="">
+    
+</figure><aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e4%b8%80%e5%8d%95%e7%89%87%e6%9c%ba%e4%b8%89%e8%a6%81%e7%b4%a0" aria-label="一、单片机三要素？">一、单片机三要素？</a></li>
+                <li>
+                    <a href="#%e4%ba%8c%e5%8d%95%e7%89%87%e6%9c%ba%e6%9c%80%e5%b0%8f%e7%b3%bb%e7%bb%9f%e7%94%b1%e5%93%aa%e5%87%a0%e4%b8%aa%e9%83%a8%e5%88%86%e7%bb%84%e6%88%90" aria-label="二、单片机最小系统由哪几个部分组成？">二、单片机最小系统由哪几个部分组成？</a></li>
+                <li>
+                    <a href="#%e4%b8%89io%e5%8f%a3%e5%b7%a5%e4%bd%9c%e6%96%b9%e5%bc%8f" aria-label="三、IO口工作方式">三、IO口工作方式</a></li>
+                <li>
+                    <a href="#%e5%9b%9buart%e6%9c%89%e5%87%a0%e6%a0%b9%e7%ba%bf" aria-label="四、UART有几根线？">四、UART有几根线？</a></li>
+                <li>
+                    <a href="#%e4%ba%94spi%e6%98%af%e4%bb%80%e4%b9%88%e6%9c%89%e5%87%a0%e6%9d%a1%e7%ba%bf%e5%87%a0%e7%a7%8d%e6%a8%a1%e5%bc%8f" aria-label="五、SPI是什么？有几条线？几种模式？">五、SPI是什么？有几条线？几种模式？</a></li>
+                <li>
+                    <a href="#%e5%85%ad%e4%bd%bf%e7%94%a8i2c%e6%80%bb%e7%ba%bf%e6%97%b6%e9%9c%80%e8%a6%81%e8%80%83%e8%99%91%e5%93%aa%e4%ba%9b%e9%97%ae%e9%a2%98" aria-label="六、使用I2C总线时需要考虑哪些问题">六、使用I2C总线时需要考虑哪些问题</a></li>
+                <li>
+                    <a href="#%e4%b8%83i2c%e9%9c%80%e4%b8%8d%e9%9c%80%e8%a6%81%e4%b8%8a%e6%8b%89%e7%94%b5%e9%98%bb%e4%b8%ba%e4%bb%80%e4%b9%88" aria-label="七、I2C需不需要上拉电阻？为什么？">七、I2C需不需要上拉电阻？为什么？</a></li>
+                <li>
+                    <a href="#%e5%85%abdma%e6%9c%89%e4%bb%80%e4%b9%88%e7%94%a8" aria-label="八、DMA有什么用">八、DMA有什么用</a></li>
+                <li>
+                    <a href="#%e4%b9%9dstm32-%e4%b8%ad%e6%96%ad%e6%98%af%e6%80%8e%e4%b9%88%e8%bf%9b%e5%85%a5%e5%88%b0%e4%b8%ad%e6%96%ad%e6%9c%8d%e5%8a%a1%e7%a8%8b%e5%ba%8f%e7%9a%84" aria-label="九、STM32 中断是怎么进入到中断服务程序的">九、STM32 中断是怎么进入到中断服务程序的</a></li>
+                <li>
+                    <a href="#%e5%8d%81%e5%8d%95%e7%89%87%e6%9c%ba%e4%b8%8a%e7%94%b5%e5%90%8e%e6%b2%a1%e6%9c%89%e8%bf%90%e8%bd%ac%e9%a6%96%e5%85%88%e8%a6%81%e6%a3%80%e6%9f%a5%e4%bb%80%e4%b9%88" aria-label="十、单片机上电后没有运转，首先要检查什么">十、单片机上电后没有运转，首先要检查什么</a></li>
+                <li>
+                    <a href="#%e5%8d%81%e4%b8%80%e8%af%b7%e8%af%b4%e6%98%8e%e6%80%bb%e7%ba%bf%e6%8e%a5%e5%8f%a3usrti2cusb%e7%9a%84%e5%bc%82%e5%90%8c%e7%82%b9" aria-label="十一、请说明总线接口USRT、I2C、USB的异同点">十一、请说明总线接口USRT、I2C、USB的异同点</a></li>
+                <li>
+                    <a href="#%e5%8d%81%e4%ba%8ci2c%e6%80%bb%e7%ba%bf%e9%80%9a%e4%bf%a1%e5%8e%9f%e7%90%86" aria-label="十二、I2C总线通信原理">十二、I2C总线通信原理</a><ul>
+                        
+                <li>
+                    <a href="#i2c%e6%80%bb%e7%ba%bf%e7%ae%80%e4%bb%8b" aria-label="I2C总线简介">I2C总线简介</a></li>
+                <li>
+                    <a href="#i2c%e6%80%bb%e7%ba%bf%e7%89%a9%e7%90%86-%e6%8b%93%e6%89%91%e7%bb%93%e6%9e%84" aria-label="I2C总线物理-拓扑结构">I2C总线物理-拓扑结构</a></li>
+                <li>
+                    <a href="#i2c%e6%80%bb%e7%ba%bf%e5%8d%8f%e8%ae%ae" aria-label="I2C总线协议">I2C总线协议</a></li>
+                <li>
+                    <a href="#i2c%e6%80%bb%e7%ba%bf%e8%af%bb%e5%86%99%e6%93%8d%e4%bd%9c" aria-label="I2C总线读写操作">I2C总线读写操作</a></li>
+                <li>
+                    <a href="#stm32f0-i2c%e6%8e%a7%e5%88%b6%e5%99%a8%e7%89%b9%e6%80%a7" aria-label="STM32F0-I2C控制器特性">STM32F0-I2C控制器特性</a></li>
+                <li>
+                    <a href="#%e6%80%bb%e7%bb%93" aria-label="总结">总结</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%8d%81%e4%b8%89stm32%e6%80%bb%e7%ba%bf%e5%8d%8f%e8%ae%ae%e9%80%9a%e4%bf%a1%e7%9a%84%e7%9b%b8%e5%85%b3%e6%a6%82%e5%bf%b5" aria-label="十三、STM32总线协议通信的相关概念">十三、STM32总线协议通信的相关概念</a><ul>
+                        
+                <li>
+                    <a href="#%e5%90%8c%e6%ad%a5%e9%80%9a%e4%bf%a1%e5%92%8c%e5%bc%82%e6%ad%a5%e9%80%9a%e4%bf%a1" aria-label="同步通信和异步通信">同步通信和异步通信</a></li>
+                <li>
+                    <a href="#%e4%b8%b2%e8%a1%8c%e9%80%9a%e4%bf%a1%e5%92%8c%e5%b9%b6%e8%a1%8c%e9%80%9a%e4%bf%a1%e7%9a%84%e5%8c%ba%e5%88%ab" aria-label="串行通信和并行通信的区别">串行通信和并行通信的区别</a></li>
+                <li>
+                    <a href="#%e5%8d%95%e5%b7%a5%e5%8d%8a%e5%8f%8c%e5%b7%a5%e5%85%a8%e5%8f%8c%e5%b7%a5" aria-label="单工，半双工，全双工">单工，半双工，全双工</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%8d%81%e5%9b%9bspi%e6%80%bb%e7%ba%bf%e9%80%9a%e4%bf%a1%e5%8d%8f%e8%ae%ae%e5%8e%9f%e7%90%86" aria-label="十四、SPI总线通信协议原理">十四、SPI总线通信协议原理</a></li>
+                <li>
+                    <a href="#%e5%8d%81%e4%ba%94stm32%e5%90%af%e5%8a%a8%e6%96%b9%e5%bc%8f" aria-label="十五、STM32启动方式">十五、STM32启动方式</a></li>
+                <li>
+                    <a href="#%e5%8d%81%e5%85%adstm32%e4%b8%8a%e7%94%b5%e5%88%b0main%e5%87%bd%e6%95%b0%e4%b9%8b%e5%89%8d%e5%81%9a%e4%ba%86%e4%bb%80%e4%b9%88%e4%ba%8b" aria-label="十六、STM32上电到main函数之前做了什么事？">十六、STM32上电到main函数之前做了什么事？</a></li>
+                <li>
+                    <a href="#%e5%8d%81%e4%b8%83%e5%bc%80%e6%bc%8f%e8%be%93%e5%87%ba%e5%92%8c%e6%8e%a8%e6%8c%bd%e8%be%93%e5%87%ba%e7%9a%84%e5%8c%ba%e5%88%ab" aria-label="十七、开漏输出和推挽输出的区别？">十七、开漏输出和推挽输出的区别？</a>
+                </li>
+            </ul>
+        </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+        
+        activeElement = elements[0];
+        const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+        document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+    }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        if (elements) {
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement){
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }
+    }, false);
+
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;
+    }
+</script>
+        <div class="post-content"><div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P11-EXTI%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD-1.jpg" alt = "P11-EXTI外部中断-1.jpg" width = "70%" height = "auto">
+</div>
+<br>
+<h2 id="一单片机三要素">一、单片机三要素？<a hidden class="anchor" aria-hidden="true" href="#一单片机三要素">#</a></h2>
+<p>单片机最小系统的三要素为：电源、晶振和复位电路。</p>
+<h2 id="二单片机最小系统由哪几个部分组成">二、单片机最小系统由哪几个部分组成？<a hidden class="anchor" aria-hidden="true" href="#二单片机最小系统由哪几个部分组成">#</a></h2>
+<p>单片机最小系统由五部分组成，分别是MCU(微处理控制单元)、电源、时钟电路/晶振、复位电路、程序加载口。其中三要素是电源、时钟电路和复位电路。</p>
+<h2 id="三io口工作方式">三、IO口工作方式<a hidden class="anchor" aria-hidden="true" href="#三io口工作方式">#</a></h2>
+<p>上拉输入，下拉输入，推挽输出，开漏输出。</p>
+<h2 id="四uart有几根线">四、UART有几根线？<a hidden class="anchor" aria-hidden="true" href="#四uart有几根线">#</a></h2>
+<p>串行，异步，全双工。2根线 Rx，Tx。</p>
+<p>UART是通用异步串行数据总线，是一种全双工传输总线。UART在单片机中是最基本的配置，作为单片机的串口，它有TX(数据发送接口)和RX(数据接收接口)两个接口。使用UART总线接口进行通信的时候，两个设备间的TX和RX相连，RX和TX相连即可。</p>
+<h2 id="五spi是什么有几条线几种模式">五、SPI是什么？有几条线？几种模式？<a hidden class="anchor" aria-hidden="true" href="#五spi是什么有几条线几种模式">#</a></h2>
+<p>串行，同步，全双工。3根或4根。</p>
+<p>SPI，是一种高速的，全双工，同步的通信总线，在芯片的管脚上只占用四根线。</p>
+<p>它以主从方式工作，这种模式通常有一个主设备和一个或多个从设备。</p>
+<p>四根线分别是：SDI(数据输入)、SDO(数据输出)、SCLK(时钟)、CS(片选)。</p>
+<p>需要说明的是，我们SPI通信有4种不同的模式，不同的从设备可能在出厂是就是配置为某种模式，这是不能改变的；但我们的通信双方必须是工作在同一模式下，所以我们可以对我们的主设备的SPI模式进行配置，通过CPOL（时钟极性）和CPHA（时钟相位）来控制我们主设备的通信模式。</p>
+<p>CPOL（时钟极性）决定了通信过程中的有效电平：极性是0，表示空闲状态是低电平，有效电平是高电平；极性是1，表示空闲状态是高电平，有效电平是低电平。</p>
+<p>CPHA（时钟相位）决定了采集的时候是在时钟脉冲的第一个还是第二个边沿。</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Exp-sticker/%E5%8D%95%E7%89%87%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%9B%9E%E9%A1%BE.png" alt = "INIT.jpg" width = "70%" height = "auto">
+</div>
+<br>
+<h2 id="六使用i2c总线时需要考虑哪些问题">六、使用I2C总线时需要考虑哪些问题<a hidden class="anchor" aria-hidden="true" href="#六使用i2c总线时需要考虑哪些问题">#</a></h2>
+<p>一般需要考虑的问题包括：信号线上拉电阻、信号线负载电容、信号线串联电阻。</p>
+<h2 id="七i2c需不需要上拉电阻为什么">七、I2C需不需要上拉电阻？为什么？<a hidden class="anchor" aria-hidden="true" href="#七i2c需不需要上拉电阻为什么">#</a></h2>
+<p>上拉电阻是指将不确定的信号钳位在高电平，同时起限流作用的电阻。由于I2C通信是开漏输出的(只能输出低电平不能输出高电平)，因此需要加上拉电阻，使其可以输出高电平。</p>
+<h2 id="八dma有什么用">八、DMA有什么用<a hidden class="anchor" aria-hidden="true" href="#八dma有什么用">#</a></h2>
+<p>DMA用来提供在外设和存储器之间或者存储器和存储器之间的高速数据传输。无须CPU的干预，通过DMA数据可以快速地移动。这就节省了CPU的资源来做其他操作。</p>
+<h2 id="九stm32-中断是怎么进入到中断服务程序的">九、STM32 中断是怎么进入到中断服务程序的<a hidden class="anchor" aria-hidden="true" href="#九stm32-中断是怎么进入到中断服务程序的">#</a></h2>
+<p>在STM32中，为了区分不同的中断，每个设备有自己的中断号。系统有0-255一共256个中断。系统有一张中断向量表，用于存放256个中断的中断服务程序入口地址。每个入口地址对应一段代码，即中断服务程序。</p>
+<h2 id="十单片机上电后没有运转首先要检查什么">十、单片机上电后没有运转，首先要检查什么<a hidden class="anchor" aria-hidden="true" href="#十单片机上电后没有运转首先要检查什么">#</a></h2>
+<ol>
+<li>
+<p>检查电源是否正常，若装有复位芯片，也需查看复位芯片是否工作正常。</p>
+</li>
+<li>
+<p>检查硬件复位电路是否正常。</p>
+</li>
+<li>
+<p>查看外部晶振是否启振，一般用示波器X10挡位，应选取较高带宽.</p>
+</li>
+<li>
+<p>查看BOOT位设置启动方式是否正确。</p>
+</li>
+</ol>
+<h2 id="十一请说明总线接口usrti2cusb的异同点">十一、请说明总线接口USRT、I2C、USB的异同点<a hidden class="anchor" aria-hidden="true" href="#十一请说明总线接口usrti2cusb的异同点">#</a></h2>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Exp-sticker/%E5%8D%95%E7%89%87%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%9B%9E%E9%A1%BE-1.png" alt = "INIT.jpg" width = "70%" height = "auto">
+</div>
+<br>
+<h2 id="十二i2c总线通信原理">十二、I2C总线通信原理<a hidden class="anchor" aria-hidden="true" href="#十二i2c总线通信原理">#</a></h2>
+<p>目录</p>
+<p>1）I2C总线简介</p>
+<p>2）I2C总线协议</p>
+<p>3）I2C总线读写操作</p>
+<p>4）STM32F0-I2C控制器特性</p>
+<h3 id="i2c总线简介">I2C总线简介<a hidden class="anchor" aria-hidden="true" href="#i2c总线简介">#</a></h3>
+<p><strong>I2C总线介绍</strong></p>
+<p>I2C总线（也称IIC或I2C）是由PHILIPS公司开发的两线式串行总线，用于连接微控制器及其外围设备，是微电子通信控制领域广泛采用的一种总线标准。它是同步通信的一种特殊形式，具有接口线少，控制方式简单，期间封装形式少，通信速率高等优点。</p>
+<p><strong>I2C总线特征</strong></p>
+<ul>
+<li>
+<p>两条总线线路：一条串行数据SDA，一条串行时钟线SCL来完成数据的传输及外围器件的扩展。</p>
+</li>
+<li>
+<p>I2C总线上的每一个设备都可以作为主设备或者从设备，而且每一个设备都对应一个唯一的地址。</p>
+</li>
+<li>
+<p>I2C总线数据传输速率在标准模式下可达100kbit/s，快速模式性爱可达400kbit/s，高速模式下可达3.4Mbit/s。一般可通过I2C总线接口可编程时钟来实现传输速率的调整，同时也跟所接的上拉电阻的阻值有关。</p>
+</li>
+<li>
+<p>I2C总线上的主设备与从设备之间以字节（8位）为单位进行单双工的数据传输。</p>
+</li>
+</ul>
+<h3 id="i2c总线物理-拓扑结构">I2C总线物理-拓扑结构<a hidden class="anchor" aria-hidden="true" href="#i2c总线物理-拓扑结构">#</a></h3>
+<p>I2C 总线在物理连接上非常简单，分别由SDA(串行数据线)和SCL(串行时钟线)及上拉电阻组成。通信原理是通过对SCL和SDA线高低电平时序的控制，来产生I2C总线协议所需要的信号进行数据的传递。在总线空闲状态时，这两根线一般被上面所接的上拉电阻拉高，保持着高电平。I2C通信方式为半双工，只有一根SDA线，同一时间只可以单向通信，485也为半双工，SPI和uart为双工。</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Exp-sticker/%E5%8D%95%E7%89%87%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%9B%9E%E9%A1%BE-2.png" alt = "INIT.jpg" width = "70%" height = "auto">
+</div>
+<br>
+<h3 id="i2c总线协议">I2C总线协议<a hidden class="anchor" aria-hidden="true" href="#i2c总线协议">#</a></h3>
+<ul>
+<li>
+<p>I2C协议规定：总线上数据的传输必须以一个起始信号作为开始条件，以一个结束信号作为传输的停止条件。起始和结束信号总是由主设备产生。总线在空闲状态时，SCL和SDA都保持着高电平。</p>
+</li>
+<li>
+<p>起始信号：当SCL为高电平而SDA由高到低的跳变，表示产生一个起始条件。</p>
+</li>
+<li>
+<p>结束信号：当SCL为高而SDA由低到高的跳变，表示产生一个停止条件。</p>
+</li>
+<li>
+<p>数据传输：</p>
+</li>
+<li>
+<p>数据传输以<strong>字节</strong>为单位，主设备在SCL线上产生每个时钟脉冲的过程中将在SDA线上传输一个数据位，数据在时钟的<strong>高电平</strong>被采样，一个字节按数据位从<strong>高位到低位</strong>的顺序进行传输。</p>
+</li>
+<li>
+<p>主设备在传输有效数据之前，要先<strong>指定从设备的地址</strong>，<strong>一般为7位</strong>，然后再发生数据传输的方向位，<strong>0</strong>表示主设备向从设备<strong>写</strong>数据，<strong>1</strong>表示主设备向从设备<strong>读</strong>数据</p>
+</li>
+<li>
+<p>应答信号：</p>
+</li>
+<li>
+<p><strong>接收数据的器件</strong>在接收到8bit数据后，向发送数据的器件发出<strong>低电平</strong>的应答信号，表示已收到数据。这个信号可以是主控器件发出的，也可以是从动器件发出的。总之，由接收数据的器件发出。</p>
+</li>
+</ul>
+<p><strong>通俗来讲：</strong></p>
+<p>I2C协议规定，总线上数据的传输<strong>必须</strong>以一个起始信号作为开始条件，以一个结束信号作为传输的停止条件。起始和结束信号<strong>总是</strong>由主设备产生(意味着从设备不可以主动通信？所有的通信都是主设备发起的，主可以发出询问的command，然后等待从设备的通信)。</p>
+<p><strong>起始和结束信号产生条件</strong>：</p>
+<p>总线在空闲状态时，SCL和SDA都保持着高电平：</p>
+<ul>
+<li>
+<p>当SCL为高电平而SDA由高到低的跳变，表示产生一个起始条件；</p>
+</li>
+<li>
+<p>当SCL为高而SDA由低到高的跳变，表示产生一个停止条件。</p>
+</li>
+</ul>
+<p>在起始条件产生后，总线处于忙状态，由本次数据传输的主从设备独占，其他I2C器件无法访问总线；而在停止条件产生后，本次数据传输的主从设备将释放总线，总线再次处于空闲状态。</p>
+<p><strong>起始和结束如图所示</strong>：</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Exp-sticker/%E5%8D%95%E7%89%87%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%9B%9E%E9%A1%BE-3.png" alt = "INIT.jpg" width = "70%" height = "auto">
+</div>
+<br>
+<p>再来看看在这个过程中数据的传输是如何进行的。前面我们已经提到过，数据传输以字节为单位（8bit位）。</p>
+<p>主设备在SCL线上产生每个时钟脉冲的过程中将在SDA线上传输一个数据位，当一个字节按数据位从高位到低位的顺序传输完后，紧接着从设备将拉低SDA线，回传给主设备一个<strong>应答位</strong>， 此时才认为一个字节真正的被传输完成。</p>
+<p>当然，并不是所有的字节传输都必须有一个应答位，比如：当从设备不能再接收主设备发送的数据时，从设备将回传一个否 定应答位。</p>
+<p><strong>传输的过程</strong>如图所示：</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Exp-sticker/%E5%8D%95%E7%89%87%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%9B%9E%E9%A1%BE-4.png" alt = "INIT.jpg" width = "70%" height = "auto">
+</div>
+<br>
+<p>在前面我们还提到过，I2C总线上的每一个设备都对应一个唯一的地址，主从设备之间的数据传输是建立在地址的基础上，也就是说，主设备在传输有效数据之前要先指定从设备的地址，地址指定的过程和上面数据传输的过程一样，只不过大多数从设备的地址是7位的，</p>
+<p>然后协议规定再给地址添加一个最低位用来表示接下来数据传输的方向，0表示主设备向从设备写数据，1表示主设备向从设备读数据。</p>
+<p><strong>向指定设备发送数据的格式</strong>如图所示：(每一最小包数据由9bit组成，8bit内容+1bit ACK, 如果是地址数据，则8bit包含1bit方向)：</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Exp-sticker/%E5%8D%95%E7%89%87%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%9B%9E%E9%A1%BE-5.png" alt = "INIT.jpg" width = "70%" height = "auto">
+</div>
+<br>
+<h3 id="i2c总线读写操作">I2C总线读写操作<a hidden class="anchor" aria-hidden="true" href="#i2c总线读写操作">#</a></h3>
+<p>对I2C总线的操作实际就是主从设备之间的读写操作。<strong>大致可分为以下三种操作情况</strong>：</p>
+<p>1、主设备往从设备中写数据。数据传输格式如下：</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Exp-sticker/%E5%8D%95%E7%89%87%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%9B%9E%E9%A1%BE-6.png" alt = "INIT.jpg" width = "70%" height = "auto">
+</div>
+<br>
+<p>2、主设备从从设备中读数据。数据传输格式如下：</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Exp-sticker/%E5%8D%95%E7%89%87%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%9B%9E%E9%A1%BE-7.png" alt = "INIT.jpg" width = "70%" height = "auto">
+</div>
+<br>
+<p>3、主设备往从设备中写数据，然后重启起始条件，紧接着从从设备中读取数据；或者是主设备从从设备中读数据，然后重启起始条件，紧接着主设备往从设备中写数据。数据传输格式如下：</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Exp-sticker/%E5%8D%95%E7%89%87%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%9B%9E%E9%A1%BE-8.png" alt = "INIT.jpg" width = "70%" height = "auto">
+</div>
+<br>
+<h3 id="stm32f0-i2c控制器特性">STM32F0-I2C控制器特性<a hidden class="anchor" aria-hidden="true" href="#stm32f0-i2c控制器特性">#</a></h3>
+<ul>
+<li>软件模拟I2C时序</li>
+</ul>
+<p>由于直接控制GPIO引脚电平产生通讯时序时，需要由 CPU 控制每个时刻的引脚状态，所以称之为“软件模拟协议”方式。</p>
+<ul>
+<li>硬件控制产生I2C时序</li>
+</ul>
+<p>STM32的I2C片上外设专门负责I2C通讯协议，只要配置好该外设，它就会自动根据协议要求产生通讯信号，收发数据并缓存起来，CPU只要检测外设的状态和访问数据寄存器，就能完成数据收发。这种由硬件外设处理I2C协议的方式减轻了CPU的工作，且使软件设计更加简单。</p>
+<ul>
+<li>I2C的主要特点</li>
+</ul>
+<p>I2C总线规范rev03兼容性：</p>
+<ul>
+<li>
+<p>从机模式和主机模式</p>
+</li>
+<li>
+<p>多主机功能</p>
+</li>
+<li>
+<p>标准模式（高达100kHz）</p>
+</li>
+<li>
+<p>快速模式（高达400kHz）</p>
+</li>
+<li>
+<p>超快速模式（高达1MHz）</p>
+</li>
+<li>
+<p>7位和10位地址模式</p>
+</li>
+<li>
+<p>软件复位</p>
+</li>
+<li>
+<p>1字节缓冲带DMA功能</p>
+</li>
+</ul>
+<h3 id="总结">总结<a hidden class="anchor" aria-hidden="true" href="#总结">#</a></h3>
+<p>启示信号：SCL高，SDA出现下降沿</p>
+<p>结束信号：SCL高，SDA出现上升沿</p>
+<p>应答信号：在数据传输后(8位)，从机拉低SDA，则为应答ACK</p>
+<p>写：在地址（7位）后加上0，发三（从机地址，寄存器地址，数据）应答三；</p>
+<p>读：先假写（7位后+0），再读（7位后+1），启动两次，发三（从机地址，寄存器地址，从机地址）</p>
+<p>读一（读就行了）应答3，最后没有应答，从机写完数据之后就释放总线。</p>
+<h2 id="十三stm32总线协议通信的相关概念">十三、STM32总线协议通信的相关概念<a hidden class="anchor" aria-hidden="true" href="#十三stm32总线协议通信的相关概念">#</a></h2>
+<h3 id="同步通信和异步通信">同步通信和异步通信<a hidden class="anchor" aria-hidden="true" href="#同步通信和异步通信">#</a></h3>
+<ul>
+<li>
+<p>通信，最少要有两个对象，一个收，一个发</p>
+</li>
+<li>
+<p>同步通信：</p>
+</li>
+</ul>
+<p>一般情况下同步通信指的是通信双方根据同步信号进行通信的方式。比如通信双方有一个共同的时钟信号，大家根据时钟信号的变化进行通信。</p>
+<p>SPI I2C就是同步通信。</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Exp-sticker/%E5%8D%95%E7%89%87%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%9B%9E%E9%A1%BE-9.png" alt = "INIT.jpg" width = "70%" height = "auto">
+</div>
+<br>
+<ul>
+<li>异步通信：</li>
+</ul>
+<p>是指数据传输速度匹配依赖于通信双方自己独立的系统时钟，大家约定好通信的速度。异步通信不需要同步信号，但是并不是说通信的过程不同步。</p>
+<p>优点：不受时钟的限制</p>
+<p>缺点：通讯速度相比同步通信更慢，通信数据相比同步通信更小</p>
+<p>UART就是异步通信。</p>
+<h3 id="串行通信和并行通信的区别">串行通信和并行通信的区别<a hidden class="anchor" aria-hidden="true" href="#串行通信和并行通信的区别">#</a></h3>
+<ul>
+<li>
+<p>串行通信：指的是同一时刻只能收或发一个bit位信息、因此只用1根信号线即可。</p>
+</li>
+<li>
+<p>并行通信：指的是同一时刻可以收或发多个bit位的信息，因此需要多根信号线才行。</p>
+</li>
+<li>
+<p>串行传输：数据按位顺序传输</p>
+</li>
+<li>
+<p>优点：占用引脚资源较少</p>
+</li>
+<li>
+<p>缺点：速度相对较慢</p>
+</li>
+</ul>
+<p>比如我们通信的距离非常长，假如选择并行通信的话就要接很多的电器线路，就合很耗费电器线路的资源。</p>
+<ul>
+<li>
+<p>并行传输：数据各个位同时传输</p>
+</li>
+<li>
+<p>优点：速度快</p>
+</li>
+<li>
+<p>缺点：占用引脚资源多（IO口资源是有限的）</p>
+</li>
+</ul>
+<h3 id="单工半双工全双工">单工，半双工，全双工<a hidden class="anchor" aria-hidden="true" href="#单工半双工全双工">#</a></h3>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Exp-sticker/%E5%8D%95%E7%89%87%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%9B%9E%E9%A1%BE-10.png" alt = "INIT.jpg" width = "70%" height = "auto">
+</div>
+<br>
+<ul>
+<li>
+<p>单工：要么收，要么发，只能做接收设备或者发送设备。比如收音机</p>
+</li>
+<li>
+<p>半双工：可以收，可以发，但是不能同时收发，比如对讲机</p>
+</li>
+<li>
+<p>全双工：可以在同一时刻既接收又发送。比如手机。</p>
+</li>
+</ul>
+<h2 id="十四spi总线通信协议原理">十四、SPI总线通信协议原理<a hidden class="anchor" aria-hidden="true" href="#十四spi总线通信协议原理">#</a></h2>
+<p>我们之前讲解了 I2C，I2C 是串行通信的一种，只需要两根线就可以完成主机和从机之间的通信，但是 I2C 的速度最高只能到 400KHz，如果对于访问速度要求比价高的话 I2C 就不适合了。</p>
+<p>本章我们就来学习一下另外一个和 I2C 一样广泛使用的串行通信：SPI，SPI 全称是 Serial Perripheral Interface，也就是串行外围设备接口。SPI 是 Motorola 公司推出的一种同步串行接口技术，是一种高速、全双工的同步通信总线，SPI 时钟频率相比 I2C 要高很多，最高可以工作在上百 MHz。SPI 以主从方式工作，通常是有一个主设备和一个或多个从设备，一般 SPI 需要4 根线，但是也可以使用三根线(单向传输)，本章我们讲解标准的 4 线 SPI，这四根线如下：</p>
+<p>①、CS/SS，Slave Select/Chip Select，这个是片选信号线，用于选择需要进行通信的从设备。</p>
+<p>I2C 主机是通过发送从机设备地址来选择需要进行通信的从机设备的，SPI 主机不需要发送从机设备，直接将相应的从机设备片选信号拉低即可。</p>
+<p>②、SCK，Serial Clock，串行时钟，和 I2C 的 SCL 一样，为 SPI 通信提供时钟。</p>
+<p>③、MOSI/SDO，Master Out Slave In/Serial Data Output，简称主出从入信号线，这根数据线只能用于主机向从机发送数据，也就是主机输出，从机输入。</p>
+<p>④、MISO/SDI，Master In Slave Out/Serial Data Input，简称主入从出信号线，这根数据线只能用户从机向主机发送数据，也就是主机输入，从机输出。</p>
+<p>SPI 通信都是由主机发起的，主机需要提供通信的时钟信号。主机通过 SPI 线连接多个从设备的结构如图所示</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Exp-sticker/%E5%8D%95%E7%89%87%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%9B%9E%E9%A1%BE-11.png" alt = "INIT.jpg" width = "70%" height = "auto">
+</div>
+<br>
+<p>SPI 有四种工作模式，通过串行时钟极性(CPOL)和相位(CPHA)的搭配来得到四种工作模式：</p>
+<p>①、CPOL=0，串行时钟空闲状态为低电平。</p>
+<p>②、CPOL=1，串行时钟空闲状态为高电平，此时可以通过配置时钟相位(CPHA)来选择具体的传输协议。</p>
+<p>③、CPHA=0，串行时钟的第一个跳变沿(上升沿或下降沿)采集数据。</p>
+<p>④、CPHA=1，串行时钟的第二个跳变沿(上升沿或下降沿)采集数据。</p>
+<p>SPI四种工作模式</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Exp-sticker/%E5%8D%95%E7%89%87%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%9B%9E%E9%A1%BE-12.png" alt = "INIT.jpg" width = "70%" height = "auto">
+</div>
+<br>
+<p>跟 I2C 一样，SPI 也是有时序图的，以 CPOL=0，CPHA=0 这个工作模式为例，SPI 进行全双工通信的时序如图所示：</p>
+<p>图：SPI时序图</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Exp-sticker/%E5%8D%95%E7%89%87%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%9B%9E%E9%A1%BE-13.png" alt = "INIT.jpg" width = "70%" height = "auto">
+</div>
+<br>
+<p>从图可以看出，SPI 的时序图很简单，不像 I2C 那样还要分为读时序和写时序，因为 SPI 是全双工的，所以读写时序可以一起完成。图 27.1.1.3 中，CS 片选信号先拉低，选中要通信的从设备，然后通过 MOSI 和 MISO 这两根数据线进行收发数据，MOSI 数据线发出了0XD2 这个数据给从设备，同时从设备也通过 MISO 线给主设备返回了 0X66 这个数据。</p>
+<h2 id="十五stm32启动方式">十五、STM32启动方式<a hidden class="anchor" aria-hidden="true" href="#十五stm32启动方式">#</a></h2>
+<p>3种</p>
+<p>1、从Flash启动，将Flash地址0x0800 0000映射到0x00000000，这样启动以后就相当于从0x08000000开始的，这是我们最常用的模式；</p>
+<p>2、从SRAM启动，将SRAM地址0x20000000映射到0x00000000，这样启动以后就相当于从0x20000000开始的，用于调试，笔者基本没用过</p>
+<p>3、从系统存储器启动(System memory)，将系统存储器地址0x1FFFF000映射到0x00000000，这样启动以后就相当于从0x1FFFF000开始执行的，值得注意的是这个系统存储器里面存储的其实是STM32自带的Bootloader代码，这其实是一个官方的IAP，它提供了可以通过UART1接口将用户的代码下载到Flash中的功能,然后将boot0置0，复位单片机，便可以Flash启动。</p>
+<p>注：系统内存存储器我们没办法烧些，因为他是一个只读的ROM，我们只能读取，但是可以通过从系统存储器启动，通过串口UART1烧录代码。</p>
+<div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Exp-sticker/%E5%8D%95%E7%89%87%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%9B%9E%E9%A1%BE-14.png" alt = "INIT.jpg" width = "70%" height = "auto">
+</div>
+<br>
+<h2 id="十六stm32上电到main函数之前做了什么事">十六、STM32上电到main函数之前做了什么事？<a hidden class="anchor" aria-hidden="true" href="#十六stm32上电到main函数之前做了什么事">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>; Reset handler
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Reset_Handler PROC :<span style="color:#960050;background-color:#1e0010">定义函数</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>			  EXPORT Reset_Handler [WEAK]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	IMPORT __main : <span style="color:#960050;background-color:#1e0010">引入函数</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	IMPORT SystemInit : <span style="color:#960050;background-color:#1e0010">引入函数</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		LDR R0, <span style="color:#f92672">=</span>SystemInit : <span style="color:#960050;background-color:#1e0010">将函数放到</span>R0
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		BLX R0 : <span style="color:#960050;background-color:#1e0010">执行</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		LDR R0, <span style="color:#f92672">=</span>__main
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		BX R010 ENDP
+</span></span></code></pre></div><p>1、初始化堆栈指针SP=_initial_sp，启动方式不同，指向地址不同。</p>
+<p>2、初始化PC（通用寄存器指针）指针=Reset_Handler，若果是Flash启动就是0x0800 0000</p>
+<p>3、SystemInit（配置系统时钟）</p>
+<p>4、__main(MDK自带的函数)，初始化堆栈，.data .bss</p>
+<p>5、最终调用main 函数去到C 的世界</p>
+<h2 id="十七开漏输出和推挽输出的区别">十七、开漏输出和推挽输出的区别？<a hidden class="anchor" aria-hidden="true" href="#十七开漏输出和推挽输出的区别">#</a></h2>
+<p>推挽输出的最大特点是可以真正能真正的输出高电平和低电平，在两种电平下都具有驱动能力。常说的与推挽输出相对的就是开漏输出，对于开漏输出和推挽输出的区别最普遍的说法就是开漏输出无法真正输出高电平，即高电平时没有驱动能力，需要借助外部上拉电阻完成对外驱动。</p>
+<p>所谓的驱动能力，就是指输出电流的能力。</p>
+
+
+        </div>
+
+        <footer class="post-footer">
+            
+<nav class="paginav">
+  <a class="prev" href="https://eddyblog.cn/posts/tech/exp-sticker-c-cpp-basic-knowledge-review/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>【温故而知新】C语言和C&#43;&#43;基础知识回顾</span>
+  </a>
+  <a class="next" href="https://eddyblog.cn/posts/tech/database_sqlite/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>SQLite数据库简介及使用指南</span>
+  </a>
+</nav>
+
+        </footer>
+    </div>
+</article>
+</main>
+
+<footer class="footer">
+    <span>
+        Copyright
+        &copy;
+        -2024
+        <a href="https://eddyblog.cn/" style="color:#939393;">Eddy&#39;s blog</a>
+        All Rights Reserved
+    </span>
+    <a href="https://beian.miit.gov.cn/" target="_blank" style="color:#939393;"></a>&nbsp;
+    <span>
+        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=null"
+           style="display:inline-block;text-decoration:none;height:20px;color:#939393;">
+            <img src="" style="float:left;margin: 0px 5px 0px 0px;"/>
+            
+        </a>
+    </span>
+    <span id="busuanzi_container">
+        <span class="fa fa-user"></span> <span id="busuanzi_value_site_uv"></span>
+        <span class="fa fa-eye"></span> <span id="busuanzi_value_site_pv"></span>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <span class="topInner">
+        <svg class="topSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z"/>
+        </svg>
+        <span id="read_progress"></span>
+    </span>
+</a>
+
+<script>
+    document.addEventListener('scroll', function (e) {
+        const readProgress = document.getElementById("read_progress");
+        const scrollHeight = document.documentElement.scrollHeight;
+        const clientHeight = document.documentElement.clientHeight;
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        readProgress.innerText = ((scrollTop / (scrollHeight - clientHeight)).toFixed(2) * 100).toFixed(0);
+    })
+</script>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+</script>
+<script>
+    let mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        (function() {
+            document.cookie = "change-themes" + "="+ escape ("false");
+        })()
+
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    });
+</script>
+
+<script>
+    document.body.addEventListener('copy', function (e) {
+        if (window.getSelection().toString() && window.getSelection().toString().length > 50) {
+            let clipboardData = e.clipboardData || window.clipboardData;
+            if (clipboardData) {
+                e.preventDefault();
+                let htmlData = window.getSelection().toString() +
+                    '\r\n\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                let textData = window.getSelection().toString() +
+                    '\r\n\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                clipboardData.setData('text/html', htmlData);
+                clipboardData.setData('text/plain', textData);
+            }
+        }
+    });
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = '复制';
+
+        function copyingDone() {
+            copybutton.innerText = '已复制！';
+            setTimeout(() => {
+                copybutton.innerText = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                let text = codeblock.textContent +
+                    '\r\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                navigator.clipboard.writeText(text);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) {}
+            selection.removeRange(range);
+        });
+
+        let language = codeblock.className.replaceAll("language-", "")
+        let macTool = document.createElement("div")
+        let macTool1 = document.createElement("div")
+        let macTool2 = document.createElement("div")
+        let macTool3 = document.createElement("div")
+        let languageType = document.createElement("div")
+        languageType.innerText = language
+        macTool.setAttribute('class', 'mac-tool')
+        macTool1.setAttribute('class', 'mac bb1')
+        macTool2.setAttribute('class', 'mac bb2')
+        macTool3.setAttribute('class', 'mac bb3')
+        languageType.setAttribute('class', 'language-type')
+        macTool.appendChild(macTool1)
+        macTool.appendChild(macTool2)
+        macTool.appendChild(macTool3)
+        macTool.appendChild(languageType)
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+            container.appendChild(macTool)
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+            container.appendChild(macTool)
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+            container.appendChild(macTool)
+        }
+    });
+</script>
+
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style></body>
+
+</html>

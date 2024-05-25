@@ -25,5 +25,14 @@
       <description>本博客为新手量身打造，系统介绍了Linux操作系统的基本概念、核心命令及其应用场景。通过实例演示，帮助读者快速掌握Linux操作技巧，为进一步学习打下坚实基础。</description>
     </item>
     
+    <item>
+      <title>Linux入门：文件IO</title>
+      <link>https://eddyblog.cn/posts/tech/linux-basics-03/</link>
+      <pubDate>Sun, 21 Apr 2024 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/linux-basics-03/</guid>
+      <description>INIT INIT：本节内容正式开始。action! 库的制作与使用 库文件的定义 库文件是计算机软件中包含一系列函数、类、数据结构和资源的文件，它们被编译成机器码，可以在运行时被其他程序链接和调用。库文件能够提供一些常用的功能，使得程序员不必“重新发明轮子”，可以更高效地开发软件。 库文件主要</description>
+    </item>
+    
   </channel>
 </rss>

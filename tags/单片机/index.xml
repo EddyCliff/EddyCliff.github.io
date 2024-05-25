@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>单片机 on Eddy&#39;s blog</title>
+    <link>https://eddyblog.cn/tags/%E5%8D%95%E7%89%87%E6%9C%BA/</link>
+    <description>Recent content in 单片机 on Eddy&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Wed, 01 May 2024 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/%E5%8D%95%E7%89%87%E6%9C%BA/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【温故而知新】单片机基础知识回顾</title>
+      <link>https://eddyblog.cn/posts/tech/exp-sticker-mcu-basic-knowledge-review/</link>
+      <pubDate>Wed, 01 May 2024 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/exp-sticker-mcu-basic-knowledge-review/</guid>
+      <description>一、单片机三要素？ 单片机最小系统的三要素为：电源、晶振和复位电路。 二、单片机最小系统由哪几个部分组成？ 单片机最小系统由五部分组成，分别是MCU(微处理控制单元)、电源、时钟电路/晶振、复位电路、程序加载口。其中三要素是电源、时钟电路和复位电路。 三、IO口工作方式 上拉输入，下拉输入</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -88,5 +88,14 @@
       <description>STM32是基于ARM Cortex-M内核由ST公司开发的32位微控制器，拥有高性能和丰富片上资源，适合嵌入式系统应用。它包括多个系列，满足不同场景需求，例如高性能、主流、超低功耗和无线等。STM32F103C8T6是其中一款，采用ARM Cortex-M3内核，具有72MHz主频、20Kb RAM和64Kb Flash，适用于多种应用。该芯片拥有全面的外设资源，如NVIC、SysTick定时器、RCC、GPIO、AFIO、EXTI、TIM定时器、ADC、DMA、USART、I2C/SPI和USB OTG等，提供高度灵活且可定制化的平台。文章还介绍了该芯片的引脚定义、电源管理、启动配置和最小系统板构成，强调了正确配置电源、时钟和下载电路的重要性。通过连接稳压供电模块、复位电路、Boot配置电路、LED测试电路和下载电路，可以构建出能够稳定工作的STM32最小系统板。此外，文档推荐参考官方资料以深入理解STM32的工作原理和应用。</description>
     </item>
     
+    <item>
+      <title>【温故而知新】单片机基础知识回顾</title>
+      <link>https://eddyblog.cn/posts/tech/exp-sticker-mcu-basic-knowledge-review/</link>
+      <pubDate>Wed, 01 May 2024 00:17:58 +0800</pubDate>
+      
+      <guid>https://eddyblog.cn/posts/tech/exp-sticker-mcu-basic-knowledge-review/</guid>
+      <description>一、单片机三要素？ 单片机最小系统的三要素为：电源、晶振和复位电路。 二、单片机最小系统由哪几个部分组成？ 单片机最小系统由五部分组成，分别是MCU(微处理控制单元)、电源、时钟电路/晶振、复位电路、程序加载口。其中三要素是电源、时钟电路和复位电路。 三、IO口工作方式 上拉输入，下拉输入</description>
+    </item>
+    
   </channel>
 </rss>

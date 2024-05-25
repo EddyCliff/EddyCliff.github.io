@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>【温故而知新】C语言和C&#43;&#43;基础知识回顾 | Eddy&#39;s blog</title>
+<meta name="keywords" content="C语言, C&#43;&#43;">
+<meta name="description" content="一、数组和指针有什么联系？ 指针就是指针，指针变量在 32 位系统下，永远占 4 个 byte，其值为某一个内存的地址。指针可以指向任何地方，但是不是任何地方你都能通过这个指针变量访问到。 数组就是数组，其大小与元素的类型和个数有关。定义数组时必须指定其元素的类型和个数。数组可以存任何类型的数据">
+<meta name="author" content="Eddy">
+<link rel="canonical" href="https://eddyblog.cn/posts/tech/exp-sticker-c-cpp-basic-knowledge-review/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.js" onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="icon" type="image/png" sizes="16x16" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="icon" type="image/png" sizes="32x32" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="apple-touch-icon" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="mask-icon" href="https://eddyblog.cn/img/logo3.jpg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://eddyblog.cn/posts/tech/exp-sticker-c-cpp-basic-knowledge-review/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<script defer src="https://unpkg.com/mermaid@8.8.1/dist/mermaid.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="https://registry.npmmirror.com/lxgw-wenkai-screen-web/latest/files/style.css" />
+
+
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = ""; 
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  
+
+<meta property="og:title" content="【温故而知新】C语言和C&#43;&#43;基础知识回顾" />
+<meta property="og:description" content="一、数组和指针有什么联系？ 指针就是指针，指针变量在 32 位系统下，永远占 4 个 byte，其值为某一个内存的地址。指针可以指向任何地方，但是不是任何地方你都能通过这个指针变量访问到。 数组就是数组，其大小与元素的类型和个数有关。定义数组时必须指定其元素的类型和个数。数组可以存任何类型的数据" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://eddyblog.cn/posts/tech/exp-sticker-c-cpp-basic-knowledge-review/" />
+<meta property="og:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/c2.jpg" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-05-01T00:17:58+08:00" />
+<meta property="article:modified_time" content="2024-05-01T00:17:58+08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/c2.jpg" />
+<meta name="twitter:title" content="【温故而知新】C语言和C&#43;&#43;基础知识回顾"/>
+<meta name="twitter:description" content="一、数组和指针有什么联系？ 指针就是指针，指针变量在 32 位系统下，永远占 4 个 byte，其值为某一个内存的地址。指针可以指向任何地方，但是不是任何地方你都能通过这个指针变量访问到。 数组就是数组，其大小与元素的类型和个数有关。定义数组时必须指定其元素的类型和个数。数组可以存任何类型的数据"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+
+        {
+          "@type": "ListItem",
+          "position":  1 ,
+          "name": "📚文章",
+          "item": "https://eddyblog.cn/posts/"
+        },
+
+        {
+          "@type": "ListItem",
+          "position":  2 ,
+          "name": "👨🏻‍💻 技术",
+          "item": "https://eddyblog.cn/posts/tech/"
+        }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "【温故而知新】C语言和C++基础知识回顾",
+      "item": "https://eddyblog.cn/posts/tech/exp-sticker-c-cpp-basic-knowledge-review/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "【温故而知新】C语言和C++基础知识回顾",
+  "name": "【温故而知新】C语言和C\u002b\u002b基础知识回顾",
+  "description": "一、数组和指针有什么联系？ 指针就是指针，指针变量在 32 位系统下，永远占 4 个 byte，其值为某一个内存的地址。指针可以指向任何地方，但是不是任何地方你都能通过这个指针变量访问到。 数组就是数组，其大小与元素的类型和个数有关。定义数组时必须指定其元素的类型和个数。数组可以存任何类型的数据",
+  "keywords": [
+    "C语言", "C++"
+  ],
+  "articleBody": " 一、数组和指针有什么联系？ 指针就是指针，指针变量在 32 位系统下，永远占 4 个 byte，其值为某一个内存的地址。指针可以指向任何地方，但是不是任何地方你都能通过这个指针变量访问到。\n数组就是数组，其大小与元素的类型和个数有关。定义数组时必须指定其元素的类型和个数。数组可以存任何类型的数据，但不能存函数\n二、C语言中内存分配的方式有几种 1、静态存储区分配\n内存分配在程序编译之前完成，且在程序的整个运行期间都存在，例如全局变量、静态变量等。\n2、栈上分配\n在函数执行时，函数内的局部变量的存储单元在栈上创建，函数执行结束时这些存储单元自动释放。\n3、堆上分配\n三、堆和栈的区别 栈：保存局部变量。栈上的内容只在函数的范围内存在，当函数运行结束，这些内容也会自动被销毁。其特点是效率高，但空间大小有限。\n堆：由 malloc 系列函数或 new 操作符分配的内存。其生命周期由 free 或 delete 决定。\n在没有释放之前一直存在，直到程序结束。其特点是使用灵活，空间比较大，但容易出错。\n堆与栈实际上是操作系统对进程占用的内存空间的两种管理方式，主要有如下几种区别：\n（1）管理方式不同。栈由操作系统自动分配释放，无需我们手动控制；堆的申请和释放工作由程序员\n控制，容易产生内存泄漏；\n（2）空间大小不同。每个进程拥有的栈的大小要远远小于堆的大小。\n（3）生长方向不同。堆的生长方向向上，内存地址由低到高；栈的生长方向向下，内存地址由高到低。\n（4）分配方式不同。堆都是动态分配的，没有静态分配的堆。栈有2种分配方式：静态分配和动态分配。栈的分配系统会自动分配，用户也可以申请（通过alloca）；\n（5）分配效率(速度)不同。栈有底层指令实现，速度快；堆使用C库函数运算来申请和管理，速度慢；\n（6）存放内容不同。栈存放的内容，函数返回地址（调用函数的指令的下一条指令）、相关参数、局部变量和寄存器内容等。 注意静态变量是存放在数据段或者BSS段，是不入栈的。 而堆中具体存放内容是由程序员来填充的。\n四、static的用法（定义和用途） 1）用static修饰局部变量：使其变为静态存储方式(静态数据区)，那么这个局部变量在函数执行完成之后不会被释放，而是继续保留在内存中。\n2）用static修饰全局变量：使其只在本文件内部有效，而其他文件不可连接或引用该变量。\n3）用static修饰函数：对函数的连接方式产生影响，使得函数只在本文件内部有效，对其他文件是不可见的（这一点在大工程中很重要很重要，避免很多麻烦，很常见）。这样的函数又叫作静态函数。使用静态函数的好处是，不用担心与其他文件的同名函数产生干扰，另外也是对函数本身的一种保护机制。\n五、const的用法（定义和用途） const主要用来修饰变量、函数形参和类成员函数：\n1）用const修饰常量：定义时就初始化，以后不能更改。\n2）用const修饰形参：func(const int a){};该形参在函数里不能改变\n3）用const修饰类成员函数：该函数对成员变量只能进行只读操作，就是const类成员函数是不能修改成员变量的数值的。\n被const修饰的东西都受到强制保护，可以预防意外的变动，能提高程序的健壮性。\n下面的声明都是什么意思？\nconst int a; int const a; const int *a; int * const a; int const * a const; 前两个的作用是一样，a是一个常整型数。\n第三个意味着a是一个指向常整型数的指针（也就是，整型数是不可修改的，但指针可以）。\n第四个意思a是一个指向整型数的常指针（也就是说，指针指向的整型数是可以修改的，但指针是不可修改的）。\n最后一个意味着a是一个指向常整型数的常指针（也就是说，指针指向的整型数是不可修改的，同时指针也是不可修改的）。\n六、内存四区，什么变量分别存储在什么区域，堆上还是栈上？ 在C++中，内存四区指的是程序运行时内存被划分成的四个主要区域，分别是栈区（Stack）、堆区（Heap）、全局/静态存储区（Global/Static）和常量存储区（Constant）。不同的变量类型和声明周期通常存储在不同的区域。\n栈区（Stack）： 自动局部变量（auto variable）：在函数内部定义的没有指定存储区域的局部变量，如int a;，它们会自动存储在栈上。 函数参数：函数调用时传递的参数也是在栈上分配的。 函数返回地址和局部变量：这些信息在函数调用过程中被存储在栈上。 堆区（Heap）： 动态分配的内存：使用new关键字在C++中或者在C中使用malloc、calloc、realloc等函数分配的内存都存储在堆上。这些内存直到使用delete（C++）或free（C）显式释放前都不会被自动清理。 对象生命周期由程序员控制：通过new创建的对象，其生命周期不是由作用域决定的，而是由delete操作决定。 全局/静态存储区（Global/Static）： 全局变量：在所有函数体之外定义的变量，程序启动时分配，程序结束时释放。 静态变量：在函数内部或类内部声明为static的变量，它们的存储期限是程序的整个运行期间，而不是函数调用的周期。 常量存储区（Constant）： 字符串常量：如const char* p = \"hello world\";中的\"hello world\"是存储在常量区的。 const修饰的全局变量：声明为const的全局变量也存储在这里。 不同的内存区域有不同的生命周期和访问特性，合理地使用这些区域对于程序的性能和资源管理都是非常重要的。在程序设计中，应当根据变量的特性和用途选择合适的存储区域。\nC++和C语言中的内存分区的区别 C++和C语言在内存管理上有一些相似之处，但也存在差异。在C语言中，内存通常被分为三个主要区域：\n栈区（Stack）：用于存储局部变量、函数参数和返回地址等。栈上的内存分配和释放是自动的，由编译器在函数调用和返回时管理。 堆区（Heap）：用于动态内存分配，通过malloc、calloc、realloc等函数分配的内存位于堆上。堆内存的分配和释放需要程序员手动管理。 静态存储区（Static/Global）：用于存储全局变量和静态变量。这些变量在程序启动时分配，直到程序结束时才释放。 C语言中没有显式的常量存储区概念，而是将常量值直接嵌入到代码中，通常存储在只读的代码段。\n相比之下，C++在C的基础上增加了对象的概念，并且引入了类和对象的生命周期管理。C++的内存四区通常指的是：\n栈区（Stack）：与C语言相同，用于自动局部变量和函数调用相关的数据。 堆区（Heap）：与C语言相同，用于动态内存分配，但C++使用new和delete关键字进行对象的分配和释放。 全局/静态存储区（Global/Static）：与C语言相同，用于全局变量和静态变量。 常量存储区（Constant）：C++中明确区分了常量存储区，用于存储字面量常量和const修饰的全局变量。 总的来说，C++在内存管理上提供了更丰富的特性，特别是通过类和对象的概念，引入了构造函数和析构函数来管理对象的创建和销毁，这是C语言所没有的。此外，C++还支持局部对象和临时对象的自动存储期，这些都是C++特有的内存管理特性。\n七、用变量a给出下面的定义 a) 一个整型数；\nb）一个指向整型数的指针；\nc）一个指向指针的指针，它指向的指针是指向一个整型数；\nd）一个有10个整型的数组；\ne）一个有10个指针的数组，该指针是指向一个整型数；\nf）一个指向有10个整型数数组的指针；\ng）一个指向函数的指针，该函数有一个整型参数并返回一个整型数；\nh）一个有10个指针的数组，该指针指向一个函数，该函数有一个整型参数并返回一个整型数\n答案：\na)int a b)int *a; c)int **a; d)int a[10]; e)int *a [10]; f) int a[10], *p=a; g)int (*a)(int) h) int( *a[10])(int) 八、volatile作用和用法 在C和C++中，volatile关键字用于声明一个变量，以告诉编译器这个变量的值可能会在程序的控制之外被改变。这通常发生在多线程应用中，或者当变量映射到硬件设备时，硬件可能会在程序没有明确写入的情况下改变变量的值。\nvolatile的作用是阻止编译器对声明为volatile的变量进行不必要的优化。编译器通常会假设在一个线程内，如果一个变量没有被显式地修改，那么它的值在读取时是不变的。然而，当一个变量是volatile时，编译器会被告知该变量的值可能会以不可预测的方式改变，因此编译器不会将该变量缓存在寄存器中，而是每次都直接从内存中读取它的值。\n用法示例：\nvolatile int counter = 0; void increment_counter(void) { counter++; // 这个操作可能会被硬件中断服务例程修改 } int main() { while (counter \u003c 10) { // 如果没有volatile关键字，编译器可能会优化这个循环， // 认为counter的值在循环中没有改变，导致无限循环 } return 0; } 在上面的例子中，counter变量可能会在一个中断服务例程中被修改，而这个中断服务例程是由硬件触发的，不是由程序控制的。因此，我们需要将counter声明为volatile，以防止编译器优化掉循环中的while检查，导致程序无法正确响应counter的变化。\n需要注意的是，volatile并不保证变量的原子性操作，它只是告诉编译器不要对变量的访问进行优化。在多线程环境中，如果多个线程访问同一个volatile变量，仍然需要使用互斥锁（mutex）或其他同步机制来保证线程安全。\n此外，volatile关键字并不适用于所有的优化问题。例如，它不会阻止编译器对访问volatile变量的指令进行重排。如果需要确保操作的顺序，应该使用内存屏障（memory barrier）或其他同步原语。\n以下几种情况都会用到volatile：\n1、并行设备的硬件寄存器（如：状态寄存器）\n2、一个中断服务子程序中会访问到的非自动变量\n3、多线程应用中被几个任务共享的变量\n九、变量的作用域（全局变量和局部变量） 全局变量：在所有函数体的外部定义的，程序的所在部分（甚至其它文件中的代码）都可以使用。全局变量不受作用域的影响（也就是说，全局变量的生命期一直到程序的结束）。\n局部变量：出现在一个作用域内，它们是局限于一个函数的。局部变量经常被称为自动变量，因为它们在进入作用域时自动生成，离开作用域时自动消失。关键字auto可以显式地说明这个问题，但是局部变量默认为auto，所以没有必要声明为auto。\n局部变量可以和全局变量重名，在局部变量作用域范围内，全局变量失效，采用的是局部变量的值。\n十、sizeof 与strlen （字符串，数组） 1、如果是数组\n#include int main() { int a[5]={1,2,3,4,5}; printf(“sizeof 数组名=%d\\n”,sizeof(a)); printf(“sizeof *数组名=%d\\n”,sizeof(*a)); } 运行结果\nsizeof 数组名=20 sizeof *数组名=4 2、如果是指针，sizeof只会检测到是指针的类型，指针都是占用4个字节的空间（32位机）。\nsizeof是什么？是一个操作符,也是关键字，就不是一个函数，这和strlen()不同，strlen()是一个函数。\n那么sizeof的作用是什么？返回一个对象或者类型所占的内存字节数。我们会对sizeof()中的数据或者指针做运算吗？基本不会。例如sizeof(1+2.0),直接检测到其中类型是double,即是sizeof(double) = 8。如果是指针，sizeof只会检测到是指针的类型，指针都是占用4个字节的空间（32位机）。\nchar *p = \"sadasdasd\"; sizeof(p):4 sizeof(*p):1//指向一个char类型的 除非使用strlen()，仅对字符串有效，直到’\\0’为止了，计数结果不包括\\0。\n要是非要使用sizeof来得到指向内容的大小，就得使用数组名才行， 如\nchar a[10]; sizeof(a):10 //检测到a是一个数组的类型。 关于strlen()，它是一个函数，考察的比较简单：\nstrlen “\\n\\t\\tag\\AAtang” 答案：11\n",
+  "wordCount" : "4737",
+  "inLanguage": "zh",
+  "image":"https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/c2.jpg","datePublished": "2024-05-01T00:17:58+08:00",
+  "dateModified": "2024-05-01T00:17:58+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "Eddy"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://eddyblog.cn/posts/tech/exp-sticker-c-cpp-basic-knowledge-review/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Eddy's blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://eddyblog.cn/img/logo3.jpg"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    (function () {
+        let  arr,reg = new RegExp("(^| )"+"change-themes"+"=([^;]*)(;|$)");
+        if(arr = document.cookie.match(reg)) {
+        } else {
+            if (new Date().getHours() >= 19 || new Date().getHours() < 6) {
+                document.body.classList.add('dark');
+                localStorage.setItem("pref-theme", 'dark');
+            } else {
+                document.body.classList.remove('dark');
+                localStorage.setItem("pref-theme", 'light');
+            }
+        }
+    })()
+
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://eddyblog.cn/" accesskey="h" title="Eddy&#39;s Blog (Alt + H)">
+            <img src="https://eddyblog.cn/img/logo3.jpg" alt="logo" aria-label="logo"
+                 height="35">Eddy&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://eddyblog.cn/search" title="🔍 搜索 (Alt &#43; /)" accesskey=/>
+                <span>🔍 搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/" title="🏠 主页">
+                <span>🏠 主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/posts" title="📚 文章">
+                <span>📚 文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/tags" title="🧩 标签">
+                <span>🧩 标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/archives/" title="⏱️ 时间轴">
+                <span>⏱️ 时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://eddyblog.cn/about" title="🙋🏻‍♂️ 关于">
+                <span>🙋🏻‍♂️ 关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main page">
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+</style>
+
+<article class="post-single">
+    <div id="single-content">
+        <header class="post-header">
+            <div class="breadcrumbs"><a href="https://eddyblog.cn/">🏠 主页</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/">📚文章</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/tech/">👨🏻‍💻 技术</a></div>
+            <h1 class="post-title">
+                【温故而知新】C语言和C&#43;&#43;基础知识回顾
+            </h1>
+            <div class="post-meta">
+
+<style>
+    i[id*="post_meta_style"] {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+
+    .parent-post-meta {
+        display: flex;
+        flex-wrap: wrap;
+        opacity: 0.8;
+    }
+</style>
+
+<span class="parent-post-meta">
+    <span id="post_meta_style_1">
+        <span class="fa fa-calendar-check-o"></span>
+        <span>2024-05-01
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    
+    
+    
+    
+    
+    
+    
+    <span id="post_meta_style_3">
+        <span class="fa fa-file-word-o"></span>
+        <span>4737字
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_4">
+        <span class="fa fa-clock-o"></span>
+        <span>10分钟
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_5">
+        <span class="fa fa-user-o"></span>
+        <span>Eddy
+            &nbsp;&nbsp;
+        </span>
+    </span>
+    <span id="post_meta_style_6">
+        <span class="fa fa-tags" style="opacity: 0.8"></span>
+        <span>
+            <span class="post-tags-meta">
+                <a href="https://eddyblog.cn/tags/c%E8%AF%AD%E8%A8%80/" style="color: var(--secondary)!important;">C语言</a>
+                &nbsp;<a href="https://eddyblog.cn/tags/c&#43;&#43;/" style="color: var(--secondary)!important;">C&#43;&#43;</a>
+            </span>
+        </span>
+    </span>
+</span>
+<span style="opacity: 0.8;">
+                    <span id="post_meta_style_7">
+                        &nbsp;&nbsp;
+                        <span class="fa fa-eye" ></span>
+                        <span>
+                            <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+                            &nbsp;&nbsp;
+                        </span>
+                    </span>
+                    <span id="post_meta_style_8">
+                        <span class="fa fa-commenting-o"></span>
+                        <span>
+                            <script src="https://cdn.staticfile.org/twikoo//twikoo.all.min.js"></script>
+                            <script>
+                                let url = document.documentURI
+                                
+                                let dnsUrl = "https://eddyblog.cn/"
+                                let urlSplit = url.split(dnsUrl)
+                                let finalUrl = urlSplit[1]
+                                if (finalUrl[0] !== '/') {
+                                    finalUrl = '/'+finalUrl
+                                }
+                                twikoo.getCommentsCount({
+                                    envId:  null , 
+                                region:  null , 
+                                urls: [ 
+                                    
+                                    finalUrl,
+                                ],
+                                    includeReply: false 
+                                }).then(function (res) {
+                                    let count = res[0].count
+                                    const obj = document.getElementById("comment_count");
+                                    obj.innerText = count
+                                    
+                                    
+                                    
+                                }).catch(function (err) {
+                                    
+                                    console.error(err);
+                                });
+                            </script>
+                            <span id="comment_count"></span>
+                        </span>
+                    </span>
+                </span>
+
+</div>
+        </header> 
+<figure class="entry-cover1"><img style="zoom:;" loading="lazy" src="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/c2.jpg" alt="">
+    
+</figure><aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e4%b8%80%e6%95%b0%e7%bb%84%e5%92%8c%e6%8c%87%e9%92%88%e6%9c%89%e4%bb%80%e4%b9%88%e8%81%94%e7%b3%bb" aria-label="一、数组和指针有什么联系？">一、数组和指针有什么联系？</a></li>
+                <li>
+                    <a href="#%e4%ba%8cc%e8%af%ad%e8%a8%80%e4%b8%ad%e5%86%85%e5%ad%98%e5%88%86%e9%85%8d%e7%9a%84%e6%96%b9%e5%bc%8f%e6%9c%89%e5%87%a0%e7%a7%8d" aria-label="二、C语言中内存分配的方式有几种">二、C语言中内存分配的方式有几种</a></li>
+                <li>
+                    <a href="#%e4%b8%89%e5%a0%86%e5%92%8c%e6%a0%88%e7%9a%84%e5%8c%ba%e5%88%ab" aria-label="三、堆和栈的区别">三、堆和栈的区别</a></li>
+                <li>
+                    <a href="#%e5%9b%9bstatic%e7%9a%84%e7%94%a8%e6%b3%95%e5%ae%9a%e4%b9%89%e5%92%8c%e7%94%a8%e9%80%94" aria-label="四、static的用法（定义和用途）">四、static的用法（定义和用途）</a></li>
+                <li>
+                    <a href="#%e4%ba%94const%e7%9a%84%e7%94%a8%e6%b3%95%e5%ae%9a%e4%b9%89%e5%92%8c%e7%94%a8%e9%80%94" aria-label="五、const的用法（定义和用途）">五、const的用法（定义和用途）</a></li>
+                <li>
+                    <a href="#%e5%85%ad%e5%86%85%e5%ad%98%e5%9b%9b%e5%8c%ba%e4%bb%80%e4%b9%88%e5%8f%98%e9%87%8f%e5%88%86%e5%88%ab%e5%ad%98%e5%82%a8%e5%9c%a8%e4%bb%80%e4%b9%88%e5%8c%ba%e5%9f%9f%e5%a0%86%e4%b8%8a%e8%bf%98%e6%98%af%e6%a0%88%e4%b8%8a" aria-label="六、内存四区，什么变量分别存储在什么区域，堆上还是栈上？">六、内存四区，什么变量分别存储在什么区域，堆上还是栈上？</a><ul>
+                        
+                <li>
+                    <a href="#c%e5%92%8cc%e8%af%ad%e8%a8%80%e4%b8%ad%e7%9a%84%e5%86%85%e5%ad%98%e5%88%86%e5%8c%ba%e7%9a%84%e5%8c%ba%e5%88%ab" aria-label="C&#43;&#43;和C语言中的内存分区的区别">C++和C语言中的内存分区的区别</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%b8%83%e7%94%a8%e5%8f%98%e9%87%8fa%e7%bb%99%e5%87%ba%e4%b8%8b%e9%9d%a2%e7%9a%84%e5%ae%9a%e4%b9%89" aria-label="七、用变量a给出下面的定义">七、用变量a给出下面的定义</a></li>
+                <li>
+                    <a href="#%e5%85%abvolatile%e4%bd%9c%e7%94%a8%e5%92%8c%e7%94%a8%e6%b3%95" aria-label="八、volatile作用和用法">八、volatile作用和用法</a></li>
+                <li>
+                    <a href="#%e4%b9%9d%e5%8f%98%e9%87%8f%e7%9a%84%e4%bd%9c%e7%94%a8%e5%9f%9f%e5%85%a8%e5%b1%80%e5%8f%98%e9%87%8f%e5%92%8c%e5%b1%80%e9%83%a8%e5%8f%98%e9%87%8f" aria-label="九、变量的作用域（全局变量和局部变量）">九、变量的作用域（全局变量和局部变量）</a></li>
+                <li>
+                    <a href="#%e5%8d%81sizeof-%e4%b8%8estrlen-%e5%ad%97%e7%ac%a6%e4%b8%b2%e6%95%b0%e7%bb%84" aria-label="十、sizeof 与strlen （字符串，数组）">十、sizeof 与strlen （字符串，数组）</a>
+                </li>
+            </ul>
+        </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+        
+        activeElement = elements[0];
+        const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+        document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+    }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        if (elements) {
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement){
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }
+    }, false);
+
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;
+    }
+</script>
+        <div class="post-content"><div align = "center">
+<img src = "https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P11-EXTI%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD-1.jpg" alt = "P11-EXTI外部中断-1.jpg" width = "70%" height = "auto">
+</div>
+<br>
+<h2 id="一数组和指针有什么联系">一、数组和指针有什么联系？<a hidden class="anchor" aria-hidden="true" href="#一数组和指针有什么联系">#</a></h2>
+<p>指针就是指针，指针变量在 32 位系统下，永远占 4 个 byte，其值为某一个内存的地址。指针可以指向任何地方，但是不是任何地方你都能通过这个指针变量访问到。</p>
+<p>数组就是数组，其大小与元素的类型和个数有关。定义数组时必须指定其元素的类型和个数。数组可以存任何类型的数据，但不能存函数</p>
+<h2 id="二c语言中内存分配的方式有几种">二、C语言中内存分配的方式有几种<a hidden class="anchor" aria-hidden="true" href="#二c语言中内存分配的方式有几种">#</a></h2>
+<p>1、静态存储区分配</p>
+<p>内存分配在程序编译之前完成，且在程序的整个运行期间都存在，例如全局变量、静态变量等。</p>
+<p>2、栈上分配</p>
+<p>在函数执行时，函数内的局部变量的存储单元在栈上创建，函数执行结束时这些存储单元自动释放。</p>
+<p>3、堆上分配</p>
+<h2 id="三堆和栈的区别">三、堆和栈的区别<a hidden class="anchor" aria-hidden="true" href="#三堆和栈的区别">#</a></h2>
+<p>栈：保存局部变量。栈上的内容只在函数的范围内存在，当函数运行结束，这些内容也会自动被销毁。其特点是效率高，但空间大小有限。</p>
+<p>堆：由 malloc 系列函数或 new 操作符分配的内存。其生命周期由 free 或 delete 决定。</p>
+<p>在没有释放之前一直存在，直到程序结束。其特点是使用灵活，空间比较大，但容易出错。</p>
+<p>堆与栈实际上是操作系统对进程占用的内存空间的两种管理方式，主要有如下几种区别：</p>
+<p>（1）管理方式不同。栈由操作系统自动分配释放，无需我们手动控制；堆的申请和释放工作由程序员</p>
+<p>控制，容易产生内存泄漏；</p>
+<p>（2）空间大小不同。每个进程拥有的栈的大小要远远小于堆的大小。</p>
+<p>（3）生长方向不同。堆的生长方向向上，内存地址由低到高；栈的生长方向向下，内存地址由高到低。</p>
+<p>（4）分配方式不同。堆都是动态分配的，没有静态分配的堆。栈有2种分配方式：静态分配和动态分配。栈的分配系统会自动分配，用户也可以申请（通过alloca）；</p>
+<p>（5）分配效率(速度)不同。栈有底层指令实现，速度快；堆使用C库函数运算来申请和管理，速度慢；</p>
+<p>（6）存放内容不同。栈存放的内容，函数返回地址（调用函数的指令的下一条指令）、相关参数、局部变量和寄存器内容等。 注意静态变量是存放在数据段或者BSS段，是不入栈的。 而堆中具体存放内容是由程序员来填充的。</p>
+<h2 id="四static的用法定义和用途">四、static的用法（定义和用途）<a hidden class="anchor" aria-hidden="true" href="#四static的用法定义和用途">#</a></h2>
+<p>1）用static修饰局部变量：使其变为静态存储方式(静态数据区)，那么这个局部变量在函数执行完成之后不会被释放，而是继续保留在内存中。</p>
+<p>2）用static修饰全局变量：使其只在本文件内部有效，而其他文件不可连接或引用该变量。</p>
+<p>3）用static修饰函数：对函数的连接方式产生影响，使得函数只在本文件内部有效，对其他文件是不可见的（这一点在大工程中很重要很重要，避免很多麻烦，很常见）。这样的函数又叫作静态函数。使用静态函数的好处是，不用担心与其他文件的同名函数产生干扰，另外也是对函数本身的一种保护机制。</p>
+<h2 id="五const的用法定义和用途">五、const的用法（定义和用途）<a hidden class="anchor" aria-hidden="true" href="#五const的用法定义和用途">#</a></h2>
+<p>const主要用来修饰变量、函数形参和类成员函数：</p>
+<p>1）用const修饰常量：定义时就初始化，以后不能更改。</p>
+<p>2）用const修饰形参：<code>func(const int a){};</code>该形参在函数里不能改变</p>
+<p>3）用const修饰类成员函数：该函数对成员变量只能进行只读操作，就是const类成员函数是不能修改成员变量的数值的。</p>
+<p>被const修饰的东西都受到强制保护，可以预防意外的变动，能提高程序的健壮性。</p>
+<p>下面的声明都是什么意思？</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> a;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#66d9ef">const</span> a;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>a;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">const</span> a;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#66d9ef">const</span> <span style="color:#f92672">*</span> a <span style="color:#66d9ef">const</span>;
+</span></span></code></pre></div><p>前两个的作用是一样，a是一个常整型数。</p>
+<p>第三个意味着a是一个指向常整型数的指针（也就是，整型数是不可修改的，但指针可以）。</p>
+<p>第四个意思a是一个指向整型数的常指针（也就是说，指针指向的整型数是可以修改的，但指针是不可修改的）。</p>
+<p>最后一个意味着a是一个指向常整型数的常指针（也就是说，指针指向的整型数是不可修改的，同时指针也是不可修改的）。</p>
+<h2 id="六内存四区什么变量分别存储在什么区域堆上还是栈上">六、内存四区，什么变量分别存储在什么区域，堆上还是栈上？<a hidden class="anchor" aria-hidden="true" href="#六内存四区什么变量分别存储在什么区域堆上还是栈上">#</a></h2>
+<p>在C++中，内存四区指的是程序运行时内存被划分成的四个主要区域，分别是栈区（Stack）、堆区（Heap）、全局/静态存储区（Global/Static）和常量存储区（Constant）。不同的变量类型和声明周期通常存储在不同的区域。</p>
+<ol>
+<li>栈区（Stack）：
+<ul>
+<li>自动局部变量（auto variable）：在函数内部定义的没有指定存储区域的局部变量，如<code>int a;</code>，它们会自动存储在栈上。</li>
+<li>函数参数：函数调用时传递的参数也是在栈上分配的。</li>
+<li>函数返回地址和局部变量：这些信息在函数调用过程中被存储在栈上。</li>
+</ul>
+</li>
+<li>堆区（Heap）：
+<ul>
+<li>动态分配的内存：使用<code>new</code>关键字在C++中或者在C中使用<code>malloc</code>、<code>calloc</code>、<code>realloc</code>等函数分配的内存都存储在堆上。这些内存直到使用<code>delete</code>（C++）或<code>free</code>（C）显式释放前都不会被自动清理。</li>
+<li>对象生命周期由程序员控制：通过<code>new</code>创建的对象，其生命周期不是由作用域决定的，而是由<code>delete</code>操作决定。</li>
+</ul>
+</li>
+<li>全局/静态存储区（Global/Static）：
+<ul>
+<li>全局变量：在所有函数体之外定义的变量，程序启动时分配，程序结束时释放。</li>
+<li>静态变量：在函数内部或类内部声明为<code>static</code>的变量，它们的存储期限是程序的整个运行期间，而不是函数调用的周期。</li>
+</ul>
+</li>
+<li>常量存储区（Constant）：
+<ul>
+<li>字符串常量：如<code>const char* p = &quot;hello world&quot;;</code>中的<code>&quot;hello world&quot;</code>是存储在常量区的。</li>
+<li>const修饰的全局变量：声明为<code>const</code>的全局变量也存储在这里。</li>
+</ul>
+</li>
+</ol>
+<p>不同的内存区域有不同的生命周期和访问特性，合理地使用这些区域对于程序的性能和资源管理都是非常重要的。在程序设计中，应当根据变量的特性和用途选择合适的存储区域。</p>
+<h3 id="c和c语言中的内存分区的区别">C++和C语言中的内存分区的区别<a hidden class="anchor" aria-hidden="true" href="#c和c语言中的内存分区的区别">#</a></h3>
+<p>C++和C语言在内存管理上有一些相似之处，但也存在差异。在C语言中，内存通常被分为三个主要区域：</p>
+<ol>
+<li>栈区（Stack）：用于存储局部变量、函数参数和返回地址等。栈上的内存分配和释放是自动的，由编译器在函数调用和返回时管理。</li>
+<li>堆区（Heap）：用于动态内存分配，通过<code>malloc</code>、<code>calloc</code>、<code>realloc</code>等函数分配的内存位于堆上。堆内存的分配和释放需要程序员手动管理。</li>
+<li>静态存储区（Static/Global）：用于存储全局变量和静态变量。这些变量在程序启动时分配，直到程序结束时才释放。</li>
+</ol>
+<p>C语言中没有显式的常量存储区概念，而是将常量值直接嵌入到代码中，通常存储在只读的代码段。</p>
+<p>相比之下，C++在C的基础上增加了对象的概念，并且引入了类和对象的生命周期管理。C++的内存四区通常指的是：</p>
+<ol>
+<li>栈区（Stack）：与C语言相同，用于自动局部变量和函数调用相关的数据。</li>
+<li>堆区（Heap）：与C语言相同，用于动态内存分配，但C++使用<code>new</code>和<code>delete</code>关键字进行对象的分配和释放。</li>
+<li>全局/静态存储区（Global/Static）：与C语言相同，用于全局变量和静态变量。</li>
+<li>常量存储区（Constant）：C++中明确区分了常量存储区，用于存储字面量常量和<code>const</code>修饰的全局变量。</li>
+</ol>
+<p>总的来说，C++在内存管理上提供了更丰富的特性，特别是通过类和对象的概念，引入了构造函数和析构函数来管理对象的创建和销毁，这是C语言所没有的。此外，C++还支持局部对象和临时对象的自动存储期，这些都是C++特有的内存管理特性。</p>
+<h2 id="七用变量a给出下面的定义">七、用变量a给出下面的定义<a hidden class="anchor" aria-hidden="true" href="#七用变量a给出下面的定义">#</a></h2>
+<p>a) 一个整型数；</p>
+<p>b）一个指向整型数的指针；</p>
+<p>c）一个指向指针的指针，它指向的指针是指向一个整型数；</p>
+<p>d）一个有10个整型的数组；</p>
+<p>e）一个有10个指针的数组，该指针是指向一个整型数；</p>
+<p>f）一个指向有10个整型数数组的指针；</p>
+<p>g）一个指向函数的指针，该函数有一个整型参数并返回一个整型数；</p>
+<p>h）一个有10个指针的数组，该指针指向一个函数，该函数有一个整型参数并返回一个整型数</p>
+<p><strong>答案：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>a)<span style="color:#66d9ef">int</span> a
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>b)<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>a;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>c)<span style="color:#66d9ef">int</span> <span style="color:#f92672">**</span>a;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>d)<span style="color:#66d9ef">int</span> a[<span style="color:#ae81ff">10</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>e)<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>a [<span style="color:#ae81ff">10</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>f) <span style="color:#66d9ef">int</span> a[<span style="color:#ae81ff">10</span>], <span style="color:#f92672">*</span>p<span style="color:#f92672">=</span>a;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>g)<span style="color:#66d9ef">int</span> (<span style="color:#f92672">*</span>a)(<span style="color:#66d9ef">int</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>h) <span style="color:#66d9ef">int</span>( <span style="color:#f92672">*</span>a[<span style="color:#ae81ff">10</span>])(<span style="color:#66d9ef">int</span>)
+</span></span></code></pre></div><h2 id="八volatile作用和用法">八、volatile作用和用法<a hidden class="anchor" aria-hidden="true" href="#八volatile作用和用法">#</a></h2>
+<p>在C和C++中，<code>volatile</code>关键字用于声明一个变量，以告诉编译器这个变量的值可能会在程序的控制之外被改变。这通常发生在多线程应用中，或者当变量映射到硬件设备时，硬件可能会在程序没有明确写入的情况下改变变量的值。</p>
+<p><code>volatile</code>的作用是阻止编译器对声明为<code>volatile</code>的变量进行不必要的优化。编译器通常会假设在一个线程内，如果一个变量没有被显式地修改，那么它的值在读取时是不变的。然而，当一个变量是<code>volatile</code>时，编译器会被告知该变量的值可能会以不可预测的方式改变，因此编译器不会将该变量缓存在寄存器中，而是每次都直接从内存中读取它的值。</p>
+<p>用法示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">volatile</span> <span style="color:#66d9ef">int</span> counter <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">increment_counter</span>(<span style="color:#66d9ef">void</span>) {
+</span></span><span style="display:flex;"><span>    counter<span style="color:#f92672">++</span>; <span style="color:#75715e">// 这个操作可能会被硬件中断服务例程修改
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (counter <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 如果没有volatile关键字，编译器可能会优化这个循环，
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// 认为counter的值在循环中没有改变，导致无限循环
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>在上面的例子中，<code>counter</code>变量可能会在一个中断服务例程中被修改，而这个中断服务例程是由硬件触发的，不是由程序控制的。因此，我们需要将<code>counter</code>声明为<code>volatile</code>，以防止编译器优化掉循环中的<code>while</code>检查，导致程序无法正确响应<code>counter</code>的变化。</p>
+<p>需要注意的是，<code>volatile</code>并不保证变量的原子性操作，它只是告诉编译器不要对变量的访问进行优化。在多线程环境中，如果多个线程访问同一个<code>volatile</code>变量，仍然需要使用互斥锁（mutex）或其他同步机制来保证线程安全。</p>
+<p>此外，<code>volatile</code>关键字并不适用于所有的优化问题。例如，它不会阻止编译器对访问<code>volatile</code>变量的指令进行重排。如果需要确保操作的顺序，应该使用内存屏障（memory barrier）或其他同步原语。</p>
+<p>以下几种情况都会用到volatile：</p>
+<p>1、并行设备的硬件寄存器（如：状态寄存器）</p>
+<p>2、一个中断服务子程序中会访问到的非自动变量</p>
+<p>3、多线程应用中被几个任务共享的变量</p>
+<h2 id="九变量的作用域全局变量和局部变量">九、变量的作用域（全局变量和局部变量）<a hidden class="anchor" aria-hidden="true" href="#九变量的作用域全局变量和局部变量">#</a></h2>
+<p>全局变量：在所有函数体的外部定义的，程序的所在部分（甚至其它文件中的代码）都可以使用。全局变量不受作用域的影响（也就是说，全局变量的生命期一直到程序的结束）。</p>
+<p>局部变量：出现在一个作用域内，它们是局限于一个函数的。局部变量经常被称为自动变量，因为它们在进入作用域时自动生成，离开作用域时自动消失。关键字auto可以显式地说明这个问题，但是局部变量默认为auto，所以没有必要声明为auto。</p>
+<p>局部变量可以和全局变量重名，在局部变量作用域范围内，全局变量失效，采用的是局部变量的值。</p>
+<h2 id="十sizeof-与strlen-字符串数组">十、sizeof 与strlen （字符串，数组）<a hidden class="anchor" aria-hidden="true" href="#十sizeof-与strlen-字符串数组">#</a></h2>
+<p>1、如果是数组</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> a[<span style="color:#ae81ff">5</span>]<span style="color:#f92672">=</span>{<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">printf</span>(<span style="color:#960050;background-color:#1e0010">“</span><span style="color:#66d9ef">sizeof</span> <span style="color:#960050;background-color:#1e0010">数组名</span><span style="color:#f92672">=%</span>d<span style="color:#960050;background-color:#1e0010">\</span>n<span style="color:#960050;background-color:#1e0010">”</span>,<span style="color:#66d9ef">sizeof</span>(a));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">printf</span>(<span style="color:#960050;background-color:#1e0010">“</span><span style="color:#66d9ef">sizeof</span> <span style="color:#f92672">*</span><span style="color:#960050;background-color:#1e0010">数组名</span><span style="color:#f92672">=%</span>d<span style="color:#960050;background-color:#1e0010">\</span>n<span style="color:#960050;background-color:#1e0010">”</span>,<span style="color:#66d9ef">sizeof</span>(<span style="color:#f92672">*</span>a));
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>运行结果</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">sizeof</span> <span style="color:#960050;background-color:#1e0010">数组名</span><span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sizeof</span> <span style="color:#f92672">*</span><span style="color:#960050;background-color:#1e0010">数组名</span><span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>
+</span></span></code></pre></div><p>2、如果是指针，sizeof只会检测到是指针的类型，指针都是占用4个字节的空间（32位机）。</p>
+<p>sizeof是什么？是一个操作符,也是关键字，就不是一个函数，这和strlen()不同，strlen()是一个函数。</p>
+<p>那么sizeof的作用是什么？返回一个对象或者类型所占的内存字节数。我们会对sizeof()中的数据或者指针做运算吗？基本不会。例如sizeof(1+2.0),直接检测到其中类型是double,即是sizeof(double) = 8。如果是指针，sizeof只会检测到是指针的类型，指针都是占用4个字节的空间（32位机）。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>p <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;sadasdasd&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sizeof</span>(p)<span style="color:#f92672">:</span><span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sizeof</span>(<span style="color:#f92672">*</span>p)<span style="color:#f92672">:</span><span style="color:#ae81ff">1</span><span style="color:#75715e">//指向一个char类型的
+</span></span></span></code></pre></div><p>除非使用strlen()，仅对字符串有效，直到&rsquo;\0&rsquo;为止了，计数结果不包括\0。</p>
+<p>要是非要使用sizeof来得到指向内容的大小，就得使用数组名才行， 如</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">char</span> a[<span style="color:#ae81ff">10</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sizeof</span>(a)<span style="color:#f92672">:</span><span style="color:#ae81ff">10</span> <span style="color:#75715e">//检测到a是一个数组的类型。
+</span></span></span></code></pre></div><p>关于strlen()，它是一个函数，考察的比较简单：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>strlen <span style="color:#960050;background-color:#1e0010">“\</span>n<span style="color:#960050;background-color:#1e0010">\</span>t<span style="color:#960050;background-color:#1e0010">\</span>tag<span style="color:#960050;background-color:#1e0010">\</span>AAtang<span style="color:#960050;background-color:#1e0010">”</span>
+</span></span></code></pre></div><p>答案：11</p>
+
+
+        </div>
+
+        <footer class="post-footer">
+            
+<nav class="paginav">
+  <a class="prev" href="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p2/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>嵌入式开发-STM32标准库学习：STM32简介</span>
+  </a>
+  <a class="next" href="https://eddyblog.cn/posts/tech/exp-sticker-mcu-basic-knowledge-review/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>【温故而知新】单片机基础知识回顾</span>
+  </a>
+</nav>
+
+        </footer>
+    </div>
+</article>
+</main>
+
+<footer class="footer">
+    <span>
+        Copyright
+        &copy;
+        -2024
+        <a href="https://eddyblog.cn/" style="color:#939393;">Eddy&#39;s blog</a>
+        All Rights Reserved
+    </span>
+    <a href="https://beian.miit.gov.cn/" target="_blank" style="color:#939393;"></a>&nbsp;
+    <span>
+        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=null"
+           style="display:inline-block;text-decoration:none;height:20px;color:#939393;">
+            <img src="" style="float:left;margin: 0px 5px 0px 0px;"/>
+            
+        </a>
+    </span>
+    <span id="busuanzi_container">
+        <span class="fa fa-user"></span> <span id="busuanzi_value_site_uv"></span>
+        <span class="fa fa-eye"></span> <span id="busuanzi_value_site_pv"></span>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <span class="topInner">
+        <svg class="topSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z"/>
+        </svg>
+        <span id="read_progress"></span>
+    </span>
+</a>
+
+<script>
+    document.addEventListener('scroll', function (e) {
+        const readProgress = document.getElementById("read_progress");
+        const scrollHeight = document.documentElement.scrollHeight;
+        const clientHeight = document.documentElement.clientHeight;
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        readProgress.innerText = ((scrollTop / (scrollHeight - clientHeight)).toFixed(2) * 100).toFixed(0);
+    })
+</script>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+</script>
+<script>
+    let mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        (function() {
+            document.cookie = "change-themes" + "="+ escape ("false");
+        })()
+
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    });
+</script>
+
+<script>
+    document.body.addEventListener('copy', function (e) {
+        if (window.getSelection().toString() && window.getSelection().toString().length > 50) {
+            let clipboardData = e.clipboardData || window.clipboardData;
+            if (clipboardData) {
+                e.preventDefault();
+                let htmlData = window.getSelection().toString() +
+                    '\r\n\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                let textData = window.getSelection().toString() +
+                    '\r\n\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                clipboardData.setData('text/html', htmlData);
+                clipboardData.setData('text/plain', textData);
+            }
+        }
+    });
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = '复制';
+
+        function copyingDone() {
+            copybutton.innerText = '已复制！';
+            setTimeout(() => {
+                copybutton.innerText = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                let text = codeblock.textContent +
+                    '\r\n————————————————\r\n' +
+                    '版权声明：本文为「'+"Eddy's blog"+'」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。' +
+                '\r\n原文链接：' + location.href;
+                navigator.clipboard.writeText(text);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) {}
+            selection.removeRange(range);
+        });
+
+        let language = codeblock.className.replaceAll("language-", "")
+        let macTool = document.createElement("div")
+        let macTool1 = document.createElement("div")
+        let macTool2 = document.createElement("div")
+        let macTool3 = document.createElement("div")
+        let languageType = document.createElement("div")
+        languageType.innerText = language
+        macTool.setAttribute('class', 'mac-tool')
+        macTool1.setAttribute('class', 'mac bb1')
+        macTool2.setAttribute('class', 'mac bb2')
+        macTool3.setAttribute('class', 'mac bb3')
+        languageType.setAttribute('class', 'language-type')
+        macTool.appendChild(macTool1)
+        macTool.appendChild(macTool2)
+        macTool.appendChild(macTool3)
+        macTool.appendChild(languageType)
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+            container.appendChild(macTool)
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+            container.appendChild(macTool)
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+            container.appendChild(macTool)
+        }
+    });
+</script>
+
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style></body>
+
+</html>
