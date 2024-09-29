@@ -31,7 +31,18 @@
       <pubDate>Sun, 21 Apr 2024 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/linux-basics-03/</guid>
-      <description>INIT INIT：本节内容正式开始。action! 库的制作与使用 库文件的定义 库文件是计算机软件中包含一系列函数、类、数据结构和资源的文件，它们被编译成机器码，可以在运行时被其他程序链接和调用。库文件能够提供一些常用的功能，使得程序员不必“重新发明轮子”，可以更高效地开发软件。 库文件主要</description>
+      <description>&lt;h2 id=&#34;init&#34;&gt;INIT&lt;/h2&gt;
+&lt;div align = &#34;center&#34;&gt;
+&lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/INIT.jpg&#34; alt = &#34;INIT.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
+&lt;/div&gt;
+&lt;br&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;INIT：本节内容正式开始。action!&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;库的制作与使用&#34;&gt;库的制作与使用&lt;/h2&gt;
+&lt;h3 id=&#34;库文件的定义&#34;&gt;&lt;strong&gt;库文件的定义&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;库文件是计算机软件中包含一系列函数、类、数据结构和资源的文件，它们被编译成机器码，可以在运行时被其他程序链接和调用。库文件能够提供一些常用的功能，使得程序员不必“重新发明轮子”，可以更高效地开发软件。
+库文件主要有以下几种类型：&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -121,7 +132,13 @@
       <pubDate>Wed, 01 May 2024 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/exp-sticker-c-cpp-basic-knowledge-review/</guid>
-      <description>一、数组和指针有什么联系？ 指针就是指针，指针变量在 32 位系统下，永远占 4 个 byte，其值为某一个内存的地址。指针可以指向任何地方，但是不是任何地方你都能通过这个指针变量访问到。 数组就是数组，其大小与元素的类型和个数有关。定义数组时必须指定其元素的类型和个数。数组可以存任何类型的数据</description>
+      <description>&lt;div align = &#34;center&#34;&gt;
+&lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P11-EXTI%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD-1.jpg&#34; alt = &#34;P11-EXTI外部中断-1.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
+&lt;/div&gt;
+&lt;br&gt;
+&lt;h2 id=&#34;一数组和指针有什么联系&#34;&gt;一、数组和指针有什么联系？&lt;/h2&gt;
+&lt;p&gt;指针就是指针，指针变量在 32 位系统下，永远占 4 个 byte，其值为某一个内存的地址。指针可以指向任何地方，但是不是任何地方你都能通过这个指针变量访问到。&lt;/p&gt;
+&lt;p&gt;数组就是数组，其大小与元素的类型和个数有关。定义数组时必须指定其元素的类型和个数。数组可以存任何类型的数据，但不能存函数&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -130,7 +147,16 @@
       <pubDate>Wed, 01 May 2024 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/exp-sticker-mcu-basic-knowledge-review/</guid>
-      <description>一、单片机三要素？ 单片机最小系统的三要素为：电源、晶振和复位电路。 二、单片机最小系统由哪几个部分组成？ 单片机最小系统由五部分组成，分别是MCU(微处理控制单元)、电源、时钟电路/晶振、复位电路、程序加载口。其中三要素是电源、时钟电路和复位电路。 三、IO口工作方式 上拉输入，下拉输入</description>
+      <description>&lt;div align = &#34;center&#34;&gt;
+&lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P11-EXTI%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD-1.jpg&#34; alt = &#34;P11-EXTI外部中断-1.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
+&lt;/div&gt;
+&lt;br&gt;
+&lt;h2 id=&#34;一单片机三要素&#34;&gt;一、单片机三要素？&lt;/h2&gt;
+&lt;p&gt;单片机最小系统的三要素为：电源、晶振和复位电路。&lt;/p&gt;
+&lt;h2 id=&#34;二单片机最小系统由哪几个部分组成&#34;&gt;二、单片机最小系统由哪几个部分组成？&lt;/h2&gt;
+&lt;p&gt;单片机最小系统由五部分组成，分别是MCU(微处理控制单元)、电源、时钟电路/晶振、复位电路、程序加载口。其中三要素是电源、时钟电路和复位电路。&lt;/p&gt;
+&lt;h2 id=&#34;三io口工作方式&#34;&gt;三、IO口工作方式&lt;/h2&gt;
+&lt;p&gt;上拉输入，下拉输入，推挽输出，开漏输出。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -148,7 +174,23 @@
       <pubDate>Tue, 30 Apr 2024 00:17:58 +0900</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/cpp-programming-p4/</guid>
-      <description>INIT INIT：本节内容正式开始。action! 4 类和对象 C++面向对象的三大特性为：封装、继承、多态。 C++认为万事万物都皆为对象，对象上有其属性和行为。 例如： 人可以作为对象，属性有姓名、年龄、身高、体重&amp;hellip;，行为有走、跑、跳、吃饭、唱歌&amp;hellip;。 车也可以作为对</description>
+      <description>&lt;div align = &#34;center&#34;&gt;
+&lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/%E7%9F%A5%E8%AF%86%E8%92%99%E8%94%BD%E4%BA%86%E6%88%91%E7%9A%84%E5%8F%8C%E7%9C%BC.jpg&#34; alt = &#34;闪亮登场.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
+&lt;/div&gt;
+&lt;br&gt;
+&lt;h2 id=&#34;init&#34;&gt;INIT&lt;/h2&gt;
+&lt;div align = &#34;center&#34;&gt;
+&lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/INIT.jpg&#34; alt = &#34;INIT.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
+&lt;/div&gt;
+&lt;br&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;INIT：本节内容正式开始。action!&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;4-类和对象&#34;&gt;4 类和对象&lt;/h2&gt;
+&lt;p&gt;C++面向对象的三大特性为：&lt;strong&gt;封装、继承、多态。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;C++认为&lt;strong&gt;万事万物都皆为对象&lt;/strong&gt;，对象上有其属性和行为。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;例如：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;人可以作为对象，属性有姓名、年龄、身高、体重&amp;hellip;，行为有走、跑、跳、吃饭、唱歌&amp;hellip;。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -157,7 +199,60 @@
       <pubDate>Tue, 30 Apr 2024 00:17:58 +1000</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/cpp-programming-p3/</guid>
-      <description>INIT INIT：本节内容正式开始。action! 3 函数提高 3.1 函数默认参数 在C++中，函数的形参列表中的形参是可以有默认值的。 语法：返回值类型 函数名 （参数= 默认值）{} 示例代码 #include&amp;lt;iostream&amp;gt; using namespace std; //函数默认参数 //如果我们自己传入数据，就用自己的数据，如果没有，那么用默认值 //语法：返回值类型 函</description>
+      <description>&lt;div align = &#34;center&#34;&gt;
+&lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/%E7%9F%A5%E8%AF%86%E8%92%99%E8%94%BD%E4%BA%86%E6%88%91%E7%9A%84%E5%8F%8C%E7%9C%BC.jpg&#34; alt = &#34;闪亮登场.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
+&lt;/div&gt;
+&lt;br&gt;
+&lt;h2 id=&#34;init&#34;&gt;INIT&lt;/h2&gt;
+&lt;div align = &#34;center&#34;&gt;
+&lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/INIT.jpg&#34; alt = &#34;INIT.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
+&lt;/div&gt;
+&lt;br&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;INIT：本节内容正式开始。action!&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;3-函数提高&#34;&gt;3 函数提高&lt;/h2&gt;
+&lt;h3 id=&#34;31-函数默认参数&#34;&gt;3.1 函数默认参数&lt;/h3&gt;
+&lt;p&gt;在C++中，函数的形参列表中的形参是可以有默认值的。&lt;/p&gt;
+&lt;p&gt;语法：&lt;code&gt;返回值类型 函数名 （参数= 默认值）{}&lt;/code&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;示例代码&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C++&#34; data-lang=&#34;C++&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&amp;lt;iostream&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;using&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;namespace&lt;/span&gt; std;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//函数默认参数
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//如果我们自己传入数据，就用自己的数据，如果没有，那么用默认值
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//语法：返回值类型 函数名(形参 = 默认值){}
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;func&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; a,&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; b &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;20&lt;/span&gt;,&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; c &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;30&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; a &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; b &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; c;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//注意事项：
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//1、如果某个位置已经有了默认参数，那么这个位置往后，从左往右都必须有默认值
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//int func2(int a = 10,int b,int c) //此时会报错
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//{
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//	return a + b + c;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//}
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//2、如果函数声明有默认参数，函数实现就不能有默认参数
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//声明和实现只能有一个有默认参数
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//int func2(int a = 10, int b = 10);
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//int func2(int a = 20, int b = 20) //此时会报错
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//{
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//	return a + b;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//}
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	cout &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; func(&lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; endl;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	system(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;pause&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;运行结果&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -166,7 +261,50 @@
       <pubDate>Tue, 30 Apr 2024 00:17:58 +1100</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/cpp-programming-p2/</guid>
-      <description>INIT INIT：本节内容正式开始。action! 2 引用 2.1 引用的基本使用 作用： 给变量起别名 语法： 数据类型 &amp;amp;别名 = 原名 示例代码 #include&amp;lt;iostream&amp;gt; using namespace std; int main() { //引用基本语法 //数据类型 &amp;amp;别名 = 原名 int a = 10; //创建引用 int&amp;amp; b = a; cout &amp;lt;&amp;lt; &amp;#34;a = &amp;#34; &amp;lt;&amp;lt; a &amp;lt;&amp;lt; endl; cout &amp;lt;&amp;lt; &amp;#34;b = &amp;#34; &amp;lt;&amp;lt; b &amp;lt;&amp;lt; endl; b = 100; cout &amp;lt;&amp;lt; &amp;#34;a = &amp;#34; &amp;lt;&amp;lt; a &amp;lt;&amp;lt; endl; cout &amp;lt;&amp;lt;</description>
+      <description>&lt;div align = &#34;center&#34;&gt;
+&lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/%E7%9F%A5%E8%AF%86%E8%92%99%E8%94%BD%E4%BA%86%E6%88%91%E7%9A%84%E5%8F%8C%E7%9C%BC.jpg&#34; alt = &#34;闪亮登场.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
+&lt;/div&gt;
+&lt;br&gt;
+&lt;h2 id=&#34;init&#34;&gt;INIT&lt;/h2&gt;
+&lt;div align = &#34;center&#34;&gt;
+&lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/INIT.jpg&#34; alt = &#34;INIT.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
+&lt;/div&gt;
+&lt;br&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;INIT：本节内容正式开始。action!&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;2-引用&#34;&gt;2 引用&lt;/h2&gt;
+&lt;h3 id=&#34;21-引用的基本使用&#34;&gt;2.1 引用的基本使用&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;作用：&lt;/strong&gt; 给变量起别名&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;语法：&lt;/strong&gt; &lt;code&gt;数据类型 &amp;amp;别名 = 原名&lt;/code&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;示例代码&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C++&#34; data-lang=&#34;C++&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&amp;lt;iostream&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;using&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;namespace&lt;/span&gt; std;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;//引用基本语法
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;//数据类型 &amp;amp;别名 = 原名
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; a &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;//创建引用
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt; b &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; a;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	cout &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;a = &amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; a &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; endl;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	cout &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;b = &amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; b &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; endl;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	b &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;100&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	cout &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;a = &amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; a &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; endl;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	cout &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;b = &amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; b &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; endl;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	system(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;pause&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;运行结果&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -175,7 +313,29 @@
       <pubDate>Tue, 30 Apr 2024 00:17:58 +1200</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/cpp-programming-p1/</guid>
-      <description>INIT INIT：本节内容正式开始。action! 1 内存分区模型 C++程序在执行时，将内存大方向划分为4个区域 代码区：存放函数体的二进制代码，由操作系统进行管理的。 全局区：存放全局变量和静态变量以及常量。 栈区：由编译器自动分配释放, 存放函数的参数值,局部变量等。 堆区：由程序员分配和释放</description>
+      <description>&lt;div align = &#34;center&#34;&gt;
+&lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/%E7%9F%A5%E8%AF%86%E8%92%99%E8%94%BD%E4%BA%86%E6%88%91%E7%9A%84%E5%8F%8C%E7%9C%BC.jpg&#34; alt = &#34;闪亮登场.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
+&lt;/div&gt;
+&lt;br&gt;
+&lt;h2 id=&#34;init&#34;&gt;INIT&lt;/h2&gt;
+&lt;div align = &#34;center&#34;&gt;
+&lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/INIT.jpg&#34; alt = &#34;INIT.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
+&lt;/div&gt;
+&lt;br&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;INIT：本节内容正式开始。action!&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;1-内存分区模型&#34;&gt;1 内存分区模型&lt;/h2&gt;
+&lt;p&gt;C++程序在执行时，将内存大方向划分为&lt;strong&gt;4个区域&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;代码区：存放函数体的二进制代码，由操作系统进行管理的。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;全局区：存放全局变量和静态变量以及常量。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;栈区：由编译器自动分配释放, 存放函数的参数值,局部变量等。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -193,7 +353,17 @@
       <pubDate>Wed, 17 Jan 2024 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/art/phone_photo_tutorial_01/</guid>
-      <description>手机摄影笔记-第1节 感谢您打开这篇博客，在这里，每次启程都承载着新的发现与学习的机会。 本节将开始《手机摄影笔记》系列，本笔记一共分为四大板块：摄影基础，用光构图，进阶技法，后期修图。 在接下来的学习中，无论您是新手还是老手，我都希望这次学习能为您带来新的灵感和知识。请您准备好您的工</description>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;手机摄影笔记-第1节&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;感谢您打开这篇博客，在这里，每次启程都承载着新的发现与学习的机会。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;本节将开始《手机摄影笔记》系列，本笔记一共分为四大板块：摄影基础，用光构图，进阶技法，后期修图。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在接下来的学习中，无论您是新手还是老手，我都希望这次学习能为您带来新的灵感和知识。请您准备好您的工具包，我们即将启程，深入探索手机摄影的奇妙世界。期待在旅途中与您共同探讨、学习，并享受这一探索之旅。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -202,7 +372,30 @@
       <pubDate>Wed, 10 Jan 2024 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/read/english_the_best_way_to_learn_english_in_my_humble_opinion/</guid>
-      <description>This note is based on the English course《Learn English with Bob the canadian》. Copyright: For study only , no business use. WHAT YOU NEED 1）Time: 1 hour per day (30 minutes will work as well). Monday through Friday. 2）Tools: A notebook and a pen to write down new vocabulary each day. 3）literature: A English song, a English book, a English television show. internet connection Which I&amp;rsquo;m pretty sure you have because you&amp;rsquo;re reading the blog. THE PLAN Monday Mondays are for reading. 30~40 minutes Read your book. //(if you having a little trouble understanding the</description>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;This note is based on the English course《Learn English with Bob the canadian》.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Copyright: For study only , no business use.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;what-you-need&#34;&gt;WHAT YOU NEED&lt;/h2&gt;
+&lt;p&gt;1）Time:&lt;/p&gt;
+&lt;p&gt;1 hour per day (30 minutes will work as well). Monday through Friday.&lt;/p&gt;
+&lt;p&gt;2）Tools:&lt;/p&gt;
+&lt;p&gt;A notebook and a pen to write down new vocabulary each day.&lt;/p&gt;
+&lt;p&gt;3）literature:&lt;/p&gt;
+&lt;p&gt;A English song, a English book, a English television show.&lt;/p&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;internet connection&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Which I&amp;rsquo;m pretty sure you have because you&amp;rsquo;re reading the blog.&lt;/p&gt;
+&lt;h2 id=&#34;the-plan&#34;&gt;THE PLAN&lt;/h2&gt;
+&lt;h3 id=&#34;monday&#34;&gt;Monday&lt;/h3&gt;
+&lt;p&gt;Mondays are for reading.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;30~40 minutes&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Read your book.  //(if you having a little trouble understanding the book, please get the book in your own language  as well, you can read one chapter in English , and then read the next chapter in your own language and flip back and forth.)&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -211,7 +404,33 @@
       <pubDate>Sun, 10 Dec 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/art/video_editor_notes_top_editing_techniques-hard_cuts/</guid>
-      <description>前言 镜头组接跳跃就加叠画，想要酷炫就要花花转场。 不掌握底层逻辑，狂拽转场只会让你越走越远。 你有没有发现，表达叙事节奏情感最高级的剪辑方法，其实就是硬切。 这一期我们从景别，相似，引导3个方面来说硬切。 一、景别硬切 叙事反差 1）全景接近景 人物的全景接近景，从空间聚焦到这个人物的内心。 片</description>
+      <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt;镜头组接跳跃就加叠画，想要酷炫就要花花转场。&lt;/p&gt;
+&lt;p&gt;不掌握底层逻辑，狂拽转场只会让你越走越远。&lt;/p&gt;
+&lt;p&gt;你有没有发现，表达叙事节奏情感最高级的剪辑方法，其实就是硬切。&lt;/p&gt;
+&lt;p&gt;这一期我们从景别，相似，引导3个方面来说硬切。&lt;/p&gt;
+&lt;h2 id=&#34;一景别硬切-叙事反差&#34;&gt;一、景别硬切 叙事反差&lt;/h2&gt;
+&lt;h3 id=&#34;1全景接近景&#34;&gt;1）全景接近景&lt;/h3&gt;
+&lt;p&gt;人物的全景接近景，从空间聚焦到这个人物的内心。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;片段出自电影《廊桥遗梦》。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;全景&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div align=&#34;center&#34;&gt;
+&lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Video_Editor_Notes/01image.png&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;近景&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div align=&#34;center&#34;&gt;
+&lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Video_Editor_Notes/01image1.png&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;2人物的全景接特写&#34;&gt;2）人物的全景接特写&lt;/h3&gt;
+&lt;p&gt;人物的全景接特写，可以表现这个人物内心产生了一个巨大的变化。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -229,7 +448,16 @@
       <pubDate>Sun, 03 Dec 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/art/video_editor_notes_the_editing_process_of_the_editing_masters/</guid>
-      <description>前言 先找音乐还是先剪画面，看似是一个先有鸡还是先有蛋的问题。 但是在剪辑师的流程中，确实是存在一套的标准的。 第一步：拷贝素材 剪辑师接的每一个新的项目都要单独建立项目的母文件夹，同时在项目母文件夹里还要建立多个子文件夹。以便后面使用。 第二步：顺片 在剪辑之前大概看一下拍摄素材，同时对应</description>
+      <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt;先找音乐还是先剪画面，看似是一个先有鸡还是先有蛋的问题。&lt;/p&gt;
+&lt;p&gt;但是在剪辑师的流程中，确实是存在一套的标准的。&lt;/p&gt;
+&lt;h2 id=&#34;第一步拷贝素材&#34;&gt;第一步：拷贝素材&lt;/h2&gt;
+&lt;p&gt;剪辑师接的每一个新的项目都要单独建立项目的母文件夹，同时在项目母文件夹里还要建立多个子文件夹。以便后面使用。&lt;/p&gt;
+&lt;div align=&#34;center&#34;&gt;
+&lt;img src=&#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Video_Editor_Notes/00image.png&#34; width=&#34;70%&#34; height=&#34;auto&#34;&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;第二步顺片&#34;&gt;第二步：顺片&lt;/h2&gt;
+&lt;p&gt;在剪辑之前大概看一下拍摄素材，同时对应脚本找一下拍摄镜头，先熟悉一下，看看有没有漏掉的或者是拍坏的文件，这一步其实是dit的工作，但不是每个片场拍摄都需要配一个dit对着场记单查看素材。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -238,7 +466,10 @@
       <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/computer-network-08/</guid>
-      <description>第八章 互联网上的音频/视频服务 本章重要概念 1）多媒体信息有两个重要特点：（1）多媒体信息的信息量往往很大；（2）在传输多媒体数据时，对时延和时延抖动均有较高的要求。在互联网上传输多媒体数据时，我们都是指含有“边传输、边播放”的特点。 2）由多媒体信息构成的分组在发送时是等时的。这些</description>
+      <description>&lt;h2 id=&#34;第八章-互联网上的音频视频服务&#34;&gt;第八章 互联网上的音频/视频服务&lt;/h2&gt;
+&lt;h3 id=&#34;本章重要概念&#34;&gt;本章重要概念&lt;/h3&gt;
+&lt;p&gt;1）多媒体信息有两个重要特点：（1）多媒体信息的信息量往往很大；（2）在传输多媒体数据时，对时延和时延抖动均有较高的要求。在互联网上传输多媒体数据时，我们都是指含有“边传输、边播放”的特点。&lt;/p&gt;
+&lt;p&gt;2）由多媒体信息构成的分组在发送时是等时的。这些分组在到达接收端时就变成为非等时的。当接收端缓存中的分组数达到一定的数量后，再以恒定速率按顺序将这些分组进行还原播放。这样就产生了播放时延，同时也可以在很大程度上消除时延的抖动。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -247,7 +478,11 @@
       <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/computer-network-02/</guid>
-      <description>第二章 物理层 本章的重要概念 1）物理层的主要任务就是确定与传输媒体的接口有关的一些特性，如机械特性、电气特性、功能特性和过程特性。 2）一个数据通信系统可划分为三大部分，即源系统、传输系统和目的系统。源系统包括源点（或源站、信源）和发送器，目的系统包括接收器和终点（或目的站、信宿）。</description>
+      <description>&lt;h2 id=&#34;第二章-物理层&#34;&gt;第二章 物理层&lt;/h2&gt;
+&lt;h3 id=&#34;本章的重要概念&#34;&gt;本章的重要概念&lt;/h3&gt;
+&lt;p&gt;1）物理层的主要任务就是确定与传输媒体的接口有关的一些特性，如机械特性、电气特性、功能特性和过程特性。&lt;/p&gt;
+&lt;p&gt;2）一个数据通信系统可划分为三大部分，即源系统、传输系统和目的系统。源系统包括源点（或源站、信源）和发送器，目的系统包括接收器和终点（或目的站、信宿）。&lt;/p&gt;
+&lt;p&gt;3）通信的目的是传送消息。话音、文字、图像、视频等都是消息。数据是运送消息的实体。信号则是数据的电气或电磁的表现。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -256,7 +491,11 @@
       <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/computer-network-09/</guid>
-      <description>第九章 无线网络和移动网络 本章重要概念 1）无线局域网可分为两大类。第一类是有固定基础设施的，第二类是无固定基础设施的。 2）最常用的、有固定基础设施的无线局域网的标准是 IEEE 的 802.11 系列。使用 802.11 系列标准的局域网又称为Wi-Fi。 3）802.11 无线以太网标准使用星形拓扑，其中心叫作接入点 AP</description>
+      <description>&lt;h2 id=&#34;第九章-无线网络和移动网络&#34;&gt;第九章 无线网络和移动网络&lt;/h2&gt;
+&lt;h3 id=&#34;本章重要概念&#34;&gt;本章重要概念&lt;/h3&gt;
+&lt;p&gt;1）无线局域网可分为两大类。第一类是有固定基础设施的，第二类是无固定基础设施的。&lt;/p&gt;
+&lt;p&gt;2）最常用的、有固定基础设施的无线局域网的标准是 IEEE 的 802.11 系列。使用 802.11 系列标准的局域网又称为Wi-Fi。
+3）802.11 无线以太网标准使用星形拓扑，其中心叫作接入点 AP，它是链路层设备，相当于基本服务集内的基站。但家用的接入点都嵌入了路由器的功能，常称为无线路由器。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -265,7 +504,16 @@
       <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/computer-network-06/</guid>
-      <description>第六章 应用层 本章重要概念 1）应用层协议是为了解决某一类应用问题，而问题的解决又是通过位于不同主机中的多个应用进程之间的通信和协同工作来完成的。应用层规定了应用进程在通信时所遵循的协议。应用层的许多协议都是基于客户-服务器方式的。客户是服务请求方，服务器是服务提供方。 2）域名系统D</description>
+      <description>&lt;h2 id=&#34;第六章-应用层&#34;&gt;第六章 应用层&lt;/h2&gt;
+&lt;h3 id=&#34;本章重要概念&#34;&gt;本章重要概念&lt;/h3&gt;
+&lt;p&gt;1）应用层协议是为了解决某一类应用问题，而问题的解决又是通过位于不同主机中的多个应用进程之间的通信和协同工作来完成的。应用层规定了应用进程在通信时所遵循的协议。应用层的许多协议都是基于客户-服务器方式的。客户是服务请求方，服务器是服务提供方。
+2）域名系统DNS 是互联网使用的命名系统，用来把便于人们使用的机器名字转换为IP地址。DNS是一个联机分布式数据库系统，并采用客户服务器方式。
+3）域名到IP 地址的解析是由分布在互联网上的许多域名服务器程序（即域名服务器）共同完成的。
+4）互联网采用层次树状结构的命名方法，任何一台连接在互联网上的主机或路由器，都有一个唯一的层次结构的名字，即域名。域名中的点和点分十进制 IP地址中的点没有对应关系。
+5）域名服务器分为根域名服务器、顶级域名服务器、权限域名服务器和本地域名服务器。
+6）文件传送协议FTP使用TCP可靠的运输服务。FTP使用客户服务器方式。在进行文件传输时，FTP 的客户和服务器之间要建立两个并行的 TCP 连接：控制连接和数据连接。实际用于传输文件的是数据连接。
+7）万维网WWW是一个大规模的、联机式的信息储藏所，可以非常方便地从互联网上的一个站点链接到另一个站点。
+8）万维网的客户程序向互联网中的服务器程序发出请求，服务器程序向客户程序送回客户所要的万维网文档。在客户程序主窗口上显示出的万维网文档称为页面。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -274,7 +522,10 @@
       <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/computer-network-07/</guid>
-      <description>第七章 网络安全 本章重要概念 1）计算机网络上的通信面临的威胁可分为两大类，即被动攻击（如截获）和主动攻击(如中断、篡改、伪造)。主动攻击的类型有更改报文流、拒绝服务、伪造初始化、恶意程序（病毒、蠕虫、木马、逻辑炸弹、后门入侵、流氓软件）等。 2）计算机网络安全主要有以下一些内容：机密</description>
+      <description>&lt;h2 id=&#34;第七章-网络安全&#34;&gt;第七章 网络安全&lt;/h2&gt;
+&lt;h3 id=&#34;本章重要概念&#34;&gt;本章重要概念&lt;/h3&gt;
+&lt;p&gt;1）计算机网络上的通信面临的威胁可分为两大类，即被动攻击（如截获）和主动攻击(如中断、篡改、伪造)。主动攻击的类型有更改报文流、拒绝服务、伪造初始化、恶意程序（病毒、蠕虫、木马、逻辑炸弹、后门入侵、流氓软件）等。&lt;/p&gt;
+&lt;p&gt;2）计算机网络安全主要有以下一些内容：机密性、端点鉴别、信息的完整性、运行的安全性和访问控制。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -283,7 +534,11 @@
       <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/computer_network-03/</guid>
-      <description>第三章 数据链路层 本章的重要概念 1）链路是从一个节点到相邻节点的一段物理线路，数据链路则是在链路的基础上增加了一些必要的硬件（如网络适配器）和软件（如协议的实现）。 2）数据链路层使用的信道主要有点对点信道和广播信道两种。 3）数据链路层传送的协议数据单元是帧。数据链路层的三个基本问题</description>
+      <description>&lt;h2 id=&#34;第三章-数据链路层&#34;&gt;第三章 数据链路层&lt;/h2&gt;
+&lt;h3 id=&#34;本章的重要概念&#34;&gt;本章的重要概念&lt;/h3&gt;
+&lt;p&gt;1）链路是从一个节点到相邻节点的一段物理线路，数据链路则是在链路的基础上增加了一些必要的硬件（如网络适配器）和软件（如协议的实现）。&lt;/p&gt;
+&lt;p&gt;2）数据链路层使用的信道主要有点对点信道和广播信道两种。&lt;/p&gt;
+&lt;p&gt;3）数据链路层传送的协议数据单元是帧。数据链路层的三个基本问题是：封装成帧、透明传输和差错检测。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -292,7 +547,10 @@
       <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/computer-network-04/</guid>
-      <description>第四章 网络层 本章的重要概念 1）TCP/IP体系中的网络层向上只提供简单灵活的、无连接的、尽最大努力交付的数据报服务。网络层不提供服务质量的承诺，不保证分组交付的时限，所传送的分组可能出错、丢失、重复和失序。进程之间通信的可靠性由运输层负责。 2）IP网是虚拟的，因为从网络层上看，I</description>
+      <description>&lt;h2 id=&#34;第四章-网络层&#34;&gt;第四章 网络层&lt;/h2&gt;
+&lt;h3 id=&#34;本章的重要概念&#34;&gt;本章的重要概念&lt;/h3&gt;
+&lt;p&gt;1）TCP/IP体系中的网络层向上只提供简单灵活的、无连接的、尽最大努力交付的数据报服务。网络层不提供服务质量的承诺，不保证分组交付的时限，所传送的分组可能出错、丢失、重复和失序。进程之间通信的可靠性由运输层负责。&lt;/p&gt;
+&lt;p&gt;2）IP网是虚拟的，因为从网络层上看，IP网好像是一个统一的、抽象的网络（实际上是异构的)。IP层抽象的互联网屏蔽了下层网络很复杂的细节，使我们能够使用统一的、抽象的IP地址处理主机之间的通信问题。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -301,7 +559,10 @@
       <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/computer-network-05/</guid>
-      <description>第五章 运输层 本章重要概念 1）运输层提供应用进程间的逻辑通信，也就是说，运输层之间的通信并不是真正在两运输层之间直接传送数据。运输层向应用层屏蔽了下面网络的细节（如网络拓扑、所采用的路由选择协议等），它使应用进程看见的就好像在两个运输层实体之间有一条端到端的逻辑通信信道。 2）网络层</description>
+      <description>&lt;h2 id=&#34;第五章-运输层&#34;&gt;第五章 运输层&lt;/h2&gt;
+&lt;h3 id=&#34;本章重要概念&#34;&gt;本章重要概念&lt;/h3&gt;
+&lt;p&gt;1）运输层提供应用进程间的逻辑通信，也就是说，运输层之间的通信并不是真正在两运输层之间直接传送数据。运输层向应用层屏蔽了下面网络的细节（如网络拓扑、所采用的路由选择协议等），它使应用进程看见的就好像在两个运输层实体之间有一条端到端的逻辑通信信道。&lt;/p&gt;
+&lt;p&gt;2）网络层为主机之间提供逻辑通信，而运输层为应用进程之间提供端到端的逻辑通信&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -310,7 +571,14 @@
       <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/computer-network-01/</guid>
-      <description>启程 欢迎来到《计算机网络简明教程- 重要概念》系列！计算机网络作为现代科技的基础，贯穿着我们日常生活和商业世界的方方面面。这个系列旨在为您呈现计算机网络领域中最关键、最基础的概念和原理，帮助您建立对网络基础知识的清晰理解。 让我们一起踏上这个探索计算机网络的旅程吧！ 第一章 概述 本章的重</description>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;启程&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;欢迎来到《计算机网络简明教程- 重要概念》系列！计算机网络作为现代科技的基础，贯穿着我们日常生活和商业世界的方方面面。这个系列旨在为您呈现计算机网络领域中最关键、最基础的概念和原理，帮助您建立对网络基础知识的清晰理解。&lt;/p&gt;
+&lt;p&gt;让我们一起踏上这个探索计算机网络的旅程吧！&lt;/p&gt;
+&lt;h2 id=&#34;第一章-概述&#34;&gt;第一章 概述&lt;/h2&gt;
+&lt;h3 id=&#34;本章的重要概念&#34;&gt;本章的重要概念&lt;/h3&gt;
+&lt;p&gt;1）计算机网络（可简称为网络）把许多计算机连接在一起，而互连网则把许多网络连接在一起，是网络的网络。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -319,7 +587,16 @@
       <pubDate>Tue, 21 Nov 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/life/kitchen_notes-about_chicken_legs_and_fish/</guid>
-      <description>鸡腿（参考思路：海南鸡饭） 食材：盒装的速冻鸡腿 对于鸡腿，这种胶质含量高的肉，解冻就没有太大的必要。 将鸡腿放至盆中，给盐，给鸡粉，给白胡椒粉，加水，全部倒入电饭煲中。按煮饭键 煮好之后，加米，将米搅匀一点，继续按煮饭键。 煮好之后盛出，可以在饭上撒点葱花。 结束。 盒装的鱼肉 食材：盒装的速</description>
+      <description>&lt;h3 id=&#34;鸡腿参考思路海南鸡饭&#34;&gt;鸡腿（参考思路：海南鸡饭）&lt;/h3&gt;
+&lt;p&gt;食材：盒装的速冻鸡腿&lt;/p&gt;
+&lt;p&gt;对于鸡腿，这种胶质含量高的肉，解冻就没有太大的必要。&lt;/p&gt;
+&lt;p&gt;将鸡腿放至盆中，给盐，给鸡粉，给白胡椒粉，加水，全部倒入电饭煲中。按煮饭键&lt;/p&gt;
+&lt;p&gt;煮好之后，加米，将米搅匀一点，继续按煮饭键。&lt;/p&gt;
+&lt;p&gt;煮好之后盛出，可以在饭上撒点葱花。&lt;/p&gt;
+&lt;p&gt;结束。&lt;/p&gt;
+&lt;h3 id=&#34;盒装的鱼肉&#34;&gt;盒装的鱼肉&lt;/h3&gt;
+&lt;p&gt;食材：盒装的速冻鱼肉/鱼块&lt;/p&gt;
+&lt;p&gt;为什么餐厅做出来的鱼都很Q弹，因为他们会拿盐糖去呛，通过这个方式把里面的水&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -328,7 +605,12 @@
       <pubDate>Sun, 05 Nov 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/llc-resonant-converters-0/</guid>
-      <description>谐振变换器-第1节 感谢您打开这篇博客，在这里，每次启程都承载着新的发现与学习的机会。 本节将开始《浅谈谐振LLC谐振变换器》系列，本系列围绕LLC谐振变换器展开，一个在现代电子设备中不可或缺的神秘组件。它利用巧妙的物理原理有效减少能量损失，保证了我们设备的高效运行。 本系列学习路线：</description>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;谐振变换器-第1节&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;感谢您打开这篇博客，在这里，每次启程都承载着新的发现与学习的机会。&lt;/p&gt;
+&lt;p&gt;本节将开始《浅谈谐振LLC谐振变换器》系列，本系列围绕LLC谐振变换器展开，一个在现代电子设备中不可或缺的神秘组件。它利用巧妙的物理原理有效减少能量损失，保证了我们设备的高效运行。&lt;/p&gt;
+&lt;p&gt;本系列学习路线：LLC的定义及优势 - LLC入门 - LLC工作原理 - LLC特性分析&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -337,7 +619,12 @@
       <pubDate>Sun, 05 Nov 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/llc-resonant-converters-1/</guid>
-      <description>谐振变换器-第2节 感谢您打开这篇博客，在这里，每次启程都承载着新的发现与学习的机会。 本节为《浅谈谐振LLC谐振变换器》系列第2节，本系列围绕LLC谐振变换器展开，一个在现代电子设备中不可或缺的神秘组件。它利用巧妙的物理原理有效减少能量损失，保证了我们设备的高效运行。 本系列学习路线</description>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;谐振变换器-第2节&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;感谢您打开这篇博客，在这里，每次启程都承载着新的发现与学习的机会。&lt;/p&gt;
+&lt;p&gt;本节为《浅谈谐振LLC谐振变换器》系列第2节，本系列围绕LLC谐振变换器展开，一个在现代电子设备中不可或缺的神秘组件。它利用巧妙的物理原理有效减少能量损失，保证了我们设备的高效运行。&lt;/p&gt;
+&lt;p&gt;本系列学习路线：LLC的定义及优势 - LLC入门 - LLC工作原理 - LLC特性分析&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -346,7 +633,12 @@
       <pubDate>Sun, 05 Nov 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/llc-resonant-converters-2/</guid>
-      <description>谐振变换器-第3节 感谢您打开这篇博客，在这里，每次启程都承载着新的发现与学习的机会。 本节为《浅谈谐振LLC谐振变换器》系列第3节，本系列围绕LLC谐振变换器展开，一个在现代电子设备中不可或缺的神秘组件。它利用巧妙的物理原理有效减少能量损失，保证了我们设备的高效运行。 本系列学习路线</description>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;谐振变换器-第3节&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;感谢您打开这篇博客，在这里，每次启程都承载着新的发现与学习的机会。&lt;/p&gt;
+&lt;p&gt;本节为《浅谈谐振LLC谐振变换器》系列第3节，本系列围绕LLC谐振变换器展开，一个在现代电子设备中不可或缺的神秘组件。它利用巧妙的物理原理有效减少能量损失，保证了我们设备的高效运行。&lt;/p&gt;
+&lt;p&gt;本系列学习路线：LLC的定义及优势 - LLC入门 - LLC工作原理 - LLC特性分析&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -355,7 +647,12 @@
       <pubDate>Sun, 05 Nov 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/llc-resonant-converters-3/</guid>
-      <description>谐振变换器-第4节 感谢您打开这篇博客，在这里，每次启程都承载着新的发现与学习的机会。 本节为《浅谈谐振LLC谐振变换器》系列第4节，本系列围绕LLC谐振变换器展开，一个在现代电子设备中不可或缺的神秘组件。它利用巧妙的物理原理有效减少能量损失，保证了我们设备的高效运行。 本系列学习路线</description>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;谐振变换器-第4节&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;感谢您打开这篇博客，在这里，每次启程都承载着新的发现与学习的机会。&lt;/p&gt;
+&lt;p&gt;本节为《浅谈谐振LLC谐振变换器》系列第4节，本系列围绕LLC谐振变换器展开，一个在现代电子设备中不可或缺的神秘组件。它利用巧妙的物理原理有效减少能量损失，保证了我们设备的高效运行。&lt;/p&gt;
+&lt;p&gt;本系列学习路线：LLC的定义及优势 - LLC入门 - LLC工作原理 - LLC特性分析&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -364,7 +661,19 @@
       <pubDate>Mon, 23 Oct 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/c-programming-10file/</guid>
-      <description>第十章 文件 INIT INIT：本节内容正式开始。action! 一、文件的概念 文件用来存放程序、文档、音频、视频数据、图片等数据的。 文件就是存放在磁盘上的，一些数据的集合。在windows下可以通过写字板或记事本打开文本文件对文件进行编辑保存。写字板和记事 本是微软程序员写的程序，对文件进行</description>
+      <description>&lt;h2 id=&#34;第十章-文件&#34;&gt;第十章 文件&lt;/h2&gt;
+&lt;h2 id=&#34;init&#34;&gt;INIT&lt;/h2&gt;
+&lt;div align = &#34;center&#34;&gt;
+&lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/INIT.jpg&#34; alt = &#34;INIT.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
+&lt;/div&gt;
+&lt;br/&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;INIT：本节内容正式开始。action!&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;一文件的概念&#34;&gt;一、文件的概念&lt;/h2&gt;
+&lt;p&gt;文件用来存放程序、文档、音频、视频数据、图片等数据的。&lt;/p&gt;
+&lt;p&gt;文件就是存放在磁盘上的，一些数据的集合。在windows下可以通过写字板或记事本打开文本文件对文件进行编辑保存。写字板和记事&lt;/p&gt;
+&lt;p&gt;本是微软程序员写的程序，对文件进行打开、显示、读写、关闭。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -373,7 +682,22 @@
       <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/c-programming-08struct/</guid>
-      <description>第八章 结构体，共用体，枚举 INIT INIT：本节内容正式开始。action! 一、结构体类型的概念及定义 1.1 基本概述 构造类型： 不是基本类型的数据结构也不是指针，它是若干个相同或不同类型的数据构成的集合 常用的构造类型有数组、结构体、共用体 数组用于保存多个相同类型的数据 结构体用于保存多个不同类</description>
+      <description>&lt;h2 id=&#34;第八章-结构体共用体枚举&#34;&gt;第八章 结构体，共用体，枚举&lt;/h2&gt;
+&lt;h2 id=&#34;init&#34;&gt;INIT&lt;/h2&gt;
+&lt;div align = &#34;center&#34;&gt;
+&lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/INIT.jpg&#34; alt = &#34;INIT.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
+&lt;/div&gt;
+&lt;br/&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;INIT：本节内容正式开始。action!&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;一结构体类型的概念及定义&#34;&gt;一、结构体类型的概念及定义&lt;/h3&gt;
+&lt;h4 id=&#34;11-基本概述&#34;&gt;1.1 基本概述&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;构造类型：&lt;/strong&gt;
+不是基本类型的数据结构也不是指针，它是若干个相同或不同类型的数据构成的集合
+常用的构造类型有数组、结构体、共用体&lt;/p&gt;
+&lt;p&gt;数组用于保存多个相同类型的数据
+结构体用于保存多个不同类型的数据&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -382,7 +706,18 @@
       <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/c-programming-06dynamic-memory/</guid>
-      <description>第六章 动态内存申请 INIT INIT：本节内容正式开始。action! 一、动态分配内存的概 在数组一章中，介绍过数组的长度是预先定义好的，在整个程序中固定不变，但是在实际的编程中，往往会发生这种情况，即所需的内存空间取决于实际输入的数据，而无法预先确定 。 为了解决上述问题，Ｃ语言提供了一些内</description>
+      <description>&lt;h2 id=&#34;第六章-动态内存申请&#34;&gt;第六章 动态内存申请&lt;/h2&gt;
+&lt;h2 id=&#34;init&#34;&gt;INIT&lt;/h2&gt;
+&lt;div align = &#34;center&#34;&gt;
+&lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/INIT.jpg&#34; alt = &#34;INIT.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
+&lt;/div&gt;
+&lt;br/&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;INIT：本节内容正式开始。action!&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;一动态分配内存的概&#34;&gt;一、动态分配内存的概&lt;/h3&gt;
+&lt;p&gt;在数组一章中，介绍过数组的长度是预先定义好的，在整个程序中固定不变，但是在实际的编程中，往往会发生这种情况，即所需的内存空间取决于实际输入的数据，而无法预先确定 。&lt;/p&gt;
+&lt;p&gt;为了解决上述问题，Ｃ语言提供了一些内存管理函数，这些内存管理函数可以按需要动态的分配内存空间，也可把不再使用的空间回收再次利用。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -391,7 +726,93 @@
       <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/c-programming-07string/</guid>
-      <description>第七章 字符串处理函数 INIT INIT：本节内容正式开始。action! 一、获取字符串长度函数 #include &amp;lt;string.h&amp;gt; size_t strlen(const char *s); 功能：计算一个字符串的长度 参数： s：指定的字符串 返回值： 当前字符串的长度 注意：strlen获取的字符串长度遇到第一个\0结束且\0不算做字符串长度之中 #include &amp;lt;stdio.h&amp;gt; #include &amp;lt;string.h&amp;gt; int main(int argc, char *argv[]) { //使用st</description>
+      <description>&lt;h2 id=&#34;第七章-字符串处理函数&#34;&gt;第七章 字符串处理函数&lt;/h2&gt;
+&lt;h2 id=&#34;init&#34;&gt;INIT&lt;/h2&gt;
+&lt;div align = &#34;center&#34;&gt;
+&lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/INIT.jpg&#34; alt = &#34;INIT.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
+&lt;/div&gt;
+&lt;br/&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;INIT：本节内容正式开始。action!&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;一获取字符串长度函数&#34;&gt;一、获取字符串长度函数&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;string.h&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;size_t&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;strlen&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;s);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;功能：计算一个字符串的长度&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;参数：&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  s&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;：指定的字符串&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;返回值：&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;当前字符串的长度&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;注意：&lt;/span&gt;strlen获取的字符串长度遇到第一个&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;\&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;结束且\&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;不算做字符串长度之中&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;string.h&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; argc, &lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;argv[])
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;//使用strlen函数获取字符串的长度
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;//strlen获取的字符串的长度遇到第一个\0结束
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt; s1[&lt;span style=&#34;color:#ae81ff&#34;&gt;100&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;hel&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\0&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;lo&amp;#34;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#a6e22e&#34;&gt;printf&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;s1_len = %d&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\n&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;strlen&lt;/span&gt;(s1));
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#a6e22e&#34;&gt;printf&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;s1_size = %d&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\n&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;sizeof&lt;/span&gt;(s1));
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;s2 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;hello&amp;#34;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#a6e22e&#34;&gt;printf&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;s2_len = %d&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\n&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;strlen&lt;/span&gt;(s2));
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#a6e22e&#34;&gt;printf&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;s2_size = %d&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\n&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;sizeof&lt;/span&gt;(s2));
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;执行结果&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;s1_len &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;s1_size &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;100&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;s2_len &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;s2_size &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;二字符串拷贝函数&#34;&gt;二、字符串拷贝函数&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;string.h&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;strcpy&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;dest, &lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;src);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;功能：将&lt;/span&gt;src复制给dest
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;参数：&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  dest&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;：目的字符串&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  src&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;：源字符串&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;返回值：&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;保存&lt;/span&gt;dest字符串的首地址
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;注意：&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;使用&lt;/span&gt;strcpy函数复制字符串时必须保证dest足够大&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;，否则会内存溢出&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  strcpy是将src字符串中第一个&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;\&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;之前包括\&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;复制给&lt;/span&gt;dest
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;strncpy&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;dest, &lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;src, &lt;span style=&#34;color:#66d9ef&#34;&gt;size_t&lt;/span&gt; n);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;函数的说明：&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;将&lt;/span&gt;src指向的字符串前n个字节&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;，拷贝到&lt;/span&gt;dest指向的内存中
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;返回值&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;目的内存的首地址&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;注意：&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;、&lt;/span&gt;strncpy不拷贝 &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;‘\&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;’&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;、如果&lt;/span&gt;n大于src指向的字符串中的字符个数&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;，则在&lt;/span&gt;dest后面填充n&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;‐&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;strlen&lt;/span&gt;(src)&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;个’\&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;’&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;string.h&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; argc, &lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;argv[])
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;//使用strcpy函数拷贝字符串
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt; s1[&lt;span style=&#34;color:#ae81ff&#34;&gt;32&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;hello world&amp;#34;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;//使用strcpy函数时，必须保证第一个参数的内存足够大
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;//char s1[5] = &amp;#34;abcd&amp;#34;;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt; s2[&lt;span style=&#34;color:#ae81ff&#34;&gt;32&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;abcdefg&amp;#34;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#a6e22e&#34;&gt;strcpy&lt;/span&gt;(s1, s2);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#a6e22e&#34;&gt;printf&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;s1 = %s&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\n&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;, s1);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt;(i &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;32&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;printf&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;[%c] ‐ %d&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\n&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;, s1[i], s1[i]);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;执行结果&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -400,7 +821,27 @@
       <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/c-programming-04preprocessing/</guid>
-      <description>第四章 预处理 INIT INIT：本节内容正式开始。action! 一、C语言编译过程 C语言的编译过程： 预处理、编译、汇编、链接 gcc -E hello.c -o hello.i 1、预处理 gcc -S hello.i –o hello.s 2、编译 gcc -c hello.s -o hello.o 3、汇编 gcc hello.o -o hello_elf 4、链接 1：预编译 将.c 中的头文件展开、宏展开 生成的文件是.i文件 2：编译 将预处理之后的.i 文件生</description>
+      <description>&lt;h2 id=&#34;第四章-预处理&#34;&gt;第四章 预处理&lt;/h2&gt;
+&lt;h2 id=&#34;init&#34;&gt;INIT&lt;/h2&gt;
+&lt;div align = &#34;center&#34;&gt;
+&lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/INIT.jpg&#34; alt = &#34;INIT.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
+&lt;/div&gt;
+&lt;br/&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;INIT：本节内容正式开始。action!&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;一c语言编译过程&#34;&gt;一、C语言编译过程&lt;/h3&gt;
+&lt;p&gt;C语言的编译过程：&lt;/p&gt;
+&lt;p&gt;预处理、编译、汇编、链接&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;gcc -E hello.c -o hello.i&lt;/code&gt;  1、预处理&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;gcc -S hello.i –o hello.s&lt;/code&gt;  2、编译&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;gcc -c hello.s -o hello.o&lt;/code&gt; 3、汇编&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;gcc hello.o -o hello_elf&lt;/code&gt;  4、链接&lt;/p&gt;
+&lt;p&gt;1：预编译&lt;/p&gt;
+&lt;p&gt;将.c 中的头文件展开、宏展开&lt;/p&gt;
+&lt;p&gt;生成的文件是.i文件&lt;/p&gt;
+&lt;p&gt;2：编译&lt;/p&gt;
+&lt;p&gt;将预处理之后的.i 文件生成 .s 汇编文件&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -409,7 +850,23 @@
       <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/c-programming-05pointer/</guid>
-      <description>第五章 指针 INIT INIT：本节内容正式开始。action! 一、关于内存那点事 存储器：存储数据器件 外存 外存又叫外部存储器，长期存放数据，掉电不丢失数据 常见的外存设备：硬盘、flash、rom、u盘、光盘、磁带 内存 内存又叫内部存储器，暂时存放数据，掉电数据丢失 常见的内存设备：ram、DD</description>
+      <description>&lt;h2 id=&#34;第五章-指针&#34;&gt;第五章 指针&lt;/h2&gt;
+&lt;h2 id=&#34;init&#34;&gt;INIT&lt;/h2&gt;
+&lt;div align = &#34;center&#34;&gt;
+&lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/INIT.jpg&#34; alt = &#34;INIT.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
+&lt;/div&gt;
+&lt;br/&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;INIT：本节内容正式开始。action!&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;一关于内存那点事&#34;&gt;一、关于内存那点事&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;存储器：存储数据器件&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;外存&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;外存又叫外部存储器，长期存放数据，掉电不丢失数据&lt;/p&gt;
+&lt;p&gt;常见的外存设备：硬盘、flash、rom、u盘、光盘、磁带&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;内存&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;内存又叫内部存储器，暂时存放数据，掉电数据丢失&lt;/p&gt;
+&lt;p&gt;常见的内存设备：ram、DDR&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -418,7 +875,23 @@
       <pubDate>Sat, 16 Sep 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/c-programming-02array/</guid>
-      <description>第二章 数组 INIT INIT：本节内容正式开始。action! 一、数组的概念 数组是若干个相同类型的变量在内存中有序存储的集合。 概念理解： 数组用于存储一组数据 数组里面存储的数据类型必须是相同的 数组在内存中会开辟一块连续的空间 int a[10]; //定义了一个整型的数组a，a是数组的名字，数组中有10个元素</description>
+      <description>&lt;h2 id=&#34;第二章-数组&#34;&gt;第二章 数组&lt;/h2&gt;
+&lt;h2 id=&#34;init&#34;&gt;INIT&lt;/h2&gt;
+&lt;div align = &#34;center&#34;&gt;
+&lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/INIT.jpg&#34; alt = &#34;INIT.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
+&lt;/div&gt;
+&lt;br/&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;INIT：本节内容正式开始。action!&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;一数组的概念&#34;&gt;一、数组的概念&lt;/h3&gt;
+&lt;p&gt;数组是若干个相同类型的变量在内存中有序存储的集合。&lt;/p&gt;
+&lt;p&gt;概念理解：&lt;/p&gt;
+&lt;p&gt;数组用于存储一组数据&lt;/p&gt;
+&lt;p&gt;数组里面存储的数据类型必须是相同的&lt;/p&gt;
+&lt;p&gt;数组在内存中会开辟一块连续的空间&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;int a[10];&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;//定义了一个整型的数组a，a是数组的名字，数组中有10个元素，每个元素的类型都是int类型，而且在内存中连续存储。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -427,7 +900,19 @@
       <pubDate>Sat, 16 Sep 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/c-programming-03fun/</guid>
-      <description>第三章 函数 INIT INIT：本节内容正式开始。action! 一、函数的概念 函数是c语言的功能单位，实现一个功能可以封装一个函数来实现。 定义函数的时候一切以功能为目的，根据功能去定函数的参数和返回值。 函数就是讲特定功能的代码封装在一个函数内部，当要使用这些代码时，只需要通过函数名就可以使</description>
+      <description>&lt;h2 id=&#34;第三章-函数&#34;&gt;第三章 函数&lt;/h2&gt;
+&lt;h2 id=&#34;init&#34;&gt;INIT&lt;/h2&gt;
+&lt;div align = &#34;center&#34;&gt;
+&lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/INIT.jpg&#34; alt = &#34;INIT.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
+&lt;/div&gt;
+&lt;br/&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;INIT：本节内容正式开始。action!&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;一函数的概念&#34;&gt;一、函数的概念&lt;/h3&gt;
+&lt;p&gt;函数是c语言的功能单位，实现一个功能可以封装一个函数来实现。&lt;/p&gt;
+&lt;p&gt;定义函数的时候一切以功能为目的，根据功能去定函数的参数和返回值。&lt;/p&gt;
+&lt;p&gt;函数就是讲特定功能的代码封装在一个函数内部，当要使用这些代码时，只需要通过函数名就可以使用，这样操作起来更加方便。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -436,7 +921,18 @@
       <pubDate>Tue, 12 Sep 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/c-language-comment-specification/</guid>
-      <description>常用的注释模板 C语言并没有一个官方的注释规范，但有一些常见的注释风格和最佳实践，可以帮助你编写清晰、易于理解的注释。以下是一些常用的高效注释模板，你可以根据需要进行自定义： 文件头注释： 在每个源代码文件的顶部，包括以下信息： /* * 文件名: example.c * 作者: Your Name * 日期: 2023-09-07 * 描述: 这个文件包含了</description>
+      <description>&lt;h2 id=&#34;常用的注释模板&#34;&gt;常用的注释模板&lt;/h2&gt;
+&lt;p&gt;C语言并没有一个官方的注释规范，但有一些常见的注释风格和最佳实践，可以帮助你编写清晰、易于理解的注释。以下是一些常用的高效注释模板，你可以根据需要进行自定义：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;文件头注释：&lt;/strong&gt; 在每个源代码文件的顶部，包括以下信息：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;/*
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; * 文件名: example.c
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; * 作者: Your Name
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; * 日期: 2023-09-07
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; * 描述: 这个文件包含了一个示例程序的源代码。
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这个注释用于标识文件的作者、日期和描述文件内容。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -445,7 +941,13 @@
       <pubDate>Tue, 12 Sep 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/github-git-lfs/</guid>
-      <description>前言 在进行版本控制时，管理大文件是一个常见但棘手的问题。GitHub为了维护性能和资源，对大文件的存储有一些限制。本文将介绍如何使用Git LFS（Large File Storage）来高效管理大文件，以及如何应对可能遇到的问题并提供解决方案。 问题阐述 你可能会遇到两种常见的问题： 如何将大于</description>
+      <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt;在进行版本控制时，管理大文件是一个常见但棘手的问题。GitHub为了维护性能和资源，对大文件的存储有一些限制。本文将介绍如何使用Git LFS（Large File Storage）来高效管理大文件，以及如何应对可能遇到的问题并提供解决方案。&lt;/p&gt;
+&lt;h2 id=&#34;问题阐述&#34;&gt;问题阐述&lt;/h2&gt;
+&lt;p&gt;你可能会遇到两种常见的问题：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;如何将大于GitHub默认50MB文件大小限制的大文件上传到仓库？&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -454,7 +956,20 @@
       <pubDate>Tue, 12 Sep 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/github_error-git_push/</guid>
-      <description>问题描述 输入git push命令后报错 $ git push -f origin main Enumerating objects: 149, done. Counting objects: 100% (149/149), done. Delta compression using up to 16 threads Compressing objects: 100% (144/144), done. error: RPC failed; HTTP 502 curl 22 The requested URL returned error: 502 Writing objects: 80% (119/148), 1.36 GiB | 237.00 KiB/ssend-pack: unexpected disconnect while reading sideband packet Writing objects: 100% (148/148), 1.39 GiB | 2.68 MiB/s, done. Total 148 (delta 3), reused 0 (delta 0), pack-reused 0 fatal: the remote end hung up unexpectedly 原因分析 这个错误表明在进行 git push 操作时，出现了HTTP 502错误，这通常是由于远程</description>
+      <description>&lt;h2 id=&#34;问题描述&#34;&gt;问题描述&lt;/h2&gt;
+&lt;p&gt;输入&lt;code&gt;git push&lt;/code&gt;命令后报错&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-PowerShell&#34; data-lang=&#34;PowerShell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ git push &lt;span style=&#34;color:#f92672&#34;&gt;-f&lt;/span&gt; origin main
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Enumerating objects&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;149&lt;/span&gt;, done.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Counting objects&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;100&lt;/span&gt;% (&lt;span style=&#34;color:#ae81ff&#34;&gt;149&lt;/span&gt;/&lt;span style=&#34;color:#ae81ff&#34;&gt;149&lt;/span&gt;), done.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Delta compression using up to &lt;span style=&#34;color:#ae81ff&#34;&gt;16&lt;/span&gt; threads
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Compressing objects&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;100&lt;/span&gt;% (&lt;span style=&#34;color:#ae81ff&#34;&gt;144&lt;/span&gt;/&lt;span style=&#34;color:#ae81ff&#34;&gt;144&lt;/span&gt;), done.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;error&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; RPC failed; HTTP &lt;span style=&#34;color:#ae81ff&#34;&gt;502&lt;/span&gt; curl &lt;span style=&#34;color:#ae81ff&#34;&gt;22&lt;/span&gt; The requested URL returned error&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;502&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Writing objects&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt;  &lt;span style=&#34;color:#ae81ff&#34;&gt;80&lt;/span&gt;% (&lt;span style=&#34;color:#ae81ff&#34;&gt;119&lt;/span&gt;/&lt;span style=&#34;color:#ae81ff&#34;&gt;148&lt;/span&gt;), &lt;span style=&#34;color:#ae81ff&#34;&gt;1.36&lt;/span&gt; GiB | &lt;span style=&#34;color:#ae81ff&#34;&gt;237.00&lt;/span&gt; KiB/ssend-pack&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; unexpected disconnect &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; reading sideband packet
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Writing objects&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;100&lt;/span&gt;% (&lt;span style=&#34;color:#ae81ff&#34;&gt;148&lt;/span&gt;/&lt;span style=&#34;color:#ae81ff&#34;&gt;148&lt;/span&gt;), &lt;span style=&#34;color:#ae81ff&#34;&gt;1.39&lt;/span&gt; GiB | &lt;span style=&#34;color:#ae81ff&#34;&gt;2.68&lt;/span&gt; MiB/s, done.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Total &lt;span style=&#34;color:#ae81ff&#34;&gt;148&lt;/span&gt; (delta &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;), reused &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; (delta &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;), pack-reused &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;fatal&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; the remote &lt;span style=&#34;color:#66d9ef&#34;&gt;end&lt;/span&gt; hung up unexpectedly
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;原因分析&#34;&gt;原因分析&lt;/h2&gt;
+&lt;p&gt;这个错误表明在进行 &lt;code&gt;git push&lt;/code&gt; 操作时，出现了HTTP 502错误，这通常是由于远程Git服务器出现问题或网络问题导致的。HTTP 502错误是一种&amp;quot;Bad Gateway&amp;quot;错误，意味着Git服务器无法正常处理你的请求。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -463,7 +978,10 @@
       <pubDate>Tue, 12 Sep 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/github-git-action-error/</guid>
-      <description>问题描述 当使用GitHub Actions执行工作流程时，有时会遇到错误消息，其中一个常见的错误是：Action failed with &#39;not found deploy key or tokens。这个错误通常表示GitHub Actions在执行过程中找不到有效的部署密钥或访问令牌。这篇博客将帮助你了解如何解决这个问题。 错误原因分析 在Gi</description>
+      <description>&lt;h2 id=&#34;问题描述&#34;&gt;问题描述&lt;/h2&gt;
+&lt;p&gt;当使用&lt;code&gt;GitHub Actions&lt;/code&gt;执行工作流程时，有时会遇到错误消息，其中一个常见的错误是：&lt;code&gt;Action failed with &#39;not found deploy key or tokens&lt;/code&gt;。这个错误通常表示&lt;code&gt;GitHub Actions&lt;/code&gt;在执行过程中找不到有效的部署密钥或访问令牌。这篇博客将帮助你了解如何解决这个问题。&lt;/p&gt;
+&lt;h2 id=&#34;错误原因分析&#34;&gt;错误原因分析&lt;/h2&gt;
+&lt;p&gt;在&lt;code&gt;GitHub Actions&lt;/code&gt;的工作流程中，有些操作需要使用密钥或令牌来访问GitHub存储库或执行其他敏感操作，例如推送更改到仓库。这些密钥或令牌通常存储在GitHub存储库的&lt;code&gt;Secrets&lt;/code&gt;中。当出现&lt;code&gt;not found deploy key or tokens&lt;/code&gt;错误时，这意味着&lt;code&gt;GitHub Actions&lt;/code&gt;无法找到所需的密钥或令牌。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -472,7 +990,8 @@
       <pubDate>Wed, 06 Sep 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/github-action-hugo/</guid>
-      <description>前言 在本文中，我们将介绍如何通过GitHub Action自动化部署Hugo博客。如果你是一个博客作者，你可能已经熟悉了使用Hugo构建和管理你的博客。Hugo是一个快速且灵活的静态网站生成器，但是手动部署博客可能会变得繁琐。为了解决这个问题，我们可以利用GitHub Action，</description>
+      <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt;在本文中，我们将介绍如何通过GitHub Action自动化部署Hugo博客。如果你是一个博客作者，你可能已经熟悉了使用Hugo构建和管理你的博客。Hugo是一个快速且灵活的静态网站生成器，但是手动部署博客可能会变得繁琐。为了解决这个问题，我们可以利用GitHub Action，这是一个GitHub提供的持续集成和持续交付（CI/CD）工具，来自动构建和部署我们的博客。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -697,7 +1216,32 @@
       <pubDate>Sat, 06 Nov 2021 14:57:28 +0800</pubDate>
       
       <guid>https://eddyblog.cn/about/</guid>
-      <description>Do not go gentle into that good night, Old age should burn and rave at close of day. Rage, Rage against the dying light. 不要温和地走进那个良夜。白昼将尽，暮年仍应燃烧咆哮。怒斥吧，怒斥光的消逝。 Love is the one thing that transcends time and space. 爱是唯一可以超越时间和空间的事物。 英文名：EddyCliff 状态：大学生 兴趣：音乐、电影、摄影、单车骑行</description>
+      <description>&lt;p align = &#34;center&#34;&gt;
+&lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/Interstellar.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
+&lt;/p&gt;
+&lt;br /&gt;
+&lt;ol&gt;
+&lt;li&gt;Do not go gentle into that good night, Old age should burn and rave at close of day. Rage, Rage against the dying light.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;不要温和地走进那个良夜。白昼将尽，暮年仍应燃烧咆哮。怒斥吧，怒斥光的消逝。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;Love is the one thing that transcends time and space.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;爱是唯一可以超越时间和空间的事物。&lt;br&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;英文名：EddyCliff&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;状态：自由职业&amp;amp;创业&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;兴趣：音乐、电影、单车骑行&lt;/p&gt;</description>
     </item>
     
     

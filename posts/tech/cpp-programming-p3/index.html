@@ -7,7 +7,60 @@
 <meta name="robots" content="index, follow">
 <title>C&#43;&#43;编程入门：函数提高-函数重载 | Eddy&#39;s blog</title>
 <meta name="keywords" content="CPP Programming, 引用">
-<meta name="description" content="INIT INIT：本节内容正式开始。action! 3 函数提高 3.1 函数默认参数 在C&#43;&#43;中，函数的形参列表中的形参是可以有默认值的。 语法：返回值类型 函数名 （参数= 默认值）{} 示例代码 #include&lt;iostream&gt; using namespace std; //函数默认参数 //如果我们自己传入数据，就用自己的数据，如果没有，那么用默认值 //语法：返回值类型 函">
+<meta name="description" content="
+
+
+
+INIT
+
+
+
+
+
+INIT：本节内容正式开始。action!
+
+3 函数提高
+3.1 函数默认参数
+在C&#43;&#43;中，函数的形参列表中的形参是可以有默认值的。
+语法：返回值类型 函数名 （参数= 默认值）{}
+
+示例代码
+
+#include&lt;iostream&gt;
+using namespace std;
+
+//函数默认参数
+//如果我们自己传入数据，就用自己的数据，如果没有，那么用默认值
+//语法：返回值类型 函数名(形参 = 默认值){}
+int func(int a,int b = 20,int c =30)
+{
+	return a &#43; b &#43; c;
+}
+
+//注意事项：
+//1、如果某个位置已经有了默认参数，那么这个位置往后，从左往右都必须有默认值
+//int func2(int a = 10,int b,int c) //此时会报错
+//{
+//	return a &#43; b &#43; c;
+//}
+
+//2、如果函数声明有默认参数，函数实现就不能有默认参数
+//声明和实现只能有一个有默认参数
+//int func2(int a = 10, int b = 10);
+//int func2(int a = 20, int b = 20) //此时会报错
+//{
+//	return a &#43; b;
+//}
+
+int main()
+{
+	cout &lt;&lt; func(10) &lt;&lt; endl;
+
+	system(&#34;pause&#34;);
+	return 0;
+}
+
+运行结果">
 <meta name="author" content="Eddy">
 <link rel="canonical" href="https://eddyblog.cn/posts/tech/cpp-programming-p3/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
@@ -79,11 +132,61 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
-
-  
-
 <meta property="og:title" content="C&#43;&#43;编程入门：函数提高-函数重载" />
-<meta property="og:description" content="INIT INIT：本节内容正式开始。action! 3 函数提高 3.1 函数默认参数 在C&#43;&#43;中，函数的形参列表中的形参是可以有默认值的。 语法：返回值类型 函数名 （参数= 默认值）{} 示例代码 #include&lt;iostream&gt; using namespace std; //函数默认参数 //如果我们自己传入数据，就用自己的数据，如果没有，那么用默认值 //语法：返回值类型 函" />
+<meta property="og:description" content="
+
+
+
+INIT
+
+
+
+
+
+INIT：本节内容正式开始。action!
+
+3 函数提高
+3.1 函数默认参数
+在C&#43;&#43;中，函数的形参列表中的形参是可以有默认值的。
+语法：返回值类型 函数名 （参数= 默认值）{}
+
+示例代码
+
+#include&lt;iostream&gt;
+using namespace std;
+
+//函数默认参数
+//如果我们自己传入数据，就用自己的数据，如果没有，那么用默认值
+//语法：返回值类型 函数名(形参 = 默认值){}
+int func(int a,int b = 20,int c =30)
+{
+	return a &#43; b &#43; c;
+}
+
+//注意事项：
+//1、如果某个位置已经有了默认参数，那么这个位置往后，从左往右都必须有默认值
+//int func2(int a = 10,int b,int c) //此时会报错
+//{
+//	return a &#43; b &#43; c;
+//}
+
+//2、如果函数声明有默认参数，函数实现就不能有默认参数
+//声明和实现只能有一个有默认参数
+//int func2(int a = 10, int b = 10);
+//int func2(int a = 20, int b = 20) //此时会报错
+//{
+//	return a &#43; b;
+//}
+
+int main()
+{
+	cout &lt;&lt; func(10) &lt;&lt; endl;
+
+	system(&#34;pause&#34;);
+	return 0;
+}
+
+运行结果" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://eddyblog.cn/posts/tech/cpp-programming-p3/" />
 <meta property="og:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/CPP.png" /><meta property="article:section" content="posts" />
@@ -93,7 +196,60 @@ var _hmt = _hmt || [];
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/CPP.png" />
 <meta name="twitter:title" content="C&#43;&#43;编程入门：函数提高-函数重载"/>
-<meta name="twitter:description" content="INIT INIT：本节内容正式开始。action! 3 函数提高 3.1 函数默认参数 在C&#43;&#43;中，函数的形参列表中的形参是可以有默认值的。 语法：返回值类型 函数名 （参数= 默认值）{} 示例代码 #include&lt;iostream&gt; using namespace std; //函数默认参数 //如果我们自己传入数据，就用自己的数据，如果没有，那么用默认值 //语法：返回值类型 函"/>
+<meta name="twitter:description" content="
+
+
+
+INIT
+
+
+
+
+
+INIT：本节内容正式开始。action!
+
+3 函数提高
+3.1 函数默认参数
+在C&#43;&#43;中，函数的形参列表中的形参是可以有默认值的。
+语法：返回值类型 函数名 （参数= 默认值）{}
+
+示例代码
+
+#include&lt;iostream&gt;
+using namespace std;
+
+//函数默认参数
+//如果我们自己传入数据，就用自己的数据，如果没有，那么用默认值
+//语法：返回值类型 函数名(形参 = 默认值){}
+int func(int a,int b = 20,int c =30)
+{
+	return a &#43; b &#43; c;
+}
+
+//注意事项：
+//1、如果某个位置已经有了默认参数，那么这个位置往后，从左往右都必须有默认值
+//int func2(int a = 10,int b,int c) //此时会报错
+//{
+//	return a &#43; b &#43; c;
+//}
+
+//2、如果函数声明有默认参数，函数实现就不能有默认参数
+//声明和实现只能有一个有默认参数
+//int func2(int a = 10, int b = 10);
+//int func2(int a = 20, int b = 20) //此时会报错
+//{
+//	return a &#43; b;
+//}
+
+int main()
+{
+	cout &lt;&lt; func(10) &lt;&lt; endl;
+
+	system(&#34;pause&#34;);
+	return 0;
+}
+
+运行结果"/>
 
 
 <script type="application/ld+json">
@@ -130,7 +286,7 @@ var _hmt = _hmt || [];
   "@type": "BlogPosting",
   "headline": "C++编程入门：函数提高-函数重载",
   "name": "C\u002b\u002b编程入门：函数提高-函数重载",
-  "description": "INIT INIT：本节内容正式开始。action! 3 函数提高 3.1 函数默认参数 在C++中，函数的形参列表中的形参是可以有默认值的。 语法：返回值类型 函数名 （参数= 默认值）{} 示例代码 #include\u0026lt;iostream\u0026gt; using namespace std; //函数默认参数 //如果我们自己传入数据，就用自己的数据，如果没有，那么用默认值 //语法：返回值类型 函",
+  "description": " INIT INIT：本节内容正式开始。action!\n3 函数提高 3.1 函数默认参数 在C++中，函数的形参列表中的形参是可以有默认值的。\n语法：返回值类型 函数名 （参数= 默认值）{}\n示例代码\n#include\u0026lt;iostream\u0026gt; using namespace std; //函数默认参数 //如果我们自己传入数据，就用自己的数据，如果没有，那么用默认值 //语法：返回值类型 函数名(形参 = 默认值){} int func(int a,int b = 20,int c =30) { return a + b + c; } //注意事项： //1、如果某个位置已经有了默认参数，那么这个位置往后，从左往右都必须有默认值 //int func2(int a = 10,int b,int c) //此时会报错 //{ //\treturn a + b + c; //} //2、如果函数声明有默认参数，函数实现就不能有默认参数 //声明和实现只能有一个有默认参数 //int func2(int a = 10, int b = 10); //int func2(int a = 20, int b = 20) //此时会报错 //{ //\treturn a + b; //} int main() { cout \u0026lt;\u0026lt; func(10) \u0026lt;\u0026lt; endl; system(\u0026#34;pause\u0026#34;); return 0; } 运行结果\n",
   "keywords": [
     "CPP Programming", "引用"
   ],

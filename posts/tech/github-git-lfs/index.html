@@ -7,7 +7,13 @@
 <meta name="robots" content="index, follow">
 <title>【GitHub 使用指南】解决大文件上传问题：Git LFS 最佳实践 | Eddy&#39;s blog</title>
 <meta name="keywords" content="Github, Git LFS">
-<meta name="description" content="前言 在进行版本控制时，管理大文件是一个常见但棘手的问题。GitHub为了维护性能和资源，对大文件的存储有一些限制。本文将介绍如何使用Git LFS（Large File Storage）来高效管理大文件，以及如何应对可能遇到的问题并提供解决方案。 问题阐述 你可能会遇到两种常见的问题： 如何将大于">
+<meta name="description" content="前言
+在进行版本控制时，管理大文件是一个常见但棘手的问题。GitHub为了维护性能和资源，对大文件的存储有一些限制。本文将介绍如何使用Git LFS（Large File Storage）来高效管理大文件，以及如何应对可能遇到的问题并提供解决方案。
+问题阐述
+你可能会遇到两种常见的问题：
+
+
+如何将大于GitHub默认50MB文件大小限制的大文件上传到仓库？">
 <meta name="author" content="Eddy">
 <link rel="canonical" href="https://eddyblog.cn/posts/tech/github-git-lfs/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
@@ -79,11 +85,14 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
-
-  
-
 <meta property="og:title" content="【GitHub 使用指南】解决大文件上传问题：Git LFS 最佳实践" />
-<meta property="og:description" content="前言 在进行版本控制时，管理大文件是一个常见但棘手的问题。GitHub为了维护性能和资源，对大文件的存储有一些限制。本文将介绍如何使用Git LFS（Large File Storage）来高效管理大文件，以及如何应对可能遇到的问题并提供解决方案。 问题阐述 你可能会遇到两种常见的问题： 如何将大于" />
+<meta property="og:description" content="前言
+在进行版本控制时，管理大文件是一个常见但棘手的问题。GitHub为了维护性能和资源，对大文件的存储有一些限制。本文将介绍如何使用Git LFS（Large File Storage）来高效管理大文件，以及如何应对可能遇到的问题并提供解决方案。
+问题阐述
+你可能会遇到两种常见的问题：
+
+
+如何将大于GitHub默认50MB文件大小限制的大文件上传到仓库？" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://eddyblog.cn/posts/tech/github-git-lfs/" />
 <meta property="og:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/pc4.jpg" /><meta property="article:section" content="posts" />
@@ -93,7 +102,13 @@ var _hmt = _hmt || [];
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/pc4.jpg" />
 <meta name="twitter:title" content="【GitHub 使用指南】解决大文件上传问题：Git LFS 最佳实践"/>
-<meta name="twitter:description" content="前言 在进行版本控制时，管理大文件是一个常见但棘手的问题。GitHub为了维护性能和资源，对大文件的存储有一些限制。本文将介绍如何使用Git LFS（Large File Storage）来高效管理大文件，以及如何应对可能遇到的问题并提供解决方案。 问题阐述 你可能会遇到两种常见的问题： 如何将大于"/>
+<meta name="twitter:description" content="前言
+在进行版本控制时，管理大文件是一个常见但棘手的问题。GitHub为了维护性能和资源，对大文件的存储有一些限制。本文将介绍如何使用Git LFS（Large File Storage）来高效管理大文件，以及如何应对可能遇到的问题并提供解决方案。
+问题阐述
+你可能会遇到两种常见的问题：
+
+
+如何将大于GitHub默认50MB文件大小限制的大文件上传到仓库？"/>
 
 
 <script type="application/ld+json">
@@ -130,7 +145,7 @@ var _hmt = _hmt || [];
   "@type": "BlogPosting",
   "headline": "【GitHub 使用指南】解决大文件上传问题：Git LFS 最佳实践",
   "name": "【GitHub 使用指南】解决大文件上传问题：Git LFS 最佳实践",
-  "description": "前言 在进行版本控制时，管理大文件是一个常见但棘手的问题。GitHub为了维护性能和资源，对大文件的存储有一些限制。本文将介绍如何使用Git LFS（Large File Storage）来高效管理大文件，以及如何应对可能遇到的问题并提供解决方案。 问题阐述 你可能会遇到两种常见的问题： 如何将大于",
+  "description": "前言 在进行版本控制时，管理大文件是一个常见但棘手的问题。GitHub为了维护性能和资源，对大文件的存储有一些限制。本文将介绍如何使用Git LFS（Large File Storage）来高效管理大文件，以及如何应对可能遇到的问题并提供解决方案。\n问题阐述 你可能会遇到两种常见的问题：\n如何将大于GitHub默认50MB文件大小限制的大文件上传到仓库？\n",
   "keywords": [
     "Github", "Git LFS"
   ],

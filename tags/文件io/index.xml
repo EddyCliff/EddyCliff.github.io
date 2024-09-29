@@ -13,7 +13,18 @@
       <pubDate>Sun, 21 Apr 2024 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/linux-basics-03/</guid>
-      <description>INIT INIT：本节内容正式开始。action! 库的制作与使用 库文件的定义 库文件是计算机软件中包含一系列函数、类、数据结构和资源的文件，它们被编译成机器码，可以在运行时被其他程序链接和调用。库文件能够提供一些常用的功能，使得程序员不必“重新发明轮子”，可以更高效地开发软件。 库文件主要</description>
+      <description>&lt;h2 id=&#34;init&#34;&gt;INIT&lt;/h2&gt;
+&lt;div align = &#34;center&#34;&gt;
+&lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/INIT.jpg&#34; alt = &#34;INIT.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
+&lt;/div&gt;
+&lt;br&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;INIT：本节内容正式开始。action!&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;库的制作与使用&#34;&gt;库的制作与使用&lt;/h2&gt;
+&lt;h3 id=&#34;库文件的定义&#34;&gt;&lt;strong&gt;库文件的定义&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;库文件是计算机软件中包含一系列函数、类、数据结构和资源的文件，它们被编译成机器码，可以在运行时被其他程序链接和调用。库文件能够提供一些常用的功能，使得程序员不必“重新发明轮子”，可以更高效地开发软件。
+库文件主要有以下几种类型：&lt;/p&gt;</description>
     </item>
     
   </channel>

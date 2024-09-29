@@ -7,7 +7,22 @@
 <meta name="robots" content="index, follow">
 <title>【嵌入式C语言编程】第八章 结构体，共用体，枚举 | Eddy&#39;s blog</title>
 <meta name="keywords" content="C programming, Embedded Development, Struct, common body, enumeration, C语言, C语言编程, 嵌入式编程, 结构体, 共用体, 枚举">
-<meta name="description" content="第八章 结构体，共用体，枚举 INIT INIT：本节内容正式开始。action! 一、结构体类型的概念及定义 1.1 基本概述 构造类型： 不是基本类型的数据结构也不是指针，它是若干个相同或不同类型的数据构成的集合 常用的构造类型有数组、结构体、共用体 数组用于保存多个相同类型的数据 结构体用于保存多个不同类">
+<meta name="description" content="第八章 结构体，共用体，枚举
+INIT
+
+
+
+
+
+INIT：本节内容正式开始。action!
+
+一、结构体类型的概念及定义
+1.1 基本概述
+构造类型：
+不是基本类型的数据结构也不是指针，它是若干个相同或不同类型的数据构成的集合
+常用的构造类型有数组、结构体、共用体
+数组用于保存多个相同类型的数据
+结构体用于保存多个不同类型的数据">
 <meta name="author" content="Eddy">
 <link rel="canonical" href="https://eddyblog.cn/posts/tech/c-programming-08struct/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
@@ -79,11 +94,23 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
-
-  
-
 <meta property="og:title" content="【嵌入式C语言编程】第八章 结构体，共用体，枚举" />
-<meta property="og:description" content="第八章 结构体，共用体，枚举 INIT INIT：本节内容正式开始。action! 一、结构体类型的概念及定义 1.1 基本概述 构造类型： 不是基本类型的数据结构也不是指针，它是若干个相同或不同类型的数据构成的集合 常用的构造类型有数组、结构体、共用体 数组用于保存多个相同类型的数据 结构体用于保存多个不同类" />
+<meta property="og:description" content="第八章 结构体，共用体，枚举
+INIT
+
+
+
+
+
+INIT：本节内容正式开始。action!
+
+一、结构体类型的概念及定义
+1.1 基本概述
+构造类型：
+不是基本类型的数据结构也不是指针，它是若干个相同或不同类型的数据构成的集合
+常用的构造类型有数组、结构体、共用体
+数组用于保存多个相同类型的数据
+结构体用于保存多个不同类型的数据" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://eddyblog.cn/posts/tech/c-programming-08struct/" />
 <meta property="og:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/c2.jpg" /><meta property="article:section" content="posts" />
@@ -93,7 +120,22 @@ var _hmt = _hmt || [];
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/c2.jpg" />
 <meta name="twitter:title" content="【嵌入式C语言编程】第八章 结构体，共用体，枚举"/>
-<meta name="twitter:description" content="第八章 结构体，共用体，枚举 INIT INIT：本节内容正式开始。action! 一、结构体类型的概念及定义 1.1 基本概述 构造类型： 不是基本类型的数据结构也不是指针，它是若干个相同或不同类型的数据构成的集合 常用的构造类型有数组、结构体、共用体 数组用于保存多个相同类型的数据 结构体用于保存多个不同类"/>
+<meta name="twitter:description" content="第八章 结构体，共用体，枚举
+INIT
+
+
+
+
+
+INIT：本节内容正式开始。action!
+
+一、结构体类型的概念及定义
+1.1 基本概述
+构造类型：
+不是基本类型的数据结构也不是指针，它是若干个相同或不同类型的数据构成的集合
+常用的构造类型有数组、结构体、共用体
+数组用于保存多个相同类型的数据
+结构体用于保存多个不同类型的数据"/>
 
 
 <script type="application/ld+json">
@@ -130,7 +172,7 @@ var _hmt = _hmt || [];
   "@type": "BlogPosting",
   "headline": "【嵌入式C语言编程】第八章 结构体，共用体，枚举",
   "name": "【嵌入式C语言编程】第八章 结构体，共用体，枚举",
-  "description": "第八章 结构体，共用体，枚举 INIT INIT：本节内容正式开始。action! 一、结构体类型的概念及定义 1.1 基本概述 构造类型： 不是基本类型的数据结构也不是指针，它是若干个相同或不同类型的数据构成的集合 常用的构造类型有数组、结构体、共用体 数组用于保存多个相同类型的数据 结构体用于保存多个不同类",
+  "description": "第八章 结构体，共用体，枚举 INIT INIT：本节内容正式开始。action!\n一、结构体类型的概念及定义 1.1 基本概述 构造类型： 不是基本类型的数据结构也不是指针，它是若干个相同或不同类型的数据构成的集合 常用的构造类型有数组、结构体、共用体\n数组用于保存多个相同类型的数据 结构体用于保存多个不同类型的数据\n",
   "keywords": [
     "C programming", "Embedded Development", "Struct", "common body", "enumeration", "C语言", "C语言编程", "嵌入式编程", "结构体", "共用体", "枚举"
   ],

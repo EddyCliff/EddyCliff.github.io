@@ -13,7 +13,27 @@
       <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/c-programming-04preprocessing/</guid>
-      <description>第四章 预处理 INIT INIT：本节内容正式开始。action! 一、C语言编译过程 C语言的编译过程： 预处理、编译、汇编、链接 gcc -E hello.c -o hello.i 1、预处理 gcc -S hello.i –o hello.s 2、编译 gcc -c hello.s -o hello.o 3、汇编 gcc hello.o -o hello_elf 4、链接 1：预编译 将.c 中的头文件展开、宏展开 生成的文件是.i文件 2：编译 将预处理之后的.i 文件生</description>
+      <description>&lt;h2 id=&#34;第四章-预处理&#34;&gt;第四章 预处理&lt;/h2&gt;
+&lt;h2 id=&#34;init&#34;&gt;INIT&lt;/h2&gt;
+&lt;div align = &#34;center&#34;&gt;
+&lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/INIT.jpg&#34; alt = &#34;INIT.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
+&lt;/div&gt;
+&lt;br/&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;INIT：本节内容正式开始。action!&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;一c语言编译过程&#34;&gt;一、C语言编译过程&lt;/h3&gt;
+&lt;p&gt;C语言的编译过程：&lt;/p&gt;
+&lt;p&gt;预处理、编译、汇编、链接&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;gcc -E hello.c -o hello.i&lt;/code&gt;  1、预处理&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;gcc -S hello.i –o hello.s&lt;/code&gt;  2、编译&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;gcc -c hello.s -o hello.o&lt;/code&gt; 3、汇编&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;gcc hello.o -o hello_elf&lt;/code&gt;  4、链接&lt;/p&gt;
+&lt;p&gt;1：预编译&lt;/p&gt;
+&lt;p&gt;将.c 中的头文件展开、宏展开&lt;/p&gt;
+&lt;p&gt;生成的文件是.i文件&lt;/p&gt;
+&lt;p&gt;2：编译&lt;/p&gt;
+&lt;p&gt;将预处理之后的.i 文件生成 .s 汇编文件&lt;/p&gt;</description>
     </item>
     
   </channel>

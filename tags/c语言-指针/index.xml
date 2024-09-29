@@ -13,7 +13,23 @@
       <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/c-programming-05pointer/</guid>
-      <description>第五章 指针 INIT INIT：本节内容正式开始。action! 一、关于内存那点事 存储器：存储数据器件 外存 外存又叫外部存储器，长期存放数据，掉电不丢失数据 常见的外存设备：硬盘、flash、rom、u盘、光盘、磁带 内存 内存又叫内部存储器，暂时存放数据，掉电数据丢失 常见的内存设备：ram、DD</description>
+      <description>&lt;h2 id=&#34;第五章-指针&#34;&gt;第五章 指针&lt;/h2&gt;
+&lt;h2 id=&#34;init&#34;&gt;INIT&lt;/h2&gt;
+&lt;div align = &#34;center&#34;&gt;
+&lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/INIT.jpg&#34; alt = &#34;INIT.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
+&lt;/div&gt;
+&lt;br/&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;INIT：本节内容正式开始。action!&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;一关于内存那点事&#34;&gt;一、关于内存那点事&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;存储器：存储数据器件&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;外存&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;外存又叫外部存储器，长期存放数据，掉电不丢失数据&lt;/p&gt;
+&lt;p&gt;常见的外存设备：硬盘、flash、rom、u盘、光盘、磁带&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;内存&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;内存又叫内部存储器，暂时存放数据，掉电数据丢失&lt;/p&gt;
+&lt;p&gt;常见的内存设备：ram、DDR&lt;/p&gt;</description>
     </item>
     
   </channel>

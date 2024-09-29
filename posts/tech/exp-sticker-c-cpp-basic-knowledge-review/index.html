@@ -7,7 +7,13 @@
 <meta name="robots" content="index, follow">
 <title>【温故而知新】C语言和C&#43;&#43;基础知识回顾 | Eddy&#39;s blog</title>
 <meta name="keywords" content="C语言, C&#43;&#43;">
-<meta name="description" content="一、数组和指针有什么联系？ 指针就是指针，指针变量在 32 位系统下，永远占 4 个 byte，其值为某一个内存的地址。指针可以指向任何地方，但是不是任何地方你都能通过这个指针变量访问到。 数组就是数组，其大小与元素的类型和个数有关。定义数组时必须指定其元素的类型和个数。数组可以存任何类型的数据">
+<meta name="description" content="
+
+
+
+一、数组和指针有什么联系？
+指针就是指针，指针变量在 32 位系统下，永远占 4 个 byte，其值为某一个内存的地址。指针可以指向任何地方，但是不是任何地方你都能通过这个指针变量访问到。
+数组就是数组，其大小与元素的类型和个数有关。定义数组时必须指定其元素的类型和个数。数组可以存任何类型的数据，但不能存函数">
 <meta name="author" content="Eddy">
 <link rel="canonical" href="https://eddyblog.cn/posts/tech/exp-sticker-c-cpp-basic-knowledge-review/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
@@ -79,11 +85,14 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
-
-  
-
 <meta property="og:title" content="【温故而知新】C语言和C&#43;&#43;基础知识回顾" />
-<meta property="og:description" content="一、数组和指针有什么联系？ 指针就是指针，指针变量在 32 位系统下，永远占 4 个 byte，其值为某一个内存的地址。指针可以指向任何地方，但是不是任何地方你都能通过这个指针变量访问到。 数组就是数组，其大小与元素的类型和个数有关。定义数组时必须指定其元素的类型和个数。数组可以存任何类型的数据" />
+<meta property="og:description" content="
+
+
+
+一、数组和指针有什么联系？
+指针就是指针，指针变量在 32 位系统下，永远占 4 个 byte，其值为某一个内存的地址。指针可以指向任何地方，但是不是任何地方你都能通过这个指针变量访问到。
+数组就是数组，其大小与元素的类型和个数有关。定义数组时必须指定其元素的类型和个数。数组可以存任何类型的数据，但不能存函数" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://eddyblog.cn/posts/tech/exp-sticker-c-cpp-basic-knowledge-review/" />
 <meta property="og:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/c2.jpg" /><meta property="article:section" content="posts" />
@@ -93,7 +102,13 @@ var _hmt = _hmt || [];
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/c2.jpg" />
 <meta name="twitter:title" content="【温故而知新】C语言和C&#43;&#43;基础知识回顾"/>
-<meta name="twitter:description" content="一、数组和指针有什么联系？ 指针就是指针，指针变量在 32 位系统下，永远占 4 个 byte，其值为某一个内存的地址。指针可以指向任何地方，但是不是任何地方你都能通过这个指针变量访问到。 数组就是数组，其大小与元素的类型和个数有关。定义数组时必须指定其元素的类型和个数。数组可以存任何类型的数据"/>
+<meta name="twitter:description" content="
+
+
+
+一、数组和指针有什么联系？
+指针就是指针，指针变量在 32 位系统下，永远占 4 个 byte，其值为某一个内存的地址。指针可以指向任何地方，但是不是任何地方你都能通过这个指针变量访问到。
+数组就是数组，其大小与元素的类型和个数有关。定义数组时必须指定其元素的类型和个数。数组可以存任何类型的数据，但不能存函数"/>
 
 
 <script type="application/ld+json">
@@ -130,7 +145,7 @@ var _hmt = _hmt || [];
   "@type": "BlogPosting",
   "headline": "【温故而知新】C语言和C++基础知识回顾",
   "name": "【温故而知新】C语言和C\u002b\u002b基础知识回顾",
-  "description": "一、数组和指针有什么联系？ 指针就是指针，指针变量在 32 位系统下，永远占 4 个 byte，其值为某一个内存的地址。指针可以指向任何地方，但是不是任何地方你都能通过这个指针变量访问到。 数组就是数组，其大小与元素的类型和个数有关。定义数组时必须指定其元素的类型和个数。数组可以存任何类型的数据",
+  "description": " 一、数组和指针有什么联系？ 指针就是指针，指针变量在 32 位系统下，永远占 4 个 byte，其值为某一个内存的地址。指针可以指向任何地方，但是不是任何地方你都能通过这个指针变量访问到。\n数组就是数组，其大小与元素的类型和个数有关。定义数组时必须指定其元素的类型和个数。数组可以存任何类型的数据，但不能存函数\n",
   "keywords": [
     "C语言", "C++"
   ],

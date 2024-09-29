@@ -7,7 +7,27 @@
 <meta name="robots" content="index, follow">
 <title>【嵌入式C语言编程】第四章 预处理 | Eddy&#39;s blog</title>
 <meta name="keywords" content="C programming, Embedded Development, preprocessing, C语言, C语言编程, 嵌入式编程, 预处理, C语言预处理">
-<meta name="description" content="第四章 预处理 INIT INIT：本节内容正式开始。action! 一、C语言编译过程 C语言的编译过程： 预处理、编译、汇编、链接 gcc -E hello.c -o hello.i 1、预处理 gcc -S hello.i –o hello.s 2、编译 gcc -c hello.s -o hello.o 3、汇编 gcc hello.o -o hello_elf 4、链接 1：预编译 将.c 中的头文件展开、宏展开 生成的文件是.i文件 2：编译 将预处理之后的.i 文件生">
+<meta name="description" content="第四章 预处理
+INIT
+
+
+
+
+
+INIT：本节内容正式开始。action!
+
+一、C语言编译过程
+C语言的编译过程：
+预处理、编译、汇编、链接
+gcc -E hello.c -o hello.i  1、预处理
+gcc -S hello.i –o hello.s  2、编译
+gcc -c hello.s -o hello.o 3、汇编
+gcc hello.o -o hello_elf  4、链接
+1：预编译
+将.c 中的头文件展开、宏展开
+生成的文件是.i文件
+2：编译
+将预处理之后的.i 文件生成 .s 汇编文件">
 <meta name="author" content="Eddy">
 <link rel="canonical" href="https://eddyblog.cn/posts/tech/c-programming-04preprocessing/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
@@ -79,11 +99,28 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
-
-  
-
 <meta property="og:title" content="【嵌入式C语言编程】第四章 预处理" />
-<meta property="og:description" content="第四章 预处理 INIT INIT：本节内容正式开始。action! 一、C语言编译过程 C语言的编译过程： 预处理、编译、汇编、链接 gcc -E hello.c -o hello.i 1、预处理 gcc -S hello.i –o hello.s 2、编译 gcc -c hello.s -o hello.o 3、汇编 gcc hello.o -o hello_elf 4、链接 1：预编译 将.c 中的头文件展开、宏展开 生成的文件是.i文件 2：编译 将预处理之后的.i 文件生" />
+<meta property="og:description" content="第四章 预处理
+INIT
+
+
+
+
+
+INIT：本节内容正式开始。action!
+
+一、C语言编译过程
+C语言的编译过程：
+预处理、编译、汇编、链接
+gcc -E hello.c -o hello.i  1、预处理
+gcc -S hello.i –o hello.s  2、编译
+gcc -c hello.s -o hello.o 3、汇编
+gcc hello.o -o hello_elf  4、链接
+1：预编译
+将.c 中的头文件展开、宏展开
+生成的文件是.i文件
+2：编译
+将预处理之后的.i 文件生成 .s 汇编文件" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://eddyblog.cn/posts/tech/c-programming-04preprocessing/" />
 <meta property="og:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/c2.jpg" /><meta property="article:section" content="posts" />
@@ -93,7 +130,27 @@ var _hmt = _hmt || [];
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/c2.jpg" />
 <meta name="twitter:title" content="【嵌入式C语言编程】第四章 预处理"/>
-<meta name="twitter:description" content="第四章 预处理 INIT INIT：本节内容正式开始。action! 一、C语言编译过程 C语言的编译过程： 预处理、编译、汇编、链接 gcc -E hello.c -o hello.i 1、预处理 gcc -S hello.i –o hello.s 2、编译 gcc -c hello.s -o hello.o 3、汇编 gcc hello.o -o hello_elf 4、链接 1：预编译 将.c 中的头文件展开、宏展开 生成的文件是.i文件 2：编译 将预处理之后的.i 文件生"/>
+<meta name="twitter:description" content="第四章 预处理
+INIT
+
+
+
+
+
+INIT：本节内容正式开始。action!
+
+一、C语言编译过程
+C语言的编译过程：
+预处理、编译、汇编、链接
+gcc -E hello.c -o hello.i  1、预处理
+gcc -S hello.i –o hello.s  2、编译
+gcc -c hello.s -o hello.o 3、汇编
+gcc hello.o -o hello_elf  4、链接
+1：预编译
+将.c 中的头文件展开、宏展开
+生成的文件是.i文件
+2：编译
+将预处理之后的.i 文件生成 .s 汇编文件"/>
 
 
 <script type="application/ld+json">
@@ -130,7 +187,7 @@ var _hmt = _hmt || [];
   "@type": "BlogPosting",
   "headline": "【嵌入式C语言编程】第四章 预处理",
   "name": "【嵌入式C语言编程】第四章 预处理",
-  "description": "第四章 预处理 INIT INIT：本节内容正式开始。action! 一、C语言编译过程 C语言的编译过程： 预处理、编译、汇编、链接 gcc -E hello.c -o hello.i 1、预处理 gcc -S hello.i –o hello.s 2、编译 gcc -c hello.s -o hello.o 3、汇编 gcc hello.o -o hello_elf 4、链接 1：预编译 将.c 中的头文件展开、宏展开 生成的文件是.i文件 2：编译 将预处理之后的.i 文件生",
+  "description": "第四章 预处理 INIT INIT：本节内容正式开始。action!\n一、C语言编译过程 C语言的编译过程：\n预处理、编译、汇编、链接\ngcc -E hello.c -o hello.i 1、预处理\ngcc -S hello.i –o hello.s 2、编译\ngcc -c hello.s -o hello.o 3、汇编\ngcc hello.o -o hello_elf 4、链接\n1：预编译\n将.c 中的头文件展开、宏展开\n生成的文件是.i文件\n2：编译\n将预处理之后的.i 文件生成 .s 汇编文件\n",
   "keywords": [
     "C programming", "Embedded Development", "preprocessing", "C语言", "C语言编程", "嵌入式编程", "预处理", "C语言预处理"
   ],

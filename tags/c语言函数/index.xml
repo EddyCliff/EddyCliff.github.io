@@ -13,7 +13,19 @@
       <pubDate>Sat, 16 Sep 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/c-programming-03fun/</guid>
-      <description>第三章 函数 INIT INIT：本节内容正式开始。action! 一、函数的概念 函数是c语言的功能单位，实现一个功能可以封装一个函数来实现。 定义函数的时候一切以功能为目的，根据功能去定函数的参数和返回值。 函数就是讲特定功能的代码封装在一个函数内部，当要使用这些代码时，只需要通过函数名就可以使</description>
+      <description>&lt;h2 id=&#34;第三章-函数&#34;&gt;第三章 函数&lt;/h2&gt;
+&lt;h2 id=&#34;init&#34;&gt;INIT&lt;/h2&gt;
+&lt;div align = &#34;center&#34;&gt;
+&lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/INIT.jpg&#34; alt = &#34;INIT.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
+&lt;/div&gt;
+&lt;br/&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;INIT：本节内容正式开始。action!&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;一函数的概念&#34;&gt;一、函数的概念&lt;/h3&gt;
+&lt;p&gt;函数是c语言的功能单位，实现一个功能可以封装一个函数来实现。&lt;/p&gt;
+&lt;p&gt;定义函数的时候一切以功能为目的，根据功能去定函数的参数和返回值。&lt;/p&gt;
+&lt;p&gt;函数就是讲特定功能的代码封装在一个函数内部，当要使用这些代码时，只需要通过函数名就可以使用，这样操作起来更加方便。&lt;/p&gt;</description>
     </item>
     
   </channel>

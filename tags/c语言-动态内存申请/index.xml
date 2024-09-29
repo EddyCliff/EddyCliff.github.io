@@ -13,7 +13,18 @@
       <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/c-programming-06dynamic-memory/</guid>
-      <description>第六章 动态内存申请 INIT INIT：本节内容正式开始。action! 一、动态分配内存的概 在数组一章中，介绍过数组的长度是预先定义好的，在整个程序中固定不变，但是在实际的编程中，往往会发生这种情况，即所需的内存空间取决于实际输入的数据，而无法预先确定 。 为了解决上述问题，Ｃ语言提供了一些内</description>
+      <description>&lt;h2 id=&#34;第六章-动态内存申请&#34;&gt;第六章 动态内存申请&lt;/h2&gt;
+&lt;h2 id=&#34;init&#34;&gt;INIT&lt;/h2&gt;
+&lt;div align = &#34;center&#34;&gt;
+&lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/INIT.jpg&#34; alt = &#34;INIT.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
+&lt;/div&gt;
+&lt;br/&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;INIT：本节内容正式开始。action!&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;一动态分配内存的概&#34;&gt;一、动态分配内存的概&lt;/h3&gt;
+&lt;p&gt;在数组一章中，介绍过数组的长度是预先定义好的，在整个程序中固定不变，但是在实际的编程中，往往会发生这种情况，即所需的内存空间取决于实际输入的数据，而无法预先确定 。&lt;/p&gt;
+&lt;p&gt;为了解决上述问题，Ｃ语言提供了一些内存管理函数，这些内存管理函数可以按需要动态的分配内存空间，也可把不再使用的空间回收再次利用。&lt;/p&gt;</description>
     </item>
     
   </channel>

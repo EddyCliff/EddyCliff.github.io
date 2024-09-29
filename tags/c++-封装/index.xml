@@ -13,7 +13,23 @@
       <pubDate>Tue, 30 Apr 2024 00:17:58 +0900</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/cpp-programming-p4/</guid>
-      <description>INIT INIT：本节内容正式开始。action! 4 类和对象 C++面向对象的三大特性为：封装、继承、多态。 C++认为万事万物都皆为对象，对象上有其属性和行为。 例如： 人可以作为对象，属性有姓名、年龄、身高、体重&amp;hellip;，行为有走、跑、跳、吃饭、唱歌&amp;hellip;。 车也可以作为对</description>
+      <description>&lt;div align = &#34;center&#34;&gt;
+&lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/%E7%9F%A5%E8%AF%86%E8%92%99%E8%94%BD%E4%BA%86%E6%88%91%E7%9A%84%E5%8F%8C%E7%9C%BC.jpg&#34; alt = &#34;闪亮登场.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
+&lt;/div&gt;
+&lt;br&gt;
+&lt;h2 id=&#34;init&#34;&gt;INIT&lt;/h2&gt;
+&lt;div align = &#34;center&#34;&gt;
+&lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/INIT.jpg&#34; alt = &#34;INIT.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
+&lt;/div&gt;
+&lt;br&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;INIT：本节内容正式开始。action!&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;4-类和对象&#34;&gt;4 类和对象&lt;/h2&gt;
+&lt;p&gt;C++面向对象的三大特性为：&lt;strong&gt;封装、继承、多态。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;C++认为&lt;strong&gt;万事万物都皆为对象&lt;/strong&gt;，对象上有其属性和行为。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;例如：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;人可以作为对象，属性有姓名、年龄、身高、体重&amp;hellip;，行为有走、跑、跳、吃饭、唱歌&amp;hellip;。&lt;/p&gt;</description>
     </item>
     
   </channel>

@@ -13,7 +13,19 @@
       <pubDate>Mon, 23 Oct 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/c-programming-10file/</guid>
-      <description>第十章 文件 INIT INIT：本节内容正式开始。action! 一、文件的概念 文件用来存放程序、文档、音频、视频数据、图片等数据的。 文件就是存放在磁盘上的，一些数据的集合。在windows下可以通过写字板或记事本打开文本文件对文件进行编辑保存。写字板和记事 本是微软程序员写的程序，对文件进行</description>
+      <description>&lt;h2 id=&#34;第十章-文件&#34;&gt;第十章 文件&lt;/h2&gt;
+&lt;h2 id=&#34;init&#34;&gt;INIT&lt;/h2&gt;
+&lt;div align = &#34;center&#34;&gt;
+&lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/INIT.jpg&#34; alt = &#34;INIT.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
+&lt;/div&gt;
+&lt;br/&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;INIT：本节内容正式开始。action!&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;一文件的概念&#34;&gt;一、文件的概念&lt;/h2&gt;
+&lt;p&gt;文件用来存放程序、文档、音频、视频数据、图片等数据的。&lt;/p&gt;
+&lt;p&gt;文件就是存放在磁盘上的，一些数据的集合。在windows下可以通过写字板或记事本打开文本文件对文件进行编辑保存。写字板和记事&lt;/p&gt;
+&lt;p&gt;本是微软程序员写的程序，对文件进行打开、显示、读写、关闭。&lt;/p&gt;</description>
     </item>
     
   </channel>

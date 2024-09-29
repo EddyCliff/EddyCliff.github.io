@@ -13,7 +13,29 @@
       <pubDate>Tue, 30 Apr 2024 00:17:58 +1200</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/cpp-programming-p1/</guid>
-      <description>INIT INIT：本节内容正式开始。action! 1 内存分区模型 C++程序在执行时，将内存大方向划分为4个区域 代码区：存放函数体的二进制代码，由操作系统进行管理的。 全局区：存放全局变量和静态变量以及常量。 栈区：由编译器自动分配释放, 存放函数的参数值,局部变量等。 堆区：由程序员分配和释放</description>
+      <description>&lt;div align = &#34;center&#34;&gt;
+&lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/%E7%9F%A5%E8%AF%86%E8%92%99%E8%94%BD%E4%BA%86%E6%88%91%E7%9A%84%E5%8F%8C%E7%9C%BC.jpg&#34; alt = &#34;闪亮登场.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
+&lt;/div&gt;
+&lt;br&gt;
+&lt;h2 id=&#34;init&#34;&gt;INIT&lt;/h2&gt;
+&lt;div align = &#34;center&#34;&gt;
+&lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/INIT.jpg&#34; alt = &#34;INIT.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
+&lt;/div&gt;
+&lt;br&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;INIT：本节内容正式开始。action!&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;1-内存分区模型&#34;&gt;1 内存分区模型&lt;/h2&gt;
+&lt;p&gt;C++程序在执行时，将内存大方向划分为&lt;strong&gt;4个区域&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;代码区：存放函数体的二进制代码，由操作系统进行管理的。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;全局区：存放全局变量和静态变量以及常量。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;栈区：由编译器自动分配释放, 存放函数的参数值,局部变量等。&lt;/p&gt;</description>
     </item>
     
   </channel>

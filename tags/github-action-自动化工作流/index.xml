@@ -13,7 +13,10 @@
       <pubDate>Tue, 12 Sep 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/github-git-action-error/</guid>
-      <description>问题描述 当使用GitHub Actions执行工作流程时，有时会遇到错误消息，其中一个常见的错误是：Action failed with &#39;not found deploy key or tokens。这个错误通常表示GitHub Actions在执行过程中找不到有效的部署密钥或访问令牌。这篇博客将帮助你了解如何解决这个问题。 错误原因分析 在Gi</description>
+      <description>&lt;h2 id=&#34;问题描述&#34;&gt;问题描述&lt;/h2&gt;
+&lt;p&gt;当使用&lt;code&gt;GitHub Actions&lt;/code&gt;执行工作流程时，有时会遇到错误消息，其中一个常见的错误是：&lt;code&gt;Action failed with &#39;not found deploy key or tokens&lt;/code&gt;。这个错误通常表示&lt;code&gt;GitHub Actions&lt;/code&gt;在执行过程中找不到有效的部署密钥或访问令牌。这篇博客将帮助你了解如何解决这个问题。&lt;/p&gt;
+&lt;h2 id=&#34;错误原因分析&#34;&gt;错误原因分析&lt;/h2&gt;
+&lt;p&gt;在&lt;code&gt;GitHub Actions&lt;/code&gt;的工作流程中，有些操作需要使用密钥或令牌来访问GitHub存储库或执行其他敏感操作，例如推送更改到仓库。这些密钥或令牌通常存储在GitHub存储库的&lt;code&gt;Secrets&lt;/code&gt;中。当出现&lt;code&gt;not found deploy key or tokens&lt;/code&gt;错误时，这意味着&lt;code&gt;GitHub Actions&lt;/code&gt;无法找到所需的密钥或令牌。&lt;/p&gt;</description>
     </item>
     
   </channel>

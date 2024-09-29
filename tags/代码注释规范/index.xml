@@ -13,7 +13,18 @@
       <pubDate>Tue, 12 Sep 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/c-language-comment-specification/</guid>
-      <description>常用的注释模板 C语言并没有一个官方的注释规范，但有一些常见的注释风格和最佳实践，可以帮助你编写清晰、易于理解的注释。以下是一些常用的高效注释模板，你可以根据需要进行自定义： 文件头注释： 在每个源代码文件的顶部，包括以下信息： /* * 文件名: example.c * 作者: Your Name * 日期: 2023-09-07 * 描述: 这个文件包含了</description>
+      <description>&lt;h2 id=&#34;常用的注释模板&#34;&gt;常用的注释模板&lt;/h2&gt;
+&lt;p&gt;C语言并没有一个官方的注释规范，但有一些常见的注释风格和最佳实践，可以帮助你编写清晰、易于理解的注释。以下是一些常用的高效注释模板，你可以根据需要进行自定义：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;文件头注释：&lt;/strong&gt; 在每个源代码文件的顶部，包括以下信息：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;/*
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; * 文件名: example.c
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; * 作者: Your Name
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; * 日期: 2023-09-07
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; * 描述: 这个文件包含了一个示例程序的源代码。
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这个注释用于标识文件的作者、日期和描述文件内容。&lt;/p&gt;</description>
     </item>
     
   </channel>

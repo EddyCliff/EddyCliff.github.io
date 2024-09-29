@@ -7,7 +7,18 @@
 <meta name="robots" content="index, follow">
 <title>Linux入门：文件IO | Eddy&#39;s blog</title>
 <meta name="keywords" content="Linux, Operating System, Operating system command, 操作系统, 操作系统命令, 操作系统基本命令, Linux命令, Linux基本命令, Linux新手必看">
-<meta name="description" content="INIT INIT：本节内容正式开始。action! 库的制作与使用 库文件的定义 库文件是计算机软件中包含一系列函数、类、数据结构和资源的文件，它们被编译成机器码，可以在运行时被其他程序链接和调用。库文件能够提供一些常用的功能，使得程序员不必“重新发明轮子”，可以更高效地开发软件。 库文件主要">
+<meta name="description" content="INIT
+
+
+
+
+
+INIT：本节内容正式开始。action!
+
+库的制作与使用
+库文件的定义
+库文件是计算机软件中包含一系列函数、类、数据结构和资源的文件，它们被编译成机器码，可以在运行时被其他程序链接和调用。库文件能够提供一些常用的功能，使得程序员不必“重新发明轮子”，可以更高效地开发软件。
+库文件主要有以下几种类型：">
 <meta name="author" content="Eddy">
 <link rel="canonical" href="https://eddyblog.cn/posts/tech/linux-basics-03/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
@@ -79,11 +90,19 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
-
-  
-
 <meta property="og:title" content="Linux入门：文件IO" />
-<meta property="og:description" content="INIT INIT：本节内容正式开始。action! 库的制作与使用 库文件的定义 库文件是计算机软件中包含一系列函数、类、数据结构和资源的文件，它们被编译成机器码，可以在运行时被其他程序链接和调用。库文件能够提供一些常用的功能，使得程序员不必“重新发明轮子”，可以更高效地开发软件。 库文件主要" />
+<meta property="og:description" content="INIT
+
+
+
+
+
+INIT：本节内容正式开始。action!
+
+库的制作与使用
+库文件的定义
+库文件是计算机软件中包含一系列函数、类、数据结构和资源的文件，它们被编译成机器码，可以在运行时被其他程序链接和调用。库文件能够提供一些常用的功能，使得程序员不必“重新发明轮子”，可以更高效地开发软件。
+库文件主要有以下几种类型：" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://eddyblog.cn/posts/tech/linux-basics-03/" />
 <meta property="og:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/linux.png" /><meta property="article:section" content="posts" />
@@ -93,7 +112,18 @@ var _hmt = _hmt || [];
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/linux.png" />
 <meta name="twitter:title" content="Linux入门：文件IO"/>
-<meta name="twitter:description" content="INIT INIT：本节内容正式开始。action! 库的制作与使用 库文件的定义 库文件是计算机软件中包含一系列函数、类、数据结构和资源的文件，它们被编译成机器码，可以在运行时被其他程序链接和调用。库文件能够提供一些常用的功能，使得程序员不必“重新发明轮子”，可以更高效地开发软件。 库文件主要"/>
+<meta name="twitter:description" content="INIT
+
+
+
+
+
+INIT：本节内容正式开始。action!
+
+库的制作与使用
+库文件的定义
+库文件是计算机软件中包含一系列函数、类、数据结构和资源的文件，它们被编译成机器码，可以在运行时被其他程序链接和调用。库文件能够提供一些常用的功能，使得程序员不必“重新发明轮子”，可以更高效地开发软件。
+库文件主要有以下几种类型："/>
 
 
 <script type="application/ld+json">
@@ -130,7 +160,7 @@ var _hmt = _hmt || [];
   "@type": "BlogPosting",
   "headline": "Linux入门：文件IO",
   "name": "Linux入门：文件IO",
-  "description": "INIT INIT：本节内容正式开始。action! 库的制作与使用 库文件的定义 库文件是计算机软件中包含一系列函数、类、数据结构和资源的文件，它们被编译成机器码，可以在运行时被其他程序链接和调用。库文件能够提供一些常用的功能，使得程序员不必“重新发明轮子”，可以更高效地开发软件。 库文件主要",
+  "description": "INIT INIT：本节内容正式开始。action!\n库的制作与使用 库文件的定义 库文件是计算机软件中包含一系列函数、类、数据结构和资源的文件，它们被编译成机器码，可以在运行时被其他程序链接和调用。库文件能够提供一些常用的功能，使得程序员不必“重新发明轮子”，可以更高效地开发软件。 库文件主要有以下几种类型：\n",
   "keywords": [
     "Linux", "Operating System", "Operating system command", "操作系统", "操作系统命令", "操作系统基本命令", "Linux命令", "Linux基本命令", "Linux新手必看"
   ],

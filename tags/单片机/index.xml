@@ -13,7 +13,16 @@
       <pubDate>Wed, 01 May 2024 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/exp-sticker-mcu-basic-knowledge-review/</guid>
-      <description>一、单片机三要素？ 单片机最小系统的三要素为：电源、晶振和复位电路。 二、单片机最小系统由哪几个部分组成？ 单片机最小系统由五部分组成，分别是MCU(微处理控制单元)、电源、时钟电路/晶振、复位电路、程序加载口。其中三要素是电源、时钟电路和复位电路。 三、IO口工作方式 上拉输入，下拉输入</description>
+      <description>&lt;div align = &#34;center&#34;&gt;
+&lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P11-EXTI%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD-1.jpg&#34; alt = &#34;P11-EXTI外部中断-1.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
+&lt;/div&gt;
+&lt;br&gt;
+&lt;h2 id=&#34;一单片机三要素&#34;&gt;一、单片机三要素？&lt;/h2&gt;
+&lt;p&gt;单片机最小系统的三要素为：电源、晶振和复位电路。&lt;/p&gt;
+&lt;h2 id=&#34;二单片机最小系统由哪几个部分组成&#34;&gt;二、单片机最小系统由哪几个部分组成？&lt;/h2&gt;
+&lt;p&gt;单片机最小系统由五部分组成，分别是MCU(微处理控制单元)、电源、时钟电路/晶振、复位电路、程序加载口。其中三要素是电源、时钟电路和复位电路。&lt;/p&gt;
+&lt;h2 id=&#34;三io口工作方式&#34;&gt;三、IO口工作方式&lt;/h2&gt;
+&lt;p&gt;上拉输入，下拉输入，推挽输出，开漏输出。&lt;/p&gt;</description>
     </item>
     
   </channel>

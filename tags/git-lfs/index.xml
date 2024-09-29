@@ -13,7 +13,13 @@
       <pubDate>Tue, 12 Sep 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/github-git-lfs/</guid>
-      <description>前言 在进行版本控制时，管理大文件是一个常见但棘手的问题。GitHub为了维护性能和资源，对大文件的存储有一些限制。本文将介绍如何使用Git LFS（Large File Storage）来高效管理大文件，以及如何应对可能遇到的问题并提供解决方案。 问题阐述 你可能会遇到两种常见的问题： 如何将大于</description>
+      <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt;在进行版本控制时，管理大文件是一个常见但棘手的问题。GitHub为了维护性能和资源，对大文件的存储有一些限制。本文将介绍如何使用Git LFS（Large File Storage）来高效管理大文件，以及如何应对可能遇到的问题并提供解决方案。&lt;/p&gt;
+&lt;h2 id=&#34;问题阐述&#34;&gt;问题阐述&lt;/h2&gt;
+&lt;p&gt;你可能会遇到两种常见的问题：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;如何将大于GitHub默认50MB文件大小限制的大文件上传到仓库？&lt;/p&gt;</description>
     </item>
     
   </channel>

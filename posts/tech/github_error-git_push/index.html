@@ -7,7 +7,20 @@
 <meta name="robots" content="index, follow">
 <title>【GitHub使用指南】解决Git Push错误 - 502 Bad Gateway | Eddy&#39;s blog</title>
 <meta name="keywords" content="Github, error, Git push">
-<meta name="description" content="问题描述 输入git push命令后报错 $ git push -f origin main Enumerating objects: 149, done. Counting objects: 100% (149/149), done. Delta compression using up to 16 threads Compressing objects: 100% (144/144), done. error: RPC failed; HTTP 502 curl 22 The requested URL returned error: 502 Writing objects: 80% (119/148), 1.36 GiB | 237.00 KiB/ssend-pack: unexpected disconnect while reading sideband packet Writing objects: 100% (148/148), 1.39 GiB | 2.68 MiB/s, done. Total 148 (delta 3), reused 0 (delta 0), pack-reused 0 fatal: the remote end hung up unexpectedly 原因分析 这个错误表明在进行 git push 操作时，出现了HTTP 502错误，这通常是由于远程">
+<meta name="description" content="问题描述
+输入git push命令后报错
+$ git push -f origin main
+Enumerating objects: 149, done.
+Counting objects: 100% (149/149), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (144/144), done.
+error: RPC failed; HTTP 502 curl 22 The requested URL returned error: 502
+Writing objects:  80% (119/148), 1.36 GiB | 237.00 KiB/ssend-pack: unexpected disconnect while reading sideband packet
+Writing objects: 100% (148/148), 1.39 GiB | 2.68 MiB/s, done.
+Total 148 (delta 3), reused 0 (delta 0), pack-reused 0
+fatal: the remote end hung up unexpectedly
+原因分析
+这个错误表明在进行 git push 操作时，出现了HTTP 502错误，这通常是由于远程Git服务器出现问题或网络问题导致的。HTTP 502错误是一种&quot;Bad Gateway&quot;错误，意味着Git服务器无法正常处理你的请求。">
 <meta name="author" content="Eddy">
 <link rel="canonical" href="https://eddyblog.cn/posts/tech/github_error-git_push/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
@@ -79,11 +92,21 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
-
-  
-
 <meta property="og:title" content="【GitHub使用指南】解决Git Push错误 - 502 Bad Gateway" />
-<meta property="og:description" content="问题描述 输入git push命令后报错 $ git push -f origin main Enumerating objects: 149, done. Counting objects: 100% (149/149), done. Delta compression using up to 16 threads Compressing objects: 100% (144/144), done. error: RPC failed; HTTP 502 curl 22 The requested URL returned error: 502 Writing objects: 80% (119/148), 1.36 GiB | 237.00 KiB/ssend-pack: unexpected disconnect while reading sideband packet Writing objects: 100% (148/148), 1.39 GiB | 2.68 MiB/s, done. Total 148 (delta 3), reused 0 (delta 0), pack-reused 0 fatal: the remote end hung up unexpectedly 原因分析 这个错误表明在进行 git push 操作时，出现了HTTP 502错误，这通常是由于远程" />
+<meta property="og:description" content="问题描述
+输入git push命令后报错
+$ git push -f origin main
+Enumerating objects: 149, done.
+Counting objects: 100% (149/149), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (144/144), done.
+error: RPC failed; HTTP 502 curl 22 The requested URL returned error: 502
+Writing objects:  80% (119/148), 1.36 GiB | 237.00 KiB/ssend-pack: unexpected disconnect while reading sideband packet
+Writing objects: 100% (148/148), 1.39 GiB | 2.68 MiB/s, done.
+Total 148 (delta 3), reused 0 (delta 0), pack-reused 0
+fatal: the remote end hung up unexpectedly
+原因分析
+这个错误表明在进行 git push 操作时，出现了HTTP 502错误，这通常是由于远程Git服务器出现问题或网络问题导致的。HTTP 502错误是一种&quot;Bad Gateway&quot;错误，意味着Git服务器无法正常处理你的请求。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://eddyblog.cn/posts/tech/github_error-git_push/" />
 <meta property="og:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/pc1.jpg" /><meta property="article:section" content="posts" />
@@ -93,7 +116,20 @@ var _hmt = _hmt || [];
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/pc1.jpg" />
 <meta name="twitter:title" content="【GitHub使用指南】解决Git Push错误 - 502 Bad Gateway"/>
-<meta name="twitter:description" content="问题描述 输入git push命令后报错 $ git push -f origin main Enumerating objects: 149, done. Counting objects: 100% (149/149), done. Delta compression using up to 16 threads Compressing objects: 100% (144/144), done. error: RPC failed; HTTP 502 curl 22 The requested URL returned error: 502 Writing objects: 80% (119/148), 1.36 GiB | 237.00 KiB/ssend-pack: unexpected disconnect while reading sideband packet Writing objects: 100% (148/148), 1.39 GiB | 2.68 MiB/s, done. Total 148 (delta 3), reused 0 (delta 0), pack-reused 0 fatal: the remote end hung up unexpectedly 原因分析 这个错误表明在进行 git push 操作时，出现了HTTP 502错误，这通常是由于远程"/>
+<meta name="twitter:description" content="问题描述
+输入git push命令后报错
+$ git push -f origin main
+Enumerating objects: 149, done.
+Counting objects: 100% (149/149), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (144/144), done.
+error: RPC failed; HTTP 502 curl 22 The requested URL returned error: 502
+Writing objects:  80% (119/148), 1.36 GiB | 237.00 KiB/ssend-pack: unexpected disconnect while reading sideband packet
+Writing objects: 100% (148/148), 1.39 GiB | 2.68 MiB/s, done.
+Total 148 (delta 3), reused 0 (delta 0), pack-reused 0
+fatal: the remote end hung up unexpectedly
+原因分析
+这个错误表明在进行 git push 操作时，出现了HTTP 502错误，这通常是由于远程Git服务器出现问题或网络问题导致的。HTTP 502错误是一种&quot;Bad Gateway&quot;错误，意味着Git服务器无法正常处理你的请求。"/>
 
 
 <script type="application/ld+json">
@@ -130,7 +166,7 @@ var _hmt = _hmt || [];
   "@type": "BlogPosting",
   "headline": "【GitHub使用指南】解决Git Push错误 - 502 Bad Gateway",
   "name": "【GitHub使用指南】解决Git Push错误 - 502 Bad Gateway",
-  "description": "问题描述 输入git push命令后报错 $ git push -f origin main Enumerating objects: 149, done. Counting objects: 100% (149/149), done. Delta compression using up to 16 threads Compressing objects: 100% (144/144), done. error: RPC failed; HTTP 502 curl 22 The requested URL returned error: 502 Writing objects: 80% (119/148), 1.36 GiB | 237.00 KiB/ssend-pack: unexpected disconnect while reading sideband packet Writing objects: 100% (148/148), 1.39 GiB | 2.68 MiB/s, done. Total 148 (delta 3), reused 0 (delta 0), pack-reused 0 fatal: the remote end hung up unexpectedly 原因分析 这个错误表明在进行 git push 操作时，出现了HTTP 502错误，这通常是由于远程",
+  "description": "问题描述 输入git push命令后报错\n$ git push -f origin main Enumerating objects: 149, done. Counting objects: 100% (149/149), done. Delta compression using up to 16 threads Compressing objects: 100% (144/144), done. error: RPC failed; HTTP 502 curl 22 The requested URL returned error: 502 Writing objects: 80% (119/148), 1.36 GiB | 237.00 KiB/ssend-pack: unexpected disconnect while reading sideband packet Writing objects: 100% (148/148), 1.39 GiB | 2.68 MiB/s, done. Total 148 (delta 3), reused 0 (delta 0), pack-reused 0 fatal: the remote end hung up unexpectedly 原因分析 这个错误表明在进行 git push 操作时，出现了HTTP 502错误，这通常是由于远程Git服务器出现问题或网络问题导致的。HTTP 502错误是一种\u0026quot;Bad Gateway\u0026quot;错误，意味着Git服务器无法正常处理你的请求。\n",
   "keywords": [
     "Github", "error", "Git push"
   ],

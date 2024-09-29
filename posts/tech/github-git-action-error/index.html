@@ -7,7 +7,10 @@
 <meta name="robots" content="index, follow">
 <title>【GitHub使用指南】解决Git操作错误 - Github Action问题分析 | Eddy&#39;s blog</title>
 <meta name="keywords" content="Github, error, Github action">
-<meta name="description" content="问题描述 当使用GitHub Actions执行工作流程时，有时会遇到错误消息，其中一个常见的错误是：Action failed with &#39;not found deploy key or tokens。这个错误通常表示GitHub Actions在执行过程中找不到有效的部署密钥或访问令牌。这篇博客将帮助你了解如何解决这个问题。 错误原因分析 在Gi">
+<meta name="description" content="问题描述
+当使用GitHub Actions执行工作流程时，有时会遇到错误消息，其中一个常见的错误是：Action failed with &#39;not found deploy key or tokens。这个错误通常表示GitHub Actions在执行过程中找不到有效的部署密钥或访问令牌。这篇博客将帮助你了解如何解决这个问题。
+错误原因分析
+在GitHub Actions的工作流程中，有些操作需要使用密钥或令牌来访问GitHub存储库或执行其他敏感操作，例如推送更改到仓库。这些密钥或令牌通常存储在GitHub存储库的Secrets中。当出现not found deploy key or tokens错误时，这意味着GitHub Actions无法找到所需的密钥或令牌。">
 <meta name="author" content="Eddy">
 <link rel="canonical" href="https://eddyblog.cn/posts/tech/github-git-action-error/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
@@ -79,11 +82,11 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
-
-  
-
 <meta property="og:title" content="【GitHub使用指南】解决Git操作错误 - Github Action问题分析" />
-<meta property="og:description" content="问题描述 当使用GitHub Actions执行工作流程时，有时会遇到错误消息，其中一个常见的错误是：Action failed with &#39;not found deploy key or tokens。这个错误通常表示GitHub Actions在执行过程中找不到有效的部署密钥或访问令牌。这篇博客将帮助你了解如何解决这个问题。 错误原因分析 在Gi" />
+<meta property="og:description" content="问题描述
+当使用GitHub Actions执行工作流程时，有时会遇到错误消息，其中一个常见的错误是：Action failed with &#39;not found deploy key or tokens。这个错误通常表示GitHub Actions在执行过程中找不到有效的部署密钥或访问令牌。这篇博客将帮助你了解如何解决这个问题。
+错误原因分析
+在GitHub Actions的工作流程中，有些操作需要使用密钥或令牌来访问GitHub存储库或执行其他敏感操作，例如推送更改到仓库。这些密钥或令牌通常存储在GitHub存储库的Secrets中。当出现not found deploy key or tokens错误时，这意味着GitHub Actions无法找到所需的密钥或令牌。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://eddyblog.cn/posts/tech/github-git-action-error/" />
 <meta property="og:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/book2.jpg" /><meta property="article:section" content="posts" />
@@ -93,7 +96,10 @@ var _hmt = _hmt || [];
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/book2.jpg" />
 <meta name="twitter:title" content="【GitHub使用指南】解决Git操作错误 - Github Action问题分析"/>
-<meta name="twitter:description" content="问题描述 当使用GitHub Actions执行工作流程时，有时会遇到错误消息，其中一个常见的错误是：Action failed with &#39;not found deploy key or tokens。这个错误通常表示GitHub Actions在执行过程中找不到有效的部署密钥或访问令牌。这篇博客将帮助你了解如何解决这个问题。 错误原因分析 在Gi"/>
+<meta name="twitter:description" content="问题描述
+当使用GitHub Actions执行工作流程时，有时会遇到错误消息，其中一个常见的错误是：Action failed with &#39;not found deploy key or tokens。这个错误通常表示GitHub Actions在执行过程中找不到有效的部署密钥或访问令牌。这篇博客将帮助你了解如何解决这个问题。
+错误原因分析
+在GitHub Actions的工作流程中，有些操作需要使用密钥或令牌来访问GitHub存储库或执行其他敏感操作，例如推送更改到仓库。这些密钥或令牌通常存储在GitHub存储库的Secrets中。当出现not found deploy key or tokens错误时，这意味着GitHub Actions无法找到所需的密钥或令牌。"/>
 
 
 <script type="application/ld+json">
@@ -130,7 +136,7 @@ var _hmt = _hmt || [];
   "@type": "BlogPosting",
   "headline": "【GitHub使用指南】解决Git操作错误 - Github Action问题分析",
   "name": "【GitHub使用指南】解决Git操作错误 - Github Action问题分析",
-  "description": "问题描述 当使用GitHub Actions执行工作流程时，有时会遇到错误消息，其中一个常见的错误是：Action failed with 'not found deploy key or tokens。这个错误通常表示GitHub Actions在执行过程中找不到有效的部署密钥或访问令牌。这篇博客将帮助你了解如何解决这个问题。 错误原因分析 在Gi",
+  "description": "问题描述 当使用GitHub Actions执行工作流程时，有时会遇到错误消息，其中一个常见的错误是：Action failed with 'not found deploy key or tokens。这个错误通常表示GitHub Actions在执行过程中找不到有效的部署密钥或访问令牌。这篇博客将帮助你了解如何解决这个问题。\n错误原因分析 在GitHub Actions的工作流程中，有些操作需要使用密钥或令牌来访问GitHub存储库或执行其他敏感操作，例如推送更改到仓库。这些密钥或令牌通常存储在GitHub存储库的Secrets中。当出现not found deploy key or tokens错误时，这意味着GitHub Actions无法找到所需的密钥或令牌。\n",
   "keywords": [
     "Github", "error", "Github action"
   ],

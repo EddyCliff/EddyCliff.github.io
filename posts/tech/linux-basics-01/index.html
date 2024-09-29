@@ -79,9 +79,6 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
-
-  
-
 <meta property="og:title" content="Linux新手必看：一文掌握操作系统基本命令" />
 <meta property="og:description" content="掌握Linux，从这里开始！轻松入门操作系统基本命令。" />
 <meta property="og:type" content="article" />
@@ -565,79 +562,79 @@ var _hmt = _hmt || [];
 <p>1）<code>d</code> 是一种文件类型，这里为目录文件。</p>
 <p>文件系统类型：在Linux系统下一共有七种文件类型</p>
 <table>
-<thead>
-<tr>
-<th>符号</th>
-<th>文件类型</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>-</td>
-<td>普通文件（mp3，mp4等）</td>
-</tr>
-<tr>
-<td>d</td>
-<td>目录文件（文件夹）</td>
-</tr>
-<tr>
-<td>p</td>
-<td>管道文件（一般用于进程间通信）</td>
-</tr>
-<tr>
-<td>l</td>
-<td>链接文件（相当于快捷方式）</td>
-</tr>
-<tr>
-<td>s</td>
-<td>套接字文件（一般用于网络通信）</td>
-</tr>
-<tr>
-<td>b</td>
-<td>块设备文件（驱动的设备文件由驱动生成）</td>
-</tr>
-<tr>
-<td>c</td>
-<td>字符设备文件（驱动的设备文件由驱动生成)</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">符号</th>
+          <th style="text-align: left">文件类型</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">-</td>
+          <td style="text-align: left">普通文件（mp3，mp4等）</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">d</td>
+          <td style="text-align: left">目录文件（文件夹）</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">p</td>
+          <td style="text-align: left">管道文件（一般用于进程间通信）</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">l</td>
+          <td style="text-align: left">链接文件（相当于快捷方式）</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">s</td>
+          <td style="text-align: left">套接字文件（一般用于网络通信）</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">b</td>
+          <td style="text-align: left">块设备文件（驱动的设备文件由驱动生成）</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">c</td>
+          <td style="text-align: left">字符设备文件（驱动的设备文件由驱动生成)</td>
+      </tr>
+  </tbody>
 </table>
 <p>2）<code>rwxr-xr-x</code> 有三个部分，三个字母为一个部分，从左到右依次代表文件的拥有者的权限<code>rwx</code>，同组用户的权限<code>r-x</code>，其他用户的权限<code>r-x</code>。</p>
 <p>🤔<code>r</code> <code>w</code> <code>x</code>  <code>-</code>这是什么意思呢？</p>
 <p>举个例子</p>
 <table>
-<thead>
-<tr>
-<th>R 可读</th>
-<th>W 可写</th>
-<th>X 可执行</th>
-<th>字母</th>
-<th>值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-<td>rw-</td>
-<td>4（二进制110换算成十进制）</td>
-</tr>
-<tr>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>-w-</td>
-<td>2（二进制010换算成十进制）</td>
-</tr>
-<tr>
-<td>这个权限值在我们后面更改权限时，或者设置初始权限时是有用处的。具体操作暂且不表。</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">R 可读</th>
+          <th style="text-align: left">W 可写</th>
+          <th style="text-align: left">X 可执行</th>
+          <th style="text-align: left">字母</th>
+          <th style="text-align: left">值</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">1</td>
+          <td style="text-align: left">1</td>
+          <td style="text-align: left">0</td>
+          <td style="text-align: left">rw-</td>
+          <td style="text-align: left">4（二进制110换算成十进制）</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">0</td>
+          <td style="text-align: left">1</td>
+          <td style="text-align: left">0</td>
+          <td style="text-align: left">-w-</td>
+          <td style="text-align: left">2（二进制010换算成十进制）</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">这个权限值在我们后面更改权限时，或者设置初始权限时是有用处的。具体操作暂且不表。</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left"></td>
+      </tr>
+  </tbody>
 </table>
 <p>🔑所以这里的<code>drwxr-xr-x</code>意思就是文件为目录文件，文件的拥有者的权限为可读可写可执行，同组用户的权限为可读不可写可执行，其他用户的权限为可读不可写可执行。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>-rw-r--r-- 1 ubuntu ubuntu 8980 Jul 6 2020 example.desktop

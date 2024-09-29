@@ -7,7 +7,93 @@
 <meta name="robots" content="index, follow">
 <title>【嵌入式C语言编程】第七章 字符串处理函数 | Eddy&#39;s blog</title>
 <meta name="keywords" content="C programming, Embedded Development, String Manipulation functions, C语言, C语言编程, 嵌入式编程, 字符串处理函数, C语言字符串处理函数">
-<meta name="description" content="第七章 字符串处理函数 INIT INIT：本节内容正式开始。action! 一、获取字符串长度函数 #include &lt;string.h&gt; size_t strlen(const char *s); 功能：计算一个字符串的长度 参数： s：指定的字符串 返回值： 当前字符串的长度 注意：strlen获取的字符串长度遇到第一个\0结束且\0不算做字符串长度之中 #include &lt;stdio.h&gt; #include &lt;string.h&gt; int main(int argc, char *argv[]) { //使用st">
+<meta name="description" content="第七章 字符串处理函数
+INIT
+
+
+
+
+
+INIT：本节内容正式开始。action!
+
+一、获取字符串长度函数
+#include &lt;string.h&gt;
+size_t strlen(const char *s);
+功能：计算一个字符串的长度
+参数：
+  s：指定的字符串
+返回值：
+  当前字符串的长度
+注意：strlen获取的字符串长度遇到第一个\0结束且\0不算做字符串长度之中
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main(int argc, char *argv[])
+{
+  //使用strlen函数获取字符串的长度
+  //strlen获取的字符串的长度遇到第一个\0结束
+  char s1[100] = &#34;hel\0lo&#34;;
+
+  printf(&#34;s1_len = %d\n&#34;, strlen(s1));
+  printf(&#34;s1_size = %d\n&#34;, sizeof(s1));
+
+  char *s2 = &#34;hello&#34;;
+
+  printf(&#34;s2_len = %d\n&#34;, strlen(s2));
+  printf(&#34;s2_size = %d\n&#34;, sizeof(s2));
+
+  return 0;
+}
+执行结果
+s1_len = 3
+s1_size = 100
+s2_len = 5
+s2_size = 4
+二、字符串拷贝函数
+#include &lt;string.h&gt;
+char *strcpy(char *dest, const char *src);
+功能：将src复制给dest
+参数：
+  dest：目的字符串
+  src：源字符串
+返回值：
+  保存dest字符串的首地址
+注意：
+  使用strcpy函数复制字符串时必须保证dest足够大，否则会内存溢出
+  strcpy是将src字符串中第一个\0之前包括\0复制给dest
+
+char *strncpy(char *dest, const char *src, size_t n);
+函数的说明：
+  将src指向的字符串前n个字节，拷贝到dest指向的内存中
+返回值:
+  目的内存的首地址
+注意：
+  1、strncpy不拷贝 ‘\0’
+  2、如果n大于src指向的字符串中的字符个数，则在dest后面填充n‐strlen(src)个’\0’
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main(int argc, char *argv[])
+{
+  //使用strcpy函数拷贝字符串
+  char s1[32] = &#34;hello world&#34;;
+  //使用strcpy函数时，必须保证第一个参数的内存足够大
+  //char s1[5] = &#34;abcd&#34;;
+  char s2[32] = &#34;abcdefg&#34;;
+
+  strcpy(s1, s2);
+
+  printf(&#34;s1 = %s\n&#34;, s1);
+
+  int i;
+  for(i = 0; i &lt; 32; i&#43;&#43;)
+  {
+    printf(&#34;[%c] ‐ %d\n&#34;, s1[i], s1[i]);
+  }
+
+  return 0;
+}
+执行结果">
 <meta name="author" content="Eddy">
 <link rel="canonical" href="https://eddyblog.cn/posts/tech/c-programming-07string/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
@@ -79,11 +165,94 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
-
-  
-
 <meta property="og:title" content="【嵌入式C语言编程】第七章 字符串处理函数" />
-<meta property="og:description" content="第七章 字符串处理函数 INIT INIT：本节内容正式开始。action! 一、获取字符串长度函数 #include &lt;string.h&gt; size_t strlen(const char *s); 功能：计算一个字符串的长度 参数： s：指定的字符串 返回值： 当前字符串的长度 注意：strlen获取的字符串长度遇到第一个\0结束且\0不算做字符串长度之中 #include &lt;stdio.h&gt; #include &lt;string.h&gt; int main(int argc, char *argv[]) { //使用st" />
+<meta property="og:description" content="第七章 字符串处理函数
+INIT
+
+
+
+
+
+INIT：本节内容正式开始。action!
+
+一、获取字符串长度函数
+#include &lt;string.h&gt;
+size_t strlen(const char *s);
+功能：计算一个字符串的长度
+参数：
+  s：指定的字符串
+返回值：
+  当前字符串的长度
+注意：strlen获取的字符串长度遇到第一个\0结束且\0不算做字符串长度之中
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main(int argc, char *argv[])
+{
+  //使用strlen函数获取字符串的长度
+  //strlen获取的字符串的长度遇到第一个\0结束
+  char s1[100] = &#34;hel\0lo&#34;;
+
+  printf(&#34;s1_len = %d\n&#34;, strlen(s1));
+  printf(&#34;s1_size = %d\n&#34;, sizeof(s1));
+
+  char *s2 = &#34;hello&#34;;
+
+  printf(&#34;s2_len = %d\n&#34;, strlen(s2));
+  printf(&#34;s2_size = %d\n&#34;, sizeof(s2));
+
+  return 0;
+}
+执行结果
+s1_len = 3
+s1_size = 100
+s2_len = 5
+s2_size = 4
+二、字符串拷贝函数
+#include &lt;string.h&gt;
+char *strcpy(char *dest, const char *src);
+功能：将src复制给dest
+参数：
+  dest：目的字符串
+  src：源字符串
+返回值：
+  保存dest字符串的首地址
+注意：
+  使用strcpy函数复制字符串时必须保证dest足够大，否则会内存溢出
+  strcpy是将src字符串中第一个\0之前包括\0复制给dest
+
+char *strncpy(char *dest, const char *src, size_t n);
+函数的说明：
+  将src指向的字符串前n个字节，拷贝到dest指向的内存中
+返回值:
+  目的内存的首地址
+注意：
+  1、strncpy不拷贝 ‘\0’
+  2、如果n大于src指向的字符串中的字符个数，则在dest后面填充n‐strlen(src)个’\0’
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main(int argc, char *argv[])
+{
+  //使用strcpy函数拷贝字符串
+  char s1[32] = &#34;hello world&#34;;
+  //使用strcpy函数时，必须保证第一个参数的内存足够大
+  //char s1[5] = &#34;abcd&#34;;
+  char s2[32] = &#34;abcdefg&#34;;
+
+  strcpy(s1, s2);
+
+  printf(&#34;s1 = %s\n&#34;, s1);
+
+  int i;
+  for(i = 0; i &lt; 32; i&#43;&#43;)
+  {
+    printf(&#34;[%c] ‐ %d\n&#34;, s1[i], s1[i]);
+  }
+
+  return 0;
+}
+执行结果" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://eddyblog.cn/posts/tech/c-programming-07string/" />
 <meta property="og:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/c2.jpg" /><meta property="article:section" content="posts" />
@@ -93,7 +262,93 @@ var _hmt = _hmt || [];
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/c2.jpg" />
 <meta name="twitter:title" content="【嵌入式C语言编程】第七章 字符串处理函数"/>
-<meta name="twitter:description" content="第七章 字符串处理函数 INIT INIT：本节内容正式开始。action! 一、获取字符串长度函数 #include &lt;string.h&gt; size_t strlen(const char *s); 功能：计算一个字符串的长度 参数： s：指定的字符串 返回值： 当前字符串的长度 注意：strlen获取的字符串长度遇到第一个\0结束且\0不算做字符串长度之中 #include &lt;stdio.h&gt; #include &lt;string.h&gt; int main(int argc, char *argv[]) { //使用st"/>
+<meta name="twitter:description" content="第七章 字符串处理函数
+INIT
+
+
+
+
+
+INIT：本节内容正式开始。action!
+
+一、获取字符串长度函数
+#include &lt;string.h&gt;
+size_t strlen(const char *s);
+功能：计算一个字符串的长度
+参数：
+  s：指定的字符串
+返回值：
+  当前字符串的长度
+注意：strlen获取的字符串长度遇到第一个\0结束且\0不算做字符串长度之中
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main(int argc, char *argv[])
+{
+  //使用strlen函数获取字符串的长度
+  //strlen获取的字符串的长度遇到第一个\0结束
+  char s1[100] = &#34;hel\0lo&#34;;
+
+  printf(&#34;s1_len = %d\n&#34;, strlen(s1));
+  printf(&#34;s1_size = %d\n&#34;, sizeof(s1));
+
+  char *s2 = &#34;hello&#34;;
+
+  printf(&#34;s2_len = %d\n&#34;, strlen(s2));
+  printf(&#34;s2_size = %d\n&#34;, sizeof(s2));
+
+  return 0;
+}
+执行结果
+s1_len = 3
+s1_size = 100
+s2_len = 5
+s2_size = 4
+二、字符串拷贝函数
+#include &lt;string.h&gt;
+char *strcpy(char *dest, const char *src);
+功能：将src复制给dest
+参数：
+  dest：目的字符串
+  src：源字符串
+返回值：
+  保存dest字符串的首地址
+注意：
+  使用strcpy函数复制字符串时必须保证dest足够大，否则会内存溢出
+  strcpy是将src字符串中第一个\0之前包括\0复制给dest
+
+char *strncpy(char *dest, const char *src, size_t n);
+函数的说明：
+  将src指向的字符串前n个字节，拷贝到dest指向的内存中
+返回值:
+  目的内存的首地址
+注意：
+  1、strncpy不拷贝 ‘\0’
+  2、如果n大于src指向的字符串中的字符个数，则在dest后面填充n‐strlen(src)个’\0’
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main(int argc, char *argv[])
+{
+  //使用strcpy函数拷贝字符串
+  char s1[32] = &#34;hello world&#34;;
+  //使用strcpy函数时，必须保证第一个参数的内存足够大
+  //char s1[5] = &#34;abcd&#34;;
+  char s2[32] = &#34;abcdefg&#34;;
+
+  strcpy(s1, s2);
+
+  printf(&#34;s1 = %s\n&#34;, s1);
+
+  int i;
+  for(i = 0; i &lt; 32; i&#43;&#43;)
+  {
+    printf(&#34;[%c] ‐ %d\n&#34;, s1[i], s1[i]);
+  }
+
+  return 0;
+}
+执行结果"/>
 
 
 <script type="application/ld+json">
@@ -130,7 +385,7 @@ var _hmt = _hmt || [];
   "@type": "BlogPosting",
   "headline": "【嵌入式C语言编程】第七章 字符串处理函数",
   "name": "【嵌入式C语言编程】第七章 字符串处理函数",
-  "description": "第七章 字符串处理函数 INIT INIT：本节内容正式开始。action! 一、获取字符串长度函数 #include \u0026lt;string.h\u0026gt; size_t strlen(const char *s); 功能：计算一个字符串的长度 参数： s：指定的字符串 返回值： 当前字符串的长度 注意：strlen获取的字符串长度遇到第一个\\0结束且\\0不算做字符串长度之中 #include \u0026lt;stdio.h\u0026gt; #include \u0026lt;string.h\u0026gt; int main(int argc, char *argv[]) { //使用st",
+  "description": "第七章 字符串处理函数 INIT INIT：本节内容正式开始。action!\n一、获取字符串长度函数 #include \u0026lt;string.h\u0026gt; size_t strlen(const char *s); 功能：计算一个字符串的长度 参数： s：指定的字符串 返回值： 当前字符串的长度 注意：strlen获取的字符串长度遇到第一个\\0结束且\\0不算做字符串长度之中 #include \u0026lt;stdio.h\u0026gt; #include \u0026lt;string.h\u0026gt; int main(int argc, char *argv[]) { //使用strlen函数获取字符串的长度 //strlen获取的字符串的长度遇到第一个\\0结束 char s1[100] = \u0026#34;hel\\0lo\u0026#34;; printf(\u0026#34;s1_len = %d\\n\u0026#34;, strlen(s1)); printf(\u0026#34;s1_size = %d\\n\u0026#34;, sizeof(s1)); char *s2 = \u0026#34;hello\u0026#34;; printf(\u0026#34;s2_len = %d\\n\u0026#34;, strlen(s2)); printf(\u0026#34;s2_size = %d\\n\u0026#34;, sizeof(s2)); return 0; } 执行结果\ns1_len = 3 s1_size = 100 s2_len = 5 s2_size = 4 二、字符串拷贝函数 #include \u0026lt;string.h\u0026gt; char *strcpy(char *dest, const char *src); 功能：将src复制给dest 参数： dest：目的字符串 src：源字符串 返回值： 保存dest字符串的首地址 注意： 使用strcpy函数复制字符串时必须保证dest足够大，否则会内存溢出 strcpy是将src字符串中第一个\\0之前包括\\0复制给dest char *strncpy(char *dest, const char *src, size_t n); 函数的说明： 将src指向的字符串前n个字节，拷贝到dest指向的内存中 返回值: 目的内存的首地址 注意： 1、strncpy不拷贝 ‘\\0’ 2、如果n大于src指向的字符串中的字符个数，则在dest后面填充n‐strlen(src)个’\\0’ #include \u0026lt;stdio.h\u0026gt; #include \u0026lt;string.h\u0026gt; int main(int argc, char *argv[]) { //使用strcpy函数拷贝字符串 char s1[32] = \u0026#34;hello world\u0026#34;; //使用strcpy函数时，必须保证第一个参数的内存足够大 //char s1[5] = \u0026#34;abcd\u0026#34;; char s2[32] = \u0026#34;abcdefg\u0026#34;; strcpy(s1, s2); printf(\u0026#34;s1 = %s\\n\u0026#34;, s1); int i; for(i = 0; i \u0026lt; 32; i++) { printf(\u0026#34;[%c] ‐ %d\\n\u0026#34;, s1[i], s1[i]); } return 0; } 执行结果\n",
   "keywords": [
     "C programming", "Embedded Development", "String Manipulation functions", "C语言", "C语言编程", "嵌入式编程", "字符串处理函数", "C语言字符串处理函数"
   ],

@@ -7,7 +7,18 @@
 <meta name="robots" content="index, follow">
 <title>【嵌入式C语言编程】第六章 动态内存申请 | Eddy&#39;s blog</title>
 <meta name="keywords" content="C programming, Embedded Development, Dynamic memory request, C语言, C语言编程, 嵌入式编程, 动态内存申请, C语言动态内存申请">
-<meta name="description" content="第六章 动态内存申请 INIT INIT：本节内容正式开始。action! 一、动态分配内存的概 在数组一章中，介绍过数组的长度是预先定义好的，在整个程序中固定不变，但是在实际的编程中，往往会发生这种情况，即所需的内存空间取决于实际输入的数据，而无法预先确定 。 为了解决上述问题，Ｃ语言提供了一些内">
+<meta name="description" content="第六章 动态内存申请
+INIT
+
+
+
+
+
+INIT：本节内容正式开始。action!
+
+一、动态分配内存的概
+在数组一章中，介绍过数组的长度是预先定义好的，在整个程序中固定不变，但是在实际的编程中，往往会发生这种情况，即所需的内存空间取决于实际输入的数据，而无法预先确定 。
+为了解决上述问题，Ｃ语言提供了一些内存管理函数，这些内存管理函数可以按需要动态的分配内存空间，也可把不再使用的空间回收再次利用。">
 <meta name="author" content="Eddy">
 <link rel="canonical" href="https://eddyblog.cn/posts/tech/c-programming-06dynamic-memory/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
@@ -79,11 +90,19 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
-
-  
-
 <meta property="og:title" content="【嵌入式C语言编程】第六章 动态内存申请" />
-<meta property="og:description" content="第六章 动态内存申请 INIT INIT：本节内容正式开始。action! 一、动态分配内存的概 在数组一章中，介绍过数组的长度是预先定义好的，在整个程序中固定不变，但是在实际的编程中，往往会发生这种情况，即所需的内存空间取决于实际输入的数据，而无法预先确定 。 为了解决上述问题，Ｃ语言提供了一些内" />
+<meta property="og:description" content="第六章 动态内存申请
+INIT
+
+
+
+
+
+INIT：本节内容正式开始。action!
+
+一、动态分配内存的概
+在数组一章中，介绍过数组的长度是预先定义好的，在整个程序中固定不变，但是在实际的编程中，往往会发生这种情况，即所需的内存空间取决于实际输入的数据，而无法预先确定 。
+为了解决上述问题，Ｃ语言提供了一些内存管理函数，这些内存管理函数可以按需要动态的分配内存空间，也可把不再使用的空间回收再次利用。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://eddyblog.cn/posts/tech/c-programming-06dynamic-memory/" />
 <meta property="og:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/c2.jpg" /><meta property="article:section" content="posts" />
@@ -93,7 +112,18 @@ var _hmt = _hmt || [];
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/c2.jpg" />
 <meta name="twitter:title" content="【嵌入式C语言编程】第六章 动态内存申请"/>
-<meta name="twitter:description" content="第六章 动态内存申请 INIT INIT：本节内容正式开始。action! 一、动态分配内存的概 在数组一章中，介绍过数组的长度是预先定义好的，在整个程序中固定不变，但是在实际的编程中，往往会发生这种情况，即所需的内存空间取决于实际输入的数据，而无法预先确定 。 为了解决上述问题，Ｃ语言提供了一些内"/>
+<meta name="twitter:description" content="第六章 动态内存申请
+INIT
+
+
+
+
+
+INIT：本节内容正式开始。action!
+
+一、动态分配内存的概
+在数组一章中，介绍过数组的长度是预先定义好的，在整个程序中固定不变，但是在实际的编程中，往往会发生这种情况，即所需的内存空间取决于实际输入的数据，而无法预先确定 。
+为了解决上述问题，Ｃ语言提供了一些内存管理函数，这些内存管理函数可以按需要动态的分配内存空间，也可把不再使用的空间回收再次利用。"/>
 
 
 <script type="application/ld+json">
@@ -130,7 +160,7 @@ var _hmt = _hmt || [];
   "@type": "BlogPosting",
   "headline": "【嵌入式C语言编程】第六章 动态内存申请",
   "name": "【嵌入式C语言编程】第六章 动态内存申请",
-  "description": "第六章 动态内存申请 INIT INIT：本节内容正式开始。action! 一、动态分配内存的概 在数组一章中，介绍过数组的长度是预先定义好的，在整个程序中固定不变，但是在实际的编程中，往往会发生这种情况，即所需的内存空间取决于实际输入的数据，而无法预先确定 。 为了解决上述问题，Ｃ语言提供了一些内",
+  "description": "第六章 动态内存申请 INIT INIT：本节内容正式开始。action!\n一、动态分配内存的概 在数组一章中，介绍过数组的长度是预先定义好的，在整个程序中固定不变，但是在实际的编程中，往往会发生这种情况，即所需的内存空间取决于实际输入的数据，而无法预先确定 。\n为了解决上述问题，Ｃ语言提供了一些内存管理函数，这些内存管理函数可以按需要动态的分配内存空间，也可把不再使用的空间回收再次利用。\n",
   "keywords": [
     "C programming", "Embedded Development", "Dynamic memory request", "C语言", "C语言编程", "嵌入式编程", "动态内存申请", "C语言动态内存申请"
   ],

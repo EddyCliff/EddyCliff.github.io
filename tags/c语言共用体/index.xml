@@ -13,7 +13,22 @@
       <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/c-programming-08struct/</guid>
-      <description>第八章 结构体，共用体，枚举 INIT INIT：本节内容正式开始。action! 一、结构体类型的概念及定义 1.1 基本概述 构造类型： 不是基本类型的数据结构也不是指针，它是若干个相同或不同类型的数据构成的集合 常用的构造类型有数组、结构体、共用体 数组用于保存多个相同类型的数据 结构体用于保存多个不同类</description>
+      <description>&lt;h2 id=&#34;第八章-结构体共用体枚举&#34;&gt;第八章 结构体，共用体，枚举&lt;/h2&gt;
+&lt;h2 id=&#34;init&#34;&gt;INIT&lt;/h2&gt;
+&lt;div align = &#34;center&#34;&gt;
+&lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/INIT.jpg&#34; alt = &#34;INIT.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
+&lt;/div&gt;
+&lt;br/&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;INIT：本节内容正式开始。action!&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;一结构体类型的概念及定义&#34;&gt;一、结构体类型的概念及定义&lt;/h3&gt;
+&lt;h4 id=&#34;11-基本概述&#34;&gt;1.1 基本概述&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;构造类型：&lt;/strong&gt;
+不是基本类型的数据结构也不是指针，它是若干个相同或不同类型的数据构成的集合
+常用的构造类型有数组、结构体、共用体&lt;/p&gt;
+&lt;p&gt;数组用于保存多个相同类型的数据
+结构体用于保存多个不同类型的数据&lt;/p&gt;</description>
     </item>
     
   </channel>

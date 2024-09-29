@@ -13,7 +13,13 @@
       <pubDate>Tue, 12 Sep 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/github-git-lfs/</guid>
-      <description>前言 在进行版本控制时，管理大文件是一个常见但棘手的问题。GitHub为了维护性能和资源，对大文件的存储有一些限制。本文将介绍如何使用Git LFS（Large File Storage）来高效管理大文件，以及如何应对可能遇到的问题并提供解决方案。 问题阐述 你可能会遇到两种常见的问题： 如何将大于</description>
+      <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt;在进行版本控制时，管理大文件是一个常见但棘手的问题。GitHub为了维护性能和资源，对大文件的存储有一些限制。本文将介绍如何使用Git LFS（Large File Storage）来高效管理大文件，以及如何应对可能遇到的问题并提供解决方案。&lt;/p&gt;
+&lt;h2 id=&#34;问题阐述&#34;&gt;问题阐述&lt;/h2&gt;
+&lt;p&gt;你可能会遇到两种常见的问题：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;如何将大于GitHub默认50MB文件大小限制的大文件上传到仓库？&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -22,7 +28,20 @@
       <pubDate>Tue, 12 Sep 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/github_error-git_push/</guid>
-      <description>问题描述 输入git push命令后报错 $ git push -f origin main Enumerating objects: 149, done. Counting objects: 100% (149/149), done. Delta compression using up to 16 threads Compressing objects: 100% (144/144), done. error: RPC failed; HTTP 502 curl 22 The requested URL returned error: 502 Writing objects: 80% (119/148), 1.36 GiB | 237.00 KiB/ssend-pack: unexpected disconnect while reading sideband packet Writing objects: 100% (148/148), 1.39 GiB | 2.68 MiB/s, done. Total 148 (delta 3), reused 0 (delta 0), pack-reused 0 fatal: the remote end hung up unexpectedly 原因分析 这个错误表明在进行 git push 操作时，出现了HTTP 502错误，这通常是由于远程</description>
+      <description>&lt;h2 id=&#34;问题描述&#34;&gt;问题描述&lt;/h2&gt;
+&lt;p&gt;输入&lt;code&gt;git push&lt;/code&gt;命令后报错&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-PowerShell&#34; data-lang=&#34;PowerShell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ git push &lt;span style=&#34;color:#f92672&#34;&gt;-f&lt;/span&gt; origin main
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Enumerating objects&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;149&lt;/span&gt;, done.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Counting objects&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;100&lt;/span&gt;% (&lt;span style=&#34;color:#ae81ff&#34;&gt;149&lt;/span&gt;/&lt;span style=&#34;color:#ae81ff&#34;&gt;149&lt;/span&gt;), done.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Delta compression using up to &lt;span style=&#34;color:#ae81ff&#34;&gt;16&lt;/span&gt; threads
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Compressing objects&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;100&lt;/span&gt;% (&lt;span style=&#34;color:#ae81ff&#34;&gt;144&lt;/span&gt;/&lt;span style=&#34;color:#ae81ff&#34;&gt;144&lt;/span&gt;), done.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;error&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; RPC failed; HTTP &lt;span style=&#34;color:#ae81ff&#34;&gt;502&lt;/span&gt; curl &lt;span style=&#34;color:#ae81ff&#34;&gt;22&lt;/span&gt; The requested URL returned error&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;502&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Writing objects&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt;  &lt;span style=&#34;color:#ae81ff&#34;&gt;80&lt;/span&gt;% (&lt;span style=&#34;color:#ae81ff&#34;&gt;119&lt;/span&gt;/&lt;span style=&#34;color:#ae81ff&#34;&gt;148&lt;/span&gt;), &lt;span style=&#34;color:#ae81ff&#34;&gt;1.36&lt;/span&gt; GiB | &lt;span style=&#34;color:#ae81ff&#34;&gt;237.00&lt;/span&gt; KiB/ssend-pack&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; unexpected disconnect &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; reading sideband packet
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Writing objects&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;100&lt;/span&gt;% (&lt;span style=&#34;color:#ae81ff&#34;&gt;148&lt;/span&gt;/&lt;span style=&#34;color:#ae81ff&#34;&gt;148&lt;/span&gt;), &lt;span style=&#34;color:#ae81ff&#34;&gt;1.39&lt;/span&gt; GiB | &lt;span style=&#34;color:#ae81ff&#34;&gt;2.68&lt;/span&gt; MiB/s, done.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Total &lt;span style=&#34;color:#ae81ff&#34;&gt;148&lt;/span&gt; (delta &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;), reused &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; (delta &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;), pack-reused &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;fatal&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; the remote &lt;span style=&#34;color:#66d9ef&#34;&gt;end&lt;/span&gt; hung up unexpectedly
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;原因分析&#34;&gt;原因分析&lt;/h2&gt;
+&lt;p&gt;这个错误表明在进行 &lt;code&gt;git push&lt;/code&gt; 操作时，出现了HTTP 502错误，这通常是由于远程Git服务器出现问题或网络问题导致的。HTTP 502错误是一种&amp;quot;Bad Gateway&amp;quot;错误，意味着Git服务器无法正常处理你的请求。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -31,7 +50,10 @@
       <pubDate>Tue, 12 Sep 2023 00:17:58 +0800</pubDate>
       
       <guid>https://eddyblog.cn/posts/tech/github-git-action-error/</guid>
-      <description>问题描述 当使用GitHub Actions执行工作流程时，有时会遇到错误消息，其中一个常见的错误是：Action failed with &#39;not found deploy key or tokens。这个错误通常表示GitHub Actions在执行过程中找不到有效的部署密钥或访问令牌。这篇博客将帮助你了解如何解决这个问题。 错误原因分析 在Gi</description>
+      <description>&lt;h2 id=&#34;问题描述&#34;&gt;问题描述&lt;/h2&gt;
+&lt;p&gt;当使用&lt;code&gt;GitHub Actions&lt;/code&gt;执行工作流程时，有时会遇到错误消息，其中一个常见的错误是：&lt;code&gt;Action failed with &#39;not found deploy key or tokens&lt;/code&gt;。这个错误通常表示&lt;code&gt;GitHub Actions&lt;/code&gt;在执行过程中找不到有效的部署密钥或访问令牌。这篇博客将帮助你了解如何解决这个问题。&lt;/p&gt;
+&lt;h2 id=&#34;错误原因分析&#34;&gt;错误原因分析&lt;/h2&gt;
+&lt;p&gt;在&lt;code&gt;GitHub Actions&lt;/code&gt;的工作流程中，有些操作需要使用密钥或令牌来访问GitHub存储库或执行其他敏感操作，例如推送更改到仓库。这些密钥或令牌通常存储在GitHub存储库的&lt;code&gt;Secrets&lt;/code&gt;中。当出现&lt;code&gt;not found deploy key or tokens&lt;/code&gt;错误时，这意味着&lt;code&gt;GitHub Actions&lt;/code&gt;无法找到所需的密钥或令牌。&lt;/p&gt;</description>
     </item>
     
     <item>
