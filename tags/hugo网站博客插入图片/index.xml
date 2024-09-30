@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Hugo网站博客插入图片 on Eddy&#39;s blog</title>
-    <link>https://eddyblog.cn/tags/hugo%E7%BD%91%E7%AB%99%E5%8D%9A%E5%AE%A2%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87/</link>
+    <link>https://eddycliff.github.io/tags/hugo%E7%BD%91%E7%AB%99%E5%8D%9A%E5%AE%A2%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87/</link>
     <description>Recent content in Hugo网站博客插入图片 on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 29 Aug 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/hugo%E7%BD%91%E7%AB%99%E5%8D%9A%E5%AE%A2%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 29 Aug 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddycliff.github.io/tags/hugo%E7%BD%91%E7%AB%99%E5%8D%9A%E5%AE%A2%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【Hugo网站搭建】博客写作指南-如何在Hugo博客中巧妙运用照片</title>
-      <link>https://eddyblog.cn/posts/tech/hugo_insert_png/</link>
+      <link>https://eddycliff.github.io/posts/tech/hugo_insert_png/</link>
       <pubDate>Tue, 29 Aug 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/hugo_insert_png/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/hugo_insert_png/</guid>
       <description>了解如何在Hugo博客中巧妙使用照片，为您的内容增添视觉吸引力和表现力。</description>
     </item>
     

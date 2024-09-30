@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Git Push on Eddy&#39;s blog</title>
-    <link>https://eddyblog.cn/tags/git-push/</link>
+    <link>https://eddycliff.github.io/tags/git-push/</link>
     <description>Recent content in Git Push on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 12 Sep 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/git-push/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 12 Sep 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddycliff.github.io/tags/git-push/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【GitHub使用指南】解决Git Push错误 - 502 Bad Gateway</title>
-      <link>https://eddyblog.cn/posts/tech/github_error-git_push/</link>
+      <link>https://eddycliff.github.io/posts/tech/github_error-git_push/</link>
       <pubDate>Tue, 12 Sep 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/github_error-git_push/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/github_error-git_push/</guid>
       <description>&lt;h2 id=&#34;问题描述&#34;&gt;问题描述&lt;/h2&gt;
 &lt;p&gt;输入&lt;code&gt;git push&lt;/code&gt;命令后报错&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-PowerShell&#34; data-lang=&#34;PowerShell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ git push &lt;span style=&#34;color:#f92672&#34;&gt;-f&lt;/span&gt; origin main

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Tree树状目录 on Eddy&#39;s blog</title>
-    <link>https://eddyblog.cn/tags/tree%E6%A0%91%E7%8A%B6%E7%9B%AE%E5%BD%95/</link>
+    <link>https://eddycliff.github.io/tags/tree%E6%A0%91%E7%8A%B6%E7%9B%AE%E5%BD%95/</link>
     <description>Recent content in Tree树状目录 on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Fri, 25 Aug 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/tree%E6%A0%91%E7%8A%B6%E7%9B%AE%E5%BD%95/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 25 Aug 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddycliff.github.io/tags/tree%E6%A0%91%E7%8A%B6%E7%9B%AE%E5%BD%95/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【Hugo网站搭建】实现post-markdown引入树状目录</title>
-      <link>https://eddyblog.cn/posts/tech/hugo_introduce_a_tree_directory/</link>
+      <link>https://eddycliff.github.io/posts/tech/hugo_introduce_a_tree_directory/</link>
       <pubDate>Fri, 25 Aug 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/hugo_introduce_a_tree_directory/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/hugo_introduce_a_tree_directory/</guid>
       <description>markdown引入树状目录</description>
     </item>
     

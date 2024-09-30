@@ -2,35 +2,35 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>👨🏻‍💻 技术 on Eddy&#39;s blog</title>
-    <link>https://eddyblog.cn/posts/tech/</link>
+    <link>https://eddycliff.github.io/posts/tech/</link>
     <description>Recent content in 👨🏻‍💻 技术 on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 13 May 2024 00:17:58 +0500</lastBuildDate><atom:link href="https://eddyblog.cn/posts/tech/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 13 May 2024 00:17:58 +0500</lastBuildDate><atom:link href="https://eddycliff.github.io/posts/tech/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Linux新手必看：一文掌握操作系统基本命令</title>
-      <link>https://eddyblog.cn/posts/tech/linux-basics-01/</link>
+      <link>https://eddycliff.github.io/posts/tech/linux-basics-01/</link>
       <pubDate>Wed, 10 Apr 2024 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/linux-basics-01/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/linux-basics-01/</guid>
       <description>掌握Linux，从这里开始！轻松入门操作系统基本命令。</description>
     </item>
     
     <item>
       <title>Linux入门：基础命令与实用技巧</title>
-      <link>https://eddyblog.cn/posts/tech/linux-basics-02/</link>
+      <link>https://eddycliff.github.io/posts/tech/linux-basics-02/</link>
       <pubDate>Sun, 21 Apr 2024 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/linux-basics-02/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/linux-basics-02/</guid>
       <description>本博客为新手量身打造，系统介绍了Linux操作系统的基本概念、核心命令及其应用场景。通过实例演示，帮助读者快速掌握Linux操作技巧，为进一步学习打下坚实基础。</description>
     </item>
     
     <item>
       <title>Linux入门：文件IO</title>
-      <link>https://eddyblog.cn/posts/tech/linux-basics-03/</link>
+      <link>https://eddycliff.github.io/posts/tech/linux-basics-03/</link>
       <pubDate>Sun, 21 Apr 2024 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/linux-basics-03/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/linux-basics-03/</guid>
       <description>&lt;h2 id=&#34;init&#34;&gt;INIT&lt;/h2&gt;
 &lt;div align = &#34;center&#34;&gt;
 &lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/INIT.jpg&#34; alt = &#34;INIT.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
@@ -47,91 +47,91 @@
     
     <item>
       <title>嵌入式开发-STM32标准库学习：EXTI外部中断</title>
-      <link>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p11/</link>
+      <link>https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p11/</link>
       <pubDate>Mon, 13 May 2024 00:17:58 +0500</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p11/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p11/</guid>
       <description>本博客主要介绍了STM32芯片的外部中断系统及其在实现特定功能中的应用，例如使用红外传感器检测光线变化和使用旋转编码器进行计数。核心概念是通过外部中断提高程序响应速度和执行效率，实现CPU在遇到重要事件时的暂停与处理。中断系统的关键要素包括中断优先级、嵌套处理、中断程序执行流程、中断保护和恢复现场，以及NVIC（中断向量控制器）在分配中断优先级和管理中断请求方面的作用。STM32拥有68个可屏蔽中断通道，支持多种外设中断源，所有中断请求均通过NVIC统一管理。外部中断（EXTI）功能特别值得一提，它允许CPU在检测到指定GPIO口的电平变化时暂停执行并执行中断服务程序，支持多种触发方式。此外，还讨论了外部中断在读取按键信号时的局限性，并提出了使用定时器中断作为替代方案。对于旋转编码器的应用，文章概述了其硬件连接方式、NVIC中断管理的基本知识，以及如何使用库函数简化中断处理过程和外部中断的配置方法。</description>
     </item>
     
     <item>
       <title>嵌入式开发-STM32标准库学习：OLED显示屏</title>
-      <link>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p10/</link>
+      <link>https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p10/</link>
       <pubDate>Mon, 13 May 2024 00:17:58 +0600</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p10/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p10/</guid>
       <description>本博客主要讲述了如何将OLED显示屏驱动程序模块整合至STM32工程中，并详细阐述了该驱动程序的设计与实现细节。重点讲解了硬件连接方式，尤其是如何通过PB6和PB7端口为OLED屏幕提供电源并通过四针脚接口进行数据传输。同时，介绍了如何根据现有的工程文件创建新的项目，并在其中嵌入OLED显示屏的驱动代码。文档还探讨了利用特定软件的调试模式对程序进行分析和优化的方法，涵盖了在线仿真和计算机模拟两种调试方式，及其对应的启动调试步骤和常用调试命令。此外，文中强调了通过这些调试手段可以有效地诊断和修复程序中的错误，加深对程序执行流程的理解。最后，文档简要介绍了 Keil 软件中的调试模式和相关功能，如命令窗口、反汇编窗口和符号窗口的使用方法，为进一步的程序调试提供了工具和技巧。</description>
     </item>
     
     <item>
       <title>嵌入式开发-STM32标准库学习：OLED调试工具</title>
-      <link>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p9/</link>
+      <link>https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p9/</link>
       <pubDate>Mon, 13 May 2024 00:17:58 +0700</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p9/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p9/</guid>
       <description>本文介绍了如何利用OLED显示屏进行程序调试，着重讲解了OLED显示屏的基本功能和驱动函数模块的使用方法。首先，介绍了一种常见的显示屏模块——0.96寸OLED模块，它的特点是体积小、接口少、驱动简单，适用于多种电子设计应用。该模块提供单色显示，具有较低的分辨率（128x64），但可通过简单的通信协议进行操作，适配多种电源电压和接口类型。文章详细讨论了该模块的不同版本（四针脚和七针脚）以及其在实际项目中的硬件连接方式。随后，引入了一个驱动函数模块，涵盖了从模块初始化到显示各种文本和数字信息的一系列实用函数。整体而言，本文突出了程序调试的重要性，并通过介绍具体的调试方法和工具，为开发人员提供了一套有效的调试方案，尤其是针对那些使用OLED显示屏的项目。</description>
     </item>
     
     <item>
       <title>嵌入式开发-STM32标准库学习：按键控制LED,光敏传感器控制蜂鸣器</title>
-      <link>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p8/</link>
+      <link>https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p8/</link>
       <pubDate>Mon, 13 May 2024 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p8/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p8/</guid>
       <description>本博客详细介绍了一个基于STM32最小系统板的项目开发过程，重点涵盖了基本的LED控制电路设计、模块化编程的应用以及扩展至光敏传感器和蜂鸣器模块的功能实现。首先，通过对PB1和PB10引脚连接按键，以及PA1和PA2引脚连接LED的基本电路描述，项目导入了如何在STM32板上实现简单LED控制的基础。在此基础上，强调了模块化编程的重要性，即通过将驱动代码分离至单独的.C和.H文件中，以提升代码的管理与移植性。特别提到了在&amp;#39;module&amp;#39;文件夹下创建硬件驱动程序的方法，以及在这些文件中添加必要预处理指令和其他细节的重要性。 其次，详细叙述了LED初始化和模块化编程的具体实践，包括LED的时钟配置、端口模式设置，以及如何通过结构体变量实现对GPIO的精确控制。此外，还介绍了如何处理警告和错误信息，从而保证了程序的稳定运行。通过这些步骤，成功实现了LED的点亮与熄灭功能，验证了程序的正确性。 进一步地，文章扩展到如何完善LED驱动程序模块，包括提供两种不同功能实现方式以及在硬件目录下创建新文件来组织代码的方法。接下来，详细介绍了使用RCC APB2外设时钟控制、配置GPIO端口模式、读取按键值等功能，以及如何通过GPL库消除按键抖动，并实现光照强度检测与蜂鸣器控制的综合应用。 总之，该段内容围绕着STM32开发板上的LED、光敏传感器和蜂鸣器模块的控制，展示了从基础电路设计到模块化编程，再到复杂功能实现的完整开发流程。每个环节都突出了理论与实践相结合的重要性，旨在提高代码的质量和项目的可维护性。</description>
     </item>
     
     <item>
       <title>嵌入式开发-STM32标准库学习：GPIO输入</title>
-      <link>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p7/</link>
+      <link>https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p7/</link>
       <pubDate>Mon, 13 May 2024 00:17:58 +0900</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p7/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p7/</guid>
       <description>本博客首先介绍了通过按键控制LED的基础操作，随后转向光敏传感器控制蜂鸣器的应用，涵盖了硬件连接和预期现象的讨论。课程还强调了C语言中指针的重要性，并给出了简单介绍。特别提到了处理按键抖动的方法，建议通过增加延时来改善，以确保程序的稳定性和准确性。此外，课程还介绍了四种传感器模块的工作原理，包括光敏电阻、热敏电阻、对射式及反射式红外传感器，并讲述了如何通过这些模块获取外部模拟量的变化信息。在讨论模拟电压和数字电压的生成及转换过程中，突出了各种电子元件的作用和选择合适的输入模式的重要性。同时，还覆盖了C语言中的数据类型、宏定义、结构体和枚举的使用，强调了这些概念在程序设计中的重要作用。</description>
     </item>
     
     <item>
       <title>嵌入式开发-STM32标准库学习：实现LED闪烁与流水灯，蜂鸣器</title>
-      <link>https://eddyblog.cn/posts/tech/stm32-standard_library_learning-jkd-p6/</link>
+      <link>https://eddycliff.github.io/posts/tech/stm32-standard_library_learning-jkd-p6/</link>
       <pubDate>Mon, 13 May 2024 00:17:58 +1000</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/stm32-standard_library_learning-jkd-p6/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/stm32-standard_library_learning-jkd-p6/</guid>
       <description>本节内容指导如何使用面包板、STM32最小系统板及ST Link开发一个简单的LED闪烁程序。首先，介绍搭建硬件电路所需步骤，包括正确连接电源、STM32板、LED和相关跳线。接着，在Keil5 软件中创建新工程，复制必要文件并配置工程设置以完成LED闪烁程序的编写、编译、下载和测试。此外，还介绍了如何利用一个辅助工具清理编译产生的中间文件，以便更好地分享工程。该指南详细讲解了如何使用RCC和GPIO外设及其库函数来控制LED的亮灭，包括设置工作模式、方向和速度。特别提到了四种GPIO输出函数和它们在控制LED亮灭方面的应用。通过主循环实现LED闪烁功能，并讨论了不同驱动模式下LED的性能差异。进一步地，本节还扩展到LED流水灯的制作，介绍了如何利用按位操作来控制多路LED的亮灭。最后，提供了学习STM32库函数的建议，包括查看库函数源码、利用官方文档和在线资源等方法。整个内容旨在帮助初学者掌握STM32开发的基础知识和技能。</description>
     </item>
     
     <item>
       <title>嵌入式开发-STM32标准库学习：GPIO输出</title>
-      <link>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p5/</link>
+      <link>https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p5/</link>
       <pubDate>Mon, 13 May 2024 00:17:58 +1100</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p5/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p5/</guid>
       <description>本教程涵盖了STM32 GPIO的输出与输入功能，分为基础应用和理论知识两个部分。首先，通过LED闪烁、LED流水灯和蜂鸣器实验，介绍GPIO基本应用。随后，深入探讨了GPIO的理论知识，包括其作为通用I/O口的特性、工作模式及电平范围。进一步地，解析了STM32中GPIO的基本结构，涉及APB2外设总线、GPIO模块及其组成。此外，讨论了GPIO引脚的功能，包括输入和输出保护措施，以及施密特触发器的作用和应用。教程强调了STM32 GPIO的多样工作模式，如推挽输出、开漏输出等，及其在不同应用场景下的优势。最后，简述了面包板的应用，为读者提供了实际电路搭建的指导。</description>
     </item>
     
     <item>
       <title>嵌入式开发-STM32标准库学习：新建Keil工程</title>
-      <link>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p4/</link>
+      <link>https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p4/</link>
       <pubDate>Sun, 12 May 2024 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p4/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p4/</guid>
       <description>本文档旨在指导STM32平台的新手开发者如何建立工程项目，并有效地运用标准库和HAL库来提高开发效率。首先，文档强调了基于寄存器、标准库和HAL库三种不同的STM32开发方式，并推荐初学者优先考虑使用标准库进行开发。其次，它详细介绍了在STM32环境中添加启动文件、设置头文件路径以及创建用户自定义函数的基本步骤，同时给出了基于寄存器进行开发的示例。文章还说明了如何通过库函数更方便地配置GPIO和控制LED，从而简化了对硬件的操作。此外，文档涵盖了如何新建工程、选择合适的启动文件以及调试器设置，旨在帮助开发者有效下载和运行程序。最后，通过一系列实例，文章阐述了基于库函数的STM32工程构建和理解，突出了中断服务函数的重要性和在工程中的应用。整体而言，本文档为STM32平台的开发者提供了一套完整且实用的开发指导，从基础设置到高级应用应有尽有。</description>
     </item>
     
     <item>
       <title>嵌入式开发-STM32标准库学习：STM32简介</title>
-      <link>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p2/</link>
+      <link>https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p2/</link>
       <pubDate>Sat, 11 May 2024 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p2/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p2/</guid>
       <description>STM32是基于ARM Cortex-M内核由ST公司开发的32位微控制器，拥有高性能和丰富片上资源，适合嵌入式系统应用。它包括多个系列，满足不同场景需求，例如高性能、主流、超低功耗和无线等。STM32F103C8T6是其中一款，采用ARM Cortex-M3内核，具有72MHz主频、20Kb RAM和64Kb Flash，适用于多种应用。该芯片拥有全面的外设资源，如NVIC、SysTick定时器、RCC、GPIO、AFIO、EXTI、TIM定时器、ADC、DMA、USART、I2C/SPI和USB OTG等，提供高度灵活且可定制化的平台。文章还介绍了该芯片的引脚定义、电源管理、启动配置和最小系统板构成，强调了正确配置电源、时钟和下载电路的重要性。通过连接稳压供电模块、复位电路、Boot配置电路、LED测试电路和下载电路，可以构建出能够稳定工作的STM32最小系统板。此外，文档推荐参考官方资料以深入理解STM32的工作原理和应用。</description>
     </item>
     
     <item>
       <title>【温故而知新】C语言和C&#43;&#43;基础知识回顾</title>
-      <link>https://eddyblog.cn/posts/tech/exp-sticker-c-cpp-basic-knowledge-review/</link>
+      <link>https://eddycliff.github.io/posts/tech/exp-sticker-c-cpp-basic-knowledge-review/</link>
       <pubDate>Wed, 01 May 2024 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/exp-sticker-c-cpp-basic-knowledge-review/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/exp-sticker-c-cpp-basic-knowledge-review/</guid>
       <description>&lt;div align = &#34;center&#34;&gt;
 &lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P11-EXTI%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD-1.jpg&#34; alt = &#34;P11-EXTI外部中断-1.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
 &lt;/div&gt;
@@ -143,10 +143,10 @@
     
     <item>
       <title>【温故而知新】单片机基础知识回顾</title>
-      <link>https://eddyblog.cn/posts/tech/exp-sticker-mcu-basic-knowledge-review/</link>
+      <link>https://eddycliff.github.io/posts/tech/exp-sticker-mcu-basic-knowledge-review/</link>
       <pubDate>Wed, 01 May 2024 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/exp-sticker-mcu-basic-knowledge-review/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/exp-sticker-mcu-basic-knowledge-review/</guid>
       <description>&lt;div align = &#34;center&#34;&gt;
 &lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P11-EXTI%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD-1.jpg&#34; alt = &#34;P11-EXTI外部中断-1.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
 &lt;/div&gt;
@@ -161,19 +161,19 @@
     
     <item>
       <title>SQLite数据库简介及使用指南</title>
-      <link>https://eddyblog.cn/posts/tech/database_sqlite/</link>
+      <link>https://eddycliff.github.io/posts/tech/database_sqlite/</link>
       <pubDate>Wed, 01 May 2024 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/database_sqlite/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/database_sqlite/</guid>
       <description>这篇博客提供了SQLite数据库的全面介绍和使用指南。它详细解释了SQLite作为一种轻量级、文件系统基础的数据库管理系统，非常适合小型项目和移动应用。文章介绍了SQLite的安装过程，包括Windows、macOS和Linux系统下的安装步骤。接着，博客通过创建数据库、表，以及执行插入、查询、更新和删除操作的示例，演示了SQLite的基本使用方法。最后，通过一个案例演示，指导读者如何从头开始使用SQLite来管理数据。博客旨在帮助读者快速掌握SQLite，并强调了其作为嵌入式数据库的优势，适用于多种应用场景。</description>
     </item>
     
     <item>
       <title>C&#43;&#43;编程入门：类和对象-封装</title>
-      <link>https://eddyblog.cn/posts/tech/cpp-programming-p4/</link>
+      <link>https://eddycliff.github.io/posts/tech/cpp-programming-p4/</link>
       <pubDate>Tue, 30 Apr 2024 00:17:58 +0900</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/cpp-programming-p4/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/cpp-programming-p4/</guid>
       <description>&lt;div align = &#34;center&#34;&gt;
 &lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/%E7%9F%A5%E8%AF%86%E8%92%99%E8%94%BD%E4%BA%86%E6%88%91%E7%9A%84%E5%8F%8C%E7%9C%BC.jpg&#34; alt = &#34;闪亮登场.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
 &lt;/div&gt;
@@ -195,10 +195,10 @@
     
     <item>
       <title>C&#43;&#43;编程入门：函数提高-函数重载</title>
-      <link>https://eddyblog.cn/posts/tech/cpp-programming-p3/</link>
+      <link>https://eddycliff.github.io/posts/tech/cpp-programming-p3/</link>
       <pubDate>Tue, 30 Apr 2024 00:17:58 +1000</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/cpp-programming-p3/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/cpp-programming-p3/</guid>
       <description>&lt;div align = &#34;center&#34;&gt;
 &lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/%E7%9F%A5%E8%AF%86%E8%92%99%E8%94%BD%E4%BA%86%E6%88%91%E7%9A%84%E5%8F%8C%E7%9C%BC.jpg&#34; alt = &#34;闪亮登场.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
 &lt;/div&gt;
@@ -257,10 +257,10 @@
     
     <item>
       <title>C&#43;&#43;编程入门：引用</title>
-      <link>https://eddyblog.cn/posts/tech/cpp-programming-p2/</link>
+      <link>https://eddycliff.github.io/posts/tech/cpp-programming-p2/</link>
       <pubDate>Tue, 30 Apr 2024 00:17:58 +1100</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/cpp-programming-p2/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/cpp-programming-p2/</guid>
       <description>&lt;div align = &#34;center&#34;&gt;
 &lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/%E7%9F%A5%E8%AF%86%E8%92%99%E8%94%BD%E4%BA%86%E6%88%91%E7%9A%84%E5%8F%8C%E7%9C%BC.jpg&#34; alt = &#34;闪亮登场.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
 &lt;/div&gt;
@@ -309,10 +309,10 @@
     
     <item>
       <title>C&#43;&#43;编程入门：内存分区模型</title>
-      <link>https://eddyblog.cn/posts/tech/cpp-programming-p1/</link>
+      <link>https://eddycliff.github.io/posts/tech/cpp-programming-p1/</link>
       <pubDate>Tue, 30 Apr 2024 00:17:58 +1200</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/cpp-programming-p1/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/cpp-programming-p1/</guid>
       <description>&lt;div align = &#34;center&#34;&gt;
 &lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/%E7%9F%A5%E8%AF%86%E8%92%99%E8%94%BD%E4%BA%86%E6%88%91%E7%9A%84%E5%8F%8C%E7%9C%BC.jpg&#34; alt = &#34;闪亮登场.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
 &lt;/div&gt;
@@ -340,28 +340,28 @@
     
     <item>
       <title>markdown测试</title>
-      <link>https://eddyblog.cn/posts/tech/test/</link>
+      <link>https://eddycliff.github.io/posts/tech/test/</link>
       <pubDate>Wed, 10 Apr 2024 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/test/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/test/</guid>
       <description>本文用于测试Hugo博客网站Papermod主题的博客渲染效果</description>
     </item>
     
     <item>
       <title>【Hugo网站搭建】markdown中图片大小和对齐方式调整</title>
-      <link>https://eddyblog.cn/posts/tech/hugo-image-in-markdown/</link>
+      <link>https://eddycliff.github.io/posts/tech/hugo-image-in-markdown/</link>
       <pubDate>Sun, 03 Dec 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/hugo-image-in-markdown/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/hugo-image-in-markdown/</guid>
       <description>使用HTML标签对markdown中图片大小和对齐方式调整</description>
     </item>
     
     <item>
       <title>【计算机网络】第八章 互联网上的音频/视频服务</title>
-      <link>https://eddyblog.cn/posts/tech/computer-network-08/</link>
+      <link>https://eddycliff.github.io/posts/tech/computer-network-08/</link>
       <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/computer-network-08/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/computer-network-08/</guid>
       <description>&lt;h2 id=&#34;第八章-互联网上的音频视频服务&#34;&gt;第八章 互联网上的音频/视频服务&lt;/h2&gt;
 &lt;h3 id=&#34;本章重要概念&#34;&gt;本章重要概念&lt;/h3&gt;
 &lt;p&gt;1）多媒体信息有两个重要特点：（1）多媒体信息的信息量往往很大；（2）在传输多媒体数据时，对时延和时延抖动均有较高的要求。在互联网上传输多媒体数据时，我们都是指含有“边传输、边播放”的特点。&lt;/p&gt;
@@ -370,10 +370,10 @@
     
     <item>
       <title>【计算机网络】第二章 物理层</title>
-      <link>https://eddyblog.cn/posts/tech/computer-network-02/</link>
+      <link>https://eddycliff.github.io/posts/tech/computer-network-02/</link>
       <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/computer-network-02/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/computer-network-02/</guid>
       <description>&lt;h2 id=&#34;第二章-物理层&#34;&gt;第二章 物理层&lt;/h2&gt;
 &lt;h3 id=&#34;本章的重要概念&#34;&gt;本章的重要概念&lt;/h3&gt;
 &lt;p&gt;1）物理层的主要任务就是确定与传输媒体的接口有关的一些特性，如机械特性、电气特性、功能特性和过程特性。&lt;/p&gt;
@@ -383,10 +383,10 @@
     
     <item>
       <title>【计算机网络】第九章 无线网络和移动网络</title>
-      <link>https://eddyblog.cn/posts/tech/computer-network-09/</link>
+      <link>https://eddycliff.github.io/posts/tech/computer-network-09/</link>
       <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/computer-network-09/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/computer-network-09/</guid>
       <description>&lt;h2 id=&#34;第九章-无线网络和移动网络&#34;&gt;第九章 无线网络和移动网络&lt;/h2&gt;
 &lt;h3 id=&#34;本章重要概念&#34;&gt;本章重要概念&lt;/h3&gt;
 &lt;p&gt;1）无线局域网可分为两大类。第一类是有固定基础设施的，第二类是无固定基础设施的。&lt;/p&gt;
@@ -396,10 +396,10 @@
     
     <item>
       <title>【计算机网络】第六章 应用层</title>
-      <link>https://eddyblog.cn/posts/tech/computer-network-06/</link>
+      <link>https://eddycliff.github.io/posts/tech/computer-network-06/</link>
       <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/computer-network-06/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/computer-network-06/</guid>
       <description>&lt;h2 id=&#34;第六章-应用层&#34;&gt;第六章 应用层&lt;/h2&gt;
 &lt;h3 id=&#34;本章重要概念&#34;&gt;本章重要概念&lt;/h3&gt;
 &lt;p&gt;1）应用层协议是为了解决某一类应用问题，而问题的解决又是通过位于不同主机中的多个应用进程之间的通信和协同工作来完成的。应用层规定了应用进程在通信时所遵循的协议。应用层的许多协议都是基于客户-服务器方式的。客户是服务请求方，服务器是服务提供方。
@@ -414,10 +414,10 @@
     
     <item>
       <title>【计算机网络】第七章 网络安全</title>
-      <link>https://eddyblog.cn/posts/tech/computer-network-07/</link>
+      <link>https://eddycliff.github.io/posts/tech/computer-network-07/</link>
       <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/computer-network-07/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/computer-network-07/</guid>
       <description>&lt;h2 id=&#34;第七章-网络安全&#34;&gt;第七章 网络安全&lt;/h2&gt;
 &lt;h3 id=&#34;本章重要概念&#34;&gt;本章重要概念&lt;/h3&gt;
 &lt;p&gt;1）计算机网络上的通信面临的威胁可分为两大类，即被动攻击（如截获）和主动攻击(如中断、篡改、伪造)。主动攻击的类型有更改报文流、拒绝服务、伪造初始化、恶意程序（病毒、蠕虫、木马、逻辑炸弹、后门入侵、流氓软件）等。&lt;/p&gt;
@@ -426,10 +426,10 @@
     
     <item>
       <title>【计算机网络】第三章 数据链路层</title>
-      <link>https://eddyblog.cn/posts/tech/computer_network-03/</link>
+      <link>https://eddycliff.github.io/posts/tech/computer_network-03/</link>
       <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/computer_network-03/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/computer_network-03/</guid>
       <description>&lt;h2 id=&#34;第三章-数据链路层&#34;&gt;第三章 数据链路层&lt;/h2&gt;
 &lt;h3 id=&#34;本章的重要概念&#34;&gt;本章的重要概念&lt;/h3&gt;
 &lt;p&gt;1）链路是从一个节点到相邻节点的一段物理线路，数据链路则是在链路的基础上增加了一些必要的硬件（如网络适配器）和软件（如协议的实现）。&lt;/p&gt;
@@ -439,10 +439,10 @@
     
     <item>
       <title>【计算机网络】第四章 网络层</title>
-      <link>https://eddyblog.cn/posts/tech/computer-network-04/</link>
+      <link>https://eddycliff.github.io/posts/tech/computer-network-04/</link>
       <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/computer-network-04/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/computer-network-04/</guid>
       <description>&lt;h2 id=&#34;第四章-网络层&#34;&gt;第四章 网络层&lt;/h2&gt;
 &lt;h3 id=&#34;本章的重要概念&#34;&gt;本章的重要概念&lt;/h3&gt;
 &lt;p&gt;1）TCP/IP体系中的网络层向上只提供简单灵活的、无连接的、尽最大努力交付的数据报服务。网络层不提供服务质量的承诺，不保证分组交付的时限，所传送的分组可能出错、丢失、重复和失序。进程之间通信的可靠性由运输层负责。&lt;/p&gt;
@@ -451,10 +451,10 @@
     
     <item>
       <title>【计算机网络】第五章 运输层</title>
-      <link>https://eddyblog.cn/posts/tech/computer-network-05/</link>
+      <link>https://eddycliff.github.io/posts/tech/computer-network-05/</link>
       <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/computer-network-05/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/computer-network-05/</guid>
       <description>&lt;h2 id=&#34;第五章-运输层&#34;&gt;第五章 运输层&lt;/h2&gt;
 &lt;h3 id=&#34;本章重要概念&#34;&gt;本章重要概念&lt;/h3&gt;
 &lt;p&gt;1）运输层提供应用进程间的逻辑通信，也就是说，运输层之间的通信并不是真正在两运输层之间直接传送数据。运输层向应用层屏蔽了下面网络的细节（如网络拓扑、所采用的路由选择协议等），它使应用进程看见的就好像在两个运输层实体之间有一条端到端的逻辑通信信道。&lt;/p&gt;
@@ -463,10 +463,10 @@
     
     <item>
       <title>【计算机网络】第一章 概述</title>
-      <link>https://eddyblog.cn/posts/tech/computer-network-01/</link>
+      <link>https://eddycliff.github.io/posts/tech/computer-network-01/</link>
       <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/computer-network-01/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/computer-network-01/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;启程&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -479,10 +479,10 @@
     
     <item>
       <title>【浅谈LLC谐振变换器】- 章节0:LLC的定义以及优势</title>
-      <link>https://eddyblog.cn/posts/tech/llc-resonant-converters-0/</link>
+      <link>https://eddycliff.github.io/posts/tech/llc-resonant-converters-0/</link>
       <pubDate>Sun, 05 Nov 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/llc-resonant-converters-0/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/llc-resonant-converters-0/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;谐振变换器-第1节&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -493,10 +493,10 @@
     
     <item>
       <title>【浅谈LLC谐振变换器】- 章节1:LLC入门</title>
-      <link>https://eddyblog.cn/posts/tech/llc-resonant-converters-1/</link>
+      <link>https://eddycliff.github.io/posts/tech/llc-resonant-converters-1/</link>
       <pubDate>Sun, 05 Nov 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/llc-resonant-converters-1/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/llc-resonant-converters-1/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;谐振变换器-第2节&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -507,10 +507,10 @@
     
     <item>
       <title>【浅谈LLC谐振变换器】- 章节2:LLC工作原理</title>
-      <link>https://eddyblog.cn/posts/tech/llc-resonant-converters-2/</link>
+      <link>https://eddycliff.github.io/posts/tech/llc-resonant-converters-2/</link>
       <pubDate>Sun, 05 Nov 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/llc-resonant-converters-2/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/llc-resonant-converters-2/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;谐振变换器-第3节&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -521,10 +521,10 @@
     
     <item>
       <title>【浅谈LLC谐振变换器】- 章节3:LLC特性分析</title>
-      <link>https://eddyblog.cn/posts/tech/llc-resonant-converters-3/</link>
+      <link>https://eddycliff.github.io/posts/tech/llc-resonant-converters-3/</link>
       <pubDate>Sun, 05 Nov 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/llc-resonant-converters-3/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/llc-resonant-converters-3/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;谐振变换器-第4节&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -535,10 +535,10 @@
     
     <item>
       <title>【嵌入式C语言编程】第十章 文件</title>
-      <link>https://eddyblog.cn/posts/tech/c-programming-10file/</link>
+      <link>https://eddycliff.github.io/posts/tech/c-programming-10file/</link>
       <pubDate>Mon, 23 Oct 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/c-programming-10file/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/c-programming-10file/</guid>
       <description>&lt;h2 id=&#34;第十章-文件&#34;&gt;第十章 文件&lt;/h2&gt;
 &lt;h2 id=&#34;init&#34;&gt;INIT&lt;/h2&gt;
 &lt;div align = &#34;center&#34;&gt;
@@ -556,10 +556,10 @@
     
     <item>
       <title>【嵌入式C语言编程】第八章 结构体，共用体，枚举</title>
-      <link>https://eddyblog.cn/posts/tech/c-programming-08struct/</link>
+      <link>https://eddycliff.github.io/posts/tech/c-programming-08struct/</link>
       <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/c-programming-08struct/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/c-programming-08struct/</guid>
       <description>&lt;h2 id=&#34;第八章-结构体共用体枚举&#34;&gt;第八章 结构体，共用体，枚举&lt;/h2&gt;
 &lt;h2 id=&#34;init&#34;&gt;INIT&lt;/h2&gt;
 &lt;div align = &#34;center&#34;&gt;
@@ -580,10 +580,10 @@
     
     <item>
       <title>【嵌入式C语言编程】第六章 动态内存申请</title>
-      <link>https://eddyblog.cn/posts/tech/c-programming-06dynamic-memory/</link>
+      <link>https://eddycliff.github.io/posts/tech/c-programming-06dynamic-memory/</link>
       <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/c-programming-06dynamic-memory/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/c-programming-06dynamic-memory/</guid>
       <description>&lt;h2 id=&#34;第六章-动态内存申请&#34;&gt;第六章 动态内存申请&lt;/h2&gt;
 &lt;h2 id=&#34;init&#34;&gt;INIT&lt;/h2&gt;
 &lt;div align = &#34;center&#34;&gt;
@@ -600,10 +600,10 @@
     
     <item>
       <title>【嵌入式C语言编程】第七章 字符串处理函数</title>
-      <link>https://eddyblog.cn/posts/tech/c-programming-07string/</link>
+      <link>https://eddycliff.github.io/posts/tech/c-programming-07string/</link>
       <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/c-programming-07string/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/c-programming-07string/</guid>
       <description>&lt;h2 id=&#34;第七章-字符串处理函数&#34;&gt;第七章 字符串处理函数&lt;/h2&gt;
 &lt;h2 id=&#34;init&#34;&gt;INIT&lt;/h2&gt;
 &lt;div align = &#34;center&#34;&gt;
@@ -695,10 +695,10 @@
     
     <item>
       <title>【嵌入式C语言编程】第四章 预处理</title>
-      <link>https://eddyblog.cn/posts/tech/c-programming-04preprocessing/</link>
+      <link>https://eddycliff.github.io/posts/tech/c-programming-04preprocessing/</link>
       <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/c-programming-04preprocessing/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/c-programming-04preprocessing/</guid>
       <description>&lt;h2 id=&#34;第四章-预处理&#34;&gt;第四章 预处理&lt;/h2&gt;
 &lt;h2 id=&#34;init&#34;&gt;INIT&lt;/h2&gt;
 &lt;div align = &#34;center&#34;&gt;
@@ -724,10 +724,10 @@
     
     <item>
       <title>【嵌入式C语言编程】第五章 指针</title>
-      <link>https://eddyblog.cn/posts/tech/c-programming-05pointer/</link>
+      <link>https://eddycliff.github.io/posts/tech/c-programming-05pointer/</link>
       <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/c-programming-05pointer/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/c-programming-05pointer/</guid>
       <description>&lt;h2 id=&#34;第五章-指针&#34;&gt;第五章 指针&lt;/h2&gt;
 &lt;h2 id=&#34;init&#34;&gt;INIT&lt;/h2&gt;
 &lt;div align = &#34;center&#34;&gt;
@@ -749,10 +749,10 @@
     
     <item>
       <title>【嵌入式C语言编程】第二章 数组</title>
-      <link>https://eddyblog.cn/posts/tech/c-programming-02array/</link>
+      <link>https://eddycliff.github.io/posts/tech/c-programming-02array/</link>
       <pubDate>Sat, 16 Sep 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/c-programming-02array/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/c-programming-02array/</guid>
       <description>&lt;h2 id=&#34;第二章-数组&#34;&gt;第二章 数组&lt;/h2&gt;
 &lt;h2 id=&#34;init&#34;&gt;INIT&lt;/h2&gt;
 &lt;div align = &#34;center&#34;&gt;
@@ -774,10 +774,10 @@
     
     <item>
       <title>【嵌入式C语言编程】第三章 函数</title>
-      <link>https://eddyblog.cn/posts/tech/c-programming-03fun/</link>
+      <link>https://eddycliff.github.io/posts/tech/c-programming-03fun/</link>
       <pubDate>Sat, 16 Sep 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/c-programming-03fun/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/c-programming-03fun/</guid>
       <description>&lt;h2 id=&#34;第三章-函数&#34;&gt;第三章 函数&lt;/h2&gt;
 &lt;h2 id=&#34;init&#34;&gt;INIT&lt;/h2&gt;
 &lt;div align = &#34;center&#34;&gt;
@@ -795,10 +795,10 @@
     
     <item>
       <title>【C语言指南】代码注释规范</title>
-      <link>https://eddyblog.cn/posts/tech/c-language-comment-specification/</link>
+      <link>https://eddycliff.github.io/posts/tech/c-language-comment-specification/</link>
       <pubDate>Tue, 12 Sep 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/c-language-comment-specification/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/c-language-comment-specification/</guid>
       <description>&lt;h2 id=&#34;常用的注释模板&#34;&gt;常用的注释模板&lt;/h2&gt;
 &lt;p&gt;C语言并没有一个官方的注释规范，但有一些常见的注释风格和最佳实践，可以帮助你编写清晰、易于理解的注释。以下是一些常用的高效注释模板，你可以根据需要进行自定义：&lt;/p&gt;
 &lt;ol&gt;
@@ -815,10 +815,10 @@
     
     <item>
       <title>【GitHub 使用指南】解决大文件上传问题：Git LFS 最佳实践</title>
-      <link>https://eddyblog.cn/posts/tech/github-git-lfs/</link>
+      <link>https://eddycliff.github.io/posts/tech/github-git-lfs/</link>
       <pubDate>Tue, 12 Sep 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/github-git-lfs/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/github-git-lfs/</guid>
       <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;在进行版本控制时，管理大文件是一个常见但棘手的问题。GitHub为了维护性能和资源，对大文件的存储有一些限制。本文将介绍如何使用Git LFS（Large File Storage）来高效管理大文件，以及如何应对可能遇到的问题并提供解决方案。&lt;/p&gt;
 &lt;h2 id=&#34;问题阐述&#34;&gt;问题阐述&lt;/h2&gt;
@@ -830,10 +830,10 @@
     
     <item>
       <title>【GitHub使用指南】解决Git Push错误 - 502 Bad Gateway</title>
-      <link>https://eddyblog.cn/posts/tech/github_error-git_push/</link>
+      <link>https://eddycliff.github.io/posts/tech/github_error-git_push/</link>
       <pubDate>Tue, 12 Sep 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/github_error-git_push/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/github_error-git_push/</guid>
       <description>&lt;h2 id=&#34;问题描述&#34;&gt;问题描述&lt;/h2&gt;
 &lt;p&gt;输入&lt;code&gt;git push&lt;/code&gt;命令后报错&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-PowerShell&#34; data-lang=&#34;PowerShell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ git push &lt;span style=&#34;color:#f92672&#34;&gt;-f&lt;/span&gt; origin main
@@ -852,10 +852,10 @@
     
     <item>
       <title>【GitHub使用指南】解决Git操作错误 - Github Action问题分析</title>
-      <link>https://eddyblog.cn/posts/tech/github-git-action-error/</link>
+      <link>https://eddycliff.github.io/posts/tech/github-git-action-error/</link>
       <pubDate>Tue, 12 Sep 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/github-git-action-error/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/github-git-action-error/</guid>
       <description>&lt;h2 id=&#34;问题描述&#34;&gt;问题描述&lt;/h2&gt;
 &lt;p&gt;当使用&lt;code&gt;GitHub Actions&lt;/code&gt;执行工作流程时，有时会遇到错误消息，其中一个常见的错误是：&lt;code&gt;Action failed with &#39;not found deploy key or tokens&lt;/code&gt;。这个错误通常表示&lt;code&gt;GitHub Actions&lt;/code&gt;在执行过程中找不到有效的部署密钥或访问令牌。这篇博客将帮助你了解如何解决这个问题。&lt;/p&gt;
 &lt;h2 id=&#34;错误原因分析&#34;&gt;错误原因分析&lt;/h2&gt;
@@ -864,227 +864,227 @@
     
     <item>
       <title>【Hugo网站搭建】GitHub Action自动化部署Hugo博客</title>
-      <link>https://eddyblog.cn/posts/tech/github-action-hugo/</link>
+      <link>https://eddycliff.github.io/posts/tech/github-action-hugo/</link>
       <pubDate>Wed, 06 Sep 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/github-action-hugo/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/github-action-hugo/</guid>
       <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;在本文中，我们将介绍如何通过GitHub Action自动化部署Hugo博客。如果你是一个博客作者，你可能已经熟悉了使用Hugo构建和管理你的博客。Hugo是一个快速且灵活的静态网站生成器，但是手动部署博客可能会变得繁琐。为了解决这个问题，我们可以利用GitHub Action，这是一个GitHub提供的持续集成和持续交付（CI/CD）工具，来自动构建和部署我们的博客。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>【Hugo网站搭建】bug日志 - 解决 YAML 解析错误</title>
-      <link>https://eddyblog.cn/posts/tech/hugo-bug-yaml/</link>
+      <link>https://eddycliff.github.io/posts/tech/hugo-bug-yaml/</link>
       <pubDate>Wed, 30 Aug 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/hugo-bug-yaml/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/hugo-bug-yaml/</guid>
       <description>解决 Hugo 构建过程中出现的 YAML 解析错误。了解错误背后的原因，探讨正确的 YAML 头部格式，并提供修复方案，确保 Hugo 网站构建顺利进行。</description>
     </item>
     
     <item>
       <title>【Hugo网站搭建】图床工具PicGo-bug日志</title>
-      <link>https://eddyblog.cn/posts/tech/picgo-bug/</link>
+      <link>https://eddycliff.github.io/posts/tech/picgo-bug/</link>
       <pubDate>Wed, 30 Aug 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/picgo-bug/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/picgo-bug/</guid>
       <description>解决 PicGo 图床工具中的 &amp;#34;unable to verify the first certificate&amp;#34; 错误。了解错误原因、网络加速工具可能引发的问题，并探讨关闭 fastgithub 解决方案。同时介绍 PicGo 官方文档中的常见问题和解决方法，确保图床上传稳定可靠。</description>
     </item>
     
     <item>
       <title>【Hugo网站搭建】GitHub&#43;jsDelivr&#43;PicGo搭建博客图床</title>
-      <link>https://eddyblog.cn/posts/tech/github-jsdelivr-picgo/</link>
+      <link>https://eddycliff.github.io/posts/tech/github-jsdelivr-picgo/</link>
       <pubDate>Tue, 29 Aug 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/github-jsdelivr-picgo/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/github-jsdelivr-picgo/</guid>
       <description>在这篇【博客写作指南】中，了解如何利用GitHub、jsDelivr和PicGo搭建博客图床，为你的博客添加稳定的图片存储和快速的CDN加速服务。跟随详细步骤，轻松创建自己的图床，为博客内容增添视觉魅力。</description>
     </item>
     
     <item>
       <title>【Hugo网站搭建】博客写作指南-创意封面设计与选择</title>
-      <link>https://eddyblog.cn/posts/tech/blog-cover-design-selection/</link>
+      <link>https://eddycliff.github.io/posts/tech/blog-cover-design-selection/</link>
       <pubDate>Tue, 29 Aug 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/blog-cover-design-selection/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/blog-cover-design-selection/</guid>
       <description>探索创意封面设计与选择的博客写作指南，了解如何为您的博客内容选择合适的封面图像，并掌握设计工具和资源，让您的博客在视觉上更具吸引力和专业性。提升您的博客封面，吸引读者注意，传达您的主题与理念。</description>
     </item>
     
     <item>
       <title>【Hugo网站搭建】博客写作指南-如何在Hugo博客中巧妙运用照片</title>
-      <link>https://eddyblog.cn/posts/tech/hugo_insert_png/</link>
+      <link>https://eddycliff.github.io/posts/tech/hugo_insert_png/</link>
       <pubDate>Tue, 29 Aug 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/hugo_insert_png/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/hugo_insert_png/</guid>
       <description>了解如何在Hugo博客中巧妙使用照片，为您的内容增添视觉吸引力和表现力。</description>
     </item>
     
     <item>
       <title>【Hugo网站搭建】网站速度优化-利用Pingdom测试与提升</title>
-      <link>https://eddyblog.cn/posts/tech/website-speed-optimization/</link>
+      <link>https://eddycliff.github.io/posts/tech/website-speed-optimization/</link>
       <pubDate>Tue, 29 Aug 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/website-speed-optimization/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/website-speed-optimization/</guid>
       <description>了解如何通过Pingdom工具测试您的网站速度，并探索针对测试结果采取的优化方法。优化网页加载时间，提升用户体验，加速页面响应，从而提高搜索引擎排名和访客留存率。从测试到优化，本指南将指导您使网站速度达到最佳状态。</description>
     </item>
     
     <item>
       <title>【Hugo网站搭建】优化网站性能-使用PageSpeed Insights评估与改进</title>
-      <link>https://eddyblog.cn/posts/tech/optimize-website-performance/</link>
+      <link>https://eddycliff.github.io/posts/tech/optimize-website-performance/</link>
       <pubDate>Tue, 29 Aug 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/optimize-website-performance/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/optimize-website-performance/</guid>
       <description>了解如何利用PageSpeed Insights评估您的网站性能，并通过优化措施提升加载速度和用户体验。本指南将为您详细解释如何分析测试结果，并采取步骤来改进网站性能，以满足现代用户对快速加载页面的需求。</description>
     </item>
     
     <item>
       <title>【Hugo网站搭建】实现post-markdown引入树状目录</title>
-      <link>https://eddyblog.cn/posts/tech/hugo_introduce_a_tree_directory/</link>
+      <link>https://eddycliff.github.io/posts/tech/hugo_introduce_a_tree_directory/</link>
       <pubDate>Fri, 25 Aug 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/hugo_introduce_a_tree_directory/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/hugo_introduce_a_tree_directory/</guid>
       <description>markdown引入树状目录</description>
     </item>
     
     <item>
       <title>【Github使用指南】release上的安装包amd和arm的选择</title>
-      <link>https://eddyblog.cn/posts/tech/github-amd-arm/</link>
+      <link>https://eddycliff.github.io/posts/tech/github-amd-arm/</link>
       <pubDate>Sun, 20 Aug 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/github-amd-arm/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/github-amd-arm/</guid>
       <description>release上的安装包amd和arm的选择</description>
     </item>
     
     <item>
       <title>【Hugo网站搭建】bug日志-hugo server失败</title>
-      <link>https://eddyblog.cn/posts/tech/hugo_server_failed/</link>
+      <link>https://eddycliff.github.io/posts/tech/hugo_server_failed/</link>
       <pubDate>Sun, 20 Aug 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/hugo_server_failed/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/hugo_server_failed/</guid>
       <description>error:hugo server失败</description>
     </item>
     
     <item>
       <title>【Linux应用开发指南】vmware实现复制粘贴功能</title>
-      <link>https://eddyblog.cn/posts/tech/linux-vmware-copy-and-paste/</link>
+      <link>https://eddycliff.github.io/posts/tech/linux-vmware-copy-and-paste/</link>
       <pubDate>Sat, 19 Aug 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/linux-vmware-copy-and-paste/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/linux-vmware-copy-and-paste/</guid>
       <description>vmware实现复制粘贴功能</description>
     </item>
     
     <item>
       <title>【Hugo网站搭建】实现post-markdown引用本地图片</title>
-      <link>https://eddyblog.cn/posts/tech/hugo_referencing_local_images/</link>
+      <link>https://eddycliff.github.io/posts/tech/hugo_referencing_local_images/</link>
       <pubDate>Sun, 13 Aug 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/hugo_referencing_local_images/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/hugo_referencing_local_images/</guid>
       <description>markdown引用本地图片</description>
     </item>
     
     <item>
       <title>【Hugo网站搭建】在Github仓库分别储存博客源码和静态页面</title>
-      <link>https://eddyblog.cn/posts/tech/hugo_saving_source_code/</link>
+      <link>https://eddycliff.github.io/posts/tech/hugo_saving_source_code/</link>
       <pubDate>Fri, 11 Aug 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/hugo_saving_source_code/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/hugo_saving_source_code/</guid>
       <description>在Github仓库分别储存博客源码和静态页面</description>
     </item>
     
     <item>
       <title>【Github使用指南】bug日志-删除本地仓库/错误的远程仓库关联</title>
-      <link>https://eddyblog.cn/posts/tech/github-delete-wrong-repository/</link>
+      <link>https://eddycliff.github.io/posts/tech/github-delete-wrong-repository/</link>
       <pubDate>Thu, 10 Aug 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/github-delete-wrong-repository/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/github-delete-wrong-repository/</guid>
       <description>删除本地仓库/错误的远程仓库关联</description>
     </item>
     
     <item>
       <title>【Github使用指南】bug日志-git remote</title>
-      <link>https://eddyblog.cn/posts/tech/github-error-git-remote/</link>
+      <link>https://eddycliff.github.io/posts/tech/github-error-git-remote/</link>
       <pubDate>Thu, 20 Jul 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/github-error-git-remote/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/github-error-git-remote/</guid>
       <description>解决{error: remote origin already exists.}</description>
     </item>
     
     <item>
       <title>【Hugo网站搭建】添加不蒜子Busuanzi页面浏览次数与阅读数据统计</title>
-      <link>https://eddyblog.cn/posts/tech/hugo-busuanzi/</link>
+      <link>https://eddycliff.github.io/posts/tech/hugo-busuanzi/</link>
       <pubDate>Mon, 10 Jul 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/hugo-busuanzi/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/hugo-busuanzi/</guid>
       <description>Hugo添加不蒜子Busuanzi页面浏览次数与阅读数据统计</description>
     </item>
     
     <item>
       <title>【Github使用指南】bug日志-OpenSSL SSL_read</title>
-      <link>https://eddyblog.cn/posts/tech/gitub-error1/</link>
+      <link>https://eddycliff.github.io/posts/tech/gitub-error1/</link>
       <pubDate>Tue, 20 Jun 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/gitub-error1/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/gitub-error1/</guid>
       <description>解决{OpenSSL SSL_read: Connection was reset, errno 10054}</description>
     </item>
     
     <item>
       <title>【Github使用指南】将仓库中的master分支合并到main分支</title>
-      <link>https://eddyblog.cn/posts/tech/github-master-to-main-branch/</link>
+      <link>https://eddycliff.github.io/posts/tech/github-master-to-main-branch/</link>
       <pubDate>Tue, 20 Jun 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/github-master-to-main-branch/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/github-master-to-main-branch/</guid>
       <description>将仓库中的master分支合并到main分支</description>
     </item>
     
     <item>
       <title>【Hugo网站搭建】实现代码高亮</title>
-      <link>https://eddyblog.cn/posts/tech/hugo_code_highlight/</link>
+      <link>https://eddycliff.github.io/posts/tech/hugo_code_highlight/</link>
       <pubDate>Sat, 10 Jun 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/hugo_code_highlight/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/hugo_code_highlight/</guid>
       <description>Hugo代码高亮</description>
     </item>
     
     <item>
       <title>【Hugo网站搭建】主题美化-添加emoji</title>
-      <link>https://eddyblog.cn/posts/tech/hugo_emoji/</link>
+      <link>https://eddycliff.github.io/posts/tech/hugo_emoji/</link>
       <pubDate>Sat, 13 May 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/hugo_emoji/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/hugo_emoji/</guid>
       <description>Hugo主题美化-添加emoji</description>
     </item>
     
     <item>
       <title>【Hugo网站搭建】bug日志-将网站部署到GitHub远程仓库时出现了错误</title>
-      <link>https://eddyblog.cn/posts/tech/hugo_error1/</link>
+      <link>https://eddycliff.github.io/posts/tech/hugo_error1/</link>
       <pubDate>Mon, 17 Apr 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/hugo_error1/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/hugo_error1/</guid>
       <description>error:在本地使用Hugo构建网站并在本地服务器上正常运行，但在将网站部署到GitHub远程仓库时出现了错误</description>
     </item>
     
     <item>
       <title>【Hugo网站搭建】Githubpages托管服务对应仓库username.github.io</title>
-      <link>https://eddyblog.cn/posts/tech/hugo_githubpages/</link>
+      <link>https://eddycliff.github.io/posts/tech/hugo_githubpages/</link>
       <pubDate>Sat, 11 Mar 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/hugo_githubpages/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/hugo_githubpages/</guid>
       <description>githubpages对应仓库username.github.io删除之后,重新创建一次仍然可以匹配到githubpages</description>
     </item>
     
     <item>
       <title>【Hugo网站搭建】在config.yml中设置主页头像</title>
-      <link>https://eddyblog.cn/posts/tech/hugo_homepage_avatar/</link>
+      <link>https://eddycliff.github.io/posts/tech/hugo_homepage_avatar/</link>
       <pubDate>Sat, 11 Mar 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/hugo_homepage_avatar/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/hugo_homepage_avatar/</guid>
       <description>Hugo设置主页头像</description>
     </item>
     
     <item>
       <title>【Hugo网站搭建】在网站主页添加icon&#43;socialIcons(利用svg.html和config.yml)</title>
-      <link>https://eddyblog.cn/posts/tech/hugo_icon/</link>
+      <link>https://eddycliff.github.io/posts/tech/hugo_icon/</link>
       <pubDate>Fri, 20 Jan 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/hugo_icon/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/hugo_icon/</guid>
       <description>Hugo添加icon&#43;socialIcons</description>
     </item>
     

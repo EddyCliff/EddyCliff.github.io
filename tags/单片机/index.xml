@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>单片机 on Eddy&#39;s blog</title>
-    <link>https://eddyblog.cn/tags/%E5%8D%95%E7%89%87%E6%9C%BA/</link>
+    <link>https://eddycliff.github.io/tags/%E5%8D%95%E7%89%87%E6%9C%BA/</link>
     <description>Recent content in 单片机 on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Wed, 01 May 2024 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/%E5%8D%95%E7%89%87%E6%9C%BA/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 01 May 2024 00:17:58 +0800</lastBuildDate><atom:link href="https://eddycliff.github.io/tags/%E5%8D%95%E7%89%87%E6%9C%BA/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【温故而知新】单片机基础知识回顾</title>
-      <link>https://eddyblog.cn/posts/tech/exp-sticker-mcu-basic-knowledge-review/</link>
+      <link>https://eddycliff.github.io/posts/tech/exp-sticker-mcu-basic-knowledge-review/</link>
       <pubDate>Wed, 01 May 2024 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/exp-sticker-mcu-basic-knowledge-review/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/exp-sticker-mcu-basic-knowledge-review/</guid>
       <description>&lt;div align = &#34;center&#34;&gt;
 &lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P11-EXTI%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD-1.jpg&#34; alt = &#34;P11-EXTI外部中断-1.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
 &lt;/div&gt;

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Github使用指南 on Eddy&#39;s blog</title>
-    <link>https://eddyblog.cn/tags/github%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</link>
+    <link>https://eddycliff.github.io/tags/github%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</link>
     <description>Recent content in Github使用指南 on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 12 Sep 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/github%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 12 Sep 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddycliff.github.io/tags/github%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【GitHub 使用指南】解决大文件上传问题：Git LFS 最佳实践</title>
-      <link>https://eddyblog.cn/posts/tech/github-git-lfs/</link>
+      <link>https://eddycliff.github.io/posts/tech/github-git-lfs/</link>
       <pubDate>Tue, 12 Sep 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/github-git-lfs/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/github-git-lfs/</guid>
       <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;在进行版本控制时，管理大文件是一个常见但棘手的问题。GitHub为了维护性能和资源，对大文件的存储有一些限制。本文将介绍如何使用Git LFS（Large File Storage）来高效管理大文件，以及如何应对可能遇到的问题并提供解决方案。&lt;/p&gt;
 &lt;h2 id=&#34;问题阐述&#34;&gt;问题阐述&lt;/h2&gt;
@@ -24,10 +24,10 @@
     
     <item>
       <title>【GitHub使用指南】解决Git Push错误 - 502 Bad Gateway</title>
-      <link>https://eddyblog.cn/posts/tech/github_error-git_push/</link>
+      <link>https://eddycliff.github.io/posts/tech/github_error-git_push/</link>
       <pubDate>Tue, 12 Sep 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/github_error-git_push/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/github_error-git_push/</guid>
       <description>&lt;h2 id=&#34;问题描述&#34;&gt;问题描述&lt;/h2&gt;
 &lt;p&gt;输入&lt;code&gt;git push&lt;/code&gt;命令后报错&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-PowerShell&#34; data-lang=&#34;PowerShell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ git push &lt;span style=&#34;color:#f92672&#34;&gt;-f&lt;/span&gt; origin main
@@ -46,10 +46,10 @@
     
     <item>
       <title>【GitHub使用指南】解决Git操作错误 - Github Action问题分析</title>
-      <link>https://eddyblog.cn/posts/tech/github-git-action-error/</link>
+      <link>https://eddycliff.github.io/posts/tech/github-git-action-error/</link>
       <pubDate>Tue, 12 Sep 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/github-git-action-error/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/github-git-action-error/</guid>
       <description>&lt;h2 id=&#34;问题描述&#34;&gt;问题描述&lt;/h2&gt;
 &lt;p&gt;当使用&lt;code&gt;GitHub Actions&lt;/code&gt;执行工作流程时，有时会遇到错误消息，其中一个常见的错误是：&lt;code&gt;Action failed with &#39;not found deploy key or tokens&lt;/code&gt;。这个错误通常表示&lt;code&gt;GitHub Actions&lt;/code&gt;在执行过程中找不到有效的部署密钥或访问令牌。这篇博客将帮助你了解如何解决这个问题。&lt;/p&gt;
 &lt;h2 id=&#34;错误原因分析&#34;&gt;错误原因分析&lt;/h2&gt;
@@ -58,46 +58,46 @@
     
     <item>
       <title>【Github使用指南】release上的安装包amd和arm的选择</title>
-      <link>https://eddyblog.cn/posts/tech/github-amd-arm/</link>
+      <link>https://eddycliff.github.io/posts/tech/github-amd-arm/</link>
       <pubDate>Sun, 20 Aug 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/github-amd-arm/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/github-amd-arm/</guid>
       <description>release上的安装包amd和arm的选择</description>
     </item>
     
     <item>
       <title>【Github使用指南】bug日志-删除本地仓库/错误的远程仓库关联</title>
-      <link>https://eddyblog.cn/posts/tech/github-delete-wrong-repository/</link>
+      <link>https://eddycliff.github.io/posts/tech/github-delete-wrong-repository/</link>
       <pubDate>Thu, 10 Aug 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/github-delete-wrong-repository/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/github-delete-wrong-repository/</guid>
       <description>删除本地仓库/错误的远程仓库关联</description>
     </item>
     
     <item>
       <title>【Github使用指南】bug日志-git remote</title>
-      <link>https://eddyblog.cn/posts/tech/github-error-git-remote/</link>
+      <link>https://eddycliff.github.io/posts/tech/github-error-git-remote/</link>
       <pubDate>Thu, 20 Jul 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/github-error-git-remote/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/github-error-git-remote/</guid>
       <description>解决{error: remote origin already exists.}</description>
     </item>
     
     <item>
       <title>【Github使用指南】bug日志-OpenSSL SSL_read</title>
-      <link>https://eddyblog.cn/posts/tech/gitub-error1/</link>
+      <link>https://eddycliff.github.io/posts/tech/gitub-error1/</link>
       <pubDate>Tue, 20 Jun 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/gitub-error1/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/gitub-error1/</guid>
       <description>解决{OpenSSL SSL_read: Connection was reset, errno 10054}</description>
     </item>
     
     <item>
       <title>【Github使用指南】将仓库中的master分支合并到main分支</title>
-      <link>https://eddyblog.cn/posts/tech/github-master-to-main-branch/</link>
+      <link>https://eddycliff.github.io/posts/tech/github-master-to-main-branch/</link>
       <pubDate>Tue, 20 Jun 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/github-master-to-main-branch/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/github-master-to-main-branch/</guid>
       <description>将仓库中的master分支合并到main分支</description>
     </item>
     

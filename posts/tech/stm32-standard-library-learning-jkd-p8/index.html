@@ -9,17 +9,17 @@
 <meta name="keywords" content="STM32, embedded, Embedded development, MCU, ARM Cortex-M, Development Board, 开发板, STM32简介, STM32标准库, 嵌入式开发">
 <meta name="description" content="本博客详细介绍了一个基于STM32最小系统板的项目开发过程，重点涵盖了基本的LED控制电路设计、模块化编程的应用以及扩展至光敏传感器和蜂鸣器模块的功能实现。首先，通过对PB1和PB10引脚连接按键，以及PA1和PA2引脚连接LED的基本电路描述，项目导入了如何在STM32板上实现简单LED控制的基础。在此基础上，强调了模块化编程的重要性，即通过将驱动代码分离至单独的.C和.H文件中，以提升代码的管理与移植性。特别提到了在&#39;module&#39;文件夹下创建硬件驱动程序的方法，以及在这些文件中添加必要预处理指令和其他细节的重要性。 其次，详细叙述了LED初始化和模块化编程的具体实践，包括LED的时钟配置、端口模式设置，以及如何通过结构体变量实现对GPIO的精确控制。此外，还介绍了如何处理警告和错误信息，从而保证了程序的稳定运行。通过这些步骤，成功实现了LED的点亮与熄灭功能，验证了程序的正确性。 进一步地，文章扩展到如何完善LED驱动程序模块，包括提供两种不同功能实现方式以及在硬件目录下创建新文件来组织代码的方法。接下来，详细介绍了使用RCC APB2外设时钟控制、配置GPIO端口模式、读取按键值等功能，以及如何通过GPL库消除按键抖动，并实现光照强度检测与蜂鸣器控制的综合应用。 总之，该段内容围绕着STM32开发板上的LED、光敏传感器和蜂鸣器模块的控制，展示了从基础电路设计到模块化编程，再到复杂功能实现的完整开发流程。每个环节都突出了理论与实践相结合的重要性，旨在提高代码的质量和项目的可维护性。">
 <meta name="author" content="Eddy">
-<link rel="canonical" href="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p8/">
+<link rel="canonical" href="https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p8/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.js" onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="https://eddyblog.cn/img/logo3.jpg">
-<link rel="icon" type="image/png" sizes="16x16" href="https://eddyblog.cn/img/logo3.jpg">
-<link rel="icon" type="image/png" sizes="32x32" href="https://eddyblog.cn/img/logo3.jpg">
-<link rel="apple-touch-icon" href="https://eddyblog.cn/img/logo3.jpg">
-<link rel="mask-icon" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="icon" href="https://eddycliff.github.io/img/logo3.jpg">
+<link rel="icon" type="image/png" sizes="16x16" href="https://eddycliff.github.io/img/logo3.jpg">
+<link rel="icon" type="image/png" sizes="32x32" href="https://eddycliff.github.io/img/logo3.jpg">
+<link rel="apple-touch-icon" href="https://eddycliff.github.io/img/logo3.jpg">
+<link rel="mask-icon" href="https://eddycliff.github.io/img/logo3.jpg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p8/">
+<link rel="alternate" hreflang="zh" href="https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p8/">
 <noscript>
     <style>
         #theme-toggle,
@@ -82,7 +82,7 @@ var _hmt = _hmt || [];
 <meta property="og:title" content="嵌入式开发-STM32标准库学习：按键控制LED,光敏传感器控制蜂鸣器" />
 <meta property="og:description" content="本博客详细介绍了一个基于STM32最小系统板的项目开发过程，重点涵盖了基本的LED控制电路设计、模块化编程的应用以及扩展至光敏传感器和蜂鸣器模块的功能实现。首先，通过对PB1和PB10引脚连接按键，以及PA1和PA2引脚连接LED的基本电路描述，项目导入了如何在STM32板上实现简单LED控制的基础。在此基础上，强调了模块化编程的重要性，即通过将驱动代码分离至单独的.C和.H文件中，以提升代码的管理与移植性。特别提到了在&#39;module&#39;文件夹下创建硬件驱动程序的方法，以及在这些文件中添加必要预处理指令和其他细节的重要性。 其次，详细叙述了LED初始化和模块化编程的具体实践，包括LED的时钟配置、端口模式设置，以及如何通过结构体变量实现对GPIO的精确控制。此外，还介绍了如何处理警告和错误信息，从而保证了程序的稳定运行。通过这些步骤，成功实现了LED的点亮与熄灭功能，验证了程序的正确性。 进一步地，文章扩展到如何完善LED驱动程序模块，包括提供两种不同功能实现方式以及在硬件目录下创建新文件来组织代码的方法。接下来，详细介绍了使用RCC APB2外设时钟控制、配置GPIO端口模式、读取按键值等功能，以及如何通过GPL库消除按键抖动，并实现光照强度检测与蜂鸣器控制的综合应用。 总之，该段内容围绕着STM32开发板上的LED、光敏传感器和蜂鸣器模块的控制，展示了从基础电路设计到模块化编程，再到复杂功能实现的完整开发流程。每个环节都突出了理论与实践相结合的重要性，旨在提高代码的质量和项目的可维护性。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p8/" />
+<meta property="og:url" content="https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p8/" />
 <meta property="og:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/pc9.jpg" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2024-05-13T00:17:58+08:00" />
 <meta property="article:modified_time" content="2024-05-13T00:17:58+08:00" />
@@ -103,20 +103,20 @@ var _hmt = _hmt || [];
           "@type": "ListItem",
           "position":  1 ,
           "name": "📚文章",
-          "item": "https://eddyblog.cn/posts/"
+          "item": "https://eddycliff.github.io/posts/"
         },
 
         {
           "@type": "ListItem",
           "position":  2 ,
           "name": "👨🏻‍💻 技术",
-          "item": "https://eddyblog.cn/posts/tech/"
+          "item": "https://eddycliff.github.io/posts/tech/"
         }, 
     {
       "@type": "ListItem",
       "position":  3 ,
       "name": "嵌入式开发-STM32标准库学习：按键控制LED,光敏传感器控制蜂鸣器",
-      "item": "https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p8/"
+      "item": "https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p8/"
     }
   ]
 }
@@ -142,14 +142,14 @@ var _hmt = _hmt || [];
   }],
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p8/"
+    "@id": "https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p8/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "Eddy's blog",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://eddyblog.cn/img/logo3.jpg"
+      "url": "https://eddycliff.github.io/img/logo3.jpg"
     }
   }
 }
@@ -184,8 +184,8 @@ var _hmt = _hmt || [];
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://eddyblog.cn/" accesskey="h" title="Eddy&#39;s Blog (Alt + H)">
-            <img src="https://eddyblog.cn/img/logo3.jpg" alt="logo" aria-label="logo"
+            <a href="https://eddycliff.github.io/" accesskey="h" title="Eddy&#39;s Blog (Alt + H)">
+            <img src="https://eddycliff.github.io/img/logo3.jpg" alt="logo" aria-label="logo"
                  height="35">Eddy&#39;s Blog</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
@@ -214,32 +214,32 @@ var _hmt = _hmt || [];
         </div>
         <ul id="menu">
             <li>
-                <a href="https://eddyblog.cn/search" title="🔍 搜索 (Alt &#43; /)" accesskey=/>
+                <a href="https://eddycliff.github.io/search" title="🔍 搜索 (Alt &#43; /)" accesskey=/>
                 <span>🔍 搜索</span>
                 </a>
             </li>
             <li>
-                <a href="https://eddyblog.cn/" title="🏠 主页">
+                <a href="https://eddycliff.github.io/" title="🏠 主页">
                 <span>🏠 主页</span>
                 </a>
             </li>
             <li>
-                <a href="https://eddyblog.cn/posts" title="📚 文章">
+                <a href="https://eddycliff.github.io/posts" title="📚 文章">
                 <span>📚 文章</span>
                 </a>
             </li>
             <li>
-                <a href="https://eddyblog.cn/tags" title="🧩 标签">
+                <a href="https://eddycliff.github.io/tags" title="🧩 标签">
                 <span>🧩 标签</span>
                 </a>
             </li>
             <li>
-                <a href="https://eddyblog.cn/archives/" title="⏱️ 时间轴">
+                <a href="https://eddycliff.github.io/archives/" title="⏱️ 时间轴">
                 <span>⏱️ 时间轴</span>
                 </a>
             </li>
             <li>
-                <a href="https://eddyblog.cn/about" title="🙋🏻‍♂️ 关于">
+                <a href="https://eddycliff.github.io/about" title="🙋🏻‍♂️ 关于">
                 <span>🙋🏻‍♂️ 关于</span>
                 </a>
             </li>
@@ -258,7 +258,7 @@ var _hmt = _hmt || [];
 <article class="post-single">
     <div id="single-content">
         <header class="post-header">
-            <div class="breadcrumbs"><a href="https://eddyblog.cn/">🏠 主页</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/">📚文章</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/tech/">👨🏻‍💻 技术</a></div>
+            <div class="breadcrumbs"><a href="https://eddycliff.github.io/">🏠 主页</a>&nbsp;»&nbsp;<a href="https://eddycliff.github.io/posts/">📚文章</a>&nbsp;»&nbsp;<a href="https://eddycliff.github.io/posts/tech/">👨🏻‍💻 技术</a></div>
             <h1 class="post-title">
                 嵌入式开发-STM32标准库学习：按键控制LED,光敏传感器控制蜂鸣器
             </h1>
@@ -317,16 +317,16 @@ var _hmt = _hmt || [];
         <span class="fa fa-tags" style="opacity: 0.8"></span>
         <span>
             <span class="post-tags-meta">
-                <a href="https://eddyblog.cn/tags/stm32/" style="color: var(--secondary)!important;">STM32</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/mcu/" style="color: var(--secondary)!important;">MCU</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/arm-cortex/" style="color: var(--secondary)!important;">ARM Cortex</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/led/" style="color: var(--secondary)!important;">LED</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/%E6%8C%89%E9%94%AE%E6%8E%A7%E5%88%B6led/" style="color: var(--secondary)!important;">按键控制LED</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/%E8%9C%82%E9%B8%A3%E5%99%A8/" style="color: var(--secondary)!important;">蜂鸣器</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/%E5%85%89%E6%95%8F%E4%BC%A0%E6%84%9F%E5%99%A8%E6%8E%A7%E5%88%B6%E8%9C%82%E9%B8%A3%E5%99%A8/" style="color: var(--secondary)!important;">光敏传感器控制蜂鸣器</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/stm32%E6%A0%87%E5%87%86%E5%BA%93%E5%BC%80%E5%8F%91/" style="color: var(--secondary)!important;">STM32标准库开发</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" style="color: var(--secondary)!important;">嵌入式开发</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/stm32f1/" style="color: var(--secondary)!important;">STM32F1</a>
+                <a href="https://eddycliff.github.io/tags/stm32/" style="color: var(--secondary)!important;">STM32</a>
+                &nbsp;<a href="https://eddycliff.github.io/tags/mcu/" style="color: var(--secondary)!important;">MCU</a>
+                &nbsp;<a href="https://eddycliff.github.io/tags/arm-cortex/" style="color: var(--secondary)!important;">ARM Cortex</a>
+                &nbsp;<a href="https://eddycliff.github.io/tags/led/" style="color: var(--secondary)!important;">LED</a>
+                &nbsp;<a href="https://eddycliff.github.io/tags/%E6%8C%89%E9%94%AE%E6%8E%A7%E5%88%B6led/" style="color: var(--secondary)!important;">按键控制LED</a>
+                &nbsp;<a href="https://eddycliff.github.io/tags/%E8%9C%82%E9%B8%A3%E5%99%A8/" style="color: var(--secondary)!important;">蜂鸣器</a>
+                &nbsp;<a href="https://eddycliff.github.io/tags/%E5%85%89%E6%95%8F%E4%BC%A0%E6%84%9F%E5%99%A8%E6%8E%A7%E5%88%B6%E8%9C%82%E9%B8%A3%E5%99%A8/" style="color: var(--secondary)!important;">光敏传感器控制蜂鸣器</a>
+                &nbsp;<a href="https://eddycliff.github.io/tags/stm32%E6%A0%87%E5%87%86%E5%BA%93%E5%BC%80%E5%8F%91/" style="color: var(--secondary)!important;">STM32标准库开发</a>
+                &nbsp;<a href="https://eddycliff.github.io/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" style="color: var(--secondary)!important;">嵌入式开发</a>
+                &nbsp;<a href="https://eddycliff.github.io/tags/stm32f1/" style="color: var(--secondary)!important;">STM32F1</a>
             </span>
         </span>
     </span>
@@ -347,7 +347,7 @@ var _hmt = _hmt || [];
                             <script>
                                 let url = document.documentURI
                                 
-                                let dnsUrl = "https://eddyblog.cn/"
+                                let dnsUrl = "https://eddycliff.github.io/"
                                 let urlSplit = url.split(dnsUrl)
                                 let finalUrl = urlSplit[1]
                                 if (finalUrl[0] !== '/') {
@@ -1154,12 +1154,12 @@ var _hmt = _hmt || [];
         <footer class="post-footer">
             
 <nav class="paginav">
-  <a class="prev" href="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p9/">
+  <a class="prev" href="https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p9/">
     <span class="title">« 上一页</span>
     <br>
     <span>嵌入式开发-STM32标准库学习：OLED调试工具</span>
   </a>
-  <a class="next" href="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p7/">
+  <a class="next" href="https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p7/">
     <span class="title">下一页 »</span>
     <br>
     <span>嵌入式开发-STM32标准库学习：GPIO输入</span>
@@ -1176,7 +1176,7 @@ var _hmt = _hmt || [];
         Copyright
         &copy;
         -2024
-        <a href="https://eddyblog.cn/" style="color:#939393;">Eddy&#39;s blog</a>
+        <a href="https://eddycliff.github.io/" style="color:#939393;">Eddy&#39;s blog</a>
         All Rights Reserved
     </span>
     <a href="https://beian.miit.gov.cn/" target="_blank" style="color:#939393;"></a>&nbsp;

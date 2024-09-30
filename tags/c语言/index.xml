@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>C语言 on Eddy&#39;s blog</title>
-    <link>https://eddyblog.cn/tags/c%E8%AF%AD%E8%A8%80/</link>
+    <link>https://eddycliff.github.io/tags/c%E8%AF%AD%E8%A8%80/</link>
     <description>Recent content in C语言 on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Wed, 01 May 2024 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/c%E8%AF%AD%E8%A8%80/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 01 May 2024 00:17:58 +0800</lastBuildDate><atom:link href="https://eddycliff.github.io/tags/c%E8%AF%AD%E8%A8%80/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【温故而知新】C语言和C&#43;&#43;基础知识回顾</title>
-      <link>https://eddyblog.cn/posts/tech/exp-sticker-c-cpp-basic-knowledge-review/</link>
+      <link>https://eddycliff.github.io/posts/tech/exp-sticker-c-cpp-basic-knowledge-review/</link>
       <pubDate>Wed, 01 May 2024 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/exp-sticker-c-cpp-basic-knowledge-review/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/exp-sticker-c-cpp-basic-knowledge-review/</guid>
       <description>&lt;div align = &#34;center&#34;&gt;
 &lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/STM32-standard-library-learning-JKD/P11-EXTI%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD-1.jpg&#34; alt = &#34;P11-EXTI外部中断-1.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
 &lt;/div&gt;
@@ -24,10 +24,10 @@
     
     <item>
       <title>【嵌入式C语言编程】第十章 文件</title>
-      <link>https://eddyblog.cn/posts/tech/c-programming-10file/</link>
+      <link>https://eddycliff.github.io/posts/tech/c-programming-10file/</link>
       <pubDate>Mon, 23 Oct 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/c-programming-10file/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/c-programming-10file/</guid>
       <description>&lt;h2 id=&#34;第十章-文件&#34;&gt;第十章 文件&lt;/h2&gt;
 &lt;h2 id=&#34;init&#34;&gt;INIT&lt;/h2&gt;
 &lt;div align = &#34;center&#34;&gt;
@@ -45,10 +45,10 @@
     
     <item>
       <title>【嵌入式C语言编程】第八章 结构体，共用体，枚举</title>
-      <link>https://eddyblog.cn/posts/tech/c-programming-08struct/</link>
+      <link>https://eddycliff.github.io/posts/tech/c-programming-08struct/</link>
       <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/c-programming-08struct/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/c-programming-08struct/</guid>
       <description>&lt;h2 id=&#34;第八章-结构体共用体枚举&#34;&gt;第八章 结构体，共用体，枚举&lt;/h2&gt;
 &lt;h2 id=&#34;init&#34;&gt;INIT&lt;/h2&gt;
 &lt;div align = &#34;center&#34;&gt;
@@ -69,10 +69,10 @@
     
     <item>
       <title>【嵌入式C语言编程】第六章 动态内存申请</title>
-      <link>https://eddyblog.cn/posts/tech/c-programming-06dynamic-memory/</link>
+      <link>https://eddycliff.github.io/posts/tech/c-programming-06dynamic-memory/</link>
       <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/c-programming-06dynamic-memory/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/c-programming-06dynamic-memory/</guid>
       <description>&lt;h2 id=&#34;第六章-动态内存申请&#34;&gt;第六章 动态内存申请&lt;/h2&gt;
 &lt;h2 id=&#34;init&#34;&gt;INIT&lt;/h2&gt;
 &lt;div align = &#34;center&#34;&gt;
@@ -89,10 +89,10 @@
     
     <item>
       <title>【嵌入式C语言编程】第七章 字符串处理函数</title>
-      <link>https://eddyblog.cn/posts/tech/c-programming-07string/</link>
+      <link>https://eddycliff.github.io/posts/tech/c-programming-07string/</link>
       <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/c-programming-07string/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/c-programming-07string/</guid>
       <description>&lt;h2 id=&#34;第七章-字符串处理函数&#34;&gt;第七章 字符串处理函数&lt;/h2&gt;
 &lt;h2 id=&#34;init&#34;&gt;INIT&lt;/h2&gt;
 &lt;div align = &#34;center&#34;&gt;
@@ -184,10 +184,10 @@
     
     <item>
       <title>【嵌入式C语言编程】第四章 预处理</title>
-      <link>https://eddyblog.cn/posts/tech/c-programming-04preprocessing/</link>
+      <link>https://eddycliff.github.io/posts/tech/c-programming-04preprocessing/</link>
       <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/c-programming-04preprocessing/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/c-programming-04preprocessing/</guid>
       <description>&lt;h2 id=&#34;第四章-预处理&#34;&gt;第四章 预处理&lt;/h2&gt;
 &lt;h2 id=&#34;init&#34;&gt;INIT&lt;/h2&gt;
 &lt;div align = &#34;center&#34;&gt;
@@ -213,10 +213,10 @@
     
     <item>
       <title>【嵌入式C语言编程】第五章 指针</title>
-      <link>https://eddyblog.cn/posts/tech/c-programming-05pointer/</link>
+      <link>https://eddycliff.github.io/posts/tech/c-programming-05pointer/</link>
       <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/c-programming-05pointer/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/c-programming-05pointer/</guid>
       <description>&lt;h2 id=&#34;第五章-指针&#34;&gt;第五章 指针&lt;/h2&gt;
 &lt;h2 id=&#34;init&#34;&gt;INIT&lt;/h2&gt;
 &lt;div align = &#34;center&#34;&gt;
@@ -238,10 +238,10 @@
     
     <item>
       <title>【嵌入式C语言编程】第二章 数组</title>
-      <link>https://eddyblog.cn/posts/tech/c-programming-02array/</link>
+      <link>https://eddycliff.github.io/posts/tech/c-programming-02array/</link>
       <pubDate>Sat, 16 Sep 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/c-programming-02array/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/c-programming-02array/</guid>
       <description>&lt;h2 id=&#34;第二章-数组&#34;&gt;第二章 数组&lt;/h2&gt;
 &lt;h2 id=&#34;init&#34;&gt;INIT&lt;/h2&gt;
 &lt;div align = &#34;center&#34;&gt;
@@ -263,10 +263,10 @@
     
     <item>
       <title>【嵌入式C语言编程】第三章 函数</title>
-      <link>https://eddyblog.cn/posts/tech/c-programming-03fun/</link>
+      <link>https://eddycliff.github.io/posts/tech/c-programming-03fun/</link>
       <pubDate>Sat, 16 Sep 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/c-programming-03fun/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/c-programming-03fun/</guid>
       <description>&lt;h2 id=&#34;第三章-函数&#34;&gt;第三章 函数&lt;/h2&gt;
 &lt;h2 id=&#34;init&#34;&gt;INIT&lt;/h2&gt;
 &lt;div align = &#34;center&#34;&gt;
@@ -284,10 +284,10 @@
     
     <item>
       <title>【C语言指南】代码注释规范</title>
-      <link>https://eddyblog.cn/posts/tech/c-language-comment-specification/</link>
+      <link>https://eddycliff.github.io/posts/tech/c-language-comment-specification/</link>
       <pubDate>Tue, 12 Sep 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/c-language-comment-specification/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/c-language-comment-specification/</guid>
       <description>&lt;h2 id=&#34;常用的注释模板&#34;&gt;常用的注释模板&lt;/h2&gt;
 &lt;p&gt;C语言并没有一个官方的注释规范，但有一些常见的注释风格和最佳实践，可以帮助你编写清晰、易于理解的注释。以下是一些常用的高效注释模板，你可以根据需要进行自定义：&lt;/p&gt;
 &lt;ol&gt;

@@ -2,89 +2,89 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>嵌入式开发 on Eddy&#39;s blog</title>
-    <link>https://eddyblog.cn/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/</link>
+    <link>https://eddycliff.github.io/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/</link>
     <description>Recent content in 嵌入式开发 on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 13 May 2024 00:17:58 +0500</lastBuildDate><atom:link href="https://eddyblog.cn/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 13 May 2024 00:17:58 +0500</lastBuildDate><atom:link href="https://eddycliff.github.io/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>嵌入式开发-STM32标准库学习：EXTI外部中断</title>
-      <link>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p11/</link>
+      <link>https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p11/</link>
       <pubDate>Mon, 13 May 2024 00:17:58 +0500</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p11/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p11/</guid>
       <description>本博客主要介绍了STM32芯片的外部中断系统及其在实现特定功能中的应用，例如使用红外传感器检测光线变化和使用旋转编码器进行计数。核心概念是通过外部中断提高程序响应速度和执行效率，实现CPU在遇到重要事件时的暂停与处理。中断系统的关键要素包括中断优先级、嵌套处理、中断程序执行流程、中断保护和恢复现场，以及NVIC（中断向量控制器）在分配中断优先级和管理中断请求方面的作用。STM32拥有68个可屏蔽中断通道，支持多种外设中断源，所有中断请求均通过NVIC统一管理。外部中断（EXTI）功能特别值得一提，它允许CPU在检测到指定GPIO口的电平变化时暂停执行并执行中断服务程序，支持多种触发方式。此外，还讨论了外部中断在读取按键信号时的局限性，并提出了使用定时器中断作为替代方案。对于旋转编码器的应用，文章概述了其硬件连接方式、NVIC中断管理的基本知识，以及如何使用库函数简化中断处理过程和外部中断的配置方法。</description>
     </item>
     
     <item>
       <title>嵌入式开发-STM32标准库学习：OLED显示屏</title>
-      <link>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p10/</link>
+      <link>https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p10/</link>
       <pubDate>Mon, 13 May 2024 00:17:58 +0600</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p10/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p10/</guid>
       <description>本博客主要讲述了如何将OLED显示屏驱动程序模块整合至STM32工程中，并详细阐述了该驱动程序的设计与实现细节。重点讲解了硬件连接方式，尤其是如何通过PB6和PB7端口为OLED屏幕提供电源并通过四针脚接口进行数据传输。同时，介绍了如何根据现有的工程文件创建新的项目，并在其中嵌入OLED显示屏的驱动代码。文档还探讨了利用特定软件的调试模式对程序进行分析和优化的方法，涵盖了在线仿真和计算机模拟两种调试方式，及其对应的启动调试步骤和常用调试命令。此外，文中强调了通过这些调试手段可以有效地诊断和修复程序中的错误，加深对程序执行流程的理解。最后，文档简要介绍了 Keil 软件中的调试模式和相关功能，如命令窗口、反汇编窗口和符号窗口的使用方法，为进一步的程序调试提供了工具和技巧。</description>
     </item>
     
     <item>
       <title>嵌入式开发-STM32标准库学习：OLED调试工具</title>
-      <link>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p9/</link>
+      <link>https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p9/</link>
       <pubDate>Mon, 13 May 2024 00:17:58 +0700</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p9/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p9/</guid>
       <description>本文介绍了如何利用OLED显示屏进行程序调试，着重讲解了OLED显示屏的基本功能和驱动函数模块的使用方法。首先，介绍了一种常见的显示屏模块——0.96寸OLED模块，它的特点是体积小、接口少、驱动简单，适用于多种电子设计应用。该模块提供单色显示，具有较低的分辨率（128x64），但可通过简单的通信协议进行操作，适配多种电源电压和接口类型。文章详细讨论了该模块的不同版本（四针脚和七针脚）以及其在实际项目中的硬件连接方式。随后，引入了一个驱动函数模块，涵盖了从模块初始化到显示各种文本和数字信息的一系列实用函数。整体而言，本文突出了程序调试的重要性，并通过介绍具体的调试方法和工具，为开发人员提供了一套有效的调试方案，尤其是针对那些使用OLED显示屏的项目。</description>
     </item>
     
     <item>
       <title>嵌入式开发-STM32标准库学习：按键控制LED,光敏传感器控制蜂鸣器</title>
-      <link>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p8/</link>
+      <link>https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p8/</link>
       <pubDate>Mon, 13 May 2024 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p8/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p8/</guid>
       <description>本博客详细介绍了一个基于STM32最小系统板的项目开发过程，重点涵盖了基本的LED控制电路设计、模块化编程的应用以及扩展至光敏传感器和蜂鸣器模块的功能实现。首先，通过对PB1和PB10引脚连接按键，以及PA1和PA2引脚连接LED的基本电路描述，项目导入了如何在STM32板上实现简单LED控制的基础。在此基础上，强调了模块化编程的重要性，即通过将驱动代码分离至单独的.C和.H文件中，以提升代码的管理与移植性。特别提到了在&amp;#39;module&amp;#39;文件夹下创建硬件驱动程序的方法，以及在这些文件中添加必要预处理指令和其他细节的重要性。 其次，详细叙述了LED初始化和模块化编程的具体实践，包括LED的时钟配置、端口模式设置，以及如何通过结构体变量实现对GPIO的精确控制。此外，还介绍了如何处理警告和错误信息，从而保证了程序的稳定运行。通过这些步骤，成功实现了LED的点亮与熄灭功能，验证了程序的正确性。 进一步地，文章扩展到如何完善LED驱动程序模块，包括提供两种不同功能实现方式以及在硬件目录下创建新文件来组织代码的方法。接下来，详细介绍了使用RCC APB2外设时钟控制、配置GPIO端口模式、读取按键值等功能，以及如何通过GPL库消除按键抖动，并实现光照强度检测与蜂鸣器控制的综合应用。 总之，该段内容围绕着STM32开发板上的LED、光敏传感器和蜂鸣器模块的控制，展示了从基础电路设计到模块化编程，再到复杂功能实现的完整开发流程。每个环节都突出了理论与实践相结合的重要性，旨在提高代码的质量和项目的可维护性。</description>
     </item>
     
     <item>
       <title>嵌入式开发-STM32标准库学习：GPIO输入</title>
-      <link>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p7/</link>
+      <link>https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p7/</link>
       <pubDate>Mon, 13 May 2024 00:17:58 +0900</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p7/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p7/</guid>
       <description>本博客首先介绍了通过按键控制LED的基础操作，随后转向光敏传感器控制蜂鸣器的应用，涵盖了硬件连接和预期现象的讨论。课程还强调了C语言中指针的重要性，并给出了简单介绍。特别提到了处理按键抖动的方法，建议通过增加延时来改善，以确保程序的稳定性和准确性。此外，课程还介绍了四种传感器模块的工作原理，包括光敏电阻、热敏电阻、对射式及反射式红外传感器，并讲述了如何通过这些模块获取外部模拟量的变化信息。在讨论模拟电压和数字电压的生成及转换过程中，突出了各种电子元件的作用和选择合适的输入模式的重要性。同时，还覆盖了C语言中的数据类型、宏定义、结构体和枚举的使用，强调了这些概念在程序设计中的重要作用。</description>
     </item>
     
     <item>
       <title>嵌入式开发-STM32标准库学习：实现LED闪烁与流水灯，蜂鸣器</title>
-      <link>https://eddyblog.cn/posts/tech/stm32-standard_library_learning-jkd-p6/</link>
+      <link>https://eddycliff.github.io/posts/tech/stm32-standard_library_learning-jkd-p6/</link>
       <pubDate>Mon, 13 May 2024 00:17:58 +1000</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/stm32-standard_library_learning-jkd-p6/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/stm32-standard_library_learning-jkd-p6/</guid>
       <description>本节内容指导如何使用面包板、STM32最小系统板及ST Link开发一个简单的LED闪烁程序。首先，介绍搭建硬件电路所需步骤，包括正确连接电源、STM32板、LED和相关跳线。接着，在Keil5 软件中创建新工程，复制必要文件并配置工程设置以完成LED闪烁程序的编写、编译、下载和测试。此外，还介绍了如何利用一个辅助工具清理编译产生的中间文件，以便更好地分享工程。该指南详细讲解了如何使用RCC和GPIO外设及其库函数来控制LED的亮灭，包括设置工作模式、方向和速度。特别提到了四种GPIO输出函数和它们在控制LED亮灭方面的应用。通过主循环实现LED闪烁功能，并讨论了不同驱动模式下LED的性能差异。进一步地，本节还扩展到LED流水灯的制作，介绍了如何利用按位操作来控制多路LED的亮灭。最后，提供了学习STM32库函数的建议，包括查看库函数源码、利用官方文档和在线资源等方法。整个内容旨在帮助初学者掌握STM32开发的基础知识和技能。</description>
     </item>
     
     <item>
       <title>嵌入式开发-STM32标准库学习：GPIO输出</title>
-      <link>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p5/</link>
+      <link>https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p5/</link>
       <pubDate>Mon, 13 May 2024 00:17:58 +1100</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p5/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p5/</guid>
       <description>本教程涵盖了STM32 GPIO的输出与输入功能，分为基础应用和理论知识两个部分。首先，通过LED闪烁、LED流水灯和蜂鸣器实验，介绍GPIO基本应用。随后，深入探讨了GPIO的理论知识，包括其作为通用I/O口的特性、工作模式及电平范围。进一步地，解析了STM32中GPIO的基本结构，涉及APB2外设总线、GPIO模块及其组成。此外，讨论了GPIO引脚的功能，包括输入和输出保护措施，以及施密特触发器的作用和应用。教程强调了STM32 GPIO的多样工作模式，如推挽输出、开漏输出等，及其在不同应用场景下的优势。最后，简述了面包板的应用，为读者提供了实际电路搭建的指导。</description>
     </item>
     
     <item>
       <title>嵌入式开发-STM32标准库学习：新建Keil工程</title>
-      <link>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p4/</link>
+      <link>https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p4/</link>
       <pubDate>Sun, 12 May 2024 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p4/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p4/</guid>
       <description>本文档旨在指导STM32平台的新手开发者如何建立工程项目，并有效地运用标准库和HAL库来提高开发效率。首先，文档强调了基于寄存器、标准库和HAL库三种不同的STM32开发方式，并推荐初学者优先考虑使用标准库进行开发。其次，它详细介绍了在STM32环境中添加启动文件、设置头文件路径以及创建用户自定义函数的基本步骤，同时给出了基于寄存器进行开发的示例。文章还说明了如何通过库函数更方便地配置GPIO和控制LED，从而简化了对硬件的操作。此外，文档涵盖了如何新建工程、选择合适的启动文件以及调试器设置，旨在帮助开发者有效下载和运行程序。最后，通过一系列实例，文章阐述了基于库函数的STM32工程构建和理解，突出了中断服务函数的重要性和在工程中的应用。整体而言，本文档为STM32平台的开发者提供了一套完整且实用的开发指导，从基础设置到高级应用应有尽有。</description>
     </item>
     
     <item>
       <title>嵌入式开发-STM32标准库学习：STM32简介</title>
-      <link>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p2/</link>
+      <link>https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p2/</link>
       <pubDate>Sat, 11 May 2024 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p2/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p2/</guid>
       <description>STM32是基于ARM Cortex-M内核由ST公司开发的32位微控制器，拥有高性能和丰富片上资源，适合嵌入式系统应用。它包括多个系列，满足不同场景需求，例如高性能、主流、超低功耗和无线等。STM32F103C8T6是其中一款，采用ARM Cortex-M3内核，具有72MHz主频、20Kb RAM和64Kb Flash，适用于多种应用。该芯片拥有全面的外设资源，如NVIC、SysTick定时器、RCC、GPIO、AFIO、EXTI、TIM定时器、ADC、DMA、USART、I2C/SPI和USB OTG等，提供高度灵活且可定制化的平台。文章还介绍了该芯片的引脚定义、电源管理、启动配置和最小系统板构成，强调了正确配置电源、时钟和下载电路的重要性。通过连接稳压供电模块、复位电路、Boot配置电路、LED测试电路和下载电路，可以构建出能够稳定工作的STM32最小系统板。此外，文档推荐参考官方资料以深入理解STM32的工作原理和应用。</description>
     </item>
     

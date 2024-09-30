@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Git Remote on Eddy&#39;s blog</title>
-    <link>https://eddyblog.cn/tags/git-remote/</link>
+    <link>https://eddycliff.github.io/tags/git-remote/</link>
     <description>Recent content in Git Remote on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Thu, 20 Jul 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/git-remote/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 20 Jul 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddycliff.github.io/tags/git-remote/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【Github使用指南】bug日志-git remote</title>
-      <link>https://eddyblog.cn/posts/tech/github-error-git-remote/</link>
+      <link>https://eddycliff.github.io/posts/tech/github-error-git-remote/</link>
       <pubDate>Thu, 20 Jul 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/github-error-git-remote/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/github-error-git-remote/</guid>
       <description>解决{error: remote origin already exists.}</description>
     </item>
     

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>C语言结构体 on Eddy&#39;s blog</title>
-    <link>https://eddyblog.cn/tags/c%E8%AF%AD%E8%A8%80%E7%BB%93%E6%9E%84%E4%BD%93/</link>
+    <link>https://eddycliff.github.io/tags/c%E8%AF%AD%E8%A8%80%E7%BB%93%E6%9E%84%E4%BD%93/</link>
     <description>Recent content in C语言结构体 on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Sun, 01 Oct 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/c%E8%AF%AD%E8%A8%80%E7%BB%93%E6%9E%84%E4%BD%93/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 01 Oct 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddycliff.github.io/tags/c%E8%AF%AD%E8%A8%80%E7%BB%93%E6%9E%84%E4%BD%93/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【嵌入式C语言编程】第八章 结构体，共用体，枚举</title>
-      <link>https://eddyblog.cn/posts/tech/c-programming-08struct/</link>
+      <link>https://eddycliff.github.io/posts/tech/c-programming-08struct/</link>
       <pubDate>Sun, 01 Oct 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/c-programming-08struct/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/c-programming-08struct/</guid>
       <description>&lt;h2 id=&#34;第八章-结构体共用体枚举&#34;&gt;第八章 结构体，共用体，枚举&lt;/h2&gt;
 &lt;h2 id=&#34;init&#34;&gt;INIT&lt;/h2&gt;
 &lt;div align = &#34;center&#34;&gt;

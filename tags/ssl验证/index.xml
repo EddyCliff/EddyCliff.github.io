@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>SSL验证 on Eddy&#39;s blog</title>
-    <link>https://eddyblog.cn/tags/ssl%E9%AA%8C%E8%AF%81/</link>
+    <link>https://eddycliff.github.io/tags/ssl%E9%AA%8C%E8%AF%81/</link>
     <description>Recent content in SSL验证 on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 20 Jun 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/ssl%E9%AA%8C%E8%AF%81/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 20 Jun 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddycliff.github.io/tags/ssl%E9%AA%8C%E8%AF%81/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【Github使用指南】bug日志-OpenSSL SSL_read</title>
-      <link>https://eddyblog.cn/posts/tech/gitub-error1/</link>
+      <link>https://eddycliff.github.io/posts/tech/gitub-error1/</link>
       <pubDate>Tue, 20 Jun 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/gitub-error1/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/gitub-error1/</guid>
       <description>解决{OpenSSL SSL_read: Connection was reset, errno 10054}</description>
     </item>
     

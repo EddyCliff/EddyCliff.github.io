@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>文件IO on Eddy&#39;s blog</title>
-    <link>https://eddyblog.cn/tags/%E6%96%87%E4%BB%B6io/</link>
+    <link>https://eddycliff.github.io/tags/%E6%96%87%E4%BB%B6io/</link>
     <description>Recent content in 文件IO on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Sun, 21 Apr 2024 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/%E6%96%87%E4%BB%B6io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 21 Apr 2024 00:17:58 +0800</lastBuildDate><atom:link href="https://eddycliff.github.io/tags/%E6%96%87%E4%BB%B6io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Linux入门：文件IO</title>
-      <link>https://eddyblog.cn/posts/tech/linux-basics-03/</link>
+      <link>https://eddycliff.github.io/posts/tech/linux-basics-03/</link>
       <pubDate>Sun, 21 Apr 2024 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/linux-basics-03/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/linux-basics-03/</guid>
       <description>&lt;h2 id=&#34;init&#34;&gt;INIT&lt;/h2&gt;
 &lt;div align = &#34;center&#34;&gt;
 &lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/INIT.jpg&#34; alt = &#34;INIT.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;

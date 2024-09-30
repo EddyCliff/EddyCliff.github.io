@@ -2,35 +2,35 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Linux on Eddy&#39;s blog</title>
-    <link>https://eddyblog.cn/tags/linux/</link>
+    <link>https://eddycliff.github.io/tags/linux/</link>
     <description>Recent content in Linux on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Sun, 21 Apr 2024 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 21 Apr 2024 00:17:58 +0800</lastBuildDate><atom:link href="https://eddycliff.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Linux新手必看：一文掌握操作系统基本命令</title>
-      <link>https://eddyblog.cn/posts/tech/linux-basics-01/</link>
+      <link>https://eddycliff.github.io/posts/tech/linux-basics-01/</link>
       <pubDate>Wed, 10 Apr 2024 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/linux-basics-01/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/linux-basics-01/</guid>
       <description>掌握Linux，从这里开始！轻松入门操作系统基本命令。</description>
     </item>
     
     <item>
       <title>Linux入门：基础命令与实用技巧</title>
-      <link>https://eddyblog.cn/posts/tech/linux-basics-02/</link>
+      <link>https://eddycliff.github.io/posts/tech/linux-basics-02/</link>
       <pubDate>Sun, 21 Apr 2024 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/linux-basics-02/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/linux-basics-02/</guid>
       <description>本博客为新手量身打造，系统介绍了Linux操作系统的基本概念、核心命令及其应用场景。通过实例演示，帮助读者快速掌握Linux操作技巧，为进一步学习打下坚实基础。</description>
     </item>
     
     <item>
       <title>Linux入门：文件IO</title>
-      <link>https://eddyblog.cn/posts/tech/linux-basics-03/</link>
+      <link>https://eddycliff.github.io/posts/tech/linux-basics-03/</link>
       <pubDate>Sun, 21 Apr 2024 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/linux-basics-03/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/linux-basics-03/</guid>
       <description>&lt;h2 id=&#34;init&#34;&gt;INIT&lt;/h2&gt;
 &lt;div align = &#34;center&#34;&gt;
 &lt;img src = &#34;https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/Blog-Common-Images/INIT.jpg&#34; alt = &#34;INIT.jpg&#34; width = &#34;70%&#34; height = &#34;auto&#34;&gt;
@@ -47,10 +47,10 @@
     
     <item>
       <title>【Linux应用开发指南】vmware实现复制粘贴功能</title>
-      <link>https://eddyblog.cn/posts/tech/linux-vmware-copy-and-paste/</link>
+      <link>https://eddycliff.github.io/posts/tech/linux-vmware-copy-and-paste/</link>
       <pubDate>Sat, 19 Aug 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/linux-vmware-copy-and-paste/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/linux-vmware-copy-and-paste/</guid>
       <description>vmware实现复制粘贴功能</description>
     </item>
     

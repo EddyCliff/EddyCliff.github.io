@@ -9,17 +9,17 @@
 <meta name="keywords" content="STM32, embedded, Embedded development, MCU, ARM Cortex-M, Development Board, 开发板, STM32简介, STM32标准库, 嵌入式开发, Keil uVision">
 <meta name="description" content="本文档旨在指导STM32平台的新手开发者如何建立工程项目，并有效地运用标准库和HAL库来提高开发效率。首先，文档强调了基于寄存器、标准库和HAL库三种不同的STM32开发方式，并推荐初学者优先考虑使用标准库进行开发。其次，它详细介绍了在STM32环境中添加启动文件、设置头文件路径以及创建用户自定义函数的基本步骤，同时给出了基于寄存器进行开发的示例。文章还说明了如何通过库函数更方便地配置GPIO和控制LED，从而简化了对硬件的操作。此外，文档涵盖了如何新建工程、选择合适的启动文件以及调试器设置，旨在帮助开发者有效下载和运行程序。最后，通过一系列实例，文章阐述了基于库函数的STM32工程构建和理解，突出了中断服务函数的重要性和在工程中的应用。整体而言，本文档为STM32平台的开发者提供了一套完整且实用的开发指导，从基础设置到高级应用应有尽有。">
 <meta name="author" content="Eddy">
-<link rel="canonical" href="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p4/">
+<link rel="canonical" href="https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p4/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.js" onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="https://eddyblog.cn/img/logo3.jpg">
-<link rel="icon" type="image/png" sizes="16x16" href="https://eddyblog.cn/img/logo3.jpg">
-<link rel="icon" type="image/png" sizes="32x32" href="https://eddyblog.cn/img/logo3.jpg">
-<link rel="apple-touch-icon" href="https://eddyblog.cn/img/logo3.jpg">
-<link rel="mask-icon" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="icon" href="https://eddycliff.github.io/img/logo3.jpg">
+<link rel="icon" type="image/png" sizes="16x16" href="https://eddycliff.github.io/img/logo3.jpg">
+<link rel="icon" type="image/png" sizes="32x32" href="https://eddycliff.github.io/img/logo3.jpg">
+<link rel="apple-touch-icon" href="https://eddycliff.github.io/img/logo3.jpg">
+<link rel="mask-icon" href="https://eddycliff.github.io/img/logo3.jpg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p4/">
+<link rel="alternate" hreflang="zh" href="https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p4/">
 <noscript>
     <style>
         #theme-toggle,
@@ -82,7 +82,7 @@ var _hmt = _hmt || [];
 <meta property="og:title" content="嵌入式开发-STM32标准库学习：新建Keil工程" />
 <meta property="og:description" content="本文档旨在指导STM32平台的新手开发者如何建立工程项目，并有效地运用标准库和HAL库来提高开发效率。首先，文档强调了基于寄存器、标准库和HAL库三种不同的STM32开发方式，并推荐初学者优先考虑使用标准库进行开发。其次，它详细介绍了在STM32环境中添加启动文件、设置头文件路径以及创建用户自定义函数的基本步骤，同时给出了基于寄存器进行开发的示例。文章还说明了如何通过库函数更方便地配置GPIO和控制LED，从而简化了对硬件的操作。此外，文档涵盖了如何新建工程、选择合适的启动文件以及调试器设置，旨在帮助开发者有效下载和运行程序。最后，通过一系列实例，文章阐述了基于库函数的STM32工程构建和理解，突出了中断服务函数的重要性和在工程中的应用。整体而言，本文档为STM32平台的开发者提供了一套完整且实用的开发指导，从基础设置到高级应用应有尽有。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p4/" />
+<meta property="og:url" content="https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p4/" />
 <meta property="og:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/pc9.jpg" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2024-05-12T00:17:58+08:00" />
 <meta property="article:modified_time" content="2024-05-12T00:17:58+08:00" />
@@ -103,20 +103,20 @@ var _hmt = _hmt || [];
           "@type": "ListItem",
           "position":  1 ,
           "name": "📚文章",
-          "item": "https://eddyblog.cn/posts/"
+          "item": "https://eddycliff.github.io/posts/"
         },
 
         {
           "@type": "ListItem",
           "position":  2 ,
           "name": "👨🏻‍💻 技术",
-          "item": "https://eddyblog.cn/posts/tech/"
+          "item": "https://eddycliff.github.io/posts/tech/"
         }, 
     {
       "@type": "ListItem",
       "position":  3 ,
       "name": "嵌入式开发-STM32标准库学习：新建Keil工程",
-      "item": "https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p4/"
+      "item": "https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p4/"
     }
   ]
 }
@@ -142,14 +142,14 @@ var _hmt = _hmt || [];
   }],
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p4/"
+    "@id": "https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p4/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "Eddy's blog",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://eddyblog.cn/img/logo3.jpg"
+      "url": "https://eddycliff.github.io/img/logo3.jpg"
     }
   }
 }
@@ -184,8 +184,8 @@ var _hmt = _hmt || [];
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://eddyblog.cn/" accesskey="h" title="Eddy&#39;s Blog (Alt + H)">
-            <img src="https://eddyblog.cn/img/logo3.jpg" alt="logo" aria-label="logo"
+            <a href="https://eddycliff.github.io/" accesskey="h" title="Eddy&#39;s Blog (Alt + H)">
+            <img src="https://eddycliff.github.io/img/logo3.jpg" alt="logo" aria-label="logo"
                  height="35">Eddy&#39;s Blog</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
@@ -214,32 +214,32 @@ var _hmt = _hmt || [];
         </div>
         <ul id="menu">
             <li>
-                <a href="https://eddyblog.cn/search" title="🔍 搜索 (Alt &#43; /)" accesskey=/>
+                <a href="https://eddycliff.github.io/search" title="🔍 搜索 (Alt &#43; /)" accesskey=/>
                 <span>🔍 搜索</span>
                 </a>
             </li>
             <li>
-                <a href="https://eddyblog.cn/" title="🏠 主页">
+                <a href="https://eddycliff.github.io/" title="🏠 主页">
                 <span>🏠 主页</span>
                 </a>
             </li>
             <li>
-                <a href="https://eddyblog.cn/posts" title="📚 文章">
+                <a href="https://eddycliff.github.io/posts" title="📚 文章">
                 <span>📚 文章</span>
                 </a>
             </li>
             <li>
-                <a href="https://eddyblog.cn/tags" title="🧩 标签">
+                <a href="https://eddycliff.github.io/tags" title="🧩 标签">
                 <span>🧩 标签</span>
                 </a>
             </li>
             <li>
-                <a href="https://eddyblog.cn/archives/" title="⏱️ 时间轴">
+                <a href="https://eddycliff.github.io/archives/" title="⏱️ 时间轴">
                 <span>⏱️ 时间轴</span>
                 </a>
             </li>
             <li>
-                <a href="https://eddyblog.cn/about" title="🙋🏻‍♂️ 关于">
+                <a href="https://eddycliff.github.io/about" title="🙋🏻‍♂️ 关于">
                 <span>🙋🏻‍♂️ 关于</span>
                 </a>
             </li>
@@ -258,7 +258,7 @@ var _hmt = _hmt || [];
 <article class="post-single">
     <div id="single-content">
         <header class="post-header">
-            <div class="breadcrumbs"><a href="https://eddyblog.cn/">🏠 主页</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/">📚文章</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/tech/">👨🏻‍💻 技术</a></div>
+            <div class="breadcrumbs"><a href="https://eddycliff.github.io/">🏠 主页</a>&nbsp;»&nbsp;<a href="https://eddycliff.github.io/posts/">📚文章</a>&nbsp;»&nbsp;<a href="https://eddycliff.github.io/posts/tech/">👨🏻‍💻 技术</a></div>
             <h1 class="post-title">
                 嵌入式开发-STM32标准库学习：新建Keil工程
             </h1>
@@ -317,13 +317,13 @@ var _hmt = _hmt || [];
         <span class="fa fa-tags" style="opacity: 0.8"></span>
         <span>
             <span class="post-tags-meta">
-                <a href="https://eddyblog.cn/tags/stm32/" style="color: var(--secondary)!important;">STM32</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/mcu/" style="color: var(--secondary)!important;">MCU</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/arm-cortex-m/" style="color: var(--secondary)!important;">ARM Cortex-M</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/%E5%BC%80%E5%8F%91%E6%9D%BF/" style="color: var(--secondary)!important;">开发板</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/stm32%E6%A0%87%E5%87%86%E5%BA%93%E5%BC%80%E5%8F%91/" style="color: var(--secondary)!important;">STM32标准库开发</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" style="color: var(--secondary)!important;">嵌入式开发</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/keil-uvision/" style="color: var(--secondary)!important;">Keil UVision</a>
+                <a href="https://eddycliff.github.io/tags/stm32/" style="color: var(--secondary)!important;">STM32</a>
+                &nbsp;<a href="https://eddycliff.github.io/tags/mcu/" style="color: var(--secondary)!important;">MCU</a>
+                &nbsp;<a href="https://eddycliff.github.io/tags/arm-cortex-m/" style="color: var(--secondary)!important;">ARM Cortex-M</a>
+                &nbsp;<a href="https://eddycliff.github.io/tags/%E5%BC%80%E5%8F%91%E6%9D%BF/" style="color: var(--secondary)!important;">开发板</a>
+                &nbsp;<a href="https://eddycliff.github.io/tags/stm32%E6%A0%87%E5%87%86%E5%BA%93%E5%BC%80%E5%8F%91/" style="color: var(--secondary)!important;">STM32标准库开发</a>
+                &nbsp;<a href="https://eddycliff.github.io/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" style="color: var(--secondary)!important;">嵌入式开发</a>
+                &nbsp;<a href="https://eddycliff.github.io/tags/keil-uvision/" style="color: var(--secondary)!important;">Keil UVision</a>
             </span>
         </span>
     </span>
@@ -344,7 +344,7 @@ var _hmt = _hmt || [];
                             <script>
                                 let url = document.documentURI
                                 
-                                let dnsUrl = "https://eddyblog.cn/"
+                                let dnsUrl = "https://eddycliff.github.io/"
                                 let urlSplit = url.split(dnsUrl)
                                 let finalUrl = urlSplit[1]
                                 if (finalUrl[0] !== '/') {
@@ -1914,12 +1914,12 @@ var _hmt = _hmt || [];
         <footer class="post-footer">
             
 <nav class="paginav">
-  <a class="prev" href="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p5/">
+  <a class="prev" href="https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p5/">
     <span class="title">« 上一页</span>
     <br>
     <span>嵌入式开发-STM32标准库学习：GPIO输出</span>
   </a>
-  <a class="next" href="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p2/">
+  <a class="next" href="https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p2/">
     <span class="title">下一页 »</span>
     <br>
     <span>嵌入式开发-STM32标准库学习：STM32简介</span>
@@ -1936,7 +1936,7 @@ var _hmt = _hmt || [];
         Copyright
         &copy;
         -2024
-        <a href="https://eddyblog.cn/" style="color:#939393;">Eddy&#39;s blog</a>
+        <a href="https://eddycliff.github.io/" style="color:#939393;">Eddy&#39;s blog</a>
         All Rights Reserved
     </span>
     <a href="https://beian.miit.gov.cn/" target="_blank" style="color:#939393;"></a>&nbsp;

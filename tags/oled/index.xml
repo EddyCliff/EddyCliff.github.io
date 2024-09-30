@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>OLED on Eddy&#39;s blog</title>
-    <link>https://eddyblog.cn/tags/oled/</link>
+    <link>https://eddycliff.github.io/tags/oled/</link>
     <description>Recent content in OLED on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 13 May 2024 00:17:58 +0600</lastBuildDate><atom:link href="https://eddyblog.cn/tags/oled/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 13 May 2024 00:17:58 +0600</lastBuildDate><atom:link href="https://eddycliff.github.io/tags/oled/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>嵌入式开发-STM32标准库学习：OLED显示屏</title>
-      <link>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p10/</link>
+      <link>https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p10/</link>
       <pubDate>Mon, 13 May 2024 00:17:58 +0600</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p10/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p10/</guid>
       <description>本博客主要讲述了如何将OLED显示屏驱动程序模块整合至STM32工程中，并详细阐述了该驱动程序的设计与实现细节。重点讲解了硬件连接方式，尤其是如何通过PB6和PB7端口为OLED屏幕提供电源并通过四针脚接口进行数据传输。同时，介绍了如何根据现有的工程文件创建新的项目，并在其中嵌入OLED显示屏的驱动代码。文档还探讨了利用特定软件的调试模式对程序进行分析和优化的方法，涵盖了在线仿真和计算机模拟两种调试方式，及其对应的启动调试步骤和常用调试命令。此外，文中强调了通过这些调试手段可以有效地诊断和修复程序中的错误，加深对程序执行流程的理解。最后，文档简要介绍了 Keil 软件中的调试模式和相关功能，如命令窗口、反汇编窗口和符号窗口的使用方法，为进一步的程序调试提供了工具和技巧。</description>
     </item>
     

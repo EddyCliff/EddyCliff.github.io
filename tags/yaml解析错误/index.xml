@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>YAML解析错误 on Eddy&#39;s blog</title>
-    <link>https://eddyblog.cn/tags/yaml%E8%A7%A3%E6%9E%90%E9%94%99%E8%AF%AF/</link>
+    <link>https://eddycliff.github.io/tags/yaml%E8%A7%A3%E6%9E%90%E9%94%99%E8%AF%AF/</link>
     <description>Recent content in YAML解析错误 on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Wed, 30 Aug 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/yaml%E8%A7%A3%E6%9E%90%E9%94%99%E8%AF%AF/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 30 Aug 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddycliff.github.io/tags/yaml%E8%A7%A3%E6%9E%90%E9%94%99%E8%AF%AF/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【Hugo网站搭建】bug日志 - 解决 YAML 解析错误</title>
-      <link>https://eddyblog.cn/posts/tech/hugo-bug-yaml/</link>
+      <link>https://eddycliff.github.io/posts/tech/hugo-bug-yaml/</link>
       <pubDate>Wed, 30 Aug 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/hugo-bug-yaml/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/hugo-bug-yaml/</guid>
       <description>解决 Hugo 构建过程中出现的 YAML 解析错误。了解错误背后的原因，探讨正确的 YAML 头部格式，并提供修复方案，确保 Hugo 网站构建顺利进行。</description>
     </item>
     

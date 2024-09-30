@@ -2,26 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>ARM Cortex-M on Eddy&#39;s blog</title>
-    <link>https://eddyblog.cn/tags/arm-cortex-m/</link>
+    <link>https://eddycliff.github.io/tags/arm-cortex-m/</link>
     <description>Recent content in ARM Cortex-M on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 13 May 2024 00:17:58 +1100</lastBuildDate><atom:link href="https://eddyblog.cn/tags/arm-cortex-m/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 13 May 2024 00:17:58 +1100</lastBuildDate><atom:link href="https://eddycliff.github.io/tags/arm-cortex-m/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>嵌入式开发-STM32标准库学习：GPIO输出</title>
-      <link>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p5/</link>
+      <link>https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p5/</link>
       <pubDate>Mon, 13 May 2024 00:17:58 +1100</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p5/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p5/</guid>
       <description>本教程涵盖了STM32 GPIO的输出与输入功能，分为基础应用和理论知识两个部分。首先，通过LED闪烁、LED流水灯和蜂鸣器实验，介绍GPIO基本应用。随后，深入探讨了GPIO的理论知识，包括其作为通用I/O口的特性、工作模式及电平范围。进一步地，解析了STM32中GPIO的基本结构，涉及APB2外设总线、GPIO模块及其组成。此外，讨论了GPIO引脚的功能，包括输入和输出保护措施，以及施密特触发器的作用和应用。教程强调了STM32 GPIO的多样工作模式，如推挽输出、开漏输出等，及其在不同应用场景下的优势。最后，简述了面包板的应用，为读者提供了实际电路搭建的指导。</description>
     </item>
     
     <item>
       <title>嵌入式开发-STM32标准库学习：新建Keil工程</title>
-      <link>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p4/</link>
+      <link>https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p4/</link>
       <pubDate>Sun, 12 May 2024 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p4/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p4/</guid>
       <description>本文档旨在指导STM32平台的新手开发者如何建立工程项目，并有效地运用标准库和HAL库来提高开发效率。首先，文档强调了基于寄存器、标准库和HAL库三种不同的STM32开发方式，并推荐初学者优先考虑使用标准库进行开发。其次，它详细介绍了在STM32环境中添加启动文件、设置头文件路径以及创建用户自定义函数的基本步骤，同时给出了基于寄存器进行开发的示例。文章还说明了如何通过库函数更方便地配置GPIO和控制LED，从而简化了对硬件的操作。此外，文档涵盖了如何新建工程、选择合适的启动文件以及调试器设置，旨在帮助开发者有效下载和运行程序。最后，通过一系列实例，文章阐述了基于库函数的STM32工程构建和理解，突出了中断服务函数的重要性和在工程中的应用。整体而言，本文档为STM32平台的开发者提供了一套完整且实用的开发指导，从基础设置到高级应用应有尽有。</description>
     </item>
     

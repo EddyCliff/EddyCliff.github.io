@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>LLC电力电子变压器 on Eddy&#39;s blog</title>
-    <link>https://eddyblog.cn/tags/llc%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E5%8F%98%E5%8E%8B%E5%99%A8/</link>
+    <link>https://eddycliff.github.io/tags/llc%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E5%8F%98%E5%8E%8B%E5%99%A8/</link>
     <description>Recent content in LLC电力电子变压器 on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Sun, 05 Nov 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/llc%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E5%8F%98%E5%8E%8B%E5%99%A8/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 05 Nov 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddycliff.github.io/tags/llc%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E5%8F%98%E5%8E%8B%E5%99%A8/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【浅谈LLC谐振变换器】- 章节0:LLC的定义以及优势</title>
-      <link>https://eddyblog.cn/posts/tech/llc-resonant-converters-0/</link>
+      <link>https://eddycliff.github.io/posts/tech/llc-resonant-converters-0/</link>
       <pubDate>Sun, 05 Nov 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/llc-resonant-converters-0/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/llc-resonant-converters-0/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;谐振变换器-第1节&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -23,10 +23,10 @@
     
     <item>
       <title>【浅谈LLC谐振变换器】- 章节1:LLC入门</title>
-      <link>https://eddyblog.cn/posts/tech/llc-resonant-converters-1/</link>
+      <link>https://eddycliff.github.io/posts/tech/llc-resonant-converters-1/</link>
       <pubDate>Sun, 05 Nov 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/llc-resonant-converters-1/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/llc-resonant-converters-1/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;谐振变换器-第2节&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -37,10 +37,10 @@
     
     <item>
       <title>【浅谈LLC谐振变换器】- 章节2:LLC工作原理</title>
-      <link>https://eddyblog.cn/posts/tech/llc-resonant-converters-2/</link>
+      <link>https://eddycliff.github.io/posts/tech/llc-resonant-converters-2/</link>
       <pubDate>Sun, 05 Nov 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/llc-resonant-converters-2/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/llc-resonant-converters-2/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;谐振变换器-第3节&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -51,10 +51,10 @@
     
     <item>
       <title>【浅谈LLC谐振变换器】- 章节3:LLC特性分析</title>
-      <link>https://eddyblog.cn/posts/tech/llc-resonant-converters-3/</link>
+      <link>https://eddycliff.github.io/posts/tech/llc-resonant-converters-3/</link>
       <pubDate>Sun, 05 Nov 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/llc-resonant-converters-3/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/llc-resonant-converters-3/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;谐振变换器-第4节&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;

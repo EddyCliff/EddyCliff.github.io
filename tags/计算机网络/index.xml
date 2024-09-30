@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>计算机网络 on Eddy&#39;s blog</title>
-    <link>https://eddyblog.cn/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</link>
+    <link>https://eddycliff.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</link>
     <description>Recent content in 计算机网络 on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 27 Nov 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 27 Nov 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddycliff.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【计算机网络】第八章 互联网上的音频/视频服务</title>
-      <link>https://eddyblog.cn/posts/tech/computer-network-08/</link>
+      <link>https://eddycliff.github.io/posts/tech/computer-network-08/</link>
       <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/computer-network-08/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/computer-network-08/</guid>
       <description>&lt;h2 id=&#34;第八章-互联网上的音频视频服务&#34;&gt;第八章 互联网上的音频/视频服务&lt;/h2&gt;
 &lt;h3 id=&#34;本章重要概念&#34;&gt;本章重要概念&lt;/h3&gt;
 &lt;p&gt;1）多媒体信息有两个重要特点：（1）多媒体信息的信息量往往很大；（2）在传输多媒体数据时，对时延和时延抖动均有较高的要求。在互联网上传输多媒体数据时，我们都是指含有“边传输、边播放”的特点。&lt;/p&gt;
@@ -21,10 +21,10 @@
     
     <item>
       <title>【计算机网络】第二章 物理层</title>
-      <link>https://eddyblog.cn/posts/tech/computer-network-02/</link>
+      <link>https://eddycliff.github.io/posts/tech/computer-network-02/</link>
       <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/computer-network-02/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/computer-network-02/</guid>
       <description>&lt;h2 id=&#34;第二章-物理层&#34;&gt;第二章 物理层&lt;/h2&gt;
 &lt;h3 id=&#34;本章的重要概念&#34;&gt;本章的重要概念&lt;/h3&gt;
 &lt;p&gt;1）物理层的主要任务就是确定与传输媒体的接口有关的一些特性，如机械特性、电气特性、功能特性和过程特性。&lt;/p&gt;
@@ -34,10 +34,10 @@
     
     <item>
       <title>【计算机网络】第九章 无线网络和移动网络</title>
-      <link>https://eddyblog.cn/posts/tech/computer-network-09/</link>
+      <link>https://eddycliff.github.io/posts/tech/computer-network-09/</link>
       <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/computer-network-09/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/computer-network-09/</guid>
       <description>&lt;h2 id=&#34;第九章-无线网络和移动网络&#34;&gt;第九章 无线网络和移动网络&lt;/h2&gt;
 &lt;h3 id=&#34;本章重要概念&#34;&gt;本章重要概念&lt;/h3&gt;
 &lt;p&gt;1）无线局域网可分为两大类。第一类是有固定基础设施的，第二类是无固定基础设施的。&lt;/p&gt;
@@ -47,10 +47,10 @@
     
     <item>
       <title>【计算机网络】第六章 应用层</title>
-      <link>https://eddyblog.cn/posts/tech/computer-network-06/</link>
+      <link>https://eddycliff.github.io/posts/tech/computer-network-06/</link>
       <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/computer-network-06/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/computer-network-06/</guid>
       <description>&lt;h2 id=&#34;第六章-应用层&#34;&gt;第六章 应用层&lt;/h2&gt;
 &lt;h3 id=&#34;本章重要概念&#34;&gt;本章重要概念&lt;/h3&gt;
 &lt;p&gt;1）应用层协议是为了解决某一类应用问题，而问题的解决又是通过位于不同主机中的多个应用进程之间的通信和协同工作来完成的。应用层规定了应用进程在通信时所遵循的协议。应用层的许多协议都是基于客户-服务器方式的。客户是服务请求方，服务器是服务提供方。
@@ -65,10 +65,10 @@
     
     <item>
       <title>【计算机网络】第七章 网络安全</title>
-      <link>https://eddyblog.cn/posts/tech/computer-network-07/</link>
+      <link>https://eddycliff.github.io/posts/tech/computer-network-07/</link>
       <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/computer-network-07/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/computer-network-07/</guid>
       <description>&lt;h2 id=&#34;第七章-网络安全&#34;&gt;第七章 网络安全&lt;/h2&gt;
 &lt;h3 id=&#34;本章重要概念&#34;&gt;本章重要概念&lt;/h3&gt;
 &lt;p&gt;1）计算机网络上的通信面临的威胁可分为两大类，即被动攻击（如截获）和主动攻击(如中断、篡改、伪造)。主动攻击的类型有更改报文流、拒绝服务、伪造初始化、恶意程序（病毒、蠕虫、木马、逻辑炸弹、后门入侵、流氓软件）等。&lt;/p&gt;
@@ -77,10 +77,10 @@
     
     <item>
       <title>【计算机网络】第三章 数据链路层</title>
-      <link>https://eddyblog.cn/posts/tech/computer_network-03/</link>
+      <link>https://eddycliff.github.io/posts/tech/computer_network-03/</link>
       <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/computer_network-03/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/computer_network-03/</guid>
       <description>&lt;h2 id=&#34;第三章-数据链路层&#34;&gt;第三章 数据链路层&lt;/h2&gt;
 &lt;h3 id=&#34;本章的重要概念&#34;&gt;本章的重要概念&lt;/h3&gt;
 &lt;p&gt;1）链路是从一个节点到相邻节点的一段物理线路，数据链路则是在链路的基础上增加了一些必要的硬件（如网络适配器）和软件（如协议的实现）。&lt;/p&gt;
@@ -90,10 +90,10 @@
     
     <item>
       <title>【计算机网络】第四章 网络层</title>
-      <link>https://eddyblog.cn/posts/tech/computer-network-04/</link>
+      <link>https://eddycliff.github.io/posts/tech/computer-network-04/</link>
       <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/computer-network-04/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/computer-network-04/</guid>
       <description>&lt;h2 id=&#34;第四章-网络层&#34;&gt;第四章 网络层&lt;/h2&gt;
 &lt;h3 id=&#34;本章的重要概念&#34;&gt;本章的重要概念&lt;/h3&gt;
 &lt;p&gt;1）TCP/IP体系中的网络层向上只提供简单灵活的、无连接的、尽最大努力交付的数据报服务。网络层不提供服务质量的承诺，不保证分组交付的时限，所传送的分组可能出错、丢失、重复和失序。进程之间通信的可靠性由运输层负责。&lt;/p&gt;
@@ -102,10 +102,10 @@
     
     <item>
       <title>【计算机网络】第五章 运输层</title>
-      <link>https://eddyblog.cn/posts/tech/computer-network-05/</link>
+      <link>https://eddycliff.github.io/posts/tech/computer-network-05/</link>
       <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/computer-network-05/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/computer-network-05/</guid>
       <description>&lt;h2 id=&#34;第五章-运输层&#34;&gt;第五章 运输层&lt;/h2&gt;
 &lt;h3 id=&#34;本章重要概念&#34;&gt;本章重要概念&lt;/h3&gt;
 &lt;p&gt;1）运输层提供应用进程间的逻辑通信，也就是说，运输层之间的通信并不是真正在两运输层之间直接传送数据。运输层向应用层屏蔽了下面网络的细节（如网络拓扑、所采用的路由选择协议等），它使应用进程看见的就好像在两个运输层实体之间有一条端到端的逻辑通信信道。&lt;/p&gt;
@@ -114,10 +114,10 @@
     
     <item>
       <title>【计算机网络】第一章 概述</title>
-      <link>https://eddyblog.cn/posts/tech/computer-network-01/</link>
+      <link>https://eddycliff.github.io/posts/tech/computer-network-01/</link>
       <pubDate>Mon, 27 Nov 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/computer-network-01/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/computer-network-01/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;启程&lt;/p&gt;
 &lt;/blockquote&gt;

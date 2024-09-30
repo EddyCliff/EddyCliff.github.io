@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>SSL证书验证机制 on Eddy&#39;s blog</title>
-    <link>https://eddyblog.cn/tags/ssl%E8%AF%81%E4%B9%A6%E9%AA%8C%E8%AF%81%E6%9C%BA%E5%88%B6/</link>
+    <link>https://eddycliff.github.io/tags/ssl%E8%AF%81%E4%B9%A6%E9%AA%8C%E8%AF%81%E6%9C%BA%E5%88%B6/</link>
     <description>Recent content in SSL证书验证机制 on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Wed, 30 Aug 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/ssl%E8%AF%81%E4%B9%A6%E9%AA%8C%E8%AF%81%E6%9C%BA%E5%88%B6/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 30 Aug 2023 00:17:58 +0800</lastBuildDate><atom:link href="https://eddycliff.github.io/tags/ssl%E8%AF%81%E4%B9%A6%E9%AA%8C%E8%AF%81%E6%9C%BA%E5%88%B6/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【Hugo网站搭建】图床工具PicGo-bug日志</title>
-      <link>https://eddyblog.cn/posts/tech/picgo-bug/</link>
+      <link>https://eddycliff.github.io/posts/tech/picgo-bug/</link>
       <pubDate>Wed, 30 Aug 2023 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/picgo-bug/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/picgo-bug/</guid>
       <description>解决 PicGo 图床工具中的 &amp;#34;unable to verify the first certificate&amp;#34; 错误。了解错误原因、网络加速工具可能引发的问题，并探讨关闭 fastgithub 解决方案。同时介绍 PicGo 官方文档中的常见问题和解决方法，确保图床上传稳定可靠。</description>
     </item>
     

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>OLED显示屏调试 on Eddy&#39;s blog</title>
-    <link>https://eddyblog.cn/tags/oled%E6%98%BE%E7%A4%BA%E5%B1%8F%E8%B0%83%E8%AF%95/</link>
+    <link>https://eddycliff.github.io/tags/oled%E6%98%BE%E7%A4%BA%E5%B1%8F%E8%B0%83%E8%AF%95/</link>
     <description>Recent content in OLED显示屏调试 on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 13 May 2024 00:17:58 +0700</lastBuildDate><atom:link href="https://eddyblog.cn/tags/oled%E6%98%BE%E7%A4%BA%E5%B1%8F%E8%B0%83%E8%AF%95/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 13 May 2024 00:17:58 +0700</lastBuildDate><atom:link href="https://eddycliff.github.io/tags/oled%E6%98%BE%E7%A4%BA%E5%B1%8F%E8%B0%83%E8%AF%95/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>嵌入式开发-STM32标准库学习：OLED调试工具</title>
-      <link>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p9/</link>
+      <link>https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p9/</link>
       <pubDate>Mon, 13 May 2024 00:17:58 +0700</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p9/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p9/</guid>
       <description>本文介绍了如何利用OLED显示屏进行程序调试，着重讲解了OLED显示屏的基本功能和驱动函数模块的使用方法。首先，介绍了一种常见的显示屏模块——0.96寸OLED模块，它的特点是体积小、接口少、驱动简单，适用于多种电子设计应用。该模块提供单色显示，具有较低的分辨率（128x64），但可通过简单的通信协议进行操作，适配多种电源电压和接口类型。文章详细讨论了该模块的不同版本（四针脚和七针脚）以及其在实际项目中的硬件连接方式。随后，引入了一个驱动函数模块，涵盖了从模块初始化到显示各种文本和数字信息的一系列实用函数。整体而言，本文突出了程序调试的重要性，并通过介绍具体的调试方法和工具，为开发人员提供了一套有效的调试方案，尤其是针对那些使用OLED显示屏的项目。</description>
     </item>
     

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>SQLite on Eddy&#39;s blog</title>
-    <link>https://eddyblog.cn/tags/sqlite/</link>
+    <link>https://eddycliff.github.io/tags/sqlite/</link>
     <description>Recent content in SQLite on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Wed, 01 May 2024 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/sqlite/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 01 May 2024 00:17:58 +0800</lastBuildDate><atom:link href="https://eddycliff.github.io/tags/sqlite/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>SQLite数据库简介及使用指南</title>
-      <link>https://eddyblog.cn/posts/tech/database_sqlite/</link>
+      <link>https://eddycliff.github.io/posts/tech/database_sqlite/</link>
       <pubDate>Wed, 01 May 2024 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/database_sqlite/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/database_sqlite/</guid>
       <description>这篇博客提供了SQLite数据库的全面介绍和使用指南。它详细解释了SQLite作为一种轻量级、文件系统基础的数据库管理系统，非常适合小型项目和移动应用。文章介绍了SQLite的安装过程，包括Windows、macOS和Linux系统下的安装步骤。接着，博客通过创建数据库、表，以及执行插入、查询、更新和删除操作的示例，演示了SQLite的基本使用方法。最后，通过一个案例演示，指导读者如何从头开始使用SQLite来管理数据。博客旨在帮助读者快速掌握SQLite，并强调了其作为嵌入式数据库的优势，适用于多种应用场景。</description>
     </item>
     

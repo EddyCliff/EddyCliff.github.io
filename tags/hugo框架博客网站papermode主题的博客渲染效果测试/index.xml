@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Hugo框架博客网站Papermode主题的博客渲染效果测试 on Eddy&#39;s blog</title>
-    <link>https://eddyblog.cn/tags/hugo%E6%A1%86%E6%9E%B6%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99papermode%E4%B8%BB%E9%A2%98%E7%9A%84%E5%8D%9A%E5%AE%A2%E6%B8%B2%E6%9F%93%E6%95%88%E6%9E%9C%E6%B5%8B%E8%AF%95/</link>
+    <link>https://eddycliff.github.io/tags/hugo%E6%A1%86%E6%9E%B6%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99papermode%E4%B8%BB%E9%A2%98%E7%9A%84%E5%8D%9A%E5%AE%A2%E6%B8%B2%E6%9F%93%E6%95%88%E6%9E%9C%E6%B5%8B%E8%AF%95/</link>
     <description>Recent content in Hugo框架博客网站Papermode主题的博客渲染效果测试 on Eddy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Wed, 10 Apr 2024 00:17:58 +0800</lastBuildDate><atom:link href="https://eddyblog.cn/tags/hugo%E6%A1%86%E6%9E%B6%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99papermode%E4%B8%BB%E9%A2%98%E7%9A%84%E5%8D%9A%E5%AE%A2%E6%B8%B2%E6%9F%93%E6%95%88%E6%9E%9C%E6%B5%8B%E8%AF%95/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 10 Apr 2024 00:17:58 +0800</lastBuildDate><atom:link href="https://eddycliff.github.io/tags/hugo%E6%A1%86%E6%9E%B6%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99papermode%E4%B8%BB%E9%A2%98%E7%9A%84%E5%8D%9A%E5%AE%A2%E6%B8%B2%E6%9F%93%E6%95%88%E6%9E%9C%E6%B5%8B%E8%AF%95/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>markdown测试</title>
-      <link>https://eddyblog.cn/posts/tech/test/</link>
+      <link>https://eddycliff.github.io/posts/tech/test/</link>
       <pubDate>Wed, 10 Apr 2024 00:17:58 +0800</pubDate>
       
-      <guid>https://eddyblog.cn/posts/tech/test/</guid>
+      <guid>https://eddycliff.github.io/posts/tech/test/</guid>
       <description>本文用于测试Hugo博客网站Papermod主题的博客渲染效果</description>
     </item>
     

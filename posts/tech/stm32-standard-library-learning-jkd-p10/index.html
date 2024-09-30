@@ -9,17 +9,17 @@
 <meta name="keywords" content="STM32, embedded, Embedded development, MCU, ARM Cortex-M, Development Board, 开发板, STM32简介, STM32标准库, 嵌入式开发">
 <meta name="description" content="本博客主要讲述了如何将OLED显示屏驱动程序模块整合至STM32工程中，并详细阐述了该驱动程序的设计与实现细节。重点讲解了硬件连接方式，尤其是如何通过PB6和PB7端口为OLED屏幕提供电源并通过四针脚接口进行数据传输。同时，介绍了如何根据现有的工程文件创建新的项目，并在其中嵌入OLED显示屏的驱动代码。文档还探讨了利用特定软件的调试模式对程序进行分析和优化的方法，涵盖了在线仿真和计算机模拟两种调试方式，及其对应的启动调试步骤和常用调试命令。此外，文中强调了通过这些调试手段可以有效地诊断和修复程序中的错误，加深对程序执行流程的理解。最后，文档简要介绍了 Keil 软件中的调试模式和相关功能，如命令窗口、反汇编窗口和符号窗口的使用方法，为进一步的程序调试提供了工具和技巧。">
 <meta name="author" content="Eddy">
-<link rel="canonical" href="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p10/">
+<link rel="canonical" href="https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p10/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.js" onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="https://eddyblog.cn/img/logo3.jpg">
-<link rel="icon" type="image/png" sizes="16x16" href="https://eddyblog.cn/img/logo3.jpg">
-<link rel="icon" type="image/png" sizes="32x32" href="https://eddyblog.cn/img/logo3.jpg">
-<link rel="apple-touch-icon" href="https://eddyblog.cn/img/logo3.jpg">
-<link rel="mask-icon" href="https://eddyblog.cn/img/logo3.jpg">
+<link rel="icon" href="https://eddycliff.github.io/img/logo3.jpg">
+<link rel="icon" type="image/png" sizes="16x16" href="https://eddycliff.github.io/img/logo3.jpg">
+<link rel="icon" type="image/png" sizes="32x32" href="https://eddycliff.github.io/img/logo3.jpg">
+<link rel="apple-touch-icon" href="https://eddycliff.github.io/img/logo3.jpg">
+<link rel="mask-icon" href="https://eddycliff.github.io/img/logo3.jpg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p10/">
+<link rel="alternate" hreflang="zh" href="https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p10/">
 <noscript>
     <style>
         #theme-toggle,
@@ -82,7 +82,7 @@ var _hmt = _hmt || [];
 <meta property="og:title" content="嵌入式开发-STM32标准库学习：OLED显示屏" />
 <meta property="og:description" content="本博客主要讲述了如何将OLED显示屏驱动程序模块整合至STM32工程中，并详细阐述了该驱动程序的设计与实现细节。重点讲解了硬件连接方式，尤其是如何通过PB6和PB7端口为OLED屏幕提供电源并通过四针脚接口进行数据传输。同时，介绍了如何根据现有的工程文件创建新的项目，并在其中嵌入OLED显示屏的驱动代码。文档还探讨了利用特定软件的调试模式对程序进行分析和优化的方法，涵盖了在线仿真和计算机模拟两种调试方式，及其对应的启动调试步骤和常用调试命令。此外，文中强调了通过这些调试手段可以有效地诊断和修复程序中的错误，加深对程序执行流程的理解。最后，文档简要介绍了 Keil 软件中的调试模式和相关功能，如命令窗口、反汇编窗口和符号窗口的使用方法，为进一步的程序调试提供了工具和技巧。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p10/" />
+<meta property="og:url" content="https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p10/" />
 <meta property="og:image" content="https://testingcf.jsdelivr.net/gh/EddyCliff/ChartBed/BlogCover/pc9.jpg" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2024-05-13T00:17:58+06:00" />
 <meta property="article:modified_time" content="2024-05-13T00:17:58+06:00" />
@@ -103,20 +103,20 @@ var _hmt = _hmt || [];
           "@type": "ListItem",
           "position":  1 ,
           "name": "📚文章",
-          "item": "https://eddyblog.cn/posts/"
+          "item": "https://eddycliff.github.io/posts/"
         },
 
         {
           "@type": "ListItem",
           "position":  2 ,
           "name": "👨🏻‍💻 技术",
-          "item": "https://eddyblog.cn/posts/tech/"
+          "item": "https://eddycliff.github.io/posts/tech/"
         }, 
     {
       "@type": "ListItem",
       "position":  3 ,
       "name": "嵌入式开发-STM32标准库学习：OLED显示屏",
-      "item": "https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p10/"
+      "item": "https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p10/"
     }
   ]
 }
@@ -142,14 +142,14 @@ var _hmt = _hmt || [];
   }],
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p10/"
+    "@id": "https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p10/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "Eddy's blog",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://eddyblog.cn/img/logo3.jpg"
+      "url": "https://eddycliff.github.io/img/logo3.jpg"
     }
   }
 }
@@ -184,8 +184,8 @@ var _hmt = _hmt || [];
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://eddyblog.cn/" accesskey="h" title="Eddy&#39;s Blog (Alt + H)">
-            <img src="https://eddyblog.cn/img/logo3.jpg" alt="logo" aria-label="logo"
+            <a href="https://eddycliff.github.io/" accesskey="h" title="Eddy&#39;s Blog (Alt + H)">
+            <img src="https://eddycliff.github.io/img/logo3.jpg" alt="logo" aria-label="logo"
                  height="35">Eddy&#39;s Blog</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
@@ -214,32 +214,32 @@ var _hmt = _hmt || [];
         </div>
         <ul id="menu">
             <li>
-                <a href="https://eddyblog.cn/search" title="🔍 搜索 (Alt &#43; /)" accesskey=/>
+                <a href="https://eddycliff.github.io/search" title="🔍 搜索 (Alt &#43; /)" accesskey=/>
                 <span>🔍 搜索</span>
                 </a>
             </li>
             <li>
-                <a href="https://eddyblog.cn/" title="🏠 主页">
+                <a href="https://eddycliff.github.io/" title="🏠 主页">
                 <span>🏠 主页</span>
                 </a>
             </li>
             <li>
-                <a href="https://eddyblog.cn/posts" title="📚 文章">
+                <a href="https://eddycliff.github.io/posts" title="📚 文章">
                 <span>📚 文章</span>
                 </a>
             </li>
             <li>
-                <a href="https://eddyblog.cn/tags" title="🧩 标签">
+                <a href="https://eddycliff.github.io/tags" title="🧩 标签">
                 <span>🧩 标签</span>
                 </a>
             </li>
             <li>
-                <a href="https://eddyblog.cn/archives/" title="⏱️ 时间轴">
+                <a href="https://eddycliff.github.io/archives/" title="⏱️ 时间轴">
                 <span>⏱️ 时间轴</span>
                 </a>
             </li>
             <li>
-                <a href="https://eddyblog.cn/about" title="🙋🏻‍♂️ 关于">
+                <a href="https://eddycliff.github.io/about" title="🙋🏻‍♂️ 关于">
                 <span>🙋🏻‍♂️ 关于</span>
                 </a>
             </li>
@@ -258,7 +258,7 @@ var _hmt = _hmt || [];
 <article class="post-single">
     <div id="single-content">
         <header class="post-header">
-            <div class="breadcrumbs"><a href="https://eddyblog.cn/">🏠 主页</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/">📚文章</a>&nbsp;»&nbsp;<a href="https://eddyblog.cn/posts/tech/">👨🏻‍💻 技术</a></div>
+            <div class="breadcrumbs"><a href="https://eddycliff.github.io/">🏠 主页</a>&nbsp;»&nbsp;<a href="https://eddycliff.github.io/posts/">📚文章</a>&nbsp;»&nbsp;<a href="https://eddycliff.github.io/posts/tech/">👨🏻‍💻 技术</a></div>
             <h1 class="post-title">
                 嵌入式开发-STM32标准库学习：OLED显示屏
             </h1>
@@ -317,13 +317,13 @@ var _hmt = _hmt || [];
         <span class="fa fa-tags" style="opacity: 0.8"></span>
         <span>
             <span class="post-tags-meta">
-                <a href="https://eddyblog.cn/tags/stm32/" style="color: var(--secondary)!important;">STM32</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/mcu/" style="color: var(--secondary)!important;">MCU</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/oled/" style="color: var(--secondary)!important;">OLED</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/oled%E6%98%BE%E7%A4%BA%E5%B1%8F/" style="color: var(--secondary)!important;">OLED显示屏</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/stm32%E6%A0%87%E5%87%86%E5%BA%93%E5%BC%80%E5%8F%91/" style="color: var(--secondary)!important;">STM32标准库开发</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" style="color: var(--secondary)!important;">嵌入式开发</a>
-                &nbsp;<a href="https://eddyblog.cn/tags/stm32f1/" style="color: var(--secondary)!important;">STM32F1</a>
+                <a href="https://eddycliff.github.io/tags/stm32/" style="color: var(--secondary)!important;">STM32</a>
+                &nbsp;<a href="https://eddycliff.github.io/tags/mcu/" style="color: var(--secondary)!important;">MCU</a>
+                &nbsp;<a href="https://eddycliff.github.io/tags/oled/" style="color: var(--secondary)!important;">OLED</a>
+                &nbsp;<a href="https://eddycliff.github.io/tags/oled%E6%98%BE%E7%A4%BA%E5%B1%8F/" style="color: var(--secondary)!important;">OLED显示屏</a>
+                &nbsp;<a href="https://eddycliff.github.io/tags/stm32%E6%A0%87%E5%87%86%E5%BA%93%E5%BC%80%E5%8F%91/" style="color: var(--secondary)!important;">STM32标准库开发</a>
+                &nbsp;<a href="https://eddycliff.github.io/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" style="color: var(--secondary)!important;">嵌入式开发</a>
+                &nbsp;<a href="https://eddycliff.github.io/tags/stm32f1/" style="color: var(--secondary)!important;">STM32F1</a>
             </span>
         </span>
     </span>
@@ -344,7 +344,7 @@ var _hmt = _hmt || [];
                             <script>
                                 let url = document.documentURI
                                 
-                                let dnsUrl = "https://eddyblog.cn/"
+                                let dnsUrl = "https://eddycliff.github.io/"
                                 let urlSplit = url.split(dnsUrl)
                                 let finalUrl = urlSplit[1]
                                 if (finalUrl[0] !== '/') {
@@ -749,12 +749,12 @@ var _hmt = _hmt || [];
         <footer class="post-footer">
             
 <nav class="paginav">
-  <a class="prev" href="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p11/">
+  <a class="prev" href="https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p11/">
     <span class="title">« 上一页</span>
     <br>
     <span>嵌入式开发-STM32标准库学习：EXTI外部中断</span>
   </a>
-  <a class="next" href="https://eddyblog.cn/posts/tech/stm32-standard-library-learning-jkd-p9/">
+  <a class="next" href="https://eddycliff.github.io/posts/tech/stm32-standard-library-learning-jkd-p9/">
     <span class="title">下一页 »</span>
     <br>
     <span>嵌入式开发-STM32标准库学习：OLED调试工具</span>
@@ -771,7 +771,7 @@ var _hmt = _hmt || [];
         Copyright
         &copy;
         -2024
-        <a href="https://eddyblog.cn/" style="color:#939393;">Eddy&#39;s blog</a>
+        <a href="https://eddycliff.github.io/" style="color:#939393;">Eddy&#39;s blog</a>
         All Rights Reserved
     </span>
     <a href="https://beian.miit.gov.cn/" target="_blank" style="color:#939393;"></a>&nbsp;
